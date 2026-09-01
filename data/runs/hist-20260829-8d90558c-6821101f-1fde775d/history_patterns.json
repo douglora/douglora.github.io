@@ -1,0 +1,711 @@
+{
+  "as_of": "2026-08-29",
+  "config_hash": "6821101f2b2e709966d17c24a364b8b7ef6d825ff98e1aebe30ff6935ae9cb3c",
+  "corpus": {
+    "elections": [
+      "2010-T1",
+      "2014-T1",
+      "2014-T2",
+      "2018-T1",
+      "2018-T2",
+      "2022-T1",
+      "2022-T2"
+    ],
+    "houses": [
+      "atlasintel",
+      "brasmarket",
+      "datafolha",
+      "fsb",
+      "futura",
+      "g6s",
+      "gerp",
+      "ibope",
+      "ideia",
+      "ifp",
+      "ipec",
+      "ipespe",
+      "mda",
+      "multi-mercado",
+      "parana-pesquisas",
+      "poderdata",
+      "quaest",
+      "real-time-big-data",
+      "sensus",
+      "verita",
+      "vox-do-brasil",
+      "vox-opiniao",
+      "vox-populi-2010-mirror"
+    ],
+    "observations": 251
+  },
+  "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
+  "live_hash": "1fde775d2d38210a1a241782d305fe13cc32f5932e82d87ea53c15d787c657e7",
+  "live_source_run_id": "run-20260828-7c180a06-6384095e",
+  "min_elections_for_support": 3,
+  "results": [
+    {
+      "buckets": [
+        {
+          "absolute_margin_error": 4.473897460259495,
+          "bucket": "d1",
+          "elections": [
+            "2014-T1",
+            "2014-T2",
+            "2018-T1",
+            "2018-T2",
+            "2022-T1",
+            "2022-T2"
+          ],
+          "mae": 2.2040080356395846,
+          "mae_median": 1.9138740661686242,
+          "n": 19,
+          "range_days": [
+            0,
+            1
+          ]
+        },
+        {
+          "absolute_margin_error": 6.301286697805751,
+          "bucket": "d7",
+          "elections": [
+            "2010-T1",
+            "2014-T1",
+            "2014-T2",
+            "2018-T1",
+            "2018-T2",
+            "2022-T1",
+            "2022-T2"
+          ],
+          "mae": 3.23540416880928,
+          "mae_median": 2.559112903225807,
+          "n": 67,
+          "range_days": [
+            2,
+            7
+          ]
+        },
+        {
+          "absolute_margin_error": 8.322995340750028,
+          "bucket": "d14",
+          "elections": [
+            "2010-T1",
+            "2014-T1",
+            "2014-T2",
+            "2018-T1",
+            "2018-T2",
+            "2022-T1",
+            "2022-T2"
+          ],
+          "mae": 4.301584254402532,
+          "mae_median": 3.6135295480880663,
+          "n": 46,
+          "range_days": [
+            8,
+            14
+          ]
+        },
+        {
+          "absolute_margin_error": 9.834808488238844,
+          "bucket": "d30",
+          "elections": [
+            "2010-T1",
+            "2014-T1",
+            "2014-T2",
+            "2018-T1",
+            "2018-T2",
+            "2022-T1",
+            "2022-T2"
+          ],
+          "mae": 6.124100779570503,
+          "mae_median": 6.2738433734939765,
+          "n": 62,
+          "range_days": [
+            15,
+            30
+          ]
+        },
+        {
+          "absolute_margin_error": 7.235641941304523,
+          "bucket": "d60",
+          "elections": [
+            "2010-T1",
+            "2014-T1",
+            "2018-T1",
+            "2022-T1"
+          ],
+          "mae": 5.264032412492629,
+          "mae_median": 4.590477528089886,
+          "n": 39,
+          "range_days": [
+            31,
+            58
+          ]
+        },
+        {
+          "absolute_margin_error": 6.877770225745672,
+          "bucket": "early",
+          "elections": [
+            "2010-T1",
+            "2018-T1",
+            "2022-T1"
+          ],
+          "mae": 5.408117104888045,
+          "mae_median": 4.6968148510014665,
+          "n": 18,
+          "range_days": [
+            61,
+            177
+          ]
+        }
+      ],
+      "id": "P1",
+      "paired_by_election": [
+        {
+          "early_mae": 6.303691077441076,
+          "election": "2010-T1",
+          "improvement_pp": 1.3262836700336686,
+          "late_mae": 4.977407407407408,
+          "n_early": 16,
+          "n_late": 9
+        },
+        {
+          "early_mae": 10.49957435469819,
+          "election": "2014-T1",
+          "improvement_pp": 4.114186428184424,
+          "late_mae": 6.385387926513766,
+          "n_early": 4,
+          "n_late": 10
+        },
+        {
+          "early_mae": 10.308811981757877,
+          "election": "2018-T1",
+          "improvement_pp": 7.412891720971944,
+          "late_mae": 2.895920260785934,
+          "n_early": 4,
+          "n_late": 10
+        },
+        {
+          "early_mae": 3.592447557282297,
+          "election": "2022-T1",
+          "improvement_pp": 0.7622742673075558,
+          "late_mae": 2.8301732899747414,
+          "n_early": 33,
+          "n_late": 17
+        }
+      ],
+      "question": "As pesquisas convergem para o resultado no fim da campanha?",
+      "reading": "Comparação entre a última semana e o período anterior a D-30, com um valor por eleição/turno. Não é causal: o campo tardio também tem mais pesquisas e menos indecisos.",
+      "rule": "Suportado exige ≥3 anos eleitorais, melhora no mesmo sentido em todas as eleições pareadas, p<0,05 no teste de sinal e IC95 da melhora acima de zero.",
+      "test": {
+        "ci95": [
+          0.4168537196278215,
+          6.390964323620974
+        ],
+        "consistent": true,
+        "mean": 3.403909021624398,
+        "n": 4,
+        "p_value": 0.125,
+        "positives": 4,
+        "sd": 3.048015614282221
+      },
+      "test_power_note": "Com 4 eleições pareadas, o menor p possível no teste de sinal é 0.125. O limiar de 0,05 é inalcançável por desenho: 'observational' aqui significa amostra pequena, não ausência de efeito. A direção foi a mesma em todas as eleições.",
+      "verdict": "observational"
+    },
+    {
+      "algebraic_identity": "Restrita ao par líder/2º colocado, esta assimetria é idêntica ao erro de margem. Ela é publicada porque decompõe o mesmo número em duas partes interpretáveis: quanto veio de superestimar o líder e quanto de subestimar o 2º colocado.",
+      "id": "P2",
+      "per_election": [
+        {
+          "asymmetry_pp": 6.9250000000000025,
+          "election": "2010-T1",
+          "leader_official_minus_poll_pp": -1.2150000000000034,
+          "runner_up_official_minus_poll_pp": 5.709999999999999,
+          "turn": 1,
+          "year": 2010
+        },
+        {
+          "asymmetry_pp": 10.866820496776505,
+          "election": "2014-T1",
+          "leader_official_minus_poll_pp": -4.273101067707122,
+          "runner_up_official_minus_poll_pp": 6.593719429069382,
+          "turn": 1,
+          "year": 2014
+        },
+        {
+          "asymmetry_pp": -0.4242218965423703,
+          "election": "2014-T2",
+          "leader_official_minus_poll_pp": 0.21211094827118515,
+          "runner_up_official_minus_poll_pp": -0.21211094827118515,
+          "turn": 2,
+          "year": 2014
+        },
+        {
+          "asymmetry_pp": -0.54143936404351,
+          "election": "2018-T1",
+          "leader_official_minus_poll_pp": 4.080310860695739,
+          "runner_up_official_minus_poll_pp": 3.5388714966522286,
+          "turn": 1,
+          "year": 2018
+        },
+        {
+          "asymmetry_pp": 0.7697810491779851,
+          "election": "2018-T2",
+          "leader_official_minus_poll_pp": -0.3848905245889919,
+          "runner_up_official_minus_poll_pp": 0.3848905245889931,
+          "turn": 2,
+          "year": 2018
+        },
+        {
+          "asymmetry_pp": -0.9325188725815949,
+          "election": "2022-T1",
+          "leader_official_minus_poll_pp": 3.0531639742542396,
+          "runner_up_official_minus_poll_pp": 2.1206451016726446,
+          "turn": 1,
+          "year": 2022
+        },
+        {
+          "asymmetry_pp": 0.2079642294140258,
+          "election": "2022-T2",
+          "leader_official_minus_poll_pp": -0.10398211470701264,
+          "runner_up_official_minus_poll_pp": 0.10398211470701314,
+          "turn": 2,
+          "year": 2022
+        }
+      ],
+      "question": "O segundo colocado é subestimado em relação ao líder?",
+      "reading": "Positivo significa que o 2º colocado ficou mais subestimado que o líder. Turnos e eleições não são somados.",
+      "rule": "Assimetria = (oficial − pesquisa) do 2º colocado menos (oficial − pesquisa) do líder, com líder/2º definidos pelo resultado oficial e um valor por eleição/turno.",
+      "test": {
+        "ci95": [
+          -1.0028743855673983,
+          5.823270283339125
+        ],
+        "consistent": false,
+        "mean": 2.4101979488858634,
+        "n": 7,
+        "p_value": 1.0,
+        "positives": 4,
+        "sd": 4.6072145936928575
+      },
+      "verdict": "observational"
+    },
+    {
+      "by_mode": [
+        {
+          "elections": [
+            "2010-T1",
+            "2014-T1",
+            "2014-T2",
+            "2018-T1",
+            "2018-T2",
+            "2022-T1",
+            "2022-T2"
+          ],
+          "mae_mean": 4.1514196078415235,
+          "mae_median": 4.010501562890723,
+          "mae_sd": 2.707659987749224,
+          "margin_error_mean": 6.198135721548089,
+          "mode": "desconhecido",
+          "n": 62,
+          "n_elections": 7,
+          "n_houses": 8,
+          "status": "scored"
+        },
+        {
+          "elections": [
+            "2018-T1",
+            "2022-T1"
+          ],
+          "mae_mean": 2.8120139271264413,
+          "mae_median": 2.900978260869566,
+          "mae_sd": 0.2222035316417661,
+          "margin_error_mean": 7.116662741906631,
+          "mode": "misto",
+          "n": 3,
+          "n_elections": 2,
+          "n_houses": 2,
+          "status": "thin"
+        },
+        {
+          "elections": [
+            "2022-T1",
+            "2022-T2"
+          ],
+          "mae_mean": 1.8911836670727553,
+          "mae_median": 1.837562077752295,
+          "mae_sd": 0.4972289570586026,
+          "margin_error_mean": 4.1789346018682245,
+          "mode": "online",
+          "n": 6,
+          "n_elections": 2,
+          "n_houses": 1,
+          "status": "thin"
+        },
+        {
+          "elections": [
+            "2022-T1",
+            "2022-T2"
+          ],
+          "mae_mean": 2.4102795841278986,
+          "mae_median": 2.579583333333335,
+          "mae_sd": 0.9649341412517117,
+          "margin_error_mean": 3.157968610665241,
+          "mode": "presencial",
+          "n": 6,
+          "n_elections": 2,
+          "n_houses": 2,
+          "status": "thin"
+        },
+        {
+          "elections": [
+            "2014-T1",
+            "2014-T2",
+            "2018-T1",
+            "2018-T2",
+            "2022-T1",
+            "2022-T2"
+          ],
+          "mae_mean": 2.9979685584569564,
+          "mae_median": 2.5093229744728056,
+          "mae_sd": 1.641116809062641,
+          "margin_error_mean": -0.3948582835362747,
+          "mode": "telefone",
+          "n": 55,
+          "n_elections": 6,
+          "n_houses": 14,
+          "status": "scored"
+        }
+      ],
+      "comparable_modes": [
+        "telefone"
+      ],
+      "id": "P3",
+      "question": "O modo de coleta muda o tamanho do erro?",
+      "reading": "Serve para dar prior a uma casa nova sem histórico próprio, não para afirmar que um modo é melhor.",
+      "rule": "Comparação descritiva na janela D-14. Nunca recebe 'supported' porque modo, casa e ciclo estão confundidos: casas não sorteiam o modo, e coleta online só aparece a partir de 2022.",
+      "unknown_mode_share": 0.4696969696969697,
+      "verdict": "unidentifiable"
+    },
+    {
+      "elections_with_herding": [],
+      "id": "P4",
+      "median_ratio": 2.588350752049049,
+      "per_election": [
+        {
+          "election": "2010-T1",
+          "n_houses": 4,
+          "reason": "menos de 3 casas com amostra declarada",
+          "status": "insufficient_data"
+        },
+        {
+          "candidate": "dilma",
+          "election": "2014-T1",
+          "expected_sampling_sd_pp": 0.9285812368213566,
+          "n_houses": 4,
+          "observed_sd_pp": 0.93312600597876,
+          "pattern": "dispersao_excessiva",
+          "ratio": 1.0048943150875638,
+          "status": "scored"
+        },
+        {
+          "candidate": "dilma",
+          "election": "2014-T2",
+          "expected_sampling_sd_pp": 0.9287892959102986,
+          "n_houses": 4,
+          "observed_sd_pp": 1.6168695243467233,
+          "pattern": "dispersao_excessiva",
+          "ratio": 1.7408356572004235,
+          "status": "scored"
+        },
+        {
+          "candidate": "bolsonaro",
+          "election": "2018-T1",
+          "expected_sampling_sd_pp": 0.8687816053420823,
+          "n_houses": 7,
+          "observed_sd_pp": 4.387013180633239,
+          "pattern": "dispersao_excessiva",
+          "ratio": 5.049615638335085,
+          "status": "scored"
+        },
+        {
+          "candidate": "bolsonaro",
+          "election": "2018-T2",
+          "expected_sampling_sd_pp": 0.918065687124515,
+          "n_houses": 6,
+          "observed_sd_pp": 2.8259382620469764,
+          "pattern": "dispersao_excessiva",
+          "ratio": 3.0781438645181622,
+          "status": "scored"
+        },
+        {
+          "candidate": "lula",
+          "election": "2022-T1",
+          "expected_sampling_sd_pp": 1.0041392325331835,
+          "n_houses": 15,
+          "observed_sd_pp": 5.447382635545013,
+          "pattern": "dispersao_excessiva",
+          "ratio": 5.424927598738151,
+          "status": "scored"
+        },
+        {
+          "candidate": "lula",
+          "election": "2022-T2",
+          "expected_sampling_sd_pp": 1.0017432561465134,
+          "n_houses": 14,
+          "observed_sd_pp": 2.102215963083946,
+          "pattern": "dispersao_excessiva",
+          "ratio": 2.0985576395799357,
+          "status": "scored"
+        }
+      ],
+      "question": "As casas se aproximam demais umas das outras (herding)?",
+      "reading": "Razão acima de 1 na maioria das eleições significa que a variação entre casas é maior do que a margem de erro sozinha explica — é o argumento quantitativo para inflar a incerteza do agregador.",
+      "rule": "Razão = desvio-padrão observado entre casas ÷ desvio-padrão amostral esperado, no percentual do líder oficial, usando a última pesquisa de cada casa. Razão <1 sugere herding; >1, dispersão acima do ruído amostral.",
+      "verdict": "rejected"
+    },
+    {
+      "correlation_mae_vs_inv_sqrt_n": 0.0957800701441561,
+      "id": "P5",
+      "largest_quartile": {
+        "mae": 2.9516532951534,
+        "median_sample": 10589.0,
+        "n": 28
+      },
+      "n": 113,
+      "question": "Amostra maior erra menos?",
+      "reading": "Se a correlação for fraca, o erro dominante não é amostral — é desenho, recorte de eleitor provável e mudança tardia. Isso justifica NÃO premiar amostra grande de forma agressiva no peso.",
+      "rule": "Correlação entre MAE e 1/√n na janela D-14; nenhuma causalidade atribuída.",
+      "slope": 34.76704142760133,
+      "smallest_quartile": {
+        "mae": 3.3868695445861907,
+        "median_sample": 2000.0,
+        "n": 28
+      },
+      "verdict": "observational"
+    },
+    {
+      "correlation_mae_vs_undecided": 0.3295625423687131,
+      "id": "P6",
+      "n": 132,
+      "question": "Mais indecisos, mais erro?",
+      "reading": "Indecisos altos e erro alto podem ter a mesma causa (eleição indefinida). Não tratamos como mecanismo.",
+      "rule": "Correlação simples na janela D-14; a conversão para válidos já foi aplicada.",
+      "undecided_median": 9.0,
+      "verdict": "observational"
+    },
+    {
+      "id": "P7",
+      "median_share_common": 0.11597223231562472,
+      "per_election": [
+        {
+          "absolute_common_pp": 6.9250000000000025,
+          "common_margin_error_pp": 6.9250000000000025,
+          "election": "2010-T1",
+          "house_spread_sd_pp": 1.6938614661968865,
+          "houses": 4,
+          "share_common": 0.8034703919026661,
+          "turn": 1,
+          "year": 2010
+        },
+        {
+          "absolute_common_pp": 10.866820496776505,
+          "common_margin_error_pp": 10.866820496776505,
+          "election": "2014-T1",
+          "house_spread_sd_pp": 1.2361546201252873,
+          "houses": 4,
+          "share_common": 0.8978635741885482,
+          "turn": 1,
+          "year": 2014
+        },
+        {
+          "absolute_common_pp": 0.4242218965423703,
+          "common_margin_error_pp": -0.4242218965423703,
+          "election": "2014-T2",
+          "house_spread_sd_pp": 3.2337390486934465,
+          "houses": 4,
+          "share_common": 0.11597223231562472,
+          "turn": 2,
+          "year": 2014
+        },
+        {
+          "absolute_common_pp": 0.5414393640435097,
+          "common_margin_error_pp": -0.5414393640435097,
+          "election": "2018-T1",
+          "house_spread_sd_pp": 5.560250722296232,
+          "houses": 7,
+          "share_common": 0.08873596599992287,
+          "turn": 1,
+          "year": 2018
+        },
+        {
+          "absolute_common_pp": 0.769781049177985,
+          "common_margin_error_pp": 0.769781049177985,
+          "election": "2018-T2",
+          "house_spread_sd_pp": 5.651876524093956,
+          "houses": 6,
+          "share_common": 0.11987264041949977,
+          "turn": 2,
+          "year": 2018
+        },
+        {
+          "absolute_common_pp": 0.9325188725815948,
+          "common_margin_error_pp": -0.9325188725815948,
+          "election": "2022-T1",
+          "house_spread_sd_pp": 9.698923386915554,
+          "houses": 15,
+          "share_common": 0.08771329889400176,
+          "turn": 1,
+          "year": 2022
+        },
+        {
+          "absolute_common_pp": 0.2079642294140258,
+          "common_margin_error_pp": 0.2079642294140258,
+          "election": "2022-T2",
+          "house_spread_sd_pp": 4.20443192616789,
+          "houses": 14,
+          "share_common": 0.04713181275687133,
+          "turn": 2,
+          "year": 2022
+        }
+      ],
+      "question": "O erro é da eleição inteira ou de uma casa?",
+      "reading": "Quando o componente comum domina, a conclusão correta é 'a eleição foi mal medida por todos', não 'a casa X é ruim'. É por isso que o agregador trata erro comum como incerteza, e não como correção por casa.",
+      "rule": "Componente comum = média do erro de margem com um voto por casa. Componente de casa = desvio-padrão dos desvios em relação a esse comum.",
+      "verdict": "supported"
+    },
+    {
+      "id": "P8",
+      "per_year": [
+        {
+          "reason": "um dos turnos não tem observações pontuadas",
+          "status": "insufficient_data",
+          "t1_mae": 4.535,
+          "t2_mae": null,
+          "year": 2010
+        },
+        {
+          "improvement_pp": 3.1835656594960433,
+          "status": "scored",
+          "t1_houses": 4,
+          "t1_mae": 4.497222501487034,
+          "t1_margin_error": 10.866820496776505,
+          "t2_houses": 4,
+          "t2_mae": 1.3136568419909906,
+          "t2_margin_error": -0.4242218965423703,
+          "year": 2014
+        },
+        {
+          "improvement_pp": 0.7170578344823062,
+          "status": "scored",
+          "t1_houses": 7,
+          "t1_mae": 2.7007934646521887,
+          "t1_margin_error": -0.5414393640435097,
+          "t2_houses": 6,
+          "t2_mae": 1.9837356301698825,
+          "t2_margin_error": 0.769781049177985,
+          "year": 2018
+        },
+        {
+          "improvement_pp": 1.5736947474127416,
+          "status": "scored",
+          "t1_houses": 15,
+          "t1_mae": 3.304526321644821,
+          "t1_margin_error": -0.9325188725815948,
+          "t2_houses": 14,
+          "t2_mae": 1.7308315742320795,
+          "t2_margin_error": 0.2079642294140258,
+          "year": 2022
+        }
+      ],
+      "question": "O segundo turno é medido melhor que o primeiro?",
+      "reading": "Dois candidatos e menos indecisos tornam o 2º turno mecanicamente mais fácil de medir. Isso não transfere confiança do 2º para o 1º turno.",
+      "rule": "MAE do 1º turno menos MAE do 2º turno, usando a última pesquisa de cada casa em cada turno. Turnos jamais são somados; só comparados.",
+      "test": {
+        "ci95": [
+          0.4076889815813107,
+          3.241856512679417
+        ],
+        "consistent": true,
+        "mean": 1.8247727471303639,
+        "n": 3,
+        "p_value": 0.25,
+        "positives": 3,
+        "sd": 1.2522760614857056
+      },
+      "verdict": "observational"
+    },
+    {
+      "eligible_cells": [
+        "2014-T1",
+        "2014-T2",
+        "2022-T1",
+        "2022-T2"
+      ],
+      "id": "P9",
+      "per_election": [
+        {
+          "election": "2014-T1",
+          "incumbent": "dilma",
+          "n_houses": 4,
+          "reading": "positivo = pesquisa superestimou a pessoa no cargo",
+          "signed_error_pp": 4.273101067707122
+        },
+        {
+          "election": "2014-T2",
+          "incumbent": "dilma",
+          "n_houses": 4,
+          "reading": "positivo = pesquisa superestimou a pessoa no cargo",
+          "signed_error_pp": -0.21211094827118515
+        },
+        {
+          "election": "2022-T1",
+          "incumbent": "bolsonaro",
+          "n_houses": 15,
+          "reading": "positivo = pesquisa superestimou a pessoa no cargo",
+          "signed_error_pp": -2.1206451016726446
+        },
+        {
+          "election": "2022-T2",
+          "incumbent": "bolsonaro",
+          "n_houses": 14,
+          "reading": "positivo = pesquisa superestimou a pessoa no cargo",
+          "signed_error_pp": -0.10398211470701314
+        }
+      ],
+      "question": "Pesquisas erram de forma diferente quando o presidente disputa a reeleição?",
+      "reading": "Somente 2014 e 2022 qualificam. Dois pontos não sustentam uma regra de incumbência, por mais sugestivo que o sinal pareça.",
+      "rule": "Célula elegível = presidente em exercício na cédula. 2010 e 2018 não têm célula elegível. Com apenas 2 anos eleitorais elegíveis o padrão não pode receber 'supported'; a regra é declarada antes do resultado.",
+      "verdict": "observational"
+    },
+    {
+      "blocking_gap": "modelo de eleitor provável por pesquisa não disponível no corpus",
+      "id": "P10",
+      "question": "A abstenção explica o erro das pesquisas?",
+      "reading": "Sem esse recorte, qualquer associação entre abstenção e erro seria ecológica: 7 pontos de eleição, uma variável agregada e nenhuma via causal identificável. Nada é publicado como se fosse explicação.",
+      "rule": "Exigiria abstenção oficial por eleição casada a um modelo de eleitor provável declarado por cada casa. O corpus local não tem o recorte de eleitor provável por pesquisa.",
+      "verdict": "unidentifiable"
+    }
+  ],
+  "run_id": "hist-20260829-8d90558c-6821101f-1fde775d",
+  "summary": {
+    "observational": 6,
+    "rejected": 1,
+    "supported": 1,
+    "unidentifiable": 2
+  },
+  "verdict_meanings": {
+    "observational": "Aparece nos dados, mas com poucos ciclos, confundimento ou intervalo que inclui zero.",
+    "rejected": "Os dados apontam no sentido contrário ao da hipótese.",
+    "supported": "Padrão se repete em pelo menos 3 anos eleitorais sob a regra declarada.",
+    "unidentifiable": "O desenho não separa o efeito com este corpus, em nenhuma direção."
+  },
+  "version": "1.0.0-history-insights",
+  "windows": {
+    "campaign": "Campanha inteira",
+    "d1": "D-1 (véspera)",
+    "d14": "D-14",
+    "d30": "D-30",
+    "d7": "D-7",
+    "last_by_house": "Última de cada casa"
+  }
+}

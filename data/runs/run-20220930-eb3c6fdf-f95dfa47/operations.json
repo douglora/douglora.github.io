@@ -1,0 +1,103 @@
+{
+  "adapter_health": {
+    "degraded": 0,
+    "failed": 0,
+    "healthy": 0
+  },
+  "blocked_recent": [],
+  "catch_up_since": null,
+  "commands": [
+    "uv run agregador watch",
+    "uv run agregador discover --dry-run",
+    "uv run agregador review-list",
+    "uv run agregador review-show <item_id>",
+    "uv run agregador review-discovery <item_id> --reviewer <nome> --accept --justification <texto>",
+    "uv run agregador run --trigger time_tick",
+    "uv run agregador status",
+    "uv run agregador retry"
+  ],
+  "coverage_gap": {
+    "accepted": 0,
+    "blocked": 0,
+    "future_expected": 0,
+    "national_expected": 0,
+    "primary_release_found": 0,
+    "release_missing": 0,
+    "validated_awaiting_review": 0
+  },
+  "coverage_message": "nenhuma pesquisa validada na janela de 21 dias — dados insuficientes",
+  "daily_time_tick": "08:00",
+  "data_availability": "unavailable_no_verified_2026_percentages",
+  "discovery_queue": {
+    "accepted": 0,
+    "ambiguous": 0,
+    "discovered": 0,
+    "extracted": 0,
+    "failed": 0,
+    "fetched": 0,
+    "future_publication": 0,
+    "matched_tse": 0,
+    "registration_only": 0,
+    "rejected": 0,
+    "validated": 0
+  },
+  "expected_releases": [],
+  "future_agenda": [],
+  "future_window_end": null,
+  "last_accepted_discovery": null,
+  "last_published_run": null,
+  "last_search": null,
+  "last_source_check": null,
+  "last_validated_poll": null,
+  "latency_seconds": null,
+  "latency_sla_seconds": {
+    "champion_m3": 900,
+    "preliminary_b1_m2": 300
+  },
+  "latency_status": "not_measured",
+  "live_coverage": {
+    "gate_satisfied": false,
+    "house_details": [],
+    "house_ids": [],
+    "houses": 0,
+    "min_houses": 2,
+    "min_polls": 3,
+    "polls": 0,
+    "window_days": 21
+  },
+  "live_diagnostic": null,
+  "local_runtime_limitation": "No Mac local, atualizações só ocorrem enquanto a máquina e o Paseo estiverem ligados.",
+  "methodology": {
+    "auto_update": false,
+    "rule": "Dados, posterior e probabilidades podem mudar em cada run validado. Metodologia e hiperparâmetros só mudam por nova versão, backtest, changelog e registry.",
+    "version": "3.1.0-phase2"
+  },
+  "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo sem mudar o motor.",
+  "processing_message": "watcher local preparado; serviço não iniciado por este pipeline",
+  "processing_state": "idle",
+  "recent_release_inventory": [],
+  "registry_telemetry": {
+    "national_live_preserved": 0,
+    "national_quota_overflow": 0,
+    "record_cap": 0,
+    "registry_rows_in_date_window": 0,
+    "registry_rows_scanned": 0,
+    "registry_rows_selected": 0,
+    "scope_counts_before_truncation": {},
+    "truncated_by_scope": {},
+    "truncation_count": 0,
+    "window_counts": {}
+  },
+  "review_queue_items": [],
+  "run_id": "run-20220930-eb3c6fdf-f95dfa47",
+  "service_running": false,
+  "source_checks": {},
+  "stale": true,
+  "stale_warning": "nenhuma checagem operacional registrada",
+  "state_intelligence": [],
+  "timezone": "America/Sao_Paulo",
+  "validated_poll_count": 0,
+  "visible_run_id": null,
+  "watch_interval_minutes": 30,
+  "watcher_prepared": true
+}

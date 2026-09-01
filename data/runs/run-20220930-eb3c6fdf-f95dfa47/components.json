@@ -1,0 +1,598 @@
+{
+  "bootstrap": {
+    "draws": 2000,
+    "seed": 20260827,
+    "unit": "available_cycle_or_poll_as_declared_per_component"
+  },
+  "common_error": [
+    {
+      "ci95_high": 5.693475005547981,
+      "ci95_low": -4.362381200683764,
+      "estimate": 0.6278786887725568,
+      "n": 3,
+      "rank": "leader",
+      "unit": "pp"
+    },
+    {
+      "ci95_high": 0.8430059026765853,
+      "ci95_low": -8.770544287566334,
+      "estimate": -3.8614050354895237,
+      "n": 3,
+      "rank": "remaining_total",
+      "unit": "pp"
+    },
+    {
+      "ci95_high": 9.697025206589409,
+      "ci95_low": 3.484102055767355,
+      "estimate": 5.661939154965352,
+      "n": 3,
+      "rank": "runner_up",
+      "unit": "pp"
+    },
+    {
+      "ci95_high": -0.4070327737490036,
+      "ci95_low": -6.177649908582236,
+      "estimate": -2.4284128082483867,
+      "n": 3,
+      "rank": "third",
+      "unit": "pp"
+    }
+  ],
+  "excess_variance": {
+    "ci95_high": 45.778791725605565,
+    "ci95_low": 4.472536138185773,
+    "estimand": "leader_residual_variance_to_binomial_sampling_variance",
+    "estimate": 25.303161200168233,
+    "n": 3,
+    "unit": "ratio"
+  },
+  "excluded": [
+    {
+      "cycle": 2010,
+      "reason": "sample sizes, field periods and undecideds separately identified are unavailable"
+    }
+  ],
+  "herding": [
+    {
+      "cycle": 2014,
+      "days_30_to_8_ratio": {
+        "ci95_high": 6.555270694683332,
+        "ci95_low": 1.1568200350456013,
+        "estimate": 3.9468366554394563,
+        "n": 11
+      },
+      "last_7_ratio": {
+        "ci95_high": 8.375609622879248,
+        "ci95_low": 1.9218886754635778,
+        "estimate": 5.212334196793442,
+        "n": 10
+      },
+      "last_week_lower_than_prior": false,
+      "status": "estimable"
+    },
+    {
+      "cycle": 2018,
+      "days_30_to_8_ratio": {
+        "ci95_high": 47.8721510453804,
+        "ci95_low": 8.056799119679935,
+        "estimate": 29.519873390635947,
+        "n": 10
+      },
+      "last_7_ratio": {
+        "ci95_high": 53.720813720119175,
+        "ci95_low": 1.5271750208318704,
+        "estimate": 21.60190570698841,
+        "n": 9
+      },
+      "last_week_lower_than_prior": true,
+      "status": "estimable"
+    },
+    {
+      "cycle": 2022,
+      "days_30_to_8_ratio": {
+        "ci95_high": 60.79641878145329,
+        "ci95_low": 17.0958194528161,
+        "estimate": 38.37570248262418,
+        "n": 28
+      },
+      "last_7_ratio": {
+        "ci95_high": 75.31678621273308,
+        "ci95_low": 8.569826981263708,
+        "estimate": 40.350892110764825,
+        "n": 18
+      },
+      "last_week_lower_than_prior": false,
+      "status": "estimable"
+    }
+  ],
+  "identification": {
+    "common_error": "aggregate residual; cannot separate polling error from late preference change",
+    "excess_variance": "ratio to simple-binomial reference; survey design can also contribute",
+    "herding": "dispersion ratio; values below one do not prove coordination",
+    "house_effects": "relative effects constrained to weighted sum zero; no absolute bias claim",
+    "late_swing": "result minus D7 nowcast; descriptive, not causal",
+    "undecideds": "association only; no level adjustment"
+  },
+  "late_swing": [
+    {
+      "ci95_high": 11.572268615818473,
+      "ci95_low": -2.882362100457101,
+      "estimate": 3.5441785100417675,
+      "horizon_days": 7,
+      "n": 3,
+      "rank": "leader",
+      "unit": "pp"
+    },
+    {
+      "ci95_high": 1.457852936776608,
+      "ci95_low": -19.266695446144382,
+      "estimate": -7.586808369017514,
+      "horizon_days": 7,
+      "n": 3,
+      "rank": "remaining_total",
+      "unit": "pp"
+    },
+    {
+      "ci95_high": 13.393137197335363,
+      "ci95_low": 3.865531740621819,
+      "estimate": 8.698095852378914,
+      "horizon_days": 7,
+      "n": 3,
+      "rank": "runner_up",
+      "unit": "pp"
+    },
+    {
+      "ci95_high": -0.8565781577009792,
+      "ci95_low": -11.968628033654866,
+      "estimate": -4.655465993403163,
+      "horizon_days": 7,
+      "n": 3,
+      "rank": "third",
+      "unit": "pp"
+    }
+  ],
+  "relative_house_effects": [
+    {
+      "ci95_high": 2.51639918742027,
+      "ci95_low": 2.51639918742027,
+      "estimate": 2.51639918742027,
+      "lineage": "atlasintel",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.4420443217054386,
+      "ci95_low": 1.4420443217054386,
+      "estimate": 1.4420443217054386,
+      "lineage": "atlasintel",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -1.9379810336322227,
+      "ci95_low": -1.9379810336322227,
+      "estimate": -1.9379810336322227,
+      "lineage": "atlasintel",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -12.477670709711784,
+      "ci95_low": -12.477670709711784,
+      "estimate": -12.477670709711784,
+      "lineage": "brasmarket",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 11.137692362228082,
+      "ci95_low": 11.137692362228082,
+      "estimate": 11.137692362228082,
+      "lineage": "brasmarket",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.609595237814174,
+      "ci95_low": 0.609595237814174,
+      "estimate": 0.609595237814174,
+      "lineage": "brasmarket",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 2.1903129288735186,
+      "ci95_low": -3.457976664852506,
+      "estimate": -0.751733586698793,
+      "lineage": "datafolha",
+      "n": 3,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.0017897605902796876,
+      "ci95_low": -3.714723905046147,
+      "estimate": -1.7709387165388295,
+      "lineage": "datafolha",
+      "n": 3,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.084464420740727,
+      "ci95_low": 0.13694981589255528,
+      "estimate": 0.6528245307406836,
+      "lineage": "datafolha",
+      "n": 3,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -1.0656368305339832,
+      "ci95_low": -1.2266383174746731,
+      "estimate": -1.146137574004328,
+      "lineage": "fsb",
+      "n": 2,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 3.656004394414457,
+      "ci95_low": -2.099358146643695,
+      "estimate": 0.7783231238853809,
+      "lineage": "fsb",
+      "n": 2,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.1024392928041122,
+      "ci95_low": -1.9366948319475266,
+      "estimate": -0.41712776957170716,
+      "lineage": "fsb",
+      "n": 2,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -6.50286067881179,
+      "ci95_low": -6.50286067881179,
+      "estimate": -6.50286067881179,
+      "lineage": "futura",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 3.7146742703355535,
+      "ci95_low": 3.7146742703355535,
+      "estimate": 3.7146742703355535,
+      "lineage": "futura",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.940697183210793,
+      "ci95_low": 1.940697183210793,
+      "estimate": 1.940697183210793,
+      "lineage": "futura",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 3.622111976737654,
+      "ci95_low": -2.0792879704457725,
+      "estimate": 0.4622101327128148,
+      "lineage": "ibope-ipec",
+      "n": 3,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.225042149674846,
+      "ci95_low": -4.649814895745734,
+      "estimate": -0.9875719329170692,
+      "lineage": "ibope-ipec",
+      "n": 3,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.2623580656893533,
+      "ci95_low": -0.012043279295932408,
+      "estimate": 0.1704472991228417,
+      "lineage": "ibope-ipec",
+      "n": 3,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -7.359730515009184,
+      "ci95_low": -7.359730515009184,
+      "estimate": -7.359730515009184,
+      "lineage": "instituto-de-pesquisa-gerp-e-gerp-pesquisa-estrategica",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.6834904545226161,
+      "ci95_low": 1.6834904545226161,
+      "estimate": 1.6834904545226161,
+      "lineage": "instituto-de-pesquisa-gerp-e-gerp-pesquisa-estrategica",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.5292558081457626,
+      "ci95_low": 1.5292558081457626,
+      "estimate": 1.5292558081457626,
+      "lineage": "instituto-de-pesquisa-gerp-e-gerp-pesquisa-estrategica",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.496818341539671,
+      "ci95_low": 1.496818341539671,
+      "estimate": 1.496818341539671,
+      "lineage": "instituto-ideia",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -0.907602662886294,
+      "ci95_low": -0.907602662886294,
+      "estimate": -0.907602662886294,
+      "lineage": "instituto-ideia",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.4109715319667495,
+      "ci95_low": 0.4109715319667495,
+      "estimate": 0.4109715319667495,
+      "lineage": "instituto-ideia",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 4.059217989442792,
+      "ci95_low": -0.4193676922582353,
+      "estimate": 1.5416251751210162,
+      "lineage": "mda",
+      "n": 3,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 5.394205217981132,
+      "ci95_low": -0.13508223961747473,
+      "estimate": 1.804158126387799,
+      "lineage": "mda",
+      "n": 3,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.6528846789970872,
+      "ci95_low": -1.8020733558626365,
+      "estimate": -0.35921145414477845,
+      "lineage": "mda",
+      "n": 3,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -6.307098936061814,
+      "ci95_low": -6.307098936061814,
+      "estimate": -6.307098936061814,
+      "lineage": "multi-mercado-ltda",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 6.946648349259458,
+      "ci95_low": 6.946648349259458,
+      "estimate": 6.946648349259458,
+      "lineage": "multi-mercado-ltda",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -0.5760073497489746,
+      "ci95_low": -0.5760073497489746,
+      "estimate": -0.5760073497489746,
+      "lineage": "multi-mercado-ltda",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -1.8501812385698373,
+      "ci95_low": -1.8501812385698373,
+      "estimate": -1.8501812385698373,
+      "lineage": "parana-pesquisas",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.977518188998689,
+      "ci95_low": 0.977518188998689,
+      "estimate": 0.977518188998689,
+      "lineage": "parana-pesquisas",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.5419290173640622,
+      "ci95_low": 0.5419290173640622,
+      "estimate": 0.5419290173640622,
+      "lineage": "parana-pesquisas",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -0.5655186641741347,
+      "ci95_low": -0.5655186641741347,
+      "estimate": -0.5655186641741347,
+      "lineage": "poderdata",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -0.06463414661647154,
+      "ci95_low": -0.06463414661647154,
+      "estimate": -0.06463414661647154,
+      "lineage": "poderdata",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.026438194447824928,
+      "ci95_low": 0.026438194447824928,
+      "estimate": 0.026438194447824928,
+      "lineage": "poderdata",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.3855192414765267,
+      "ci95_low": 1.3855192414765267,
+      "estimate": 1.3855192414765267,
+      "lineage": "quaest",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -1.9675414756340925,
+      "ci95_low": -1.9675414756340925,
+      "estimate": -1.9675414756340925,
+      "lineage": "quaest",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 0.19847820149589102,
+      "ci95_low": 0.19847820149589102,
+      "estimate": 0.19847820149589102,
+      "lineage": "quaest",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -1.673744938642092,
+      "ci95_low": -1.673744938642092,
+      "estimate": -1.673744938642092,
+      "lineage": "real-time-big-data",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -3.632982453395921,
+      "ci95_low": -3.632982453395921,
+      "estimate": -3.632982453395921,
+      "lineage": "real-time-big-data",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.190924766260307,
+      "ci95_low": 1.190924766260307,
+      "estimate": 1.190924766260307,
+      "lineage": "real-time-big-data",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 12.668931070700587,
+      "ci95_low": -4.196587995779063,
+      "estimate": 4.236171537460763,
+      "lineage": "verita",
+      "n": 2,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 5.783990893704348,
+      "ci95_low": 0.7295173012606968,
+      "estimate": 3.2567540974825224,
+      "lineage": "verita",
+      "n": 2,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -0.7324609428659717,
+      "ci95_low": -2.9299608252135196,
+      "estimate": -1.8312108840397456,
+      "lineage": "verita",
+      "n": 2,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": 1.5630983245290637,
+      "ci95_low": 1.5630983245290637,
+      "estimate": 1.5630983245290637,
+      "lineage": "vox-populi",
+      "n": 1,
+      "rank": "leader",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -0.6171981087096987,
+      "ci95_low": -0.6171981087096987,
+      "estimate": -0.6171981087096987,
+      "lineage": "vox-populi",
+      "n": 1,
+      "rank": "runner_up",
+      "unit": "pp_relative_weighted_sum_zero"
+    },
+    {
+      "ci95_high": -0.7777912155937097,
+      "ci95_low": -0.7777912155937097,
+      "estimate": -0.7777912155937097,
+      "lineage": "vox-populi",
+      "n": 1,
+      "rank": "third",
+      "unit": "pp_relative_weighted_sum_zero"
+    }
+  ],
+  "run_id": "run-20220930-eb3c6fdf-f95dfa47",
+  "undecideds": {
+    "ci95_high": 1.0,
+    "ci95_low": -0.8,
+    "estimand": "spearman_mean_undecided_vs_absolute_margin_error",
+    "estimate": -0.2571428571428571,
+    "n": 6,
+    "unit": "correlation"
+  },
+  "version": "3.1.0-phase2"
+}

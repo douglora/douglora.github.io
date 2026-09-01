@@ -1,0 +1,53 @@
+{
+  "artifacts": [
+    "backtest.json",
+    "calibration.json",
+    "components.json",
+    "coverage.json",
+    "event_history/decisao-primeiro-turno.json",
+    "events.json",
+    "evidence.json",
+    "explanations/run-20220930-eb3c6fdf-27aced83.json",
+    "feed.json",
+    "history.json",
+    "houses.json",
+    "lab/2022.json",
+    "manifest.json",
+    "methods.json",
+    "model_diagnostics.json",
+    "multicycle.json",
+    "operations.json",
+    "overview.json",
+    "pairing_validation.json",
+    "pairings.json",
+    "pattern_results.json",
+    "patterns.json",
+    "polls.json",
+    "registry.json",
+    "run_manifest.json",
+    "trend.json"
+  ],
+  "config_hash": "27aced8327cbe5463e163a6d3cb106ffb8b9d26dd5e2c4cf20785162fcac79b8",
+  "current_explanation": "/data/latest/explanations/run-20220930-eb3c6fdf-27aced83.json",
+  "current_lab": "/data/latest/multicycle.json",
+  "data_classification": "historical_replay_real_mirror",
+  "data_hash": "eb3c6fdf9bccea1f60f7b1f6e5ae5ed4ff38370ec77677723e2c58ccabb7460f",
+  "election_dates": {
+    "first_round": "2022-10-02",
+    "second_round": "2022-10-30"
+  },
+  "fixture": false,
+  "freeze_date": "2026-09-20",
+  "generated_at": "2022-09-30T23:59:59-03:00",
+  "models": [
+    "B0",
+    "B1",
+    "M2"
+  ],
+  "promoted_model": "none",
+  "run_id": "run-20220930-eb3c6fdf-27aced83",
+  "source_notice": "REPLAY HISTÓRICO 2022 — percentuais de espelho preservado, metadados casados ao TSE e resultado oficial. Não representa uma estimativa de 2026.",
+  "strict_as_of": true,
+  "trigger": "new_poll",
+  "unmodeled_mass": 0.502
+}

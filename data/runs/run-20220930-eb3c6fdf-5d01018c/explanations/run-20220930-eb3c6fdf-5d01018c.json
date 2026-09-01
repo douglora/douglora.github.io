@@ -1,0 +1,678 @@
+{
+  "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+  "rows": [
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "decisao-primeiro-turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "decisao-primeiro-turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-ciro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-ciro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-outros",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-outros",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-tebet",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "ir-segundo-turno-tebet",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-ciro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-ciro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-outros",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-outros",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-tebet",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "liderar-hoje-tebet",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "top2-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "top2-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "top2-ciro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "top2-ciro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "top2-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "top2-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "top2-outros",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "top2-outros",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "top2-tebet",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "top2-tebet",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-ciro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-ciro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-outros",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-outros",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "tempo",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-tebet",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "reprocessar o snapshot anterior na nova data com a mesma semente",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    },
+    {
+      "component": "nova_pesquisa",
+      "delta_pp": 0.0,
+      "event_id": "vencer-primeiro-turno-tebet",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "method": "adicionar somente pesquisas com publish_date entre os dois runs",
+      "previous_run_id": "run-20220929-ef283d38-56a48c0f",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c"
+    }
+  ],
+  "run_id": "run-20220930-eb3c6fdf-5d01018c"
+}

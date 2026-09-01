@@ -1,0 +1,1113 @@
+{
+  "limitations": [
+    "2010 é observacional e não fornece um fold do motor.",
+    "Nenhuma hipótese recebeu entra_no_modelo; o registry não deve promover ajustes.",
+    "Observação significa evidência insuficiente, não suporte implícito."
+  ],
+  "methodology_changed_by_analysis": false,
+  "preregistered_before_analysis": true,
+  "preregistration_version": "3.1.0-phase2-preregistered",
+  "results": [
+    {
+      "criteria": {
+        "all_values_positive": true,
+        "four_eligible_cycles": false,
+        "log_score_gate": false,
+        "three_layer_a_cycles": true
+      },
+      "fold_metrics": [
+        {
+          "cycle": 2014,
+          "horizon_days": 7,
+          "houses": 4,
+          "polls": 13,
+          "run_id": "run-20140928-1980ef72-56a48c0f",
+          "training_cycles_used": [
+            2018,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 26.60686537
+        },
+        {
+          "cycle": 2014,
+          "horizon_days": 1,
+          "houses": 4,
+          "polls": 21,
+          "run_id": "run-20141004-2edb0a4b-56a48c0f",
+          "training_cycles_used": [
+            2018,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 12.32171897
+        },
+        {
+          "cycle": 2018,
+          "horizon_days": 7,
+          "houses": 4,
+          "polls": 11,
+          "run_id": "run-20180930-e193edb4-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 15.10016726
+        },
+        {
+          "cycle": 2018,
+          "horizon_days": 1,
+          "houses": 6,
+          "polls": 19,
+          "run_id": "run-20181006-69729119-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 7.36691867
+        },
+        {
+          "cycle": 2022,
+          "horizon_days": 7,
+          "houses": 12,
+          "polls": 36,
+          "run_id": "run-20220925-6b88559b-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2018
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 15.54709277
+        },
+        {
+          "cycle": 2022,
+          "horizon_days": 1,
+          "houses": 14,
+          "polls": 47,
+          "run_id": "run-20221001-41bdbeea-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2018
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 9.65378038
+        }
+      ],
+      "hypothesis": "subestimação do segundo colocado no primeiro turno",
+      "id": "H1",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "A direção é descritivamente positiva, mas 2010 não é estimável e o forecast não melhora o log score do B1 em todos os folds.",
+      "verdict": "observacao"
+    },
+    {
+      "criteria": {
+        "consistent_sign": false,
+        "four_eligible_cycles": false,
+        "three_layer_a_cycles": true
+      },
+      "fold_metrics": [
+        {
+          "cycle": 2014,
+          "horizon_days": 7,
+          "houses": 4,
+          "polls": 13,
+          "run_id": "run-20140928-1980ef72-56a48c0f",
+          "training_cycles_used": [
+            2018,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -11.22406634
+        },
+        {
+          "cycle": 2014,
+          "horizon_days": 1,
+          "houses": 4,
+          "polls": 21,
+          "run_id": "run-20141004-2edb0a4b-56a48c0f",
+          "training_cycles_used": [
+            2018,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -7.30179711
+        },
+        {
+          "cycle": 2018,
+          "horizon_days": 7,
+          "houses": 4,
+          "polls": 11,
+          "run_id": "run-20180930-e193edb4-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 13.94330826
+        },
+        {
+          "cycle": 2018,
+          "horizon_days": 1,
+          "houses": 6,
+          "polls": 19,
+          "run_id": "run-20181006-69729119-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 8.62085213
+        },
+        {
+          "cycle": 2022,
+          "horizon_days": 7,
+          "houses": 12,
+          "polls": 36,
+          "run_id": "run-20220925-6b88559b-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2018
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 4.39374856
+        },
+        {
+          "cycle": 2022,
+          "horizon_days": 1,
+          "houses": 14,
+          "polls": 47,
+          "run_id": "run-20221001-41bdbeea-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2018
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": 4.51417873
+        }
+      ],
+      "hypothesis": "viés do líder no primeiro turno",
+      "id": "H1b",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "O sinal do erro do líder não se repete de forma estável nos folds retidos; a regra de sinal aprendido no treino falha.",
+      "verdict": "rejeitado"
+    },
+    {
+      "criteria": {
+        "layer_a_cycles": [
+          2014,
+          2018
+        ],
+        "minimum_three_layer_a_cycles": false
+      },
+      "fold_metrics": [
+        {
+          "cycle": 2014,
+          "horizon_days": 1,
+          "houses": 4,
+          "polls": 13,
+          "run_id": "run-20141025-a36a3379-56a48c0f",
+          "training_cycles_used": [
+            2018
+          ],
+          "turn": 2,
+          "unit": "pp",
+          "value": 1.58773081
+        },
+        {
+          "cycle": 2018,
+          "horizon_days": 1,
+          "houses": 6,
+          "polls": 14,
+          "run_id": "run-20181027-11297bd8-56a48c0f",
+          "training_cycles_used": [
+            2014
+          ],
+          "turn": 2,
+          "unit": "pp",
+          "value": -1.56420733
+        }
+      ],
+      "hypothesis": "superestimação do favorito no segundo turno",
+      "id": "H2",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "Somente células D-1 de 2014 e 2018 são estimáveis; faltam 2022 e 2010 e não há três folds A.",
+      "verdict": "observacao"
+    },
+    {
+      "criteria": {
+        "all_values_positive": false,
+        "three_layer_a_cycles": true
+      },
+      "fold_metrics": [
+        {
+          "cycle": 2014,
+          "horizon_days": 14,
+          "houses": 4,
+          "polls": 11,
+          "run_id": "run-20140921-c45349af-56a48c0f",
+          "training_cycles_used": [
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -18.97203556
+        },
+        {
+          "cycle": 2014,
+          "horizon_days": 7,
+          "houses": 4,
+          "polls": 13,
+          "run_id": "run-20140928-1980ef72-56a48c0f",
+          "training_cycles_used": [
+            2018,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -17.33151992
+        },
+        {
+          "cycle": 2014,
+          "horizon_days": 1,
+          "houses": 4,
+          "polls": 21,
+          "run_id": "run-20141004-2edb0a4b-56a48c0f",
+          "training_cycles_used": [
+            2018,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -8.76314788
+        },
+        {
+          "cycle": 2018,
+          "horizon_days": 7,
+          "houses": 4,
+          "polls": 11,
+          "run_id": "run-20180930-e193edb4-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -1.06713536
+        },
+        {
+          "cycle": 2018,
+          "horizon_days": 1,
+          "houses": 6,
+          "polls": 19,
+          "run_id": "run-20181006-69729119-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2022
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -9.67061628
+        },
+        {
+          "cycle": 2022,
+          "horizon_days": 14,
+          "houses": 13,
+          "polls": 32,
+          "run_id": "run-20220918-86e4c660-56a48c0f",
+          "training_cycles_used": [
+            2014
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -1.93495036
+        },
+        {
+          "cycle": 2022,
+          "horizon_days": 7,
+          "houses": 12,
+          "polls": 36,
+          "run_id": "run-20220925-6b88559b-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2018
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -1.59676629
+        },
+        {
+          "cycle": 2022,
+          "horizon_days": 1,
+          "houses": 14,
+          "polls": 47,
+          "run_id": "run-20221001-41bdbeea-56a48c0f",
+          "training_cycles_used": [
+            2014,
+            2018
+          ],
+          "turn": 1,
+          "unit": "pp",
+          "value": -1.04979791
+        }
+      ],
+      "hypothesis": "surto tardio de terceiros",
+      "id": "H3",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "A direção positiva pré-registrada não é consistente entre ciclos e horizontes disponíveis.",
+      "verdict": "rejeitado"
+    },
+    {
+      "criteria": {
+        "eligible_fold_count": 2,
+        "four_eligible_cycles": false,
+        "required_layer_a_folds": 3
+      },
+      "fold_metrics": [
+        {
+          "cycle": 2014,
+          "n_horizons": 3,
+          "pairs": [
+            {
+              "horizon_days": 14,
+              "mae": 11.48444279
+            },
+            {
+              "horizon_days": 7,
+              "mae": 14.67561291
+            },
+            {
+              "horizon_days": 1,
+              "mae": 7.98166599
+            }
+          ],
+          "spearman_days_to_election_vs_mae": 0.5,
+          "turn": 1
+        },
+        {
+          "cycle": 2014,
+          "n_horizons": 1,
+          "pairs": [
+            {
+              "horizon_days": 1,
+              "mae": 1.58773081
+            }
+          ],
+          "spearman_days_to_election_vs_mae": null,
+          "turn": 2
+        },
+        {
+          "cycle": 2018,
+          "n_horizons": 2,
+          "pairs": [
+            {
+              "horizon_days": 7,
+              "mae": 9.1359711
+            },
+            {
+              "horizon_days": 1,
+              "mae": 5.68710621
+            }
+          ],
+          "spearman_days_to_election_vs_mae": null,
+          "turn": 1
+        },
+        {
+          "cycle": 2018,
+          "n_horizons": 1,
+          "pairs": [
+            {
+              "horizon_days": 1,
+              "mae": 1.56420733
+            }
+          ],
+          "spearman_days_to_election_vs_mae": null,
+          "turn": 2
+        },
+        {
+          "cycle": 2022,
+          "n_horizons": 5,
+          "pairs": [
+            {
+              "horizon_days": 60,
+              "mae": 3.24993897
+            },
+            {
+              "horizon_days": 30,
+              "mae": 2.33782532
+            },
+            {
+              "horizon_days": 14,
+              "mae": 9.18677021
+            },
+            {
+              "horizon_days": 7,
+              "mae": 7.94002081
+            },
+            {
+              "horizon_days": 1,
+              "mae": 5.65460837
+            }
+          ],
+          "spearman_days_to_election_vs_mae": -0.5,
+          "turn": 1
+        }
+      ],
+      "hypothesis": "erro cai com proximidade",
+      "id": "H4",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "Há poucos folds com três horizontes e o padrão não pode ser separado da cobertura desigual do corpus.",
+      "verdict": "observacao"
+    },
+    {
+      "criteria": {
+        "ci_excludes_zero": false,
+        "four_eligible_cycles": false
+      },
+      "fold_metrics": [
+        {
+          "ci95_high": 1.0,
+          "ci95_low": -0.8,
+          "estimand": "spearman_mean_undecided_vs_absolute_margin_error",
+          "estimate": -0.2571428571428571,
+          "n": 6,
+          "scope": "pooled_available_snapshots",
+          "unit": "correlation"
+        }
+      ],
+      "hypothesis": "erro cresce com indecisos",
+      "id": "H5",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "A associação tem IC amplo, inclui zero e não atinge quatro folds; nenhum ajuste de nível ou variância é autorizado.",
+      "verdict": "observacao"
+    },
+    {
+      "criteria": {
+        "estimable_folds": 0,
+        "minimum_met": false
+      },
+      "fold_metrics": [],
+      "hypothesis": "efeitos de modo persistentes",
+      "id": "H6",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "Casa e modo permanecem colineares em várias células; não há dois modos com duas casas por modo em três folds A.",
+      "verdict": "observacao"
+    },
+    {
+      "criteria": {
+        "effect_rows": 48,
+        "heldout_log_score_tested": false,
+        "sparse_rows_n_lt_3": 39
+      },
+      "fold_metrics": [
+        {
+          "ci95_high": 2.51639918742027,
+          "ci95_low": 2.51639918742027,
+          "estimate": 2.51639918742027,
+          "lineage": "atlasintel",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.4420443217054386,
+          "ci95_low": 1.4420443217054386,
+          "estimate": 1.4420443217054386,
+          "lineage": "atlasintel",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -1.9379810336322227,
+          "ci95_low": -1.9379810336322227,
+          "estimate": -1.9379810336322227,
+          "lineage": "atlasintel",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -12.477670709711784,
+          "ci95_low": -12.477670709711784,
+          "estimate": -12.477670709711784,
+          "lineage": "brasmarket",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 11.137692362228082,
+          "ci95_low": 11.137692362228082,
+          "estimate": 11.137692362228082,
+          "lineage": "brasmarket",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.609595237814174,
+          "ci95_low": 0.609595237814174,
+          "estimate": 0.609595237814174,
+          "lineage": "brasmarket",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 2.1903129288735186,
+          "ci95_low": -3.457976664852506,
+          "estimate": -0.751733586698793,
+          "lineage": "datafolha",
+          "n": 3,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.0017897605902796876,
+          "ci95_low": -3.714723905046147,
+          "estimate": -1.7709387165388295,
+          "lineage": "datafolha",
+          "n": 3,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.084464420740727,
+          "ci95_low": 0.13694981589255528,
+          "estimate": 0.6528245307406836,
+          "lineage": "datafolha",
+          "n": 3,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -1.0656368305339832,
+          "ci95_low": -1.2266383174746731,
+          "estimate": -1.146137574004328,
+          "lineage": "fsb",
+          "n": 2,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 3.656004394414457,
+          "ci95_low": -2.099358146643695,
+          "estimate": 0.7783231238853809,
+          "lineage": "fsb",
+          "n": 2,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.1024392928041122,
+          "ci95_low": -1.9366948319475266,
+          "estimate": -0.41712776957170716,
+          "lineage": "fsb",
+          "n": 2,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -6.50286067881179,
+          "ci95_low": -6.50286067881179,
+          "estimate": -6.50286067881179,
+          "lineage": "futura",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 3.7146742703355535,
+          "ci95_low": 3.7146742703355535,
+          "estimate": 3.7146742703355535,
+          "lineage": "futura",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.940697183210793,
+          "ci95_low": 1.940697183210793,
+          "estimate": 1.940697183210793,
+          "lineage": "futura",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 3.622111976737654,
+          "ci95_low": -2.0792879704457725,
+          "estimate": 0.4622101327128148,
+          "lineage": "ibope-ipec",
+          "n": 3,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.225042149674846,
+          "ci95_low": -4.649814895745734,
+          "estimate": -0.9875719329170692,
+          "lineage": "ibope-ipec",
+          "n": 3,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.2623580656893533,
+          "ci95_low": -0.012043279295932408,
+          "estimate": 0.1704472991228417,
+          "lineage": "ibope-ipec",
+          "n": 3,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -7.359730515009184,
+          "ci95_low": -7.359730515009184,
+          "estimate": -7.359730515009184,
+          "lineage": "instituto-de-pesquisa-gerp-e-gerp-pesquisa-estrategica",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.6834904545226161,
+          "ci95_low": 1.6834904545226161,
+          "estimate": 1.6834904545226161,
+          "lineage": "instituto-de-pesquisa-gerp-e-gerp-pesquisa-estrategica",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.5292558081457626,
+          "ci95_low": 1.5292558081457626,
+          "estimate": 1.5292558081457626,
+          "lineage": "instituto-de-pesquisa-gerp-e-gerp-pesquisa-estrategica",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.496818341539671,
+          "ci95_low": 1.496818341539671,
+          "estimate": 1.496818341539671,
+          "lineage": "instituto-ideia",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -0.907602662886294,
+          "ci95_low": -0.907602662886294,
+          "estimate": -0.907602662886294,
+          "lineage": "instituto-ideia",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.4109715319667495,
+          "ci95_low": 0.4109715319667495,
+          "estimate": 0.4109715319667495,
+          "lineage": "instituto-ideia",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 4.059217989442792,
+          "ci95_low": -0.4193676922582353,
+          "estimate": 1.5416251751210162,
+          "lineage": "mda",
+          "n": 3,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 5.394205217981132,
+          "ci95_low": -0.13508223961747473,
+          "estimate": 1.804158126387799,
+          "lineage": "mda",
+          "n": 3,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.6528846789970872,
+          "ci95_low": -1.8020733558626365,
+          "estimate": -0.35921145414477845,
+          "lineage": "mda",
+          "n": 3,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -6.307098936061814,
+          "ci95_low": -6.307098936061814,
+          "estimate": -6.307098936061814,
+          "lineage": "multi-mercado-ltda",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 6.946648349259458,
+          "ci95_low": 6.946648349259458,
+          "estimate": 6.946648349259458,
+          "lineage": "multi-mercado-ltda",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -0.5760073497489746,
+          "ci95_low": -0.5760073497489746,
+          "estimate": -0.5760073497489746,
+          "lineage": "multi-mercado-ltda",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -1.8501812385698373,
+          "ci95_low": -1.8501812385698373,
+          "estimate": -1.8501812385698373,
+          "lineage": "parana-pesquisas",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.977518188998689,
+          "ci95_low": 0.977518188998689,
+          "estimate": 0.977518188998689,
+          "lineage": "parana-pesquisas",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.5419290173640622,
+          "ci95_low": 0.5419290173640622,
+          "estimate": 0.5419290173640622,
+          "lineage": "parana-pesquisas",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -0.5655186641741347,
+          "ci95_low": -0.5655186641741347,
+          "estimate": -0.5655186641741347,
+          "lineage": "poderdata",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -0.06463414661647154,
+          "ci95_low": -0.06463414661647154,
+          "estimate": -0.06463414661647154,
+          "lineage": "poderdata",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.026438194447824928,
+          "ci95_low": 0.026438194447824928,
+          "estimate": 0.026438194447824928,
+          "lineage": "poderdata",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.3855192414765267,
+          "ci95_low": 1.3855192414765267,
+          "estimate": 1.3855192414765267,
+          "lineage": "quaest",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -1.9675414756340925,
+          "ci95_low": -1.9675414756340925,
+          "estimate": -1.9675414756340925,
+          "lineage": "quaest",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 0.19847820149589102,
+          "ci95_low": 0.19847820149589102,
+          "estimate": 0.19847820149589102,
+          "lineage": "quaest",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -1.673744938642092,
+          "ci95_low": -1.673744938642092,
+          "estimate": -1.673744938642092,
+          "lineage": "real-time-big-data",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -3.632982453395921,
+          "ci95_low": -3.632982453395921,
+          "estimate": -3.632982453395921,
+          "lineage": "real-time-big-data",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.190924766260307,
+          "ci95_low": 1.190924766260307,
+          "estimate": 1.190924766260307,
+          "lineage": "real-time-big-data",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 12.668931070700587,
+          "ci95_low": -4.196587995779063,
+          "estimate": 4.236171537460763,
+          "lineage": "verita",
+          "n": 2,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 5.783990893704348,
+          "ci95_low": 0.7295173012606968,
+          "estimate": 3.2567540974825224,
+          "lineage": "verita",
+          "n": 2,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -0.7324609428659717,
+          "ci95_low": -2.9299608252135196,
+          "estimate": -1.8312108840397456,
+          "lineage": "verita",
+          "n": 2,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": 1.5630983245290637,
+          "ci95_low": 1.5630983245290637,
+          "estimate": 1.5630983245290637,
+          "lineage": "vox-populi",
+          "n": 1,
+          "rank": "leader",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -0.6171981087096987,
+          "ci95_low": -0.6171981087096987,
+          "estimate": -0.6171981087096987,
+          "lineage": "vox-populi",
+          "n": 1,
+          "rank": "runner_up",
+          "unit": "pp_relative_weighted_sum_zero"
+        },
+        {
+          "ci95_high": -0.7777912155937097,
+          "ci95_low": -0.7777912155937097,
+          "estimate": -0.7777912155937097,
+          "lineage": "vox-populi",
+          "n": 1,
+          "rank": "third",
+          "unit": "pp_relative_weighted_sum_zero"
+        }
+      ],
+      "hypothesis": "efeitos de casa persistentes",
+      "id": "H7",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "Os efeitos relativos são estimáveis descritivamente, mas a repetição de linhagens com três pesquisas em treino e teste é insuficiente.",
+      "verdict": "observacao"
+    },
+    {
+      "criteria": {
+        "cycles_in_expected_direction": [
+          2018
+        ],
+        "estimable_cycles": 3
+      },
+      "fold_metrics": [
+        {
+          "cycle": 2014,
+          "days_30_to_8_ratio": {
+            "ci95_high": 6.555270694683332,
+            "ci95_low": 1.1568200350456013,
+            "estimate": 3.9468366554394563,
+            "n": 11
+          },
+          "last_7_ratio": {
+            "ci95_high": 8.375609622879248,
+            "ci95_low": 1.9218886754635778,
+            "estimate": 5.212334196793442,
+            "n": 10
+          },
+          "last_week_lower_than_prior": false,
+          "status": "estimable"
+        },
+        {
+          "cycle": 2018,
+          "days_30_to_8_ratio": {
+            "ci95_high": 47.8721510453804,
+            "ci95_low": 8.056799119679935,
+            "estimate": 29.519873390635947,
+            "n": 10
+          },
+          "last_7_ratio": {
+            "ci95_high": 53.720813720119175,
+            "ci95_low": 1.5271750208318704,
+            "estimate": 21.60190570698841,
+            "n": 9
+          },
+          "last_week_lower_than_prior": true,
+          "status": "estimable"
+        },
+        {
+          "cycle": 2022,
+          "days_30_to_8_ratio": {
+            "ci95_high": 60.79641878145329,
+            "ci95_low": 17.0958194528161,
+            "estimate": 38.37570248262418,
+            "n": 28
+          },
+          "last_7_ratio": {
+            "ci95_high": 75.31678621273308,
+            "ci95_low": 8.569826981263708,
+            "estimate": 40.350892110764825,
+            "n": 18
+          },
+          "last_week_lower_than_prior": false,
+          "status": "estimable"
+        }
+      ],
+      "hypothesis": "herding na última semana",
+      "id": "H8",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "A última semana tem menor dispersão relativa apenas em 2018; 2014 e 2022 apontam no sentido oposto.",
+      "verdict": "rejeitado"
+    },
+    {
+      "criteria": {
+        "estimate_above_one": true,
+        "four_eligible_cycles": false
+      },
+      "fold_metrics": [
+        {
+          "ci95_high": 45.778791725605565,
+          "ci95_low": 4.472536138185773,
+          "estimand": "leader_residual_variance_to_binomial_sampling_variance",
+          "estimate": 25.303161200168233,
+          "n": 3,
+          "scope": "pooled_cycle_ratios",
+          "unit": "ratio"
+        }
+      ],
+      "hypothesis": "excesso de variância persiste",
+      "id": "H9",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "O excesso é grande no agregado disponível, mas falta o quarto fold e a referência binomial não identifica desenho amostral; não se calibra inflação ainda.",
+      "verdict": "observacao"
+    },
+    {
+      "criteria": {
+        "mapped_partisan_polls": 0,
+        "minimum_met": false
+      },
+      "fold_metrics": [],
+      "hypothesis": "pesquisas partidárias enviesadas",
+      "id": "H10",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "Não existe mapeamento verificável de alinhamento partidário do patrocinador com controles comparáveis suficientes.",
+      "verdict": "observacao"
+    },
+    {
+      "criteria": {
+        "engine_eligible_cycles": [
+          2014,
+          2018,
+          2022
+        ],
+        "minimum_met": false,
+        "required_cycle_count": 4
+      },
+      "fold_metrics": [
+        {
+          "ci95_high": 5.693475005547981,
+          "ci95_low": -4.362381200683764,
+          "estimate": 0.6278786887725568,
+          "n": 3,
+          "rank": "leader",
+          "unit": "pp"
+        },
+        {
+          "ci95_high": 0.8430059026765853,
+          "ci95_low": -8.770544287566334,
+          "estimate": -3.8614050354895237,
+          "n": 3,
+          "rank": "remaining_total",
+          "unit": "pp"
+        },
+        {
+          "ci95_high": 9.697025206589409,
+          "ci95_low": 3.484102055767355,
+          "estimate": 5.661939154965352,
+          "n": 3,
+          "rank": "runner_up",
+          "unit": "pp"
+        },
+        {
+          "ci95_high": -0.4070327737490036,
+          "ci95_low": -6.177649908582236,
+          "estimate": -2.4284128082483867,
+          "n": 3,
+          "rank": "third",
+          "unit": "pp"
+        }
+      ],
+      "hypothesis": "autocorrelação do viés comum entre ciclos",
+      "id": "H11",
+      "model_action": "nenhuma alteração metodológica",
+      "reason": "2010 não entra no motor; com três ciclos A não é possível estimar de modo responsável autocorrelação serial entre quatro ciclos.",
+      "verdict": "observacao"
+    }
+  ],
+  "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+  "summary": {
+    "entra_no_modelo": 0,
+    "observacao": 9,
+    "rejeitado": 3
+  },
+  "version": "3.1.0-phase2"
+}

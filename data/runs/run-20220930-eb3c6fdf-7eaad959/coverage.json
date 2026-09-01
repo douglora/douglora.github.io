@@ -1,0 +1,627 @@
+{
+  "classification": {
+    "absence": "zero observações; nenhum preenchimento por suposição",
+    "fixture": "somente inputs/fixtures e rota /demo; nunca consumida por este corpus",
+    "official_primary": "ZIPs de registro TSE e JSONs de totalização TSE",
+    "secondary_mirror": "HTML preservado da Wikipédia para percentuais publicados",
+    "source_tier": "camada histórica do corpus (A/B/C/D), separada da qualidade primária/espelho da fonte"
+  },
+  "cycles": [
+    {
+      "corpus_layer": "A",
+      "percentage_observations_reviewed": 0,
+      "percentage_source": null,
+      "registry_primary": true,
+      "registry_rows_president_br": 932,
+      "registry_sha256": "e6781bab1a0b83759f7ca3b415f3ed4526efa4b252c30e5f067a72db6cffcce6",
+      "registry_source": "TSE Dados Abertos",
+      "status": "metadata_only",
+      "year": 2014
+    },
+    {
+      "corpus_layer": "A",
+      "percentage_observations_reviewed": 0,
+      "percentage_source": null,
+      "registry_primary": true,
+      "registry_rows_president_br": 714,
+      "registry_sha256": "6c26a1510b5aa1c55f34c099234689f278c0796bd448b6fabe598cfcd6b7b2c4",
+      "registry_source": "TSE Dados Abertos",
+      "status": "metadata_only",
+      "year": 2018
+    },
+    {
+      "corpus_layer": "A",
+      "percentage_observations_reviewed": 78,
+      "percentage_source": "Wikipédia preservada + casamento TSE",
+      "registry_primary": true,
+      "registry_rows_president_br": 1191,
+      "registry_sha256": "5565b63ced39655005a3c7a0b51e3209ff787da5815a9124ae264b5671b3038b",
+      "registry_source": "TSE Dados Abertos",
+      "status": "partial",
+      "year": 2022
+    },
+    {
+      "corpus_layer": "current",
+      "percentage_observations_reviewed": 0,
+      "percentage_source": null,
+      "registry_primary": true,
+      "registry_rows_president_br": 103,
+      "registry_sha256": "c66467a93a0c4ec6879b921819c26ecce84d5b8d375acf821871cce84006f1a8",
+      "registry_source": "TSE Dados Abertos",
+      "status": "metadata_only",
+      "year": 2026
+    }
+  ],
+  "generated_at": "2026-08-27T00:00:00-03:00",
+  "ingestion_diagnostics_2022": {
+    "duplicate_registration_rows": 2,
+    "excluded_duplicate_registrations": 1,
+    "invalid_sum": 0,
+    "matched_tse": 86,
+    "missing_confidence": 6,
+    "sample_size_recovered_from_plan": 2,
+    "table_rows": 88,
+    "with_registration": 87
+  },
+  "limitations": [
+    "O CDN do TSE devolveu HTTP 403 ao cliente automatizado nesta sessão.",
+    "Os ZIPs de registro não contêm percentuais dos cenários.",
+    "O corpus histórico não consome o stream operacional de 2026; cobertura e runs vivos ficam em operations.json.",
+    "Percentuais 2014/2018 foram preservados para calibração preliminar, mas a ingestão completa permanece pendente."
+  ],
+  "phase2": {
+    "cycles": [
+      {
+        "diagnostics": {
+          "engine_eligible": 0,
+          "observational_records": 55,
+          "reason": "metadados insuficientes; nenhuma imputação",
+          "table_rows": 85
+        },
+        "engine_eligible_polls_after_dedup": 0,
+        "evidence_ids": [
+          "ev-tse-results-2010",
+          "ev-wikipedia-polls-2010"
+        ],
+        "observations": 55,
+        "source_tier": "B",
+        "year": 2010
+      },
+      {
+        "diagnostics": {
+          "deduplicated": 1,
+          "engine_eligible": 47,
+          "missing_publish_date": 1,
+          "table_rows": 59,
+          "unmatched_registry": 10
+        },
+        "engine_eligible_polls_after_dedup": 46,
+        "evidence_ids": [
+          "ev-pindograma-parsed-2014-2018",
+          "ev-tse-polls-2014",
+          "ev-tse-results-2014",
+          "ev-wikipedia-polls-2014"
+        ],
+        "observations": 48,
+        "source_tier": "A",
+        "year": 2014
+      },
+      {
+        "diagnostics": {
+          "deduplicated": 0,
+          "engine_eligible": 38,
+          "missing_publish_date": 59,
+          "missing_registration": 50,
+          "table_rows": 154,
+          "unmatched_registry": 4
+        },
+        "engine_eligible_polls_after_dedup": 38,
+        "evidence_ids": [
+          "ev-pindograma-parsed-2014-2018",
+          "ev-reviewed-publish-dates-2018",
+          "ev-tse-polls-2018",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2018"
+        ],
+        "observations": 41,
+        "source_tier": "A",
+        "year": 2018
+      },
+      {
+        "diagnostics": {
+          "duplicate_registration_rows": 2,
+          "engine_eligible": 101,
+          "excluded_duplicate_registrations": 1,
+          "invalid_sum": 0,
+          "matched_tse": 86,
+          "missing_confidence": 6,
+          "sample_size_recovered_from_plan": 2,
+          "table_rows": 88,
+          "turn_2": {
+            "engine_eligible": 23,
+            "excluded_duplicate_registrations": 0,
+            "excluded_missing_verified_confidence": 4,
+            "excluded_missing_verified_margin": 13,
+            "hypothetical_pre_first_round": 52,
+            "missing_registration": 173,
+            "records": 40,
+            "table_rows": 268,
+            "unmatched_registry": 3
+          },
+          "turn_2_status": "ingested_from_tse_registered_runoff_polls",
+          "with_registration": 87
+        },
+        "engine_eligible_polls_after_dedup": 101,
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-result-2022-t1",
+          "ev-tse-result-2022-t2",
+          "ev-wikipedia-polls-2022"
+        ],
+        "observations": 118,
+        "source_tier": "A",
+        "year": 2022
+      }
+    ],
+    "fold_coverage": [
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 1,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 7,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 14,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 30,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 60,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 1,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 7,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 14,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 30,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2010,
+        "horizon_days": 60,
+        "houses": 0,
+        "polls": 0,
+        "reason": "cycle_not_engine_eligible",
+        "source_tier": "B",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": true,
+        "cycle": 2014,
+        "horizon_days": 1,
+        "houses": 4,
+        "polls": 21,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2014,
+        "horizon_days": 7,
+        "houses": 4,
+        "polls": 13,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2014,
+        "horizon_days": 14,
+        "houses": 4,
+        "polls": 11,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2014,
+        "horizon_days": 30,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 3 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2014,
+        "horizon_days": 60,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 1 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2014,
+        "horizon_days": 1,
+        "houses": 4,
+        "polls": 13,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2014,
+        "horizon_days": 7,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 3 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2014,
+        "horizon_days": 14,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 2 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2014,
+        "horizon_days": 30,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 0 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2014,
+        "horizon_days": 60,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 0 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": true,
+        "cycle": 2018,
+        "horizon_days": 1,
+        "houses": 6,
+        "polls": 19,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2018,
+        "horizon_days": 7,
+        "houses": 4,
+        "polls": 11,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2018,
+        "horizon_days": 14,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 3 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2018,
+        "horizon_days": 30,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 1 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": false,
+        "cycle": 2018,
+        "horizon_days": 60,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 0 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2018,
+        "horizon_days": 1,
+        "houses": 6,
+        "polls": 14,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2018,
+        "horizon_days": 7,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 3 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2018,
+        "horizon_days": 14,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 0 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2018,
+        "horizon_days": 30,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 0 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2018,
+        "horizon_days": 60,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 0 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": true,
+        "cycle": 2022,
+        "horizon_days": 1,
+        "houses": 14,
+        "polls": 47,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2022,
+        "horizon_days": 7,
+        "houses": 12,
+        "polls": 36,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2022,
+        "horizon_days": 14,
+        "houses": 13,
+        "polls": 32,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2022,
+        "horizon_days": 30,
+        "houses": 13,
+        "polls": 22,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2022,
+        "horizon_days": 60,
+        "houses": 7,
+        "polls": 11,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 1
+      },
+      {
+        "available": true,
+        "cycle": 2022,
+        "horizon_days": 1,
+        "houses": 8,
+        "polls": 23,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 2
+      },
+      {
+        "available": true,
+        "cycle": 2022,
+        "horizon_days": 7,
+        "houses": 7,
+        "polls": 13,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 2
+      },
+      {
+        "available": true,
+        "cycle": 2022,
+        "horizon_days": 14,
+        "houses": 4,
+        "polls": 6,
+        "reason": null,
+        "source_tier": "A",
+        "status": "scored",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2022,
+        "horizon_days": 30,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 0 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      },
+      {
+        "available": false,
+        "cycle": 2022,
+        "horizon_days": 60,
+        "houses": 0,
+        "polls": 0,
+        "reason": "dados insuficientes para o teto: 0 casas na janela e cap=0.25",
+        "source_tier": "A",
+        "status": "unavailable",
+        "turn": 2
+      }
+    ],
+    "license_exclusions": [
+      {
+        "path": "inputs/external/pindograma-pesquisas/data/poder360/",
+        "reason": "README específico declara propriedade Poder360; licença de redistribuição não demonstrada",
+        "status": "excluded_from_ingestion_and_redistribution"
+      }
+    ],
+    "summary": {
+      "fold_rows": 80,
+      "scored_cycles": [
+        2014,
+        2018,
+        2022
+      ],
+      "scored_rows": 30,
+      "unavailable_rows": 50
+    }
+  },
+  "run_id": "run-20220930-eb3c6fdf-7eaad959"
+}

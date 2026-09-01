@@ -1,0 +1,635 @@
+{
+  "as_of": "2026-08-30",
+  "code_hash": "55dfba5eca0422a31264d87e174f6b9abf607e885d061187858363acd554579f",
+  "comparability_rule": "Só são diferenciadas pesquisas da mesma casa, mesmo turno, mesmo conjunto de candidaturas e mesma base. Casas diferentes nunca são ligadas como série.",
+  "config_hash": "2030a1fca70139b220fdd90924dcb426ff09a00fc35a9e344fb169806002f648",
+  "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
+  "days_to_election": 35,
+  "election_date": "2026-10-04",
+  "gate_message": "O agregador exige 3 pesquisas de 2 casas na janela de 21 dias; há 2 de 2.",
+  "gate_satisfied": false,
+  "historical_context_at_this_distance": {
+    "days_to_election": 35,
+    "elections": [
+      "2010-T1",
+      "2014-T1",
+      "2018-T1",
+      "2022-T1",
+      "2022-T2"
+    ],
+    "mae_median": 4.66289940401807,
+    "margin_error_p10_p90_pp": [
+      -3.0370175438596476,
+      16.09793103448275
+    ],
+    "median_margin_error_pp": 6.387903418599095,
+    "n_observations": 54,
+    "per_election": [
+      {
+        "election": "2010-T1",
+        "houses": 4,
+        "mae": 7.540276094276095,
+        "median_margin_error_pp": 11.700000000000003,
+        "n": 15
+      },
+      {
+        "election": "2014-T1",
+        "houses": 4,
+        "mae": 10.80156122698418,
+        "median_margin_error_pp": 16.09793103448275,
+        "n": 7
+      },
+      {
+        "election": "2018-T1",
+        "houses": 3,
+        "mae": 9.043832896187327,
+        "median_margin_error_pp": 6.523273273273272,
+        "n": 4
+      },
+      {
+        "election": "2022-T1",
+        "houses": 14,
+        "mae": 3.492535750165225,
+        "median_margin_error_pp": 3.3326911314984784,
+        "n": 25
+      },
+      {
+        "election": "2022-T2",
+        "houses": 3,
+        "mae": 2.5539388206924514,
+        "median_margin_error_pp": 6.065168539325839,
+        "n": 3
+      }
+    ],
+    "reading": "A esta distância da eleição, o erro de margem histórico teve mediana +6.4 pp. Isso descreve o passado, não corrige 2026.",
+    "status": "available",
+    "tolerance_days": 10
+  },
+  "latest_poll_comparison": {
+    "candidates": [],
+    "comparability_rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
+    "latest": {
+      "base": "totais",
+      "evidence_id": "ev-release-6f7349ec0129ec68b3ff",
+      "field_end": "2026-08-26",
+      "field_start": "2026-08-23",
+      "institute": "PoderData",
+      "institute_id": "poderdata",
+      "mode": "telefone",
+      "n_candidates": 13,
+      "published_at": "2026-08-27",
+      "reference_date": "2026-08-26",
+      "registration_no": "BR-04974/2026",
+      "sample_size": 2400,
+      "scenario_id": "president-br-t1-ef6d6ebdaf"
+    },
+    "other_houses_in_window": [
+      "Nexus"
+    ],
+    "previous": null,
+    "reason": "Não há medição anterior da PoderData com o mesmo cenário na janela viva. A(s) outra(s) pesquisa(s) na janela (Nexus) são de outra casa: comparar mediria diferença entre casas, não movimento no tempo.",
+    "status": "no_comparable_previous"
+  },
+  "live_hash": "65d4f0baa17d8dc81c9e10b0582eb1849b808141647f39f4f13585276959e4b6",
+  "live_source_run_id": "run-20260830-8c24b4af-69f45d5c",
+  "run_id": "hist-20260830-8d90558c-2030a1fc-65d4f0ba-55dfba",
+  "signals": [
+    {
+      "between_house_sd_pp": 1.4142135623730951,
+      "candidate_id": "2026-tse-280002542548",
+      "candidate_label": "LULA",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 2 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
+      "historical_context": null,
+      "houses_in_window": 2,
+      "houses_with_comparable_series": 0,
+      "houses_with_single_measurement": [
+        "Nexus",
+        "PoderData"
+      ],
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-160704acc8da3e8dbe18",
+          "field_end": "2026-08-23",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 40.0,
+          "published_at": "2026-08-24",
+          "reference_date": "2026-08-23",
+          "registration_no": "BR-09028/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6f7349ec0129ec68b3ff",
+          "field_end": "2026-08-26",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 38.0,
+          "published_at": "2026-08-27",
+          "reference_date": "2026-08-26",
+          "registration_no": "BR-04974/2026",
+          "sample_size": 2400,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": []
+    },
+    {
+      "between_house_sd_pp": 0.7071067811865476,
+      "candidate_id": "2026-tse-280002551544",
+      "candidate_label": "FLAVIO BOLSONARO",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 2 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
+      "historical_context": null,
+      "houses_in_window": 2,
+      "houses_with_comparable_series": 0,
+      "houses_with_single_measurement": [
+        "Nexus",
+        "PoderData"
+      ],
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-160704acc8da3e8dbe18",
+          "field_end": "2026-08-23",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 34.0,
+          "published_at": "2026-08-24",
+          "reference_date": "2026-08-23",
+          "registration_no": "BR-09028/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6f7349ec0129ec68b3ff",
+          "field_end": "2026-08-26",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 35.0,
+          "published_at": "2026-08-27",
+          "reference_date": "2026-08-26",
+          "registration_no": "BR-04974/2026",
+          "sample_size": 2400,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": []
+    },
+    {
+      "between_house_sd_pp": 1.4142135623730951,
+      "candidate_id": "2026-tse-280002551547",
+      "candidate_label": "ESCRITOR AUGUSTO CURY",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 2 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
+      "historical_context": null,
+      "houses_in_window": 2,
+      "houses_with_comparable_series": 0,
+      "houses_with_single_measurement": [
+        "Nexus",
+        "PoderData"
+      ],
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-160704acc8da3e8dbe18",
+          "field_end": "2026-08-23",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 2.0,
+          "published_at": "2026-08-24",
+          "reference_date": "2026-08-23",
+          "registration_no": "BR-09028/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6f7349ec0129ec68b3ff",
+          "field_end": "2026-08-26",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 4.0,
+          "published_at": "2026-08-27",
+          "reference_date": "2026-08-26",
+          "registration_no": "BR-04974/2026",
+          "sample_size": 2400,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": []
+    },
+    {
+      "between_house_sd_pp": 0.7071067811865476,
+      "candidate_id": "2026-tse-280002540694",
+      "candidate_label": "RENAN SANTOS",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 2 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
+      "historical_context": null,
+      "houses_in_window": 2,
+      "houses_with_comparable_series": 0,
+      "houses_with_single_measurement": [
+        "Nexus",
+        "PoderData"
+      ],
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-160704acc8da3e8dbe18",
+          "field_end": "2026-08-23",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 3.0,
+          "published_at": "2026-08-24",
+          "reference_date": "2026-08-23",
+          "registration_no": "BR-09028/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6f7349ec0129ec68b3ff",
+          "field_end": "2026-08-26",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 4.0,
+          "published_at": "2026-08-27",
+          "reference_date": "2026-08-26",
+          "registration_no": "BR-04974/2026",
+          "sample_size": 2400,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": []
+    },
+    {
+      "between_house_sd_pp": 0.7071067811865476,
+      "candidate_id": "2026-tse-280002551932",
+      "candidate_label": "RONALDO CAIADO",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 2 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
+      "historical_context": null,
+      "houses_in_window": 2,
+      "houses_with_comparable_series": 0,
+      "houses_with_single_measurement": [
+        "Nexus",
+        "PoderData"
+      ],
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-160704acc8da3e8dbe18",
+          "field_end": "2026-08-23",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 5.0,
+          "published_at": "2026-08-24",
+          "reference_date": "2026-08-23",
+          "registration_no": "BR-09028/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6f7349ec0129ec68b3ff",
+          "field_end": "2026-08-26",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 4.0,
+          "published_at": "2026-08-27",
+          "reference_date": "2026-08-26",
+          "registration_no": "BR-04974/2026",
+          "sample_size": 2400,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": []
+    },
+    {
+      "between_house_sd_pp": 0.7071067811865476,
+      "candidate_id": "2026-tse-280002553884",
+      "candidate_label": "PABLO MARÇAL",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 2 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
+      "historical_context": null,
+      "houses_in_window": 2,
+      "houses_with_comparable_series": 0,
+      "houses_with_single_measurement": [
+        "Nexus",
+        "PoderData"
+      ],
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-160704acc8da3e8dbe18",
+          "field_end": "2026-08-23",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 4.0,
+          "published_at": "2026-08-24",
+          "reference_date": "2026-08-23",
+          "registration_no": "BR-09028/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6f7349ec0129ec68b3ff",
+          "field_end": "2026-08-26",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 3.0,
+          "published_at": "2026-08-27",
+          "reference_date": "2026-08-26",
+          "registration_no": "BR-04974/2026",
+          "sample_size": 2400,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002553884"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": []
+    }
+  ],
+  "strength_ladder": {
+    "declared_before_data": true,
+    "levels": [
+      "insuficiente",
+      "fraco",
+      "moderado",
+      "forte"
+    ],
+    "rule": "insuficiente: nenhuma casa com duas medições comparáveis ou menos de duas casas. fraco: uma casa, ou direções divergentes, ou dentro do ruído amostral. moderado: ≥2 casas na mesma direção com mediana acima de 1 erro-padrão amostral. forte: ≥3 casas na mesma direção com mediana acima de 2 erros-padrão e acima da dispersão entre casas."
+  },
+  "summary": {
+    "any_moderate_or_strong": false,
+    "by_strength": {
+      "forte": 0,
+      "fraco": 0,
+      "insuficiente": 6,
+      "moderado": 0
+    }
+  },
+  "version": "1.1.0-current-signal",
+  "window_days": 21
+}

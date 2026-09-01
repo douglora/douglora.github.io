@@ -1,0 +1,24 @@
+{
+  "disclaimer": "Probabilidades estimadas por um modelo estatístico a partir de pesquisas registradas no TSE. Não são pesquisa, enquete nem resultado. Podem mudar com novas pesquisas e podem errar; este replay histórico usa calibração preliminar de apenas dois ciclos.",
+  "run_id": "run-20220930-eb3c6fdf-a0bb425a",
+  "runs": [
+    {
+      "generated_at": "2022-09-29T23:59:59-03:00",
+      "run_id": "run-20220929-3bc14883-56a48c0f",
+      "strict_as_of": true,
+      "summary": "Replay as-of anterior, sem pesquisas futuras.",
+      "trigger": "time_tick"
+    },
+    {
+      "explanation_components": [
+        "nova_pesquisa",
+        "tempo"
+      ],
+      "generated_at": "2022-09-30T23:59:59-03:00",
+      "run_id": "run-20220930-eb3c6fdf-a0bb425a",
+      "strict_as_of": true,
+      "summary": "Tempo + 3 nova(s) pesquisa(s) verificável(is).",
+      "trigger": "new_poll"
+    }
+  ]
+}

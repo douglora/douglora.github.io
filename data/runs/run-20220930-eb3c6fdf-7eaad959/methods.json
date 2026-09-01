@@ -1,0 +1,190 @@
+{
+  "disclaimer": "Probabilidades estimadas por um modelo estatístico a partir de pesquisas registradas no TSE. Não são pesquisa, enquete nem resultado. Podem mudar com novas pesquisas e podem errar; este replay histórico usa calibração preliminar de apenas dois ciclos.",
+  "downloads": [
+    {
+      "href": "/data/latest/events.json",
+      "label": "Eventos"
+    },
+    {
+      "href": "/data/latest/pairings.json",
+      "label": "Pareamentos"
+    },
+    {
+      "href": "/data/latest/coverage.json",
+      "label": "Cobertura"
+    },
+    {
+      "href": "/data/latest/lab/2022.json",
+      "label": "Replay 2022"
+    },
+    {
+      "href": "/data/latest/manifest.json",
+      "label": "Manifesto"
+    },
+    {
+      "href": "/data/latest/multicycle.json",
+      "label": "Laboratório multicíclo"
+    },
+    {
+      "href": "/data/latest/calibration.json",
+      "label": "Calibração"
+    },
+    {
+      "href": "/data/latest/components.json",
+      "label": "Componentes históricos"
+    },
+    {
+      "href": "/data/latest/pattern_results.json",
+      "label": "Vereditos H1–H11"
+    },
+    {
+      "href": "/data/latest/pairing_validation.json",
+      "label": "Validação §9.3"
+    },
+    {
+      "href": "/data/latest/operations.json",
+      "label": "Estado operacional"
+    }
+  ],
+  "fixture": false,
+  "glossary": [
+    {
+      "definition": "Percentual divulgado, com base, data, registro e evidência.",
+      "term": "Pesquisa publicada"
+    },
+    {
+      "definition": "Composição estimada na data as-of; não usa pesquisas publicadas depois dela.",
+      "term": "Consenso/nowcast"
+    },
+    {
+      "definition": "Pesquisa após efeito relativo de casa com soma ponderada zero.",
+      "term": "Ajustada por casa"
+    },
+    {
+      "definition": "Distribuição na data da eleição; aqui usa calibração preliminar de 2014/2018.",
+      "term": "Forecast probabilístico"
+    },
+    {
+      "definition": "Fração de uma única simulação conjunta em que o evento ocorre.",
+      "term": "Probabilidade estimada"
+    },
+    {
+      "definition": "Direto, derivado validado ou não modelado.",
+      "term": "Status de pareamento"
+    },
+    {
+      "definition": "Sorteios de segundo turno cujo confronto não possui modelo verificável.",
+      "term": "Massa não modelada"
+    },
+    {
+      "definition": "Fonte, hash, classificação e caminho preservado para cada observação.",
+      "term": "Evidência"
+    }
+  ],
+  "inclusion": {
+    "exclude_partisan_from_aggregate": true,
+    "first_round_history_window_days": 21,
+    "freeze_date": "2026-09-15",
+    "manual_exclusions": [],
+    "maximum_field_age_days": 30,
+    "minimum_sample": 1000,
+    "office": "Presidente",
+    "outlier_policy": "huber",
+    "reason_codes": {
+      "article_10_incomplete": "EXCLUDED_ARTICLE_10_INCOMPLETE",
+      "included": "INCLUDED_RULES_MET",
+      "not_stimulated": "EXCLUDED_NOT_STIMULATED",
+      "outside_window": "EXCLUDED_OUTSIDE_WINDOW",
+      "partisan": "EXCLUDED_PARTISAN_CONTRACTOR",
+      "pending_review": "EXCLUDED_PENDING_EVIDENCE_REVIEW",
+      "registration_not_found": "EXCLUDED_REGISTRATION_NOT_FOUND",
+      "sample_too_small": "EXCLUDED_SAMPLE_BELOW_MINIMUM",
+      "scenario_incomplete": "EXCLUDED_SCENARIO_INCOMPLETE"
+    },
+    "registration_sample_tolerance_pct": 10,
+    "require_article_10_fields": [
+      "field_period",
+      "margin_of_error",
+      "confidence_level",
+      "sample_size",
+      "institute_and_contractor",
+      "registration_number"
+    ],
+    "require_complete_scenario": true,
+    "require_stimulated": true,
+    "require_tse_registration_match": true,
+    "scope": "BR",
+    "second_round_history_window_days": 14,
+    "turns": [
+      1,
+      2
+    ],
+    "version": "2026-08-26-v1"
+  },
+  "licenses": [
+    "TSE Dados Abertos: Creative Commons Attribution.",
+    "Wikipédia: CC BY-SA; usada como espelho classificado dos percentuais.",
+    "Pindograma data/parsed: ODbL com atribuição; arquivos data/poder360 excluídos.",
+    "2010: camada B observacional, sem preenchimento de metadados ausentes."
+  ],
+  "limitations": [
+    "Um único ciclo em replay não é backtest de promoção.",
+    "A calibração histórica tem somente 2014/2018 e está explicitamente marcada como preliminar.",
+    "O mesmo run_engine_as_of é usado aqui e no vertical slice publicado localmente.",
+    "Apenas 2014 e 2018; não sustenta alegação de calibração estável.",
+    "2014 não possui publish_date estruturada no espelho e entra somente como observação de véspera, não em replay diário.",
+    "Os shifts são empíricos por posição e não atribuem causalidade a casas ou candidatos.",
+    "O CDN do TSE devolveu HTTP 403 ao cliente automatizado nesta sessão.",
+    "Os ZIPs de registro não contêm percentuais dos cenários.",
+    "O corpus histórico não consome o stream operacional de 2026; cobertura e runs vivos ficam em operations.json.",
+    "Percentuais 2014/2018 foram preservados para calibração preliminar, mas a ingestão completa permanece pendente.",
+    "2010 é camada B observacional e não entra no motor por metadados ausentes.",
+    "Células com menos de quatro casas mantêm o teto de 25% e ficam indisponíveis.",
+    "Brier/log score são do evento categórico de liderança no resultado; não há piso numérico.",
+    "B0 não produz draws no motor e, portanto, métricas probabilísticas ficam nulas.",
+    "2010 é observacional e não fornece um fold do motor.",
+    "Nenhuma hipótese recebeu entra_no_modelo; o registry não deve promover ajustes.",
+    "Observação significa evidência insuficiente, não suporte implícito.",
+    "O corpus atual não contém perguntas de transferência/rejeição nem consenso ocultável de 2º turno em três folds A; log score, Brier, cobertura e κ_der não são identificáveis.",
+    "Nenhum champion e calibração insuficiente; executar M3 agora não produziria diagnóstico honesto."
+  ],
+  "model": {
+    "bootstrap_draws": 2000,
+    "bootstrap_provenance": "resolução Monte Carlo operacional; não é coeficiente substantivo",
+    "design_effect_provenance": null,
+    "half_life_days": {
+      "final_stretch": 7,
+      "provenance": "Plano v3.1, Apêndice A.1; hiperparâmetro ainda não promovido por LOEO",
+      "regular": 14,
+      "switch_days_before_election": 19
+    },
+    "house_share_cap": 0.25,
+    "house_weight_bounds": [
+      1.0,
+      1.0
+    ],
+    "house_weight_lambda": 0.0,
+    "house_weight_provenance": "neutro até laboratório demonstrar persistência fora da amostra",
+    "mode_weight_provenance": null,
+    "production_guard": {
+      "allow_unvalidated_calibration_only_for_historical_replay": true,
+      "reject_fixture": true,
+      "require_real_evidence": true,
+      "require_strict_as_of": true
+    },
+    "sample_cap": 6000,
+    "sample_reference": 2000,
+    "seed": 20260827,
+    "version": "3.1.0-vertical-slice",
+    "window_days": 30
+  },
+  "models": {
+    "B0": "última pesquisa por casa na janela",
+    "B1": "média por recência/amostra, pesos neutros de modo/casa e teto exato de 25%",
+    "M2": "efeitos relativos estáticos e bootstrap conjunto, sem pisos numéricos",
+    "forecast": "calibração preliminar, 2 ciclos"
+  },
+  "notice": "REPLAY HISTÓRICO 2022 — percentuais de espelho preservado, metadados casados ao TSE e resultado oficial. Não representa uma estimativa de 2026.",
+  "projection_warning": "Projeção ≠ resultado. A faixa de 80% resume cenários compatíveis com as pesquisas e com a calibração histórica preliminar; não é uma garantia de cobertura futura.",
+  "run_id": "run-20220930-eb3c6fdf-7eaad959"
+}

@@ -1,0 +1,64 @@
+{
+  "adapter_health": {
+    "degraded": 0,
+    "failed": 0,
+    "healthy": 0
+  },
+  "commands": [
+    "uv run agregador watch",
+    "uv run agregador discover --dry-run",
+    "uv run agregador review-list",
+    "uv run agregador review-show <item_id>",
+    "uv run agregador review-discovery <item_id> --reviewer <nome> --accept --justification <texto>",
+    "uv run agregador run --trigger time_tick",
+    "uv run agregador status",
+    "uv run agregador retry"
+  ],
+  "coverage_message": "nenhuma pesquisa 2026 validada",
+  "daily_time_tick": "08:00",
+  "data_availability": "unavailable_no_verified_2026_percentages",
+  "discovery_queue": {
+    "accepted": 0,
+    "ambiguous": 0,
+    "discovered": 0,
+    "extracted": 0,
+    "failed": 0,
+    "fetched": 0,
+    "future_publication": 0,
+    "matched_tse": 0,
+    "registration_only": 0,
+    "rejected": 0,
+    "validated": 0
+  },
+  "last_accepted_discovery": null,
+  "last_published_run": null,
+  "last_source_check": null,
+  "last_validated_poll": null,
+  "latency_seconds": null,
+  "latency_sla_seconds": {
+    "champion_m3": 900,
+    "preliminary_b1_m2": 300
+  },
+  "latency_status": "not_measured",
+  "live_diagnostic": null,
+  "local_runtime_limitation": "No Mac local, atualizações só ocorrem enquanto a máquina e o Paseo estiverem ligados.",
+  "methodology": {
+    "auto_update": false,
+    "rule": "Dados, posterior e probabilidades podem mudar em cada run validado. Metodologia e hiperparâmetros só mudam por nova versão, backtest, changelog e registry.",
+    "version": "3.1.0-phase2"
+  },
+  "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo sem mudar o motor.",
+  "processing_message": "watcher local preparado; serviço não iniciado por este pipeline",
+  "processing_state": "idle",
+  "review_queue_items": [],
+  "run_id": "run-20220930-eb3c6fdf-d1f0cdf9",
+  "service_running": false,
+  "source_checks": {},
+  "stale": true,
+  "stale_warning": "nenhuma checagem operacional registrada",
+  "timezone": "America/Sao_Paulo",
+  "validated_poll_count": 0,
+  "visible_run_id": null,
+  "watch_interval_minutes": 30,
+  "watcher_prepared": true
+}

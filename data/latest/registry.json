@@ -1,0 +1,63 @@
+{
+  "champion_model_id": null,
+  "derived_pairing_enabled": false,
+  "exploratory_scenarios": [
+    {
+      "correction_basis": "raw_bloc_error",
+      "lineage_inheritance": "none",
+      "promoted": false,
+      "reason": "Pedido do Douglas em 29/08/2026: \"quanto estariam os resultados levando em conta o quanto cada casa erra\". O teste leave-one-election-year-out (history_lab.persistence e house_correction.ideology.persistence) não autoriza correção assinada; por isso o cenário é rotulado como exploratório, mostra a incerteza e declara que o teste fora da amostra não valida a projeção.",
+      "recent_cycle": 2022,
+      "recent_weight": 0.5,
+      "role": "exploratory_scenario",
+      "scenario_id": "house-error-correction",
+      "since": "2026-08-29",
+      "turn_specific": true,
+      "validated_out_of_sample": false,
+      "version": "1.0.0",
+      "window": "d30"
+    }
+  ],
+  "freeze_date": "2026-09-20",
+  "methodology_auto_update": false,
+  "models": [
+    {
+      "derived_pairing_enabled": false,
+      "model_id": "B0-3.1.0-phase2",
+      "promotion_note": "baseline por última pesquisa; probabilidades não estimáveis",
+      "role": "shadow",
+      "since": "2026-08-27",
+      "validation_ref": null
+    },
+    {
+      "derived_pairing_enabled": false,
+      "model_id": "B1-3.1.0-phase2",
+      "promotion_note": "baseline probabilístico; B1-normal não estimável com quatro folds",
+      "role": "challenger",
+      "since": "2026-08-27",
+      "validation_ref": null
+    },
+    {
+      "derived_pairing_enabled": false,
+      "model_id": "M2-3.1.0-phase2",
+      "promotion_note": "falhou critérios conjuntos de log score e cobertura; sem promoção",
+      "role": "challenger",
+      "since": "2026-08-27",
+      "validation_ref": null
+    },
+    {
+      "derived_pairing_enabled": false,
+      "model_id": "M3-lite-3.1.0-prepared",
+      "promotion_note": "interface preparada; não executado, sem diagnóstico ou alegação de convergência",
+      "role": "shadow",
+      "since": "2026-08-27",
+      "validation_ref": null
+    }
+  ],
+  "promotion_decision": "nenhum champion para 2026",
+  "promotion_evidence": "pattern_results.json e multicycle.json",
+  "publication_state": "historical_replay_only",
+  "run_id": "run-20220930-eb3c6fdf-27aced83",
+  "validation_ref": null,
+  "version": "3.1.0-phase2"
+}

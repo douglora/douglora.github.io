@@ -1,0 +1,150 @@
+{
+  "as_of": "2026-08-31",
+  "code_hash": "856e9880191a9288985a98891a93eb47b06a89d66811cd154299909d400bb455",
+  "config_hash": "1ca91ae397c66b9abcba4f8ab6262a7c00354556184cec1a20d51b949895bf88",
+  "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
+  "generation": {
+    "deterministic": true,
+    "method": "regras determinísticas sobre contratos publicados",
+    "no_causal_language": true,
+    "note": "Nenhum texto é gerado por modelo de linguagem. Cada frase vem de uma regra neste módulo, com os dados que a alimentaram declarados em `inputs`."
+  },
+  "insights": [
+    {
+      "calculation_ref": "/metodologia#gate",
+      "detail": "3 pesquisas de 2 casas na janela.",
+      "evidence_strength": "forte",
+      "headline": "Cobertura suficiente para publicar o consenso ajustado.",
+      "id": "gate-cobertura",
+      "inputs": [
+        "operations.json#live_coverage"
+      ],
+      "rule": "gate_satisfied = polls >= 3 E houses >= 2",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/sinal-atual",
+      "detail": "0 candidatura(s) avaliada(s) e nenhuma casa com duas medições comparáveis na janela. Duas pesquisas de casas diferentes medem diferença entre casas, não movimento no tempo.",
+      "evidence_strength": "insuficiente",
+      "headline": "Não há evidência suficiente para afirmar tendência de nenhuma candidatura.",
+      "id": "movimento-atual",
+      "inputs": [
+        "current_signal.json#signals"
+      ],
+      "rule": "insuficiente: nenhuma casa com duas medições comparáveis ou menos de duas casas. fraco: uma casa, ou direções divergentes, ou dentro do ruído amostral. moderado: ≥2 casas na mesma direção com mediana acima de 1 erro-padrão amostral. forte: ≥3 casas na mesma direção com mediana acima de 2 erros-padrão e acima da dispersão entre casas.",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/laboratorio#dispersao",
+      "detail": "Em todas as eleições pontuadas, o desvio entre casas superou o desvio amostral esperado. É por isso que a faixa de incerteza do modelo é alargada em vez de confiar apenas na margem declarada.",
+      "evidence_strength": "moderado",
+      "headline": "Historicamente, as casas discordam 2.6× mais do que a margem de erro sozinha explicaria.",
+      "id": "dispersao-entre-casas",
+      "inputs": [
+        "history_patterns.json#P4"
+      ],
+      "rule": "Razão = desvio-padrão observado entre casas ÷ desvio-padrão amostral esperado, no percentual do líder oficial, usando a última pesquisa de cada casa. Razão <1 sugere herding; >1, dispersão acima do ruído amostral.",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/laboratorio#erro-comum",
+      "detail": "Quando o erro é comum a todas as casas, ele não é evidência sobre nenhuma casa isolada. Entra no modelo como incerteza compartilhada, nunca como correção atribuída a um instituto.",
+      "evidence_strength": "forte",
+      "headline": "O maior erro histórico foi coletivo: em 2014-T1 todas as casas erraram a margem em +10.9 pp na média.",
+      "id": "erro-comum",
+      "inputs": [
+        "history_patterns.json#P7"
+      ],
+      "rule": "Componente comum = média do erro de margem com um voto por casa. Componente de casa = desvio-padrão dos desvios em relação a esse comum.",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/metodologia#historico-no-modelo",
+      "detail": "A calibração é aprendida só nos ciclos de treino e melhorou em todos os ciclos retidos. O ponto estimado de cada candidatura permaneceu idêntico ao do modelo sem histórico.",
+      "evidence_strength": "moderado",
+      "headline": "O histórico alterou a faixa de incerteza, não o centro: cobertura fora da amostra subiu de 7% para 51%.",
+      "id": "historico-no-modelo",
+      "inputs": [
+        "history_integration.json#promotion.channels.interval_calibration"
+      ],
+      "rule": "Critérios fixados antes de rodar os folds e avaliados por canal. Ponto: ≥3 ciclos retidos, não piorar contra M2 e bater B0 e B1 em MAE. Faixa: cobertura 80% mais próxima do nominal que M2 e B1, em todos os ciclos retidos, sem deslocar o ponto. Viés assinado: só com persistência fora da amostra.",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/laboratorio#persistencia",
+      "detail": "Prever o erro de uma casa pelo seu próprio passado teve MAE 2.65 pp contra 1.87 pp de simplesmente prever zero. Aplicar uma correção pioraria a estimativa.",
+      "evidence_strength": "forte",
+      "headline": "Nenhuma casa recebe correção de viés: a direção do erro não se repete fora da amostra.",
+      "id": "viés-assinado",
+      "inputs": [
+        "history_lab.json#persistence.relative_margin_error"
+      ],
+      "rule": "Correção assinada só é autorizada se o MAE fora da amostra do modelo de viés ficar abaixo do modelo nulo (prever zero) E o sinal se repetir com p<0,05 no teste binomial unilateral. Caso contrário, o padrão é encolher para zero e usar o histórico apenas como variância/confiabilidade.",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/sinal-atual#ultima-pesquisa",
+      "detail": "Comparação com a medição anterior da mesma casa, mesmo cenário, 7 dias antes.",
+      "evidence_strength": "moderado",
+      "headline": "Nexus: Ganharam espaço: ESCRITOR AUGUSTO CURY, RONALDO CAIADO, VETERINÁRIO WILSON GRASSI. Perderam: LULA, FLAVIO BOLSONARO, PABLO MARÇAL, CLARIANA BARAO, RUI COSTA PIMENTA. Ao menos uma variação ficou fora do ruído amostral.",
+      "id": "ultima-pesquisa",
+      "inputs": [
+        "current_signal.json#latest_poll_comparison"
+      ],
+      "rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/cenario-corrigido#eixo-ideologico",
+      "detail": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
+      "evidence_strength": "forte",
+      "headline": "Viés por lado do espectro: também não se repete fora da amostra.",
+      "id": "eixo-ideologico",
+      "inputs": [
+        "house_correction.json#ideology.persistence"
+      ],
+      "rule": "Correção assinada só é autorizada se o MAE fora da amostra do modelo de viés ficar abaixo do modelo nulo (prever zero) E o sinal se repetir com p<0,05 no teste binomial unilateral. Caso contrário, o padrão é encolher para zero e usar o histórico apenas como variância/confiabilidade.",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/cenario-corrigido",
+      "detail": "Média simples de 2 casa(s) viva(s), cada uma corrigida pelo próprio histórico por bloco ideológico. Nos testes leave-one-election-year-out, prever o erro de uma casa pelo passado dela foi pior do que prever zero — tanto no erro de margem quanto no eixo ideológico. Este cenário mostra o que aconteceria se, mesmo assim, a correção fosse aplicada.",
+      "evidence_strength": "fraco",
+      "headline": "Cenário exploratório — corrigindo pelo erro histórico das casas: LULA 38% (publicado 40%) · FLAVIO BOLSONARO 37% (publicado 35%), em votos válidos.",
+      "id": "cenario-corrigido",
+      "inputs": [
+        "house_correction.json#scenario.aggregate"
+      ],
+      "rule": "erro da casa = 0.50 × erro em 2022 + 0.50 × erro médio em todas as eleições do mesmo turno (janela d30); ajuste do candidato = − erro do bloco × participação do candidato dentro do bloco; agregado = média simples das casas vivas (B0).",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/laboratorio#contexto",
+      "detail": "Faixa de 10% a 90%: -3.0 a +17.7 pp, em 55 observações de 5 eleições/turnos. Isso descreve o passado; não é correção nem previsão para 2026.",
+      "evidence_strength": "moderado",
+      "headline": "A 34 dias da eleição, o erro de margem histórico teve mediana +6.7 pp.",
+      "id": "contexto-historico",
+      "inputs": [
+        "current_signal.json#historical_context_at_this_distance"
+      ],
+      "rule": "Observações com |dias_para_eleição − 34| ≤ 10.",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    },
+    {
+      "calculation_ref": "/laboratorio#cobertura",
+      "detail": "23 casas identificadas; 5 células permanecem sem cobertura e estão listadas como lacunas explícitas.",
+      "evidence_strength": "forte",
+      "headline": "257 pesquisas históricas pontuadas em 7 células eleição/turno.",
+      "id": "cobertura-historica",
+      "inputs": [
+        "history_lab.json#coverage.totals"
+      ],
+      "rule": "célula coberta = ≥3 observações pontuadas e ≥2 casas",
+      "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98"
+    }
+  ],
+  "live_hash": "66da58faeda6ad0e26ae5d31f5421fe430e2851549cf9e7fdce11c94af31d96b",
+  "live_source_run_id": "run-20260831-2803049a-e2f8211f",
+  "run_id": "hist-20260831-8d90558c-1ca91ae3-66da58fa-856e98",
+  "version": "1.1.0-auto-insights"
+}

@@ -1,0 +1,482 @@
+{
+  "alerts": [
+    {
+      "action": "Confira o run, a data as-of e a cobertura.",
+      "icon": "△",
+      "label": "Replay histórico",
+      "level": "warning",
+      "text": "Esta execução reconstrói 30/09/2022; não é uma leitura de 2026."
+    },
+    {
+      "action": "Os eventos do primeiro turno continuam publicados sem renormalização.",
+      "icon": "◇",
+      "label": "Vencedor indisponível",
+      "level": "serious",
+      "text": "50.2% dos cenários dependem de confrontos sem modelo."
+    },
+    {
+      "action": "O estado correto do produto 2026 é indisponível.",
+      "icon": "○",
+      "label": "2026 sem percentuais revisados",
+      "level": "warning",
+      "text": "Há metadados TSE de 2026, mas nenhuma observação de percentual foi promovida."
+    }
+  ],
+  "candidates": [
+    {
+      "election_year": 2022,
+      "evidence_id": "ev-tse-result-2022-t1",
+      "id": "lula",
+      "name": "Lula",
+      "number": 13,
+      "party": "PT",
+      "registration_status": "official_result_2022",
+      "short_name": "Lula",
+      "slot": 1,
+      "ui_slot": 1
+    },
+    {
+      "election_year": 2022,
+      "evidence_id": "ev-tse-result-2022-t1",
+      "id": "bolsonaro",
+      "name": "Jair Bolsonaro",
+      "number": 22,
+      "party": "PL",
+      "registration_status": "official_result_2022",
+      "short_name": "Bolsonaro",
+      "slot": 2,
+      "ui_slot": 2
+    },
+    {
+      "election_year": 2022,
+      "evidence_id": "ev-tse-result-2022-t1",
+      "id": "tebet",
+      "name": "Simone Tebet",
+      "number": 15,
+      "party": "MDB",
+      "registration_status": "official_result_2022",
+      "short_name": "Tebet",
+      "slot": 3,
+      "ui_slot": 3
+    },
+    {
+      "election_year": 2022,
+      "evidence_id": "ev-tse-result-2022-t1",
+      "id": "ciro",
+      "name": "Ciro Gomes",
+      "number": 12,
+      "party": "PDT",
+      "registration_status": "official_result_2022",
+      "short_name": "Ciro",
+      "slot": 4,
+      "ui_slot": 4
+    },
+    {
+      "election_year": 2022,
+      "evidence_id": "ev-tse-result-2022-t1",
+      "id": "outros",
+      "name": "Outras candidaturas",
+      "number": 999,
+      "party": "—",
+      "registration_status": "derived_aggregate_of_official_candidates",
+      "short_name": "Outros",
+      "slot": 5,
+      "ui_slot": 5
+    }
+  ],
+  "data_classification": "historical_replay_real_mirror",
+  "disagreement_index": {
+    "base": "amplitude observada da margem na janela",
+    "date": "2022-09-30",
+    "evidence_ids": [
+      "ev-tse-polls-2022",
+      "ev-tse-results-2014",
+      "ev-tse-results-2018",
+      "ev-wikipedia-polls-2014",
+      "ev-wikipedia-polls-2018",
+      "ev-wikipedia-polls-2022"
+    ],
+    "kind": "Desacordo entre casas",
+    "q50": 34.7339,
+    "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+    "unit": "pp"
+  },
+  "disclaimer": "Probabilidades estimadas por um modelo estatístico a partir de pesquisas registradas no TSE. Não são pesquisa, enquete nem resultado. Podem mudar com novas pesquisas e podem errar; este replay histórico usa calibração preliminar de apenas dois ciclos.",
+  "dispute": {
+    "base": "votos válidos",
+    "scope": "BR",
+    "turn": 1,
+    "year": 2022
+  },
+  "fixture": false,
+  "forecast": [
+    {
+      "candidate_id": "lula",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-10-02",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Forecast probabilístico",
+        "q10": 42.7372,
+        "q25": 42.8686,
+        "q50": 43.2715,
+        "q75": 51.8423,
+        "q90": 51.9989,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    },
+    {
+      "candidate_id": "bolsonaro",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-10-02",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Forecast probabilístico",
+        "q10": 43.5529,
+        "q25": 43.6484,
+        "q50": 46.0787,
+        "q75": 46.4639,
+        "q90": 46.573,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    },
+    {
+      "candidate_id": "tebet",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-10-02",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Forecast probabilístico",
+        "q10": 0.0,
+        "q25": 0.0,
+        "q50": 4.7619,
+        "q75": 5.0651,
+        "q90": 5.1521,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    },
+    {
+      "candidate_id": "ciro",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-10-02",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Forecast probabilístico",
+        "q10": 3.4837,
+        "q25": 3.583,
+        "q50": 3.9734,
+        "q75": 4.5025,
+        "q90": 4.6132,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    },
+    {
+      "candidate_id": "outros",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-10-02",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Forecast probabilístico",
+        "q10": 0.0,
+        "q25": 0.0,
+        "q50": 1.8336,
+        "q75": 2.0121,
+        "q90": 2.0794,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    }
+  ],
+  "herding_index": null,
+  "last_poll": {
+    "date": "2022-09-30",
+    "evidence_id": "ev-wikipedia-polls-2022"
+  },
+  "margin": {
+    "base": "margem em votos válidos",
+    "date": "2022-09-30",
+    "evidence_ids": [
+      "ev-tse-polls-2022",
+      "ev-tse-results-2014",
+      "ev-tse-results-2018",
+      "ev-wikipedia-polls-2014",
+      "ev-wikipedia-polls-2018",
+      "ev-wikipedia-polls-2022"
+    ],
+    "kind": "Consenso/nowcast",
+    "leader_id": "lula",
+    "q10": 6.9612,
+    "q25": 7.1024,
+    "q50": 7.2745,
+    "q75": 7.4428,
+    "q90": 7.586,
+    "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+    "runner_up_id": "bolsonaro",
+    "unit": "pp"
+  },
+  "n_houses_window": {
+    "base": "casas verificáveis na janela",
+    "date": "2022-09-30",
+    "evidence_ids": [
+      "ev-tse-polls-2022",
+      "ev-tse-results-2014",
+      "ev-tse-results-2018",
+      "ev-wikipedia-polls-2014",
+      "ev-wikipedia-polls-2018",
+      "ev-wikipedia-polls-2022"
+    ],
+    "kind": "Contagem",
+    "q50": 14.0,
+    "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+    "unit": "count"
+  },
+  "n_polls_window": {
+    "base": "pesquisas verificáveis na janela",
+    "date": "2022-09-30",
+    "evidence_ids": [
+      "ev-tse-polls-2022",
+      "ev-tse-results-2014",
+      "ev-tse-results-2018",
+      "ev-wikipedia-polls-2014",
+      "ev-wikipedia-polls-2018",
+      "ev-wikipedia-polls-2022"
+    ],
+    "kind": "Contagem",
+    "q50": 47.0,
+    "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+    "unit": "count"
+  },
+  "notice": "REPLAY HISTÓRICO 2022 — percentuais de espelho preservado, metadados casados ao TSE e resultado oficial. Não representa uma estimativa de 2026.",
+  "nowcast": [
+    {
+      "candidate_id": "lula",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-09-30",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Consenso/nowcast",
+        "q10": 46.9383,
+        "q25": 47.0323,
+        "q50": 47.1443,
+        "q75": 47.2595,
+        "q90": 47.3629,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    },
+    {
+      "candidate_id": "bolsonaro",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-09-30",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Consenso/nowcast",
+        "q10": 39.7083,
+        "q25": 39.7866,
+        "q50": 39.8699,
+        "q75": 39.9614,
+        "q90": 40.0309,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    },
+    {
+      "candidate_id": "tebet",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-09-30",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Consenso/nowcast",
+        "q10": 4.7172,
+        "q25": 4.7746,
+        "q50": 4.8434,
+        "q75": 4.9127,
+        "q90": 4.9773,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    },
+    {
+      "candidate_id": "ciro",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-09-30",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Consenso/nowcast",
+        "q10": 6.0472,
+        "q25": 6.1247,
+        "q50": 6.2176,
+        "q75": 6.298,
+        "q90": 6.3817,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    },
+    {
+      "candidate_id": "outros",
+      "value": {
+        "base": "votos válidos",
+        "date": "2022-09-30",
+        "evidence_ids": [
+          "ev-tse-polls-2022",
+          "ev-tse-results-2014",
+          "ev-tse-results-2018",
+          "ev-wikipedia-polls-2014",
+          "ev-wikipedia-polls-2018",
+          "ev-wikipedia-polls-2022"
+        ],
+        "kind": "Consenso/nowcast",
+        "q10": 1.8253,
+        "q25": 1.8729,
+        "q50": 1.9248,
+        "q75": 1.9732,
+        "q90": 2.0172,
+        "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+        "unit": "pct"
+      }
+    }
+  ],
+  "probabilities": {
+    "first_round_decision": {
+      "base": "fração da simulação conjunta",
+      "date": "2022-10-02",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "kind": "Probabilidade estimada",
+      "q10": 41.9,
+      "q50": 49.8,
+      "q90": 58.0,
+      "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+      "unit": "probability"
+    },
+    "leader_to_second_round": {
+      "base": "fração da simulação conjunta",
+      "date": "2022-10-02",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "kind": "Probabilidade estimada",
+      "q10": 42.0,
+      "q50": 50.2,
+      "q90": 58.1,
+      "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+      "unit": "probability"
+    },
+    "leader_today": {
+      "base": "fração da simulação conjunta",
+      "date": "2022-09-30",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "kind": "Probabilidade estimada",
+      "q10": 100.0,
+      "q50": 100.0,
+      "q90": 100.0,
+      "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+      "unit": "probability"
+    },
+    "runner_to_second_round": {
+      "base": "fração da simulação conjunta",
+      "date": "2022-10-02",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "kind": "Probabilidade estimada",
+      "q10": 42.0,
+      "q50": 50.2,
+      "q90": 58.1,
+      "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+      "unit": "probability"
+    }
+  },
+  "projection_warning": "Projeção ≠ resultado. A faixa de 80% resume cenários compatíveis com as pesquisas e com a calibração histórica preliminar; não é uma garantia de cobertura futura.",
+  "run_id": "run-20220930-eb3c6fdf-9dbccc17"
+}

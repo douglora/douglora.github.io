@@ -1,0 +1,46 @@
+{
+  "champion_model_id": null,
+  "derived_pairing_enabled": false,
+  "freeze_date": "2026-09-20",
+  "methodology_auto_update": false,
+  "models": [
+    {
+      "derived_pairing_enabled": false,
+      "model_id": "B0-3.1.0-phase2",
+      "promotion_note": "baseline por última pesquisa; probabilidades não estimáveis",
+      "role": "shadow",
+      "since": "2026-08-27",
+      "validation_ref": null
+    },
+    {
+      "derived_pairing_enabled": false,
+      "model_id": "B1-3.1.0-phase2",
+      "promotion_note": "baseline probabilístico; B1-normal não estimável com quatro folds",
+      "role": "challenger",
+      "since": "2026-08-27",
+      "validation_ref": null
+    },
+    {
+      "derived_pairing_enabled": false,
+      "model_id": "M2-3.1.0-phase2",
+      "promotion_note": "falhou critérios conjuntos de log score e cobertura; sem promoção",
+      "role": "challenger",
+      "since": "2026-08-27",
+      "validation_ref": null
+    },
+    {
+      "derived_pairing_enabled": false,
+      "model_id": "M3-lite-3.1.0-prepared",
+      "promotion_note": "interface preparada; não executado, sem diagnóstico ou alegação de convergência",
+      "role": "shadow",
+      "since": "2026-08-27",
+      "validation_ref": null
+    }
+  ],
+  "promotion_decision": "nenhum champion para 2026",
+  "promotion_evidence": "pattern_results.json e multicycle.json",
+  "publication_state": "historical_replay_only",
+  "run_id": "run-20220930-eb3c6fdf-7eaad959",
+  "validation_ref": null,
+  "version": "3.1.0-phase2"
+}

@@ -1,0 +1,712 @@
+{
+  "cards": [
+    {
+      "event_id": "decisao-primeiro-turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "probability_pct": 50,
+      "rules": "Totalização oficial do TSE, votos válidos",
+      "sparkline": [
+        49.8,
+        49.8
+      ],
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "title": "Decisão no primeiro turno",
+      "variation_pp": 0.0,
+      "why_changed": "tempo/recência: +0.0 p.p.; novas pesquisas: +0.0 p.p."
+    },
+    {
+      "event_id": "ir-segundo-turno-lula",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "probability_pct": 50,
+      "rules": "Totalização oficial do TSE, votos válidos",
+      "sparkline": [
+        50.2,
+        50.2
+      ],
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "title": "Lula ir ao segundo turno",
+      "variation_pp": 0.0,
+      "why_changed": "tempo/recência: +0.0 p.p.; novas pesquisas: +0.0 p.p."
+    },
+    {
+      "event_id": "ir-segundo-turno-bolsonaro",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "probability_pct": 50,
+      "rules": "Totalização oficial do TSE, votos válidos",
+      "sparkline": [
+        50.2,
+        50.2
+      ],
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "title": "Bolsonaro ir ao segundo turno",
+      "variation_pp": 0.0,
+      "why_changed": "tempo/recência: +0.0 p.p.; novas pesquisas: +0.0 p.p."
+    },
+    {
+      "event_id": "vencer-eleicao-indisponivel",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Baixo",
+      "probability_pct": null,
+      "rules": "Sem número enquanto a massa de confrontos não modelados exceder o limiar público.",
+      "sparkline": [],
+      "status": "indisponivel",
+      "target_date": "2022-10-30",
+      "title": "Vencer a eleição",
+      "unmodeled_mass": 0.502,
+      "variation_pp": null,
+      "why_changed": "50.2% dos sorteios dependem de confrontos sem modelo: bolsonaro × lula."
+    }
+  ],
+  "disclaimer": "Probabilidades estimadas por um modelo estatístico a partir de pesquisas registradas no TSE. Não são pesquisa, enquete nem resultado. Podem mudar com novas pesquisas e podem errar; este replay histórico usa calibração preliminar de apenas dois ciclos.",
+  "events": [
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "lula",
+      "event_id": "liderar-hoje-lula",
+      "event_type": "liderar_hoje",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 1.0,
+      "p_high": 1.0,
+      "p_low": 1.0,
+      "resolution_source": "Indicador de agora; não resolve e é substituído pelo próximo run.",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "hoje/run",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "lula",
+      "event_id": "top2-lula",
+      "event_type": "top_2_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 1.0,
+      "p_high": 1.0,
+      "p_low": 1.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "lula",
+      "event_id": "ir-segundo-turno-lula",
+      "event_type": "ir_ao_segundo_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.502,
+      "p_high": 0.581,
+      "p_low": 0.42,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "lula",
+      "event_id": "vencer-primeiro-turno-lula",
+      "event_type": "vencer_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.498,
+      "p_high": 0.58,
+      "p_low": 0.419,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "lula",
+      "event_id": "vencer-eleicao-lula",
+      "event_type": "vencer_eleicao",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "indisponivel",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "bolsonaro",
+      "event_id": "liderar-hoje-bolsonaro",
+      "event_type": "liderar_hoje",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Indicador de agora; não resolve e é substituído pelo próximo run.",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "hoje/run",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "bolsonaro",
+      "event_id": "top2-bolsonaro",
+      "event_type": "top_2_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 1.0,
+      "p_high": 1.0,
+      "p_low": 1.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "bolsonaro",
+      "event_id": "ir-segundo-turno-bolsonaro",
+      "event_type": "ir_ao_segundo_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.502,
+      "p_high": 0.581,
+      "p_low": 0.42,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "bolsonaro",
+      "event_id": "vencer-primeiro-turno-bolsonaro",
+      "event_type": "vencer_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "bolsonaro",
+      "event_id": "vencer-eleicao-bolsonaro",
+      "event_type": "vencer_eleicao",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "indisponivel",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "tebet",
+      "event_id": "liderar-hoje-tebet",
+      "event_type": "liderar_hoje",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Indicador de agora; não resolve e é substituído pelo próximo run.",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "hoje/run",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "tebet",
+      "event_id": "top2-tebet",
+      "event_type": "top_2_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "tebet",
+      "event_id": "ir-segundo-turno-tebet",
+      "event_type": "ir_ao_segundo_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "tebet",
+      "event_id": "vencer-primeiro-turno-tebet",
+      "event_type": "vencer_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "tebet",
+      "event_id": "vencer-eleicao-tebet",
+      "event_type": "vencer_eleicao",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "indisponivel",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "ciro",
+      "event_id": "liderar-hoje-ciro",
+      "event_type": "liderar_hoje",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Indicador de agora; não resolve e é substituído pelo próximo run.",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "hoje/run",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "ciro",
+      "event_id": "top2-ciro",
+      "event_type": "top_2_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "ciro",
+      "event_id": "ir-segundo-turno-ciro",
+      "event_type": "ir_ao_segundo_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "ciro",
+      "event_id": "vencer-primeiro-turno-ciro",
+      "event_type": "vencer_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "ciro",
+      "event_id": "vencer-eleicao-ciro",
+      "event_type": "vencer_eleicao",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "indisponivel",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "outros",
+      "event_id": "liderar-hoje-outros",
+      "event_type": "liderar_hoje",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Indicador de agora; não resolve e é substituído pelo próximo run.",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "hoje/run",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "outros",
+      "event_id": "top2-outros",
+      "event_type": "top_2_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "outros",
+      "event_id": "ir-segundo-turno-outros",
+      "event_type": "ir_ao_segundo_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "outros",
+      "event_id": "vencer-primeiro-turno-outros",
+      "event_type": "vencer_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.0,
+      "p_high": 0.0,
+      "p_low": 0.0,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "candidate_id": "outros",
+      "event_id": "vencer-eleicao-outros",
+      "event_type": "vencer_eleicao",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "indisponivel",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    },
+    {
+      "ambiguity_rule": "Substituição ou decisão judicial reformula o evento e preserva o histórico.",
+      "event_id": "decisao-primeiro-turno",
+      "event_type": "decisao_primeiro_turno",
+      "evidence_ids": [
+        "ev-tse-polls-2022",
+        "ev-tse-results-2014",
+        "ev-tse-results-2018",
+        "ev-wikipedia-polls-2014",
+        "ev-wikipedia-polls-2018",
+        "ev-wikipedia-polls-2022"
+      ],
+      "evidence_level": "Alto",
+      "p": 0.498,
+      "p_high": 0.58,
+      "p_low": 0.419,
+      "resolution_source": "Totalização oficial do TSE, votos válidos",
+      "run_id": "run-20220930-eb3c6fdf-5d01018c",
+      "status": "publicada",
+      "target_date": "2022-10-02",
+      "unmodeled_mass": 0.502
+    }
+  ],
+  "identity_sum_winner_plus_mass": 1.0,
+  "missing_pairings": [
+    {
+      "candidate_i": "bolsonaro",
+      "candidate_j": "lula",
+      "draws": 1004
+    }
+  ],
+  "notice": "REPLAY HISTÓRICO 2022 — percentuais de espelho preservado, metadados casados ao TSE e resultado oficial. Não representa uma estimativa de 2026.",
+  "pairing_probabilities": {
+    "bolsonaro--ciro": 0.0,
+    "bolsonaro--lula": 0.502,
+    "bolsonaro--outros": 0.0,
+    "bolsonaro--tebet": 0.0,
+    "ciro--lula": 0.0,
+    "ciro--outros": 0.0,
+    "ciro--tebet": 0.0,
+    "lula--outros": 0.0,
+    "lula--tebet": 0.0,
+    "outros--tebet": 0.0
+  },
+  "raw_winner_probabilities_not_for_display_when_unavailable": {
+    "bolsonaro": 0.0,
+    "ciro": 0.0,
+    "lula": 0.498,
+    "outros": 0.0,
+    "tebet": 0.0
+  },
+  "renormalized": false,
+  "run_id": "run-20220930-eb3c6fdf-5d01018c",
+  "unmodeled_mass": 0.502,
+  "unmodeled_mass_threshold": 0.05,
+  "winner_publication_status": "indisponivel"
+}

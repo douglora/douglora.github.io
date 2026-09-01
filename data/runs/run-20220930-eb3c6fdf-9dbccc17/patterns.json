@@ -1,0 +1,286 @@
+{
+  "design": {
+    "auxiliary_cycles_not_used_for_verdict": [
+      2002,
+      2006
+    ],
+    "bootstrap": {
+      "draws": 2000,
+      "provenance": "resolução Monte Carlo operacional; não é coeficiente substantivo",
+      "stratify_by": [
+        "cycle",
+        "turn",
+        "institute"
+      ],
+      "unit": "poll"
+    },
+    "cycle_layers": {
+      "2010": "B",
+      "2014": "A",
+      "2018": "A",
+      "2022": "A"
+    },
+    "eligible_cycles": [
+      2010,
+      2014,
+      2018,
+      2022
+    ],
+    "entry_rule": {
+      "require_log_score_improvement": true,
+      "require_plausible_documented_mechanism": true,
+      "required_consistent_folds": 3,
+      "required_layer_a_folds": [
+        2014,
+        2018,
+        2022
+      ]
+    },
+    "folds": "leave_one_cycle_out",
+    "horizons_days": [
+      60,
+      30,
+      14,
+      7,
+      1
+    ],
+    "insufficient_data_rule": "Sem quatro folds elegíveis, ou sem os três folds A, a hipótese não pode receber entra_no_modelo. Dados ausentes nunca são imputados.",
+    "training_rule": "Toda transformação, sinal escolhido, hiperparâmetro e inflação de variância usa somente os ciclos de treino; o ciclo retido serve apenas para avaliação.",
+    "verdicts": [
+      "entra_no_modelo",
+      "observacao",
+      "rejeitado",
+      "inconclusivo"
+    ]
+  },
+  "patterns": [
+    {
+      "estimand": "resultado oficial menos forecast do segundo colocado no 1º turno",
+      "expected_direction": "positive",
+      "hypothesis": "subestimação do segundo colocado no primeiro turno",
+      "id": "H1",
+      "metric": "runner_up_official_minus_forecast_pp",
+      "minimum_per_fold": "ao menos 3 candidaturas e 2 casas no snapshot",
+      "model_action_if_supported": "shift por posição somente com escala aprendida nos folds de treino",
+      "primary_horizons_days": [
+        7,
+        1
+      ],
+      "turns": [
+        1
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "resultado oficial menos forecast do líder no 1º turno",
+      "expected_direction": "sinal escolhido exclusivamente nos folds de treino e repetido no retido",
+      "hypothesis": "viés do líder no primeiro turno",
+      "id": "H1b",
+      "metric": "leader_official_minus_forecast_pp",
+      "minimum_per_fold": "ao menos 3 candidaturas e 2 casas no snapshot",
+      "model_action_if_supported": "shift do líder somente com escala aprendida nos folds de treino",
+      "primary_horizons_days": [
+        7,
+        1
+      ],
+      "turns": [
+        1
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "forecast menos resultado oficial do favorito no 2º turno",
+      "expected_direction": "positive",
+      "hypothesis": "superestimação do favorito no segundo turno",
+      "id": "H2",
+      "metric": "favorite_forecast_minus_official_pp",
+      "minimum_per_fold": "pesquisas diretas de 2º turno de ao menos 2 casas",
+      "model_action_if_supported": "shift de 2º turno somente após melhora fora da amostra",
+      "primary_horizons_days": [
+        7,
+        1
+      ],
+      "turns": [
+        2
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "resultado oficial menos forecast do terceiro colocado no 1º turno",
+      "expected_direction": "positive",
+      "hypothesis": "surto tardio de terceiros",
+      "id": "H3",
+      "metric": "third_place_official_minus_forecast_pp",
+      "minimum_per_fold": "ao menos 3 candidaturas mensuradas em todos os horizontes",
+      "model_action_if_supported": "componente de swing de terceiros; caso contrário apenas variância",
+      "primary_horizons_days": [
+        14,
+        7,
+        1
+      ],
+      "turns": [
+        1
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "associação entre dias até a eleição e erro absoluto",
+      "expected_direction": "positive",
+      "hypothesis": "erro cai com proximidade",
+      "id": "H4",
+      "metric": "spearman_days_to_election_vs_mae",
+      "minimum_per_fold": "ao menos 3 horizontes não vazios",
+      "model_action_if_supported": "escala de forecast específica por horizonte",
+      "primary_horizons_days": [
+        60,
+        30,
+        14,
+        7,
+        1
+      ],
+      "turns": [
+        1,
+        2
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "associação entre indecisos publicados e erro absoluto na margem",
+      "expected_direction": "positive",
+      "hypothesis": "erro cresce com indecisos",
+      "id": "H5",
+      "metric": "spearman_undecided_vs_absolute_margin_error",
+      "minimum_per_fold": "ao menos 5 pesquisas com indecisos explícitos e variação não nula",
+      "model_action_if_supported": "inflação de variância; nunca ajuste causal de nível",
+      "primary_horizons_days": [
+        30,
+        14,
+        7,
+        1
+      ],
+      "turns": [
+        1,
+        2
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "efeito de modo aprendido no treino e erro residual do mesmo modo no ciclo retido",
+      "expected_direction": "positive",
+      "hypothesis": "efeitos de modo persistentes",
+      "id": "H6",
+      "metric": "heldout_mode_effect_alignment_and_log_score_delta",
+      "minimum_per_fold": "ao menos 2 modos com 2 casas por modo; sem colinearidade perfeita casa×modo",
+      "model_action_if_supported": "prior relativo de modo com soma ponderada zero",
+      "primary_horizons_days": [
+        30,
+        14,
+        7,
+        1
+      ],
+      "turns": [
+        1
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "efeito relativo de casa aprendido no treino e erro da mesma linhagem no ciclo retido",
+      "expected_direction": "positive",
+      "hypothesis": "efeitos de casa persistentes",
+      "id": "H7",
+      "metric": "heldout_house_effect_alignment_and_log_score_delta",
+      "minimum_per_fold": "ao menos 3 linhagens repetidas e 3 pesquisas por casa em treino e teste",
+      "model_action_if_supported": "prior histórico de casa; caso contrário média zero e variância apenas",
+      "primary_horizons_days": [
+        30,
+        14,
+        7,
+        1
+      ],
+      "turns": [
+        1
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "dispersão entre casas observada dividida pela dispersão amostral esperada",
+      "expected_direction": "below_one_and_lower_than_days_30_to_8",
+      "hypothesis": "herding na última semana",
+      "id": "H8",
+      "metric": "last_week_observed_to_expected_dispersion_ratio",
+      "minimum_per_fold": "ao menos 3 casas e 5 pesquisas na última semana e na janela de comparação",
+      "model_action_if_supported": "alerta e inflação de variância; nunca correção de nível",
+      "primary_horizons_days": [
+        7,
+        1
+      ],
+      "turns": [
+        1,
+        2
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "variância residual observada dividida pela variância amostral declarada",
+      "expected_direction": "above_one",
+      "hypothesis": "excesso de variância persiste",
+      "id": "H9",
+      "metric": "residual_to_sampling_variance_ratio",
+      "minimum_per_fold": "ao menos 10 pesquisas com n e margem/confiança verificáveis",
+      "model_action_if_supported": "inflação de variância calibrada somente no treino",
+      "primary_horizons_days": [
+        30,
+        14,
+        7,
+        1
+      ],
+      "turns": [
+        1,
+        2
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "erro a favor do patrocinador versus pesquisas não partidárias comparáveis",
+      "expected_direction": "positive",
+      "hypothesis": "pesquisas partidárias enviesadas",
+      "id": "H10",
+      "metric": "sponsor_aligned_error_difference_pp",
+      "minimum_per_fold": "ao menos 5 pesquisas partidárias com patrocinador mapeado e 5 controles",
+      "model_action_if_supported": "separação/variância; nunca correção sem regra prévia",
+      "primary_horizons_days": [
+        30,
+        14,
+        7,
+        1
+      ],
+      "turns": [
+        1,
+        2
+      ],
+      "verdict": "pending"
+    },
+    {
+      "estimand": "correlação serial do erro comum D-1 em representação composicional",
+      "expected_direction": "positive",
+      "hypothesis": "autocorrelação do viés comum entre ciclos",
+      "id": "H11",
+      "metric": "lag1_common_bias_correlation",
+      "minimum_per_fold": "quatro ciclos elegíveis e ao menos 3 componentes candidatos comparáveis",
+      "model_action_if_supported": "prior de erro comum; caso contrário média zero com variância histórica",
+      "primary_horizons_days": [
+        1
+      ],
+      "turns": [
+        1
+      ],
+      "verdict": "pending"
+    }
+  ],
+  "prior_analysis_disclosure": "Antes deste congelamento existia apenas a calibração preliminar de véspera 2014/2018 do vertical slice, explicitamente não validada fora da amostra. Nenhum resultado multicíclo, LOCO ou veredito H1-H11 havia sido calculado.",
+  "registered_at": "2026-08-27T10:07:40-03:00",
+  "registered_before_phase2_analysis": true,
+  "registered_before_real_backtest": true,
+  "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+  "version": "3.1.0-phase2-preregistered"
+}

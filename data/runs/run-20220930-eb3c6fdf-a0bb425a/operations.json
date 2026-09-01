@@ -1,0 +1,36 @@
+{
+  "commands": [
+    "uv run agregador watch",
+    "uv run agregador run --trigger time_tick",
+    "uv run agregador status",
+    "uv run agregador retry"
+  ],
+  "daily_time_tick": "08:00",
+  "data_availability": "unavailable_no_verified_2026_percentages",
+  "last_published_run": null,
+  "last_source_check": null,
+  "last_validated_poll": null,
+  "latency_seconds": null,
+  "latency_sla_seconds": {
+    "champion_m3": 900,
+    "preliminary_b1_m2": 300
+  },
+  "latency_status": "not_measured",
+  "local_runtime_limitation": "No Mac local, atualizações só ocorrem enquanto a máquina e o Paseo estiverem ligados.",
+  "methodology": {
+    "auto_update": false,
+    "rule": "Dados, posterior e probabilidades podem mudar em cada run validado. Metodologia e hiperparâmetros só mudam por nova versão, backtest, changelog e registry.",
+    "version": "3.1.0-phase2"
+  },
+  "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo sem mudar o motor.",
+  "processing_message": "watcher local preparado; serviço não iniciado por este pipeline",
+  "processing_state": "idle",
+  "run_id": "run-20220930-eb3c6fdf-a0bb425a",
+  "service_running": false,
+  "stale": true,
+  "stale_warning": "nenhuma checagem operacional registrada",
+  "timezone": "America/Sao_Paulo",
+  "visible_run_id": null,
+  "watch_interval_minutes": 30,
+  "watcher_prepared": true
+}

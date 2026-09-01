@@ -1,0 +1,42 @@
+{
+  "decision": "Pareamentos sem pesquisas cabeça-a-cabeça permanecem nao_modelado.",
+  "derived_pairing_enabled": false,
+  "observed": {
+    "complete_transfer_folds": 0,
+    "cycles_with_both_comparators": [],
+    "cycles_with_engine_eligible_second_round_snapshot": [
+      2014,
+      2018
+    ],
+    "cycles_with_transfer_or_rejection_covariates": []
+  },
+  "reason": "O corpus atual não contém perguntas de transferência/rejeição nem consenso ocultável de 2º turno em três folds A; log score, Brier, cobertura e κ_der não são identificáveis.",
+  "required_design": {
+    "baseline": "proportional_transfer_with_wide_variance",
+    "comparators": [
+      "hidden_head_to_head_consensus",
+      "second_round_result"
+    ],
+    "cycles": [
+      2010,
+      2014,
+      2018,
+      2022
+    ],
+    "gate": "no worse log score in every fold and coverage within 10pp",
+    "hide_head_to_head_polls": true,
+    "horizons_days": [
+      30,
+      14,
+      7,
+      1
+    ],
+    "minimum_kappa_derived": 1.5,
+    "train_transfer_on_other_cycles": true
+  },
+  "run_id": "run-20220930-eb3c6fdf-9dbccc17",
+  "section": "9.3",
+  "status": "insufficient_data",
+  "validation_ref": null,
+  "version": "3.1.0-phase2"
+}

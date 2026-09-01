@@ -1,0 +1,77 @@
+{
+  "fixture": false,
+  "notice": "calibração preliminar, 2 ciclos",
+  "rows": [
+    {
+      "evidence_ids": [
+        "ev-wikipedia-polls-2014",
+        "ev-tse-results-2014"
+      ],
+      "method": "equal_house_eve_average_then_valid_share",
+      "nowcast_valid": {
+        "aecio": 26.956280570930616,
+        "dilma": 45.86310106770713,
+        "marina": 23.9448470076846,
+        "outros": 3.2357713536776602
+      },
+      "official_valid": {
+        "aecio": 33.55,
+        "dilma": 41.59,
+        "marina": 21.32,
+        "outros": 3.54
+      },
+      "poll_count": 4,
+      "rank_order": [
+        "dilma",
+        "aecio",
+        "marina"
+      ],
+      "shift_by_rank_pp": {
+        "leader": -4.273101067707124,
+        "remaining_total": 0.30422864632234337,
+        "runner_up": 6.593719429069381,
+        "third": -2.6248470076846004
+      },
+      "turn": 1,
+      "year": 2014
+    },
+    {
+      "evidence_ids": [
+        "ev-wikipedia-polls-2018",
+        "ev-tse-results-2018"
+      ],
+      "method": "equal_house_eve_average_then_valid_share",
+      "nowcast_valid": {
+        "alckmin": 7.911877394636015,
+        "amoedo": 2.8160919540229887,
+        "bolsonaro": 40.689655172413794,
+        "ciro": 13.54406130268199,
+        "haddad": 24.86590038314176,
+        "outros": 10.172413793103448
+      },
+      "official_valid": {
+        "alckmin": 4.76,
+        "amoedo": 2.5,
+        "bolsonaro": 46.03,
+        "ciro": 12.47,
+        "haddad": 29.28,
+        "outros": 4.96
+      },
+      "poll_count": 2,
+      "rank_order": [
+        "bolsonaro",
+        "haddad",
+        "ciro"
+      ],
+      "shift_by_rank_pp": {
+        "leader": 5.3403448275862075,
+        "remaining_total": -8.680383141762462,
+        "runner_up": 4.414099616858241,
+        "third": -1.07406130268199
+      },
+      "turn": 1,
+      "year": 2018
+    }
+  ],
+  "run_id": "run-20220930-eb3c6fdf-5d01018c"
+}
