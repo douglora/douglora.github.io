@@ -12,7 +12,7 @@
     "selected_count": 0,
     "truncation_count": 84
   },
-  "as_of": "2026-09-05T17:13:38.337527-03:00",
+  "as_of": "2026-09-05T17:46:08.509568-03:00",
   "blocked_recent": [
     {
       "agenda_label": "divulgacao_prevista_vencida_busca_ativa",
@@ -187,7 +187,7 @@
     "judicial_status_unknown_or_pending_count": 13,
     "warning": "O snapshot oficial confirma identidade e pedido de registro, mas não fornece situação judicial para as 13 candidaturas (#NE/-3); nenhum status final foi inferido."
   },
-  "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
+  "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
   "champion_latency_seconds": null,
   "commands": [
     "uv run agregador watch --connectors",
@@ -213,10 +213,10 @@
   "data_availability": "preliminary_b1_m2",
   "discovery_queue": {
     "accepted": 24,
-    "ambiguous": 1344,
+    "ambiguous": 1352,
     "discovered": 0,
-    "extracted": 791,
-    "failed": 142,
+    "extracted": 798,
+    "failed": 143,
     "fetched": 0,
     "future_publication": 68,
     "matched_tse": 0,
@@ -756,7 +756,7 @@
       "registration_no": "BR049742026",
       "release_found": true,
       "release_search_active": true,
-      "release_sha256": "3647071e2390f91f8ba7d67be03d1cd23b2d8f25d7ab895bd3842fc7b508711d",
+      "release_sha256": "23b74168402d839c842eccd53739ff72caf88dc6fb331cd411ae4be41a6c10ca",
       "release_url": "https://www.poder360.com.br/poderdata/poderdata-aya-lula-tem-38-contra-35-de-flavio-no-1o-turno/",
       "sample_size": 2400,
       "scenario_status": "accepted",
@@ -839,7 +839,7 @@
       "registration_no": "BR063662026",
       "release_found": true,
       "release_search_active": true,
-      "release_sha256": "599aed610d34cc2ad80fc17fad14b4c9491e347426bcd04170f34181012c2358",
+      "release_sha256": "2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c",
       "release_url": "https://www.broadcast.com.br/ultimas-noticias/indexa-broadcast-em-cenario-de-1o-turno-lula-tem-39-e-flavio-bolsonaro-34/",
       "sample_size": 2000,
       "scenario_status": "blocked",
@@ -3266,45 +3266,45 @@
     }
   ],
   "future_window_end": "2026-09-12",
-  "human_review_queue_size": 1674,
+  "human_review_queue_size": 1683,
   "last_accepted_discovery": {
     "adapter": "direct_urls",
     "detail": {
-      "correction_of_fingerprint": "364c220622f9ac289073892d341bbca7f40de0a1efcc6007a8f598e98a712513",
-      "fingerprint": "f9a14138174f28a9cbcac21d7a3198c3b601a7c5977eb550bfc86e3d28b3d111",
+      "correction_of_fingerprint": "f9a14138174f28a9cbcac21d7a3198c3b601a7c5977eb550bfc86e3d28b3d111",
+      "fingerprint": "9b5f8a5b91bd8b1788ae3bdd1e3c89abb87a52b17c4afe0b53b5f7cb978152ae",
       "identity": "BR-04974/2026|president-br-t1-ef6d6ebdaf",
       "run_result": {
         "availability": "preliminary_b1_m2",
         "correction": true,
-        "fingerprint": "f9a14138174f28a9cbcac21d7a3198c3b601a7c5977eb550bfc86e3d28b3d111",
-        "latency_seconds": 0.06015145799756283,
-        "run_id": "run-20260905-908f348b-c65c7313",
+        "fingerprint": "9b5f8a5b91bd8b1788ae3bdd1e3c89abb87a52b17c4afe0b53b5f7cb978152ae",
+        "latency_seconds": 0.06049829199764645,
+        "run_id": "run-20260905-196cd0c2-c65c7313",
         "status": "published"
       }
     },
-    "item_id": "item-f681b448d2d06140d9b9d51024616d16",
+    "item_id": "item-d803b0dd3aa65120b92eaee27e2e4470",
     "previous_state": "validated",
     "resource_id": "resource-c4650f0ca9f26e47ec235c17",
     "source_id": "poderdata_current_release",
     "state": "accepted",
     "title": "poderdata-aya-lula-tem-38-contra-35-de-flavio-no-1o-turno",
-    "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+    "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
     "url": "https://www.poder360.com.br/poderdata/poderdata-aya-lula-tem-38-contra-35-de-flavio-no-1o-turno/"
   },
   "last_error": null,
   "last_published_run": {
-    "created_at": "2026-09-05T17:13:38.337527-03:00",
-    "run_id": "run-20260905-908f348b-c65c7313"
+    "created_at": "2026-09-05T17:46:08.509568-03:00",
+    "run_id": "run-20260905-196cd0c2-c65c7313"
   },
-  "last_search": "2026-09-05T17:13:38.337527-03:00",
-  "last_source_check": "2026-09-05T17:13:38.337527-03:00",
+  "last_search": "2026-09-05T17:46:08.509568-03:00",
+  "last_source_check": "2026-09-05T17:46:08.509568-03:00",
   "last_validated_poll": {
-    "fingerprint": "f9a14138174f28a9cbcac21d7a3198c3b601a7c5977eb550bfc86e3d28b3d111",
+    "fingerprint": "9b5f8a5b91bd8b1788ae3bdd1e3c89abb87a52b17c4afe0b53b5f7cb978152ae",
     "published_at": "2026-08-27",
     "registration_no": "BR-04974/2026",
     "scenario_id": "president-br-t1-ef6d6ebdaf"
   },
-  "latency_seconds": 0.06015145799756283,
+  "latency_seconds": 0.06049829199764645,
   "latency_sla_seconds": {
     "champion_m3": 900,
     "preliminary_b1_m2": 300
@@ -3365,7 +3365,7 @@
     "probabilities_available": false,
     "published_at": "2026-09-02",
     "registration_no": "BR-07065/2026",
-    "run_id": "run-20260905-908f348b-c65c7313",
+    "run_id": "run-20260905-196cd0c2-c65c7313",
     "sample_size": 2004,
     "scenario_id": "president-br-t1-6b5dad3b6d",
     "source_tier": "A",
@@ -3757,9 +3757,9 @@
       "blank_null_pct": 5.0,
       "confidence_level": 95.0,
       "contractor": null,
-      "evidence_id": "ev-release-23b74168402d839c842e",
+      "evidence_id": "ev-release-861dffbe6660e8697f8d",
       "evidence_ids": [
-        "ev-release-23b74168402d839c842e",
+        "ev-release-861dffbe6660e8697f8d",
         "ev-tse-candidates-02e4a5eaea9d0d9b63c6",
         "ev-tse-d47fa14960317d655665"
       ],
@@ -3783,7 +3783,7 @@
       "values": [
         {
           "candidate_id": "2026-tse-280002542548",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "LULA",
           "number": 13,
           "party": "PT",
@@ -3791,7 +3791,7 @@
         },
         {
           "candidate_id": "2026-tse-280002551544",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "FLAVIO BOLSONARO",
           "number": 22,
           "party": "PL",
@@ -3799,7 +3799,7 @@
         },
         {
           "candidate_id": "2026-tse-280002551547",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "ESCRITOR AUGUSTO CURY",
           "number": 70,
           "party": "AVANTE",
@@ -3807,7 +3807,7 @@
         },
         {
           "candidate_id": "2026-tse-280002540694",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "RENAN SANTOS",
           "number": 14,
           "party": "MISSÃO",
@@ -3815,7 +3815,7 @@
         },
         {
           "candidate_id": "2026-tse-280002551932",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "RONALDO CAIADO",
           "number": 55,
           "party": "PSD",
@@ -3823,7 +3823,7 @@
         },
         {
           "candidate_id": "2026-tse-280002553884",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "PABLO MARÇAL",
           "number": 28,
           "party": "PRTB",
@@ -3831,7 +3831,7 @@
         },
         {
           "candidate_id": "2026-tse-280002541457",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "HERTZ DIAS",
           "number": 16,
           "party": "PSTU",
@@ -3839,7 +3839,7 @@
         },
         {
           "candidate_id": "2026-tse-280002539826",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "ZEMA",
           "number": 30,
           "party": "NOVO",
@@ -3847,7 +3847,7 @@
         },
         {
           "candidate_id": "2026-tse-280002551975",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "EDMILSON COSTA",
           "number": 21,
           "party": "PCB",
@@ -3855,7 +3855,7 @@
         },
         {
           "candidate_id": "2026-tse-280002538811",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "SAMARA",
           "number": 80,
           "party": "UP",
@@ -3863,7 +3863,7 @@
         },
         {
           "candidate_id": "2026-tse-280002552484",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "CLARIANA BARAO",
           "number": 27,
           "party": "DC",
@@ -3871,7 +3871,7 @@
         },
         {
           "candidate_id": "2026-tse-280002552487",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "RUI COSTA PIMENTA",
           "number": 29,
           "party": "PCO",
@@ -3879,7 +3879,7 @@
         },
         {
           "candidate_id": "2026-tse-280002548139",
-          "evidence_id": "ev-release-23b74168402d839c842e",
+          "evidence_id": "ev-release-861dffbe6660e8697f8d",
           "label": "VETERINÁRIO WILSON GRASSI",
           "number": 35,
           "party": "DEMOCRATA",
@@ -4033,20 +4033,20 @@
   "next_watch_attempt_at": null,
   "operational_provenance": {
     "artifact_hashes": {
-      "delta": "29e8a97edd39a30f5b9c4a19f7240954823e779f090dc41e4a160d7f11ebc84d",
-      "evidence": "82b8a78e389e3b6ad3789df7b39d93637dddd7de9caabe81c43140591ed23645",
+      "delta": "b68cb5c520a1b41333aa7ef82edaee7db511f35fae2363cc3e16213a445e8385",
+      "evidence": "d40255b528c6eca2b97c6361913f760bbb3a4c966006de1cfac73a9382407cfa",
       "explanation": "ff34f0ffe22fbb91011cb6b1a5c2da9a9f4cc8478253cbc92c3a84c38537fff9",
-      "feed_event": "36ef6cbe1774f77fd568ed5605b053864b67a2f2e1f24a272888382528bd6610",
-      "result": "e25b587d8b8dfc448bac382efbefbad5eea169f90d95e20a710948070e328eef"
+      "feed_event": "2f696f30739d56cc2c5e77c3bd3fc33c0f26e8b53cf079e9631653cd7f503282",
+      "result": "2a805e99654aa56fc54e4ef7c675496b574607c27e99684565b709f40236455d"
     },
     "config_hash": "c65c7313cc6f9d8fb12dcf72b5294c98e11ec1542bdfb94aa6a7dbe169874737",
-    "created_at": "2026-09-05T17:13:38.337527-03:00",
-    "data_hash": "908f348b54a8e87096f1ce7d263eb9b6f9ae69985d92ab2ea2f4c227867abb2d",
-    "run_id": "run-20260905-908f348b-c65c7313"
+    "created_at": "2026-09-05T17:46:08.509568-03:00",
+    "data_hash": "196cd0c2a8c4681f50e2da9c607bdbc4c3c18a94394234defc341924b37831ab",
+    "run_id": "run-20260905-196cd0c2-c65c7313"
   },
   "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo.",
   "processing_message": "último run concluído",
-  "processing_started_at": "2026-09-05T17:13:38.337527-03:00",
+  "processing_started_at": "2026-09-05T17:46:08.509568-03:00",
   "processing_state": "idle",
   "processing_trigger": "new_poll",
   "recent_release_inventory": [
@@ -4247,100 +4247,87 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/79/7982a3c72335f82619004623139f04f871828aaf93ac8ecaa84d174c1fb2205c.pdf",
-      "capture_sha256": "7982a3c72335f82619004623139f04f871828aaf93ac8ecaa84d174c1fb2205c",
+      "capture_local_path": "inputs/evidence/discovery/raw/8a/8ac3f66c4b217b9270fed87063cd3d5eaab57b1abeddff021b899cacc19d714b.pdf",
+      "capture_sha256": "8ac3f66c4b217b9270fed87063cd3d5eaab57b1abeddff021b899cacc19d714b",
       "checks": {},
-      "errors": [
-        "published_at anterior à data prevista no TSE"
-      ],
-      "item_id": "item-f7a716694fcf08a9323f4c1e5d8c77ee",
-      "matched_tse": false,
+      "errors": [],
+      "item_id": "item-fbf049aefdbbf79c9b0fcfce4caeab31",
+      "matched_tse": true,
       "publication_evidence": [],
-      "registration_no": "BR-04974/2026",
-      "scenario": {
-        "base": "totais",
-        "base_label": "amostra total",
-        "candidate_set_labels": [
-          "Renan Santos",
-          "Lula"
-        ],
-        "complete": true,
-        "heading": "Intenção de voto no 2º turno · Renan Santos × Lula",
-        "ordinal": 2,
-        "page": 17,
-        "pairs": [
-          {
-            "category": "candidate",
-            "label": "Renan Santos",
-            "number": null,
-            "party": null,
-            "pct": 37.0
-          },
-          {
-            "category": "candidate",
-            "label": "Lula",
-            "number": null,
-            "party": null,
-            "pct": 44.0
-          },
-          {
-            "category": "blank_null",
-            "label": "Branco/Nulo",
-            "number": null,
-            "party": null,
-            "pct": 16.0
-          },
-          {
-            "category": "undecided",
-            "label": "Não sabe",
-            "number": null,
-            "party": null,
-            "pct": 3.0
-          }
-        ],
-        "question": "E se houver um 2º turno entre Renan Santos e Lula, em quem você votaria?",
-        "raw_percentages": [
-          37.0,
-          44.0,
-          16.0,
-          3.0
-        ],
-        "scenario_key": "scenario-bb67d35138dd319394429f8e",
-        "scenario_type": "estimulada",
-        "sum_pct": 100.0,
-        "turn": 2,
-        "warnings": []
-      },
+      "registration_no": "BR-06868/2026",
+      "scenario": null,
       "source_id": "poderdata_official",
-      "source_url": "https://static.poder360.com.br/uploads/2026/08/Relatorio-PoderData-Eleitoral-26ago26-1.pdf",
+      "source_url": "https://static.poder360.com.br/uploads/2026/08/Relatorio-PoderData-Eleitoral-12ago26-final.pdf",
       "state": "ambiguous",
-      "title": "PDF ligado por Entenda os detalhes sobre a metodologia do PoderData · Intenção de voto no 2º turno · Renan Santos × Lula",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": []
+      "title": "PDF ligado por Entenda os detalhes sobre a metodologia do PoderData",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado"
+      ]
     },
     {
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/4d/4dfc5017ecef8bb5d790662256fec99a485f06e5bb60c9f227ef315e5c3f26e2.html",
-      "capture_sha256": "4dfc5017ecef8bb5d790662256fec99a485f06e5bb60c9f227ef315e5c3f26e2",
+      "capture_local_path": "inputs/evidence/discovery/raw/91/917e565c81f9d90434ecdedeb2c7bca7a6825dceade246c1a1e2c8c5e1c2e8ae.html",
+      "capture_sha256": "917e565c81f9d90434ecdedeb2c7bca7a6825dceade246c1a1e2c8c5e1c2e8ae",
       "checks": {},
       "errors": [
         "release precisa conter exatamente um número de registro inequívoco"
       ],
-      "item_id": "item-ed21d4b4b632593f9450f4996c8c18f5",
+      "item_id": "item-fb682c77210cb0278c17cd5ecca0bb0a",
       "matched_tse": false,
       "publication_evidence": [],
       "registration_no": null,
-      "scenario": null,
-      "source_id": "broadcast_latest",
-      "source_url": "https://www.broadcast.com.br/babado-gritaria-e-confusao/",
+      "scenario": {
+        "base": null,
+        "base_label": null,
+        "candidate_set_labels": [],
+        "complete": false,
+        "heading": "Pergunta: Se a eleição para Presidente da República fosse hoje e os candidatos fossem estes, em que o(a) sr(a) votaria? (Estimulada - %)",
+        "ordinal": 1,
+        "page": null,
+        "pairs": [],
+        "question": "A Ipsos-Ipec realizou, entre os dias 4 e 8 de dezembro, uma pesquisa nacional sobre as eleições presidenciais de 2026, na qual testou quatro simulações de intenção de voto. O estudo mostra o atual presidente e candidato à reeleição, Lula, do PT, liderando a disputa pela Presidência da República em todos os cenários testados, alcançando 38% das menções em cada um deles. Enquanto isso, os nomes do campo da direita mais próximos do ex-presidente Jair Bolsonaro têm entre 17% e 23% das intenções de voto, conforme o porta-voz testado. Embora apareçam com desempenhos semelhantes, Michelle Bolsonaro (PL) registra o maior percentual (23%), enquanto Flávio Bolsonaro (PL) obtém 19%, Eduardo Bolsonaro (PL) aparece com 18% e Tarcísio de Freitas (Republicanos) tem 17% das menções. As menções aos demais nomes aparecem em outro patamar: Ratinho Junior (PSD) varia entre 8% e 9%; Romeu Zema (Novo), de 3% a 5%; e Ronaldo Caiado (União), de 5% a 7%. Aqueles que declaram intenção de votar em branco ou anular o voto ficam entre 16% e 19%, e os indecisos, entre 5% e 8%. A margem de erro máxima estimada é de 2 pontos percentuais para mais ou para menos, com um nível de confiança de 95%. “Lula aparece com um piso consistente de 38% independentemente do adversário. Os nomes da direita próximos ao ex-presidente performam em patamar similar, o que sugere que a definição do candidato tende a reorganizar votos dentro do mesmo campo, mais do que ampliar o alcance atual. Há espaço para movimentos, mas o ponto de partida da disputa não se altera.”, comenta Márcia Cavallari, diretora da Ipsos-Ipec. Pergunta: Se a eleição para Presidente da República fosse hoje e os candidatos fossem estes, em que o(a) sr(a) votaria? (Estimulada - %)",
+        "raw_percentages": [],
+        "scenario_key": "scenario-44bb0822e2871f9da46cef5a",
+        "scenario_type": "estimulada",
+        "sum_pct": null,
+        "turn": 2,
+        "warnings": []
+      },
+      "source_id": "ipsos_national_release",
+      "source_url": "https://www.ipsos.com/pt-br/lula-lidera-hoje-todos-os-cenarios-testados-para-eleicoes-de-2026",
       "state": "ambiguous",
-      "title": "Eleições 2026 Babado, gritaria e confusão",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "title": "lula-lidera-hoje-todos-os-cenarios-testados-para-eleicoes-de-2026 · Pergunta: Se a eleição para Presidente da República fosse hoje e os candidatos fossem estes, em que o(a) sr(a) votaria? (Estimulada - %)",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
         "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/bc/bcbc30818e6236f7b5bbee0cc5e7427bcf961cb318c8465f19d42b5604672a1f.pdf",
+      "capture_sha256": "bcbc30818e6236f7b5bbee0cc5e7427bcf961cb318c8465f19d42b5604672a1f",
+      "checks": {},
+      "errors": [
+        "registro TSE não contempla Presidente",
+        "registro contém pergunta presidencial, mas a amostra é estadual"
+      ],
+      "item_id": "item-f4ad19670d952fe4ea3651951e044af3",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": "BA-07628/2026",
+      "scenario": null,
+      "source_id": "parana_research",
+      "source_url": "https://paranapesquisas.com.br/wp-content/uploads/2026/08/1-JOB026_163_BA_-RegistroTSE_BA-07628.pdf",
+      "state": "ambiguous",
+      "title": "PDF ligado por ",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado"
       ]
     },
     {
@@ -4545,8 +4532,8 @@
         ],
         "zip_path": "/Users/douglaslora/Documents/Codex/2026-08-26/agregador-pesquisas-2026/inputs/evidence/discovery/raw/02/02e4a5eaea9d0d9b63c6e444867d6069b0f30e398f049cbc138942b2723bc9da.zip"
       },
-      "capture_local_path": "inputs/evidence/discovery/raw/59/599aed610d34cc2ad80fc17fad14b4c9491e347426bcd04170f34181012c2358.html",
-      "capture_sha256": "599aed610d34cc2ad80fc17fad14b4c9491e347426bcd04170f34181012c2358",
+      "capture_local_path": "inputs/evidence/discovery/raw/2e/2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c.html",
+      "capture_sha256": "2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c",
       "checks": {
         "article_10_complete": true,
         "candidate_list_regime_known": true,
@@ -4576,19 +4563,19 @@
         "cenário principal pós-registro não contém a lista completa de candidaturas com registro requerido no snapshot oficial",
         "financiamento partidário/não partidário não foi identificado em fonte verificável"
       ],
-      "item_id": "item-e6d95ea67017937f979f30905ff7613b",
+      "item_id": "item-f0ca14f45c64579e338bc7a939387451",
       "matched_tse": true,
       "publication_evidence": [
         {
           "basis": "explicit_source_text",
-          "captured_at": "2026-09-05T17:13:38.337527-03:00",
+          "captured_at": "2026-09-05T17:46:08.509568-03:00",
           "excerpt": "26 de agosto de 2026",
           "extractor": "stdlib_html_parser",
-          "local_path": "inputs/evidence/discovery/raw/59/599aed610d34cc2ad80fc17fad14b4c9491e347426bcd04170f34181012c2358.html",
+          "local_path": "inputs/evidence/discovery/raw/2e/2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c.html",
           "primary": true,
           "published_at": "2026-08-26",
           "role": "publication_timestamp",
-          "sha256": "599aed610d34cc2ad80fc17fad14b4c9491e347426bcd04170f34181012c2358",
+          "sha256": "2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c",
           "source_tier": "A",
           "source_type": "official_institute_release_timestamp",
           "url": "https://www.broadcast.com.br/ultimas-noticias/indexa-broadcast-em-cenario-de-1o-turno-lula-tem-39-e-flavio-bolsonaro-34/"
@@ -4699,7 +4686,7 @@
       "source_url": "https://www.broadcast.com.br/ultimas-noticias/indexa-broadcast-em-cenario-de-1o-turno-lula-tem-39-e-flavio-bolsonaro-34/",
       "state": "ambiguous",
       "title": "indexa-broadcast-em-cenario-de-1o-turno-lula-tem-39-e-flavio-bolsonaro-34 · Indexa/Broadcast: Em cenário de 1º turno, Lula tem 39%, e Flávio Bolsonaro, 34%",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
         "Luiz Inácio Lula da Silva: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
@@ -4712,69 +4699,22 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/ff/fff8e52ace8daee2fa06bd4bc4b12afc1a47a001ba1361ae3dd4b7db78a0e3fb.pdf",
-      "capture_sha256": "fff8e52ace8daee2fa06bd4bc4b12afc1a47a001ba1361ae3dd4b7db78a0e3fb",
-      "checks": {},
-      "errors": [],
-      "item_id": "item-e0975b5ee53afa883067128763c49484",
-      "matched_tse": true,
-      "publication_evidence": [],
-      "registration_no": "BR-04882/2026",
-      "scenario": null,
-      "source_id": "poderdata_reports_pdf",
-      "source_url": "https://static.poder360.com.br/2026/05/Relatorio-PoderData-Eleitoral-29mai26-final.pdf",
-      "state": "ambiguous",
-      "title": "Relatorio-PoderData-Eleitoral-29mai26-final.pdf",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/73/7399133da60a614ffe467c860fd53e3cf85567716b4c04bf8bf87c2e4d05f3e1.pdf",
-      "capture_sha256": "7399133da60a614ffe467c860fd53e3cf85567716b4c04bf8bf87c2e4d05f3e1",
-      "checks": {},
-      "errors": [
-        "registro TSE não contempla Presidente",
-        "registro contém pergunta presidencial, mas a amostra é estadual"
-      ],
-      "item_id": "item-e01bcaf69a687377901a91d52b07b1ae",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": "BA-03043/2026",
-      "scenario": null,
-      "source_id": "parana_research",
-      "source_url": "https://paranapesquisas.com.br/wp-content/uploads/2026/07/1-JOB026_141_BA_-RegistroTSE_BA-03043.pdf",
-      "state": "ambiguous",
-      "title": "PDF ligado por ",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/40/407f143f201e83bf77a43dd2765a450362206f6f3a097b46dc46ddb4a317657d.html.excerpt",
-      "capture_sha256": "407f143f201e83bf77a43dd2765a450362206f6f3a097b46dc46ddb4a317657d",
+      "capture_local_path": "inputs/evidence/discovery/raw/76/76f0b4b66baf7323df801f9b970552ab3864022b95ae9c7beea27d16270ff76d.html",
+      "capture_sha256": "76f0b4b66baf7323df801f9b970552ab3864022b95ae9c7beea27d16270ff76d",
       "checks": {},
       "errors": [
         "release precisa conter exatamente um número de registro inequívoco"
       ],
-      "item_id": "item-da68af4a66184ea69d13002b29371a35",
+      "item_id": "item-ed57200a71f168a3f55a5a60cbdc9c04",
       "matched_tse": false,
       "publication_evidence": [],
       "registration_no": null,
       "scenario": null,
-      "source_id": "g1_politica_rss",
-      "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/05/quaest-veja-os-grupos-em-que-a-disputa-entre-lula-e-flavio-bolsonaro-esta-mais-apertada.ghtml",
+      "source_id": "ipsos_elections",
+      "source_url": "https://www.ipsos.com/pt-br/insights-hub",
       "state": "ambiguous",
-      "title": "Quaest: veja os grupos em que a disputa entre Lula e Flávio Bolsonaro está mais apertada",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "title": "Pesquisas",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "nenhum cenário de intenção de voto foi isolado",
         "documento não contém exatamente um registro eleitoral inequívoco"
@@ -4784,22 +4724,69 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/79/79544ad6bc1963bcfb1c2e996ca06fd4fcb4c38bb15cc6e25403b4142b195cf3.html",
-      "capture_sha256": "79544ad6bc1963bcfb1c2e996ca06fd4fcb4c38bb15cc6e25403b4142b195cf3",
+      "capture_local_path": "inputs/evidence/discovery/raw/e0/e074de06e7140e34a2c1a36e0448bc6375113833c4e36cbe3669ee3ba9b09eb5.pdf",
+      "capture_sha256": "e074de06e7140e34a2c1a36e0448bc6375113833c4e36cbe3669ee3ba9b09eb5",
+      "checks": {},
+      "errors": [],
+      "item_id": "item-ec13257366eece6d9deab27d03249f42",
+      "matched_tse": true,
+      "publication_evidence": [],
+      "registration_no": "BR-05722/2026",
+      "scenario": null,
+      "source_id": "poderdata_current_release",
+      "source_url": "https://static.poder360.com.br/uploads/2026/06/Relatorio-PoderData-Eleitoral-21-24-jun26-final.pdf",
+      "state": "ambiguous",
+      "title": "PDF ligado por leia-os-resultados-da-pesquisa-poderdata-aya-para-presidente",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/97/97231831626b2807d77659ef312504060b530a0db9f0e455f76a7895429ea7b5.html",
+      "capture_sha256": "97231831626b2807d77659ef312504060b530a0db9f0e455f76a7895429ea7b5",
       "checks": {},
       "errors": [
         "release precisa conter exatamente um número de registro inequívoco"
       ],
-      "item_id": "item-d78b25965129de40973ca149549e7926",
+      "item_id": "item-e0d45fe2b0394836f049d29b757b2abc",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "quaest_reports",
+      "source_url": "https://quaest.com.br/relatorios/pesquisa-de-intencao-de-voto-ceara-rodada-1-04-09-2026/",
+      "state": "ambiguous",
+      "title": "Pesquisa de intenção de voto Ceará – Rodada 1 – 04/09/2026",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/df/dfcae520f2b441dbc223da3f0ab8cb1243f3fd117cb683244394b183a86c7ce7.html",
+      "capture_sha256": "dfcae520f2b441dbc223da3f0ab8cb1243f3fd117cb683244394b183a86c7ce7",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-da8822f315000fb05ced070907376287",
       "matched_tse": false,
       "publication_evidence": [],
       "registration_no": null,
       "scenario": null,
       "source_id": "broadcast_latest",
-      "source_url": "https://www.broadcast.com.br/homeoffice-presidencial/",
+      "source_url": "https://www.broadcast.com.br/perdeu-aura/",
       "state": "ambiguous",
-      "title": "Política Homeoffice presidencial",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "title": "Eleições 2026 Perdeu Aura",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "nenhum cenário de intenção de voto foi isolado",
         "documento não contém exatamente um registro eleitoral inequívoco"
@@ -4809,60 +4796,20 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/45/45ae28bd8174b6fda6cb11478365b5b5c7db662678b3e2b2d891f15be930cafa.html",
-      "capture_sha256": "45ae28bd8174b6fda6cb11478365b5b5c7db662678b3e2b2d891f15be930cafa",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-d2e89a5907480afcbebe36fbf565134e",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": {
-        "base": null,
-        "base_label": null,
-        "candidate_set_labels": [],
-        "complete": false,
-        "heading": "Na pesquisa espontânea, em que os nomes dos presidenciáveis não são apresentados, Lula é citado por 30% (tinha 28% na pesquisa anterior) e Flávio Bolsonaro, por 17% (mesmo resultado anterior). Também há menções a Jair Bolsonaro (2%), Ronaldo Caiado (1%), Renan Santos (1%) e Romeu Zema (1%), entre outros que não atingiram 1%. A parcela dos que não souberam citar nenhum nome espontaneamente é de 36%, em patamar similar ao levantamento anterior (37%).",
-        "ordinal": 1,
-        "page": null,
-        "pairs": [],
-        "question": "O presidente Lula (PT) mantém a liderança nos cenários de 1º e 2º turno da disputa presidencial de 2026, consolidando a vantagem obtida no levantamento realizado na segunda quinzena de maio. No cenário que também envolve Ronaldo Caiado (PSD), Romeu Zema (Novo), Renan Santos (Missão), Joaquim Barbosa (DC), Augusto Cury (Avante), Aécio Neves (PSDB), Cabo Daciolo (Mobiliza), Rui Costa Pimenta (PCO), Samara Martins (UP), Hertz Dias (PSTU) e Edmilson Costa (PCB), o atual presidente tem 41% das intenções de voto, contra 31% do presidenciável do PL. Em um patamar mais baixo, também empatados, aparecem Caiado (3%), Santos (3%), Zema (2%), Aécio (2%), Samara Martins (2%), Cury (2%), Barbosa (1%), Pimenta (1%) e Daciolo (1%), enquanto Dias e Costa não atingiram 1%. Uma parcela de 7% votaria em branco ou anularia o voto, e 4% estão indecisos. Na pesquisa espontânea, em que os nomes dos presidenciáveis não são apresentados, Lula é citado por 30% (tinha 28% na pesquisa anterior) e Flávio Bolsonaro, por 17% (mesmo resultado anterior). Também há menções a Jair Bolsonaro (2%), Ronaldo Caiado (1%), Renan Santos (1%) e Romeu Zema (1%), entre outros que não atingiram 1%. A parcela dos que não souberam citar nenhum nome espontaneamente é de 36%, em patamar similar ao levantamento anterior (37%).",
-        "raw_percentages": [],
-        "scenario_key": "scenario-2e8bf67b0cccbff647459623",
-        "scenario_type": "espontanea",
-        "sum_pct": null,
-        "turn": 2,
-        "warnings": []
-      },
-      "source_id": "datafolha_national_reports",
-      "source_url": "https://datafolha.folha.uol.com.br/eleicoes/2026/06/lula-pt-mantem-vantagem-no-1o-turno-e-2o-turno.shtml",
-      "state": "ambiguous",
-      "title": "lula-pt-mantem-vantagem-no-1o-turno-e-2o-turno.shtml · Na pesquisa espontânea, em que os nomes dos presidenciáveis não são apresentados, Lula é citado por 30% (tinha 28% na pesquisa anterior) e Flávio Bolsonaro, por 17% (mesmo resultado anterior). Também há menções a Jair Bolsonaro (2%), Ronaldo Caiado (1%), Renan Santos (1%) e Romeu Zema (1%), entre outros que não atingiram 1%. A parcela dos que não souberam citar nenhum nome espontaneamente é de 36%, em patamar similar ao levantamento anterior (37%).",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": [
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/8a/8ac3f66c4b217b9270fed87063cd3d5eaab57b1abeddff021b899cacc19d714b.pdf",
-      "capture_sha256": "8ac3f66c4b217b9270fed87063cd3d5eaab57b1abeddff021b899cacc19d714b",
+      "capture_local_path": "inputs/evidence/discovery/raw/50/50ae270dad241ba2fca783dccf483961c996ac07eabf52705ddd8a4648ab21c6.pdf",
+      "capture_sha256": "50ae270dad241ba2fca783dccf483961c996ac07eabf52705ddd8a4648ab21c6",
       "checks": {},
       "errors": [],
-      "item_id": "item-c9683ac150ed3692484082f6905bd6c0",
+      "item_id": "item-c8006093ded82c08aafe4947bc6002a8",
       "matched_tse": true,
       "publication_evidence": [],
-      "registration_no": "BR-06868/2026",
+      "registration_no": "BR-07845/2026",
       "scenario": null,
-      "source_id": "poderdata_official",
-      "source_url": "https://static.poder360.com.br/uploads/2026/08/Relatorio-PoderData-Eleitoral-12ago26-final.pdf",
+      "source_id": "poderdata_current_release",
+      "source_url": "https://static.poder360.com.br/uploads/2026/07/Relatorio-PoderData-Eleitoral-29jul26-3.pdf",
       "state": "ambiguous",
-      "title": "PDF ligado por Entenda os detalhes sobre a metodologia do PoderData",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "title": "PDF ligado por leia-os-resultados-da-pesquisa-poderdata-aya-para-presidente",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "nenhum cenário de intenção de voto foi isolado"
       ]
@@ -4871,13 +4818,38 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/61/61a549b57819b99af2cb247246b48b31f0bbc66f1c480fcc3a910edbd2c50252.html",
-      "capture_sha256": "61a549b57819b99af2cb247246b48b31f0bbc66f1c480fcc3a910edbd2c50252",
+      "capture_local_path": "inputs/evidence/discovery/raw/98/983ff284b7115d6a8e0ee00acc2b072e8ef7bf5b4feb81c3427597d2bfaa9905.html",
+      "capture_sha256": "983ff284b7115d6a8e0ee00acc2b072e8ef7bf5b4feb81c3427597d2bfaa9905",
       "checks": {},
       "errors": [
         "release precisa conter exatamente um número de registro inequívoco"
       ],
-      "item_id": "item-c6ffffc5be654bd97856baa94ac865a2",
+      "item_id": "item-bcb6150ff3fcbccca0e9a7bb68374f45",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "nexus_releases",
+      "source_url": "https://www.nexus.fsb.com.br/estudos-divulgados/54-da-industria-tem-interesse-na-cop30-em-belem-diz-pesquisa-da-cni/",
+      "state": "ambiguous",
+      "title": "",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/91/917e565c81f9d90434ecdedeb2c7bca7a6825dceade246c1a1e2c8c5e1c2e8ae.html",
+      "capture_sha256": "917e565c81f9d90434ecdedeb2c7bca7a6825dceade246c1a1e2c8c5e1c2e8ae",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-b14b6547e57176194cbae9642a3dc35f",
       "matched_tse": false,
       "publication_evidence": [],
       "registration_no": null,
@@ -4886,13 +4858,13 @@
         "base_label": null,
         "candidate_set_labels": [],
         "complete": false,
-        "heading": "Na pergunta espontânea de intenção de voto, aquela sem a apresentação dos nomes dos candidatos, três em cada dez eleitores (30%) não mencionam espontaneamente o nome de um possível candidato. Lula é o mais citado, com 29%, seguido por Jair Bolsonaro com 18%.",
-        "ordinal": 3,
+        "heading": "Intenção de voto espontânea (sem a apresentação dos nomes dos candidatos)",
+        "ordinal": 2,
         "page": null,
         "pairs": [],
         "question": "A Ipsos-Ipec realizou, entre os dias 4 e 8 de dezembro, uma pesquisa nacional sobre as eleições presidenciais de 2026, na qual testou quatro simulações de intenção de voto. O estudo mostra o atual presidente e candidato à reeleição, Lula, do PT, liderando a disputa pela Presidência da República em todos os cenários testados, alcançando 38% das menções em cada um deles. Enquanto isso, os nomes do campo da direita mais próximos do ex-presidente Jair Bolsonaro têm entre 17% e 23% das intenções de voto, conforme o porta-voz testado. Embora apareçam com desempenhos semelhantes, Michelle Bolsonaro (PL) registra o maior percentual (23%), enquanto Flávio Bolsonaro (PL) obtém 19%, Eduardo Bolsonaro (PL) aparece com 18% e Tarcísio de Freitas (Republicanos) tem 17% das menções. As menções aos demais nomes aparecem em outro patamar: Ratinho Junior (PSD) varia entre 8% e 9%; Romeu Zema (Novo), de 3% a 5%; e Ronaldo Caiado (União), de 5% a 7%. Aqueles que declaram intenção de votar em branco ou anular o voto ficam entre 16% e 19%, e os indecisos, entre 5% e 8%. A margem de erro máxima estimada é de 2 pontos percentuais para mais ou para menos, com um nível de confiança de 95%. “Lula aparece com um piso consistente de 38% independentemente do adversário. Os nomes da direita próximos ao ex-presidente performam em patamar similar, o que sugere que a definição do candidato tende a reorganizar votos dentro do mesmo campo, mais do que ampliar o alcance atual. Há espaço para movimentos, mas o ponto de partida da disputa não se altera.”, comenta Márcia Cavallari, diretora da Ipsos-Ipec. Pergunta: Se a eleição para Presidente da República fosse hoje e os candidatos fossem estes, em que o(a) sr(a) votaria? (Estimulada - %)",
         "raw_percentages": [],
-        "scenario_key": "scenario-8c6f74e21a5cd0b088a9d637",
+        "scenario_key": "scenario-e06bed24194cb7304e3ebca0",
         "scenario_type": "espontanea",
         "sum_pct": null,
         "turn": 2,
@@ -4901,8 +4873,8 @@
       "source_id": "ipsos_national_release",
       "source_url": "https://www.ipsos.com/pt-br/lula-lidera-hoje-todos-os-cenarios-testados-para-eleicoes-de-2026",
       "state": "ambiguous",
-      "title": "lula-lidera-hoje-todos-os-cenarios-testados-para-eleicoes-de-2026 · Na pergunta espontânea de intenção de voto, aquela sem a apresentação dos nomes dos candidatos, três em cada dez eleitores (30%) não mencionam espontaneamente o nome de um possível candidato. Lula é o mais citado, com 29%, seguido por Jair Bolsonaro com 18%.",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "title": "lula-lidera-hoje-todos-os-cenarios-testados-para-eleicoes-de-2026 · Intenção de voto espontânea (sem a apresentação dos nomes dos candidatos)",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "documento não contém exatamente um registro eleitoral inequívoco"
       ]
@@ -4911,22 +4883,771 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/d3/d3feaea51e28b33a34fe29ecaa46788b2ad3b4f9a4fd5d7e74364688d29e326d.html",
-      "capture_sha256": "d3feaea51e28b33a34fe29ecaa46788b2ad3b4f9a4fd5d7e74364688d29e326d",
+      "capture_local_path": "inputs/evidence/discovery/raw/4e/4e5380c55fbc6ed8269a9b56966a8dda762ef6c7ee004c63be19e99dfd69a64d.html",
+      "capture_sha256": "4e5380c55fbc6ed8269a9b56966a8dda762ef6c7ee004c63be19e99dfd69a64d",
       "checks": {},
       "errors": [
         "release precisa conter exatamente um número de registro inequívoco"
       ],
-      "item_id": "item-bb536a2d17f200801f4ef26d02a7be4e",
+      "item_id": "item-9d8158631b24f42bc6c3e55fe18d0a6b",
       "matched_tse": false,
       "publication_evidence": [],
       "registration_no": null,
       "scenario": null,
-      "source_id": "poderdata_official",
-      "source_url": "https://www.poder360.com.br/poder360/divisao-de-pesquisas-do-poder360-agora-e-poderdata/",
+      "source_id": "nexus_releases",
+      "source_url": "https://www.nexus.fsb.com.br/estudos-divulgados/apenas-11-das-mencoes-relacionadas-a-golpes-e-fraudes-digitais-nas-redes-tratam-de-prevencao-aponta-levantamento-da-certta-e-da-nexus/",
       "state": "ambiguous",
-      "title": "DataPoder360",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "title": "",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {
+        "available": true,
+        "candidate_count": 13,
+        "dataset_url": "https://dadosabertos.tse.jus.br/dataset/candidatos-2026",
+        "errors": [
+          "Flávio: não encontrado por alias exato no snapshot oficial",
+          "Caiado: não encontrado por alias exato no snapshot oficial",
+          "Santos: não encontrado por alias exato no snapshot oficial",
+          "Marçal: não encontrado por alias exato no snapshot oficial"
+        ],
+        "matches": [
+          {
+            "alias_review": null,
+            "identity_matched": true,
+            "judicial_status": "unknown",
+            "judicial_status_final": false,
+            "label": "Lula",
+            "match_basis": "official_exact_alias",
+            "matched": true,
+            "record": {
+              "aliases": [
+                "LUIZ INÁCIO LULA DA SILVA",
+                "LULA"
+              ],
+              "ballot_name": "LULA",
+              "ballot_status": "",
+              "election_year": "2026",
+              "generated_at": "05/09/2026",
+              "identity_matched": true,
+              "identity_source": "consulta_cand",
+              "identity_status": "official_registration_requested",
+              "judicial_status": "unknown",
+              "judicial_status_code": "-3",
+              "judicial_status_final": false,
+              "judicial_status_raw": "#NE",
+              "judicial_status_supplied": false,
+              "name": "LUIZ INÁCIO LULA DA SILVA",
+              "number": "13",
+              "office": "PRESIDENTE",
+              "party": "PT",
+              "party_number": "13",
+              "scope": "BR",
+              "sequence": "280002542548",
+              "social_name": "",
+              "status": "",
+              "status_code": "-3",
+              "status_detail": "",
+              "status_raw": "#NE",
+              "status_source": "consulta_cand",
+              "status_supported": false
+            },
+            "warning": "situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+          },
+          {
+            "label": "Flávio",
+            "matched": false,
+            "reason": "não encontrado por alias exato no snapshot oficial"
+          },
+          {
+            "label": "Caiado",
+            "matched": false,
+            "reason": "não encontrado por alias exato no snapshot oficial"
+          },
+          {
+            "label": "Santos",
+            "matched": false,
+            "reason": "não encontrado por alias exato no snapshot oficial"
+          },
+          {
+            "label": "Marçal",
+            "matched": false,
+            "reason": "não encontrado por alias exato no snapshot oficial"
+          },
+          {
+            "alias_review": null,
+            "identity_matched": true,
+            "judicial_status": "unknown",
+            "judicial_status_final": false,
+            "label": "Zema",
+            "match_basis": "official_exact_alias",
+            "matched": true,
+            "record": {
+              "aliases": [
+                "ROMEU ZEMA NETO",
+                "ZEMA"
+              ],
+              "ballot_name": "ZEMA",
+              "ballot_status": "",
+              "election_year": "2026",
+              "generated_at": "05/09/2026",
+              "identity_matched": true,
+              "identity_source": "consulta_cand",
+              "identity_status": "official_registration_requested",
+              "judicial_status": "unknown",
+              "judicial_status_code": "-3",
+              "judicial_status_final": false,
+              "judicial_status_raw": "#NE",
+              "judicial_status_supplied": false,
+              "name": "ROMEU ZEMA NETO",
+              "number": "30",
+              "office": "PRESIDENTE",
+              "party": "NOVO",
+              "party_number": "30",
+              "scope": "BR",
+              "sequence": "280002539826",
+              "social_name": "",
+              "status": "",
+              "status_code": "-3",
+              "status_detail": "",
+              "status_raw": "#NE",
+              "status_source": "consulta_cand",
+              "status_supported": false
+            },
+            "warning": "situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+          },
+          {
+            "alias_review": null,
+            "identity_matched": true,
+            "judicial_status": "unknown",
+            "judicial_status_final": false,
+            "label": "Pablo Marçal",
+            "match_basis": "official_exact_alias",
+            "matched": true,
+            "record": {
+              "aliases": [
+                "PABLO HENRIQUE COSTA MARCAL",
+                "PABLO MARÇAL"
+              ],
+              "ballot_name": "PABLO MARÇAL",
+              "ballot_status": "",
+              "election_year": "2026",
+              "generated_at": "05/09/2026",
+              "identity_matched": true,
+              "identity_source": "consulta_cand",
+              "identity_status": "official_registration_requested",
+              "judicial_status": "unknown",
+              "judicial_status_code": "-3",
+              "judicial_status_final": false,
+              "judicial_status_raw": "#NE",
+              "judicial_status_supplied": false,
+              "name": "PABLO HENRIQUE COSTA MARCAL",
+              "number": "28",
+              "office": "PRESIDENTE",
+              "party": "PRTB",
+              "party_number": "28",
+              "scope": "BR",
+              "sequence": "280002553884",
+              "social_name": "",
+              "status": "",
+              "status_code": "-3",
+              "status_detail": "",
+              "status_raw": "#NE",
+              "status_source": "consulta_cand",
+              "status_supported": false
+            },
+            "warning": "situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+          },
+          {
+            "alias_review": null,
+            "identity_matched": true,
+            "judicial_status": "unknown",
+            "judicial_status_final": false,
+            "label": "Pablo Marçal",
+            "match_basis": "official_exact_alias",
+            "matched": true,
+            "record": {
+              "aliases": [
+                "PABLO HENRIQUE COSTA MARCAL",
+                "PABLO MARÇAL"
+              ],
+              "ballot_name": "PABLO MARÇAL",
+              "ballot_status": "",
+              "election_year": "2026",
+              "generated_at": "05/09/2026",
+              "identity_matched": true,
+              "identity_source": "consulta_cand",
+              "identity_status": "official_registration_requested",
+              "judicial_status": "unknown",
+              "judicial_status_code": "-3",
+              "judicial_status_final": false,
+              "judicial_status_raw": "#NE",
+              "judicial_status_supplied": false,
+              "name": "PABLO HENRIQUE COSTA MARCAL",
+              "number": "28",
+              "office": "PRESIDENTE",
+              "party": "PRTB",
+              "party_number": "28",
+              "scope": "BR",
+              "sequence": "280002553884",
+              "social_name": "",
+              "status": "",
+              "status_code": "-3",
+              "status_detail": "",
+              "status_raw": "#NE",
+              "status_source": "consulta_cand",
+              "status_supported": false
+            },
+            "warning": "situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+          }
+        ],
+        "reviewed_alias_matches": [],
+        "sha256": "02e4a5eaea9d0d9b63c6e444867d6069b0f30e398f049cbc138942b2723bc9da",
+        "status_source_url": "https://divulgacandcontas.tse.jus.br/divulga/#/",
+        "warnings": [
+          "Lula: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+          "Zema: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+          "Pablo Marçal: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+          "Pablo Marçal: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+        ],
+        "zip_path": "/Users/douglaslora/Documents/Codex/2026-08-26/agregador-pesquisas-2026/inputs/evidence/discovery/raw/02/02e4a5eaea9d0d9b63c6e444867d6069b0f30e398f049cbc138942b2723bc9da.zip"
+      },
+      "capture_local_path": "inputs/evidence/discovery/raw/2e/2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c.html",
+      "capture_sha256": "2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c",
+      "checks": {
+        "article_10_complete": true,
+        "candidate_list_regime_known": true,
+        "candidate_metadata_complete": false,
+        "contract_fields_complete": true,
+        "deterministic_extraction": true,
+        "identity_and_judicial_status_separated": false,
+        "matched_tse": true,
+        "national_scope": true,
+        "partisan_status_identified": false,
+        "post_registration_candidate_list_complete": false,
+        "presidential_office": true,
+        "primary_release": true,
+        "publication_evidence_explicit": true,
+        "scenario_question_preserved": true,
+        "single_complete_scenario": false,
+        "single_registration": true,
+        "source_publish_date": true,
+        "stimulated_scenario": true,
+        "totals_sum_coherent": false
+      },
+      "errors": [
+        "candidate_registry: Flávio: não encontrado por alias exato no snapshot oficial",
+        "candidate_registry: Caiado: não encontrado por alias exato no snapshot oficial",
+        "candidate_registry: Santos: não encontrado por alias exato no snapshot oficial",
+        "candidate_registry: Marçal: não encontrado por alias exato no snapshot oficial",
+        "cenário único/completo não foi isolado",
+        "soma das categorias publicadas é incoerente ou incompleta",
+        "identidade das candidaturas não tem alias oficial exato, partido, número e ID verificáveis no TSE",
+        "identidade oficial e situação judicial não foram representadas em campos independentes",
+        "cenário principal pós-registro não contém a lista completa de candidaturas com registro requerido no snapshot oficial",
+        "financiamento partidário/não partidário não foi identificado em fonte verificável"
+      ],
+      "item_id": "item-9a1b617d32d89e8ae16b4b8dd48f601b",
+      "matched_tse": true,
+      "publication_evidence": [
+        {
+          "basis": "explicit_source_text",
+          "captured_at": "2026-09-05T17:46:08.509568-03:00",
+          "excerpt": "26 de agosto de 2026",
+          "extractor": "stdlib_html_parser",
+          "local_path": "inputs/evidence/discovery/raw/2e/2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c.html",
+          "primary": true,
+          "published_at": "2026-08-26",
+          "role": "publication_timestamp",
+          "sha256": "2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c",
+          "source_tier": "A",
+          "source_type": "official_institute_release_timestamp",
+          "url": "https://www.broadcast.com.br/ultimas-noticias/indexa-broadcast-em-cenario-de-1o-turno-lula-tem-39-e-flavio-bolsonaro-34/"
+        }
+      ],
+      "registration_no": "BR-06366/2026",
+      "scenario": {
+        "base": "totais",
+        "base_label": "Total de entrevistados; categorias residuais publicadas",
+        "candidate_set_labels": [
+          "Lula",
+          "Flávio",
+          "Caiado",
+          "Santos",
+          "Marçal",
+          "Zema",
+          "Pablo Marçal",
+          "Pablo Marçal"
+        ],
+        "complete": false,
+        "heading": "Num cenário com Pablo Marçal (PRTB), que está condenado à inelegibilidade pela Justiça Eleitoral, mas com recurso sob análise, Lula tem 39%, e Flávio, 33%; Caiado, 5%; Santos, 4%; Marçal, 2%; e Zema, 1%. Os outros candidatos não pontuaram, e 10% dizem estar indecisos ou não sabem, 6% declaram nulo ou branco, e 0% dizem que não iriam votar.",
+        "ordinal": 2,
+        "page": null,
+        "pairs": [
+          {
+            "category": "candidate",
+            "label": "Lula",
+            "number": null,
+            "party": null,
+            "pct": 39.0
+          },
+          {
+            "category": "candidate",
+            "label": "Flávio",
+            "number": null,
+            "party": null,
+            "pct": 33.0
+          },
+          {
+            "category": "candidate",
+            "label": "Caiado",
+            "number": null,
+            "party": null,
+            "pct": 5.0
+          },
+          {
+            "category": "candidate",
+            "label": "Santos",
+            "number": null,
+            "party": null,
+            "pct": 4.0
+          },
+          {
+            "category": "candidate",
+            "label": "Marçal",
+            "number": null,
+            "party": null,
+            "pct": 2.0
+          },
+          {
+            "category": "candidate",
+            "label": "Zema",
+            "number": null,
+            "party": null,
+            "pct": 1.0
+          },
+          {
+            "category": "candidate",
+            "label": "Pablo Marçal",
+            "number": null,
+            "party": "PRTB",
+            "pct": 39.0
+          },
+          {
+            "category": "candidate",
+            "label": "Pablo Marçal",
+            "number": null,
+            "party": "PRTB",
+            "pct": 33.0
+          },
+          {
+            "category": "undecided",
+            "label": "NS/NR",
+            "number": null,
+            "party": null,
+            "pct": 10.0
+          },
+          {
+            "category": "blank_null",
+            "label": "Branco/Nulo/Não votaria",
+            "number": null,
+            "party": null,
+            "pct": 6.0
+          },
+          {
+            "category": "blank_null",
+            "label": "Branco/Nulo/Não votaria",
+            "number": null,
+            "party": null,
+            "pct": 0.0
+          }
+        ],
+        "question": "Num cenário com Pablo Marçal (PRTB), que está condenado à inelegibilidade pela Justiça Eleitoral, mas com recurso sob análise, Lula tem 39%, e Flávio, 33%; Caiado, 5%; Santos, 4%; Marçal, 2%; e Zema, 1%. Os outros candidatos não pontuaram, e 10% dizem estar indecisos ou não sabem, 6% declaram nulo ou branco, e 0% dizem que não iriam votar.",
+        "raw_percentages": [
+          39.0,
+          33.0,
+          5.0,
+          4.0,
+          2.0,
+          1.0,
+          39.0,
+          33.0,
+          10.0,
+          6.0,
+          0.0
+        ],
+        "scenario_key": "scenario-99ea3e3359f4bbfa4a86b3e6",
+        "scenario_type": "estimulada",
+        "sum_pct": 172.0,
+        "turn": 1,
+        "warnings": [
+          "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
+          "soma do cenário fora de 98,5–101,5: 172.000"
+        ]
+      },
+      "source_id": "broadcast_current_release",
+      "source_url": "https://www.broadcast.com.br/ultimas-noticias/indexa-broadcast-em-cenario-de-1o-turno-lula-tem-39-e-flavio-bolsonaro-34/",
+      "state": "ambiguous",
+      "title": "indexa-broadcast-em-cenario-de-1o-turno-lula-tem-39-e-flavio-bolsonaro-34 · Num cenário com Pablo Marçal (PRTB), que está condenado à inelegibilidade pela Justiça Eleitoral, mas com recurso sob análise, Lula tem 39%, e Flávio, 33%; Caiado, 5%; Santos, 4%; Marçal, 2%; e Zema, 1%. Os outros candidatos não pontuaram, e 10% dizem estar indecisos ou não sabem, 6% declaram nulo ou branco, e 0% dizem que não iriam votar.",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
+        "soma do cenário fora de 98,5–101,5: 172.000",
+        "Lula: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+        "Zema: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+        "Pablo Marçal: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+        "Pablo Marçal: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {
+        "available": true,
+        "candidate_count": 13,
+        "dataset_url": "https://dadosabertos.tse.jus.br/dataset/candidatos-2026",
+        "errors": [
+          "Flávio no: não encontrado por alias exato no snapshot oficial",
+          "Augusto Cury: não encontrado por alias exato no snapshot oficial",
+          "Leonardo Avalanche: não encontrado por alias exato no snapshot oficial"
+        ],
+        "matches": [
+          {
+            "alias_review": null,
+            "identity_matched": true,
+            "judicial_status": "unknown",
+            "judicial_status_final": false,
+            "label": "Lula",
+            "match_basis": "official_exact_alias",
+            "matched": true,
+            "record": {
+              "aliases": [
+                "LUIZ INÁCIO LULA DA SILVA",
+                "LULA"
+              ],
+              "ballot_name": "LULA",
+              "ballot_status": "",
+              "election_year": "2026",
+              "generated_at": "05/09/2026",
+              "identity_matched": true,
+              "identity_source": "consulta_cand",
+              "identity_status": "official_registration_requested",
+              "judicial_status": "unknown",
+              "judicial_status_code": "-3",
+              "judicial_status_final": false,
+              "judicial_status_raw": "#NE",
+              "judicial_status_supplied": false,
+              "name": "LUIZ INÁCIO LULA DA SILVA",
+              "number": "13",
+              "office": "PRESIDENTE",
+              "party": "PT",
+              "party_number": "13",
+              "scope": "BR",
+              "sequence": "280002542548",
+              "social_name": "",
+              "status": "",
+              "status_code": "-3",
+              "status_detail": "",
+              "status_raw": "#NE",
+              "status_source": "consulta_cand",
+              "status_supported": false
+            },
+            "warning": "situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+          },
+          {
+            "label": "Flávio no",
+            "matched": false,
+            "reason": "não encontrado por alias exato no snapshot oficial"
+          },
+          {
+            "label": "Augusto Cury",
+            "matched": false,
+            "reason": "não encontrado por alias exato no snapshot oficial"
+          },
+          {
+            "alias_review": null,
+            "identity_matched": true,
+            "judicial_status": "unknown",
+            "judicial_status_final": false,
+            "label": "Clariana Barão",
+            "match_basis": "official_exact_alias",
+            "matched": true,
+            "record": {
+              "aliases": [
+                "CLARIANA BARAO",
+                "CLARIANA ZACARKIM BARAO"
+              ],
+              "ballot_name": "CLARIANA BARAO",
+              "ballot_status": "",
+              "election_year": "2026",
+              "generated_at": "05/09/2026",
+              "identity_matched": true,
+              "identity_source": "consulta_cand",
+              "identity_status": "official_registration_requested",
+              "judicial_status": "unknown",
+              "judicial_status_code": "-3",
+              "judicial_status_final": false,
+              "judicial_status_raw": "#NE",
+              "judicial_status_supplied": false,
+              "name": "CLARIANA ZACARKIM BARAO",
+              "number": "27",
+              "office": "PRESIDENTE",
+              "party": "DC",
+              "party_number": "27",
+              "scope": "BR",
+              "sequence": "280002552484",
+              "social_name": "",
+              "status": "",
+              "status_code": "-3",
+              "status_detail": "",
+              "status_raw": "#NE",
+              "status_source": "consulta_cand",
+              "status_supported": false
+            },
+            "warning": "situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+          },
+          {
+            "label": "Leonardo Avalanche",
+            "matched": false,
+            "reason": "não encontrado por alias exato no snapshot oficial"
+          },
+          {
+            "alias_review": null,
+            "identity_matched": true,
+            "judicial_status": "unknown",
+            "judicial_status_final": false,
+            "label": "Rui Costa Pimenta",
+            "match_basis": "official_exact_alias",
+            "matched": true,
+            "record": {
+              "aliases": [
+                "RUI COSTA PIMENTA"
+              ],
+              "ballot_name": "RUI COSTA PIMENTA",
+              "ballot_status": "",
+              "election_year": "2026",
+              "generated_at": "05/09/2026",
+              "identity_matched": true,
+              "identity_source": "consulta_cand",
+              "identity_status": "official_registration_requested",
+              "judicial_status": "unknown",
+              "judicial_status_code": "-3",
+              "judicial_status_final": false,
+              "judicial_status_raw": "#NE",
+              "judicial_status_supplied": false,
+              "name": "RUI COSTA PIMENTA",
+              "number": "29",
+              "office": "PRESIDENTE",
+              "party": "PCO",
+              "party_number": "29",
+              "scope": "BR",
+              "sequence": "280002552487",
+              "social_name": "",
+              "status": "",
+              "status_code": "-3",
+              "status_detail": "",
+              "status_raw": "#NE",
+              "status_source": "consulta_cand",
+              "status_supported": false
+            },
+            "warning": "situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+          }
+        ],
+        "reviewed_alias_matches": [],
+        "sha256": "02e4a5eaea9d0d9b63c6e444867d6069b0f30e398f049cbc138942b2723bc9da",
+        "status_source_url": "https://divulgacandcontas.tse.jus.br/divulga/#/",
+        "warnings": [
+          "Lula: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+          "Clariana Barão: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+          "Rui Costa Pimenta: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+        ],
+        "zip_path": "/Users/douglaslora/Documents/Codex/2026-08-26/agregador-pesquisas-2026/inputs/evidence/discovery/raw/02/02e4a5eaea9d0d9b63c6e444867d6069b0f30e398f049cbc138942b2723bc9da.zip"
+      },
+      "capture_local_path": "inputs/evidence/discovery/raw/5e/5e75f3e9e63c4d7bea53192465897eb60c9ffa802a411213b20832fee15c25a4.html",
+      "capture_sha256": "5e75f3e9e63c4d7bea53192465897eb60c9ffa802a411213b20832fee15c25a4",
+      "checks": {
+        "article_10_complete": true,
+        "candidate_list_regime_known": true,
+        "candidate_metadata_complete": false,
+        "contract_fields_complete": true,
+        "deterministic_extraction": true,
+        "identity_and_judicial_status_separated": false,
+        "matched_tse": true,
+        "national_scope": true,
+        "partisan_status_identified": true,
+        "post_registration_candidate_list_complete": true,
+        "presidential_office": true,
+        "primary_release": true,
+        "publication_evidence_explicit": true,
+        "scenario_question_preserved": true,
+        "single_complete_scenario": false,
+        "single_registration": true,
+        "source_publish_date": true,
+        "stimulated_scenario": true,
+        "totals_sum_coherent": false
+      },
+      "errors": [
+        "candidate_registry: Flávio no: não encontrado por alias exato no snapshot oficial",
+        "candidate_registry: Augusto Cury: não encontrado por alias exato no snapshot oficial",
+        "candidate_registry: Leonardo Avalanche: não encontrado por alias exato no snapshot oficial",
+        "cenário único/completo não foi isolado",
+        "soma das categorias publicadas é incoerente ou incompleta",
+        "identidade das candidaturas não tem alias oficial exato, partido, número e ID verificáveis no TSE",
+        "identidade oficial e situação judicial não foram representadas em campos independentes"
+      ],
+      "item_id": "item-96950a9e7032bcfdf456e73a584e3ee4",
+      "matched_tse": true,
+      "publication_evidence": [
+        {
+          "basis": "explicit_source_text",
+          "captured_at": "2026-09-05T17:46:08.509568-03:00",
+          "excerpt": "13.ago.2026 (quinta-feira) - 7h30",
+          "extractor": "stdlib_html_parser",
+          "local_path": "inputs/evidence/discovery/raw/5e/5e75f3e9e63c4d7bea53192465897eb60c9ffa802a411213b20832fee15c25a4.html",
+          "primary": true,
+          "published_at": "2026-08-13",
+          "role": "publication_timestamp",
+          "sha256": "5e75f3e9e63c4d7bea53192465897eb60c9ffa802a411213b20832fee15c25a4",
+          "source_tier": "A",
+          "source_type": "official_institute_release_timestamp",
+          "url": "https://www.poder360.com.br/poderdata/lula-tem-46-contra-45-de-flavio-no-2o-turno-diz-poderdata-aya/"
+        }
+      ],
+      "registration_no": "BR-06868/2026",
+      "scenario": {
+        "base": "totais",
+        "base_label": "Total de entrevistados; categorias residuais publicadas",
+        "candidate_set_labels": [
+          "Lula",
+          "Flávio no",
+          "Augusto Cury",
+          "Clariana Barão",
+          "Leonardo Avalanche",
+          "Rui Costa Pimenta"
+        ],
+        "complete": false,
+        "heading": "Apesar da proximidade entre Lula e Flávio na simulação de 2º turno, o cenário geral variou muito pouco desde o início do ano. Lula sempre apareceu liderando o 1º turno. O que esta rodada do PoderData/Aya mostra é que a disputa permanece aberta, com o petista sempre com uma leve vantagem numérica –embora mostrando uma certa estagnação e dificuldade de furar o percentual de 50% dos votos.",
+        "ordinal": 1,
+        "page": null,
+        "pairs": [
+          {
+            "category": "candidate",
+            "label": "Lula",
+            "number": null,
+            "party": null,
+            "pct": 46.0
+          },
+          {
+            "category": "candidate",
+            "label": "Flávio no",
+            "number": null,
+            "party": null,
+            "pct": 45.0
+          },
+          {
+            "category": "candidate",
+            "label": "Augusto Cury",
+            "number": null,
+            "party": "Avante",
+            "pct": 3.0
+          },
+          {
+            "category": "candidate",
+            "label": "Clariana Barão",
+            "number": null,
+            "party": "Democracia Cristã",
+            "pct": 1.0
+          },
+          {
+            "category": "candidate",
+            "label": "Leonardo Avalanche",
+            "number": null,
+            "party": "PRTB",
+            "pct": 1.0
+          },
+          {
+            "category": "candidate",
+            "label": "Rui Costa Pimenta",
+            "number": null,
+            "party": "PCO",
+            "pct": 1.0
+          },
+          {
+            "category": "blank_null",
+            "label": "Branco/Nulo/Não votaria",
+            "number": null,
+            "party": null,
+            "pct": 4.0
+          },
+          {
+            "category": "undecided",
+            "label": "NS/NR",
+            "number": null,
+            "party": null,
+            "pct": 2.0
+          }
+        ],
+        "question": "Na simulação de 1º turno, Lula lidera com 41% das intenções de voto. Flávio aparece em seguida, com 35%. Ronaldo Caiado e Renan Santos registram 4% cada um. O ex-governador Romeu Zema e o escritor Augusto Cury (Avante) somam 3% cada.",
+        "raw_percentages": [
+          46.0,
+          45.0,
+          3.0,
+          1.0,
+          1.0,
+          1.0,
+          4.0,
+          2.0
+        ],
+        "scenario_key": "scenario-98f784eccef45be39e063613",
+        "scenario_type": "estimulada",
+        "sum_pct": 103.0,
+        "turn": 1,
+        "warnings": [
+          "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
+          "soma do cenário fora de 98,5–101,5: 103.000"
+        ]
+      },
+      "source_id": "poderdata_current_release",
+      "source_url": "https://www.poder360.com.br/poderdata/lula-tem-46-contra-45-de-flavio-no-2o-turno-diz-poderdata-aya/",
+      "state": "ambiguous",
+      "title": "lula-tem-46-contra-45-de-flavio-no-2o-turno-diz-poderdata-aya",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
+        "soma do cenário fora de 98,5–101,5: 103.000",
+        "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
+        "soma do cenário fora de 98,5–101,5: 103.000",
+        "Lula: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+        "Clariana Barão: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final",
+        "Rui Costa Pimenta: situação judicial não fornecida neste dataset oficial (valor=#NE, código=-3); identidade e pedido de registro permanecem confirmados, sem inferência de situação final"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/0b/0b8836a6ee633d7f84be6b02b1e7013798cb1579af09d1f0dfa47557ae2046e3.html",
+      "capture_sha256": "0b8836a6ee633d7f84be6b02b1e7013798cb1579af09d1f0dfa47557ae2046e3",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-88fb6dfd38be3304ded03a3cb3b55b0a",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "broadcast_latest",
+      "source_url": "https://www.broadcast.com.br/babado-gritaria-e-confusao/",
+      "state": "ambiguous",
+      "title": "Eleições 2026 Babado, gritaria e confusão",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "nenhum cenário de intenção de voto foi isolado",
         "documento não contém exatamente um registro eleitoral inequívoco"
@@ -5188,8 +5909,8 @@
         ],
         "zip_path": "/Users/douglaslora/Documents/Codex/2026-08-26/agregador-pesquisas-2026/inputs/evidence/discovery/raw/02/02e4a5eaea9d0d9b63c6e444867d6069b0f30e398f049cbc138942b2723bc9da.zip"
       },
-      "capture_local_path": "inputs/evidence/discovery/raw/f1/f113c8caa9b7e7c92f6305f6b90b5c08ad226156ac6bd82b13c919a0941ee419.html",
-      "capture_sha256": "f113c8caa9b7e7c92f6305f6b90b5c08ad226156ac6bd82b13c919a0941ee419",
+      "capture_local_path": "inputs/evidence/discovery/raw/97/97ea603816b1caa1136176da8acbc818cf6fc5610c9ac73e6a804fc4d131f986.html",
+      "capture_sha256": "97ea603816b1caa1136176da8acbc818cf6fc5610c9ac73e6a804fc4d131f986",
       "checks": {
         "article_10_complete": true,
         "candidate_list_regime_known": true,
@@ -5222,19 +5943,19 @@
         "identidade oficial e situação judicial não foram representadas em campos independentes",
         "campos estruturais necessários ao contrato Poll permanecem não identificados"
       ],
-      "item_id": "item-b9844520d0acd7d061da615ebb784bbd",
+      "item_id": "item-86e0d26792674a93fca797353f2c3d41",
       "matched_tse": true,
       "publication_evidence": [
         {
           "basis": "explicit_source_text",
-          "captured_at": "2026-09-05T17:13:38.337527-03:00",
+          "captured_at": "2026-09-05T17:46:08.509568-03:00",
           "excerpt": "13.ago.2026 (quinta-feira) - 7h30",
           "extractor": "stdlib_html_parser",
-          "local_path": "inputs/evidence/discovery/raw/f1/f113c8caa9b7e7c92f6305f6b90b5c08ad226156ac6bd82b13c919a0941ee419.html",
+          "local_path": "inputs/evidence/discovery/raw/97/97ea603816b1caa1136176da8acbc818cf6fc5610c9ac73e6a804fc4d131f986.html",
           "primary": true,
           "published_at": "2026-08-13",
           "role": "publication_timestamp",
-          "sha256": "f113c8caa9b7e7c92f6305f6b90b5c08ad226156ac6bd82b13c919a0941ee419",
+          "sha256": "97ea603816b1caa1136176da8acbc818cf6fc5610c9ac73e6a804fc4d131f986",
           "source_tier": "A",
           "source_type": "official_institute_release_timestamp",
           "url": "https://www.poder360.com.br/poderdata/poderdata-aya-lula-tem-41-e-flavio-35-no-1o-turno/"
@@ -5349,7 +6070,7 @@
       "source_url": "https://www.poder360.com.br/poderdata/poderdata-aya-lula-tem-41-e-flavio-35-no-1o-turno/",
       "state": "ambiguous",
       "title": "poderdata-aya-lula-tem-41-e-flavio-35-no-1o-turno",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
         "soma do cenário fora de 98,5–101,5: 93.000",
@@ -5366,354 +6087,22 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/bc/bcbc30818e6236f7b5bbee0cc5e7427bcf961cb318c8465f19d42b5604672a1f.pdf",
-      "capture_sha256": "bcbc30818e6236f7b5bbee0cc5e7427bcf961cb318c8465f19d42b5604672a1f",
-      "checks": {},
-      "errors": [
-        "registro TSE não contempla Presidente",
-        "registro contém pergunta presidencial, mas a amostra é estadual"
-      ],
-      "item_id": "item-b7f504c4082d25c248b62da5f63fbd8f",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": "BA-07628/2026",
-      "scenario": null,
-      "source_id": "parana_research",
-      "source_url": "https://paranapesquisas.com.br/wp-content/uploads/2026/08/1-JOB026_163_BA_-RegistroTSE_BA-07628.pdf",
-      "state": "ambiguous",
-      "title": "PDF ligado por ",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/79/7982a3c72335f82619004623139f04f871828aaf93ac8ecaa84d174c1fb2205c.pdf",
-      "capture_sha256": "7982a3c72335f82619004623139f04f871828aaf93ac8ecaa84d174c1fb2205c",
-      "checks": {},
-      "errors": [
-        "published_at anterior à data prevista no TSE"
-      ],
-      "item_id": "item-a873772dfe735975fd5785415db77c92",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": "BR-04974/2026",
-      "scenario": {
-        "base": "totais",
-        "base_label": "amostra total",
-        "candidate_set_labels": [
-          "Ronaldo Caiado",
-          "Lula"
-        ],
-        "complete": true,
-        "heading": "Intenção de voto no 2º turno · Ronaldo Caiado × Lula",
-        "ordinal": 3,
-        "page": 19,
-        "pairs": [
-          {
-            "category": "candidate",
-            "label": "Ronaldo Caiado",
-            "number": null,
-            "party": null,
-            "pct": 44.0
-          },
-          {
-            "category": "candidate",
-            "label": "Lula",
-            "number": null,
-            "party": null,
-            "pct": 43.0
-          },
-          {
-            "category": "blank_null",
-            "label": "Branco/Nulo",
-            "number": null,
-            "party": null,
-            "pct": 10.0
-          },
-          {
-            "category": "undecided",
-            "label": "Não sabe",
-            "number": null,
-            "party": null,
-            "pct": 2.0
-          }
-        ],
-        "question": "E se houver um 2º turno entre Ronaldo Caiado e Lula, em quem você votaria?",
-        "raw_percentages": [
-          44.0,
-          43.0,
-          10.0,
-          2.0
-        ],
-        "scenario_key": "scenario-dcfad335864c9072e562e972",
-        "scenario_type": "estimulada",
-        "sum_pct": 99.0,
-        "turn": 2,
-        "warnings": []
-      },
-      "source_id": "poderdata_official",
-      "source_url": "https://static.poder360.com.br/uploads/2026/08/Relatorio-PoderData-Eleitoral-26ago26-1.pdf",
-      "state": "ambiguous",
-      "title": "PDF ligado por Entenda os detalhes sobre a metodologia do PoderData · Intenção de voto no 2º turno · Ronaldo Caiado × Lula",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": []
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/50/50ae270dad241ba2fca783dccf483961c996ac07eabf52705ddd8a4648ab21c6.pdf",
-      "capture_sha256": "50ae270dad241ba2fca783dccf483961c996ac07eabf52705ddd8a4648ab21c6",
-      "checks": {},
-      "errors": [],
-      "item_id": "item-a3978033c32a0f9ad5757e384447e5ab",
-      "matched_tse": true,
-      "publication_evidence": [],
-      "registration_no": "BR-07845/2026",
-      "scenario": null,
-      "source_id": "poderdata_current_release",
-      "source_url": "https://static.poder360.com.br/uploads/2026/07/Relatorio-PoderData-Eleitoral-29jul26-3.pdf",
-      "state": "ambiguous",
-      "title": "PDF ligado por leia-os-resultados-da-pesquisa-poderdata-aya-para-presidente",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/45/45ae28bd8174b6fda6cb11478365b5b5c7db662678b3e2b2d891f15be930cafa.html",
-      "capture_sha256": "45ae28bd8174b6fda6cb11478365b5b5c7db662678b3e2b2d891f15be930cafa",
+      "capture_local_path": "inputs/evidence/discovery/raw/89/89f596e63ac04eb7db60f7fcde1c743b17fc1fc574ee83221a0d165197346230.html.excerpt",
+      "capture_sha256": "89f596e63ac04eb7db60f7fcde1c743b17fc1fc574ee83221a0d165197346230",
       "checks": {},
       "errors": [
         "release precisa conter exatamente um número de registro inequívoco"
       ],
-      "item_id": "item-86fdfa26d35f14a9fdd5cdac17aa9d8c",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": {
-        "base": null,
-        "base_label": null,
-        "candidate_set_labels": [],
-        "complete": false,
-        "heading": "Entre as mulheres, 45% não citam nenhum nome espontaneamente, acima do registrado entre homens (27%). Essa taxa também é mais elevada entre quem avalia o governo Lula como regular (51%) e entre não alinhados ao bolsonarismo nem ao petismo (49%).",
-        "ordinal": 2,
-        "page": null,
-        "pairs": [],
-        "question": "No cenário que também envolve Ronaldo Caiado (PSD), Romeu Zema (Novo), Renan Santos (Missão), Joaquim Barbosa (DC), Augusto Cury (Avante), Aécio Neves (PSDB), Cabo Daciolo (Mobiliza), Rui Costa Pimenta (PCO), Samara Martins (UP), Hertz Dias (PSTU) e Edmilson Costa (PCB), o atual presidente tem 41% das intenções de voto, contra 31% do presidenciável do PL. Em um patamar mais baixo, também empatados, aparecem Caiado (3%), Santos (3%), Zema (2%), Aécio (2%), Samara Martins (2%), Cury (2%), Barbosa (1%), Pimenta (1%) e Daciolo (1%), enquanto Dias e Costa não atingiram 1%. Uma parcela de 7% votaria em branco ou anularia o voto, e 4% estão indecisos. Na pesquisa espontânea, em que os nomes dos presidenciáveis não são apresentados, Lula é citado por 30% (tinha 28% na pesquisa anterior) e Flávio Bolsonaro, por 17% (mesmo resultado anterior). Também há menções a Jair Bolsonaro (2%), Ronaldo Caiado (1%), Renan Santos (1%) e Romeu Zema (1%), entre outros que não atingiram 1%. A parcela dos que não souberam citar nenhum nome espontaneamente é de 36%, em patamar similar ao levantamento anterior (37%). Entre as mulheres, 45% não citam nenhum nome espontaneamente, acima do registrado entre homens (27%). Essa taxa também é mais elevada entre quem avalia o governo Lula como regular (51%) e entre não alinhados ao bolsonarismo nem ao petismo (49%).",
-        "raw_percentages": [],
-        "scenario_key": "scenario-b5159639f8ca75de632ca630",
-        "scenario_type": "espontanea",
-        "sum_pct": null,
-        "turn": 2,
-        "warnings": []
-      },
-      "source_id": "datafolha_national_reports",
-      "source_url": "https://datafolha.folha.uol.com.br/eleicoes/2026/06/lula-pt-mantem-vantagem-no-1o-turno-e-2o-turno.shtml",
-      "state": "ambiguous",
-      "title": "lula-pt-mantem-vantagem-no-1o-turno-e-2o-turno.shtml · Entre as mulheres, 45% não citam nenhum nome espontaneamente, acima do registrado entre homens (27%). Essa taxa também é mais elevada entre quem avalia o governo Lula como regular (51%) e entre não alinhados ao bolsonarismo nem ao petismo (49%).",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": [
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/79/7982a3c72335f82619004623139f04f871828aaf93ac8ecaa84d174c1fb2205c.pdf",
-      "capture_sha256": "7982a3c72335f82619004623139f04f871828aaf93ac8ecaa84d174c1fb2205c",
-      "checks": {},
-      "errors": [
-        "published_at anterior à data prevista no TSE"
-      ],
-      "item_id": "item-7e493be36e47c67f06355fbd3683a676",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": "BR-04974/2026",
-      "scenario": {
-        "base": "totais",
-        "base_label": "amostra total",
-        "candidate_set_labels": [
-          "Flávio Bolsonaro",
-          "Lula"
-        ],
-        "complete": true,
-        "heading": "Intenção de voto no 2º turno · Flávio Bolsonaro × Lula",
-        "ordinal": 1,
-        "page": 16,
-        "pairs": [
-          {
-            "category": "candidate",
-            "label": "Flávio Bolsonaro",
-            "number": null,
-            "party": null,
-            "pct": 44.0
-          },
-          {
-            "category": "candidate",
-            "label": "Lula",
-            "number": null,
-            "party": null,
-            "pct": 45.0
-          },
-          {
-            "category": "blank_null",
-            "label": "Branco/Nulo",
-            "number": null,
-            "party": null,
-            "pct": 9.0
-          },
-          {
-            "category": "undecided",
-            "label": "Não sabe",
-            "number": null,
-            "party": null,
-            "pct": 2.0
-          }
-        ],
-        "question": "E se houver um 2º turno entre Flávio Bolsonaro e Lula, em quem você votaria?",
-        "raw_percentages": [
-          44.0,
-          45.0,
-          9.0,
-          2.0
-        ],
-        "scenario_key": "scenario-55b545b1cee036f60dfb635a",
-        "scenario_type": "estimulada",
-        "sum_pct": 100.0,
-        "turn": 2,
-        "warnings": []
-      },
-      "source_id": "poderdata_official",
-      "source_url": "https://static.poder360.com.br/uploads/2026/08/Relatorio-PoderData-Eleitoral-26ago26-1.pdf",
-      "state": "ambiguous",
-      "title": "PDF ligado por Entenda os detalhes sobre a metodologia do PoderData · Intenção de voto no 2º turno · Flávio Bolsonaro × Lula",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": []
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {
-        "available": true,
-        "candidate_count": 13,
-        "dataset_url": "https://dadosabertos.tse.jus.br/dataset/candidatos-2026",
-        "errors": [],
-        "matches": [],
-        "reviewed_alias_matches": [],
-        "sha256": "02e4a5eaea9d0d9b63c6e444867d6069b0f30e398f049cbc138942b2723bc9da",
-        "status_source_url": "https://divulgacandcontas.tse.jus.br/divulga/#/",
-        "warnings": [],
-        "zip_path": "/Users/douglaslora/Documents/Codex/2026-08-26/agregador-pesquisas-2026/inputs/evidence/discovery/raw/02/02e4a5eaea9d0d9b63c6e444867d6069b0f30e398f049cbc138942b2723bc9da.zip"
-      },
-      "capture_local_path": "inputs/evidence/discovery/raw/97/97370751f951321e4d7d72c314df09eaecea6ba11456f256688b0ee95710418f.html",
-      "capture_sha256": "97370751f951321e4d7d72c314df09eaecea6ba11456f256688b0ee95710418f",
-      "checks": {
-        "article_10_complete": false,
-        "candidate_list_regime_known": true,
-        "candidate_metadata_complete": false,
-        "contract_fields_complete": false,
-        "deterministic_extraction": true,
-        "identity_and_judicial_status_separated": false,
-        "matched_tse": true,
-        "national_scope": true,
-        "partisan_status_identified": false,
-        "post_registration_candidate_list_complete": true,
-        "presidential_office": true,
-        "primary_release": true,
-        "publication_evidence_explicit": false,
-        "scenario_question_preserved": true,
-        "single_complete_scenario": false,
-        "single_registration": true,
-        "source_publish_date": false,
-        "stimulated_scenario": true,
-        "totals_sum_coherent": false
-      },
-      "errors": [
-        "campos obrigatórios do art. 10 incompletos no material publicado",
-        "data efetiva da publicação não foi extraída da fonte",
-        "data de publicação não possui evidência explícita com papel separado",
-        "cenário único/completo não foi isolado",
-        "soma das categorias publicadas é incoerente ou incompleta",
-        "identidade das candidaturas não tem alias oficial exato, partido, número e ID verificáveis no TSE",
-        "identidade oficial e situação judicial não foram representadas em campos independentes",
-        "financiamento partidário/não partidário não foi identificado em fonte verificável",
-        "campos estruturais necessários ao contrato Poll permanecem não identificados"
-      ],
-      "item_id": "item-7abe60fc0787526d0f9ac41bd7784416",
-      "matched_tse": true,
-      "publication_evidence": [],
-      "registration_no": "BR-01489/2026",
-      "scenario": {
-        "base": "totais",
-        "base_label": "Total de entrevistados; categorias residuais publicadas",
-        "candidate_set_labels": [],
-        "complete": false,
-        "heading": "Com base na 7ª rodada da Pesquisa BTG/Nexus, o cenário eleitoral para a eleição presidencial de 2026 segue estável no primeiro turno. No principal cenário estimulado, Lula registra 42% das intenções de voto, enquanto Flávio Bolsonaro aparece com 33%. Em relação à rodada anterior, realizada em meados de julho, Lula manteve os mesmos 42%, enquanto Flávio Bolsonaro recuou de 34% para 33%, oscilação dentro da margem de erro. Os demais nomes seguem em patamares de um dígito, com Ronaldo Caiado alcançando 6%, Renan Santos 5% e Romeu Zema 3%.",
-        "ordinal": 1,
-        "page": null,
-        "pairs": [
-          {
-            "category": "undecided",
-            "label": "NS/NR",
-            "number": null,
-            "party": null,
-            "pct": 1.0
-          }
-        ],
-        "question": "Pesquisa BTG/Nexus de intenção de votos para presidente do Brasil – 27 de julho de 2026",
-        "raw_percentages": [
-          1.0
-        ],
-        "scenario_key": "scenario-169e0b84fb242d4f43e3c3f4",
-        "scenario_type": "estimulada",
-        "sum_pct": 1.0,
-        "turn": 1,
-        "warnings": [
-          "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
-          "soma do cenário fora de 98,5–101,5: 1.000"
-        ]
-      },
-      "source_id": "nexus_current_release",
-      "source_url": "https://www.nexus.fsb.com.br/estudos-divulgados/pesquisa-btg-nexus-de-intencao-de-votos-para-presidente-do-brasil-27-de-julho-de-2026/",
-      "state": "ambiguous",
-      "title": "pesquisa-btg-nexus-de-intencao-de-votos-para-presidente-do-brasil-27-de-julho-de-2026",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
-      "warnings": [
-        "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
-        "soma do cenário fora de 98,5–101,5: 1.000",
-        "descrição textual do cenário preservada; a fonte não publicou formulação interrogativa literal",
-        "soma do cenário fora de 98,5–101,5: 1.000"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/11/11eedc4071258cec1f46fde5e72a5259a57c1c0dfd31b7b9f7a15ebd8b1277af.html.excerpt",
-      "capture_sha256": "11eedc4071258cec1f46fde5e72a5259a57c1c0dfd31b7b9f7a15ebd8b1277af",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-780fcc6060d5c33c6c2b2e7d8bb54f11",
+      "item_id": "item-7c34a45409373018dbd2b7745bc42a14",
       "matched_tse": false,
       "publication_evidence": [],
       "registration_no": null,
       "scenario": null,
       "source_id": "g1_politica_rss",
-      "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/05/datafolha-veja-os-grupos-em-que-a-disputa-entre-lula-e-flavio-bolsonaro-esta-mais-apertada.ghtml",
+      "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/05/mapa-quaest-presidente-estados.ghtml",
       "state": "ambiguous",
-      "title": "Datafolha: veja os grupos em que a disputa entre Lula e Flávio Bolsonaro está mais apertada",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "title": "MAPA: Quaest mostra como está a disputa presidencial nos estados",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "nenhum cenário de intenção de voto foi isolado",
         "documento não contém exatamente um registro eleitoral inequívoco"
@@ -5723,49 +6112,99 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/6a/6a9a8c972e0d84e0c1b191475772702f169eb17675d37d94902f455c88e9d5f1.html",
-      "capture_sha256": "6a9a8c972e0d84e0c1b191475772702f169eb17675d37d94902f455c88e9d5f1",
+      "capture_local_path": "inputs/evidence/discovery/raw/5d/5d53108a106a332fbed613fcec2ea9363a216165e9931aa2ed4bfb2faa632231.html.excerpt",
+      "capture_sha256": "5d53108a106a332fbed613fcec2ea9363a216165e9931aa2ed4bfb2faa632231",
       "checks": {},
       "errors": [
         "release precisa conter exatamente um número de registro inequívoco"
       ],
-      "item_id": "item-75aed4b634add9b84073370d76b38bf3",
+      "item_id": "item-77f9399d4562c801b08ba34cd2bd70c2",
       "matched_tse": false,
       "publication_evidence": [],
       "registration_no": null,
       "scenario": null,
-      "source_id": "broadcast_latest",
-      "source_url": "https://www.broadcast.com.br/levantamento-de-juros-powell-vaiaacademia-enquantotrumppressionaparabaixarjuros/",
+      "source_id": "g1_politica_rss",
+      "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/05/quaest-veja-os-grupos-em-que-a-disputa-entre-lula-e-flavio-bolsonaro-esta-mais-apertada.ghtml",
       "state": "ambiguous",
-      "title": "Política Monetária Levantamento de juros",
-      "transitioned_at": "2026-09-05T17:13:38.337527-03:00",
+      "title": "Quaest: veja os grupos em que a disputa entre Lula e Flávio Bolsonaro está mais apertada",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/82/824a3aba17d27b3982b40ea1fa2ed39e880027af2f3505891ec48511c9ebc023.html",
+      "capture_sha256": "824a3aba17d27b3982b40ea1fa2ed39e880027af2f3505891ec48511c9ebc023",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-77e552f29759732c988e2a2e36f9cd74",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "nexus_releases",
+      "source_url": "https://www.nexus.fsb.com.br/estudos-divulgados/catolicos-e-evangelicos-compartilham-prioridades-ao-escolher-um-candidato-aponta-pesquisa-btg-nexus/",
+      "state": "ambiguous",
+      "title": "",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/fc/fc236f8ef475959102a7d0f41d5bf2585b7c1d21ae2e085a0f3f8be6bd5bc6a6.html",
+      "capture_sha256": "fc236f8ef475959102a7d0f41d5bf2585b7c1d21ae2e085a0f3f8be6bd5bc6a6",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-6412d679de0c154513cf8e7e983d7a3b",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "nexus_releases",
+      "source_url": "https://www.nexus.fsb.com.br/estudos-divulgados/geracao-60-chefia-32-dos-lares-brasileiros-mas-enfrenta-sobrecarga-e-informalidade-aponta-levantamento-da-nexus/",
+      "state": "ambiguous",
+      "title": "",
+      "transitioned_at": "2026-09-05T17:46:08.509568-03:00",
       "warnings": [
         "nenhum cenário de intenção de voto foi isolado",
         "documento não contém exatamente um registro eleitoral inequívoco"
       ]
     }
   ],
-  "run_id": "run-20260905-908f348b-c65c7313",
+  "run_id": "run-20260905-196cd0c2-c65c7313",
   "service_running": true,
   "source_checks": {
     "atlas_public_polls": {
       "attempts": 1,
       "dated_items": 3,
       "discovered": 3,
-      "elapsed_seconds": 2.03565,
+      "elapsed_seconds": 1.031546,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-5ae41aedbdbbc862ae3a8539c2f43999",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-3e61b0d0cae2511d069455ba36a0ba4a",
       "outside_rolling_window": 5,
       "relevant_items": 8,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -5776,32 +6215,32 @@
     "broadcast_current_release": {
       "attempts": 0,
       "discovered": 1,
-      "elapsed_seconds": 5.6e-05,
+      "elapsed_seconds": 3.3e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "broadcast_latest": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 6,
-      "elapsed_seconds": 2.343151,
+      "elapsed_seconds": 1.276017,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-47a5a4a7f7bb5469741924148edc8c52",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-7251db03c09e050dc192811dc528a8b5",
       "outside_rolling_window": 0,
       "relevant_items": 6,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -5815,7 +6254,7 @@
       "attempts": 1,
       "candidate_count": 13,
       "discovered": 0,
-      "elapsed_seconds": 0.188464,
+      "elapsed_seconds": 0.146834,
       "error": null,
       "fallback_zip_path": "/Users/douglaslora/Documents/Codex/2026-08-26/agregador-pesquisas-2026/inputs/tse/consulta_cand_2026.zip",
       "health": "healthy",
@@ -5824,8 +6263,8 @@
       "identity_registry_complete": true,
       "identity_registry_error": null,
       "judicial_status_coverage_count": 0,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "missing_judicial_status_count": 13,
       "registry_complete_for_promotion": true,
       "registry_source": "remote_capture",
@@ -5840,30 +6279,30 @@
     "cnn_brasil_rss": {
       "attempts": 1,
       "discovered": 0,
-      "elapsed_seconds": 1.447448,
+      "elapsed_seconds": 0.231561,
       "error": null,
-      "feed_capture_id": "capture-782761d8f75c4a856954793271906d9c",
+      "feed_capture_id": "capture-d4c3656afd53a9097c5c116dfabdeb7b",
       "freshness": {
-        "catch_up_since": "2026-09-02T20:13:38.337527+00:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T20:46:08.509568+00:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "outside_rolling_window": 0,
       "stale": false
     },
     "datafolha_national_reports": {
       "attempts": 0,
       "discovered": 3,
-      "elapsed_seconds": 9.3e-05,
+      "elapsed_seconds": 0.000187,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "datafolha_official": {
@@ -5871,20 +6310,20 @@
       "child_resource_budget": 36,
       "dated_items": 0,
       "discovered": 12,
-      "elapsed_seconds": 1.146272,
+      "elapsed_seconds": 0.281675,
       "error": "2 recurso(s) bloqueado(s) ou falho(s); nenhuma proteção foi contornada",
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "degraded",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-dc5ef050754b6740c499664cbd2d9b22",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-d4e8377d8734e99ae7fb52a0bfef95df",
       "outside_rolling_window": 18,
       "relevant_items": 32,
       "resource_failures": 2,
@@ -5898,37 +6337,37 @@
     "g1_politica_rss": {
       "attempts": 1,
       "discovered": 3,
-      "elapsed_seconds": 1.137527,
+      "elapsed_seconds": 0.179249,
       "error": null,
-      "feed_capture_id": "capture-aeedf2a9a5fa512324552d1a08085aa8",
+      "feed_capture_id": "capture-f8047f299ae4e0f67983a069e326ff68",
       "freshness": {
-        "catch_up_since": "2026-09-02T20:13:38.337527+00:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T20:46:08.509568+00:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "outside_rolling_window": 0,
       "stale": false
     },
     "gerp_manifest": {
       "attempts": 1,
       "discovered": 4,
-      "elapsed_seconds": 1.021168,
+      "elapsed_seconds": 1.066392,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "date_precision": "date_only_conservative_cutoff_day",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "manifest_capture_id": "capture-3edb28f8811eef3bab4286f5fa8132e4",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "manifest_capture_id": "capture-021c7da6c7fb35b3b76c73a7c11748a4",
       "manifest_entries": 47,
       "outside_rolling_window": 3,
       "personal_data_form_submitted": false,
@@ -5939,20 +6378,20 @@
       "attempts": 1,
       "dated_items": 0,
       "discovered": 1,
-      "elapsed_seconds": 1.093038,
+      "elapsed_seconds": 0.0975,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-a2b6d5bc4a7430dc7681649a6e4c1cc0",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-05e65414fb29ffaca1aaada6f81c752b",
       "outside_rolling_window": 0,
       "relevant_items": 1,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -5964,20 +6403,20 @@
       "attempts": 1,
       "dated_items": 0,
       "discovered": 1,
-      "elapsed_seconds": 1.662289,
+      "elapsed_seconds": 0.332762,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-5cf473c03fd938093c5d6a8d1edf8583",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-1121f64b23653fe104a9ee96de914371",
       "outside_rolling_window": 0,
       "relevant_items": 1,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -5988,32 +6427,32 @@
     "ipsos_national_release": {
       "attempts": 0,
       "discovered": 1,
-      "elapsed_seconds": 0.000127,
+      "elapsed_seconds": 9.2e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "jota_elections": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 0,
-      "elapsed_seconds": 1.274288,
+      "elapsed_seconds": 0.31536,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-dc52e46b20a99b9244da87c7778673a0",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-b2009b0a62a27750cc78400a8bf2018e",
       "outside_rolling_window": 0,
       "relevant_items": 0,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -6024,62 +6463,62 @@
     "jota_feed": {
       "attempts": 1,
       "discovered": 1,
-      "elapsed_seconds": 2.016418,
+      "elapsed_seconds": 1.366954,
       "error": null,
-      "feed_capture_id": "capture-2dd419e0526e3e9d47dd96322f616608",
+      "feed_capture_id": "capture-56b93a792ce90924f52fb702df3d3b56",
       "freshness": {
-        "catch_up_since": "2026-09-02T20:13:38.337527+00:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T20:46:08.509568+00:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "outside_rolling_window": 0,
       "stale": false
     },
     "manual_reviewed": {
       "attempts": 0,
       "discovered": 1,
-      "elapsed_seconds": 0.000989,
+      "elapsed_seconds": 0.001038,
       "error": null,
       "health": "healthy",
       "http_status": null,
       "invalid_unreviewed": 0,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "nexus_current_release": {
       "attempts": 0,
       "discovered": 4,
-      "elapsed_seconds": 0.000218,
+      "elapsed_seconds": 0.000273,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "nexus_releases": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 4,
-      "elapsed_seconds": 2.312662,
+      "elapsed_seconds": 1.33868,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-57a15ed342969bb149127f073cb2f157",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-fb8f0d1d1a42efefea2bc0f9a74cc279",
       "outside_rolling_window": 0,
       "relevant_items": 34,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -6091,20 +6530,20 @@
       "attempts": 1,
       "dated_items": 0,
       "discovered": 3,
-      "elapsed_seconds": 1.221877,
+      "elapsed_seconds": 0.314693,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-a57488e536e04f7cf712c256b67445cb",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-37b48f5adeef522fc8b52af37ec82761",
       "outside_rolling_window": 0,
       "relevant_items": 15,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -6115,50 +6554,50 @@
     "poder360_rss": {
       "attempts": 1,
       "discovered": 0,
-      "elapsed_seconds": 0.095261,
+      "elapsed_seconds": 0.108129,
       "error": null,
-      "feed_capture_id": "capture-595ddff0a6b08de2da9d14806acfec6b",
+      "feed_capture_id": "capture-a3c1e97f7cd1ad7dac0c7722b766812e",
       "freshness": {
-        "catch_up_since": "2026-09-02T20:13:38.337527+00:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T20:46:08.509568+00:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "outside_rolling_window": 0,
       "stale": false
     },
     "poderdata_current_release": {
       "attempts": 0,
       "discovered": 5,
-      "elapsed_seconds": 4.7e-05,
+      "elapsed_seconds": 4.9e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "poderdata_official": {
       "attempts": 1,
       "dated_items": 1,
       "discovered": 3,
-      "elapsed_seconds": 1.168196,
+      "elapsed_seconds": 0.230574,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-8448f5c8b2db9887ebfd2b2081892d14",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-736b35c7e37025e5b7c3783662dfd1da",
       "outside_rolling_window": 10,
       "relevant_items": 13,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -6169,24 +6608,24 @@
     "poderdata_reports_pdf": {
       "attempts": 0,
       "discovered": 6,
-      "elapsed_seconds": 6.5e-05,
+      "elapsed_seconds": 6.6e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "primary_release_bootstrap": {
       "attempts": 0,
       "child_resource_budget": 9,
       "discovered": 3,
-      "elapsed_seconds": 0.000203,
+      "elapsed_seconds": 0.000188,
       "error": "2 recurso(s) bloqueado(s) ou falho(s); nenhuma proteção foi contornada",
       "health": "degraded",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "resource_failures": 2,
       "root_resources_discovered": 3,
       "root_resources_selected": 3,
@@ -6196,32 +6635,32 @@
     "quaest_current_release": {
       "attempts": 0,
       "discovered": 1,
-      "elapsed_seconds": 0.000109,
+      "elapsed_seconds": 0.000132,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "quaest_national_reports": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 0,
-      "elapsed_seconds": 1.624647,
+      "elapsed_seconds": 1.13629,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-6526bfd732915f5a914732ddc8d65fc9",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-098cfbafba1586c3d50c0174b421c65f",
       "outside_rolling_window": 10,
       "relevant_items": 10,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -6232,32 +6671,32 @@
     "quaest_presidential_reports": {
       "attempts": 0,
       "discovered": 6,
-      "elapsed_seconds": 5.2e-05,
+      "elapsed_seconds": 9.3e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "stale": false
     },
     "quaest_reports": {
       "attempts": 1,
       "dated_items": 1,
       "discovered": 1,
-      "elapsed_seconds": 4.679382,
+      "elapsed_seconds": 1.099051,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-0b22bafefb68fbce3247fe393d6482d5",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-c23f2083ea2b3bea9f896d1f7e889230",
       "outside_rolling_window": 9,
       "relevant_items": 10,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -6277,7 +6716,7 @@
       },
       "attempts": 1,
       "catch_up_hours": 72,
-      "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
+      "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
       "child_resource_budget": 0,
       "coverage_gap": {
         "accepted": 0,
@@ -6289,7 +6728,7 @@
         "validated_awaiting_review": 0
       },
       "discovered": 60,
-      "elapsed_seconds": 39.346074,
+      "elapsed_seconds": 37.987053,
       "error": null,
       "expected_releases": [
         {
@@ -6823,7 +7262,7 @@
           "registration_no": "BR049742026",
           "release_found": true,
           "release_search_active": true,
-          "release_sha256": "3647071e2390f91f8ba7d67be03d1cd23b2d8f25d7ab895bd3842fc7b508711d",
+          "release_sha256": "23b74168402d839c842eccd53739ff72caf88dc6fb331cd411ae4be41a6c10ca",
           "release_url": "https://www.poder360.com.br/poderdata/poderdata-aya-lula-tem-38-contra-35-de-flavio-no-1o-turno/",
           "sample_size": 2400,
           "scenario_status": "accepted",
@@ -6906,7 +7345,7 @@
           "registration_no": "BR063662026",
           "release_found": true,
           "release_search_active": true,
-          "release_sha256": "599aed610d34cc2ad80fc17fad14b4c9491e347426bcd04170f34181012c2358",
+          "release_sha256": "2e51c3166401898424512f7643fcf9076538273b31d2ed06f2ea9f6cf875409c",
           "release_url": "https://www.broadcast.com.br/ultimas-noticias/indexa-broadcast-em-cenario-de-1o-turno-lula-tem-39-e-flavio-bolsonaro-34/",
           "sample_size": 2000,
           "scenario_status": "blocked",
@@ -8129,8 +8568,8 @@
       "future_window_end": "2026-09-12",
       "health": "healthy",
       "http_status": 304,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "national_live_preserved": 26,
       "national_quota_overflow": 0,
       "recent_release_inventory": [
@@ -8337,18 +8776,18 @@
     "vox_brasil_feed": {
       "attempts": 1,
       "discovered": 0,
-      "elapsed_seconds": 0.779479,
+      "elapsed_seconds": 0.884392,
       "error": null,
-      "feed_capture_id": "capture-addccaa41763d519a272d2fb7bfe26be",
+      "feed_capture_id": "capture-e088547f2449727ef3321e3ac085c8d9",
       "freshness": {
-        "catch_up_since": "2026-09-02T20:13:38.337527+00:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T20:46:08.509568+00:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
       "outside_rolling_window": 5,
       "stale": false
     },
@@ -8356,20 +8795,20 @@
       "attempts": 1,
       "dated_items": 0,
       "discovered": 1,
-      "elapsed_seconds": 1.475284,
+      "elapsed_seconds": 1.606544,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-09-02T17:13:38.337527-03:00",
-        "checked_at": "2026-09-05T17:13:38.337527-03:00",
+        "catch_up_since": "2026-09-02T17:46:08.509568-03:00",
+        "checked_at": "2026-09-05T17:46:08.509568-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-09-05T17:13:38.337527-03:00",
-      "last_success": "2026-09-05T17:13:38.337527-03:00",
-      "listing_capture_id": "capture-37a381b3dd3c1fa2f83fa8bb1ecce436",
+      "last_check": "2026-09-05T17:46:08.509568-03:00",
+      "last_success": "2026-09-05T17:46:08.509568-03:00",
+      "listing_capture_id": "capture-e47491e8c69fede7cd709b32017dfe0a",
       "outside_rolling_window": 0,
       "relevant_items": 1,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8383,7 +8822,7 @@
   "state_intelligence": [],
   "timezone": "America/Sao_Paulo",
   "validated_poll_count": 4,
-  "visible_run_id": "run-20260905-908f348b-c65c7313",
+  "visible_run_id": "run-20260905-196cd0c2-c65c7313",
   "watch_cycle_failures": 0,
   "watch_interval_minutes": 30,
   "watcher_prepared": true
