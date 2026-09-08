@@ -1,6 +1,6 @@
 {
   "as_of": "2026-09-08",
-  "code_hash": "fc96cb9cdf6c0e7615b5fbb5bcf51f0c1c39605e3f4414072112f3f442ef9456",
+  "code_hash": "d840ec56776cd2c7b118910782678666f882ffc75083c58408be83912c7e119d",
   "config_hash": "80bb4883fbe295547ce559e1cb19074d951b8dde36b0142f1468b354f591747e",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
   "designs": [
@@ -20,8 +20,8 @@
     "Casas mudam equipe, método e dono entre ciclos; a identidade jurídica não garante continuidade metodológica.",
     "O fold walk-forward mais antigo não tem treino e fica indisponível por construção."
   ],
-  "live_hash": "ad03b2ebff6d13a77a8cd838da43aab865b7f271a2fe16565fbfb583a74ca6ad",
-  "live_source_run_id": "run-20260908-7cd3798e-5d24833d",
+  "live_hash": "a0576ee7b31e48aa8f855986099ab78bb388e81fb68848848f8e5bf046146614",
+  "live_source_run_id": "run-20260908-41580117-2541923a",
   "mechanism": {
     "common_error": "Erro comum da eleição entra como incerteza compartilhada no forecast, não como correção atribuída a uma casa.",
     "dispersion_inflation": "As pesquisas discordam entre si mais do que o erro amostral explica; a dispersão do bootstrap é escalada por esse fator, medido só no treino.",
@@ -6978,7 +6978,7 @@
       "turn": 2
     }
   ],
-  "run_id": "hist-20260908-8d90558c-80bb4883-ad03b2eb-fc96cb",
+  "run_id": "hist-20260908-8d90558c-80bb4883-a0576ee7-d840ec",
   "summary": {
     "fold_rows": 64,
     "scored_cycles": [
