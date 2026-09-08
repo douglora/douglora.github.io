@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-08",
+  "as_of": "2026-09-07",
   "code_hash": "d840ec56776cd2c7b118910782678666f882ffc75083c58408be83912c7e119d",
   "config_hash": "80bb4883fbe295547ce559e1cb19074d951b8dde36b0142f1468b354f591747e",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
@@ -20,7 +20,7 @@
         "operations.json#live_coverage"
       ],
       "rule": "gate_satisfied = polls >= 3 E houses >= 2",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/sinal-atual",
@@ -32,7 +32,7 @@
         "current_signal.json#signals"
       ],
       "rule": "insuficiente: nenhuma casa com duas medições comparáveis ou menos de duas casas. fraco: uma casa, ou direções divergentes, ou dentro do ruído amostral. moderado: ≥2 casas na mesma direção com mediana acima de 1 erro-padrão amostral. forte: ≥3 casas na mesma direção com mediana acima de 2 erros-padrão e acima da dispersão entre casas.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/laboratorio#dispersao",
@@ -44,7 +44,7 @@
         "history_patterns.json#P4"
       ],
       "rule": "Razão = desvio-padrão observado entre casas ÷ desvio-padrão amostral esperado, no percentual do líder oficial, usando a última pesquisa de cada casa. Razão <1 sugere herding; >1, dispersão acima do ruído amostral.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/laboratorio#erro-comum",
@@ -56,7 +56,7 @@
         "history_patterns.json#P7"
       ],
       "rule": "Componente comum = média do erro de margem com um voto por casa. Componente de casa = desvio-padrão dos desvios em relação a esse comum.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/metodologia#historico-no-modelo",
@@ -68,7 +68,7 @@
         "history_integration.json#promotion.channels.interval_calibration"
       ],
       "rule": "Critérios fixados antes de rodar os folds e avaliados por canal. Ponto: ≥3 ciclos retidos, não piorar contra M2 e bater B0 e B1 em MAE. Faixa (multiplicativa e aditiva, cada uma por si): cobertura 80% mais próxima do nominal que M2 e B1, em todos os ciclos retidos, sem deslocar o ponto. Viés assinado: só com persistência fora da amostra.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/laboratorio#persistencia",
@@ -80,7 +80,7 @@
         "history_lab.json#persistence.relative_margin_error"
       ],
       "rule": "Correção assinada só é autorizada se o MAE fora da amostra do modelo de viés ficar abaixo do modelo nulo (prever zero) E o sinal se repetir com p<0,05 no teste binomial unilateral. Caso contrário, o padrão é encolher para zero e usar o histórico apenas como variância/confiabilidade.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/sinal-atual#ultima-pesquisa",
@@ -92,7 +92,7 @@
         "current_signal.json#latest_poll_comparison"
       ],
       "rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/cenario-corrigido#eixo-ideologico",
@@ -104,7 +104,7 @@
         "house_correction.json#ideology.persistence"
       ],
       "rule": "Correção assinada só é autorizada se o MAE fora da amostra do modelo de viés ficar abaixo do modelo nulo (prever zero) E o sinal se repetir com p<0,05 no teste binomial unilateral. Caso contrário, o padrão é encolher para zero e usar o histórico apenas como variância/confiabilidade.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/cenario-corrigido",
@@ -116,19 +116,19 @@
         "house_correction.json#scenario.aggregate"
       ],
       "rule": "erro da casa = 0.50 × erro em 2022 + 0.50 × erro médio em todas as eleições do mesmo turno (janela d30); ajuste do candidato = − erro do bloco × participação do candidato dentro do bloco; agregado = média das casas PONDERADA por 1/MAE² (MAE do mesmo turno, encolhida para a média geral); a média simples fica ao lado.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/laboratorio#contexto",
-      "detail": "Faixa de 10% a 90%: -5.4 a +17.7 pp, em 77 observações de 6 eleições/turnos. Isso descreve o passado; não é correção nem previsão para 2026.",
+      "detail": "Faixa de 10% a 90%: -5.4 a +17.7 pp, em 75 observações de 6 eleições/turnos. Isso descreve o passado; não é correção nem previsão para 2026.",
       "evidence_strength": "moderado",
-      "headline": "A 26 dias da eleição, o erro de margem histórico teve mediana +7.6 pp.",
+      "headline": "A 27 dias da eleição, o erro de margem histórico teve mediana +7.6 pp.",
       "id": "contexto-historico",
       "inputs": [
         "current_signal.json#historical_context_at_this_distance"
       ],
-      "rule": "Observações com |dias_para_eleição − 26| ≤ 10.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "rule": "Observações com |dias_para_eleição − 27| ≤ 10.",
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/laboratorio#ancoras",
@@ -140,7 +140,7 @@
         "current_signal.json#house_historical_anchors"
       ],
       "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/laboratorio#ancoras",
@@ -152,7 +152,7 @@
         "current_signal.json#house_historical_anchors"
       ],
       "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/laboratorio#ancoras",
@@ -164,7 +164,7 @@
         "current_signal.json#house_historical_anchors"
       ],
       "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     },
     {
       "calculation_ref": "/laboratorio#cobertura",
@@ -176,11 +176,11 @@
         "history_lab.json#coverage.totals"
       ],
       "rule": "célula coberta = ≥3 observações pontuadas e ≥2 casas",
-      "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec"
+      "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec"
     }
   ],
   "live_hash": "55e7f7fd68e638f81e289d335bf0f7042e0d7c96c7a866a4b965d8e3afe18f5d",
   "live_source_run_id": "run-20260907-8d601809-5d24833d",
-  "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec",
+  "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec",
   "version": "1.3.0-auto-insights-house-anchors"
 }

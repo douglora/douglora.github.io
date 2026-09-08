@@ -1,15 +1,15 @@
 {
-  "as_of": "2026-09-08",
+  "as_of": "2026-09-07",
   "code_hash": "d840ec56776cd2c7b118910782678666f882ffc75083c58408be83912c7e119d",
   "comparability_rule": "Só são diferenciadas pesquisas da mesma casa, mesmo turno, mesmo conjunto de candidaturas e mesma base. Casas diferentes nunca são ligadas como série.",
   "config_hash": "80bb4883fbe295547ce559e1cb19074d951b8dde36b0142f1468b354f591747e",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
-  "days_to_election": 26,
+  "days_to_election": 27,
   "election_date": "2026-10-04",
   "gate_message": null,
   "gate_satisfied": true,
   "historical_context_at_this_distance": {
-    "days_to_election": 26,
+    "days_to_election": 27,
     "elections": [
       "2010-T1",
       "2014-T1",
@@ -18,27 +18,27 @@
       "2022-T1",
       "2022-T2"
     ],
-    "mae_median": 5.318026315789474,
+    "mae_median": 5.676666666666667,
     "margin_error_p10_p90_pp": [
       -5.357594936708864,
       17.700000000000003
     ],
-    "median_margin_error_pp": 7.574324324324323,
-    "n_observations": 77,
+    "median_margin_error_pp": 7.574324324324326,
+    "n_observations": 75,
     "per_election": [
       {
         "election": "2010-T1",
         "houses": 4,
-        "mae": 8.219310496267019,
+        "mae": 8.228824609733701,
         "median_margin_error_pp": 14.700000000000003,
-        "n": 23
+        "n": 22
       },
       {
         "election": "2014-T1",
         "houses": 4,
-        "mae": 10.668851238772977,
-        "median_margin_error_pp": 17.153965517241375,
-        "n": 8
+        "mae": 10.823161885445261,
+        "median_margin_error_pp": 16.09793103448275,
+        "n": 9
       },
       {
         "election": "2014-T2",
@@ -57,16 +57,16 @@
       {
         "election": "2022-T1",
         "houses": 12,
-        "mae": 3.6873900329772424,
+        "mae": 3.7120195298645005,
         "median_margin_error_pp": 3.372150537634411,
-        "n": 28
+        "n": 27
       },
       {
         "election": "2022-T2",
         "houses": 6,
-        "mae": 2.299198072851458,
-        "median_margin_error_pp": 4.721739130434784,
-        "n": 9
+        "mae": 2.3630763265815458,
+        "median_margin_error_pp": 5.224310425432449,
+        "n": 8
       }
     ],
     "reading": "A esta distância da eleição, o erro de margem histórico teve mediana +7.6 pp. Isso descreve o passado, não corrige 2026.",
@@ -74,7 +74,7 @@
     "tolerance_days": 10
   },
   "house_historical_anchors": {
-    "as_of": "2026-09-08",
+    "as_of": "2026-09-07",
     "items": [
       {
         "anchors": [
@@ -765,7 +765,7 @@
   },
   "live_hash": "55e7f7fd68e638f81e289d335bf0f7042e0d7c96c7a866a4b965d8e3afe18f5d",
   "live_source_run_id": "run-20260907-8d601809-5d24833d",
-  "run_id": "hist-20260908-8d90558c-80bb4883-55e7f7fd-d840ec",
+  "run_id": "hist-20260907-8d90558c-80bb4883-55e7f7fd-d840ec",
   "signals": [
     {
       "between_house_sd_pp": 6.890296835129128,
