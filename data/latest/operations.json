@@ -12,14 +12,14 @@
     "selected_count": 0,
     "truncation_count": 0
   },
-  "as_of": "2026-09-16T13:34:52.042642-03:00",
+  "as_of": "2026-09-17T08:26:36.472175-03:00",
   "blocked_recent": [],
   "candidate_registry_status": {
     "candidate_count": 2,
     "identity_matched_count": 2,
     "judicial_status_final_inferred": false,
     "judicial_status_unknown_or_pending_count": 2,
-    "warning": "O snapshot oficial confirma identidade e pedido de registro, mas não fornece situação judicial para as 13 candidaturas (#NE/-3); nenhum status final foi inferido."
+    "warning": "O snapshot oficial confirma identidade e pedido de registro, mas não fornece situação judicial para as candidaturas (#NE/-3); nenhum status final foi inferido."
   },
   "catch_up_since": null,
   "champion_latency_seconds": null,
@@ -54,18 +54,18 @@
   "last_accepted_discovery": null,
   "last_error": null,
   "last_published_run": {
-    "created_at": "2026-09-16T13:34:52.042642-03:00",
-    "run_id": "run-20260916-947f0d46-366ffc58"
+    "created_at": "2026-09-17T08:26:36.472175-03:00",
+    "run_id": "run-20260917-64cf10a6-366ffc58"
   },
-  "last_search": "2026-09-16T13:24:56.863898-03:00",
-  "last_source_check": "2026-09-16T13:24:56.863898-03:00",
+  "last_search": "2026-09-16T14:00:09.881747-03:00",
+  "last_source_check": "2026-09-16T14:00:09.881747-03:00",
   "last_validated_poll": {
-    "fingerprint": "514c5195404d2aec6e9881d4b5b277988b86997544adaf6d37f1aaf7ba8858d1",
-    "published_at": "2026-09-14",
-    "registration_no": "BR-03607/2026",
-    "scenario_id": "president-br-t2-dbec719fff"
+    "fingerprint": "b7e100b9c9bf745d37df575e19fd1713b072ad2580ee1e353c390182b590febe",
+    "published_at": "2026-09-15",
+    "registration_no": "BR-06902/2026",
+    "scenario_id": "president-br-t2-6674345612"
   },
-  "latency_seconds": 0.08834304199990584,
+  "latency_seconds": 0.08693087499977992,
   "latency_sla_seconds": {
     "champion_m3": 900,
     "preliminary_b1_m2": 300
@@ -82,6 +82,13 @@
         "poll_count": 2
       },
       {
+        "id": "mda",
+        "latest_field_end": "2026-09-13",
+        "latest_published_at": "2026-09-15",
+        "name": "MDA",
+        "poll_count": 1
+      },
+      {
         "id": "nexus",
         "latest_field_end": "2026-09-13",
         "latest_published_at": "2026-09-14",
@@ -93,7 +100,7 @@
         "latest_field_end": "2026-09-09",
         "latest_published_at": "2026-09-10",
         "name": "PoderData",
-        "poll_count": 3
+        "poll_count": 2
       },
       {
         "id": "quaest",
@@ -105,11 +112,12 @@
     ],
     "house_ids": [
       "datafolha",
+      "mda",
       "nexus",
       "poderdata",
       "quaest"
     ],
-    "houses": 4,
+    "houses": 5,
     "min_houses": 2,
     "min_polls": 3,
     "polls": 25,
@@ -118,51 +126,100 @@
   "live_diagnostic": {
     "availability": "preliminary_b1_m2",
     "base": "totais",
-    "blank_null_pct": 6.0,
+    "blank_null_pct": 10.2,
     "confidence_level": 95.0,
-    "coverage_reason": "25 pesquisa(s) de 4 casa(s) em 21 dias; o gate exige 3 pesquisas e 2 casas",
+    "coverage_reason": "25 pesquisa(s) de 5 casa(s) em 21 dias; o gate exige 3 pesquisas e 2 casas",
     "evidence_ids": [
-      "ev-release-954f1f81c3f23a120180",
-      "ev-tse-75cdd729d108d701809a",
-      "ev-tse-candidates-5850b639768d62bf2506"
+      "ev-release-628001b422ad057a9c40",
+      "ev-release-ce1a1f63a709bcabdbf7",
+      "ev-tse-75cdd729d108d701",
+      "ev-tse-candidates-5850b639768d62bf"
     ],
     "field_end": "2026-09-13",
-    "field_start": "2026-09-11",
+    "field_start": "2026-09-09",
     "forecast_available": false,
-    "institute": "Nexus",
-    "margin_of_error": 2.0,
+    "institute": "MDA",
+    "margin_of_error": 2.2,
     "probabilities_available": false,
-    "published_at": "2026-09-14",
-    "registration_no": "BR-04076/2026",
-    "run_id": "run-20260916-947f0d46-366ffc58",
-    "sample_size": 2003,
+    "published_at": "2026-09-15",
+    "registration_no": "BR-06902/2026",
+    "run_id": "run-20260917-64cf10a6-366ffc58",
+    "sample_size": 2002,
     "scenario_id": "president-br-t2-6674345612",
     "source_tier": "A",
     "status": "published_poll_only",
     "sum_pct": 100.0,
-    "undecided_pct": 1.0,
+    "undecided_pct": 2.5,
     "unmodeled_mass": 1.0,
     "values": [
       {
         "candidate_id": "2026-tse-280002542548",
-        "evidence_id": "ev-release-954f1f81c3f23a120180",
+        "evidence_id": "ev-release-ce1a1f63a709bcabdbf7",
         "label": "LULA",
         "number": 13,
         "party": "PT",
-        "pct": 47.0
+        "pct": 47.3
       },
       {
         "candidate_id": "2026-tse-280002551544",
-        "evidence_id": "ev-release-954f1f81c3f23a120180",
+        "evidence_id": "ev-release-ce1a1f63a709bcabdbf7",
         "label": "FLAVIO BOLSONARO",
         "number": 22,
         "party": "PL",
-        "pct": 46.0
+        "pct": 40.0
       }
     ],
     "winner_publication_status": "indisponivel"
   },
   "live_polls": [
+    {
+      "base": "totais",
+      "blank_null_pct": 10.2,
+      "confidence_level": 95.0,
+      "contractor": "Confederação Nacional do Transporte (CNT)",
+      "evidence_id": "ev-release-ce1a1f63a709bcabdbf7",
+      "evidence_ids": [
+        "ev-release-628001b422ad057a9c40",
+        "ev-release-ce1a1f63a709bcabdbf7",
+        "ev-tse-75cdd729d108d701",
+        "ev-tse-candidates-5850b639768d62bf"
+      ],
+      "field_end": "2026-09-13",
+      "field_start": "2026-09-09",
+      "institute": "MDA",
+      "institute_id": "mda",
+      "margin_of_error": 2.2,
+      "methodology": "Pesquisa quantitativa, com entrevistas pessoais em domicílios e pontos de fluxo, aplicada pelo Instituto MDA para a Confederação Nacional do Transporte (CNT).",
+      "mode": "presencial",
+      "payer": "Confederação Nacional do Transporte (CNT)",
+      "published_at": "2026-09-15",
+      "registration_no": "BR-06902/2026",
+      "sample_size": 2002,
+      "sample_size_basis": "declared",
+      "scenario_id": "president-br-t2-6674345612",
+      "source_tier": "A",
+      "source_url": "https://data.cnt.org.br/wp-content/uploads/2026/09/Relatorio-Pesquisa-CNT-de-Opiniao-R170-SETEMBRO26.pdf",
+      "sum_pct": 100.0,
+      "undecided_pct": 2.5,
+      "values": [
+        {
+          "candidate_id": "2026-tse-280002542548",
+          "evidence_id": "ev-release-ce1a1f63a709bcabdbf7",
+          "label": "LULA",
+          "number": 13,
+          "party": "PT",
+          "pct": 47.3
+        },
+        {
+          "candidate_id": "2026-tse-280002551544",
+          "evidence_id": "ev-release-ce1a1f63a709bcabdbf7",
+          "label": "FLAVIO BOLSONARO",
+          "number": 22,
+          "party": "PL",
+          "pct": 40.0
+        }
+      ]
+    },
     {
       "base": "totais",
       "blank_null_pct": 6.0,
@@ -1724,141 +1781,6 @@
           "pct": 41.0
         }
       ]
-    },
-    {
-      "base": "totais",
-      "blank_null_pct": 5.0,
-      "confidence_level": 95.0,
-      "contractor": null,
-      "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-      "evidence_ids": [
-        "ev-release-5f5f88163dc9ea02270c",
-        "ev-tse-39553509c1aab12a4b80",
-        "ev-tse-candidates-b4ba4fce673d13b3b846"
-      ],
-      "field_end": "2026-08-26",
-      "field_start": "2026-08-23",
-      "institute": "PoderData",
-      "institute_id": "poderdata",
-      "margin_of_error": 2.0,
-      "methodology": "Pesquisa quantitativa por amostragem. Aplicação de questionário estruturado por meio de ligações automatizadas para telefones fixos e celulares. O universo da pesquisa é o conjunto de eleitoras e eleitores com 16 anos ou mais.",
-      "mode": "telefone",
-      "payer": null,
-      "published_at": "2026-08-27",
-      "registration_no": "BR-04974/2026",
-      "sample_size": 2400,
-      "sample_size_basis": "declared",
-      "scenario_id": "president-br-t1-ef6d6ebdaf",
-      "source_tier": "A",
-      "source_url": "https://www.poder360.com.br/poderdata/poderdata-aya-lula-tem-38-contra-35-de-flavio-no-1o-turno/",
-      "sum_pct": 101.0,
-      "undecided_pct": 2.0,
-      "values": [
-        {
-          "candidate_id": "2026-tse-280002542548",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "LULA",
-          "number": 13,
-          "party": "PT",
-          "pct": 38.0
-        },
-        {
-          "candidate_id": "2026-tse-280002551544",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "FLAVIO BOLSONARO",
-          "number": 22,
-          "party": "PL",
-          "pct": 35.0
-        },
-        {
-          "candidate_id": "2026-tse-280002551547",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "ESCRITOR AUGUSTO CURY",
-          "number": 70,
-          "party": "AVANTE",
-          "pct": 4.0
-        },
-        {
-          "candidate_id": "2026-tse-280002540694",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "RENAN SANTOS",
-          "number": 14,
-          "party": "MISSÃO",
-          "pct": 4.0
-        },
-        {
-          "candidate_id": "2026-tse-280002551932",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "RONALDO CAIADO",
-          "number": 55,
-          "party": "PSD",
-          "pct": 4.0
-        },
-        {
-          "candidate_id": "2026-tse-280002553884",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "PABLO MARÇAL",
-          "number": 28,
-          "party": "PRTB",
-          "pct": 3.0
-        },
-        {
-          "candidate_id": "2026-tse-280002541457",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "HERTZ DIAS",
-          "number": 16,
-          "party": "PSTU",
-          "pct": 2.0
-        },
-        {
-          "candidate_id": "2026-tse-280002539826",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "ZEMA",
-          "number": 30,
-          "party": "NOVO",
-          "pct": 2.0
-        },
-        {
-          "candidate_id": "2026-tse-280002551975",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "EDMILSON COSTA",
-          "number": 21,
-          "party": "PCB",
-          "pct": 1.0
-        },
-        {
-          "candidate_id": "2026-tse-280002538811",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "SAMARA",
-          "number": 80,
-          "party": "UP",
-          "pct": 1.0
-        },
-        {
-          "candidate_id": "2026-tse-280002552484",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "CLARIANA BARAO",
-          "number": 27,
-          "party": "DC",
-          "pct": 0.0
-        },
-        {
-          "candidate_id": "2026-tse-280002552487",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "RUI COSTA PIMENTA",
-          "number": 29,
-          "party": "PCO",
-          "pct": 0.0
-        },
-        {
-          "candidate_id": "2026-tse-280002548139",
-          "evidence_id": "ev-release-5f5f88163dc9ea02270c",
-          "label": "VETERINÁRIO WILSON GRASSI",
-          "number": 35,
-          "party": "DEMOCRATA",
-          "pct": 0.0
-        }
-      ]
     }
   ],
   "local_runtime_limitation": "Atualizações só ocorrem enquanto o Mac e o processo Paseo estiverem ligados.",
@@ -1871,20 +1793,20 @@
   "next_watch_attempt_at": null,
   "operational_provenance": {
     "artifact_hashes": {
-      "delta": "cefad30fce624aef6498ea1864f149219cc7dca01335017b81dff7c167f43bc5",
-      "evidence": "e6c918694cca4cd766b6afd1cb9e7ba21e7eb5c452eec795a10de20860ada1f3",
+      "delta": "8d90978ebede57e6eba2f9647065eadb05b90d1068addd138d5a4f5565efa6d9",
+      "evidence": "a36e281aa1dccc3b2d05088ba9a4a88688c30b5cb671e19ac0d4dbff11f717c1",
       "explanation": "34355e0b36a2e7d2a320d4d65d30de8eed581c411319ca54ee177ba3a54e98ee",
-      "feed_event": "ebafbe4dd9d16019e08d7615ed15d55d39d84b9f367acc0c590d7aa988bd3844",
-      "result": "2a804fdb52b3106574d8880c7ff79bb034d9b883016536e4549cbd3fe5802792"
+      "feed_event": "8e78746b4194a74ad1de4eb9a8bc1fe695e130ebcacf898098a768d2afa5184f",
+      "result": "51c95b2dda28bb4869be32ce773bd6e1c2f874088eb58d2ffad9334112e8a714"
     },
     "config_hash": "366ffc58e12e11a61f0255397cc6cdf23271c92b2d25d68cfcb2fa39e983967b",
-    "created_at": "2026-09-16T13:34:52.042642-03:00",
-    "data_hash": "947f0d46565262359d070ec261fcc22311c3b76b19fc812b76b8bb1fe3dd123c",
-    "run_id": "run-20260916-947f0d46-366ffc58"
+    "created_at": "2026-09-17T08:26:36.472175-03:00",
+    "data_hash": "64cf10a6d5f5760eab0a14a0d8d4dbab8c0f037ff699ccfad0b67f3154e34674",
+    "run_id": "run-20260917-64cf10a6-366ffc58"
   },
   "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo.",
   "processing_message": "último run concluído",
-  "processing_started_at": "2026-09-16T13:34:52.042642-03:00",
+  "processing_started_at": "2026-09-17T08:26:36.472175-03:00",
   "processing_state": "idle",
   "processing_trigger": "new_poll",
   "recent_release_inventory": [],
@@ -1902,15 +1824,15 @@
   },
   "retry_queue_size": 0,
   "review_queue_items": [],
-  "run_id": "run-20260916-947f0d46-366ffc58",
+  "run_id": "run-20260917-64cf10a6-366ffc58",
   "service_running": false,
   "source_checks": {},
-  "stale": false,
-  "stale_warning": null,
+  "stale": true,
+  "stale_warning": "checagem de fontes atrasada",
   "state_intelligence": [],
   "timezone": "America/Sao_Paulo",
   "validated_poll_count": 25,
-  "visible_run_id": "run-20260916-947f0d46-366ffc58",
+  "visible_run_id": "run-20260917-64cf10a6-366ffc58",
   "watch_cycle_failures": 0,
   "watch_interval_minutes": 30,
   "watcher_prepared": true
