@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "scope": "comparativo 2022 × 2026 (/comparativo-2022-2026): retrato de candidatura de 2022",
+  "dataset_url": "https://dadosabertos.tse.jus.br/dataset/candidatos-2022",
+  "mirror": "Wikimedia Commons",
+  "mirror_api": "https://commons.wikimedia.org/w/api.php",
+  "license": "CC BY 4.0",
+  "attribution": "Tribunal Superior Eleitoral (TSE), via Wikimedia Commons",
+  "captured_at": "2026-09-23T22:20:22.080339-03:00",
+  "status": "complete_via_verified_commons_mirror",
+  "fetch_policy": "SafeFetcher do projeto: User-Agent de config/sources.yaml, robots.txt respeitado",
+  "api_snapshot": null,
+  "api_status": "falhou: robots_blocked — bloqueado por robots.txt",
+  "file_page_snapshot": null,
+  "file_page_status": "falhou: robots_blocked — bloqueado por robots.txt",
+  "candidates": [
+    {
+      "candidate_id": "2022-tse-280001618036",
+      "sq_candidato": "280001618036",
+      "name": "Jair Bolsonaro",
+      "election_year": 2022,
+      "status": "available",
+      "portrait_type": "official_tse_registration_portrait_2022",
+      "commons_title": "File:2022 JAIR BOLSONARO CANDIDATO PRESIDENTE TSE (280001618036).jpg",
+      "commons_page": "https://commons.wikimedia.org/wiki/File:2022_JAIR_BOLSONARO_CANDIDATO_PRESIDENTE_TSE_(280001618036).jpg",
+      "mirrored_from": "https://upload.wikimedia.org/wikipedia/commons/1/1c/2022_JAIR_BOLSONARO_CANDIDATO_PRESIDENTE_TSE_%28280001618036%29.jpg",
+      "source_dataset": "https://dadosabertos.tse.jus.br/dataset/candidatos-2022",
+      "author": "Tribunal Superior Eleitoral do Brasil (TSE)",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution_required": true,
+      "license_basis": "Commons TSE-Dados-Abertos template + Category:CC-BY-4.0",
+      "license_checks": null,
+      "license_evidence": "Licença e origem conferidas na API do Commons em 23/09/2026 pela investigação do comparativo (work/probe/understand-2026-09-23/reports/fatos-externos.md, seção 5): CC BY 4.0, {{TSE-Dados-Abertos}}, categorias CC-BY-4.0 e 'TSE electoral portraits of 2022', 161x225, SHA-1 65d77eb1065b6e38ba35a9fb34ceb09a38e019f2. O cliente do projeto não repete a consulta porque o robots.txt de commons.wikimedia.org a bloqueia; o arquivo original veio de upload.wikimedia.org (permitido) e o SHA-1 local confere.",
+      "captured_at": "2026-09-23T22:20:22.080339-03:00",
+      "original_filename": "2022 JAIR BOLSONARO CANDIDATO PRESIDENTE TSE (280001618036).jpg",
+      "original_repository_path": "inputs/candidate-media/commons-tse-2022/2022 JAIR BOLSONARO CANDIDATO PRESIDENTE TSE (280001618036).jpg",
+      "wikimedia_sha1": "65d77eb1065b6e38ba35a9fb34ceb09a38e019f2",
+      "original_sha256": "9d7f155501b20c2e1e0c0e4048b6ff7aa32a3ae26cc752bf53643d5a35e0a003",
+      "original_dimensions": {
+        "width": 161,
+        "height": 225
+      },
+      "asset": "/candidates/2022/2022-tse-280001618036.webp",
+      "asset_sha256": "be1b7a5a8df6e516d1ef6985f2b40a2087fbcf19755f0eed409caa6ebe7d1d34",
+      "asset_dimensions": {
+        "width": 160,
+        "height": 160
+      },
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "width": 161,
+        "height": 161,
+        "strategy": "top_anchored_square_preserves_full_head"
+      },
+      "transform": {
+        "format": "WebP",
+        "encoder": "ffmpeg/libwebp",
+        "preset": "picture",
+        "quality": 88,
+        "compression_level": 6,
+        "scale_filter": "lanczos",
+        "alterations": "square crop and resize only; no generative or facial edits"
+      },
+      "alt_text": "Foto oficial de candidatura de Jair Bolsonaro, TSE 2022",
+      "sq_validation": "exact filename match (SQ ausente do wikitext do Commons; conferido pelo título)",
+      "metadata_warnings": [
+        "O SQ 280001618036 aparece só no título do arquivo, não no wikitext do Commons."
+      ]
+    }
+  ]
+}
