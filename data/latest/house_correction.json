@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-10",
+  "as_of": "2026-10-11",
   "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
   "config_hash": "245c45fb16988769ba0dddca349eb8c9c497d6e4f722431b910c608e0a774b69",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "8116921b1dc322d786ab9df9eaf78df78644a7337e339708514775514e487eb3",
+  "live_hash": "9e54065d1879f4c3ef13931c2282f1d6e147c0fe4c78b5fd044ca65ed47dd521",
   "live_source_run_id": "run-20261010-5343d3bf-6ead4d5d",
-  "run_id": "hist-20261010-8d90558c-245c45fb-8116921b-08a374",
+  "run_id": "hist-20261011-8d90558c-245c45fb-9e54065d-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [
@@ -18262,7 +18262,7 @@
       "reference_basis": "média simples das pesquisas vivas em votos válidos",
       "weighting_basis": "inverse_squared_shrunk_mae"
     },
-    "as_of": "2026-10-10",
+    "as_of": "2026-10-11",
     "by_candidate": [
       {
         "bloc": "direita",
@@ -35930,14 +35930,14 @@
         "known_2026_polls": [],
         "lineage_predecessor": null,
         "next_expected_release": {
-          "expected_release_status": "due_in_rolling_window_unverified",
-          "field_end": "2026-10-08",
-          "field_start": "2026-10-03",
+          "expected_release_status": "future_expected",
+          "field_end": "2026-10-14",
+          "field_start": "2026-10-09",
           "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
-          "planned_publish_date": "2026-10-09",
-          "registration_no": "BR036632026",
+          "planned_publish_date": "2026-10-15",
+          "registration_no": "BR010932026",
           "sample_size": 5000,
-          "scenario_status": "release_not_found"
+          "scenario_status": "not_yet_due"
         },
         "recent_cycle_sentences": [
           {
@@ -40738,14 +40738,14 @@
         ],
         "lineage_predecessor": null,
         "next_expected_release": {
-          "expected_release_status": "due_in_rolling_window_unverified",
-          "field_end": "2026-10-08",
-          "field_start": "2026-10-06",
+          "expected_release_status": "future_expected",
+          "field_end": "2026-10-15",
+          "field_start": "2026-10-13",
           "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
-          "planned_publish_date": "2026-10-08",
-          "registration_no": "BR029492026",
+          "planned_publish_date": "2026-10-15",
+          "registration_no": "BR004662026",
           "sample_size": 2520,
-          "scenario_status": "material_without_vote_scenario"
+          "scenario_status": "not_yet_due"
         },
         "recent_cycle_sentences": [
           {

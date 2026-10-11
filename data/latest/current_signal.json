@@ -1,15 +1,15 @@
 {
-  "as_of": "2026-10-10",
+  "as_of": "2026-10-11",
   "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
   "comparability_rule": "Só são diferenciadas pesquisas da mesma casa, mesmo turno, mesmo conjunto de candidaturas e mesma base. Casas diferentes nunca são ligadas como série.",
   "config_hash": "245c45fb16988769ba0dddca349eb8c9c497d6e4f722431b910c608e0a774b69",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
-  "days_to_election": -6,
+  "days_to_election": -7,
   "election_date": "2026-10-04",
   "gate_message": null,
   "gate_satisfied": true,
   "historical_context_at_this_distance": {
-    "days_to_election": -6,
+    "days_to_election": -7,
     "elections": [
       "2010-T1",
       "2014-T1",
@@ -19,20 +19,20 @@
       "2022-T1",
       "2022-T2"
     ],
-    "mae_median": 2.4133390219096382,
+    "mae_median": 2.4019672131147534,
     "margin_error_p10_p90_pp": [
-      -4.985294117647058,
-      10.141818181818174
+      -3.9466666666666725,
+      10.73828054298642
     ],
-    "median_margin_error_pp": 2.4194986549278497,
-    "n_observations": 56,
+    "median_margin_error_pp": 3.190292397660812,
+    "n_observations": 47,
     "per_election": [
       {
         "election": "2010-T1",
         "houses": 1,
-        "mae": 5.121111111111111,
-        "median_margin_error_pp": 8.700000000000003,
-        "n": 3
+        "mae": 5.01,
+        "median_margin_error_pp": 7.700000000000003,
+        "n": 2
       },
       {
         "election": "2014-T1",
@@ -51,38 +51,38 @@
       {
         "election": "2018-T1",
         "houses": 6,
-        "mae": 2.6166078070695566,
-        "median_margin_error_pp": -1.5858585858585847,
-        "n": 8
+        "mae": 2.6375726854314094,
+        "median_margin_error_pp": -1.1944444444444429,
+        "n": 7
       },
       {
         "election": "2018-T2",
         "houses": 5,
-        "mae": 1.6657506489460328,
-        "median_margin_error_pp": 1.3679069767441803,
-        "n": 7
+        "mae": 1.7447359103604108,
+        "median_margin_error_pp": 0.20511627906976315,
+        "n": 6
       },
       {
         "election": "2022-T1",
-        "houses": 10,
-        "mae": 2.9902955195831975,
-        "median_margin_error_pp": 4.215633909697001,
-        "n": 12
+        "houses": 7,
+        "mae": 2.6993997959281466,
+        "median_margin_error_pp": 6.290156774916014,
+        "n": 8
       },
       {
         "election": "2022-T2",
-        "houses": 11,
-        "mae": 1.7831946288398595,
-        "median_margin_error_pp": -0.9434689507494625,
-        "n": 13
+        "houses": 9,
+        "mae": 1.7126798662171743,
+        "median_margin_error_pp": 0.37864923747277146,
+        "n": 11
       }
     ],
-    "reading": "A esta distância da eleição, o erro de margem histórico teve mediana +2.4 pp. Isso descreve o passado, não corrige 2026.",
+    "reading": "A esta distância da eleição, o erro de margem histórico teve mediana +3.2 pp. Isso descreve o passado, não corrige 2026.",
     "status": "available",
     "tolerance_days": 10
   },
   "house_historical_anchors": {
-    "as_of": "2026-10-10",
+    "as_of": "2026-10-11",
     "items": [
       {
         "anchors": [],
@@ -2275,9 +2275,9 @@
     "reason": "Não há medição anterior da Nexus com o mesmo cenário na janela viva. A(s) outra(s) pesquisa(s) na janela (Datafolha, Nexus, PoderData, Quaest, REAL TIME BIG DATA) são de outra casa: comparar mediria diferença entre casas, não movimento no tempo.",
     "status": "no_comparable_previous"
   },
-  "live_hash": "8116921b1dc322d786ab9df9eaf78df78644a7337e339708514775514e487eb3",
+  "live_hash": "9e54065d1879f4c3ef13931c2282f1d6e147c0fe4c78b5fd044ca65ed47dd521",
   "live_source_run_id": "run-20261010-5343d3bf-6ead4d5d",
-  "run_id": "hist-20261010-8d90558c-245c45fb-8116921b-08a374",
+  "run_id": "hist-20261011-8d90558c-245c45fb-9e54065d-08a374",
   "signals": [
     {
       "between_house_sd_pp": 3.0134153827356034,
