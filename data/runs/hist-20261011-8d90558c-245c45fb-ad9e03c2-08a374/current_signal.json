@@ -1,0 +1,5218 @@
+{
+  "as_of": "2026-10-11",
+  "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
+  "comparability_rule": "Só são diferenciadas pesquisas da mesma casa, mesmo turno, mesmo conjunto de candidaturas e mesma base. Casas diferentes nunca são ligadas como série.",
+  "config_hash": "245c45fb16988769ba0dddca349eb8c9c497d6e4f722431b910c608e0a774b69",
+  "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
+  "days_to_election": -7,
+  "election_date": "2026-10-04",
+  "gate_message": null,
+  "gate_satisfied": true,
+  "historical_context_at_this_distance": {
+    "days_to_election": -7,
+    "elections": [
+      "2010-T1",
+      "2014-T1",
+      "2014-T2",
+      "2018-T1",
+      "2018-T2",
+      "2022-T1",
+      "2022-T2"
+    ],
+    "mae_median": 2.4019672131147534,
+    "margin_error_p10_p90_pp": [
+      -3.9466666666666725,
+      10.73828054298642
+    ],
+    "median_margin_error_pp": 3.190292397660812,
+    "n_observations": 47,
+    "per_election": [
+      {
+        "election": "2010-T1",
+        "houses": 1,
+        "mae": 5.01,
+        "median_margin_error_pp": 7.700000000000003,
+        "n": 2
+      },
+      {
+        "election": "2014-T1",
+        "houses": 4,
+        "mae": 5.391749047337167,
+        "median_margin_error_pp": 11.693967857700102,
+        "n": 6
+      },
+      {
+        "election": "2014-T2",
+        "houses": 3,
+        "mae": 1.5731686323772291,
+        "median_margin_error_pp": 3.2417391304347802,
+        "n": 7
+      },
+      {
+        "election": "2018-T1",
+        "houses": 6,
+        "mae": 2.6375726854314094,
+        "median_margin_error_pp": -1.1944444444444429,
+        "n": 7
+      },
+      {
+        "election": "2018-T2",
+        "houses": 5,
+        "mae": 1.7447359103604108,
+        "median_margin_error_pp": 0.20511627906976315,
+        "n": 6
+      },
+      {
+        "election": "2022-T1",
+        "houses": 7,
+        "mae": 2.6993997959281466,
+        "median_margin_error_pp": 6.290156774916014,
+        "n": 8
+      },
+      {
+        "election": "2022-T2",
+        "houses": 9,
+        "mae": 1.7126798662171743,
+        "median_margin_error_pp": 0.37864923747277146,
+        "n": 11
+      }
+    ],
+    "reading": "A esta distância da eleição, o erro de margem histórico teve mediana +3.2 pp. Isso descreve o passado, não corrige 2026.",
+    "status": "available",
+    "tolerance_days": 10
+  },
+  "house_historical_anchors": {
+    "as_of": "2026-10-11",
+    "items": [
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002538811": 1.0,
+          "2026-tse-280002539826": 1.0,
+          "2026-tse-280002540694": 4.0,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 42.0,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 37.0,
+          "2026-tse-280002551547": 5.0,
+          "2026-tse-280002551932": 5.0,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002538811": 1.0526315789473684,
+          "2026-tse-280002539826": 1.0526315789473684,
+          "2026-tse-280002540694": 4.2105263157894735,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 44.21052631578947,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 38.94736842105263,
+          "2026-tse-280002551547": 5.263157894736842,
+          "2026-tse-280002551932": 5.263157894736842,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "days_to_election": 7,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002538811": "SAMARA",
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002541457": "HERTZ DIAS",
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002548139": "VETERINÁRIO WILSON GRASSI",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY",
+          "2026-tse-280002551932": "RONALDO CAIADO",
+          "2026-tse-280002551975": "EDMILSON COSTA",
+          "2026-tse-280002552484": "CLARIANA BARAO",
+          "2026-tse-280002552487": "RUI COSTA PIMENTA",
+          "2026-tse-280002554479": "LEONARDO AVALANCHE"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-09-28",
+        "reason": "Nexus não tem observação histórica no 1º turno (confronto definido) a D-7 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-07557/2026",
+        "scenario_id": "president-br-t1-6a52dd9453",
+        "status": "sem_ancora_historica",
+        "turn": 1
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 46.0,
+          "2026-tse-280002551544": 44.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 51.11111111111111,
+          "2026-tse-280002551544": 48.888888888888886
+        },
+        "days_to_election": 28,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-28 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-07557/2026",
+        "scenario_id": "president-br-t2-6674345612",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002540694": 37.0,
+          "2026-tse-280002542548": 48.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002540694": 43.529411764705884,
+          "2026-tse-280002542548": 56.470588235294116
+        },
+        "days_to_election": 28,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-28 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-07557/2026",
+        "scenario_id": "president-br-t2-6cf2e28e70",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 46.0,
+          "2026-tse-280002551932": 42.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 52.27272727272727,
+          "2026-tse-280002551932": 47.72727272727273
+        },
+        "days_to_election": 28,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551932": "RONALDO CAIADO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-28 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-07557/2026",
+        "scenario_id": "president-br-t2-73a16ab7e8",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002539826": 39.0,
+          "2026-tse-280002542548": 48.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002539826": 44.827586206896555,
+          "2026-tse-280002542548": 55.172413793103445
+        },
+        "days_to_election": 28,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-28 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-07557/2026",
+        "scenario_id": "president-br-t2-be1d6be6cc",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 46.0,
+          "2026-tse-280002551547": 41.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 52.87356321839081,
+          "2026-tse-280002551547": 47.12643678160919
+        },
+        "days_to_election": 28,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-28 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-07557/2026",
+        "scenario_id": "president-br-t2-efef42beab",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [],
+            "days_to_election": 5,
+            "distance_gap_days": -2,
+            "election": "2022-T1",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-polls-2022"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 2.119450549450548,
+            "mae_pp": 3.485906593406594,
+            "margin_error_pp": 9.055714285714288,
+            "margin_official_pp": 5.229999999999997,
+            "margin_poll_pp": 14.285714285714285,
+            "official_valid_pct": {
+              "bolsonaro": 43.2,
+              "ciro": 3.04,
+              "lula": 48.43,
+              "tebet": 4.16
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "bolsonaro": 36.26373626373626,
+              "ciro": 6.593406593406593,
+              "lula": 50.54945054945055,
+              "tebet": 5.4945054945054945
+            },
+            "reading": "Em 2022-09-27 (D-5 de 2022-T1), a Quaest media Lula 50.5% × Bolsonaro 36.3% em votos válidos; a urna deu 48.4% × 43.2%. A casa superestimou Lula em 2.1 p.p.; a margem saiu de +14.3 para +5.2 p.p. (+9.1 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.93626373626374,
+              "ciro": 3.553406593406593,
+              "lula": 2.119450549450548,
+              "tebet": 1.3345054945054944
+            },
+            "turn": 1,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002538811": 0.0,
+          "2026-tse-280002539826": 1.0,
+          "2026-tse-280002540694": 3.0,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 39.0,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 34.0,
+          "2026-tse-280002551547": 4.0,
+          "2026-tse-280002551932": 4.0,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002538811": 0.0,
+          "2026-tse-280002539826": 1.1764705882352942,
+          "2026-tse-280002540694": 3.5294117647058822,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 45.88235294117647,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 40.0,
+          "2026-tse-280002551547": 4.705882352941177,
+          "2026-tse-280002551932": 4.705882352941177,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "days_to_election": 7,
+        "headline": "Hoje a Quaest mede LULA 45.9% × FLAVIO BOLSONARO 40.0% (votos válidos, D-7). No mesmo estágio de 2022 (D-5), ela media Lula 50.5% × Bolsonaro 36.3% e a urna deu 48.4% × 43.2% — a margem encolheu 9.1 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002538811": "SAMARA",
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002541457": "HERTZ DIAS",
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002548139": "VETERINÁRIO WILSON GRASSI",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY",
+          "2026-tse-280002551932": "RONALDO CAIADO",
+          "2026-tse-280002551975": "EDMILSON COSTA",
+          "2026-tse-280002552484": "CLARIANA BARAO",
+          "2026-tse-280002552487": "RUI COSTA PIMENTA",
+          "2026-tse-280002554479": "LEONARDO AVALANCHE"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-09-28",
+        "reason": null,
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-06520/2026",
+        "scenario_id": "president-br-t1-7403322505",
+        "status": "available",
+        "turn": 1
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": 5,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002540694": 39.0,
+          "2026-tse-280002542548": 42.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002540694": 48.148148148148145,
+          "2026-tse-280002542548": 51.85185185185185
+        },
+        "days_to_election": 28,
+        "headline": "Hoje a Quaest mede LULA 51.9% × RENAN SANTOS 48.1% (votos válidos, D-28). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": null,
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-06520/2026",
+        "scenario_id": "president-br-t2-6cf2e28e70",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": 5,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 43.0,
+          "2026-tse-280002551932": 40.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 51.80722891566265,
+          "2026-tse-280002551932": 48.19277108433735
+        },
+        "days_to_election": 28,
+        "headline": "Hoje a Quaest mede LULA 51.8% × RONALDO CAIADO 48.2% (votos válidos, D-28). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551932": "RONALDO CAIADO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": null,
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-06520/2026",
+        "scenario_id": "president-br-t2-73a16ab7e8",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": 5,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002539826": 30.0,
+          "2026-tse-280002542548": 46.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002539826": 39.473684210526315,
+          "2026-tse-280002542548": 60.526315789473685
+        },
+        "days_to_election": 28,
+        "headline": "Hoje a Quaest mede LULA 60.5% × ZEMA 39.5% (votos válidos, D-28). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": null,
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-06520/2026",
+        "scenario_id": "president-br-t2-be1d6be6cc",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": 5,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 42.0,
+          "2026-tse-280002551544": 42.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 50.0,
+          "2026-tse-280002551544": 50.0
+        },
+        "days_to_election": 28,
+        "headline": "Hoje a Quaest mede FLAVIO BOLSONARO 50.0% × LULA 50.0% (votos válidos, D-28). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": null,
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-06520/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": 5,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 42.0,
+          "2026-tse-280002551547": 33.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 56.00000000000001,
+          "2026-tse-280002551547": 44.0
+        },
+        "days_to_election": 28,
+        "headline": "Hoje a Quaest mede LULA 56.0% × ESCRITOR AUGUSTO CURY 44.0% (votos válidos, D-28). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-28",
+        "reason": null,
+        "reference_date": "2026-09-27",
+        "registration_no": "BR-06520/2026",
+        "scenario_id": "president-br-t2-efef42beab",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 44.0,
+          "2026-tse-280002551544": 45.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 49.43820224719101,
+          "2026-tse-280002551544": 50.56179775280899
+        },
+        "days_to_election": 32,
+        "headline": null,
+        "house_id": "real-time-big-data",
+        "house_name": "REAL TIME BIG DATA",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": "REAL TIME BIG DATA não tem observação histórica no 2º turno (simulação pré-1º turno) a D-32 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-04202/2026",
+        "scenario_id": "president-br-t2-6674345612",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002540694": 38.0,
+          "2026-tse-280002542548": 44.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002540694": 46.34146341463415,
+          "2026-tse-280002542548": 53.65853658536586
+        },
+        "days_to_election": 32,
+        "headline": null,
+        "house_id": "real-time-big-data",
+        "house_name": "REAL TIME BIG DATA",
+        "labels": {
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": "REAL TIME BIG DATA não tem observação histórica no 2º turno (simulação pré-1º turno) a D-32 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-04202/2026",
+        "scenario_id": "president-br-t2-6cf2e28e70",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 44.0,
+          "2026-tse-280002551932": 44.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 50.0,
+          "2026-tse-280002551932": 50.0
+        },
+        "days_to_election": 32,
+        "headline": null,
+        "house_id": "real-time-big-data",
+        "house_name": "REAL TIME BIG DATA",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551932": "RONALDO CAIADO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": "REAL TIME BIG DATA não tem observação histórica no 2º turno (simulação pré-1º turno) a D-32 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-04202/2026",
+        "scenario_id": "president-br-t2-73a16ab7e8",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002539826": 39.0,
+          "2026-tse-280002542548": 45.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002539826": 46.42857142857143,
+          "2026-tse-280002542548": 53.57142857142857
+        },
+        "days_to_election": 32,
+        "headline": null,
+        "house_id": "real-time-big-data",
+        "house_name": "REAL TIME BIG DATA",
+        "labels": {
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": "REAL TIME BIG DATA não tem observação histórica no 2º turno (simulação pré-1º turno) a D-32 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-04202/2026",
+        "scenario_id": "president-br-t2-be1d6be6cc",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [],
+            "days_to_election": 12,
+            "distance_gap_days": 1,
+            "election": "2022-T1",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-polls-2022"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": -1.6214893617021247,
+            "mae_pp": 2.4904787234042547,
+            "margin_error_pp": 2.2168085106383018,
+            "margin_official_pp": 5.229999999999997,
+            "margin_poll_pp": 7.446808510638299,
+            "official_valid_pct": {
+              "bolsonaro": 43.2,
+              "ciro": 3.04,
+              "lula": 48.43,
+              "tebet": 4.16
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "bolsonaro": 39.361702127659576,
+              "ciro": 7.446808510638298,
+              "lula": 46.808510638297875,
+              "tebet": 4.25531914893617
+            },
+            "reading": "Em 2022-09-20 (D-12 de 2022-T1), a PoderData media Lula 46.8% × Bolsonaro 39.4% em votos válidos; a urna deu 48.4% × 43.2%. A casa subestimou Lula em 1.6 p.p.; a margem saiu de +7.4 para +5.2 p.p. (+2.2 p.p. de erro de margem).",
+            "reference_date": "2022-09-20",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -3.8382978723404264,
+              "ciro": 4.406808510638298,
+              "lula": -1.6214893617021247,
+              "tebet": 0.09531914893617
+            },
+            "turn": 1,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002538811": 1.0,
+          "2026-tse-280002539826": 1.0,
+          "2026-tse-280002540694": 3.0,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 41.0,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 39.0,
+          "2026-tse-280002551547": 6.0,
+          "2026-tse-280002551932": 2.0,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 1.0,
+          "2026-tse-280002552487": 1.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002538811": 1.0526315789473684,
+          "2026-tse-280002539826": 1.0526315789473684,
+          "2026-tse-280002540694": 3.1578947368421053,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 43.15789473684211,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 41.05263157894737,
+          "2026-tse-280002551547": 6.315789473684211,
+          "2026-tse-280002551932": 2.1052631578947367,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 1.0526315789473684,
+          "2026-tse-280002552487": 1.0526315789473684,
+          "2026-tse-280002554479": 0.0
+        },
+        "days_to_election": 11,
+        "headline": "Hoje a PoderData mede LULA 43.2% × FLAVIO BOLSONARO 41.1% (votos válidos, D-11). No mesmo estágio de 2022 (D-12), ela media Lula 46.8% × Bolsonaro 39.4% e a urna deu 48.4% × 43.2% — a margem encolheu 2.2 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "poderdata",
+        "house_name": "PoderData",
+        "labels": {
+          "2026-tse-280002538811": "SAMARA",
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002541457": "HERTZ DIAS",
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002548139": "VETERINÁRIO WILSON GRASSI",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY",
+          "2026-tse-280002551932": "RONALDO CAIADO",
+          "2026-tse-280002551975": "EDMILSON COSTA",
+          "2026-tse-280002552484": "CLARIANA BARAO",
+          "2026-tse-280002552487": "RUI COSTA PIMENTA",
+          "2026-tse-280002554479": "LEONARDO AVALANCHE"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-09-24",
+        "reason": null,
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-01739/2026",
+        "scenario_id": "president-br-t1-9c5a638e92",
+        "status": "available",
+        "turn": 1
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [],
+            "days_to_election": 10,
+            "distance_gap_days": -1,
+            "election": "2022-T1",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-polls-2022"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 2.107634408602152,
+            "mae_pp": 3.881747311827958,
+            "margin_error_pp": 9.823763440860219,
+            "margin_official_pp": 5.229999999999997,
+            "margin_poll_pp": 15.053763440860216,
+            "official_valid_pct": {
+              "bolsonaro": 43.2,
+              "ciro": 3.04,
+              "lula": 48.43,
+              "tebet": 4.16
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "bolsonaro": 35.483870967741936,
+              "ciro": 7.526881720430108,
+              "lula": 50.53763440860215,
+              "tebet": 5.376344086021505
+            },
+            "reading": "Em 2022-09-22 (D-10 de 2022-T1), a Datafolha media Lula 50.5% × Bolsonaro 35.5% em votos válidos; a urna deu 48.4% × 43.2%. A casa superestimou Lula em 2.1 p.p.; a margem saiu de +15.1 para +5.2 p.p. (+9.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-22",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -7.716129032258067,
+              "ciro": 4.486881720430108,
+              "lula": 2.107634408602152,
+              "tebet": 1.216344086021505
+            },
+            "turn": 1,
+            "year": 2022
+          },
+          {
+            "comparability_warnings": [],
+            "days_to_election": 9,
+            "distance_gap_days": -2,
+            "election": "2018-T1",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2018",
+              "ev-tse-polls-2018",
+              "ev-pindograma-parsed-2014-2018"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "bolsonaro",
+            "leader_signed_error_pp": -13.47186046511628,
+            "mae_pp": 5.069488372093024,
+            "margin_error_pp": -9.773255813953487,
+            "margin_official_pp": 16.75,
+            "margin_poll_pp": 6.976744186046513,
+            "official_valid_pct": {
+              "alckmin": 4.76,
+              "amoedo": 2.5,
+              "bolsonaro": 46.03,
+              "ciro": 12.47,
+              "haddad": 29.28
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "alckmin": 11.627906976744185,
+              "amoedo": 3.488372093023256,
+              "bolsonaro": 32.55813953488372,
+              "ciro": 12.790697674418604,
+              "haddad": 25.58139534883721
+            },
+            "reading": "Em 2018-09-28 (D-9 de 2018-T1), a Datafolha media Bolsonaro 32.6% × Haddad 25.6% em votos válidos; a urna deu 46.0% × 29.3%. A casa subestimou Bolsonaro em 13.5 p.p.; a margem saiu de +7.0 para +16.8 p.p. (-9.8 p.p. de erro de margem).",
+            "reference_date": "2018-09-28",
+            "runner_up_id": "haddad",
+            "signed_error_pp": {
+              "alckmin": 6.867906976744186,
+              "amoedo": 0.9883720930232558,
+              "bolsonaro": -13.47186046511628,
+              "ciro": 0.32069767441860364,
+              "haddad": -3.6986046511627926
+            },
+            "turn": 1,
+            "year": 2018
+          },
+          {
+            "comparability_warnings": [],
+            "days_to_election": 9,
+            "distance_gap_days": -2,
+            "election": "2014-T1",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2014",
+              "ev-tse-polls-2014",
+              "ev-pindograma-parsed-2014-2018"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "dilma",
+            "leader_signed_error_pp": 3.86454545454545,
+            "mae_pp": 8.773939393939392,
+            "margin_error_pp": 16.959999999999994,
+            "margin_official_pp": 8.040000000000006,
+            "margin_poll_pp": 25.0,
+            "official_valid_pct": {
+              "aecio": 33.55,
+              "dilma": 41.59,
+              "marina": 21.32
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "aecio": 20.454545454545453,
+              "dilma": 45.45454545454545,
+              "marina": 30.681818181818183
+            },
+            "reading": "Em 2014-09-26 (D-9 de 2014-T1), a Datafolha media Dilma 45.5% × Aecio 20.5% em votos válidos; a urna deu 41.6% × 33.5%. A casa superestimou Dilma em 3.9 p.p.; a margem saiu de +25.0 para +8.0 p.p. (+17.0 p.p. de erro de margem).",
+            "reference_date": "2014-09-26",
+            "runner_up_id": "aecio",
+            "signed_error_pp": {
+              "aecio": -13.095454545454544,
+              "dilma": 3.86454545454545,
+              "marina": 9.361818181818183
+            },
+            "turn": 1,
+            "year": 2014
+          },
+          {
+            "comparability_warnings": [
+              "evidência histórica de tier B (espelho secundário)"
+            ],
+            "days_to_election": 12,
+            "distance_gap_days": 1,
+            "election": "2010-T1",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2010"
+            ],
+            "evidence_tier": "B",
+            "leader_correct": true,
+            "leader_id": "dilma",
+            "leader_signed_error_pp": 2.0900000000000034,
+            "mae_pp": 4.343333333333334,
+            "margin_error_pp": 6.700000000000003,
+            "margin_official_pp": 14.299999999999997,
+            "margin_poll_pp": 21.0,
+            "official_valid_pct": {
+              "dilma": 46.91,
+              "marina": 19.33,
+              "serra": 32.61
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "dilma": 49.0,
+              "marina": 13.0,
+              "serra": 28.0
+            },
+            "reading": "Em 2010-09-21 (D-12 de 2010-T1), a Datafolha media Dilma 49.0% × Serra 28.0% em votos válidos; a urna deu 46.9% × 32.6%. A casa superestimou Dilma em 2.1 p.p.; a margem saiu de +21.0 para +14.3 p.p. (+6.7 p.p. de erro de margem).",
+            "reference_date": "2010-09-21",
+            "runner_up_id": "serra",
+            "signed_error_pp": {
+              "dilma": 2.0900000000000034,
+              "marina": -6.329999999999998,
+              "serra": -4.609999999999999
+            },
+            "turn": 1,
+            "year": 2010
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002538811": 1.0,
+          "2026-tse-280002539826": 1.0,
+          "2026-tse-280002540694": 3.0,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 40.0,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 36.0,
+          "2026-tse-280002551547": 5.0,
+          "2026-tse-280002551932": 4.0,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002538811": 1.1111111111111112,
+          "2026-tse-280002539826": 1.1111111111111112,
+          "2026-tse-280002540694": 3.3333333333333335,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 44.44444444444444,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 40.0,
+          "2026-tse-280002551547": 5.555555555555555,
+          "2026-tse-280002551932": 4.444444444444445,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "days_to_election": 11,
+        "headline": "Hoje a Datafolha mede LULA 44.4% × FLAVIO BOLSONARO 40.0% (votos válidos, D-11). No mesmo estágio de 2022 (D-10), ela media Lula 50.5% × Bolsonaro 35.5% e a urna deu 48.4% × 43.2% — a margem encolheu 9.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "datafolha",
+        "house_name": "Datafolha",
+        "labels": {
+          "2026-tse-280002538811": "SAMARA",
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002541457": "HERTZ DIAS",
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002548139": "VETERINÁRIO WILSON GRASSI",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY",
+          "2026-tse-280002551932": "RONALDO CAIADO",
+          "2026-tse-280002551975": "EDMILSON COSTA",
+          "2026-tse-280002552484": "CLARIANA BARAO",
+          "2026-tse-280002552487": "RUI COSTA PIMENTA",
+          "2026-tse-280002554479": "LEONARDO AVALANCHE"
+        },
+        "pattern": {
+          "mean_leader_signed_error_pp": -1.3524201504921685,
+          "n_elections": 4,
+          "reading": "Nas 4 eleições comparáveis, a Datafolha errou o líder para lados diferentes (média -1.4 p.p.). Padrão descritivo: o teste fora da amostra do laboratório não valida repetir essa direção em 2026.",
+          "same_direction": false,
+          "status": "observado"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-09-24",
+        "reason": null,
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-00304/2026",
+        "scenario_id": "president-br-t1-0764fe6044",
+        "status": "available",
+        "turn": 1
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 31,
+            "distance_gap_days": -1,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 7.164516129032265,
+            "mae_pp": 7.164516129032261,
+            "margin_error_pp": 14.329032258064522,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 16.12903225806452,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 41.935483870967744,
+              "lula": 58.06451612903226
+            },
+            "reading": "Em 2022-09-29 (D-31 de 2022-T2), a Datafolha media Lula 58.1% × Bolsonaro 41.9% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 7.2 p.p.; a margem saiu de +16.1 para +1.8 p.p. (+14.3 p.p. de erro de margem).",
+            "reference_date": "2022-09-29",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -7.164516129032258,
+              "lula": 7.164516129032265
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 47.0,
+          "2026-tse-280002551544": 45.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 51.08695652173913,
+          "2026-tse-280002551544": 48.91304347826087
+        },
+        "days_to_election": 32,
+        "headline": "Hoje a Datafolha mede LULA 51.1% × FLAVIO BOLSONARO 48.9% (votos válidos, D-32). No mesmo estágio de 2022 (D-31), ela media Lula 58.1% × Bolsonaro 41.9% e a urna deu 50.9% × 49.1% — a margem encolheu 14.3 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "datafolha",
+        "house_name": "Datafolha",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": null,
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-00304/2026",
+        "scenario_id": "president-br-t2-6674345612",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 31,
+            "distance_gap_days": -1,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 7.164516129032265,
+            "mae_pp": 7.164516129032261,
+            "margin_error_pp": 14.329032258064522,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 16.12903225806452,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 41.935483870967744,
+              "lula": 58.06451612903226
+            },
+            "reading": "Em 2022-09-29 (D-31 de 2022-T2), a Datafolha media Lula 58.1% × Bolsonaro 41.9% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 7.2 p.p.; a margem saiu de +16.1 para +1.8 p.p. (+14.3 p.p. de erro de margem).",
+            "reference_date": "2022-09-29",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -7.164516129032258,
+              "lula": 7.164516129032265
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002540694": 39.0,
+          "2026-tse-280002542548": 48.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002540694": 44.827586206896555,
+          "2026-tse-280002542548": 55.172413793103445
+        },
+        "days_to_election": 32,
+        "headline": "Hoje a Datafolha mede LULA 55.2% × RENAN SANTOS 44.8% (votos válidos, D-32). No mesmo estágio de 2022 (D-31), ela media Lula 58.1% × Bolsonaro 41.9% e a urna deu 50.9% × 49.1% — a margem encolheu 14.3 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "datafolha",
+        "house_name": "Datafolha",
+        "labels": {
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": null,
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-00304/2026",
+        "scenario_id": "president-br-t2-6cf2e28e70",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 31,
+            "distance_gap_days": -1,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 7.164516129032265,
+            "mae_pp": 7.164516129032261,
+            "margin_error_pp": 14.329032258064522,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 16.12903225806452,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 41.935483870967744,
+              "lula": 58.06451612903226
+            },
+            "reading": "Em 2022-09-29 (D-31 de 2022-T2), a Datafolha media Lula 58.1% × Bolsonaro 41.9% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 7.2 p.p.; a margem saiu de +16.1 para +1.8 p.p. (+14.3 p.p. de erro de margem).",
+            "reference_date": "2022-09-29",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -7.164516129032258,
+              "lula": 7.164516129032265
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 46.0,
+          "2026-tse-280002551932": 44.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 51.11111111111111,
+          "2026-tse-280002551932": 48.888888888888886
+        },
+        "days_to_election": 32,
+        "headline": "Hoje a Datafolha mede LULA 51.1% × RONALDO CAIADO 48.9% (votos válidos, D-32). No mesmo estágio de 2022 (D-31), ela media Lula 58.1% × Bolsonaro 41.9% e a urna deu 50.9% × 49.1% — a margem encolheu 14.3 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "datafolha",
+        "house_name": "Datafolha",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551932": "RONALDO CAIADO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": null,
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-00304/2026",
+        "scenario_id": "president-br-t2-73a16ab7e8",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 31,
+            "distance_gap_days": -1,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 7.164516129032265,
+            "mae_pp": 7.164516129032261,
+            "margin_error_pp": 14.329032258064522,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 16.12903225806452,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 41.935483870967744,
+              "lula": 58.06451612903226
+            },
+            "reading": "Em 2022-09-29 (D-31 de 2022-T2), a Datafolha media Lula 58.1% × Bolsonaro 41.9% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 7.2 p.p.; a margem saiu de +16.1 para +1.8 p.p. (+14.3 p.p. de erro de margem).",
+            "reference_date": "2022-09-29",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -7.164516129032258,
+              "lula": 7.164516129032265
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002539826": 39.0,
+          "2026-tse-280002542548": 48.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002539826": 44.827586206896555,
+          "2026-tse-280002542548": 55.172413793103445
+        },
+        "days_to_election": 32,
+        "headline": "Hoje a Datafolha mede LULA 55.2% × ZEMA 44.8% (votos válidos, D-32). No mesmo estágio de 2022 (D-31), ela media Lula 58.1% × Bolsonaro 41.9% e a urna deu 50.9% × 49.1% — a margem encolheu 14.3 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "datafolha",
+        "house_name": "Datafolha",
+        "labels": {
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": null,
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-00304/2026",
+        "scenario_id": "president-br-t2-be1d6be6cc",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 31,
+            "distance_gap_days": -1,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 7.164516129032265,
+            "mae_pp": 7.164516129032261,
+            "margin_error_pp": 14.329032258064522,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 16.12903225806452,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 41.935483870967744,
+              "lula": 58.06451612903226
+            },
+            "reading": "Em 2022-09-29 (D-31 de 2022-T2), a Datafolha media Lula 58.1% × Bolsonaro 41.9% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 7.2 p.p.; a margem saiu de +16.1 para +1.8 p.p. (+14.3 p.p. de erro de margem).",
+            "reference_date": "2022-09-29",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -7.164516129032258,
+              "lula": 7.164516129032265
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 46.0,
+          "2026-tse-280002551547": 43.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 51.68539325842697,
+          "2026-tse-280002551547": 48.31460674157304
+        },
+        "days_to_election": 32,
+        "headline": "Hoje a Datafolha mede LULA 51.7% × ESCRITOR AUGUSTO CURY 48.3% (votos válidos, D-32). No mesmo estágio de 2022 (D-31), ela media Lula 58.1% × Bolsonaro 41.9% e a urna deu 50.9% × 49.1% — a margem encolheu 14.3 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "datafolha",
+        "house_name": "Datafolha",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-24",
+        "reason": null,
+        "reference_date": "2026-09-23",
+        "registration_no": "BR-00304/2026",
+        "scenario_id": "president-br-t2-efef42beab",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [],
+            "days_to_election": 12,
+            "distance_gap_days": -2,
+            "election": "2022-T1",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-polls-2022"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 0.458888888888886,
+            "mae_pp": 2.725833333333333,
+            "margin_error_pp": 5.88111111111111,
+            "margin_official_pp": 5.229999999999997,
+            "margin_poll_pp": 11.111111111111107,
+            "official_valid_pct": {
+              "bolsonaro": 43.2,
+              "ciro": 3.04,
+              "lula": 48.43,
+              "tebet": 4.16
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "bolsonaro": 37.77777777777778,
+              "ciro": 6.666666666666667,
+              "lula": 48.888888888888886,
+              "tebet": 5.555555555555555
+            },
+            "reading": "Em 2022-09-20 (D-12 de 2022-T1), a Quaest media Lula 48.9% × Bolsonaro 37.8% em votos válidos; a urna deu 48.4% × 43.2%. A casa superestimou Lula em 0.5 p.p.; a margem saiu de +11.1 para +5.2 p.p. (+5.9 p.p. de erro de margem).",
+            "reference_date": "2022-09-20",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -5.422222222222224,
+              "ciro": 3.626666666666667,
+              "lula": 0.458888888888886,
+              "tebet": 1.3955555555555552
+            },
+            "turn": 1,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002538811": 1.0,
+          "2026-tse-280002539826": 1.0,
+          "2026-tse-280002540694": 3.0,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 37.0,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 33.0,
+          "2026-tse-280002551547": 6.0,
+          "2026-tse-280002551932": 4.0,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002538811": 1.1764705882352942,
+          "2026-tse-280002539826": 1.1764705882352942,
+          "2026-tse-280002540694": 3.5294117647058822,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 43.529411764705884,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 38.82352941176471,
+          "2026-tse-280002551547": 7.0588235294117645,
+          "2026-tse-280002551932": 4.705882352941177,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0,
+          "2026-tse-280002554479": 0.0
+        },
+        "days_to_election": 14,
+        "headline": "Hoje a Quaest mede LULA 43.5% × FLAVIO BOLSONARO 38.8% (votos válidos, D-14). No mesmo estágio de 2022 (D-12), ela media Lula 48.9% × Bolsonaro 37.8% e a urna deu 48.4% × 43.2% — a margem encolheu 5.9 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002538811": "SAMARA",
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002541457": "HERTZ DIAS",
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002548139": "VETERINÁRIO WILSON GRASSI",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY",
+          "2026-tse-280002551932": "RONALDO CAIADO",
+          "2026-tse-280002551975": "EDMILSON COSTA",
+          "2026-tse-280002552484": "CLARIANA BARAO",
+          "2026-tse-280002552487": "RUI COSTA PIMENTA",
+          "2026-tse-280002554479": "LEONARDO AVALANCHE"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-09-21",
+        "reason": null,
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-06004/2026",
+        "scenario_id": "president-br-t1-7403322505",
+        "status": "available",
+        "turn": 1
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": -2,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002540694": 38.0,
+          "2026-tse-280002542548": 41.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002540694": 48.10126582278481,
+          "2026-tse-280002542548": 51.89873417721519
+        },
+        "days_to_election": 35,
+        "headline": "Hoje a Quaest mede LULA 51.9% × RENAN SANTOS 48.1% (votos válidos, D-35). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": null,
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-06004/2026",
+        "scenario_id": "president-br-t2-6cf2e28e70",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": -2,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 41.0,
+          "2026-tse-280002551932": 39.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 51.24999999999999,
+          "2026-tse-280002551932": 48.75
+        },
+        "days_to_election": 35,
+        "headline": "Hoje a Quaest mede LULA 51.2% × RONALDO CAIADO 48.8% (votos válidos, D-35). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551932": "RONALDO CAIADO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": null,
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-06004/2026",
+        "scenario_id": "president-br-t2-73a16ab7e8",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": -2,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002539826": 32.0,
+          "2026-tse-280002542548": 46.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002539826": 41.02564102564102,
+          "2026-tse-280002542548": 58.97435897435898
+        },
+        "days_to_election": 35,
+        "headline": "Hoje a Quaest mede LULA 59.0% × ZEMA 41.0% (votos válidos, D-35). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": null,
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-06004/2026",
+        "scenario_id": "president-br-t2-be1d6be6cc",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": -2,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 41.0,
+          "2026-tse-280002551544": 42.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 49.39759036144578,
+          "2026-tse-280002551544": 50.602409638554214
+        },
+        "days_to_election": 35,
+        "headline": "Hoje a Quaest mede FLAVIO BOLSONARO 50.6% × LULA 49.4% (votos válidos, D-35). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": null,
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-06004/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [
+              "os dois lados são simulações de 2º turno feitas antes do 1º turno; em 2022 o confronto simulado acabou se materializando, então a urna do 2º turno é o alvo — mas isso não estava dado na época"
+            ],
+            "days_to_election": 33,
+            "distance_gap_days": -2,
+            "election": "2022-T2",
+            "estimand": "hypothetical_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 6.877777777777773,
+            "mae_pp": 6.877777777777776,
+            "margin_error_pp": 13.755555555555553,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 15.55555555555555,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": true,
+            "published_valid_pct": {
+              "bolsonaro": 42.22222222222222,
+              "lula": 57.77777777777777
+            },
+            "reading": "Em 2022-09-27 (D-33 de 2022-T2), a Quaest media Lula 57.8% × Bolsonaro 42.2% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 6.9 p.p.; a margem saiu de +15.6 para +1.8 p.p. (+13.8 p.p. de erro de margem).",
+            "reference_date": "2022-09-27",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -6.87777777777778,
+              "lula": 6.877777777777773
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 39.0,
+          "2026-tse-280002551547": 35.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 52.702702702702695,
+          "2026-tse-280002551547": 47.2972972972973
+        },
+        "days_to_election": 35,
+        "headline": "Hoje a Quaest mede LULA 52.7% × ESCRITOR AUGUSTO CURY 47.3% (votos válidos, D-35). No mesmo estágio de 2022 (D-33), ela media Lula 57.8% × Bolsonaro 42.2% e a urna deu 50.9% × 49.1% — a margem encolheu 13.8 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": null,
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-06004/2026",
+        "scenario_id": "president-br-t2-efef42beab",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002538811": 1.0,
+          "2026-tse-280002539826": 1.0,
+          "2026-tse-280002540694": 3.0,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 40.0,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 37.0,
+          "2026-tse-280002551547": 6.0,
+          "2026-tse-280002551932": 5.0,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002538811": 1.0752688172043012,
+          "2026-tse-280002539826": 1.0752688172043012,
+          "2026-tse-280002540694": 3.225806451612903,
+          "2026-tse-280002541457": 0.0,
+          "2026-tse-280002542548": 43.01075268817204,
+          "2026-tse-280002548139": 0.0,
+          "2026-tse-280002551544": 39.784946236559136,
+          "2026-tse-280002551547": 6.451612903225806,
+          "2026-tse-280002551932": 5.376344086021505,
+          "2026-tse-280002551975": 0.0,
+          "2026-tse-280002552484": 0.0,
+          "2026-tse-280002552487": 0.0
+        },
+        "days_to_election": 14,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002538811": "SAMARA",
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002541457": "HERTZ DIAS",
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002548139": "VETERINÁRIO WILSON GRASSI",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY",
+          "2026-tse-280002551932": "RONALDO CAIADO",
+          "2026-tse-280002551975": "EDMILSON COSTA",
+          "2026-tse-280002552484": "CLARIANA BARAO",
+          "2026-tse-280002552487": "RUI COSTA PIMENTA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-09-21",
+        "reason": "Nexus não tem observação histórica no 1º turno (confronto definido) a D-14 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-00485/2026",
+        "scenario_id": "president-br-t1-e18347b4c8",
+        "status": "sem_ancora_historica",
+        "turn": 1
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 46.0,
+          "2026-tse-280002551544": 45.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 50.54945054945055,
+          "2026-tse-280002551544": 49.45054945054945
+        },
+        "days_to_election": 35,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-35 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-00485/2026",
+        "scenario_id": "president-br-t2-6674345612",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002540694": 39.0,
+          "2026-tse-280002542548": 47.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002540694": 45.348837209302324,
+          "2026-tse-280002542548": 54.65116279069767
+        },
+        "days_to_election": 35,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002540694": "RENAN SANTOS",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-35 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-00485/2026",
+        "scenario_id": "president-br-t2-6cf2e28e70",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 45.0,
+          "2026-tse-280002551932": 45.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 50.0,
+          "2026-tse-280002551932": 50.0
+        },
+        "days_to_election": 35,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551932": "RONALDO CAIADO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-35 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-00485/2026",
+        "scenario_id": "president-br-t2-73a16ab7e8",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002539826": 41.0,
+          "2026-tse-280002542548": 47.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002539826": 46.590909090909086,
+          "2026-tse-280002542548": 53.40909090909091
+        },
+        "days_to_election": 35,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002539826": "ZEMA",
+          "2026-tse-280002542548": "LULA"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-35 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-00485/2026",
+        "scenario_id": "president-br-t2-be1d6be6cc",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 44.0,
+          "2026-tse-280002551547": 43.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 50.57471264367817,
+          "2026-tse-280002551547": 49.42528735632184
+        },
+        "days_to_election": 35,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551547": "ESCRITOR AUGUSTO CURY"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": true,
+        "published_at": "2026-09-21",
+        "reason": "Nexus não tem observação histórica no 2º turno (simulação pré-1º turno) a D-35 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-09-20",
+        "registration_no": "BR-00485/2026",
+        "scenario_id": "president-br-t2-efef42beab",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      }
+    ],
+    "not_a_projection": "Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
+    "polls_examined": 35,
+    "polls_with_anchor": 19,
+    "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
+    "status": "available",
+    "tolerance_days": 12
+  },
+  "latest_poll_comparison": {
+    "candidates": [],
+    "comparability_rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
+    "latest": {
+      "base": "totais",
+      "evidence_id": "ev-release-b43fc320543a3094f2b0",
+      "field_end": "2026-09-27",
+      "field_start": "2026-09-25",
+      "institute": "Nexus",
+      "institute_id": "nexus",
+      "mode": "telefone",
+      "n_candidates": 13,
+      "published_at": "2026-09-28",
+      "reference_date": "2026-09-27",
+      "registration_no": "BR-07557/2026",
+      "sample_size": 2000,
+      "scenario_id": "president-br-t1-6a52dd9453"
+    },
+    "other_houses_in_window": [
+      "Datafolha",
+      "Nexus",
+      "PoderData",
+      "Quaest",
+      "REAL TIME BIG DATA"
+    ],
+    "previous": null,
+    "reason": "Não há medição anterior da Nexus com o mesmo cenário na janela viva. A(s) outra(s) pesquisa(s) na janela (Datafolha, Nexus, PoderData, Quaest, REAL TIME BIG DATA) são de outra casa: comparar mediria diferença entre casas, não movimento no tempo.",
+    "status": "no_comparable_previous"
+  },
+  "live_hash": "ad9e03c26393e86dda12b88c59ce03e9d9558777a6892a07ddfe8c3980bfd1b0",
+  "live_source_run_id": "run-20261011-e4f9f550-6ead4d5d",
+  "run_id": "hist-20261011-8d90558c-245c45fb-ad9e03c2-08a374",
+  "signals": [
+    {
+      "between_house_sd_pp": 3.0134153827356034,
+      "candidate_id": "2026-tse-280002542548",
+      "candidate_label": "LULA",
+      "direction": "alta",
+      "evidence_strength": "fraco",
+      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "historical_context": null,
+      "houses_in_window": 5,
+      "houses_with_comparable_series": 11,
+      "houses_with_single_measurement": [
+        "Datafolha",
+        "Nexus",
+        "PoderData",
+        "REAL TIME BIG DATA"
+      ],
+      "median_delta_pp": 1.0,
+      "median_sampling_se_pp": 1.5717235936498166,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 40.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 46.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 47.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 45.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 47.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002539826",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 44.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 37.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6ef3949862e717d58207",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 41.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 41.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 46.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002539826",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 41.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6ef3949862e717d58207",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 39.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 40.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-620f8a2d98f99c979596",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 47.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 48.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 46.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 48.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002539826",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-620f8a2d98f99c979596",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 46.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-96414885922584d8285c",
+          "field_end": "2026-09-23",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 41.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-01739/2026",
+          "sample_size": 3000,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-43d7b3abcba7bf0ee5bc",
+          "field_end": "2026-09-23",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 44.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-04202/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-43d7b3abcba7bf0ee5bc",
+          "field_end": "2026-09-23",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 44.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-04202/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-43d7b3abcba7bf0ee5bc",
+          "field_end": "2026-09-23",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 44.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-04202/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-43d7b3abcba7bf0ee5bc",
+          "field_end": "2026-09-23",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 45.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-04202/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002539826",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 42.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 46.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 48.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 46.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 48.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002539826",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 46.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6625853c03ada94ccd5c",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "online",
+          "pct": 39.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b17e42d1688f59a4de11",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 42.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6625853c03ada94ccd5c",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "online",
+          "pct": 43.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b17e42d1688f59a4de11",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 46.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002539826",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b17e42d1688f59a4de11",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 42.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b17e42d1688f59a4de11",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 42.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": [
+        {
+          "days_between": 7,
+          "delta_pp": 1.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 47.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5779019855403198,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 48.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 1.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 47.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5779019855403198,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 48.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 0.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 46.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.574892105690514,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 46.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 2.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 44.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5717235936498166,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 46.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 1.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 45.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5734670648562803,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 46.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 2.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-6625853c03ada94ccd5c"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 37.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.533068622468546,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 39.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 0.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-b17e42d1688f59a4de11"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 46.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.574497353496558,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 46.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 1.0,
+          "evidence_ids": [
+            "ev-release-6ef3949862e717d58207",
+            "ev-release-b17e42d1688f59a4de11"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 41.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5564879346203628,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 42.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 1.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-b17e42d1688f59a4de11"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 41.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5564879346203628,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 42.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 3.0,
+          "evidence_ids": [
+            "ev-release-6ef3949862e717d58207",
+            "ev-release-b17e42d1688f59a4de11"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 39.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5500627763992152,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 42.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 2.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-6625853c03ada94ccd5c"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 41.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5588905415579641,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 43.0,
+            "registration_no": "BR-06520/2026"
+          }
+        }
+      ]
+    },
+    {
+      "between_house_sd_pp": 4.461111425588376,
+      "candidate_id": "2026-tse-280002551544",
+      "candidate_label": "FLAVIO BOLSONARO",
+      "direction": "estavel",
+      "evidence_strength": "fraco",
+      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "historical_context": null,
+      "houses_in_window": 5,
+      "houses_with_comparable_series": 3,
+      "houses_with_single_measurement": [
+        "Datafolha",
+        "Nexus",
+        "PoderData",
+        "REAL TIME BIG DATA"
+      ],
+      "median_delta_pp": 0.0,
+      "median_sampling_se_pp": 1.5592106094273788,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 37.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 45.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 33.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 42.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 36.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-620f8a2d98f99c979596",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 45.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-96414885922584d8285c",
+          "field_end": "2026-09-23",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 39.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-01739/2026",
+          "sample_size": 3000,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-43d7b3abcba7bf0ee5bc",
+          "field_end": "2026-09-23",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 45.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-04202/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 37.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 44.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6625853c03ada94ccd5c",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "online",
+          "pct": 34.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b17e42d1688f59a4de11",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 42.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": [
+        {
+          "days_between": 7,
+          "delta_pp": -1.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 45.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5702861535998585,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 44.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 1.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-6625853c03ada94ccd5c"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 33.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.4909909095013185,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 34.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 0.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-b17e42d1688f59a4de11"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 42.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5592106094273788,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 42.0,
+            "registration_no": "BR-06520/2026"
+          }
+        }
+      ]
+    },
+    {
+      "between_house_sd_pp": 17.83969017260517,
+      "candidate_id": "2026-tse-280002551547",
+      "candidate_label": "ESCRITOR AUGUSTO CURY",
+      "direction": "baixa",
+      "evidence_strength": "moderado",
+      "explanation": "3 casas medindo o mesmo cenário se movem na mesma direção, com mediana de -2.0 pp acima do erro amostral típico.",
+      "historical_context": null,
+      "houses_in_window": 4,
+      "houses_with_comparable_series": 3,
+      "houses_with_single_measurement": [
+        "Datafolha",
+        "Nexus",
+        "PoderData"
+      ],
+      "median_delta_pp": -2.0,
+      "median_sampling_se_pp": 1.496169426933934,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 6.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 43.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 6.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6ef3949862e717d58207",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 35.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 5.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-620f8a2d98f99c979596",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 43.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-96414885922584d8285c",
+          "field_end": "2026-09-23",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 6.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-01739/2026",
+          "sample_size": 3000,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 5.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 41.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6625853c03ada94ccd5c",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "online",
+          "pct": 4.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b17e42d1688f59a4de11",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 33.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551547"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": true,
+      "within_house_deltas": [
+        {
+          "days_between": 7,
+          "delta_pp": -2.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 43.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.559273708016161,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 41.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": -2.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-6625853c03ada94ccd5c"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 6.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 0.6877891335399018,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 4.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": -2.0,
+          "evidence_ids": [
+            "ev-release-6ef3949862e717d58207",
+            "ev-release-b17e42d1688f59a4de11"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 35.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.496169426933934,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 33.0,
+            "registration_no": "BR-06520/2026"
+          }
+        }
+      ]
+    },
+    {
+      "between_house_sd_pp": 20.098997412052597,
+      "candidate_id": "2026-tse-280002551932",
+      "candidate_label": "RONALDO CAIADO",
+      "direction": "estavel",
+      "evidence_strength": "fraco",
+      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "historical_context": null,
+      "houses_in_window": 5,
+      "houses_with_comparable_series": 3,
+      "houses_with_single_measurement": [
+        "Datafolha",
+        "Nexus",
+        "PoderData",
+        "REAL TIME BIG DATA"
+      ],
+      "median_delta_pp": 0.0,
+      "median_sampling_se_pp": 1.5442572774386254,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 5.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 45.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 4.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 39.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 4.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 44.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-96414885922584d8285c",
+          "field_end": "2026-09-23",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 2.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-01739/2026",
+          "sample_size": 3000,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-43d7b3abcba7bf0ee5bc",
+          "field_end": "2026-09-23",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 44.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-04202/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 5.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 42.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6625853c03ada94ccd5c",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "online",
+          "pct": 4.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6625853c03ada94ccd5c",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "online",
+          "pct": 40.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551932"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": [
+        {
+          "days_between": 7,
+          "delta_pp": -3.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 45.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5658220218745929,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 42.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 0.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-6625853c03ada94ccd5c"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 4.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 0.6190585860273095,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 4.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 1.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-6625853c03ada94ccd5c"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 39.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5442572774386254,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 40.0,
+            "registration_no": "BR-06520/2026"
+          }
+        }
+      ]
+    },
+    {
+      "between_house_sd_pp": 18.375502466846747,
+      "candidate_id": "2026-tse-280002540694",
+      "candidate_label": "RENAN SANTOS",
+      "direction": "estavel",
+      "evidence_strength": "fraco",
+      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "historical_context": null,
+      "houses_in_window": 5,
+      "houses_with_comparable_series": 3,
+      "houses_with_single_measurement": [
+        "Datafolha",
+        "Nexus",
+        "PoderData",
+        "REAL TIME BIG DATA"
+      ],
+      "median_delta_pp": 0.0,
+      "median_sampling_se_pp": 1.5334412846534298,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 3.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 39.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 3.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6ef3949862e717d58207",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 38.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 3.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 39.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-96414885922584d8285c",
+          "field_end": "2026-09-23",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 3.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-01739/2026",
+          "sample_size": 3000,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-43d7b3abcba7bf0ee5bc",
+          "field_end": "2026-09-23",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 38.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-04202/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 4.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 37.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6625853c03ada94ccd5c",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "online",
+          "pct": 3.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b17e42d1688f59a4de11",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 39.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002540694",
+              "2026-tse-280002542548"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": false,
+      "within_house_deltas": [
+        {
+          "days_between": 7,
+          "delta_pp": -2.0,
+          "evidence_ids": [
+            "ev-release-4f8059462f1510e8c8f6",
+            "ev-release-b43fc320543a3094f2b0"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 39.0,
+            "registration_no": "BR-00485/2026"
+          },
+          "house": "Nexus",
+          "institute_id": "nexus",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5334412846534298,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 37.0,
+            "registration_no": "BR-07557/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 0.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-6625853c03ada94ccd5c"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 3.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 0.5389055220320595,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 3.0,
+            "registration_no": "BR-06520/2026"
+          }
+        },
+        {
+          "days_between": 7,
+          "delta_pp": 1.0,
+          "evidence_ids": [
+            "ev-release-6ef3949862e717d58207",
+            "ev-release-b17e42d1688f59a4de11"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 38.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 1.537131891250001,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 39.0,
+            "registration_no": "BR-06520/2026"
+          }
+        }
+      ]
+    },
+    {
+      "between_house_sd_pp": 0.408248290463863,
+      "candidate_id": "2026-tse-280002538811",
+      "candidate_label": "SAMARA",
+      "direction": "baixa",
+      "evidence_strength": "fraco",
+      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "historical_context": null,
+      "houses_in_window": 4,
+      "houses_with_comparable_series": 1,
+      "houses_with_single_measurement": [
+        "Datafolha",
+        "Nexus",
+        "PoderData"
+      ],
+      "median_delta_pp": -1.0,
+      "median_sampling_se_pp": 0.2222638018319457,
+      "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
+      "observations": [
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
+          "field_end": "2026-09-20",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 1.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-559c1e45f68c1c72a287",
+          "field_end": "2026-09-20",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 1.0,
+          "published_at": "2026-09-21",
+          "reference_date": "2026-09-20",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-ab7d219feeea95e8b948",
+          "field_end": "2026-09-23",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 1.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-00304/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-96414885922584d8285c",
+          "field_end": "2026-09-23",
+          "institute": "PoderData",
+          "institute_id": "poderdata",
+          "mode": "telefone",
+          "pct": 1.0,
+          "published_at": "2026-09-24",
+          "reference_date": "2026-09-23",
+          "registration_no": "BR-01739/2026",
+          "sample_size": 3000,
+          "scenario_key": [
+            "poderdata",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b43fc320543a3094f2b0",
+          "field_end": "2026-09-27",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 1.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-07557/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-6625853c03ada94ccd5c",
+          "field_end": "2026-09-27",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "online",
+          "pct": 0.0,
+          "published_at": "2026-09-28",
+          "reference_date": "2026-09-27",
+          "registration_no": "BR-06520/2026",
+          "sample_size": 2004,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002538811",
+              "2026-tse-280002539826",
+              "2026-tse-280002540694",
+              "2026-tse-280002541457",
+              "2026-tse-280002542548",
+              "2026-tse-280002548139",
+              "2026-tse-280002551544",
+              "2026-tse-280002551547",
+              "2026-tse-280002551932",
+              "2026-tse-280002551975",
+              "2026-tse-280002552484",
+              "2026-tse-280002552487",
+              "2026-tse-280002554479"
+            ]
+          ]
+        }
+      ],
+      "same_direction_across_houses": true,
+      "within_house_deltas": [
+        {
+          "days_between": 7,
+          "delta_pp": -1.0,
+          "evidence_ids": [
+            "ev-release-559c1e45f68c1c72a287",
+            "ev-release-6625853c03ada94ccd5c"
+          ],
+          "from": {
+            "date": "2026-09-20",
+            "pct": 1.0,
+            "registration_no": "BR-06004/2026"
+          },
+          "house": "Quaest",
+          "institute_id": "quaest",
+          "n_polls": 2,
+          "sampling_se_pp": 0.2222638018319457,
+          "to": {
+            "date": "2026-09-27",
+            "pct": 0.0,
+            "registration_no": "BR-06520/2026"
+          }
+        }
+      ]
+    }
+  ],
+  "strength_ladder": {
+    "declared_before_data": true,
+    "levels": [
+      "insuficiente",
+      "fraco",
+      "moderado",
+      "forte"
+    ],
+    "rule": "insuficiente: nenhuma casa com duas medições comparáveis ou menos de duas casas. fraco: uma casa, ou direções divergentes, ou dentro do ruído amostral. moderado: ≥2 casas na mesma direção com mediana acima de 1 erro-padrão amostral. forte: ≥3 casas na mesma direção com mediana acima de 2 erros-padrão e acima da dispersão entre casas."
+  },
+  "summary": {
+    "any_moderate_or_strong": true,
+    "by_strength": {
+      "forte": 0,
+      "fraco": 5,
+      "insuficiente": 0,
+      "moderado": 1
+    }
+  },
+  "version": "1.2.0-current-signal-house-anchors",
+  "window_days": 21
+}
