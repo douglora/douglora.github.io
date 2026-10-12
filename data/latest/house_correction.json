@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "ad9e03c26393e86dda12b88c59ce03e9d9558777a6892a07ddfe8c3980bfd1b0",
-  "live_source_run_id": "run-20261011-e4f9f550-6ead4d5d",
-  "run_id": "hist-20261012-8d90558c-245c45fb-ad9e03c2-08a374",
+  "live_hash": "8048aebd23be9d6dafd43e6d17792df02532df5cc0ab449fa10f69c4b8995259",
+  "live_source_run_id": "run-20261012-7ee0231b-6ead4d5d",
+  "run_id": "hist-20261012-8d90558c-245c45fb-8048aebd-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [
@@ -20153,7 +20153,7 @@
       "min_houses": 2,
       "min_polls": 3,
       "note": "O gate vivo do agregador não foi alterado. Este cenário é publicado abaixo dele, como exercício, e por isso não pode ser lido como consenso.",
-      "polls": 35,
+      "polls": 23,
       "window_days": 21
     },
     "houses": [
@@ -24259,6 +24259,835 @@
         "identity_basis": "live_stream_slug",
         "institute_id": "nexus",
         "known_2026_polls": [
+          {
+            "base": "totais",
+            "capture_sha256": "4f8059462f1510e8c8f6b0127e2b872782c08ae5e162078b80cddd1c3005cb55",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 53.40909090909091,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 47.0,
+                  "published_valid_pct": 53.40909090909091,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "LULA: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.113762832315227
+                  },
+                  "uncertainty_pp": 1.113762832315227
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002539826",
+                  "corrected_valid_pct": 46.59090909090909,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "ZEMA",
+                  "number": 30,
+                  "party": "NOVO",
+                  "published_base": "totais",
+                  "published_pct": 41.0,
+                  "published_valid_pct": 46.59090909090909,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "ZEMA: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.113762832315227
+                  },
+                  "uncertainty_pp": 1.113762832315227
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 88.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-4f8059462f1510e8c8f6",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-18",
+            "history_status": "no_history",
+            "item_id": "item-7ce232c6e425a600955df7b8be89811f",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-00485/2026",
+            "sample_size": 2006,
+            "scenario_id": "president-br-t2-be1d6be6cc",
+            "scenario_type": "estimulada",
+            "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "4f8059462f1510e8c8f6b0127e2b872782c08ae5e162078b80cddd1c3005cb55",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 50.54945054945055,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 46.0,
+                  "published_valid_pct": 50.54945054945055,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "LULA: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1162932947425568
+                  },
+                  "uncertainty_pp": 1.1162932947425568
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002551544",
+                  "corrected_valid_pct": 49.45054945054945,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "FLAVIO BOLSONARO",
+                  "number": 22,
+                  "party": "PL",
+                  "published_base": "totais",
+                  "published_pct": 45.0,
+                  "published_valid_pct": 49.45054945054945,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "FLAVIO BOLSONARO: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1162932947425568
+                  },
+                  "uncertainty_pp": 1.1162932947425568
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 91.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-4f8059462f1510e8c8f6",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-18",
+            "history_status": "no_history",
+            "item_id": "item-d88a8b7e12bc134ba389ea584384ad82",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-00485/2026",
+            "sample_size": 2006,
+            "scenario_id": "president-br-t2-6674345612",
+            "scenario_type": "estimulada",
+            "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "4f8059462f1510e8c8f6b0127e2b872782c08ae5e162078b80cddd1c3005cb55",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 54.651162790697676,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 47.0,
+                  "published_valid_pct": 54.651162790697676,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "LULA: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1115200905122575
+                  },
+                  "uncertainty_pp": 1.1115200905122575
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002540694",
+                  "corrected_valid_pct": 45.348837209302324,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RENAN SANTOS",
+                  "number": 14,
+                  "party": "MISSÃO",
+                  "published_base": "totais",
+                  "published_pct": 39.0,
+                  "published_valid_pct": 45.348837209302324,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "RENAN SANTOS: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "nao-classificado",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1115200905122578
+                  },
+                  "uncertainty_pp": 1.1115200905122578
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 86.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-4f8059462f1510e8c8f6",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-18",
+            "history_status": "no_history",
+            "item_id": "item-16f0aaaf06b1eb04b8bd49fa0afda9eb",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-00485/2026",
+            "sample_size": 2006,
+            "scenario_id": "president-br-t2-6cf2e28e70",
+            "scenario_type": "estimulada",
+            "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "4f8059462f1510e8c8f6b0127e2b872782c08ae5e162078b80cddd1c3005cb55",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 50.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 45.0,
+                  "published_valid_pct": 50.0,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "LULA: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1163607017227664
+                  },
+                  "uncertainty_pp": 1.1163607017227664
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551932",
+                  "corrected_valid_pct": 50.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RONALDO CAIADO",
+                  "number": 55,
+                  "party": "PSD",
+                  "published_base": "totais",
+                  "published_pct": 45.0,
+                  "published_valid_pct": 50.0,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "RONALDO CAIADO: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1163607017227664
+                  },
+                  "uncertainty_pp": 1.1163607017227664
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 90.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-4f8059462f1510e8c8f6",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-18",
+            "history_status": "no_history",
+            "item_id": "item-1f6c43df7f7e4d60651fa29eb3ff1d5b",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-00485/2026",
+            "sample_size": 2006,
+            "scenario_id": "president-br-t2-73a16ab7e8",
+            "scenario_type": "estimulada",
+            "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "4f8059462f1510e8c8f6b0127e2b872782c08ae5e162078b80cddd1c3005cb55",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 50.57471264367816,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 44.0,
+                  "published_valid_pct": 50.57471264367816,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "LULA: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1162869536994506
+                  },
+                  "uncertainty_pp": 1.1162869536994506
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551547",
+                  "corrected_valid_pct": 49.42528735632184,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "ESCRITOR AUGUSTO CURY",
+                  "number": 70,
+                  "party": "AVANTE",
+                  "published_base": "totais",
+                  "published_pct": 43.0,
+                  "published_valid_pct": 49.42528735632184,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "ESCRITOR AUGUSTO CURY: sem ajuste — a Nexus não tem pesquisa pontuada no 2º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1162869536994506
+                  },
+                  "uncertainty_pp": 1.1162869536994506
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 87.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-4f8059462f1510e8c8f6",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-18",
+            "history_status": "no_history",
+            "item_id": "item-e0bad0ce0222f7a3ce9182ebfae89bc5",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-00485/2026",
+            "sample_size": 2006,
+            "scenario_id": "president-br-t2-efef42beab",
+            "scenario_type": "estimulada",
+            "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "4f8059462f1510e8c8f6b0127e2b872782c08ae5e162078b80cddd1c3005cb55",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002552484",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "CLARIANA BARAO",
+                  "number": 27,
+                  "party": "DC",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "CLARIANA BARAO: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "visao-independente",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002548139",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "VETERINÁRIO WILSON GRASSI",
+                  "number": 35,
+                  "party": "DEMOCRATA",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "VETERINÁRIO WILSON GRASSI: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002551975",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "EDMILSON COSTA",
+                  "number": 21,
+                  "party": "PCB",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "EDMILSON COSTA: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002541457",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "HERTZ DIAS",
+                  "number": 16,
+                  "party": "PSTU",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "HERTZ DIAS: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002552487",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RUI COSTA PIMENTA",
+                  "number": 29,
+                  "party": "PCO",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "RUI COSTA PIMENTA: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "extrema-esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002538811",
+                  "corrected_valid_pct": 1.075268817204301,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "SAMARA",
+                  "number": 80,
+                  "party": "UP",
+                  "published_base": "totais",
+                  "published_pct": 1.0,
+                  "published_valid_pct": 1.075268817204301,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "SAMARA: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.024390243902439022,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.23027431590148606
+                  },
+                  "uncertainty_pp": 0.23027431590148606
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002539826",
+                  "corrected_valid_pct": 1.075268817204301,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "ZEMA",
+                  "number": 30,
+                  "party": "NOVO",
+                  "published_base": "totais",
+                  "published_pct": 1.0,
+                  "published_valid_pct": 1.075268817204301,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "ZEMA: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.02631578947368421,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.23027431590148606
+                  },
+                  "uncertainty_pp": 0.23027431590148606
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002540694",
+                  "corrected_valid_pct": 3.225806451612903,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RENAN SANTOS",
+                  "number": 14,
+                  "party": "MISSÃO",
+                  "published_base": "totais",
+                  "published_pct": 3.0,
+                  "published_valid_pct": 3.225806451612903,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "RENAN SANTOS: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "nao-classificado",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.39448770235216474
+                  },
+                  "uncertainty_pp": 0.39448770235216474
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551932",
+                  "corrected_valid_pct": 5.376344086021505,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RONALDO CAIADO",
+                  "number": 55,
+                  "party": "PSD",
+                  "published_base": "totais",
+                  "published_pct": 5.0,
+                  "published_valid_pct": 5.376344086021505,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "RONALDO CAIADO: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.45454545454545453,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.5035909598779684
+                  },
+                  "uncertainty_pp": 0.5035909598779684
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551547",
+                  "corrected_valid_pct": 6.451612903225806,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "ESCRITOR AUGUSTO CURY",
+                  "number": 70,
+                  "party": "AVANTE",
+                  "published_base": "totais",
+                  "published_pct": 6.0,
+                  "published_valid_pct": 6.451612903225806,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "ESCRITOR AUGUSTO CURY: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.5454545454545454,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.5485128908789422
+                  },
+                  "uncertainty_pp": 0.5485128908789422
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002551544",
+                  "corrected_valid_pct": 39.784946236559136,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "FLAVIO BOLSONARO",
+                  "number": 22,
+                  "party": "PL",
+                  "published_base": "totais",
+                  "published_pct": 37.0,
+                  "published_valid_pct": 39.784946236559136,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "FLAVIO BOLSONARO: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.9736842105263157,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.0928145348056817
+                  },
+                  "uncertainty_pp": 1.0928145348056817
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 43.01075268817204,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 40.0,
+                  "published_valid_pct": 43.01075268817204,
+                  "reason_no_adjustment": "a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus",
+                  "same_person_history": null,
+                  "sentence": "LULA: sem ajuste — a Nexus não tem pesquisa pontuada no 1º turno de nenhuma eleição do corpus.",
+                  "share_in_bloc": 0.975609756097561,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1054001459016436
+                  },
+                  "uncertainty_pp": 1.1054001459016436
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 93.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": {
+              "reason": "o conjunto de candidaturas medido é diferente do da pesquisa viva; cenários distintos não são comparados",
+              "status": "not_comparable"
+            },
+            "evidence": [
+              {
+                "id": "ev-release-4f8059462f1510e8c8f6",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-18",
+            "history_status": "no_history",
+            "item_id": "item-cb8c4382ea4c7ddd91bf185af8812492",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-00485/2026",
+            "sample_size": 2006,
+            "scenario_id": "president-br-t1-e18347b4c8",
+            "scenario_type": "estimulada",
+            "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+            "turn": 1
+          },
           {
             "base": "totais",
             "capture_sha256": "954f1f81c3f23a120180e0aad74fd9ad86cead21d198ac98dbabbb9aca134ff0",
@@ -31875,6 +32704,1044 @@
         "known_2026_polls": [
           {
             "base": "totais",
+            "capture_sha256": "6ef3949862e717d5820774c6367f37c7415f76a622fc940c84e0abdd688bd638",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 49.55778536323267,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 41.0,
+                  "published_valid_pct": 51.89873417721519,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 49.55778536323267,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 51,9% publicado (em votos válidos) → 49,6% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1161119980887142
+                  },
+                  "uncertainty_pp": 2.443400764046646
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002540694",
+                  "corrected_valid_pct": 48.10126582278481,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RENAN SANTOS",
+                  "number": 14,
+                  "party": "MISSÃO",
+                  "published_base": "totais",
+                  "published_pct": 38.0,
+                  "published_valid_pct": 48.10126582278481,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "RENAN SANTOS: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "nao-classificado",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1161119980887142
+                  },
+                  "uncertainty_pp": 1.1161119980887142
+                }
+              ],
+              "corrected_sum_valid_pct": 97.65905118601748,
+              "published_sum_pct": 79.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-6ef3949862e717d58207",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-2f93f1f908367f489cb3f928d952614b",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-6cf2e28e70",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "559c1e45f68c1c72a287eb5f7c50ac5a8ffde2ed640d98148bf4c43ca299c0e1",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": 2.3409488139825214,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002551544",
+                  "corrected_valid_pct": 52.943358452536735,
+                  "direction": "para cima",
+                  "evidence_id": null,
+                  "label": "FLAVIO BOLSONARO",
+                  "number": 22,
+                  "party": "PL",
+                  "published_base": "totais",
+                  "published_pct": 42.0,
+                  "published_valid_pct": 50.602409638554214,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "FLAVIO BOLSONARO: 50,6% publicado (em votos válidos) → 52,9% no cenário (+2,3 p.p.), porque a Quaest mostrou o bloco 'direita' com 2,3 p.p. a menos do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.361764695112014,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1168365607852722
+                  },
+                  "uncertainty_pp": 2.6125191632951172
+                },
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 47.056641547463265,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 41.0,
+                  "published_valid_pct": 49.397590361445786,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 47.056641547463265,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 49,4% publicado (em votos válidos) → 47,1% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1168365607852722
+                  },
+                  "uncertainty_pp": 2.4437318193641517
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 83.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-559c1e45f68c1c72a287",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-6ffe57ebd1817644625eea2fa5aaad96",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-dbec719fff",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "559c1e45f68c1c72a287eb5f7c50ac5a8ffde2ed640d98148bf4c43ca299c0e1",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -4.361751941796293,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 39.16765982290959,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 37.0,
+                  "published_valid_pct": 43.529411764705884,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -0.3152497564857111,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 43.21416200822017,
+                    "historical_mean_pp": 0.3152497564857111,
+                    "n_cells": 1,
+                    "recent_mean_pp": 0.3152497564857111,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 0,3 p.p. a mais em 2022; o ajuste seria −0,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 0.3152497564857111,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 43,5% publicado (em votos válidos) → 39,2% no cenário (−4,4 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 4,5 p.p. a mais do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.9736842105263157,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 6.5458212487903875,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1075254032783282
+                  },
+                  "uncertainty_pp": 6.638854444858885
+                },
+                {
+                  "adjustment_pp": 5.627859164409066,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002551544",
+                  "corrected_valid_pct": 44.45138857617377,
+                  "direction": "para cima",
+                  "evidence_id": null,
+                  "label": "FLAVIO BOLSONARO",
+                  "number": 22,
+                  "party": "PL",
+                  "published_base": "totais",
+                  "published_pct": 33.0,
+                  "published_valid_pct": 38.8235294117647,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "FLAVIO BOLSONARO: 38,8% publicado (em votos válidos) → 44,5% no cenário (+5,6 p.p.), porque a Quaest mostrou o bloco 'direita' com 5,8 p.p. a menos do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.9705882352941175,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 4.597975059001393,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.0886564686720934
+                  },
+                  "uncertainty_pp": 4.7250976233280575
+                },
+                {
+                  "adjustment_pp": -0.49500712022060334,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551547",
+                  "corrected_valid_pct": 6.563816409191161,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "ESCRITOR AUGUSTO CURY",
+                  "number": 70,
+                  "party": "AVANTE",
+                  "published_base": "totais",
+                  "published_pct": 6.0,
+                  "published_valid_pct": 7.0588235294117645,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "ESCRITOR AUGUSTO CURY: 7,1% publicado (em votos válidos) → 6,6% no cenário (−0,5 p.p.), porque a Quaest mostrou o bloco 'centro' com 0,8 p.p. a mais do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.6,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 3.200562276347315,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 0.5721651298264523
+                  },
+                  "uncertainty_pp": 3.2513030957704983
+                },
+                {
+                  "adjustment_pp": -0.33000474681373554,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551932",
+                  "corrected_valid_pct": 4.375877606127441,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "RONALDO CAIADO",
+                  "number": 55,
+                  "party": "PSD",
+                  "published_base": "totais",
+                  "published_pct": 4.0,
+                  "published_valid_pct": 4.705882352941177,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "RONALDO CAIADO: 4,7% publicado (em votos válidos) → 4,4% no cenário (−0,3 p.p.), porque a Quaest mostrou o bloco 'centro' com 0,8 p.p. a mais do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.39999999999999997,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1337081842315433,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 0.47304746640928613
+                  },
+                  "uncertainty_pp": 2.1855169916824977
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002540694",
+                  "corrected_valid_pct": 3.5294117647058822,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RENAN SANTOS",
+                  "number": 14,
+                  "party": "MISSÃO",
+                  "published_base": "totais",
+                  "published_pct": 3.0,
+                  "published_valid_pct": 3.5294117647058822,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "RENAN SANTOS: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "nao-classificado",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.4121921999667693
+                  },
+                  "uncertainty_pp": 0.4121921999667693
+                },
+                {
+                  "adjustment_pp": 0.17054118680027475,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002539826",
+                  "corrected_valid_pct": 1.3470117750355688,
+                  "direction": "para cima",
+                  "evidence_id": null,
+                  "label": "ZEMA",
+                  "number": 30,
+                  "party": "NOVO",
+                  "published_base": "totais",
+                  "published_pct": 1.0,
+                  "published_valid_pct": 1.1764705882352942,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "ZEMA: 1,2% publicado (em votos válidos) → 1,3% no cenário (+0,2 p.p.), porque a Quaest mostrou o bloco 'direita' com 5,8 p.p. a menos do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.029411764705882353,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 0.13933257754549677,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 0.2408639802364038
+                  },
+                  "uncertainty_pp": 0.2782607125355547
+                },
+                {
+                  "adjustment_pp": -0.11788518761611605,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002538811",
+                  "corrected_valid_pct": 1.0585854006191782,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "SAMARA",
+                  "number": 80,
+                  "party": "UP",
+                  "published_base": "totais",
+                  "published_pct": 1.0,
+                  "published_valid_pct": 1.1764705882352942,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "SAMARA: 1,2% publicado (em votos válidos) → 1,1% no cenário (−0,1 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 4,5 p.p. a mais do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.02631578947368421,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 0.17691408780514561,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 0.2408639802364038
+                  },
+                  "uncertainty_pp": 0.29885456569918667
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002552484",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "CLARIANA BARAO",
+                  "number": 27,
+                  "party": "DC",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "CLARIANA BARAO: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "visao-independente",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002551975",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "EDMILSON COSTA",
+                  "number": 21,
+                  "party": "PCB",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "EDMILSON COSTA: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002541457",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "HERTZ DIAS",
+                  "number": 16,
+                  "party": "PSTU",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "HERTZ DIAS: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002552487",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RUI COSTA PIMENTA",
+                  "number": 29,
+                  "party": "PCO",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "RUI COSTA PIMENTA: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "extrema-esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002548139",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "VETERINÁRIO WILSON GRASSI",
+                  "number": 35,
+                  "party": "DEMOCRATA",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "VETERINÁRIO WILSON GRASSI: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002554479",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "LEONARDO AVALANCHE",
+                  "number": 28,
+                  "party": "PRTB",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "LEONARDO AVALANCHE: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                }
+              ],
+              "corrected_sum_valid_pct": 100.4937513547626,
+              "published_sum_pct": 85.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": {
+              "candidates": [
+                {
+                  "delta_pp": -2.352941176470588,
+                  "direction": "baixa",
+                  "known_valid_pct": 7.0588235294117645,
+                  "label": "ESCRITOR AUGUSTO CURY",
+                  "live_valid_pct": 4.705882352941177
+                },
+                {
+                  "delta_pp": 2.352941176470587,
+                  "direction": "alta",
+                  "known_valid_pct": 43.529411764705884,
+                  "label": "LULA",
+                  "live_valid_pct": 45.88235294117647
+                },
+                {
+                  "delta_pp": 1.176470588235297,
+                  "direction": "alta",
+                  "known_valid_pct": 38.8235294117647,
+                  "label": "FLAVIO BOLSONARO",
+                  "live_valid_pct": 40.0
+                },
+                {
+                  "delta_pp": -1.1764705882352942,
+                  "direction": "baixa",
+                  "known_valid_pct": 1.1764705882352942,
+                  "label": "SAMARA",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 4.705882352941177,
+                  "label": "RONALDO CAIADO",
+                  "live_valid_pct": 4.705882352941177
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 3.5294117647058822,
+                  "label": "RENAN SANTOS",
+                  "live_valid_pct": 3.5294117647058822
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 1.1764705882352942,
+                  "label": "ZEMA",
+                  "live_valid_pct": 1.1764705882352942
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "CLARIANA BARAO",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "EDMILSON COSTA",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "HERTZ DIAS",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "RUI COSTA PIMENTA",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "VETERINÁRIO WILSON GRASSI",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "LEONARDO AVALANCHE",
+                  "live_valid_pct": 0.0
+                }
+              ],
+              "live_registration_no": "BR-06520/2026",
+              "note": "Comparação com a pesquisa viva da própria casa, em votos válidos.",
+              "status": "compared"
+            },
+            "evidence": [
+              {
+                "id": "ev-release-559c1e45f68c1c72a287",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-834f5fa3bc3d93fca9d2dbc37f45d8e7",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t1-7403322505",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+            "turn": 1
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "6ef3949862e717d5820774c6367f37c7415f76a622fc940c84e0abdd688bd638",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 50.36175388872018,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 39.0,
+                  "published_valid_pct": 52.7027027027027,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 50.36175388872018,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 52,7% publicado (em votos válidos) → 50,4% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1152847076384653
+                  },
+                  "uncertainty_pp": 2.443022979948893
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551547",
+                  "corrected_valid_pct": 47.2972972972973,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "ESCRITOR AUGUSTO CURY",
+                  "number": 70,
+                  "party": "AVANTE",
+                  "published_base": "totais",
+                  "published_pct": 35.0,
+                  "published_valid_pct": 47.2972972972973,
+                  "reason_no_adjustment": "a casa não tem histórico para o bloco 'centro' neste turno",
+                  "same_person_history": null,
+                  "sentence": "ESCRITOR AUGUSTO CURY: sem ajuste — a casa não tem histórico para o bloco 'centro' neste turno.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1152847076384653
+                  },
+                  "uncertainty_pp": 1.1152847076384653
+                }
+              ],
+              "corrected_sum_valid_pct": 97.65905118601748,
+              "published_sum_pct": 74.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-6ef3949862e717d58207",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-4ce0cbac5dedf625ffcf759d0d64cbd9",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-efef42beab",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "559c1e45f68c1c72a287eb5f7c50ac5a8ffde2ed640d98148bf4c43ca299c0e1",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 48.90905118601748,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 41.0,
+                  "published_valid_pct": 51.25,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 48.90905118601748,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 51,2% publicado (em votos válidos) → 48,9% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1165685377088133
+                  },
+                  "uncertainty_pp": 2.4436093388402633
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551932",
+                  "corrected_valid_pct": 48.75,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RONALDO CAIADO",
+                  "number": 55,
+                  "party": "PSD",
+                  "published_base": "totais",
+                  "published_pct": 39.0,
+                  "published_valid_pct": 48.75,
+                  "reason_no_adjustment": "a casa não tem histórico para o bloco 'centro' neste turno",
+                  "same_person_history": null,
+                  "sentence": "RONALDO CAIADO: sem ajuste — a casa não tem histórico para o bloco 'centro' neste turno.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.116568537708813
+                  },
+                  "uncertainty_pp": 1.116568537708813
+                }
+              ],
+              "corrected_sum_valid_pct": 97.65905118601748,
+              "published_sum_pct": 80.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-559c1e45f68c1c72a287",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-d4fe895a7e0cd296c42f26818f452641",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-73a16ab7e8",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "559c1e45f68c1c72a287eb5f7c50ac5a8ffde2ed640d98148bf4c43ca299c0e1",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 56.63341016037645,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 46.0,
+                  "published_valid_pct": 58.97435897435897,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 56.63341016037645,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 59,0% publicado (em votos válidos) → 56,6% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.09877923573478
+                  },
+                  "uncertainty_pp": 2.435532202691654
+                },
+                {
+                  "adjustment_pp": 2.3409488139825214,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002539826",
+                  "corrected_valid_pct": 43.36658983962355,
+                  "direction": "para cima",
+                  "evidence_id": null,
+                  "label": "ZEMA",
+                  "number": 30,
+                  "party": "NOVO",
+                  "published_base": "totais",
+                  "published_pct": 32.0,
+                  "published_valid_pct": 41.02564102564103,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "ZEMA: 41,0% publicado (em votos válidos) → 43,4% no cenário (+2,3 p.p.), porque a Quaest mostrou o bloco 'direita' com 2,3 p.p. a menos do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.361764695112014,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.09877923573478
+                  },
+                  "uncertainty_pp": 2.6048509139602314
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 78.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-559c1e45f68c1c72a287",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-bf838a53714d7edd6bc01c509b899f4e",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-be1d6be6cc",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
             "capture_sha256": "44ee024308ce749f791e29e27edc30df67d4f17718dc18bbb12a538a20115a66",
             "confidence_level": 95.0,
             "corrected": {
@@ -33880,6 +35747,1044 @@
         "house_name": "Quaest",
         "identity_basis": "live_stream_slug",
         "known_2026_polls": [
+          {
+            "base": "totais",
+            "capture_sha256": "6ef3949862e717d5820774c6367f37c7415f76a622fc940c84e0abdd688bd638",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 49.55778536323267,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 41.0,
+                  "published_valid_pct": 51.89873417721519,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 49.55778536323267,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 51,9% publicado (em votos válidos) → 49,6% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1161119980887142
+                  },
+                  "uncertainty_pp": 2.443400764046646
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002540694",
+                  "corrected_valid_pct": 48.10126582278481,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RENAN SANTOS",
+                  "number": 14,
+                  "party": "MISSÃO",
+                  "published_base": "totais",
+                  "published_pct": 38.0,
+                  "published_valid_pct": 48.10126582278481,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "RENAN SANTOS: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "nao-classificado",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1161119980887142
+                  },
+                  "uncertainty_pp": 1.1161119980887142
+                }
+              ],
+              "corrected_sum_valid_pct": 97.65905118601748,
+              "published_sum_pct": 79.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-6ef3949862e717d58207",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-2f93f1f908367f489cb3f928d952614b",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-6cf2e28e70",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "559c1e45f68c1c72a287eb5f7c50ac5a8ffde2ed640d98148bf4c43ca299c0e1",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": 2.3409488139825214,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002551544",
+                  "corrected_valid_pct": 52.943358452536735,
+                  "direction": "para cima",
+                  "evidence_id": null,
+                  "label": "FLAVIO BOLSONARO",
+                  "number": 22,
+                  "party": "PL",
+                  "published_base": "totais",
+                  "published_pct": 42.0,
+                  "published_valid_pct": 50.602409638554214,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "FLAVIO BOLSONARO: 50,6% publicado (em votos válidos) → 52,9% no cenário (+2,3 p.p.), porque a Quaest mostrou o bloco 'direita' com 2,3 p.p. a menos do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.361764695112014,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1168365607852722
+                  },
+                  "uncertainty_pp": 2.6125191632951172
+                },
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 47.056641547463265,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 41.0,
+                  "published_valid_pct": 49.397590361445786,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 47.056641547463265,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 49,4% publicado (em votos válidos) → 47,1% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1168365607852722
+                  },
+                  "uncertainty_pp": 2.4437318193641517
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 83.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-559c1e45f68c1c72a287",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-6ffe57ebd1817644625eea2fa5aaad96",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-dbec719fff",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "559c1e45f68c1c72a287eb5f7c50ac5a8ffde2ed640d98148bf4c43ca299c0e1",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -4.361751941796293,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 39.16765982290959,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 37.0,
+                  "published_valid_pct": 43.529411764705884,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -0.3152497564857111,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 43.21416200822017,
+                    "historical_mean_pp": 0.3152497564857111,
+                    "n_cells": 1,
+                    "recent_mean_pp": 0.3152497564857111,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 0,3 p.p. a mais em 2022; o ajuste seria −0,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 0.3152497564857111,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 43,5% publicado (em votos válidos) → 39,2% no cenário (−4,4 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 4,5 p.p. a mais do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.9736842105263157,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 6.5458212487903875,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1075254032783282
+                  },
+                  "uncertainty_pp": 6.638854444858885
+                },
+                {
+                  "adjustment_pp": 5.627859164409066,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002551544",
+                  "corrected_valid_pct": 44.45138857617377,
+                  "direction": "para cima",
+                  "evidence_id": null,
+                  "label": "FLAVIO BOLSONARO",
+                  "number": 22,
+                  "party": "PL",
+                  "published_base": "totais",
+                  "published_pct": 33.0,
+                  "published_valid_pct": 38.8235294117647,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "FLAVIO BOLSONARO: 38,8% publicado (em votos válidos) → 44,5% no cenário (+5,6 p.p.), porque a Quaest mostrou o bloco 'direita' com 5,8 p.p. a menos do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.9705882352941175,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 4.597975059001393,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.0886564686720934
+                  },
+                  "uncertainty_pp": 4.7250976233280575
+                },
+                {
+                  "adjustment_pp": -0.49500712022060334,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551547",
+                  "corrected_valid_pct": 6.563816409191161,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "ESCRITOR AUGUSTO CURY",
+                  "number": 70,
+                  "party": "AVANTE",
+                  "published_base": "totais",
+                  "published_pct": 6.0,
+                  "published_valid_pct": 7.0588235294117645,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "ESCRITOR AUGUSTO CURY: 7,1% publicado (em votos válidos) → 6,6% no cenário (−0,5 p.p.), porque a Quaest mostrou o bloco 'centro' com 0,8 p.p. a mais do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.6,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 3.200562276347315,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 0.5721651298264523
+                  },
+                  "uncertainty_pp": 3.2513030957704983
+                },
+                {
+                  "adjustment_pp": -0.33000474681373554,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551932",
+                  "corrected_valid_pct": 4.375877606127441,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "RONALDO CAIADO",
+                  "number": 55,
+                  "party": "PSD",
+                  "published_base": "totais",
+                  "published_pct": 4.0,
+                  "published_valid_pct": 4.705882352941177,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "RONALDO CAIADO: 4,7% publicado (em votos válidos) → 4,4% no cenário (−0,3 p.p.), porque a Quaest mostrou o bloco 'centro' com 0,8 p.p. a mais do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.39999999999999997,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1337081842315433,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 0.47304746640928613
+                  },
+                  "uncertainty_pp": 2.1855169916824977
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002540694",
+                  "corrected_valid_pct": 3.5294117647058822,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RENAN SANTOS",
+                  "number": 14,
+                  "party": "MISSÃO",
+                  "published_base": "totais",
+                  "published_pct": 3.0,
+                  "published_valid_pct": 3.5294117647058822,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "RENAN SANTOS: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "nao-classificado",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.4121921999667693
+                  },
+                  "uncertainty_pp": 0.4121921999667693
+                },
+                {
+                  "adjustment_pp": 0.17054118680027475,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002539826",
+                  "corrected_valid_pct": 1.3470117750355688,
+                  "direction": "para cima",
+                  "evidence_id": null,
+                  "label": "ZEMA",
+                  "number": 30,
+                  "party": "NOVO",
+                  "published_base": "totais",
+                  "published_pct": 1.0,
+                  "published_valid_pct": 1.1764705882352942,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "ZEMA: 1,2% publicado (em votos válidos) → 1,3% no cenário (+0,2 p.p.), porque a Quaest mostrou o bloco 'direita' com 5,8 p.p. a menos do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.029411764705882353,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 0.13933257754549677,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 0.2408639802364038
+                  },
+                  "uncertainty_pp": 0.2782607125355547
+                },
+                {
+                  "adjustment_pp": -0.11788518761611605,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002538811",
+                  "corrected_valid_pct": 1.0585854006191782,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "SAMARA",
+                  "number": 80,
+                  "party": "UP",
+                  "published_base": "totais",
+                  "published_pct": 1.0,
+                  "published_valid_pct": 1.1764705882352942,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "SAMARA: 1,2% publicado (em votos válidos) → 1,1% no cenário (−0,1 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 4,5 p.p. a mais do que teve na urna, em média, no 1º turno de 2022.",
+                  "share_in_bloc": 0.02631578947368421,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 0.17691408780514561,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 0.2408639802364038
+                  },
+                  "uncertainty_pp": 0.29885456569918667
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "unclassified",
+                  "candidate_id": "2026-tse-280002552484",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "CLARIANA BARAO",
+                  "number": 27,
+                  "party": "DC",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "partido fora do eixo: a fonte declarada não o classifica",
+                  "same_person_history": null,
+                  "sentence": "CLARIANA BARAO: sem ajuste — partido fora do eixo: a fonte declarada não o classifica.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "visao-independente",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002551975",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "EDMILSON COSTA",
+                  "number": 21,
+                  "party": "PCB",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "EDMILSON COSTA: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002541457",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "HERTZ DIAS",
+                  "number": 16,
+                  "party": "PSTU",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "HERTZ DIAS: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002552487",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RUI COSTA PIMENTA",
+                  "number": 29,
+                  "party": "PCO",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "RUI COSTA PIMENTA: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "extrema-esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002548139",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "VETERINÁRIO WILSON GRASSI",
+                  "number": 35,
+                  "party": "DEMOCRATA",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "VETERINÁRIO WILSON GRASSI: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002554479",
+                  "corrected_valid_pct": 0.0,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "LEONARDO AVALANCHE",
+                  "number": 28,
+                  "party": "PRTB",
+                  "published_base": "totais",
+                  "published_pct": 0.0,
+                  "published_valid_pct": 0.0,
+                  "reason_no_adjustment": "candidatura com 0% publicado: nada a distribuir",
+                  "same_person_history": null,
+                  "sentence": "LEONARDO AVALANCHE: sem ajuste — candidatura com 0% publicado: nada a distribuir.",
+                  "share_in_bloc": 0.0,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 0.0
+                  },
+                  "uncertainty_pp": 0.0
+                }
+              ],
+              "corrected_sum_valid_pct": 100.4937513547626,
+              "published_sum_pct": 85.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": {
+              "candidates": [
+                {
+                  "delta_pp": -2.352941176470588,
+                  "direction": "baixa",
+                  "known_valid_pct": 7.0588235294117645,
+                  "label": "ESCRITOR AUGUSTO CURY",
+                  "live_valid_pct": 4.705882352941177
+                },
+                {
+                  "delta_pp": 2.352941176470587,
+                  "direction": "alta",
+                  "known_valid_pct": 43.529411764705884,
+                  "label": "LULA",
+                  "live_valid_pct": 45.88235294117647
+                },
+                {
+                  "delta_pp": 1.176470588235297,
+                  "direction": "alta",
+                  "known_valid_pct": 38.8235294117647,
+                  "label": "FLAVIO BOLSONARO",
+                  "live_valid_pct": 40.0
+                },
+                {
+                  "delta_pp": -1.1764705882352942,
+                  "direction": "baixa",
+                  "known_valid_pct": 1.1764705882352942,
+                  "label": "SAMARA",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 4.705882352941177,
+                  "label": "RONALDO CAIADO",
+                  "live_valid_pct": 4.705882352941177
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 3.5294117647058822,
+                  "label": "RENAN SANTOS",
+                  "live_valid_pct": 3.5294117647058822
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 1.1764705882352942,
+                  "label": "ZEMA",
+                  "live_valid_pct": 1.1764705882352942
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "CLARIANA BARAO",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "EDMILSON COSTA",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "HERTZ DIAS",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "RUI COSTA PIMENTA",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "VETERINÁRIO WILSON GRASSI",
+                  "live_valid_pct": 0.0
+                },
+                {
+                  "delta_pp": 0.0,
+                  "direction": "estavel",
+                  "known_valid_pct": 0.0,
+                  "label": "LEONARDO AVALANCHE",
+                  "live_valid_pct": 0.0
+                }
+              ],
+              "live_registration_no": "BR-06520/2026",
+              "note": "Comparação com a pesquisa viva da própria casa, em votos válidos.",
+              "status": "compared"
+            },
+            "evidence": [
+              {
+                "id": "ev-release-559c1e45f68c1c72a287",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-834f5fa3bc3d93fca9d2dbc37f45d8e7",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t1-7403322505",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+            "turn": 1
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "6ef3949862e717d5820774c6367f37c7415f76a622fc940c84e0abdd688bd638",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 50.36175388872018,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 39.0,
+                  "published_valid_pct": 52.7027027027027,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 50.36175388872018,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 52,7% publicado (em votos válidos) → 50,4% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1152847076384653
+                  },
+                  "uncertainty_pp": 2.443022979948893
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551547",
+                  "corrected_valid_pct": 47.2972972972973,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "ESCRITOR AUGUSTO CURY",
+                  "number": 70,
+                  "party": "AVANTE",
+                  "published_base": "totais",
+                  "published_pct": 35.0,
+                  "published_valid_pct": 47.2972972972973,
+                  "reason_no_adjustment": "a casa não tem histórico para o bloco 'centro' neste turno",
+                  "same_person_history": null,
+                  "sentence": "ESCRITOR AUGUSTO CURY: sem ajuste — a casa não tem histórico para o bloco 'centro' neste turno.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.1152847076384653
+                  },
+                  "uncertainty_pp": 1.1152847076384653
+                }
+              ],
+              "corrected_sum_valid_pct": 97.65905118601748,
+              "published_sum_pct": 74.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-6ef3949862e717d58207",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-4ce0cbac5dedf625ffcf759d0d64cbd9",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-efef42beab",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "559c1e45f68c1c72a287eb5f7c50ac5a8ffde2ed640d98148bf4c43ca299c0e1",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 48.90905118601748,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 41.0,
+                  "published_valid_pct": 51.25,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 48.90905118601748,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 51,2% publicado (em votos válidos) → 48,9% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.1165685377088133
+                  },
+                  "uncertainty_pp": 2.4436093388402633
+                },
+                {
+                  "adjustment_pp": 0.0,
+                  "bloc": "centro",
+                  "candidate_id": "2026-tse-280002551932",
+                  "corrected_valid_pct": 48.75,
+                  "direction": "sem ajuste",
+                  "evidence_id": null,
+                  "label": "RONALDO CAIADO",
+                  "number": 55,
+                  "party": "PSD",
+                  "published_base": "totais",
+                  "published_pct": 39.0,
+                  "published_valid_pct": 48.75,
+                  "reason_no_adjustment": "a casa não tem histórico para o bloco 'centro' neste turno",
+                  "same_person_history": null,
+                  "sentence": "RONALDO CAIADO: sem ajuste — a casa não tem histórico para o bloco 'centro' neste turno.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "centro",
+                  "uncertainty_components": {
+                    "historical_sd_pp": null,
+                    "historical_sd_source": null,
+                    "sampling_se_pp": 1.116568537708813
+                  },
+                  "uncertainty_pp": 1.116568537708813
+                }
+              ],
+              "corrected_sum_valid_pct": 97.65905118601748,
+              "published_sum_pct": 80.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-559c1e45f68c1c72a287",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-d4fe895a7e0cd296c42f26818f452641",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-73a16ab7e8",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
+          {
+            "base": "totais",
+            "capture_sha256": "559c1e45f68c1c72a287eb5f7c50ac5a8ffde2ed640d98148bf4c43ca299c0e1",
+            "confidence_level": 95.0,
+            "corrected": {
+              "base_conversion": "percentual publicado ÷ soma das candidaturas publicadas × 100 (exclui brancos, nulos e indecisos)",
+              "candidates": [
+                {
+                  "adjustment_pp": -2.3409488139825214,
+                  "bloc": "esquerda",
+                  "candidate_id": "2026-tse-280002542548",
+                  "corrected_valid_pct": 56.63341016037645,
+                  "direction": "para baixo",
+                  "evidence_id": null,
+                  "label": "LULA",
+                  "number": 13,
+                  "party": "PT",
+                  "published_base": "totais",
+                  "published_pct": 46.0,
+                  "published_valid_pct": 58.97435897435897,
+                  "reason_no_adjustment": null,
+                  "same_person_history": {
+                    "adjustment_pp": -2.3409488139825214,
+                    "basis": "mesma pessoa; Lula concorreu em 2022 pelo PT e concorre em 2026 pelo PT",
+                    "candidate_id": "lula",
+                    "corrected_valid_pct": 56.63341016037645,
+                    "historical_mean_pp": 2.3409488139825214,
+                    "n_cells": 1,
+                    "recent_mean_pp": 2.3409488139825214,
+                    "sd_pp": null,
+                    "sentence": "Só com o histórico da própria pessoa: a Quaest mostrou Lula com 2,3 p.p. a mais em 2022; o ajuste seria −2,3 p.p.",
+                    "status": "recent_is_all_history",
+                    "value_pp": 2.3409488139825214,
+                    "years": [
+                      2022
+                    ]
+                  },
+                  "sentence": "LULA: 59,0% publicado (em votos válidos) → 56,6% no cenário (−2,3 p.p.), porque a Quaest mostrou o bloco 'esquerda' com 2,3 p.p. a mais do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "esquerda",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.1735917973405567,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.09877923573478
+                  },
+                  "uncertainty_pp": 2.435532202691654
+                },
+                {
+                  "adjustment_pp": 2.3409488139825214,
+                  "bloc": "direita",
+                  "candidate_id": "2026-tse-280002539826",
+                  "corrected_valid_pct": 43.36658983962355,
+                  "direction": "para cima",
+                  "evidence_id": null,
+                  "label": "ZEMA",
+                  "number": 30,
+                  "party": "NOVO",
+                  "published_base": "totais",
+                  "published_pct": 32.0,
+                  "published_valid_pct": 41.02564102564103,
+                  "reason_no_adjustment": null,
+                  "same_person_history": null,
+                  "sentence": "ZEMA: 41,0% publicado (em votos válidos) → 43,4% no cenário (+2,3 p.p.), porque a Quaest mostrou o bloco 'direita' com 2,3 p.p. a menos do que teve na urna, em média, no 2º turno de 2022.",
+                  "share_in_bloc": 1.0,
+                  "spectrum": "direita",
+                  "uncertainty_components": {
+                    "historical_sd_pp": 2.361764695112014,
+                    "historical_sd_source": "dispersão entre células de todas as casas (a casa tem uma célula só)",
+                    "sampling_se_pp": 1.09877923573478
+                  },
+                  "uncertainty_pp": 2.6048509139602314
+                }
+              ],
+              "corrected_sum_valid_pct": 100.0,
+              "published_sum_pct": 78.0,
+              "sum_note": "A soma corrigida não é renormalizada para 100: a diferença é o erro histórico que a casa teve em candidaturas fora do eixo e em 'outros'."
+            },
+            "delta_vs_live": null,
+            "evidence": [
+              {
+                "id": "ev-release-559c1e45f68c1c72a287",
+                "primary": true,
+                "source_type": "official_institute_release"
+              },
+              {
+                "id": "ev-tse-ec3137f62ce5a05fdf0d",
+                "primary": true,
+                "source_type": "tse_pesqele_registry"
+              },
+              {
+                "id": "ev-tse-candidates-5a821017b15677541136",
+                "primary": true,
+                "source_type": "tse_divulgacand_candidate_registry"
+              }
+            ],
+            "field_end": "2026-09-20",
+            "field_start": "2026-09-17",
+            "history_status": "available",
+            "item_id": "item-bf838a53714d7edd6bc01c509b899f4e",
+            "live_engine_eligible": true,
+            "margin_of_error": 2.0,
+            "published_at": "2026-09-21",
+            "regime": "post_registration",
+            "regime_note": null,
+            "registration_no": "BR-06004/2026",
+            "sample_size": 2004,
+            "scenario_id": "president-br-t2-be1d6be6cc",
+            "scenario_type": "estimulada",
+            "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+            "turn": 2
+          },
           {
             "base": "totais",
             "capture_sha256": "44ee024308ce749f791e29e27edc30df67d4f17718dc18bbb12a538a20115a66",
@@ -43202,7 +46107,7 @@
         "PoderData",
         "Quaest"
       ],
-      "n_points": 99,
+      "n_points": 117,
       "note": "Um ponto por pesquisa 2026 aceita, publicada e corrigida pela lente da própria casa. Pontos de casas diferentes não são ligados: só a mesma casa forma série no tempo.",
       "points": [
         {
@@ -50404,6 +53309,1214 @@
         {
           "candidates": [
             {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 53.40909090909091,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 47.0,
+              "published_valid_pct": 53.40909090909091,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002539826",
+              "corrected_valid_pct": 46.59090909090909,
+              "label": "ZEMA",
+              "party": "NOVO",
+              "published_base": "totais",
+              "published_pct": 41.0,
+              "published_valid_pct": 46.59090909090909,
+              "series_key": "ZEMA"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-18",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_id": "president-br-t2-be1d6be6cc",
+          "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 50.54945054945055,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 46.0,
+              "published_valid_pct": 50.54945054945055,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002551544",
+              "corrected_valid_pct": 49.45054945054945,
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_base": "totais",
+              "published_pct": 45.0,
+              "published_valid_pct": 49.45054945054945,
+              "series_key": "FLAVIO BOLSONARO"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-18",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_id": "president-br-t2-6674345612",
+          "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 54.651162790697676,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 47.0,
+              "published_valid_pct": 54.651162790697676,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002540694",
+              "corrected_valid_pct": 45.348837209302324,
+              "label": "RENAN SANTOS",
+              "party": "MISSÃO",
+              "published_base": "totais",
+              "published_pct": 39.0,
+              "published_valid_pct": 45.348837209302324,
+              "series_key": "RENAN SANTOS"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-18",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_id": "president-br-t2-6cf2e28e70",
+          "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 50.0,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 45.0,
+              "published_valid_pct": 50.0,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551932",
+              "corrected_valid_pct": 50.0,
+              "label": "RONALDO CAIADO",
+              "party": "PSD",
+              "published_base": "totais",
+              "published_pct": 45.0,
+              "published_valid_pct": 50.0,
+              "series_key": "RONALDO CAIADO"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-18",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_id": "president-br-t2-73a16ab7e8",
+          "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 50.57471264367816,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 44.0,
+              "published_valid_pct": 50.57471264367816,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551547",
+              "corrected_valid_pct": 49.42528735632184,
+              "label": "ESCRITOR AUGUSTO CURY",
+              "party": "AVANTE",
+              "published_base": "totais",
+              "published_pct": 43.0,
+              "published_valid_pct": 49.42528735632184,
+              "series_key": "ESCRITOR AUGUSTO CURY"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-18",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_id": "president-br-t2-efef42beab",
+          "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002552484",
+              "corrected_valid_pct": 0.0,
+              "label": "CLARIANA BARAO",
+              "party": "DC",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "CLARIANA BARAO"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002548139",
+              "corrected_valid_pct": 0.0,
+              "label": "VETERINÁRIO WILSON GRASSI",
+              "party": "DEMOCRATA",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "VETERINARIO WILSON GRASSI"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002551975",
+              "corrected_valid_pct": 0.0,
+              "label": "EDMILSON COSTA",
+              "party": "PCB",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "EDMILSON COSTA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002541457",
+              "corrected_valid_pct": 0.0,
+              "label": "HERTZ DIAS",
+              "party": "PSTU",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "HERTZ DIAS"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002552487",
+              "corrected_valid_pct": 0.0,
+              "label": "RUI COSTA PIMENTA",
+              "party": "PCO",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "RUI COSTA PIMENTA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002538811",
+              "corrected_valid_pct": 1.075268817204301,
+              "label": "SAMARA",
+              "party": "UP",
+              "published_base": "totais",
+              "published_pct": 1.0,
+              "published_valid_pct": 1.075268817204301,
+              "series_key": "SAMARA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002539826",
+              "corrected_valid_pct": 1.075268817204301,
+              "label": "ZEMA",
+              "party": "NOVO",
+              "published_base": "totais",
+              "published_pct": 1.0,
+              "published_valid_pct": 1.075268817204301,
+              "series_key": "ZEMA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002540694",
+              "corrected_valid_pct": 3.225806451612903,
+              "label": "RENAN SANTOS",
+              "party": "MISSÃO",
+              "published_base": "totais",
+              "published_pct": 3.0,
+              "published_valid_pct": 3.225806451612903,
+              "series_key": "RENAN SANTOS"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551932",
+              "corrected_valid_pct": 5.376344086021505,
+              "label": "RONALDO CAIADO",
+              "party": "PSD",
+              "published_base": "totais",
+              "published_pct": 5.0,
+              "published_valid_pct": 5.376344086021505,
+              "series_key": "RONALDO CAIADO"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551547",
+              "corrected_valid_pct": 6.451612903225806,
+              "label": "ESCRITOR AUGUSTO CURY",
+              "party": "AVANTE",
+              "published_base": "totais",
+              "published_pct": 6.0,
+              "published_valid_pct": 6.451612903225806,
+              "series_key": "ESCRITOR AUGUSTO CURY"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002551544",
+              "corrected_valid_pct": 39.784946236559136,
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_base": "totais",
+              "published_pct": 37.0,
+              "published_valid_pct": 39.784946236559136,
+              "series_key": "FLAVIO BOLSONARO"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 43.01075268817204,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 40.0,
+              "published_valid_pct": 43.01075268817204,
+              "series_key": "LULA"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-18",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-00485/2026",
+          "sample_size": 2006,
+          "scenario_id": "president-br-t1-e18347b4c8",
+          "source_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+          "turn": 1
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 49.55778536323267,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 41.0,
+              "published_valid_pct": 51.89873417721519,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002540694",
+              "corrected_valid_pct": 48.10126582278481,
+              "label": "RENAN SANTOS",
+              "party": "MISSÃO",
+              "published_base": "totais",
+              "published_pct": 38.0,
+              "published_valid_pct": 48.10126582278481,
+              "series_key": "RENAN SANTOS"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-6cf2e28e70",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": 2.3409488139825214,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002551544",
+              "corrected_valid_pct": 52.943358452536735,
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_base": "totais",
+              "published_pct": 42.0,
+              "published_valid_pct": 50.602409638554214,
+              "series_key": "FLAVIO BOLSONARO"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 47.056641547463265,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 41.0,
+              "published_valid_pct": 49.397590361445786,
+              "series_key": "LULA"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-dbec719fff",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -4.361751941796293,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 39.16765982290959,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 37.0,
+              "published_valid_pct": 43.529411764705884,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": 5.627859164409066,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002551544",
+              "corrected_valid_pct": 44.45138857617377,
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_base": "totais",
+              "published_pct": 33.0,
+              "published_valid_pct": 38.8235294117647,
+              "series_key": "FLAVIO BOLSONARO"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": -0.49500712022060334,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551547",
+              "corrected_valid_pct": 6.563816409191161,
+              "label": "ESCRITOR AUGUSTO CURY",
+              "party": "AVANTE",
+              "published_base": "totais",
+              "published_pct": 6.0,
+              "published_valid_pct": 7.0588235294117645,
+              "series_key": "ESCRITOR AUGUSTO CURY"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": -0.33000474681373554,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551932",
+              "corrected_valid_pct": 4.375877606127441,
+              "label": "RONALDO CAIADO",
+              "party": "PSD",
+              "published_base": "totais",
+              "published_pct": 4.0,
+              "published_valid_pct": 4.705882352941177,
+              "series_key": "RONALDO CAIADO"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002540694",
+              "corrected_valid_pct": 3.5294117647058822,
+              "label": "RENAN SANTOS",
+              "party": "MISSÃO",
+              "published_base": "totais",
+              "published_pct": 3.0,
+              "published_valid_pct": 3.5294117647058822,
+              "series_key": "RENAN SANTOS"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": 0.17054118680027475,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002539826",
+              "corrected_valid_pct": 1.3470117750355688,
+              "label": "ZEMA",
+              "party": "NOVO",
+              "published_base": "totais",
+              "published_pct": 1.0,
+              "published_valid_pct": 1.1764705882352942,
+              "series_key": "ZEMA"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": -0.11788518761611605,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002538811",
+              "corrected_valid_pct": 1.0585854006191782,
+              "label": "SAMARA",
+              "party": "UP",
+              "published_base": "totais",
+              "published_pct": 1.0,
+              "published_valid_pct": 1.1764705882352942,
+              "series_key": "SAMARA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002552484",
+              "corrected_valid_pct": 0.0,
+              "label": "CLARIANA BARAO",
+              "party": "DC",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "CLARIANA BARAO"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002551975",
+              "corrected_valid_pct": 0.0,
+              "label": "EDMILSON COSTA",
+              "party": "PCB",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "EDMILSON COSTA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002541457",
+              "corrected_valid_pct": 0.0,
+              "label": "HERTZ DIAS",
+              "party": "PSTU",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "HERTZ DIAS"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002552487",
+              "corrected_valid_pct": 0.0,
+              "label": "RUI COSTA PIMENTA",
+              "party": "PCO",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "RUI COSTA PIMENTA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002548139",
+              "corrected_valid_pct": 0.0,
+              "label": "VETERINÁRIO WILSON GRASSI",
+              "party": "DEMOCRATA",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "VETERINARIO WILSON GRASSI"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002554479",
+              "corrected_valid_pct": 0.0,
+              "label": "LEONARDO AVALANCHE",
+              "party": "PRTB",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "LEONARDO AVALANCHE"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t1-7403322505",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+          "turn": 1
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 50.36175388872018,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 39.0,
+              "published_valid_pct": 52.7027027027027,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551547",
+              "corrected_valid_pct": 47.2972972972973,
+              "label": "ESCRITOR AUGUSTO CURY",
+              "party": "AVANTE",
+              "published_base": "totais",
+              "published_pct": 35.0,
+              "published_valid_pct": 47.2972972972973,
+              "series_key": "ESCRITOR AUGUSTO CURY"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-efef42beab",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 48.90905118601748,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 41.0,
+              "published_valid_pct": 51.25,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551932",
+              "corrected_valid_pct": 48.75,
+              "label": "RONALDO CAIADO",
+              "party": "PSD",
+              "published_base": "totais",
+              "published_pct": 39.0,
+              "published_valid_pct": 48.75,
+              "series_key": "RONALDO CAIADO"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-73a16ab7e8",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 56.63341016037645,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 46.0,
+              "published_valid_pct": 58.97435897435897,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": 2.3409488139825214,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002539826",
+              "corrected_valid_pct": 43.36658983962355,
+              "label": "ZEMA",
+              "party": "NOVO",
+              "published_base": "totais",
+              "published_pct": 32.0,
+              "published_valid_pct": 41.02564102564103,
+              "series_key": "ZEMA"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-be1d6be6cc",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 49.55778536323267,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 41.0,
+              "published_valid_pct": 51.89873417721519,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002540694",
+              "corrected_valid_pct": 48.10126582278481,
+              "label": "RENAN SANTOS",
+              "party": "MISSÃO",
+              "published_base": "totais",
+              "published_pct": 38.0,
+              "published_valid_pct": 48.10126582278481,
+              "series_key": "RENAN SANTOS"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-6cf2e28e70",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": 2.3409488139825214,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002551544",
+              "corrected_valid_pct": 52.943358452536735,
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_base": "totais",
+              "published_pct": 42.0,
+              "published_valid_pct": 50.602409638554214,
+              "series_key": "FLAVIO BOLSONARO"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 47.056641547463265,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 41.0,
+              "published_valid_pct": 49.397590361445786,
+              "series_key": "LULA"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-dbec719fff",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -4.361751941796293,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 39.16765982290959,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 37.0,
+              "published_valid_pct": 43.529411764705884,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": 5.627859164409066,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002551544",
+              "corrected_valid_pct": 44.45138857617377,
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_base": "totais",
+              "published_pct": 33.0,
+              "published_valid_pct": 38.8235294117647,
+              "series_key": "FLAVIO BOLSONARO"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": -0.49500712022060334,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551547",
+              "corrected_valid_pct": 6.563816409191161,
+              "label": "ESCRITOR AUGUSTO CURY",
+              "party": "AVANTE",
+              "published_base": "totais",
+              "published_pct": 6.0,
+              "published_valid_pct": 7.0588235294117645,
+              "series_key": "ESCRITOR AUGUSTO CURY"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": -0.33000474681373554,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551932",
+              "corrected_valid_pct": 4.375877606127441,
+              "label": "RONALDO CAIADO",
+              "party": "PSD",
+              "published_base": "totais",
+              "published_pct": 4.0,
+              "published_valid_pct": 4.705882352941177,
+              "series_key": "RONALDO CAIADO"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002540694",
+              "corrected_valid_pct": 3.5294117647058822,
+              "label": "RENAN SANTOS",
+              "party": "MISSÃO",
+              "published_base": "totais",
+              "published_pct": 3.0,
+              "published_valid_pct": 3.5294117647058822,
+              "series_key": "RENAN SANTOS"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": 0.17054118680027475,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002539826",
+              "corrected_valid_pct": 1.3470117750355688,
+              "label": "ZEMA",
+              "party": "NOVO",
+              "published_base": "totais",
+              "published_pct": 1.0,
+              "published_valid_pct": 1.1764705882352942,
+              "series_key": "ZEMA"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": -0.11788518761611605,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002538811",
+              "corrected_valid_pct": 1.0585854006191782,
+              "label": "SAMARA",
+              "party": "UP",
+              "published_base": "totais",
+              "published_pct": 1.0,
+              "published_valid_pct": 1.1764705882352942,
+              "series_key": "SAMARA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "unclassified",
+              "candidate_id": "2026-tse-280002552484",
+              "corrected_valid_pct": 0.0,
+              "label": "CLARIANA BARAO",
+              "party": "DC",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "CLARIANA BARAO"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002551975",
+              "corrected_valid_pct": 0.0,
+              "label": "EDMILSON COSTA",
+              "party": "PCB",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "EDMILSON COSTA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002541457",
+              "corrected_valid_pct": 0.0,
+              "label": "HERTZ DIAS",
+              "party": "PSTU",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "HERTZ DIAS"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002552487",
+              "corrected_valid_pct": 0.0,
+              "label": "RUI COSTA PIMENTA",
+              "party": "PCO",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "RUI COSTA PIMENTA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002548139",
+              "corrected_valid_pct": 0.0,
+              "label": "VETERINÁRIO WILSON GRASSI",
+              "party": "DEMOCRATA",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "VETERINARIO WILSON GRASSI"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002554479",
+              "corrected_valid_pct": 0.0,
+              "label": "LEONARDO AVALANCHE",
+              "party": "PRTB",
+              "published_base": "totais",
+              "published_pct": 0.0,
+              "published_valid_pct": 0.0,
+              "series_key": "LEONARDO AVALANCHE"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t1-7403322505",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+          "turn": 1
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 50.36175388872018,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 39.0,
+              "published_valid_pct": 52.7027027027027,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551547",
+              "corrected_valid_pct": 47.2972972972973,
+              "label": "ESCRITOR AUGUSTO CURY",
+              "party": "AVANTE",
+              "published_base": "totais",
+              "published_pct": 35.0,
+              "published_valid_pct": 47.2972972972973,
+              "series_key": "ESCRITOR AUGUSTO CURY"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-efef42beab",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 48.90905118601748,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 41.0,
+              "published_valid_pct": 51.25,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": false,
+              "adjustment_pp": 0.0,
+              "bloc": "centro",
+              "candidate_id": "2026-tse-280002551932",
+              "corrected_valid_pct": 48.75,
+              "label": "RONALDO CAIADO",
+              "party": "PSD",
+              "published_base": "totais",
+              "published_pct": 39.0,
+              "published_valid_pct": 48.75,
+              "series_key": "RONALDO CAIADO"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-73a16ab7e8",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
+              "adjusted": true,
+              "adjustment_pp": -2.3409488139825214,
+              "bloc": "esquerda",
+              "candidate_id": "2026-tse-280002542548",
+              "corrected_valid_pct": 56.63341016037645,
+              "label": "LULA",
+              "party": "PT",
+              "published_base": "totais",
+              "published_pct": 46.0,
+              "published_valid_pct": 58.97435897435897,
+              "series_key": "LULA"
+            },
+            {
+              "adjusted": true,
+              "adjustment_pp": 2.3409488139825214,
+              "bloc": "direita",
+              "candidate_id": "2026-tse-280002539826",
+              "corrected_valid_pct": 43.36658983962355,
+              "label": "ZEMA",
+              "party": "NOVO",
+              "published_base": "totais",
+              "published_pct": 32.0,
+              "published_valid_pct": 41.02564102564103,
+              "series_key": "ZEMA"
+            }
+          ],
+          "field_end": "2026-09-20",
+          "field_start": "2026-09-17",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "in_live_window": false,
+          "margin_of_error": 2.0,
+          "pre_registration": false,
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026",
+          "sample_size": 2004,
+          "scenario_id": "president-br-t2-be1d6be6cc",
+          "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+          "turn": 2
+        },
+        {
+          "candidates": [
+            {
               "adjusted": true,
               "adjustment_pp": -3.409011914351904,
               "bloc": "esquerda",
@@ -51162,7 +55275,7 @@
           "label": "LULA",
           "n_houses": 4,
           "party": "PT",
-          "points": 99,
+          "points": 117,
           "series_key": "LULA"
         },
         {
@@ -51176,7 +55289,7 @@
           "label": "FLAVIO BOLSONARO",
           "n_houses": 4,
           "party": "PL",
-          "points": 48,
+          "points": 54,
           "series_key": "FLAVIO BOLSONARO"
         },
         {
@@ -51190,7 +55303,7 @@
           "label": "RENAN SANTOS",
           "n_houses": 4,
           "party": "MISSÃO",
-          "points": 41,
+          "points": 47,
           "series_key": "RENAN SANTOS"
         },
         {
@@ -51204,7 +55317,7 @@
           "label": "RONALDO CAIADO",
           "n_houses": 4,
           "party": "PSD",
-          "points": 41,
+          "points": 47,
           "series_key": "RONALDO CAIADO"
         },
         {
@@ -51218,7 +55331,7 @@
           "label": "ZEMA",
           "n_houses": 4,
           "party": "NOVO",
-          "points": 41,
+          "points": 47,
           "series_key": "ZEMA"
         },
         {
@@ -51232,7 +55345,7 @@
           "label": "ESCRITOR AUGUSTO CURY",
           "n_houses": 4,
           "party": "AVANTE",
-          "points": 32,
+          "points": 38,
           "series_key": "ESCRITOR AUGUSTO CURY"
         },
         {
@@ -51246,7 +55359,7 @@
           "label": "CLARIANA BARAO",
           "n_houses": 4,
           "party": "DC",
-          "points": 26,
+          "points": 29,
           "series_key": "CLARIANA BARAO"
         },
         {
@@ -51260,7 +55373,7 @@
           "label": "EDMILSON COSTA",
           "n_houses": 4,
           "party": "PCB",
-          "points": 26,
+          "points": 29,
           "series_key": "EDMILSON COSTA"
         },
         {
@@ -51274,7 +55387,7 @@
           "label": "HERTZ DIAS",
           "n_houses": 4,
           "party": "PSTU",
-          "points": 26,
+          "points": 29,
           "series_key": "HERTZ DIAS"
         },
         {
@@ -51288,7 +55401,7 @@
           "label": "RUI COSTA PIMENTA",
           "n_houses": 4,
           "party": "PCO",
-          "points": 26,
+          "points": 29,
           "series_key": "RUI COSTA PIMENTA"
         },
         {
@@ -51302,7 +55415,7 @@
           "label": "SAMARA",
           "n_houses": 4,
           "party": "UP",
-          "points": 26,
+          "points": 29,
           "series_key": "SAMARA"
         },
         {
@@ -51316,7 +55429,7 @@
           "label": "VETERINÁRIO WILSON GRASSI",
           "n_houses": 4,
           "party": "DEMOCRATA",
-          "points": 26,
+          "points": 29,
           "series_key": "VETERINARIO WILSON GRASSI"
         },
         {
@@ -51344,7 +55457,7 @@
           "label": "LEONARDO AVALANCHE",
           "n_houses": 4,
           "party": "PRTB",
-          "points": 4,
+          "points": 6,
           "series_key": "LEONARDO AVALANCHE"
         }
       ]
