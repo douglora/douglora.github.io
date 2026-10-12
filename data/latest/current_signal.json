@@ -1,15 +1,15 @@
 {
-  "as_of": "2026-10-11",
+  "as_of": "2026-10-12",
   "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
   "comparability_rule": "Só são diferenciadas pesquisas da mesma casa, mesmo turno, mesmo conjunto de candidaturas e mesma base. Casas diferentes nunca são ligadas como série.",
   "config_hash": "245c45fb16988769ba0dddca349eb8c9c497d6e4f722431b910c608e0a774b69",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
-  "days_to_election": -7,
+  "days_to_election": -8,
   "election_date": "2026-10-04",
   "gate_message": null,
   "gate_satisfied": true,
   "historical_context_at_this_distance": {
-    "days_to_election": -7,
+    "days_to_election": -8,
     "elections": [
       "2010-T1",
       "2014-T1",
@@ -19,70 +19,70 @@
       "2022-T1",
       "2022-T2"
     ],
-    "mae_median": 2.4019672131147534,
+    "mae_median": 1.8173915785388601,
     "margin_error_p10_p90_pp": [
-      -3.9466666666666725,
-      10.73828054298642
+      -3.441818181818192,
+      10.141818181818174
     ],
-    "median_margin_error_pp": 3.190292397660812,
-    "n_observations": 47,
+    "median_margin_error_pp": 2.822805773298491,
+    "n_observations": 30,
     "per_election": [
       {
         "election": "2010-T1",
         "houses": 1,
-        "mae": 5.01,
-        "median_margin_error_pp": 7.700000000000003,
-        "n": 2
+        "mae": 4.676666666666667,
+        "median_margin_error_pp": 6.700000000000003,
+        "n": 1
       },
       {
         "election": "2014-T1",
         "houses": 4,
-        "mae": 5.391749047337167,
-        "median_margin_error_pp": 11.693967857700102,
-        "n": 6
+        "mae": 4.497222501487034,
+        "median_margin_error_pp": 10.440049362402297,
+        "n": 4
       },
       {
         "election": "2014-T2",
         "houses": 3,
-        "mae": 1.5731686323772291,
-        "median_margin_error_pp": 3.2417391304347802,
-        "n": 7
+        "mae": 1.0554545947999774,
+        "median_margin_error_pp": 0.6276154806491832,
+        "n": 4
       },
       {
         "election": "2018-T1",
-        "houses": 6,
-        "mae": 2.6375726854314094,
-        "median_margin_error_pp": -1.1944444444444429,
-        "n": 7
+        "houses": 4,
+        "mae": 2.590249525708175,
+        "median_margin_error_pp": -0.9262452107279682,
+        "n": 4
       },
       {
         "election": "2018-T2",
-        "houses": 5,
-        "mae": 1.7447359103604108,
-        "median_margin_error_pp": 0.20511627906976315,
-        "n": 6
+        "houses": 4,
+        "mae": 1.068432427086039,
+        "median_margin_error_pp": -0.957674418604654,
+        "n": 4
       },
       {
         "election": "2022-T1",
-        "houses": 7,
-        "mae": 2.6993997959281466,
-        "median_margin_error_pp": 6.290156774916014,
-        "n": 8
+        "houses": 5,
+        "mae": 2.6951103394618507,
+        "median_margin_error_pp": 8.599787234042559,
+        "n": 5
       },
       {
         "election": "2022-T2",
-        "houses": 9,
-        "mae": 1.7126798662171743,
-        "median_margin_error_pp": 0.37864923747277146,
-        "n": 11
+        "houses": 8,
+        "mae": 1.337661640552577,
+        "median_margin_error_pp": 0.97471787716335,
+        "n": 8
       }
     ],
-    "reading": "A esta distância da eleição, o erro de margem histórico teve mediana +3.2 pp. Isso descreve o passado, não corrige 2026.",
+    "reading": "A esta distância da eleição, o erro de margem histórico teve mediana +2.8 pp. Isso descreve o passado, não corrige 2026.",
     "status": "available",
     "tolerance_days": 10
   },
   "house_historical_anchors": {
-    "as_of": "2026-10-11",
+    "as_of": "2026-10-12",
     "items": [
       {
         "anchors": [],
@@ -2277,301 +2277,29 @@
   },
   "live_hash": "ad9e03c26393e86dda12b88c59ce03e9d9558777a6892a07ddfe8c3980bfd1b0",
   "live_source_run_id": "run-20261011-e4f9f550-6ead4d5d",
-  "run_id": "hist-20261011-8d90558c-245c45fb-ad9e03c2-08a374",
+  "run_id": "hist-20261012-8d90558c-245c45fb-ad9e03c2-08a374",
   "signals": [
     {
-      "between_house_sd_pp": 3.0134153827356034,
+      "between_house_sd_pp": 2.694600075190638,
       "candidate_id": "2026-tse-280002542548",
       "candidate_label": "LULA",
-      "direction": "alta",
-      "evidence_strength": "fraco",
-      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 5 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
       "historical_context": null,
       "houses_in_window": 5,
-      "houses_with_comparable_series": 11,
+      "houses_with_comparable_series": 0,
       "houses_with_single_measurement": [
         "Datafolha",
         "Nexus",
         "PoderData",
+        "Quaest",
         "REAL TIME BIG DATA"
       ],
-      "median_delta_pp": 1.0,
-      "median_sampling_se_pp": 1.5717235936498166,
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 40.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 46.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 47.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002540694",
-              "2026-tse-280002542548"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 45.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551932"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 47.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002539826",
-              "2026-tse-280002542548"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 44.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551547"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 37.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487",
-              "2026-tse-280002554479"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-6ef3949862e717d58207",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 41.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002540694",
-              "2026-tse-280002542548"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 41.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551932"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 46.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002539826",
-              "2026-tse-280002542548"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 41.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-6ef3949862e717d58207",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 39.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551547"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-ab7d219feeea95e8b948",
@@ -3101,376 +2829,29 @@
         }
       ],
       "same_direction_across_houses": false,
-      "within_house_deltas": [
-        {
-          "days_between": 7,
-          "delta_pp": 1.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 47.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5779019855403198,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 48.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 1.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 47.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5779019855403198,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 48.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 0.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 46.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.574892105690514,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 46.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 2.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 44.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5717235936498166,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 46.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 1.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 45.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5734670648562803,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 46.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 2.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-6625853c03ada94ccd5c"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 37.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.533068622468546,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 39.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 0.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-b17e42d1688f59a4de11"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 46.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.574497353496558,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 46.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 1.0,
-          "evidence_ids": [
-            "ev-release-6ef3949862e717d58207",
-            "ev-release-b17e42d1688f59a4de11"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 41.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5564879346203628,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 42.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 1.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-b17e42d1688f59a4de11"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 41.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5564879346203628,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 42.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 3.0,
-          "evidence_ids": [
-            "ev-release-6ef3949862e717d58207",
-            "ev-release-b17e42d1688f59a4de11"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 39.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5500627763992152,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 42.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 2.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-6625853c03ada94ccd5c"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 41.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5588905415579641,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 43.0,
-            "registration_no": "BR-06520/2026"
-          }
-        }
-      ]
+      "within_house_deltas": []
     },
     {
-      "between_house_sd_pp": 4.461111425588376,
+      "between_house_sd_pp": 4.334248987508019,
       "candidate_id": "2026-tse-280002551544",
       "candidate_label": "FLAVIO BOLSONARO",
-      "direction": "estavel",
-      "evidence_strength": "fraco",
-      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 5 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
       "historical_context": null,
       "houses_in_window": 5,
-      "houses_with_comparable_series": 3,
+      "houses_with_comparable_series": 0,
       "houses_with_single_measurement": [
         "Datafolha",
         "Nexus",
         "PoderData",
+        "Quaest",
         "REAL TIME BIG DATA"
       ],
-      "median_delta_pp": 0.0,
-      "median_sampling_se_pp": 1.5592106094273788,
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 37.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 45.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 33.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487",
-              "2026-tse-280002554479"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 42.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-ab7d219feeea95e8b948",
@@ -3685,199 +3066,28 @@
         }
       ],
       "same_direction_across_houses": false,
-      "within_house_deltas": [
-        {
-          "days_between": 7,
-          "delta_pp": -1.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 45.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5702861535998585,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 44.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 1.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-6625853c03ada94ccd5c"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 33.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.4909909095013185,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 34.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 0.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-b17e42d1688f59a4de11"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 42.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5592106094273788,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 42.0,
-            "registration_no": "BR-06520/2026"
-          }
-        }
-      ]
+      "within_house_deltas": []
     },
     {
-      "between_house_sd_pp": 17.83969017260517,
+      "between_house_sd_pp": 18.437797616645568,
       "candidate_id": "2026-tse-280002551547",
       "candidate_label": "ESCRITOR AUGUSTO CURY",
-      "direction": "baixa",
-      "evidence_strength": "moderado",
-      "explanation": "3 casas medindo o mesmo cenário se movem na mesma direção, com mediana de -2.0 pp acima do erro amostral típico.",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 4 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
       "historical_context": null,
       "houses_in_window": 4,
-      "houses_with_comparable_series": 3,
+      "houses_with_comparable_series": 0,
       "houses_with_single_measurement": [
         "Datafolha",
         "Nexus",
-        "PoderData"
+        "PoderData",
+        "Quaest"
       ],
-      "median_delta_pp": -2.0,
-      "median_sampling_se_pp": 1.496169426933934,
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 6.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 43.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551547"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 6.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487",
-              "2026-tse-280002554479"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-6ef3949862e717d58207",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 35.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551547"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-ab7d219feeea95e8b948",
@@ -4070,201 +3280,30 @@
           ]
         }
       ],
-      "same_direction_across_houses": true,
-      "within_house_deltas": [
-        {
-          "days_between": 7,
-          "delta_pp": -2.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 43.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.559273708016161,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 41.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": -2.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-6625853c03ada94ccd5c"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 6.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 0.6877891335399018,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 4.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": -2.0,
-          "evidence_ids": [
-            "ev-release-6ef3949862e717d58207",
-            "ev-release-b17e42d1688f59a4de11"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 35.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.496169426933934,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 33.0,
-            "registration_no": "BR-06520/2026"
-          }
-        }
-      ]
+      "same_direction_across_houses": false,
+      "within_house_deltas": []
     },
     {
-      "between_house_sd_pp": 20.098997412052597,
+      "between_house_sd_pp": 20.766989602319764,
       "candidate_id": "2026-tse-280002551932",
       "candidate_label": "RONALDO CAIADO",
-      "direction": "estavel",
-      "evidence_strength": "fraco",
-      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 5 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
       "historical_context": null,
       "houses_in_window": 5,
-      "houses_with_comparable_series": 3,
+      "houses_with_comparable_series": 0,
       "houses_with_single_measurement": [
         "Datafolha",
         "Nexus",
         "PoderData",
+        "Quaest",
         "REAL TIME BIG DATA"
       ],
-      "median_delta_pp": 0.0,
-      "median_sampling_se_pp": 1.5442572774386254,
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 5.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 45.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551932"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 4.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487",
-              "2026-tse-280002554479"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 39.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551932"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-ab7d219feeea95e8b948",
@@ -4479,200 +3518,29 @@
         }
       ],
       "same_direction_across_houses": false,
-      "within_house_deltas": [
-        {
-          "days_between": 7,
-          "delta_pp": -3.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 45.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5658220218745929,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 42.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 0.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-6625853c03ada94ccd5c"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 4.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 0.6190585860273095,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 4.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 1.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-6625853c03ada94ccd5c"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 39.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5442572774386254,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 40.0,
-            "registration_no": "BR-06520/2026"
-          }
-        }
-      ]
+      "within_house_deltas": []
     },
     {
-      "between_house_sd_pp": 18.375502466846747,
+      "between_house_sd_pp": 18.721645226849056,
       "candidate_id": "2026-tse-280002540694",
       "candidate_label": "RENAN SANTOS",
-      "direction": "estavel",
-      "evidence_strength": "fraco",
-      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 5 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
       "historical_context": null,
       "houses_in_window": 5,
-      "houses_with_comparable_series": 3,
+      "houses_with_comparable_series": 0,
       "houses_with_single_measurement": [
         "Datafolha",
         "Nexus",
         "PoderData",
+        "Quaest",
         "REAL TIME BIG DATA"
       ],
-      "median_delta_pp": 0.0,
-      "median_sampling_se_pp": 1.5334412846534298,
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 3.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 39.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002540694",
-              "2026-tse-280002542548"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 3.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487",
-              "2026-tse-280002554479"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-6ef3949862e717d58207",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 38.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002540694",
-              "2026-tse-280002542548"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-ab7d219feeea95e8b948",
@@ -4887,157 +3755,28 @@
         }
       ],
       "same_direction_across_houses": false,
-      "within_house_deltas": [
-        {
-          "days_between": 7,
-          "delta_pp": -2.0,
-          "evidence_ids": [
-            "ev-release-4f8059462f1510e8c8f6",
-            "ev-release-b43fc320543a3094f2b0"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 39.0,
-            "registration_no": "BR-00485/2026"
-          },
-          "house": "Nexus",
-          "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5334412846534298,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 37.0,
-            "registration_no": "BR-07557/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 0.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-6625853c03ada94ccd5c"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 3.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 0.5389055220320595,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 3.0,
-            "registration_no": "BR-06520/2026"
-          }
-        },
-        {
-          "days_between": 7,
-          "delta_pp": 1.0,
-          "evidence_ids": [
-            "ev-release-6ef3949862e717d58207",
-            "ev-release-b17e42d1688f59a4de11"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 38.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.537131891250001,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 39.0,
-            "registration_no": "BR-06520/2026"
-          }
-        }
-      ]
+      "within_house_deltas": []
     },
     {
-      "between_house_sd_pp": 0.408248290463863,
+      "between_house_sd_pp": 0.5,
       "candidate_id": "2026-tse-280002538811",
       "candidate_label": "SAMARA",
-      "direction": "baixa",
-      "evidence_strength": "fraco",
-      "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
+      "direction": null,
+      "evidence_strength": "insuficiente",
+      "explanation": "Há 4 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
       "historical_context": null,
       "houses_in_window": 4,
-      "houses_with_comparable_series": 1,
+      "houses_with_comparable_series": 0,
       "houses_with_single_measurement": [
         "Datafolha",
         "Nexus",
-        "PoderData"
+        "PoderData",
+        "Quaest"
       ],
-      "median_delta_pp": -1.0,
-      "median_sampling_se_pp": 0.2222638018319457,
+      "median_delta_pp": null,
+      "median_sampling_se_pp": null,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-4f8059462f1510e8c8f6",
-          "field_end": "2026-09-20",
-          "institute": "Nexus",
-          "institute_id": "nexus",
-          "mode": "telefone",
-          "pct": 1.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-00485/2026",
-          "sample_size": 2006,
-          "scenario_key": [
-            "nexus",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-559c1e45f68c1c72a287",
-          "field_end": "2026-09-20",
-          "institute": "Quaest",
-          "institute_id": "quaest",
-          "mode": "presencial",
-          "pct": 1.0,
-          "published_at": "2026-09-21",
-          "reference_date": "2026-09-20",
-          "registration_no": "BR-06004/2026",
-          "sample_size": 2004,
-          "scenario_key": [
-            "quaest",
-            "totais",
-            [
-              "2026-tse-280002538811",
-              "2026-tse-280002539826",
-              "2026-tse-280002540694",
-              "2026-tse-280002541457",
-              "2026-tse-280002542548",
-              "2026-tse-280002548139",
-              "2026-tse-280002551544",
-              "2026-tse-280002551547",
-              "2026-tse-280002551932",
-              "2026-tse-280002551975",
-              "2026-tse-280002552484",
-              "2026-tse-280002552487",
-              "2026-tse-280002554479"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-ab7d219feeea95e8b948",
@@ -5167,31 +3906,8 @@
           ]
         }
       ],
-      "same_direction_across_houses": true,
-      "within_house_deltas": [
-        {
-          "days_between": 7,
-          "delta_pp": -1.0,
-          "evidence_ids": [
-            "ev-release-559c1e45f68c1c72a287",
-            "ev-release-6625853c03ada94ccd5c"
-          ],
-          "from": {
-            "date": "2026-09-20",
-            "pct": 1.0,
-            "registration_no": "BR-06004/2026"
-          },
-          "house": "Quaest",
-          "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 0.2222638018319457,
-          "to": {
-            "date": "2026-09-27",
-            "pct": 0.0,
-            "registration_no": "BR-06520/2026"
-          }
-        }
-      ]
+      "same_direction_across_houses": false,
+      "within_house_deltas": []
     }
   ],
   "strength_ladder": {
@@ -5205,12 +3921,12 @@
     "rule": "insuficiente: nenhuma casa com duas medições comparáveis ou menos de duas casas. fraco: uma casa, ou direções divergentes, ou dentro do ruído amostral. moderado: ≥2 casas na mesma direção com mediana acima de 1 erro-padrão amostral. forte: ≥3 casas na mesma direção com mediana acima de 2 erros-padrão e acima da dispersão entre casas."
   },
   "summary": {
-    "any_moderate_or_strong": true,
+    "any_moderate_or_strong": false,
     "by_strength": {
       "forte": 0,
-      "fraco": 5,
-      "insuficiente": 0,
-      "moderado": 1
+      "fraco": 0,
+      "insuficiente": 6,
+      "moderado": 0
     }
   },
   "version": "1.2.0-current-signal-house-anchors",
