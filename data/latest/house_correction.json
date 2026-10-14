@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-13",
+  "as_of": "2026-10-14",
   "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
   "config_hash": "245c45fb16988769ba0dddca349eb8c9c497d6e4f722431b910c608e0a774b69",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "700f31153c55103d6ff632d0ae25852ffdcf7d8e2a407db77c6b17259d107527",
+  "live_hash": "fa93afa0074adf07de7b04cdb92afef55e4fcba9f691447fcbce824ff4012d3d",
   "live_source_run_id": "run-20261013-6b3d2806-6ead4d5d",
-  "run_id": "hist-20261013-8d90558c-245c45fb-700f3115-08a374",
+  "run_id": "hist-20261014-8d90558c-245c45fb-fa93afa0-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [
@@ -18262,7 +18262,7 @@
       "reference_basis": "média simples das pesquisas vivas em votos válidos",
       "weighting_basis": "inverse_squared_shrunk_mae"
     },
-    "as_of": "2026-10-13",
+    "as_of": "2026-10-14",
     "by_candidate": [
       {
         "bloc": "direita",
@@ -38835,14 +38835,14 @@
         "known_2026_polls": [],
         "lineage_predecessor": null,
         "next_expected_release": {
-          "expected_release_status": "future_expected",
-          "field_end": "2026-10-14",
-          "field_start": "2026-10-09",
+          "expected_release_status": "overdue_unverified",
+          "field_end": "2026-10-08",
+          "field_start": "2026-10-03",
           "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
-          "planned_publish_date": "2026-10-15",
-          "registration_no": "BR010932026",
+          "planned_publish_date": "2026-10-09",
+          "registration_no": "BR036632026",
           "sample_size": 5000,
-          "scenario_status": "not_yet_due"
+          "scenario_status": "release_not_found"
         },
         "recent_cycle_sentences": [
           {
