@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "2a0060bed16a2950790413c990e50f4d1609a19ccb5e690aa27bce8071c59c50",
-  "live_source_run_id": "run-20261019-cb2666b7-6ead4d5d",
-  "run_id": "hist-20261019-8d90558c-245c45fb-2a0060be-08a374",
+  "live_hash": "17e733a5d35f260e78e88656f404e77684d4b74f3f4bcd92748fb60fd112772a",
+  "live_source_run_id": "run-20261019-43a44930-6ead4d5d",
+  "run_id": "hist-20261019-8d90558c-245c45fb-17e733a5-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [],
@@ -17231,7 +17231,7 @@
       "min_houses": 2,
       "min_polls": 3,
       "note": "O gate vivo do agregador não foi alterado. Este cenário é publicado abaixo dele, como exercício, e por isso não pode ser lido como consenso.",
-      "polls": 2,
+      "polls": 4,
       "window_days": 21
     },
     "houses": [],
@@ -17351,6 +17351,52 @@
     "role": "exploratory_scenario",
     "runoff": {
       "measured": [
+        {
+          "candidates": [
+            {
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_pct": 46.5,
+              "published_valid_pct": 50.32467532467532
+            },
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 45.9,
+              "published_valid_pct": 49.675324675324674
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-10-18",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "published_at": "2026-10-19",
+          "regime": "post_registration",
+          "registration_no": "BR-04499/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 45.9,
+              "published_valid_pct": 49.675324675324674
+            },
+            {
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_pct": 46.5,
+              "published_valid_pct": 50.32467532467532
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-10-18",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "published_at": "2026-10-19",
+          "regime": "post_registration",
+          "registration_no": "BR-04499/2026"
+        },
         {
           "candidates": [
             {

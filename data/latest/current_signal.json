@@ -6,7 +6,7 @@
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
   "days_to_election": -15,
   "election_date": "2026-10-04",
-  "gate_message": "O agregador exige 3 pesquisas de 2 casas na janela de 21 dias; há 2 de 1.",
+  "gate_message": "O agregador exige 3 pesquisas de 2 casas na janela de 21 dias; há 4 de 1.",
   "gate_satisfied": false,
   "historical_context_at_this_distance": {
     "days_to_election": -15,
@@ -16,6 +16,66 @@
   "house_historical_anchors": {
     "as_of": "2026-10-19",
     "items": [
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 45.9,
+          "2026-tse-280002551544": 46.5
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 49.675324675324674,
+          "2026-tse-280002551544": 50.32467532467532
+        },
+        "days_to_election": 7,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-10-19",
+        "reason": "Nexus não tem observação histórica no 2º turno (confronto definido) a D-7 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-10-18",
+        "registration_no": "BR-04499/2026",
+        "scenario_id": "president-br-t2-6674345612",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 45.9,
+          "2026-tse-280002551544": 46.5
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 49.675324675324674,
+          "2026-tse-280002551544": 50.32467532467532
+        },
+        "days_to_election": 7,
+        "headline": null,
+        "house_id": "nexus",
+        "house_name": "Nexus",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-10-19",
+        "reason": "Nexus não tem observação histórica no 2º turno (confronto definido) a D-7 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-10-18",
+        "registration_no": "BR-04499/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
       {
         "anchors": [],
         "current_published_pct": {
@@ -78,7 +138,7 @@
       }
     ],
     "not_a_projection": "Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
-    "polls_examined": 2,
+    "polls_examined": 4,
     "polls_with_anchor": 0,
     "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
     "status": "unavailable",
@@ -92,11 +152,11 @@
         "delta_pp": 0.0,
         "direction": "estavel",
         "label": "FLAVIO BOLSONARO",
-        "latest_pct": 48.0,
+        "latest_pct": 46.5,
         "party": "PL",
-        "previous_pct": 48.0,
-        "sampling_se_pp": 1.5790840679034455,
-        "sentence": "FLAVIO BOLSONARO ficou igual: 48% antes, 48% agora."
+        "previous_pct": 46.5,
+        "sampling_se_pp": 1.5764722437343244,
+        "sentence": "FLAVIO BOLSONARO ficou igual: 46.5% antes, 46.5% agora."
       },
       {
         "beyond_sampling_noise": false,
@@ -104,11 +164,11 @@
         "delta_pp": 0.0,
         "direction": "estavel",
         "label": "LULA",
-        "latest_pct": 45.0,
+        "latest_pct": 45.9,
         "party": "PT",
-        "previous_pct": 45.0,
-        "sampling_se_pp": 1.5724272550828775,
-        "sentence": "LULA ficou igual: 45% antes, 45% agora."
+        "previous_pct": 45.9,
+        "sampling_se_pp": 1.5750267587280193,
+        "sentence": "LULA ficou igual: 45.9% antes, 45.9% agora."
       }
     ],
     "comparability_rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
@@ -116,16 +176,16 @@
     "gained": [],
     "latest": {
       "base": "totais",
-      "evidence_id": "ev-release-122e3f2052c72c3da04f",
-      "field_end": "2026-10-12",
-      "field_start": "2026-10-10",
+      "evidence_id": "ev-release-f6ee08157b9906a8abd4",
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-16",
       "institute": "Nexus",
       "institute_id": "nexus",
       "mode": "telefone",
       "n_candidates": 2,
-      "published_at": "2026-10-13",
-      "reference_date": "2026-10-12",
-      "registration_no": "BR-07997/2026",
+      "published_at": "2026-10-19",
+      "reference_date": "2026-10-18",
+      "registration_no": "BR-04499/2026",
       "sample_size": 2002,
       "scenario_id": "president-br-t2-6674345612"
     },
@@ -133,39 +193,39 @@
     "other_houses_in_window": [],
     "previous": {
       "base": "totais",
-      "evidence_id": "ev-release-122e3f2052c72c3da04f",
-      "field_end": "2026-10-12",
-      "field_start": "2026-10-10",
+      "evidence_id": "ev-release-f6ee08157b9906a8abd4",
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-16",
       "institute": "Nexus",
       "institute_id": "nexus",
       "mode": "telefone",
       "n_candidates": 2,
-      "published_at": "2026-10-13",
-      "reference_date": "2026-10-12",
-      "registration_no": "BR-07997/2026",
+      "published_at": "2026-10-19",
+      "reference_date": "2026-10-18",
+      "registration_no": "BR-04499/2026",
       "sample_size": 2002,
       "scenario_id": "president-br-t2-dbec719fff"
     },
     "status": "compared",
     "summary": "Ninguém ganhou espaço. Ninguém perdeu. Nenhuma variação ficou fora do ruído amostral."
   },
-  "live_hash": "2a0060bed16a2950790413c990e50f4d1609a19ccb5e690aa27bce8071c59c50",
-  "live_source_run_id": "run-20261019-cb2666b7-6ead4d5d",
-  "run_id": "hist-20261019-8d90558c-245c45fb-2a0060be-08a374",
+  "live_hash": "17e733a5d35f260e78e88656f404e77684d4b74f3f4bcd92748fb60fd112772a",
+  "live_source_run_id": "run-20261019-43a44930-6ead4d5d",
+  "run_id": "hist-20261019-8d90558c-245c45fb-17e733a5-08a374",
   "signals": [
     {
-      "between_house_sd_pp": 0.0,
+      "between_house_sd_pp": 0.8660254037844386,
       "candidate_id": "2026-tse-280002551544",
       "candidate_label": "FLAVIO BOLSONARO",
-      "direction": "estavel",
+      "direction": "baixa",
       "evidence_strength": "insuficiente",
       "explanation": "Há 1 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
       "historical_context": null,
       "houses_in_window": 1,
       "houses_with_comparable_series": 1,
       "houses_with_single_measurement": [],
-      "median_delta_pp": 0.0,
-      "median_sampling_se_pp": 1.5790840679034455,
+      "median_delta_pp": -1.5,
+      "median_sampling_se_pp": 1.5777786962643443,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
         {
@@ -209,15 +269,58 @@
               "2026-tse-280002551544"
             ]
           ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-f6ee08157b9906a8abd4",
+          "field_end": "2026-10-18",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 46.5,
+          "published_at": "2026-10-19",
+          "reference_date": "2026-10-18",
+          "registration_no": "BR-04499/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-f6ee08157b9906a8abd4",
+          "field_end": "2026-10-18",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 46.5,
+          "published_at": "2026-10-19",
+          "reference_date": "2026-10-18",
+          "registration_no": "BR-04499/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
         }
       ],
-      "same_direction_across_houses": false,
+      "same_direction_across_houses": true,
       "within_house_deltas": [
         {
-          "days_between": 0,
-          "delta_pp": 0.0,
+          "days_between": 6,
+          "delta_pp": -1.5,
           "evidence_ids": [
-            "ev-release-122e3f2052c72c3da04f"
+            "ev-release-122e3f2052c72c3da04f",
+            "ev-release-f6ee08157b9906a8abd4"
           ],
           "from": {
             "date": "2026-10-12",
@@ -226,29 +329,29 @@
           },
           "house": "Nexus",
           "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5790840679034455,
+          "n_polls": 4,
+          "sampling_se_pp": 1.5777786962643443,
           "to": {
-            "date": "2026-10-12",
-            "pct": 48.0,
-            "registration_no": "BR-07997/2026"
+            "date": "2026-10-18",
+            "pct": 46.5,
+            "registration_no": "BR-04499/2026"
           }
         }
       ]
     },
     {
-      "between_house_sd_pp": 0.0,
+      "between_house_sd_pp": 0.5196152422706624,
       "candidate_id": "2026-tse-280002542548",
       "candidate_label": "LULA",
-      "direction": "estavel",
+      "direction": "alta",
       "evidence_strength": "insuficiente",
       "explanation": "Há 1 casa(s) na janela e nenhuma com duas medições comparáveis. Comparar uma pesquisa de uma casa com a de outra mede diferença de casa, não movimento no tempo.",
       "historical_context": null,
       "houses_in_window": 1,
       "houses_with_comparable_series": 1,
       "houses_with_single_measurement": [],
-      "median_delta_pp": 0.0,
-      "median_sampling_se_pp": 1.5724272550828775,
+      "median_delta_pp": 0.8999999999999986,
+      "median_sampling_se_pp": 1.5737275436422855,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
         {
@@ -292,15 +395,58 @@
               "2026-tse-280002551544"
             ]
           ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-f6ee08157b9906a8abd4",
+          "field_end": "2026-10-18",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 45.9,
+          "published_at": "2026-10-19",
+          "reference_date": "2026-10-18",
+          "registration_no": "BR-04499/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-f6ee08157b9906a8abd4",
+          "field_end": "2026-10-18",
+          "institute": "Nexus",
+          "institute_id": "nexus",
+          "mode": "telefone",
+          "pct": 45.9,
+          "published_at": "2026-10-19",
+          "reference_date": "2026-10-18",
+          "registration_no": "BR-04499/2026",
+          "sample_size": 2002,
+          "scenario_key": [
+            "nexus",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
         }
       ],
-      "same_direction_across_houses": false,
+      "same_direction_across_houses": true,
       "within_house_deltas": [
         {
-          "days_between": 0,
-          "delta_pp": 0.0,
+          "days_between": 6,
+          "delta_pp": 0.8999999999999986,
           "evidence_ids": [
-            "ev-release-122e3f2052c72c3da04f"
+            "ev-release-122e3f2052c72c3da04f",
+            "ev-release-f6ee08157b9906a8abd4"
           ],
           "from": {
             "date": "2026-10-12",
@@ -309,12 +455,12 @@
           },
           "house": "Nexus",
           "institute_id": "nexus",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5724272550828775,
+          "n_polls": 4,
+          "sampling_se_pp": 1.5737275436422855,
           "to": {
-            "date": "2026-10-12",
-            "pct": 45.0,
-            "registration_no": "BR-07997/2026"
+            "date": "2026-10-18",
+            "pct": 45.9,
+            "registration_no": "BR-04499/2026"
           }
         }
       ]
