@@ -398,10 +398,10 @@
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
   "days_to_election": -19,
   "election_date": "2026-10-04",
-  "engine_run_id": "run-20261023-ba77ee39-56a48c0f",
+  "engine_run_id": "run-20261023-18bb44aa-56a48c0f",
   "engine_version": "3.2.1-vs-roster-latest-by-house",
   "evidence_ids": [
-    "ev-release-8335e70d4a8e77234371",
+    "ev-release-928d40f2adcaca924e2f",
     "ev-release-96414885922584d8285c",
     "ev-release-ab7d219feeea95e8b948",
     "ev-release-b43fc320543a3094f2b0",
@@ -431,8 +431,8 @@
     "point_pp": 4.38356164383562,
     "runner_up_id": "2026-tse-280002551544"
   },
-  "live_hash": "9c59b96a6cb6f60e2a14393b20d45a4b3d76b25bca1160462e2dd6a5b9068246",
-  "live_source_run_id": "run-20261023-3bec7a2b-41bf13e6",
+  "live_hash": "d4cc0f3cfb5af8216f5e6ce2a1b5e6deafa6bdd58f82f01676c305b22e65485b",
+  "live_source_run_id": "run-20261023-38548004-41bf13e6",
   "model": "M2",
   "polls_used": [
     {
@@ -449,7 +449,7 @@
     },
     {
       "base": "totais",
-      "evidence_id": "ev-release-8335e70d4a8e77234371",
+      "evidence_id": "ev-release-928d40f2adcaca924e2f",
       "field_end": "2026-09-27",
       "field_start": "2026-09-24",
       "house_id": "quaest",
@@ -2508,7 +2508,7 @@
     "selection_rule": "union_of_tested_candidates_metadata_from_latest",
     "untested_is_missing_not_zero": true
   },
-  "run_id": "hist-20261023-8d90558c-8c3bf707-9c59b96a-08a374",
+  "run_id": "hist-20261023-8d90558c-8c3bf707-d4cc0f3c-08a374",
   "status": "published",
   "version": "1.1.0-additive-or-multiplicative-band"
 }
