@@ -34,6 +34,7 @@ const HORA = 36e5;
 const ABAS = ['resumo', 'apuracao', 'pesquisas', 'mercados', 'metodo'];
 const NOME_ABA = { resumo: 'Resumo', apuracao: 'Apuração', pesquisas: 'Pesquisas', mercados: 'Mercados', metodo: 'Método' };
 const URL_APURACAO = '/2turno/apuracao.js';
+const URL_SIMULADOR = '/2turno/simulador.js';
 const COR_T1 = '#8f8e87';
 const COR_T2 = '#262522';
 const COR_OUTROS = '#a3a29b';
@@ -2772,8 +2773,18 @@ function sairTV() {
 /* ------------------------------------------------ apuração ao vivo */
 
 async function carregarApuracao() {
-  const raiz = $('#painel-apuracao');
-  if (!raiz) return;
+  const painel = $('#painel-apuracao');
+  if (!painel) return;
+  // A apuração redesenha o próprio contêiner inteiro; o simulador do resultado final fica num irmão logo abaixo.
+  const raiz = document.createElement('div');
+  raiz.id = 'ap-vivo';
+  raiz.innerHTML = painel.innerHTML;
+  const raizSim = document.createElement('div');
+  raizSim.id = 'ap-simulador';
+  painel.replaceChildren(raiz, raizSim);
+  import(URL_SIMULADOR)
+    .then((m) => m.iniciar({ raiz: raizSim, painel, h, emHtml, num, txt, fNum, fInt, fHora, msDe, cand, curto, foto, lacunaBloco, params: PARAMS, dados: () => st.dados }))
+    .catch((e) => console.error('[2turno] simulador', e));
   try {
     const mod = await import(URL_APURACAO);
     st.apur = mod.iniciar({
