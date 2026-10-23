@@ -103,7 +103,7 @@ const GLOSSARIO_PADRAO = [
   ['Comparecimento', 'Eleitores que foram votar: o eleitorado menos a abstenção.'],
   ['Eleitorado', 'Total de pessoas aptas a votar, segundo o TSE (Tribunal Superior Eleitoral).'],
   ['Brancos e nulos', 'Votos que não vão para nenhum candidato. Não entram na conta dos válidos e não favorecem ninguém.'],
-  ['Projeção com abstenção', 'Converte a média das pesquisas em votos: eleitorado, menos a abstenção estimada, menos brancos e nulos, dividido pela média de cada candidato. Mostra também quanto a diferença de comparecimento entre os eleitores de cada lado pode mudar o resultado.'],
+  ['Projeção com abstenção', 'Transforma a média das pesquisas em votos de verdade. Começa pelos eleitores que podem votar, tira os que devem faltar (a abstenção) e os que devem votar em branco ou anular, e divide o resto entre os dois pela média das pesquisas. Faltar muita gente não muda quem ganha se faltar igual dos dois lados; só muda se um lado faltar mais que o outro.'],
   ['Margem', 'Diferença entre o primeiro e o segundo colocado, em votos ou em pontos percentuais.'],
   ['Registro no TSE', 'Toda pesquisa eleitoral divulgada precisa ser registrada antes no TSE (Tribunal Superior Eleitoral), com amostra, método, quem pagou e questionário. O número (como BR-09709/2026) permite conferir tudo no PesqEle, o sistema de pesquisas do próprio TSE.'],
   ['Amostra', 'Quantas pessoas a casa entrevistou.'],
@@ -1278,24 +1278,86 @@ function barraDupla(vL, vF, fxL) {
 }
 
 
-function basesTexto(b, ab) {
-  if (!b) return '';
-  const t1 = num(b.t1_2026_pct);
-  const dl = num(b.delta_medio_t1_t2_pp);
-  const mt = num(b.media_t2_2002_2022_pct);
-  const p = [];
-  if (t1 !== null) p.push(`1º turno de 2026, ${fPct(t1)}`);
-  if (dl !== null) p.push(`variação média do 1º para o 2º turno de 2002 a 2022, ${fSinal(dl)} ${Math.abs(dl) < 2 ? 'ponto' : 'pontos'}`);
-  if (mt !== null) p.push(`média dos 2º turnos no mesmo período, ${fPct(mt)}`);
-  if (!p.length) return '';
-  const soma = t1 !== null && dl !== null && ab !== null && Math.abs(t1 + dl - ab) < 0.15;
-  return `Base: ${p.join('; ')}.${soma ? ' A estimativa central é o 1º turno mais a variação média.' : ''}`;
+// A projeção contada para leigo: de cada 100 eleitores, por que a abstenção
+// sai daquele tamanho e quando ela muda o resultado. Os números vêm prontos
+// do JSON (projecao.explicacao); aqui só se desenha.
+const COR_FALTA = '#dcdbd5';
+const COR_BN = '#9d9c95';
+
+function cemEleitores(e) {
+  const c = obj(e?.de_cada_100);
+  if (!c) return '';
+  const ex = obj(e.de_cada_100_exato) || {};
+  const ordem = [
+    ['lula', `votam em ${curto('lula')}`, cand('lula').cor],
+    ['flavio', `votam em ${curto('flavio')}`, cand('flavio').cor],
+    ['branco_nulo', 'votam em branco ou anulam', COR_BN],
+    ['nao_votam', 'não vão votar', COR_FALTA],
+  ];
+  const n = ordem.map(([k]) => Math.max(0, Math.round(num(c[k]) ?? 0)));
+  if (n.reduce((a, b) => a + b, 0) !== 100) return '';
+  const pontos = ordem.map(([k, , cor], i) => Array.from({ length: n[i] }, () => `<i style="--c:${cor}"></i>`).join('')).join('');
+  const rot = ordem.map(([k, nome], i) => `${n[i]} ${nome}`).join(', ');
+  return h`<div class="cem">
+      <p class="cem-tit">De cada 100 eleitores, no domingo</p>
+      <div class="cem-pontos" role="img" aria-label="De cada 100 eleitores: ${rot}">${cru(pontos)}</div>
+      <ul class="cem-leg">${ordem.map(([k, nome, cor], i) => h`<li><i style="--c:${cor}"></i><b>${n[i]}</b> ${nome}${num(ex[k]) !== null && Math.abs(num(ex[k]) - n[i]) >= 0.05 ? h` <small>(${fNum(ex[k])})</small>` : ''}</li>`)}</ul>
+    </div>`;
+}
+
+function porqueAbstencao(e, p) {
+  const t1 = num(e?.t1_2026);
+  const ab = num(p.abstencao_estimada_pct);
+  const dl = num(p.base_abstencao?.delta_medio_t1_t2_pp);
+  const hist = arr(e?.historico).filter((r) => obj(r) && num(r.variacao) !== null);
+  if (t1 === null || ab === null || dl === null) return '';
+  const max = Math.max(...hist.map((r) => Math.abs(num(r.variacao))), 0.1);
+  const fx = faixa(p.abstencao_faixa_pct);
+  return h`<div class="porque">
+      <p class="cem-tit">Por que ${fNum(ab)}%?</p>
+      <div class="conta">
+        <div><small>Faltaram no 1º turno</small><b>${fNum(t1)}%</b></div>
+        <span aria-hidden="true">+</span>
+        <div><small>Alta de costume no 2º turno</small><b>${fNum(dl)} ponto</b></div>
+        <span aria-hidden="true">=</span>
+        <div class="res"><small>Previsão para domingo</small><b>${fNum(ab)}%</b></div>
+      </div>
+      ${hist.length ? h`<p class="porque-txt">A falta quase sempre aumenta no 2º turno: subiu em ${num(e.subiu_em) ?? '?'} das ${num(e.eleicoes) ?? hist.length} eleições desde 2002. Quanto mudou do 1º para o 2º turno em cada uma:</p>
+      <ul class="hist-abst">${hist.map((r) => {
+        const v = num(r.variacao);
+        return h`<li><span>${r.ano}</span><span class="trilho"><span class="${v < 0 ? 'neg' : ''}" style="width:${((Math.abs(v) / max) * 100).toFixed(1)}%"></span></span><b>${fSinal(v)}</b>${v < 0 ? h`<small>caiu</small>` : ''}</li>`;
+      })}</ul>` : ''}
+      ${fx ? h`<p class="porque-txt">Por isso a faixa vai de ${fPct(fx[0])} (se cair como em 2022) a ${fPct(fx[1])} (se subir como em 2010, a maior alta).</p>` : ''}
+    </div>`;
+}
+
+const listaOu = (xs) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join('; ')} ou ${xs[xs.length - 1]}`);
+
+function mudaResultado(p, e) {
+  const cen = arr(p.cenarios).filter(obj);
+  const centro = cen.find((c) => c.central) || cen[1];
+  const mesmo = (c) => centro && num(c.validos?.lula) === num(centro.validos?.lula);
+  const so_abst = cen.filter(mesmo);
+  const outro = cen.find((c) => !mesmo(c));
+  const v = obj(e?.virada);
+  const casa = obj(v?.ficam_em_casa_de_cada_100);
+  const quem = v?.quem_vira;
+  const falta = v?.quem_falta_mais;
+  return h`<div class="muda">
+      <p class="cem-tit">Isso muda quem ganha?</p>
+      ${centro && so_abst.length > 1 ? h`<div class="muda-card"><p class="muda-sim-nao">Não, se faltar gente igual dos dois lados.</p>
+        <p>Com ${listaOu(so_abst.map((c) => fPct(c.abstencao_pct)))} de abstenção, o placar fica igual: ${curto('lula')} ${fPct(centro.validos.lula)} × ${curto('flavio')} ${fPct(centro.validos.flavio)} dos votos válidos. Só o total de votos muda.</p></div>` : ''}
+      ${casa && quem && falta ? h`<div class="muda-card forte"><p class="muda-sim-nao">Sim, se um lado faltar mais.</p>
+        <p>${curto(quem)} vira se, de cada 100 eleitores do ${curto(falta)}, <b>${fNum(casa[falta])}</b> ficarem em casa, e de cada 100 do ${curto(quem)}, só <b>${fNum(casa[quem])}</b>. A diferença é de ${fNum(v.diferenca)} ${num(v.diferenca) !== null && num(v.diferenca) < 2 ? 'ponto' : 'pontos'}: quase o quanto a falta costuma subir de um turno para o outro, só que concentrada num lado.</p></div>` : h`<div class="virada"><p class="virada-tit">O que vira o jogo</p><p class="virada-txt">${ou(txt(p.virada?.texto))}</p></div>`}
+      ${outro ? h`<p class="porque-txt"><b>Outro risco, que não é abstenção:</b> se cada instituto errar como errou no 1º turno, o placar vai a ${curto('lula')} ${fPct(outro.validos?.lula)} × ${curto('flavio')} ${fPct(outro.validos?.flavio)}.</p>` : ''}
+    </div>`;
 }
 
 function blocoProjecao(d) {
   const p = obj(d.projecao);
-  const tit = h`<h2 class="sobre">${txt(p?.rotulo) || 'Projeção com abstenção'} ${info('Projeção com abstenção')}</h2>`;
+  const tit = h`<h2 class="sobre">Quantos vão votar e o que isso muda ${info('Projeção com abstenção')}</h2>`;
   if (!p) return h`<section class="bloco" id="sec-projecao">${tit}${lacunaBloco('Projeção com abstenção: sem dado ainda.')}</section>`;
+  const e = obj(p.explicacao);
   const vL = num(p.votos?.lula);
   const vF = num(p.votos?.flavio);
   const coluna = (id, v, dir) => {
@@ -1310,18 +1372,17 @@ function blocoProjecao(d) {
     p.lider === 'lula' || p.lider === 'flavio' ? p.lider : vL !== null && vF !== null ? (vL >= vF ? 'lula' : 'flavio') : null;
   const mg = num(p.margem_votos) ?? (vL !== null && vF !== null ? Math.abs(vL - vF) : null);
   const ab = num(p.abstencao_estimada_pct);
-  const fxA = faixa(p.abstencao_faixa_pct);
-  const base = basesTexto(obj(p.base_abstencao), ab);
-  const v = obj(p.virada);
   return h`<section class="bloco" id="sec-projecao">
     ${tit}
+    ${txt(e?.frase) ? h`<p class="em-frase"><b>Em uma frase:</b> ${e.frase}</p>` : ''}
+    ${cemEleitores(e)}
+    ${porqueAbstencao(e, p)}
+    ${mudaResultado(p, e)}
+    <p class="cem-tit">Em votos, na previsão do meio</p>
     <div class="votos-duelo">${coluna('lula', vL, false)}${coluna('flavio', vF, true)}</div>
-    <p class="linha-forte">Diferença estimada: <b>${mg !== null ? `${fGrande(mg)} de votos` : LAC}</b>${lider && mg !== null ? ` (${curto(lider)} à frente)` : ''} ${info('Margem')}</p>
-    <p class="linha-forte">Abstenção estimada: <b>${ou(fPct(ab))}</b>${fxA ? ` (faixa de ${fPct(fxA[0])} a ${fPct(fxA[1])})` : ''} ${info('Abstenção')}</p>
-    ${base ? h`<p class="base">${base}</p>` : h`<p class="base">Base da abstenção: ${LAC}</p>`}
-    <div class="virada"><p class="virada-tit">O que vira o jogo</p><p class="virada-txt">${ou(txt(v?.texto))}</p></div>
-    ${tabelaCenarios(p, ab)}
-    <p class="fonte">Eleitorado: ${num(p.eleitorado) !== null ? `${fGrande(p.eleitorado)} de eleitores (TSE)` : LAC} · comparecimento estimado: ${ou(fGrande(p.comparecimento_estimado))} · votos válidos estimados: ${ou(fGrande(p.votos_validos_estimados))} · cálculo do Radar${fDataHora(d.gerado_em) ? ` · gerado em ${fDataHora(d.gerado_em)}` : ''}</p>
+    <p class="linha-forte">Diferença: <b>${mg !== null ? `${fGrande(mg)} de votos` : LAC}</b>${lider && mg !== null ? ` (${curto(lider)} à frente)` : ''} ${info('Margem')}</p>
+    <details class="mais" data-k="tab-cenarios"><summary>Ver os cenários em votos</summary>${tabelaCenarios(p, ab)}</details>
+    <p class="fonte">Eleitorado: ${num(p.eleitorado) !== null ? `${fGrande(p.eleitorado)} de eleitores (TSE)` : LAC} · comparecimento estimado: ${ou(fGrande(p.comparecimento_estimado))} · votos válidos estimados: ${ou(fGrande(p.votos_validos_estimados))} · abstenção e brancos e nulos de 2002 a 2026: TSE · cálculo do Radar${fDataHora(d.gerado_em) ? ` · gerado em ${fDataHora(d.gerado_em)}` : ''}</p>
   </section>`;
 }
 
@@ -1333,16 +1394,17 @@ function tabelaCenarios(p, ab) {
     const lv = num(c.votos?.lula);
     const fv = num(c.votos?.flavio);
     const ca = num(c.abstencao_pct);
-    const central = ab !== null && ca !== null && Math.abs(ca - ab) < 0.05 && !temCentral;
+    const central = c.central === true || (ab !== null && ca !== null && Math.abs(ca - ab) < 0.05 && !temCentral && c.central === undefined);
     if (central) temCentral = true;
     const cel = (v, pct, vence) =>
       h`<td class="n${vence ? ' vence' : ''}">${v !== null ? fMilhoes(v) : LAC}<small>${pct !== null ? fPct(pct) : 'sem dado'}</small></td>`;
-    return h`<tr class="${central ? 'destaque' : ''}"><td>${ou(txt(c.nome))}</td><td class="n">${ou(fPct(ca))}</td>${cel(lv, num(c.validos?.lula), lv !== null && fv !== null && lv > fv)}${cel(fv, num(c.validos?.flavio), lv !== null && fv !== null && fv > lv)}</tr>`;
+    const nome = central ? 'Previsão do meio' : txt(c.nome);
+    return h`<tr class="${central ? 'destaque' : ''}"><td>${ou(nome)}</td><td class="n">${ou(fPct(ca))}</td>${cel(lv, num(c.validos?.lula), lv !== null && fv !== null && lv > fv)}${cel(fv, num(c.validos?.flavio), lv !== null && fv !== null && fv > lv)}</tr>`;
   });
   return h`<div class="tab-wrap"><table class="tab">
     <thead><tr><th style="width:39%">Cenário</th><th class="n" style="width:21%">Abstenção</th><th class="n">${curto('lula')}</th><th class="n">${curto('flavio')}</th></tr></thead>
     <tbody>${linhas}</tbody>
-    <caption>Votos em milhões; embaixo, a % dos votos válidos. Em negrito, quem fica à frente no cenário${temCentral ? '; com fundo, o cenário central' : ''}.</caption>
+    <caption>Votos em milhões; embaixo, a % dos votos válidos. Em negrito, quem fica à frente no cenário${temCentral ? '; com fundo, a previsão do meio' : ''}.</caption>
   </table></div>`;
 }
 
@@ -1592,7 +1654,38 @@ function htmlPesquisas(d) {
       <h2 class="sobre">Quem mais acertou o 1º turno</h2>
       ${ranking(d)}
       <p class="fonte">Fonte: última pesquisa de cada casa antes do 1º turno${fData(d.primeiro_turno?.data) ? ` (${fData(d.primeiro_turno.data)})` : ''} e resultado oficial do TSE</p>
-    </section>`;
+    </section>
+    ${blocoRadar1t(d)}`;
+}
+
+// O que o próprio Radar publicava no dia do 1º turno, lido do run guardado
+// (build_pocket._radar_first_round), contra a urna.
+function blocoRadar1t(d) {
+  const r = obj(d.radar_1t);
+  if (!r) return '';
+  const linha = (nome, v, cls) => {
+    const l = num(v?.lula);
+    const f = num(v?.flavio);
+    const m = l !== null && f !== null ? f - l : null;
+    const quem = m === null ? null : m >= 0 ? curto('flavio') : curto('lula');
+    return h`<tr class="${cls || ''}"><td>${nome}</td><td class="n">${ou(fPct(f))}</td><td class="n">${ou(fPct(l))}</td><td class="n">${m !== null ? `${quem} +${fNum(Math.abs(m))}` : LAC}</td></tr>`;
+  };
+  const casas = listaNomes(r.casas);
+  const quando = fDataHora(r.publicado_em);
+  return h`<section class="bloco" id="sec-radar-1t">
+    <h2 class="sobre">${txt(r.rotulo) || 'Como o Radar se saiu no 1º turno'}</h2>
+    ${txt(r.texto) ? h`<p class="em-frase">${r.texto}</p>` : ''}
+    <div class="tab-wrap"><table class="tab">
+      <thead><tr><th style="width:40%"></th><th class="n">${curto('flavio')}</th><th class="n">${curto('lula')}</th><th class="n">Diferença</th></tr></thead>
+      <tbody>
+        ${linha('Radar, cenário corrigido', r.corrigida, 'destaque')}
+        ${linha('Média simples das pesquisas', r.simples)}
+        ${linha('Urna (TSE)', r.resultado)}
+      </tbody>
+      <caption>% dos votos válidos, contando todos os candidatos do 1º turno. O cenário corrigido acertou quem ficou na frente; a média simples, não.</caption>
+    </table></div>
+    <p class="fonte">Versão publicada pelo Radar${quando ? ` em ${quando}` : ''}, antes de a votação terminar${casas ? `, com ${casas}` : ''} · resultado: TSE</p>
+  </section>`;
 }
 
 // O gráfico começa no 1º turno: pesquisa de antes dele é simulação de outro momento
@@ -1742,7 +1835,8 @@ function ranking(d) {
 
 function passosProjecao(p) {
   const ab = num(p.abstencao_estimada_pct);
-  const fx = faixa(p.abstencao_faixa_pct);
+  const t1 = num(p.base_abstencao?.t1_2026_pct);
+  const dl = num(p.base_abstencao?.delta_medio_t1_t2_pp);
   const comp = num(p.comparecimento_estimado);
   const bn = num(p.brancos_nulos_estimado_pct);
   const vL = num(p.votos?.lula);
@@ -1751,15 +1845,13 @@ function passosProjecao(p) {
   const sL = val && vL !== null ? (vL / val) * 100 : null;
   const sF = val && vF !== null ? (vF / val) * 100 : null;
   const mg = num(p.margem_votos) ?? (vL !== null && vF !== null ? Math.abs(vL - vF) : null);
-  const base = basesTexto(obj(p.base_abstencao), ab);
   return h`<ol class="passos">
-      <li><b>Eleitorado:</b> ${num(p.eleitorado) !== null ? `${fInt(p.eleitorado)} pessoas aptas a votar, segundo o TSE.` : LAC}</li>
-      <li><b>Quem vai votar:</b> abstenção estimada de ${ou(fPct(ab))}${fx ? ` (faixa de ${fPct(fx[0])} a ${fPct(fx[1])})` : ''}, o que dá ${comp !== null ? `${fGrande(comp)} de eleitores votando` : LAC}. ${base}</li>
-      <li><b>Votos válidos:</b> saem ${ou(fPct(bn))} de brancos e nulos ${info('Brancos e nulos')}, e sobram ${val !== null ? `${fGrande(val)} de votos válidos` : LAC}.</li>
-      <li><b>Divisão pela média:</b> ${curto('lula')} ${ou(fPct(sL))} → ${vL !== null ? `${fGrande(vL)} de votos` : LAC}; ${curto('flavio')} ${ou(fPct(sF))} → ${vF !== null ? `${fGrande(vF)} de votos` : LAC}. Diferença: ${mg !== null ? `${fGrande(mg)} de votos` : LAC}.</li>
+      <li><b>Quem pode votar:</b> ${num(p.eleitorado) !== null ? `${fGrande(p.eleitorado)} de eleitores, segundo o TSE.` : LAC}</li>
+      <li><b>Quem deve faltar:</b> ${ou(fPct(ab))}. É a falta do 1º turno (${ou(fPct(t1))}) mais o quanto ela costuma subir no 2º turno (${dl !== null ? `${fSinal(dl)} ponto` : LAC}, média de 2002 a 2022). Sobram ${comp !== null ? `${fGrande(comp)} de eleitores votando` : LAC}.</li>
+      <li><b>Quem anula ou vota em branco:</b> ${ou(fPct(bn))} de quem vota, como no 1º turno ${info('Brancos e nulos')}. Sobram ${val !== null ? `${fGrande(val)} de votos válidos` : LAC}.</li>
+      <li><b>Como os votos se dividem:</b> pela média das pesquisas, ${curto('lula')} ${ou(fPct(sL))} → ${vL !== null ? `${fGrande(vL)} de votos` : LAC}; ${curto('flavio')} ${ou(fPct(sF))} → ${vF !== null ? `${fGrande(vF)} de votos` : LAC}. Diferença: ${mg !== null ? `${fGrande(mg)} de votos` : LAC}.</li>
     </ol>
-    <div class="virada"><p class="virada-tit">O que vira o jogo</p><p class="virada-txt">${ou(txt(p.virada?.texto))}</p></div>
-    ${txt(p.nota) ? h`<p class="nota">${p.nota}</p>` : ''}`;
+    ${mudaResultado(p, obj(p.explicacao))}`;
 }
 
 function htmlMetodo(d) {

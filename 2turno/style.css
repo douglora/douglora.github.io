@@ -1203,6 +1203,53 @@ body.tv { cursor: none; }
 .lad-barra { position: absolute; left: 4px; right: 4px; bottom: 3px; height: 3px; overflow: hidden; border-radius: 2px; background: rgba(11, 11, 11, 0.14); }
 .lad-barra i { display: block; width: 0; height: 100%; background: currentColor; transition: width 1s ease; }
 .ap-leg { max-width: 420px; margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: var(--tinta-3); }
+/* Ladrilhos com números (apuracao.js com .v2): projeção L/F, apurado e seções de todos
+   os estados ao mesmo tempo. A letra acompanha a largura do mapa (unidade cqi), então
+   cabe em 320 px e cresce no computador e no Modo TV. */
+.ap-mapa-wrap.v2 { grid-template-columns: minmax(0, 1fr); }
+.ap-mapa.v2 { container-type: inline-size; max-width: 640px; }
+.ap-mapa.v2 .lad {
+  aspect-ratio: auto;
+  gap: 1px;
+  padding: 5px 2px;
+  border-radius: 8px;
+  line-height: 1.08;
+  font-variant-numeric: tabular-nums;
+}
+.ap-mapa.v2 .lad-ext { flex-direction: column; gap: 1px; min-height: 0; }
+.ap-mapa.v2 .lad-uf { margin-bottom: 1px; font-size: clamp(10px, 2.9cqi, 17px); font-weight: 760; letter-spacing: 0.02em; }
+.ap-mapa.v2 .lad-n { font-size: clamp(10.5px, 3.75cqi, 21px); font-weight: 500; letter-spacing: -0.01em; white-space: nowrap; }
+.ap-mapa.v2 .lad-k { font-size: 0.8em; font-weight: 650; opacity: 0.85; }
+.ap-mapa.v2 .lad-nl { color: var(--lad-l, var(--lula)); }
+.ap-mapa.v2 .lad-nf { color: var(--lad-f, var(--flavio)); }
+.ap-mapa.v2 .lad.lid-l .lad-nl,
+.ap-mapa.v2 .lad.lid-f .lad-nf { font-weight: 800; }
+.ap-mapa.v2 .lad-a { margin-top: 1px; font-size: clamp(7.5px, 2.5cqi, 13px); font-weight: 560; letter-spacing: -0.01em; white-space: nowrap; color: var(--tinta-2); }
+.ap-mapa.v2 .lad-ar,
+.ap-mapa.v2 .lad-sv,
+.ap-mapa.v2 .lad.prev .lad-av { display: none; }
+.ap-mapa.v2 .lad.prev .lad-sv { display: inline; font-weight: 500; color: var(--tinta-3); }
+.ap-mapa.v2 .lad-s { display: flex; align-items: center; gap: 3px; width: 100%; margin-top: 2px; padding: 0 3px; }
+.ap-mapa.v2 .lad-barra { position: static; flex: 1 1 auto; min-width: 8px; height: 3px; }
+.ap-mapa.v2 .lad-barra i { background: var(--tinta-2); }
+.ap-mapa.v2 .lad-sp { flex: none; font-size: clamp(7.5px, 2.45cqi, 12px); font-weight: 650; color: var(--tinta-2); }
+@container (min-width: 540px) {
+  .ap-mapa.v2 .lad-a { font-size: clamp(8px, 1.85cqi, 13px); }
+  .ap-mapa.v2 .lad-ar { display: inline; }
+}
+/* número que mudou: o ladrilho acende uma vez (0,6 s) e apaga; nada fica piscando */
+.ap-mapa.v2 .lad.brilha { z-index: 1; animation: ladBrilho 0.6s ease-out; }
+@keyframes ladBrilho {
+  from { box-shadow: 0 0 0 2px var(--brilho, rgba(11, 11, 11, 0.4)), 0 0 14px 3px var(--brilho, rgba(11, 11, 11, 0.4)); }
+  to { box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent; }
+}
+.ap-mapa-wrap.v2 .ap-leg,
+.ap-mapa-wrap.v2 .ap-uf { max-width: 640px; }
+.ap-uf[hidden] { display: none; }
+body.tv .ap-mapa.v2 { max-width: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ap-mapa.v2 .lad.brilha { animation: none; }
+}
 .ap-uf { min-width: 0; padding: 12px; border: 1px solid var(--linha); border-radius: 12px; }
 .ap-uf .tab { margin-top: 8px; }
 .ap-uf-dica { margin: 0; font-size: 13.5px; color: var(--tinta-3); }
@@ -1261,4 +1308,42 @@ body.com-faixa-sim { padding-bottom: 56px; }
 @media print {
   .abas, .aviso-toque, .folha { display: none !important; }
   .painel[hidden] { display: block !important; }
+}
+
+/* --------------------------- abstenção para leigo (de cada 100 eleitores) */
+
+.em-frase { margin: 4px 0 14px; font-size: 15px; line-height: 1.55; }
+.cem-tit { margin: 18px 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-2); }
+.cem-pontos { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 3px; max-width: 420px; }
+.cem-pontos i { display: block; aspect-ratio: 1; border-radius: 50%; background: var(--c); }
+.cem-leg { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 14px; font-size: 13.5px; color: var(--tinta-2); }
+.cem-leg li { display: flex; align-items: baseline; gap: 6px; }
+.cem-leg i { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); transform: translateY(1px); }
+.cem-leg b { color: var(--tinta); font-size: 15px; }
+.cem-leg small { color: var(--tinta-3); }
+
+.conta { display: flex; align-items: stretch; gap: 6px; }
+.conta > div { flex: 1 1 0; min-width: 0; padding: 9px 10px; border: 1px solid var(--linha); border-radius: 10px; background: var(--suave); }
+.conta > div small { display: block; font-size: 11.5px; line-height: 1.3; color: var(--tinta-3); }
+.conta > div b { display: block; margin-top: 3px; font-size: 19px; letter-spacing: -0.01em; }
+.conta > div.res { background: var(--destaque-claro); border-color: #cfe1e1; }
+.conta > div.res b { color: var(--destaque); }
+.conta > span { align-self: center; font-size: 18px; font-weight: 700; color: var(--tinta-3); }
+.porque-txt { margin: 10px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--tinta-2); }
+.hist-abst { list-style: none; margin: 8px 0 0; padding: 0; max-width: 420px; }
+.hist-abst li { display: grid; grid-template-columns: 38px 1fr 44px 34px; align-items: center; gap: 8px; font-size: 13px; padding: 2px 0; }
+.hist-abst .trilho { height: 8px; border-radius: 4px; background: var(--suave-2); overflow: hidden; }
+.hist-abst .trilho span { display: block; height: 100%; border-radius: 4px; background: var(--destaque); }
+.hist-abst .trilho span.neg { background: var(--tinta-3); }
+.hist-abst b { text-align: right; font-variant-numeric: tabular-nums; }
+.hist-abst small { color: var(--tinta-3); }
+
+.muda-card { margin: 0 0 10px; padding: 11px 13px; border: 1px solid var(--linha); border-radius: 10px; }
+.muda-card p { margin: 0; font-size: 14px; line-height: 1.5; }
+.muda-card .muda-sim-nao { margin-bottom: 3px; font-weight: 700; font-size: 15px; color: var(--tinta); }
+.muda-card.forte { border-left: 3px solid var(--destaque); background: var(--destaque-claro); }
+
+@media (max-width: 380px) {
+  .conta > div b { font-size: 17px; }
+  .cem-leg { grid-template-columns: 1fr; }
 }

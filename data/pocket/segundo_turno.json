@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-23T13:25:05-03:00",
+ "gerado_em": "2026-10-23T17:16:27-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 7 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -574,6 +574,39 @@
    ],
    "nota": "Casas cujo erro na diferença Flávio − Lula da última pesquisa de 1º turno ficou até a mediana (5,5 pontos); peso = 1 / erro²."
   }
+ },
+ "radar_1t": {
+  "rotulo": "Como o Radar se saiu no 1º turno",
+  "publicado_em": "2026-10-04T11:41-03:00",
+  "run_id": "hist-20261004-8d90558c-245c45fb-848d6fa8-08a374",
+  "casas": [
+   "Datafolha",
+   "Nexus",
+   "PoderData",
+   "Quaest"
+  ],
+  "corrigida": {
+   "lula": 41.7,
+   "flavio": 44.2
+  },
+  "simples": {
+   "lula": 44.4,
+   "flavio": 40.0
+  },
+  "resultado": {
+   "flavio": 47.03,
+   "lula": 45.16
+  },
+  "margem": {
+   "corrigida": 2.53,
+   "simples": -4.42,
+   "resultado": 1.87
+  },
+  "erro_margem_pp": {
+   "corrigida": 0.66,
+   "simples": -6.29
+  },
+  "texto": "No 1º turno, todas as pesquisas do painel mostravam Lula na frente. O cenário corrigido do Radar (cada casa corrigida pelo erro histórico dela) apontou Flávio liderando e errou a diferença final por 0,66 ponto. Os percentuais ficaram abaixo da urna porque as últimas pesquisas que tinham entrado eram de 24 a 28/09, quando os outros candidatos ainda tinham mais votos; as de 01 a 03/10 não chegaram a tempo."
  },
  "medias_ordem": [
   "ponderada",
@@ -2051,7 +2084,7 @@
   },
   "cenarios": [
    {
-    "nome": "Abstenção como em 2022 (20,7%)",
+    "nome": "Se cair como em 2022 (20,7%)",
     "central": false,
     "abstencao_pct": 20.7,
     "validos": {
@@ -2081,7 +2114,7 @@
     "lider": "flavio"
    },
    {
-    "nome": "Maior alta da série, 2010 (24,5%)",
+    "nome": "Se subir como em 2010, a maior alta (24,5%)",
     "central": false,
     "abstencao_pct": 24.5,
     "validos": {
@@ -2111,7 +2144,72 @@
     "lider": "flavio"
    }
   ],
-  "nota": "Abstenção do 2º turno = a do 1º turno de 2026 (21,08%) + a alta média entre os turnos de 2002 a 2022 (1,78 ponto; subiu em 5 de 6 eleições, caiu só em 2022). Brancos e nulos mantidos no nível do 1º turno (4,77%). Votos válidos repartidos pela média das pesquisas. A abstenção só muda o vencedor se for maior num eleitorado do que no outro: a linha 'vira se' mostra quanto."
+  "nota": "Abstenção do 2º turno = a do 1º turno de 2026 (21,08%) + a alta média entre os turnos de 2002 a 2022 (1,78 ponto; subiu em 5 de 6 eleições, caiu só em 2022). Brancos e nulos mantidos no nível do 1º turno (4,77%). Votos válidos repartidos pela média das pesquisas. A abstenção só muda o vencedor se for maior num eleitorado do que no outro: a linha 'vira se' mostra quanto.",
+  "explicacao": {
+   "de_cada_100": {
+    "nao_votam": 23,
+    "branco_nulo": 4,
+    "lula": 36,
+    "flavio": 37
+   },
+   "de_cada_100_exato": {
+    "nao_votam": 22.9,
+    "branco_nulo": 3.7,
+    "lula": 36.3,
+    "flavio": 37.1
+   },
+   "historico": [
+    {
+     "ano": 2002,
+     "t1": 17.74,
+     "t2": 20.47,
+     "variacao": 2.73
+    },
+    {
+     "ano": 2006,
+     "t1": 16.75,
+     "t2": 18.99,
+     "variacao": 2.24
+    },
+    {
+     "ano": 2010,
+     "t1": 18.12,
+     "t2": 21.5,
+     "variacao": 3.38
+    },
+    {
+     "ano": 2014,
+     "t1": 19.39,
+     "t2": 21.1,
+     "variacao": 1.71
+    },
+    {
+     "ano": 2018,
+     "t1": 20.33,
+     "t2": 21.3,
+     "variacao": 0.97
+    },
+    {
+     "ano": 2022,
+     "t1": 20.95,
+     "t2": 20.58,
+     "variacao": -0.36
+    }
+   ],
+   "subiu_em": 5,
+   "eleicoes": 6,
+   "t1_2026": 21.08,
+   "virada": {
+    "quem_vira": "lula",
+    "quem_falta_mais": "flavio",
+    "ficam_em_casa_de_cada_100": {
+     "flavio": 23.7,
+     "lula": 22.1
+    },
+    "diferenca": 1.6
+   },
+   "frase": "Esperamos que cerca de 23 em cada 100 eleitores não votem no domingo, um pouco mais que no 1º turno (21 em cada 100), como aconteceu em 5 das 6 eleições desde 2002. Isso sozinho não muda quem ganha: só muda se um lado faltar mais que o outro."
+  }
  },
  "modelo_nacional": {
   "lula_par": 49.49,
