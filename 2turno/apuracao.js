@@ -213,13 +213,14 @@ function corChance(p) {
   const c = misturar(NEUTRO, p >= 0.5 ? VERDE : VERMELHO, forca);
   return { fundo: rgb(c), tinta: claro(c) ? '#0b0b0b' : '#ffffff', forca };
 }
-// Ladrilho: cor do partido de quem lidera, intensidade pela margem.
-function corLadrilho(corPartido, margem, prev) {
-  const t = prev ? 0.16 + Math.min(0.24, margem * 1.2) : 0.22 + Math.min(0.78, (margem / 0.3) * 0.78);
+// Ladrilho com números: fundo sempre claro (tinta do partido de quem lidera na projeção,
+// mais forte = margem maior) para que os números nas cores dos candidatos fiquem legíveis.
+function corLadrilhoNum(corPartido, margem, prev) {
+  const t = prev ? 0.06 + Math.min(0.12, margem * 0.6) : 0.1 + Math.min(0.26, (margem / 0.3) * 0.26);
   const c = misturar('#ffffff', corPartido, t);
   return { fundo: rgb(c), tinta: claro(c) ? '#0b0b0b' : '#ffffff' };
 }
-function animarNumero(el, para, fmt) {
+function animarNumero(el, para, fmt, dur = 900) {
   if (!el) return;
   const de = el._v;
   el._v = para;
@@ -228,12 +229,12 @@ function animarNumero(el, para, fmt) {
     return;
   }
   const t0 = performance.now();
-  const dur = 900;
   cancelAnimationFrame(el._raf);
   const passo = (agora) => {
     const k = Math.min(1, (agora - t0) / dur);
     const e = 1 - Math.pow(1 - k, 3);
-    el.textContent = fmt(de + (para - de) * e);
+    const t = fmt(de + (para - de) * e);
+    if (el.textContent !== t) el.textContent = t;
     if (k < 1) el._raf = requestAnimationFrame(passo);
   };
   el._raf = requestAnimationFrame(passo);
@@ -899,39 +900,103 @@ function renderInsights(lista) {
 
 /* ================================================================ mapa */
 
-function htmlMapa() {
+// Cada ladrilho mostra os números de uma vez, sem precisar tocar: a projeção do estado
+// (antes do primeiro voto, a prévia) em "L 52,1" e "F 47,9", e, durante a contagem, o
+// apurado e a barra de seções. Tocar abre o detalhe, como extra.
+function htmlMapa(contagem) {
   const h = C.h;
+  const miolo = (rot) => h`<span class="lad-uf">${rot}</span>
+    <span class="lad-n lad-nl" aria-hidden="true"><span class="lad-k">L</span> <span data-pl>—</span></span>
+    <span class="lad-n lad-nf" aria-hidden="true"><span class="lad-k">F</span> <span data-pf>—</span></span>
+    ${contagem
+      ? h`<span class="lad-a" aria-hidden="true"><span class="lad-sv">sem votos</span><span class="lad-av"><span class="lad-ar">apur. </span><span data-al>—</span><span class="lad-ax"><span class="lad-ar"> </span>·<span class="lad-ar"> </span></span><span data-af>—</span></span></span>
+    <span class="lad-s" aria-hidden="true"><span class="lad-barra"><i data-b></i></span><span class="lad-sp" data-sp>0%</span></span>`
+      : ''}`;
   const lad = UFS.filter((u) => u !== 'ZZ').map((uf) => {
     const [c, l] = GRADE[uf];
-    return h`<button type="button" class="lad" data-uf="${uf}" style="grid-column:${c};grid-row:${l}" aria-label="${NOME_UF[uf]}"><span class="lad-uf">${uf}</span><span class="lad-v" data-v></span><span class="lad-barra"><i data-b></i></span></button>`;
+    return h`<button type="button" class="lad" data-uf="${uf}" style="grid-column:${c};grid-row:${l}" aria-label="${NOME_UF[uf]}">${miolo(uf)}</button>`;
   });
-  return h`<div class="ap-mapa" role="group" aria-label="Mapa de ladrilhos dos estados">
+  return h`<div class="ap-mapa v2${contagem ? ' com-contagem' : ''}" role="group" aria-label="Mapa de ladrilhos dos estados" style="--lad-l:${rgb(misturar(C.cand('lula').cor, '#000000', 0.3))};--lad-f:${rgb(misturar(C.cand('flavio').cor, '#000000', 0.3))}">
     ${lad}
-    <button type="button" class="lad lad-ext" data-uf="ZZ" style="grid-column:4 / span 3;grid-row:8" aria-label="Exterior"><span class="lad-uf">Exterior</span><span class="lad-v" data-v></span><span class="lad-barra"><i data-b></i></span></button>
+    <button type="button" class="lad lad-ext" data-uf="ZZ" style="grid-column:4 / span 3;grid-row:8" aria-label="Exterior">${miolo('Exterior')}</button>
   </div>`;
 }
 
+// Troca o número contando do valor antigo ao novo; devolve true quando o valor mudou
+// (a primeira pintura não conta como mudança).
+function numLad(el, para, fmt) {
+  if (!el) return false;
+  if (el._v === para) return false;
+  const mudou = el._v !== undefined;
+  animarNumero(el, para, fmt, 600);
+  return mudou;
+}
+const um = (v) => Math.round(v * 10) / 10;
+const f1 = (v) => C.fNum(v, 1);
+// Seções: piso (99,6% fica 99%) e "<1%" quando já há seção contada mas não chega a 1%.
+const fSec = (v) => (v > 0 && v < 1 ? '<1%' : `${C.fNum(Math.floor(v), 0)}%`);
+
+// Acende uma vez (0,6 s). Na noite real a leitura é a cada 10 s; na simulação acelerada
+// os números mudam a cada segundo, e o intervalo mínimo de 4 s por estado evita que o
+// mapa fique piscando sem parar.
+function brilhar(el) {
+  if (reduzMovimento()) return;
+  const agora = Date.now();
+  if (el._brilhoEm && agora - el._brilhoEm < 4000) return;
+  el._brilhoEm = agora;
+  el.classList.remove('brilha');
+  void el.offsetWidth;
+  el.classList.add('brilha');
+  clearTimeout(el._brilho);
+  el._brilho = setTimeout(() => el.classList.remove('brilha'), 650);
+}
+
 function atualizarMapa(r) {
+  const contagem = A.modo !== 'pre';
   for (const u of r.linhas) {
     const el = $(`.lad[data-uf="${u.uf}"]`);
     if (!el) continue;
     const prev = u.shareObs === null;
-    const share = prev ? u.prior : u.shareObs;
-    const quem = share >= 0.5 ? 'lula' : 'flavio';
-    const margem = Math.abs(share - 0.5) * 2;
-    const cor = corLadrilho(C.cand(quem).cor, margem, prev);
+    // Projeção do estado em % dos votos dados aos dois; antes do primeiro voto é a prévia.
+    const pj = u.projL + u.projF > 0 ? u.projL / (u.projL + u.projF) : u.share;
+    const quem = pj >= 0.5 ? 'lula' : 'flavio';
+    const margem = Math.abs(pj - 0.5) * 2;
+    const cor = corLadrilhoNum(C.cand(quem).cor, margem, prev);
     el.style.background = cor.fundo;
     el.style.color = cor.tinta;
+    const [br, bg, bb] = hexRgb(C.cand(quem).cor);
+    el.style.setProperty('--brilho', `rgba(${br},${bg},${bb},0.55)`);
     el.classList.toggle('prev', prev);
+    el.classList.toggle('lid-l', quem === 'lula');
+    el.classList.toggle('lid-f', quem === 'flavio');
     el.classList.toggle('sel', A.ufSel === u.uf);
-    const v = el.querySelector('[data-v]');
-    const txt = `${quem === 'lula' ? 'L' : 'F'} ${C.fNum(Math.max(share, 1 - share) * 100, 0)}`;
-    if (v && v.textContent !== txt) v.textContent = txt;
-    const bar = el.querySelector('[data-b]');
-    if (bar) bar.style.width = `${clamp(u.f * 100, 0, 100).toFixed(1)}%`;
+    const pL = um(pj * 100);
+    const pF = um(100 - pL);
+    let mudou = numLad(el.querySelector('[data-pl]'), pL, f1);
+    mudou = numLad(el.querySelector('[data-pf]'), pF, f1) || mudou;
+    const sec = Number.isFinite(u.o?.pst) ? u.o.pst : u.f * 100;
+    const secP = sec >= 100 ? 100 : sec >= 1 ? Math.floor(sec) : sec > 0 ? 0.5 : 0;
+    let aL = null;
+    if (contagem) {
+      const al = el.querySelector('[data-al]');
+      const af = el.querySelector('[data-af]');
+      if (prev) {
+        for (const x of [al, af]) if (x && x.textContent !== '—') { x._v = undefined; x.textContent = '—'; }
+      } else {
+        aL = um(u.shareObs * 100);
+        mudou = numLad(al, aL, f1) || mudou;
+        mudou = numLad(af, um(100 - aL), f1) || mudou;
+      }
+      mudou = numLad(el.querySelector('[data-sp]'), secP, fSec) || mudou;
+      const bar = el.querySelector('[data-b]');
+      if (bar) bar.style.width = `${clamp(sec, 0, 100).toFixed(1)}%`;
+    }
+    if (mudou) brilhar(el);
+    const nome = u.uf === 'ZZ' ? 'Exterior' : NOME_UF[u.uf];
     el.setAttribute(
       'aria-label',
-      `${NOME_UF[u.uf]}: ${prev ? 'prévia' : 'lidera'} ${C.curto(quem)} com ${C.fNum(Math.max(share, 1 - share) * 100, 0)}% do par; ${C.fNum(u.f * 100, 0)}% apurado`,
+      `${nome}: ${prev ? 'prévia' : 'projeção'} ${C.curto('lula')} ${f1(pL)}%, ${C.curto('flavio')} ${f1(pF)}%` +
+        (contagem ? (aL !== null ? `; apurado ${f1(aL)}% a ${f1(um(100 - aL))}%` : '; ainda sem votos') + `; ${fSec(secP)} das seções` : ''),
     );
   }
   atualizarDetalheUF(r);
@@ -941,8 +1006,10 @@ function atualizarDetalheUF(r) {
   const caixa = $('[data-ap-uf]');
   if (!caixa) return;
   const u = r.linhas.find((x) => x.uf === A.ufSel);
+  // Sem estado escolhido o painel some: os números já estão nos ladrilhos.
+  caixa.hidden = !u;
   if (!u) {
-    htmlEm('[data-ap-uf]', C.h`<p class="ap-uf-dica">Toque num estado para ver o apurado, a prévia, a projeção e os votos que faltam.</p>`);
+    htmlEm('[data-ap-uf]', '');
     return;
   }
   const h = C.h;
@@ -1251,11 +1318,11 @@ function esqueletoPainel() {
     </section>
     <section class="bloco ap-sec-mapa">
       <h2 class="sobre">Estados ${C.info('UF')}</h2>
-      <div class="ap-mapa-wrap">
-        <div>${htmlMapa()}
-          <p class="ap-leg">Cor: quem lidera no estado (cor do partido) · mais forte = margem maior · barra de baixo = parte apurada · tracejado = ainda sem votos (mostra a prévia). L = ${C.curto('lula')}, F = ${C.curto('flavio')}.</p>
+      <div class="ap-mapa-wrap v2">
+        <div>${htmlMapa(true)}
+          <p class="ap-leg">Projeção de cada estado (antes da contagem: prévia) · L = ${C.curto('lula')}, F = ${C.curto('flavio')} · linha menor = apurado até agora · barra = seções apuradas · tracejado = estado ainda sem votos. Toque num estado para o detalhe.</p>
         </div>
-        <div class="ap-uf" data-ap-uf></div>
+        <div class="ap-uf" data-ap-uf hidden></div>
       </div>
     </section>
     <section class="bloco ap-sec-graf">
@@ -1296,9 +1363,9 @@ function esqueletoPre() {
       <div class="ap-hero">${htmlLados(true)}</div>
       <div class="ap-chbar" aria-hidden="true"><span data-seg="lula"></span><span data-seg="flavio"></span><i></i></div>
       <p class="ap-chleg">Chance pelo modelo da apuração, antes do primeiro voto contado ${C.info('Chance de vitória')}</p>
-      <div class="ap-mapa-wrap">
-        <div>${htmlMapa()}<p class="ap-leg">Prévia de cada estado: cor de quem deve liderar, mais forte = margem maior. L = ${C.curto('lula')}, F = ${C.curto('flavio')}.</p></div>
-        <div class="ap-uf" data-ap-uf></div>
+      <div class="ap-mapa-wrap v2">
+        <div>${htmlMapa(false)}<p class="ap-leg">Projeção de cada estado (antes da contagem: prévia) · L = ${C.curto('lula')}, F = ${C.curto('flavio')} · cor de quem deve liderar, mais forte = margem maior. Na apuração entram o apurado e a barra de seções.</p></div>
+        <div class="ap-uf" data-ap-uf hidden></div>
       </div>
     </section>
     <section class="bloco ap-sec-previa">
@@ -2039,6 +2106,9 @@ export function iniciar(ctx) {
     if (alvo.matches('.lad[data-uf]')) {
       A.ufSel = A.ufSel === alvo.dataset.uf ? null : alvo.dataset.uf;
       if (A.res) atualizarMapa(A.res);
+      // O detalhe abre embaixo do mapa: traz para a tela sem pular a página toda.
+      const caixa = A.ufSel ? $('[data-ap-uf]') : null;
+      if (caixa && !caixa.hidden) caixa.scrollIntoView({ block: 'nearest', behavior: reduzMovimento() ? 'auto' : 'smooth' });
       return;
     }
     const a = alvo.dataset.ap;
