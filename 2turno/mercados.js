@@ -163,10 +163,22 @@ function registrarFalha(chave, erro) {
 
 /* --------------------------------------------------------------- preços */
 
+/* No mercado negRisk da Polymarket o livro às vezes informa o último negócio
+ * pelo lado oposto do contrato (Lula "último 76%" com compra 22% e venda 24%,
+ * 23/10/2026). Último fora da faixa compra–venda vira o complementar se este
+ * couber; se nenhum couber, fica sem último. */
+const FOLGA_ULTIMO = 0.03;
+function ultimoCoerente(c, v, u) {
+  if (u === null || c === null || v === null) return u;
+  const cabe = (x) => x >= c - FOLGA_ULTIMO && x <= v + FOLGA_ULTIMO;
+  if (cabe(u)) return u;
+  return cabe(1 - u) ? 1 - u : null;
+}
+
 function cotacao(compra, venda, ultimo) {
   const c = compra !== null && compra > 0 && compra < 1 ? compra : null;
   const v = venda !== null && venda > 0 && venda < 1 ? venda : null;
-  const u = ultimo !== null && ultimo > 0 && ultimo <= 1 ? ultimo : null;
+  const u = ultimoCoerente(c, v, ultimo !== null && ultimo > 0 && ultimo <= 1 ? ultimo : null);
   const prob = c !== null && v !== null ? (c + v) / 2 : u;
   return { prob: arred(prob), compra: arred(c), venda: arred(v), ultimo: arred(u) };
 }

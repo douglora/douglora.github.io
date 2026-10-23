@@ -304,6 +304,75 @@
         "turn": 2
       },
       {
+        "anchors": [
+          {
+            "comparability_warnings": [],
+            "days_to_election": 4,
+            "distance_gap_days": -2,
+            "election": "2018-T2",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2018",
+              "ev-tse-polls-2018",
+              "ev-pindograma-parsed-2014-2018"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "bolsonaro",
+            "leader_signed_error_pp": 1.191839080459765,
+            "mae_pp": 1.191839080459765,
+            "margin_error_pp": 2.38367816091953,
+            "margin_official_pp": 10.260000000000005,
+            "margin_poll_pp": 12.643678160919535,
+            "official_valid_pct": {
+              "bolsonaro": 55.13,
+              "haddad": 44.87
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "bolsonaro": 56.32183908045977,
+              "haddad": 43.67816091954023
+            },
+            "reading": "Em 2018-10-24 (D-4 de 2018-T2), a REAL TIME BIG DATA media Bolsonaro 56.3% × Haddad 43.7% em votos válidos; a urna deu 55.1% × 44.9%. A casa superestimou Bolsonaro em 1.2 p.p.; a margem saiu de +12.6 para +10.3 p.p. (+2.4 p.p. de erro de margem).",
+            "reference_date": "2018-10-24",
+            "runner_up_id": "haddad",
+            "signed_error_pp": {
+              "bolsonaro": 1.191839080459765,
+              "haddad": -1.191839080459765
+            },
+            "turn": 2,
+            "year": 2018
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 45.0,
+          "2026-tse-280002551544": 48.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 48.38709677419355,
+          "2026-tse-280002551544": 51.61290322580645
+        },
+        "days_to_election": 6,
+        "headline": "Hoje a REAL TIME BIG DATA mede FLAVIO BOLSONARO 51.6% × LULA 48.4% (votos válidos, D-6). No mesmo estágio de 2018 (D-4), ela media Bolsonaro 56.3% × Haddad 43.7% e a urna deu 55.1% × 44.9% — a margem encolheu 2.4 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "real-time-big-data",
+        "house_name": "REAL TIME BIG DATA",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-10-20",
+        "reason": null,
+        "reference_date": "2026-10-19",
+        "registration_no": "BR-02952/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "status": "available",
+        "turn": 2
+      },
+      {
         "anchors": [],
         "current_published_pct": {
           "2026-tse-280002542548": 45.9,
@@ -951,8 +1020,8 @@
       }
     ],
     "not_a_projection": "Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
-    "polls_examined": 14,
-    "polls_with_anchor": 9,
+    "polls_examined": 15,
+    "polls_with_anchor": 10,
     "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
     "status": "available",
     "tolerance_days": 12
@@ -1012,11 +1081,12 @@
       "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
       "Nexus",
       "PoderData",
-      "Quaest"
+      "Quaest",
+      "REAL TIME BIG DATA"
     ],
     "previous": {
       "base": "totais",
-      "evidence_id": "ev-release-b79738221b84705c1657",
+      "evidence_id": "ev-release-5de58d946c3aa9b3e663",
       "field_end": "2026-10-07",
       "field_start": "2026-10-06",
       "institute": "Datafolha",
@@ -1032,22 +1102,23 @@
     "status": "compared",
     "summary": "Ganharam espaço: LULA. Perderam: FLAVIO BOLSONARO. Nenhuma variação ficou fora do ruído amostral."
   },
-  "live_hash": "a1c21d13557f0591e2b9054e0feca8055b7c0b3adfcc208bc465d2017ec10686",
-  "live_source_run_id": "run-20261023-72366070-eccb85ae",
-  "run_id": "hist-20261023-8d90558c-8c3bf707-a1c21d13-08a374",
+  "live_hash": "f2eef453b2904a9fe23d227ad3bdad889ce3ff1be21b97082d6d35f6b4352445",
+  "live_source_run_id": "run-20261023-6fd5df13-58601554",
+  "run_id": "hist-20261023-8d90558c-8c3bf707-f2eef453-08a374",
   "signals": [
     {
-      "between_house_sd_pp": 1.2781339419741478,
+      "between_house_sd_pp": 1.2387781999096645,
       "candidate_id": "2026-tse-280002551544",
       "candidate_label": "FLAVIO BOLSONARO",
       "direction": "baixa",
       "evidence_strength": "fraco",
       "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
       "historical_context": null,
-      "houses_in_window": 6,
+      "houses_in_window": 7,
       "houses_with_comparable_series": 5,
       "houses_with_single_measurement": [
-        "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP"
+        "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+        "REAL TIME BIG DATA"
       ],
       "median_delta_pp": -1.0,
       "median_sampling_se_pp": 1.517309596706047,
@@ -1055,7 +1126,7 @@
       "observations": [
         {
           "base": "totais",
-          "evidence_id": "ev-release-b79738221b84705c1657",
+          "evidence_id": "ev-release-5de58d946c3aa9b3e663",
           "field_end": "2026-10-07",
           "institute": "Datafolha",
           "institute_id": "datafolha",
@@ -1286,6 +1357,27 @@
         },
         {
           "base": "totais",
+          "evidence_id": "ev-release-59c23bd15f28c5ef705e",
+          "field_end": "2026-10-19",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 48.0,
+          "published_at": "2026-10-20",
+          "reference_date": "2026-10-19",
+          "registration_no": "BR-02952/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
           "evidence_id": "ev-release-e71a741a05f1b762d456",
           "field_end": "2026-10-20",
           "institute": "Quaest",
@@ -1355,7 +1447,7 @@
           "delta_pp": -2.0,
           "evidence_ids": [
             "ev-release-45ea4840acf77d7b0cf2",
-            "ev-release-b79738221b84705c1657"
+            "ev-release-5de58d946c3aa9b3e663"
           ],
           "from": {
             "date": "2026-10-07",
@@ -1464,17 +1556,18 @@
       ]
     },
     {
-      "between_house_sd_pp": 1.150083609000801,
+      "between_house_sd_pp": 1.1173096940333742,
       "candidate_id": "2026-tse-280002542548",
       "candidate_label": "LULA",
       "direction": "alta",
       "evidence_strength": "fraco",
       "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
       "historical_context": null,
-      "houses_in_window": 6,
+      "houses_in_window": 7,
       "houses_with_comparable_series": 5,
       "houses_with_single_measurement": [
-        "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP"
+        "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+        "REAL TIME BIG DATA"
       ],
       "median_delta_pp": 1.0,
       "median_sampling_se_pp": 1.5125596130735501,
@@ -1482,7 +1575,7 @@
       "observations": [
         {
           "base": "totais",
-          "evidence_id": "ev-release-b79738221b84705c1657",
+          "evidence_id": "ev-release-5de58d946c3aa9b3e663",
           "field_end": "2026-10-07",
           "institute": "Datafolha",
           "institute_id": "datafolha",
@@ -1713,6 +1806,27 @@
         },
         {
           "base": "totais",
+          "evidence_id": "ev-release-59c23bd15f28c5ef705e",
+          "field_end": "2026-10-19",
+          "institute": "REAL TIME BIG DATA",
+          "institute_id": "real-time-big-data",
+          "mode": "telefone",
+          "pct": 45.0,
+          "published_at": "2026-10-20",
+          "reference_date": "2026-10-19",
+          "registration_no": "BR-02952/2026",
+          "sample_size": 2000,
+          "scenario_key": [
+            "real-time-big-data",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
           "evidence_id": "ev-release-e71a741a05f1b762d456",
           "field_end": "2026-10-20",
           "institute": "Quaest",
@@ -1782,7 +1896,7 @@
           "delta_pp": 1.0,
           "evidence_ids": [
             "ev-release-45ea4840acf77d7b0cf2",
-            "ev-release-b79738221b84705c1657"
+            "ev-release-5de58d946c3aa9b3e663"
           ],
           "from": {
             "date": "2026-10-07",

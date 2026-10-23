@@ -148,6 +148,8 @@ const st = {
   irPara: null,
   apur: null,
   mediaSel: 'ponderada',
+  explicaAberta: false,
+  animarExplica: false,
   subaba: 'media',
   tv: false,
   tvAbaAntes: null,
@@ -436,6 +438,33 @@ function foto(c) {
   return h`<span class="foto-wrap" style="--c:${c.cor}"><img class="foto" src="${src}" alt="Foto de ${c.nome}" width="64" height="64" decoding="async" data-ini="${ini}" /></span>`;
 }
 
+// Foto pequena e redonda com aro fino na cor do candidato. Sem foto (ou se ela não
+// carregar), mostra as iniciais. Tamanho fixo em px, ou pela classe (--av) quando tam é null.
+function avatar(id, tam = 24, classe = '') {
+  const c = cand(id);
+  const src = urlSegura(c.foto) || urlSegura(PADRAO_CAND[id]?.foto);
+  const ini = String(c.nome || '?')
+    .split(/\s+/)
+    .map((x) => x[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+  const lado = tam || 48;
+  const estilo = tam ? `--c:${c.cor};--av:${tam}px` : `--c:${c.cor}`;
+  return h`<span class="av${classe ? ` ${classe}` : ''}" style="${estilo}">${
+    src
+      ? h`<img class="foto" src="${src}" alt="" width="${lado}" height="${lado}" decoding="async" data-ini="${ini}" />`
+      : h`<span class="foto foto-ini" aria-hidden="true">${ini}</span>`
+  }</span>`;
+}
+const reduzMovimento = () => {
+  try {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch {
+    return false;
+  }
+};
+
 /* --------------------------------------------------------- glossário */
 
 function glossario() {
@@ -481,6 +510,35 @@ function normalizarDados(d) {
   return d;
 }
 const rotuloCurto = (k, m) => txt(m?.rotulo_curto) || ROTULO_CURTO[k] || txt(m?.rotulo) || k;
+// "Como é feita esta média", para quem nunca viu estatística (sem sigla).
+function explicacaoSimples(k, m) {
+  const proprio = txt(m?.explicacao);
+  if (proprio) return [proprio];
+  const F = curto('flavio');
+  if (k === 'ponderada') {
+    return [
+      'Pegamos a pesquisa mais recente de cada instituto.',
+      'Contam mais as mais novas (o peso cai pela metade a cada 10 dias) e as que ouviram mais gente.',
+      'Também conta o histórico: instituto que errou menos nos 2º turnos de 2014 a 2022 pesa um pouco mais.',
+    ];
+  }
+  if (k === 'simples') {
+    return ['A pesquisa mais recente de cada instituto, todas com o mesmo peso: soma e divide pelo número de institutos.'];
+  }
+  if (k === 'ajustada_1t') {
+    return [
+      `No 1º turno quase todos os institutos mostraram ${F} abaixo do que ele teve nas urnas.`,
+      `Aqui corrigimos cada instituto pelo próprio erro: se ele mostrou ${F} 2 pontos abaixo no 1º turno, somamos esses 2 pontos a ${F} na pesquisa de agora.`,
+      'Nada garante que o erro se repita, por isso a margem de incerteza desta média é maior.',
+    ];
+  }
+  if (k === 'acerto_1t') {
+    const casas = listaNomes(m?.casas);
+    return [`Usamos só os institutos que chegaram mais perto do resultado do 1º turno${casas ? ` (${casas})` : ''} e quem acertou mais pesa mais.`];
+  }
+  return [txt(m?.nota) || 'Explicação desta média: sem dado ainda.'];
+}
+
 function mediaSelKey(d) {
   const ordem = arr(d?.medias_ordem);
   return ordem.includes(st.mediaSel) ? st.mediaSel : ordem[0] || null;
@@ -502,10 +560,12 @@ function atualizarContagem() {
     const s = Math.max(0, Math.floor(ms / 1000));
     return { d: Math.floor(s / 86400), h: Math.floor((s % 86400) / 3600), m: Math.floor((s % 3600) / 60), s: s % 60 };
   };
-  const relogio = (p, comDias) =>
-    h`<b>${comDias ? p.d * 24 + p.h : p.h}h</b> <b>${dois(p.m)}min</b> <b>${dois(p.s)}s</b>`;
+  // Relógio sempre logo abaixo do título, até o fechamento das urnas.
+  const relogio = (p, comDias, antes = '') =>
+    h`${antes ? h`<span class="cont-e">${antes}</span> ` : ''}<b>${comDias ? p.d * 24 + p.h : p.h}h</b> <b>${dois(p.m)}min</b> <b>${dois(p.s)}s</b>`;
   let grande;
   let linha;
+  let legenda;
   let mini;
   let acao = '';
   const fecha = fHoraCurta(fe);
@@ -513,21 +573,25 @@ function atualizarContagem() {
     const p = partes(fe - agora);
     if (p.d >= 1) {
       grande = p.d === 1 ? 'Falta 1 dia' : `Faltam ${p.d} dias`;
-      linha = h`e ${relogio(p, false)} até as urnas fecharem, às ${fecha} de Brasília`;
+      linha = relogio(p, false, 'e');
+      legenda = `até as urnas fecharem, às ${fecha} de Brasília`;
       mini = `faltam ${p.d} ${p.d === 1 ? 'dia' : 'dias'} e ${p.h} h para o fechamento das urnas (${fecha} de Brasília)`;
     } else {
       grande = 'É hoje';
-      linha = h`Urnas abrem às ${fHoraCurta(ab)} · fecham em ${relogio(p, true)}`;
+      linha = relogio(p, true);
+      legenda = `até as urnas fecharem, às ${fecha} de Brasília · abrem às ${fHoraCurta(ab)}`;
       mini = `hoje: urnas abrem às ${fHoraCurta(ab)} e fecham às ${fecha} (Brasília)`;
     }
   } else if (agora < fe) {
     const p = partes(fe - agora);
     grande = 'Urnas abertas';
-    linha = h`fecham em ${relogio(p, true)}, às ${fecha} de Brasília`;
+    linha = relogio(p, true);
+    legenda = `para as urnas fecharem, às ${fecha} de Brasília`;
     mini = `urnas abertas até as ${fecha} de Brasília`;
   } else {
     grande = 'Urnas fechadas';
-    linha = h`A apuração está em andamento, ao vivo, direto dos arquivos do TSE (Tribunal Superior Eleitoral).`;
+    linha = '';
+    legenda = 'A apuração está em andamento, ao vivo, direto dos arquivos do TSE (Tribunal Superior Eleitoral).';
     mini = 'urnas fechadas: apuração em andamento';
     acao = h`<a class="cont-botao" href="#apuracao">Acompanhar a apuração ao vivo →</a>`;
     if (st.tv && st.aba === 'resumo') mostrarAba('apuracao', false);
@@ -539,7 +603,10 @@ function atualizarContagem() {
   if (r && r._h !== lh) {
     r._h = lh;
     r.innerHTML = lh;
+    r.hidden = !lh;
   }
+  const lg = $('#cont-legenda');
+  if (lg && lg.textContent !== legenda) lg.textContent = legenda;
   const a = $('#cont-acao');
   const ah = emHtml(acao);
   if (a && a._h !== ah) {
@@ -547,7 +614,11 @@ function atualizarContagem() {
     a.innerHTML = ah;
   }
   const mi = $('#contagem-mini');
-  if (mi && mi.textContent !== mini) mi.textContent = mini;
+  const mh = emHtml(h`${BANDEIRA_MINI}<span>${mini}</span>`);
+  if (mi && mi._h !== mh) {
+    mi._h = mh;
+    mi.innerHTML = mh;
+  }
 }
 
 /* ------------------------------------------------------ carga de dados */
@@ -809,16 +880,33 @@ function htmlResumo(d) {
     <p class="ver-mais"><a href="#pesquisas">Ver cada pesquisa →</a><a href="#metodo">Como é calculado →</a></p>`;
 }
 
+// Bandeira do Brasil em SVG próprio (proporção 20:14, cores oficiais, faixa branca
+// curva fina no círculo, sem o lema: em tamanho pequeno ele vira ruído).
+const BANDEIRA = cru(`<svg class="bandeira" viewBox="0 0 20 14" role="img" aria-label="Bandeira do Brasil" focusable="false">
+  <defs><clipPath id="bandeira-globo"><circle cx="10" cy="7" r="3.5"/></clipPath></defs>
+  <rect width="20" height="14" fill="#009C3B"/>
+  <path d="M10 1.7 18.3 7 10 12.3 1.7 7Z" fill="#FFDF00"/>
+  <circle cx="10" cy="7" r="3.5" fill="#002776"/>
+  <path d="M6.3 7.55Q10.1 5.35 13.8 7.05" fill="none" stroke="#fff" stroke-width="0.6" clip-path="url(#bandeira-globo)"/>
+</svg>`);
+const BANDEIRA_MINI = cru(`<svg class="bandeira-mini" viewBox="0 0 20 14" aria-hidden="true" focusable="false">
+  <rect width="20" height="14" fill="#009C3B"/><path d="M10 1.7 18.3 7 10 12.3 1.7 7Z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.5" fill="#002776"/>
+</svg>`);
+
 function blocoContagem() {
   const e = obj(st.dados?.eleicao) || {};
   const ab = msDe(e.abertura) ?? msDe(CFG.abertura);
   const fe = msDe(e.fechamento) ?? msDe(CFG.fechamento);
   return h`<section class="heroi-item ord-1 cont" id="sec-contagem" aria-label="Contagem até o fechamento das urnas">
-    <p class="cont-quando">2º turno · ${fSemana(fe) || 'domingo'}, ${fData(fe) || '25/10'}</p>
-    <p class="cont-grande" id="cont-grande">&nbsp;</p>
-    <p class="cont-relogio" id="cont-relogio"></p>
-    <div id="cont-acao"></div>
-    <p class="cont-nota">Urnas abrem às ${fHoraCurta(ab)} e fecham às ${fHoraCurta(fe)} (horário de Brasília). A apuração começa em seguida, ao vivo, na aba <a href="#apuracao">Apuração</a>.</p>
+    <div class="cont-cartao">
+      ${BANDEIRA}
+      <p class="cont-quando">2º turno · ${fSemana(fe) || 'domingo'}, ${fData(fe) || '25/10'}</p>
+      <p class="cont-grande" id="cont-grande">&nbsp;</p>
+      <p class="cont-relogio" id="cont-relogio" aria-live="off"></p>
+      <p class="cont-legenda" id="cont-legenda"></p>
+      <div id="cont-acao"></div>
+      <p class="cont-nota">Urnas abrem às ${fHoraCurta(ab)} e fecham às ${fHoraCurta(fe)} (horário de Brasília). A apuração começa em seguida, ao vivo, na aba <a href="#apuracao">Apuração</a>.</p>
+    </div>
   </section>`;
 }
 
@@ -852,11 +940,12 @@ function htmlMediaSel(d) {
   const pF = num(m.prob_vitoria?.flavio);
   const coluna = (id, v, fx, p, dir) => {
     const c = cand(id);
+    const quem = h`<span class="placar-quem">${curto(id)}<small>${txt(c.partido) || ''}${num(c.numero) !== null ? ` · ${c.numero}` : ''}</small></span>`;
     return h`<div class="placar-c${dir ? ' dir' : ''}" style="--c:${c.cor}">
-        <div class="placar-nome"><i class="mc"></i>${curto(id)}</div>
-        <div class="placar-num">${v !== null ? h`${fNum(v)}<small>%</small>` : LAC}</div>
+        <div class="placar-nome">${dir ? h`${quem}${avatar(id, null, 'av-placar')}` : h`${avatar(id, null, 'av-placar')}${quem}`}</div>
+        <div class="placar-num">${v !== null ? h`<span data-anim="${id}" data-v="${v}" data-casas="1">${fNum(v)}</span><small>%</small>` : LAC}</div>
         <div class="placar-faixa">${fx ? `faixa de ${fNum(fx[0])} a ${fNum(fx[1])}` : h`faixa: ${LAC}`}</div>
-        <div class="placar-ch">chance de vitória <b>${ou(fProb(p))}</b></div>
+        <div class="placar-ch">chance de vitória <b>${num(p) !== null ? h`<span data-anim="ch-${id}" data-v="${num(p) * 100}" data-casas="0" data-sufixo="%">${fProb(p)}</span>` : LAC}</b></div>
       </div>`;
   };
   const np = num(m.n_pesquisas) ?? (k === 'ponderada' ? num(base.n_pesquisas) : null);
@@ -873,7 +962,8 @@ function htmlMediaSel(d) {
     const qa = num(q.prob_vitoria?.lula);
     const qb = num(q.prob_vitoria?.flavio);
     const lid = qa !== null && qb !== null ? (qa >= qb ? 'lula' : 'flavio') : null;
-    return h`<button type="button" class="mq-c" data-media="${x}" aria-pressed="${String(x === k)}">
+    return h`<button type="button" class="mq-c" data-media="${x}" aria-pressed="${String(x === k)}" aria-expanded="${String(x === k && st.explicaAberta)}" aria-controls="mq-explica" aria-label="${rotuloCurto(x, q)}: escolher e ver como é feita">
+        <span class="mq-i" aria-hidden="true">i</span>
         <span class="mq-rot">${rotuloCurto(x, q)}</span>
         <span class="mq-v"><i class="mc" style="--c:${cand('lula').cor}"></i>${fNum(a) ?? '—'}<span class="mq-x">×</span>${fNum(b) ?? '—'}<i class="mc" style="--c:${cand('flavio').cor}"></i></span>
         <span class="mq-ch">${lid ? `chance: ${curto(lid)} ${fProb(lid === 'lula' ? qa : qb)}` : 'chance: sem dado'}</span>
@@ -886,8 +976,23 @@ function htmlMediaSel(d) {
     ${barraDupla(vL, vF, fxL)}
     <p class="contexto">${conta || h`Pesquisas: ${LAC}`} · depois do 1º turno${asOf ? ` · até ${asOf}` : ''}${casas ? ` · ${casas}` : ''}</p>
     ${txt(m.nota) ? h`<p class="nota">${m.nota}</p>` : ''}
-    <div class="mq" role="group" aria-label="As quatro médias lado a lado">${mini}</div>
+    <div class="mq" role="group" aria-label="As médias lado a lado; toque para ver como cada uma é feita">${mini}</div>
+    ${st.explicaAberta ? painelExplica(k, m) : ''}
     <p class="fonte">Fonte: pesquisas registradas no TSE (Tribunal Superior Eleitoral); médias calculadas pelo Radar${fDataHora(d.gerado_em) ? ` · gerado em ${fDataHora(d.gerado_em)}` : ''}</p>`;
+}
+
+function painelExplica(k, m) {
+  const animar = st.animarExplica;
+  st.animarExplica = false;
+  return h`<div class="mq-explica${animar ? ' abrindo' : ''}" id="mq-explica" role="region" aria-labelledby="mq-explica-tit">
+      <div class="mq-explica-cab">
+        <p class="mq-explica-tit" id="mq-explica-tit">Como é feita esta média: ${rotuloCurto(k, m)}</p>
+        <button type="button" class="mq-fechar" data-acao="fechar-explica" aria-label="Fechar a explicação">×</button>
+      </div>
+      ${explicacaoSimples(k, m).map((f) => h`<p>${f}</p>`)}
+      <p class="mq-chance"><b>Chance de vitória:</b> em quantas de 100 eleições parecidas o candidato venceria, considerando o quanto as pesquisas costumam errar. Não é previsão garantida.</p>
+      ${txt(m.nota) ? h`<p class="mq-tec"><b>Detalhe técnico:</b> ${m.nota}</p>` : ''}
+    </div>`;
 }
 
 function htmlPorInstituto(d) {
@@ -957,6 +1062,9 @@ function blocoTriangulacao() {
   </section>`;
 }
 
+// Cabeçalho de coluna com a foto pequena e o nome.
+const cabecalhoCand = (id) => h`<th class="n"><span class="th-cand">${avatar(id, 22)}<span>${curto(id)}</span></span></th>`;
+
 function htmlTriangulacao() {
   const d = st.dados;
   const k = mediaSelKey(d);
@@ -975,13 +1083,15 @@ function htmlTriangulacao() {
     if (f.status === 'erro') return 'indisponível';
     return f.origem === 'ao_vivo' ? 'ao vivo' : `snapshot ${fQuando(f.atualizado_em) || ''}`.trim();
   };
-  const linha = (quem) =>
-    h`<tr><td><i class="mc" style="--c:${cand(quem).cor}"></i> ${curto(quem)}</td><td class="n"><b>${ou(fProb(m?.prob_vitoria?.[quem]))}</b></td><td class="n">${merc('polymarket', quem)}</td><td class="n">${merc('kalshi', quem)}</td></tr>`;
-  const ep = estado('polymarket');
-  const ek = estado('kalshi');
+  const linha = (nome, sub, vL, vF, forte) =>
+    h`<tr${forte ? cru(' class="tri-forte"') : ''}><td>${nome}${sub ? h`<small>${sub}</small>` : ''}</td><td class="n">${vL}</td><td class="n">${vF}</td></tr>`;
   return h`<table class="tab tri-tab">
-      <thead><tr><th style="width:30%"></th><th class="n">Pesquisas</th><th class="n">Polymarket${ep ? h`<small>${ep}</small>` : ''}</th><th class="n">Kalshi${ek ? h`<small>${ek}</small>` : ''}</th></tr></thead>
-      <tbody>${linha('lula')}${linha('flavio')}</tbody>
+      <thead><tr><th style="width:44%">Fonte</th>${cabecalhoCand('lula')}${cabecalhoCand('flavio')}</tr></thead>
+      <tbody>
+        ${linha('Pesquisas', m ? rotuloCurto(k, m).toLowerCase() : 'sem dado', ou(fProb(m?.prob_vitoria?.lula)), ou(fProb(m?.prob_vitoria?.flavio)), true)}
+        ${linha('Polymarket', estado('polymarket'), merc('polymarket', 'lula'), merc('polymarket', 'flavio'))}
+        ${linha('Kalshi', estado('kalshi'), merc('kalshi', 'lula'), merc('kalshi', 'flavio'))}
+      </tbody>
     </table>
     <p class="nota">Pesquisas: ${m ? rotuloCurto(k, m).toLowerCase() : 'sem dado'} (modelo do Radar). Mercados estrangeiros; preço é informativo, não é convite a apostar. ${st.mod === null ? 'Mercados indisponíveis agora.' : ''}</p>
     <p class="ver-mais"><a href="#mercados">Ver mercados e gráfico →</a></p>`;
@@ -1130,7 +1240,7 @@ function barraDupla(vL, vF, fxL) {
     ? h`<span class="banda" style="left:${pctCss(fxL[0])}%;width:${pctCss(fxL[1] - fxL[0])}%"></span>`
     : '';
   return h`<div class="barra" role="img" aria-label="${L.nome} ${fPct(vL) || 'sem dado'}, ${F.nome} ${fPct(vF) || 'sem dado'} dos votos válidos">
-      <span class="seg" style="--c:${L.cor};flex:${pctCss(a)} 1 0px"></span><span class="seg" style="--c:${F.cor};flex:${pctCss(b)} 1 0px"></span>${banda}<span class="meio"></span>
+      <span class="seg" data-seg="lula" style="--c:${L.cor};flex:${pctCss(a)} 1 0px"></span><span class="seg" data-seg="flavio" style="--c:${F.cor};flex:${pctCss(b)} 1 0px"></span>${banda}<span class="meio"></span>
     </div>
     <div class="barra-leg"><span>← ${curto('lula')}</span><span>50%</span><span>${curto('flavio')} →</span></div>`;
 }
@@ -1254,7 +1364,7 @@ function cartaoMercado(f, variante) {
   const linhas = ['lula', 'flavio'].map((id) => {
     const c = cand(id);
     const p = num(f.candidatos?.[id]?.prob);
-    return h`<div class="merc-linha"><span class="merc-cand"><i class="mc" style="--c:${c.cor}"></i>${curto(id)}</span><span class="merc-num">${ok && p !== null ? fProb(p) : LAC}</span></div>`;
+    return h`<div class="merc-linha"><span class="merc-cand">${avatar(id, 24)}${curto(id)}</span><span class="merc-num">${ok && p !== null ? fProb(p) : LAC}</span></div>`;
   });
   let barra = '';
   if (ok && pL !== null && pF !== null) {
@@ -1328,7 +1438,7 @@ function htmlComparacao() {
     });
   }
   return h`<table class="tab">
-    <thead><tr><th style="width:56%">Fonte</th><th class="n">${curto('lula')}</th><th class="n">${curto('flavio')}</th></tr></thead>
+    <thead><tr><th style="width:52%">Fonte</th>${cabecalhoCand('lula')}${cabecalhoCand('flavio')}</tr></thead>
     <tbody>${linhas.map((x) => {
       const cel = (v) => (fProb(v) ?? (x.traco ? '—' : LAC));
       return h`<tr><td>${x.nome}<small>${x.sub}</small></td><td class="n">${cel(x.l)}</td><td class="n">${cel(x.f)}</td></tr>`;
@@ -2376,14 +2486,26 @@ function ligarEventos() {
     }
     const bm = alvo.closest('[data-media]');
     if (bm && st.dados) {
-      if (bm.dataset.media === mediaSelKey(st.dados)) return;
+      const ehCard = bm.classList.contains('mq-c');
+      const mesma = bm.dataset.media === mediaSelKey(st.dados);
+      if (!ehCard && mesma) return;
+      if (ehCard) {
+        const abrir = !(mesma && st.explicaAberta);
+        st.animarExplica = abrir;
+        st.explicaAberta = abrir;
+      }
       st.mediaSel = bm.dataset.media;
       gravarPref('mediaSel', st.mediaSel);
       const seletor = bm.classList.contains('chip') ? `.chip[data-media="${st.mediaSel}"]` : `.mq-c[data-media="${st.mediaSel}"]`;
       const tinhaFoco = document.activeElement === bm;
-      for (const c of $$('[data-bloco="pesquisas"]')) trocarHtml(c, blocoPesquisas(st.dados));
+      for (const c of $$('[data-bloco="pesquisas"]')) {
+        const antes = lerPlacar(c);
+        trocarHtml(c, blocoPesquisas(st.dados));
+        animarPlacar(c, antes);
+      }
       for (const el of $$('[data-tri]')) trocarHtml(el, htmlTriangulacao());
       if (tinhaFoco) $(seletor)?.focus({ preventScroll: true });
+      if (ehCard && st.explicaAberta) $('#mq-explica')?.scrollIntoView({ block: 'nearest', behavior: reduzMovimento() ? 'auto' : 'smooth' });
       return;
     }
     const bs = alvo.closest('[data-subaba]');
@@ -2411,6 +2533,11 @@ function ligarEventos() {
       const a = ac.dataset.acao;
       if (a === 'recarregar') carregarDados();
       else if (a === 'tv') entrarTV();
+      else if (a === 'fechar-explica') {
+        st.explicaAberta = false;
+        for (const c of $$('[data-bloco="pesquisas"]')) trocarHtml(c, blocoPesquisas(st.dados));
+        $(`.mq-c[data-media="${mediaSelKey(st.dados)}"]`)?.focus({ preventScroll: true });
+      }
       else if (a === 'compartilhar') compartilhar();
       else if (a === 'fechar-folha') fecharFolha();
       return;
@@ -2495,6 +2622,59 @@ function ligarEventos() {
     if (Date.now() - st.lidoEm > CFG.cadaDado) carregarDados();
     if (Date.now() - st.mercEm > CFG.cadaMercado) atualizarMercados();
   });
+}
+
+/* ------------------------------------------- transição entre as médias */
+
+function lerPlacar(raiz) {
+  const r = { num: {}, seg: {}, banda: null };
+  for (const el of $$('[data-anim]', raiz)) r.num[el.dataset.anim] = Number(el.dataset.v);
+  for (const el of $$('.barra [data-seg]', raiz)) r.seg[el.dataset.seg] = el.style.flexGrow;
+  const b = $('.barra .banda', raiz);
+  if (b) r.banda = { left: b.style.left, width: b.style.width };
+  return r;
+}
+
+// Os números contam do valor antigo ao novo e a barra desliza; sem efeito extra.
+function animarPlacar(raiz, antes) {
+  if (reduzMovimento()) return;
+  const segs = $$('.barra [data-seg]', raiz);
+  const novos = segs.map((el) => el.style.flexGrow);
+  const b = $('.barra .banda', raiz);
+  const nb = b ? { left: b.style.left, width: b.style.width } : null;
+  segs.forEach((el) => {
+    if (antes.seg[el.dataset.seg]) el.style.flexGrow = antes.seg[el.dataset.seg];
+  });
+  if (b && antes.banda) {
+    b.style.left = antes.banda.left;
+    b.style.width = antes.banda.width;
+  }
+  void raiz.offsetWidth;
+  requestAnimationFrame(() => {
+    segs.forEach((el, i) => {
+      el.style.flexGrow = novos[i];
+    });
+    if (b && nb) {
+      b.style.left = nb.left;
+      b.style.width = nb.width;
+    }
+  });
+  for (const el of $$('[data-anim]', raiz)) {
+    const de = antes.num[el.dataset.anim];
+    const para = Number(el.dataset.v);
+    if (!Number.isFinite(de) || !Number.isFinite(para) || de === para) continue;
+    const casas = Number(el.dataset.casas) || 0;
+    const suf = el.dataset.sufixo || '';
+    const t0 = performance.now();
+    const passo = (agora) => {
+      const k = Math.min(1, (agora - t0) / 450);
+      const e = 1 - Math.pow(1 - k, 3);
+      el.textContent = `${nf(casas).format(de + (para - de) * e)}${suf}`;
+      if (k < 1) requestAnimationFrame(passo);
+    };
+    el.textContent = `${nf(casas).format(de)}${suf}`;
+    requestAnimationFrame(passo);
+  }
 }
 
 /* ------------------------------------------------------------ modo TV */
