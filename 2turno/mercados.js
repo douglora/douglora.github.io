@@ -396,6 +396,8 @@ function fonteDoSnapshot(F, f, snap, erroVivo) {
     erro: comErro ? `ao vivo: ${erroVivo?.message}; snapshot: ${f.erro || 'sem dado'}` : null,
     origem: 'snapshot',
     atualizado_em: f.atualizado_em || snap.atualizado_em || null,
+    // o Mac não alcança mais o site (bloqueio do provedor): a página avisa
+    bloqueio: f.bloqueio && typeof f.bloqueio.desde === 'string' ? { desde: f.bloqueio.desde } : null,
   };
 }
 

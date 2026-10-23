@@ -1064,23 +1064,28 @@ body.tv .op .mq,
 body.tv .ap-uf,
 body.tv .ap-leg,
 body.tv .ap-sim-acoes,
-body.tv #painel-apuracao > .ap-sim { display: none !important; }
-/* apuração na TV: chance, progresso e apurado × projeção à esquerda; destaques e mapa à direita */
-body.tv #painel-apuracao:not([hidden]) {
+body.tv #painel-apuracao > .ap-sim,
+body.tv #ap-vivo > .ap-sim,
+body.tv #ap-simulador { display: none !important; }
+/* apuração na TV (a apuração vive em #ap-vivo, dentro do painel): chance, progresso,
+   apurado × projeção e destaques à esquerda; o mapa com os números de cada estado,
+   grande, à direita */
+body.tv #painel-apuracao:not([hidden]) > #ap-vivo {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  grid-template-areas: "sim sim" "topo ins" "prog ins" "duo mapa" "rod rod";
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-areas: "sim sim" "topo mapa" "prog mapa" "duo mapa" "ins mapa" "rod rod";
+  grid-template-rows: auto auto auto auto 1fr auto;
   gap: 0 44px;
   align-items: start;
 }
-body.tv #painel-apuracao > .ap-sim,
-body.tv #painel-apuracao > .alerta { grid-area: sim; }
-body.tv #painel-apuracao > .ap-topo { grid-area: topo; }
-body.tv #painel-apuracao > .ap-sec-prog { grid-area: prog; }
-body.tv #painel-apuracao > .ap-sec-duo { grid-area: duo; }
-body.tv #painel-apuracao > .ap-sec-ins { grid-area: ins; border-top: 0; }
-body.tv #painel-apuracao > .ap-sec-mapa { grid-area: mapa; }
-body.tv #painel-apuracao > .ap-rodape { grid-area: rod; }
+body.tv #ap-vivo > .ap-sim,
+body.tv #ap-vivo > .alerta { grid-area: sim; }
+body.tv #ap-vivo > .ap-topo { grid-area: topo; }
+body.tv #ap-vivo > .ap-sec-prog { grid-area: prog; }
+body.tv #ap-vivo > .ap-sec-duo { grid-area: duo; }
+body.tv #ap-vivo > .ap-sec-ins { grid-area: ins; }
+body.tv #ap-vivo > .ap-sec-mapa { grid-area: mapa; padding-top: 22px; border-top: 0; }
+body.tv #ap-vivo > .ap-rodape { grid-area: rod; }
 body.tv .ap-mapa-wrap { grid-template-columns: 1fr; }
 body.tv .ap-mapa { max-width: 330px; }
 body.tv main.col { max-width: 1240px; padding-top: 6px; zoom: var(--tv-zoom, 1.3); }
@@ -1247,6 +1252,11 @@ body.tv { cursor: none; }
 .ap-mapa-wrap.v2 .ap-uf { max-width: 640px; }
 .ap-uf[hidden] { display: none; }
 body.tv .ap-mapa.v2 { max-width: none; }
+body.tv .ap-mapa.v2 .lad-uf { font-size: clamp(10px, 3cqi, 20px); }
+body.tv .ap-mapa.v2 .lad-n { font-size: clamp(12px, 4.2cqi, 30px); }
+@container (min-width: 540px) {
+  body.tv .ap-mapa.v2 .lad-a { font-size: clamp(8px, 1.72cqi, 13px); }
+}
 @media (prefers-reduced-motion: reduce) {
   .ap-mapa.v2 .lad.brilha { animation: none; }
 }
@@ -1347,3 +1357,6 @@ body.com-faixa-sim { padding-bottom: 56px; }
   .conta > div b { font-size: 17px; }
   .cem-leg { grid-template-columns: 1fr; }
 }
+
+/* mercados parados pelo bloqueio no Brasil */
+.aviso-bloqueio { margin: 10px 0 0; padding: 9px 12px; border: 1px solid var(--alerta-borda); background: var(--alerta-fundo); color: var(--alerta); border-radius: 10px; font-size: 13.5px; line-height: 1.45; }

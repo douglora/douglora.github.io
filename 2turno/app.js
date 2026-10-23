@@ -1412,7 +1412,7 @@ function blocoMercadosResumo() {
   return h`<section class="bloco" id="sec-mercados-resumo">
     <h2 class="sobre">Mercados de previsão ao vivo ${info('Mercado de previsão')}</h2>
     <div data-merc="resumo">${htmlMercados('resumo')}</div>
-    <p class="aviso-merc">Mercados estrangeiros; preço é informativo, não é convite a apostar.</p>
+    ${avisoBloqueioMerc()}<p class="aviso-merc">Mercados estrangeiros; preço é informativo, não é convite a apostar.</p>
     <p class="fonte" data-merc-fonte>${htmlFonteMercados()}</p>
     <p class="ver-mais"><a href="#mercados">Histórico e detalhes dos mercados →</a></p>
   </section>`;
@@ -1497,6 +1497,17 @@ function cartaoMercado(f, variante) {
     ${meta.length ? h`<p class="merc-meta">${meta.map((x, i) => h`${i ? ' · ' : ''}${x}`)}</p>` : ''}
     ${link ? h`<p class="merc-link">${link}</p>` : ''}
   </article>`;
+}
+
+// Polymarket e Kalshi são proibidas no Brasil (Resolução CMN 5.298/2026). Quando o
+// provedor do Mac passa a barrar os sites, o snapshot fica parado: a página diz desde
+// quando e por quê, em vez de mostrar o preço velho como se fosse de agora.
+function avisoBloqueioMerc() {
+  const paradas = arr(st.merc?.fontes).filter((f) => obj(f) && f.origem === 'snapshot' && obj(f.bloqueio));
+  if (!paradas.length) return '';
+  const desde = paradas.map((f) => f.atualizado_em).filter(Boolean).sort()[0];
+  const nomes = listaNomes(paradas.map((f) => txt(f.nome) || txt(f.id)));
+  return h`<p class="aviso-bloqueio">${nomes} ${paradas.length > 1 ? 'parados' : 'parado'}${fDataHora(desde) ? ` desde ${fDataHora(desde)}` : ''}: Polymarket e Kalshi são bloqueadas no Brasil (Resolução CMN 5.298/2026, cumprida pela Anatel), e o provedor de internet do Radar passou a barrar os dois sites. O preço mostrado é o último guardado.</p>`;
 }
 
 function htmlFonteMercados() {
@@ -1596,7 +1607,7 @@ function htmlAbaMercados() {
     <section class="bloco" id="sec-mercados">
       <h2 class="sobre">Mercados de previsão ao vivo ${info('Mercado de previsão')}</h2>
       <div data-merc="completo">${htmlMercados('completo')}</div>
-      <p class="aviso-merc">Mercados estrangeiros; preço é informativo, não é convite a apostar.</p>
+      ${avisoBloqueioMerc()}<p class="aviso-merc">Mercados estrangeiros; preço é informativo, não é convite a apostar.</p>
       <p class="fonte" data-merc-fonte>${htmlFonteMercados()}</p>
     </section>
     <section class="bloco" id="sec-comparacao">
@@ -1620,7 +1631,7 @@ function htmlAbaMercados() {
         <li><b>Ao vivo</b> ${info('Ao vivo')} é a leitura direta da bolsa pelo seu aparelho; <b>snapshot</b> ${info('Snapshot')} é a última coleta guardada, usada quando a leitura ao vivo falha, sempre com a hora.</li>
         <li>Nem toda plataforma libera a leitura direta pelo navegador; quando não libera, o cartão mostra o snapshot.</li>
       </ul>
-      <p class="aviso-merc">Mercados estrangeiros; preço é informativo, não é convite a apostar.</p>
+      ${avisoBloqueioMerc()}<p class="aviso-merc">Mercados estrangeiros; preço é informativo, não é convite a apostar.</p>
     </section>`;
 }
 
