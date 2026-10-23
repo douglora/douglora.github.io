@@ -12,7 +12,7 @@
     "selected_count": 0,
     "truncation_count": 0
   },
-  "as_of": "2026-10-23T10:53:27.144476-03:00",
+  "as_of": "2026-10-23T10:57:05.395924-03:00",
   "blocked_recent": [],
   "candidate_registry_status": {
     "candidate_count": 2,
@@ -42,7 +42,7 @@
     "release_missing": 0,
     "validated_awaiting_review": 0
   },
-  "coverage_message": "18 pesquisas validadas — gate de cobertura satisfeito",
+  "coverage_message": "19 pesquisas validadas — gate de cobertura satisfeito",
   "coverage_monitor": null,
   "daily_time_tick": "08:00",
   "data_availability": "preliminary_b1_m2",
@@ -55,18 +55,18 @@
   "last_accepted_discovery": null,
   "last_error": null,
   "last_published_run": {
-    "created_at": "2026-10-23T10:53:27.144476-03:00",
-    "run_id": "run-20261023-19d5886e-41bf13e6"
+    "created_at": "2026-10-23T10:57:05.395924-03:00",
+    "run_id": "run-20261023-ecdae2dd-41bf13e6"
   },
   "last_search": "2026-10-23T10:29:53.247174-03:00",
   "last_source_check": "2026-10-23T10:29:53.247174-03:00",
   "last_validated_poll": {
-    "fingerprint": "8286f21d934c75fb801ec6fa4699df3cbbe70b0ad9e28fe677a928ca6273d9a1",
-    "published_at": "2026-10-22",
-    "registration_no": "BR-09709/2026",
+    "fingerprint": "a2ff2ce3c342d5f5ff946a7204b4107fffc86b81ccbf9238e4d5ed0f0960a10b",
+    "published_at": "2026-10-23",
+    "registration_no": "BR-04350/2026",
     "scenario_id": "president-br-t2-dbec719fff"
   },
-  "latency_seconds": 0.12059066700749099,
+  "latency_seconds": 0.07864541601156816,
   "latency_sla_seconds": {
     "champion_m3": 900,
     "preliminary_b1_m2": 300
@@ -84,10 +84,10 @@
       },
       {
         "id": "ipespe",
-        "latest_field_end": "2026-10-15",
-        "latest_published_at": "2026-10-17",
+        "latest_field_end": "2026-10-22",
+        "latest_published_at": "2026-10-23",
         "name": "Ipespe",
-        "poll_count": 2
+        "poll_count": 3
       },
       {
         "id": "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
@@ -137,30 +137,31 @@
     "houses": 7,
     "min_houses": 2,
     "min_polls": 3,
-    "polls": 18,
+    "polls": 19,
     "window_days": 21
   },
   "live_diagnostic": {
     "availability": "preliminary_b1_m2",
     "base": "totais",
-    "blank_null_pct": 5.0,
-    "confidence_level": 95.0,
-    "coverage_reason": "18 pesquisa(s) de 7 casa(s) em 21 dias; o gate exige 3 pesquisas e 2 casas",
+    "blank_null_pct": 3.0,
+    "confidence_level": 95.45,
+    "coverage_reason": "19 pesquisa(s) de 7 casa(s) em 21 dias; o gate exige 3 pesquisas e 2 casas",
     "evidence_ids": [
-      "ev-release-45ea4840acf77d7b0cf2",
-      "ev-tse-12fd135807d9c95e26e9",
-      "ev-tse-candidates-ff3fa6e834bb44c97256"
+      "ev-published-22e7c0c9ec55d9259b27",
+      "ev-release-f366ff06fd1f3cc4be1b",
+      "ev-tse-c16b230b14ec3919b45b",
+      "ev-tse-candidates-62bedfffa25f07678e88"
     ],
     "field_end": "2026-10-22",
     "field_start": "2026-10-20",
     "forecast_available": false,
-    "institute": "Datafolha",
-    "margin_of_error": 2.0,
+    "institute": "Ipespe",
+    "margin_of_error": 2.6,
     "probabilities_available": false,
-    "published_at": "2026-10-22",
-    "registration_no": "BR-09709/2026",
-    "run_id": "run-20261023-19d5886e-41bf13e6",
-    "sample_size": 2154,
+    "published_at": "2026-10-23",
+    "registration_no": "BR-04350/2026",
+    "run_id": "run-20261023-ecdae2dd-41bf13e6",
+    "sample_size": 1500,
     "scenario_id": "president-br-t2-dbec719fff",
     "source_tier": "A",
     "status": "published_poll_only",
@@ -170,24 +171,72 @@
     "values": [
       {
         "candidate_id": "2026-tse-280002551544",
-        "evidence_id": "ev-release-45ea4840acf77d7b0cf2",
+        "evidence_id": "ev-release-f366ff06fd1f3cc4be1b",
         "label": "FLAVIO BOLSONARO",
         "number": 22,
         "party": "PL",
-        "pct": 47.0
+        "pct": 48.0
       },
       {
         "candidate_id": "2026-tse-280002542548",
-        "evidence_id": "ev-release-45ea4840acf77d7b0cf2",
+        "evidence_id": "ev-release-f366ff06fd1f3cc4be1b",
         "label": "LULA",
         "number": 13,
         "party": "PT",
-        "pct": 46.0
+        "pct": 47.0
       }
     ],
     "winner_publication_status": "indisponivel"
   },
   "live_polls": [
+    {
+      "base": "totais",
+      "blank_null_pct": 3.0,
+      "confidence_level": 95.45,
+      "contractor": null,
+      "evidence_id": "ev-release-f366ff06fd1f3cc4be1b",
+      "evidence_ids": [
+        "ev-published-22e7c0c9ec55d9259b27",
+        "ev-release-f366ff06fd1f3cc4be1b",
+        "ev-tse-c16b230b14ec3919b45b",
+        "ev-tse-candidates-62bedfffa25f07678e88"
+      ],
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-20",
+      "institute": "Ipespe",
+      "institute_id": "ipespe",
+      "margin_of_error": 2.6,
+      "methodology": "Pesquisa quantitativa telefônica IPESPE/ABRAPEL, realizada através de entrevistas a pessoas nas quais é aplicado um questionário estruturado. Essas pessoas constituem uma amostra representativa dos eleitores brasileiros, com acesso à rede telefônica fixa (na residência ou no trabalho) e a telefone celular, para o qual se pretende generalizar os resultados obtidos, ou seja, o eleitorado do país. As entrevistas serão realizadas por equipes de pesquisadores com bastante experiência nesse tipo de trabalho, especialmente treinados para esta pesquisa.",
+      "mode": "telefone",
+      "payer": null,
+      "published_at": "2026-10-23",
+      "registration_no": "BR-04350/2026",
+      "sample_size": 1500,
+      "sample_size_basis": "declared",
+      "scenario_id": "president-br-t2-dbec719fff",
+      "source_tier": "A",
+      "source_url": "https://ipespe.org.br/wp-content/uploads/2026/10/TRK-CAMPANHA-03_-IPESPE-ABRAPEL_2T_-20-a-22-OUT-2026_-VF_.pdf",
+      "sum_pct": 100.0,
+      "undecided_pct": 2.0,
+      "values": [
+        {
+          "candidate_id": "2026-tse-280002551544",
+          "evidence_id": "ev-release-f366ff06fd1f3cc4be1b",
+          "label": "FLAVIO BOLSONARO",
+          "number": 22,
+          "party": "PL",
+          "pct": 48.0
+        },
+        {
+          "candidate_id": "2026-tse-280002542548",
+          "evidence_id": "ev-release-f366ff06fd1f3cc4be1b",
+          "label": "LULA",
+          "number": 13,
+          "party": "PT",
+          "pct": 47.0
+        }
+      ]
+    },
     {
       "base": "totais",
       "blank_null_pct": 5.0,
@@ -1052,20 +1101,20 @@
   "next_watch_attempt_at": null,
   "operational_provenance": {
     "artifact_hashes": {
-      "delta": "5cdc20d25b02145531b0862e08d935082681e2de400a126cdc4897a118f8f9a9",
-      "evidence": "2114095d973ea413d5f21339c0264f42f34c26369fb9e480a497c49de8652f07",
+      "delta": "7fa74e985f674cc9390ee1742c38ce96f79148be0db77c8d4cbbe53d31591f1e",
+      "evidence": "1d1100a31062b9f50e83f55981437cfa5f7ba5ae9b850b04cc44f5f0e009b088",
       "explanation": "34355e0b36a2e7d2a320d4d65d30de8eed581c411319ca54ee177ba3a54e98ee",
-      "feed_event": "0f2e52a5322dafeb08a0f8e0b6e822bc0a2e1981c3df7cea3a5617a36b2aa9bd",
-      "result": "7a4cc80cd942a2e92717a119766733ae2ea55ef8f0c442bbff6f844fb2ef5b71"
+      "feed_event": "d7a3c4feabadbdcbf48e3cc9c4a73b35129bc1317a953a423e7cc62041df2450",
+      "result": "6d0c3796b2c58e45ac4a5b112b469190031d8026edfc0f0591dbcf3e23cfa3e9"
     },
     "config_hash": "41bf13e6b52f2aaaa680a144cce01b9a4969c83357cac52727e5fe68a1b1c0ec",
-    "created_at": "2026-10-23T10:53:27.144476-03:00",
-    "data_hash": "19d5886e1859b09eecbfee88965363803a6763f32dbf36f251b672703b5120b0",
-    "run_id": "run-20261023-19d5886e-41bf13e6"
+    "created_at": "2026-10-23T10:57:05.395924-03:00",
+    "data_hash": "ecdae2ddaca73412e922031272cc636e6e6f33d7e8f2fbb0131eb598df9c4752",
+    "run_id": "run-20261023-ecdae2dd-41bf13e6"
   },
   "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo.",
   "processing_message": "último run concluído",
-  "processing_started_at": "2026-10-23T10:53:27.144476-03:00",
+  "processing_started_at": "2026-10-23T10:57:05.395924-03:00",
   "processing_state": "idle",
   "processing_trigger": "new_poll",
   "recent_release_inventory": [],
@@ -1083,15 +1132,15 @@
   },
   "retry_queue_size": 0,
   "review_queue_items": [],
-  "run_id": "run-20261023-19d5886e-41bf13e6",
+  "run_id": "run-20261023-ecdae2dd-41bf13e6",
   "service_running": false,
   "source_checks": {},
   "stale": false,
   "stale_warning": null,
   "state_intelligence": [],
   "timezone": "America/Sao_Paulo",
-  "validated_poll_count": 18,
-  "visible_run_id": "run-20261023-19d5886e-41bf13e6",
+  "validated_poll_count": 19,
+  "visible_run_id": "run-20261023-ecdae2dd-41bf13e6",
   "watch_cycle_failures": 0,
   "watch_interval_minutes": 30,
   "watcher_prepared": true
