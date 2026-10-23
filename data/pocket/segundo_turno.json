@@ -1,0 +1,2456 @@
+{
+ "versao": "pocket-1.0.0",
+ "gerado_em": "2026-10-23T07:59:20-03:00",
+ "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 6 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
+ "eleicao": {
+  "cargo": "Presidente",
+  "turno": 2,
+  "data": "2026-10-25",
+  "abertura": "2026-10-25T08:00:00-03:00",
+  "fechamento": "2026-10-25T17:00:00-03:00"
+ },
+ "candidatos": [
+  {
+   "id": "flavio",
+   "nome": "Flávio Bolsonaro",
+   "nome_completo": "Flávio Nantes Bolsonaro",
+   "partido": "PL",
+   "numero": 22,
+   "cor": "#1F4E9C",
+   "foto": "/candidates/2026/2026-tse-280002551544.webp",
+   "foto_credito": "Foto: TSE, CC BY 4.0"
+  },
+  {
+   "id": "lula",
+   "nome": "Lula",
+   "nome_completo": "Luiz Inácio Lula da Silva",
+   "partido": "PT",
+   "numero": 13,
+   "cor": "#C8102E",
+   "foto": "/candidates/2026/2026-tse-280002542548.webp",
+   "foto_credito": "Foto: Ricardo Stuckert/Palácio do Planalto, CC BY 2.0"
+  }
+ ],
+ "primeiro_turno": {
+  "data": "2026-10-04",
+  "fonte": "TSE",
+  "fonte_url": "https://resultados.tse.jus.br/oficial/ele2026/6257/dados/br/br-c0001-e006257-u.json",
+  "atualizado_em": "2026-10-05T12:51:05-03:00",
+  "secoes_totalizadas_pct": 100.0,
+  "eleitorado": 158745502,
+  "comparecimento": 125275835,
+  "abstencao_pct": 21.08,
+  "brancos_pct": 1.84,
+  "nulos_pct": 2.93,
+  "diferenca_votos": 2224965,
+  "candidatos": [
+   {
+    "id": "flavio",
+    "nome": "Flávio Bolsonaro",
+    "partido": "PL",
+    "votos": 56104503,
+    "validos_pct": 47.03
+   },
+   {
+    "id": "lula",
+    "nome": "Lula",
+    "partido": "PT",
+    "votos": 53879538,
+    "validos_pct": 45.16
+   },
+   {
+    "id": null,
+    "nome": "Augusto Cury",
+    "partido": "AVANTE",
+    "votos": 3448569,
+    "validos_pct": 2.89
+   },
+   {
+    "id": null,
+    "nome": "Renan Santos",
+    "partido": "MISSÃO",
+    "votos": 2675887,
+    "validos_pct": 2.24
+   },
+   {
+    "id": null,
+    "nome": "Ronaldo Caiado",
+    "partido": "PSD",
+    "votos": 2605148,
+    "validos_pct": 2.18
+   },
+   {
+    "id": null,
+    "nome": "Zema",
+    "partido": "NOVO",
+    "votos": 326488,
+    "validos_pct": 0.27
+   },
+   {
+    "id": null,
+    "nome": "Samara",
+    "partido": "UP",
+    "votos": 122911,
+    "validos_pct": 0.1
+   },
+   {
+    "id": null,
+    "nome": "Hertz Dias",
+    "partido": "PSTU",
+    "votos": 43103,
+    "validos_pct": 0.04
+   },
+   {
+    "id": null,
+    "nome": "Clariana Barao",
+    "partido": "DC",
+    "votos": 40043,
+    "validos_pct": 0.03
+   },
+   {
+    "id": null,
+    "nome": "Edmilson Costa",
+    "partido": "PCB",
+    "votos": 22693,
+    "validos_pct": 0.02
+   },
+   {
+    "id": null,
+    "nome": "Veterinário Wilson Grassi",
+    "partido": "DEMOCRATA",
+    "votos": 16881,
+    "validos_pct": 0.01
+   },
+   {
+    "id": null,
+    "nome": "Rui Costa Pimenta",
+    "partido": "PCO",
+    "votos": 15024,
+    "validos_pct": 0.01
+   }
+  ],
+  "por_uf": [
+   {
+    "uf": "AC",
+    "lula": 28.73,
+    "flavio": 64.56,
+    "abstencao_pct": 20.43,
+    "brancos_nulos_pct": 3.94,
+    "eleitorado": 613742
+   },
+   {
+    "uf": "AL",
+    "lula": 54.73,
+    "flavio": 40.45,
+    "abstencao_pct": 20.63,
+    "brancos_nulos_pct": 6.17,
+    "eleitorado": 2442126
+   },
+   {
+    "uf": "AP",
+    "lula": 45.71,
+    "flavio": 45.67,
+    "abstencao_pct": 17.41,
+    "brancos_nulos_pct": 2.46,
+    "eleitorado": 576988
+   },
+   {
+    "uf": "AM",
+    "lula": 48.23,
+    "flavio": 45.0,
+    "abstencao_pct": 20.16,
+    "brancos_nulos_pct": 2.85,
+    "eleitorado": 2798611
+   },
+   {
+    "uf": "BA",
+    "lula": 66.17,
+    "flavio": 28.53,
+    "abstencao_pct": 19.97,
+    "brancos_nulos_pct": 5.45,
+    "eleitorado": 11312752
+   },
+   {
+    "uf": "CE",
+    "lula": 63.29,
+    "flavio": 31.27,
+    "abstencao_pct": 15.52,
+    "brancos_nulos_pct": 4.95,
+    "eleitorado": 6996545
+   },
+   {
+    "uf": "DF",
+    "lula": 38.11,
+    "flavio": 51.31,
+    "abstencao_pct": 18.9,
+    "brancos_nulos_pct": 3.2,
+    "eleitorado": 2258320
+   },
+   {
+    "uf": "ES",
+    "lula": 37.76,
+    "flavio": 54.78,
+    "abstencao_pct": 21.37,
+    "brancos_nulos_pct": 4.3,
+    "eleitorado": 2991650
+   },
+   {
+    "uf": "GO",
+    "lula": 31.06,
+    "flavio": 53.6,
+    "abstencao_pct": 21.83,
+    "brancos_nulos_pct": 3.62,
+    "eleitorado": 5080590
+   },
+   {
+    "uf": "MA",
+    "lula": 63.99,
+    "flavio": 30.9,
+    "abstencao_pct": 19.73,
+    "brancos_nulos_pct": 3.6,
+    "eleitorado": 5183115
+   },
+   {
+    "uf": "MT",
+    "lula": 29.18,
+    "flavio": 65.15,
+    "abstencao_pct": 22.2,
+    "brancos_nulos_pct": 2.87,
+    "eleitorado": 2637801
+   },
+   {
+    "uf": "MS",
+    "lula": 34.68,
+    "flavio": 58.6,
+    "abstencao_pct": 23.87,
+    "brancos_nulos_pct": 3.31,
+    "eleitorado": 2024430
+   },
+   {
+    "uf": "MG",
+    "lula": 43.33,
+    "flavio": 48.24,
+    "abstencao_pct": 22.81,
+    "brancos_nulos_pct": 5.23,
+    "eleitorado": 16372372
+   },
+   {
+    "uf": "PA",
+    "lula": 49.91,
+    "flavio": 44.5,
+    "abstencao_pct": 19.1,
+    "brancos_nulos_pct": 4.01,
+    "eleitorado": 6262397
+   },
+   {
+    "uf": "PB",
+    "lula": 61.31,
+    "flavio": 33.07,
+    "abstencao_pct": 17.38,
+    "brancos_nulos_pct": 6.34,
+    "eleitorado": 3248531
+   },
+   {
+    "uf": "PR",
+    "lula": 31.2,
+    "flavio": 59.91,
+    "abstencao_pct": 20.57,
+    "brancos_nulos_pct": 3.75,
+    "eleitorado": 8613657
+   },
+   {
+    "uf": "PE",
+    "lula": 63.45,
+    "flavio": 31.03,
+    "abstencao_pct": 18.17,
+    "brancos_nulos_pct": 5.25,
+    "eleitorado": 7223450
+   },
+   {
+    "uf": "PI",
+    "lula": 70.99,
+    "flavio": 24.09,
+    "abstencao_pct": 17.15,
+    "brancos_nulos_pct": 4.22,
+    "eleitorado": 2704758
+   },
+   {
+    "uf": "RJ",
+    "lula": 39.41,
+    "flavio": 53.01,
+    "abstencao_pct": 23.32,
+    "brancos_nulos_pct": 4.97,
+    "eleitorado": 12857648
+   },
+   {
+    "uf": "RN",
+    "lula": 59.75,
+    "flavio": 34.77,
+    "abstencao_pct": 18.38,
+    "brancos_nulos_pct": 4.57,
+    "eleitorado": 2659825
+   },
+   {
+    "uf": "RS",
+    "lula": 35.73,
+    "flavio": 55.64,
+    "abstencao_pct": 21.35,
+    "brancos_nulos_pct": 4.18,
+    "eleitorado": 8522545
+   },
+   {
+    "uf": "RO",
+    "lula": 25.89,
+    "flavio": 67.45,
+    "abstencao_pct": 21.71,
+    "brancos_nulos_pct": 2.32,
+    "eleitorado": 1265893
+   },
+   {
+    "uf": "RR",
+    "lula": 22.86,
+    "flavio": 71.06,
+    "abstencao_pct": 17.12,
+    "brancos_nulos_pct": 2.17,
+    "eleitorado": 401521
+   },
+   {
+    "uf": "SC",
+    "lula": 25.04,
+    "flavio": 66.65,
+    "abstencao_pct": 18.95,
+    "brancos_nulos_pct": 3.17,
+    "eleitorado": 5734651
+   },
+   {
+    "uf": "SP",
+    "lula": 38.2,
+    "flavio": 51.93,
+    "abstencao_pct": 22.54,
+    "brancos_nulos_pct": 5.86,
+    "eleitorado": 34122892
+   },
+   {
+    "uf": "SE",
+    "lula": 62.75,
+    "flavio": 30.63,
+    "abstencao_pct": 17.3,
+    "brancos_nulos_pct": 5.2,
+    "eleitorado": 1740135
+   },
+   {
+    "uf": "TO",
+    "lula": 43.42,
+    "flavio": 50.44,
+    "abstencao_pct": 18.34,
+    "brancos_nulos_pct": 3.6,
+    "eleitorado": 1182023
+   },
+   {
+    "uf": "ZZ",
+    "lula": 47.57,
+    "flavio": 43.49,
+    "abstencao_pct": 62.69,
+    "brancos_nulos_pct": 3.18,
+    "eleitorado": 916534
+   }
+  ]
+ },
+ "media": {
+  "rotulo": "Média ponderada (recência, amostra e erro histórico da casa)",
+  "as_of": "2026-10-23",
+  "janela_dias": 21,
+  "desde": "2026-10-04",
+  "n_pesquisas": 6,
+  "n_casas": 6,
+  "casas": [
+   "Datafolha",
+   "Ipespe",
+   "MDA (CNT)",
+   "Nexus (BTG)",
+   "PoderData",
+   "Quaest"
+  ],
+  "validos": {
+   "lula": 49.4,
+   "flavio": 50.6
+  },
+  "faixa_validos": {
+   "lula": [
+    47.5,
+    51.4
+   ],
+   "flavio": [
+    48.6,
+    52.5
+   ]
+  },
+  "faixa_nivel": 0.8,
+  "totais": {
+   "lula": 46.0,
+   "flavio": 47.1,
+   "branco_nulo": 4.9,
+   "indecisos": 2.2
+  },
+  "prob_vitoria": {
+   "lula": 0.357,
+   "flavio": 0.643
+  },
+  "sigma_pp": 1.54,
+  "pesos": {
+   "Datafolha": 0.195,
+   "Ipespe": 0.127,
+   "MDA (CNT)": 0.127,
+   "Nexus (BTG)": 0.155,
+   "PoderData": 0.217,
+   "Quaest": 0.18
+  },
+  "nota": "Uma pesquisa por casa: a mais recente divulgada depois do 1º turno, nos últimos 21 dias. Votos válidos = só os dois nomes, sem branco, nulo e indecisos. Peso = recência (cai à metade a cada 10 dias) ÷ (erro histórico da casa no 2º turno² + variância da amostra). De 2014 a 2022 as casas erraram parecido no 2º turno (≈2,2 pontos), então quem mais pesa é a pesquisa mais nova e de amostra maior."
+ },
+ "media_acerto_1t": {
+  "rotulo": "Média das casas que mais acertaram o 1º turno",
+  "casas": [
+   "Quaest",
+   "PoderData",
+   "Datafolha"
+  ],
+  "criterio": "Casas cujo erro na diferença Flávio − Lula da última pesquisa de 1º turno ficou até a mediana (5,5 pontos); peso = 1 / erro².",
+  "pesos": {
+   "Quaest": 0.527,
+   "PoderData": 0.29,
+   "Datafolha": 0.183
+  },
+  "validos": {
+   "lula": 49.5,
+   "flavio": 50.5
+  },
+  "faixa_validos": {
+   "lula": [
+    47.5,
+    51.4
+   ],
+   "flavio": [
+    48.6,
+    52.5
+   ]
+  },
+  "prob_vitoria": {
+   "lula": 0.362,
+   "flavio": 0.638
+  },
+  "nota": "Mesma incerteza da média geral; muda só quem entra e o peso."
+ },
+ "medias": {
+  "ponderada": {
+   "id": "ponderada",
+   "rotulo": "Ponderada",
+   "validos": {
+    "lula": 49.4,
+    "flavio": 50.6
+   },
+   "faixa_validos": {
+    "lula": [
+     47.5,
+     51.4
+    ],
+    "flavio": [
+     48.6,
+     52.5
+    ]
+   },
+   "prob_vitoria": {
+    "lula": 0.357,
+    "flavio": 0.643
+   },
+   "sigma_pp": 1.54,
+   "n_casas": 6,
+   "casas": [
+    "Datafolha",
+    "Ipespe",
+    "MDA (CNT)",
+    "Nexus (BTG)",
+    "PoderData",
+    "Quaest"
+   ],
+   "nota": "Última pesquisa de cada casa; peso maior para a mais nova (cai à metade a cada 10 dias), a de amostra maior e a casa que menos errou 2º turnos de 2014 a 2022."
+  },
+  "simples": {
+   "id": "simples",
+   "rotulo": "Simples",
+   "validos": {
+    "lula": 49.4,
+    "flavio": 50.6
+   },
+   "faixa_validos": {
+    "lula": [
+     47.4,
+     51.4
+    ],
+    "flavio": [
+     48.6,
+     52.6
+    ]
+   },
+   "prob_vitoria": {
+    "lula": 0.353,
+    "flavio": 0.647
+   },
+   "sigma_pp": 1.54,
+   "n_casas": 6,
+   "casas": [
+    "Datafolha",
+    "Ipespe",
+    "MDA (CNT)",
+    "Nexus (BTG)",
+    "PoderData",
+    "Quaest"
+   ],
+   "nota": "Última pesquisa de cada casa, todas com o mesmo peso."
+  },
+  "ajustada_1t": {
+   "id": "ajustada_1t",
+   "rotulo": "Ajustada pelo 1º turno",
+   "validos": {
+    "lula": 46.6,
+    "flavio": 53.4
+   },
+   "faixa_validos": {
+    "lula": [
+     42.2,
+     51.0
+    ],
+    "flavio": [
+     49.0,
+     57.8
+    ]
+   },
+   "prob_vitoria": {
+    "lula": 0.159,
+    "flavio": 0.841
+   },
+   "sigma_pp": 3.41,
+   "n_casas": 6,
+   "casas": [
+    "Datafolha",
+    "Ipespe",
+    "MDA (CNT)",
+    "Nexus (BTG)",
+    "PoderData",
+    "Quaest"
+   ],
+   "nota": "A ponderada, com cada casa corrigida pelo próprio erro no 1º turno de 2026 (quem subestimou Flávio no 1º turno tem o número dele elevado na mesma medida). Casa sem pesquisa nacional de 1º turno usa o erro médio das casas. A incerteza soma o tamanho do ajuste: nada garante que o erro se repita igual (no laboratório do Radar, corrigir pelo erro passado não se sustentou fora da amostra)."
+  },
+  "acerto_1t": {
+   "id": "acerto_1t",
+   "rotulo": "Só as que mais acertaram",
+   "validos": {
+    "lula": 49.5,
+    "flavio": 50.5
+   },
+   "faixa_validos": {
+    "lula": [
+     47.5,
+     51.4
+    ],
+    "flavio": [
+     48.6,
+     52.5
+    ]
+   },
+   "prob_vitoria": {
+    "lula": 0.362,
+    "flavio": 0.638
+   },
+   "n_casas": 3,
+   "casas": [
+    "Quaest",
+    "PoderData",
+    "Datafolha"
+   ],
+   "nota": "Casas cujo erro na diferença Flávio − Lula da última pesquisa de 1º turno ficou até a mediana (5,5 pontos); peso = 1 / erro²."
+  }
+ },
+ "medias_ordem": [
+  "ponderada",
+  "simples",
+  "ajustada_1t",
+  "acerto_1t"
+ ],
+ "por_instituto": [
+  {
+   "casa": "PoderData",
+   "data": "2026-10-22",
+   "campo": "19 a 21/10",
+   "amostra": 4000,
+   "registro": "BR-07926/2026",
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "totais": {
+    "lula": 48.0,
+    "flavio": 49.0,
+    "branco_nulo": 3.0,
+    "indecisos": 1.0
+   },
+   "peso_ponderada": 0.217,
+   "erro_1t_flavio_par_pp": -2.2,
+   "pesquisa_1t": {
+    "data": "2026-10-03",
+    "registro": "BR-03519/2026",
+    "previa": {
+     "lula": 45.0,
+     "flavio": 43.0
+    }
+   },
+   "ajuste_aplicado_pp": -2.2,
+   "ajuste_origem": "erro da própria casa no 1º turno",
+   "validos_ajustados": {
+    "lula": 47.3,
+    "flavio": 52.7
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/10/Relatorio-PoderData-Eleitoral-21out26-2.pdf"
+  },
+  {
+   "casa": "Datafolha",
+   "data": "2026-10-22",
+   "campo": "20 a 22/10",
+   "amostra": 2154,
+   "registro": "BR-09709/2026",
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "totais": {
+    "lula": 46.0,
+    "flavio": 47.0,
+    "branco_nulo": 5.0,
+    "indecisos": 2.0
+   },
+   "peso_ponderada": 0.195,
+   "erro_1t_flavio_par_pp": -2.7,
+   "pesquisa_1t": {
+    "data": "2026-10-03",
+    "registro": "BR-01708/2026",
+    "previa": {
+     "lula": 45.0,
+     "flavio": 42.0
+    }
+   },
+   "ajuste_aplicado_pp": -2.7,
+   "ajuste_origem": "erro da própria casa no 1º turno",
+   "validos_ajustados": {
+    "lula": 46.7,
+    "flavio": 53.3
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-presidente-segundo-turno-22-outubro.ghtml"
+  },
+  {
+   "casa": "Quaest",
+   "data": "2026-10-21",
+   "campo": "17 a 20/10",
+   "amostra": 2154,
+   "registro": "BR-08535/2026",
+   "validos": {
+    "flavio": 50.6,
+    "lula": 49.4
+   },
+   "totais": {
+    "lula": 44.0,
+    "flavio": 45.0,
+    "branco_nulo": 9.0,
+    "indecisos": 2.0
+   },
+   "peso_ponderada": 0.18,
+   "erro_1t_flavio_par_pp": -1.6,
+   "pesquisa_1t": {
+    "data": "2026-10-03",
+    "registro": "BR-02197/2026",
+    "previa": {
+     "lula": 46.0,
+     "flavio": 45.0
+    }
+   },
+   "ajuste_aplicado_pp": -1.6,
+   "ajuste_origem": "erro da própria casa no 1º turno",
+   "validos_ajustados": {
+    "lula": 47.9,
+    "flavio": 52.1
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-presidente-21-outubro.ghtml"
+  },
+  {
+   "casa": "Nexus (BTG)",
+   "data": "2026-10-19",
+   "campo": "16 a 18/10",
+   "amostra": 2002,
+   "registro": "BR-04499/2026",
+   "validos": {
+    "flavio": 50.3,
+    "lula": 49.7
+   },
+   "totais": {
+    "lula": 45.9,
+    "flavio": 46.5,
+    "branco_nulo": 4.7,
+    "indecisos": 2.9
+   },
+   "peso_ponderada": 0.155,
+   "erro_1t_flavio_par_pp": -4.2,
+   "pesquisa_1t": {
+    "data": "2026-09-28",
+    "registro": "BR-07557/2026",
+    "previa": {
+     "lula": 44.21,
+     "flavio": 38.95
+    }
+   },
+   "ajuste_aplicado_pp": -4.2,
+   "ajuste_origem": "erro da própria casa no 1º turno",
+   "validos_ajustados": {
+    "lula": 45.5,
+    "flavio": 54.5
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/10/BTG-Nexus-Eleicoes-2026-Rodada-18-19.out_.2026.pdf"
+  },
+  {
+   "casa": "Ipespe",
+   "data": "2026-10-17",
+   "campo": "13 a 15/10",
+   "amostra": 1500,
+   "registro": "BR-00223/2026",
+   "validos": {
+    "flavio": 51.1,
+    "lula": 48.9
+   },
+   "totais": {
+    "lula": 46.0,
+    "flavio": 48.0,
+    "branco_nulo": 3.0,
+    "indecisos": 3.0
+   },
+   "peso_ponderada": 0.127,
+   "erro_1t_flavio_par_pp": null,
+   "pesquisa_1t": null,
+   "ajuste_aplicado_pp": -3.0,
+   "ajuste_origem": "erro médio das casas (sem nacional de 1º turno)",
+   "validos_ajustados": {
+    "lula": 45.9,
+    "flavio": 54.1
+   },
+   "fonte_url": "https://ipespe.org.br/wp-content/uploads/2026/10/TRK-CAMPANHA-02_-IPESPE-ABRAPEL_2T_-13-a-15-OUT-2026.pdf"
+  },
+  {
+   "casa": "MDA (CNT)",
+   "data": "2026-10-16",
+   "campo": "13 a 15/10",
+   "amostra": 2014,
+   "registro": "BR-00652/2026",
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "totais": {
+    "lula": 45.9,
+    "flavio": 46.8,
+    "branco_nulo": 4.9,
+    "indecisos": 2.4
+   },
+   "peso_ponderada": 0.127,
+   "erro_1t_flavio_par_pp": -4.2,
+   "pesquisa_1t": {
+    "data": "2026-10-03",
+    "registro": "BR-04756/2026",
+    "previa": {
+     "lula": 47.84,
+     "flavio": 42.18
+    }
+   },
+   "ajuste_aplicado_pp": -4.2,
+   "ajuste_origem": "erro da própria casa no 1º turno",
+   "validos_ajustados": {
+    "lula": 45.4,
+    "flavio": 54.6
+   },
+   "fonte_url": "https://api.cnt.org.br/cms2/api/PortalPublicacao/publicacao/pesquisa-cnt-mda-retrata-disputa-acirrada-no-2-turno"
+  }
+ ],
+ "ranking_1t": [
+  {
+   "casa_id": "quaest",
+   "casa": "Quaest",
+   "pesquisa_data": "2026-10-03",
+   "registro": "BR-02197/2026",
+   "previa": {
+    "lula": 46.0,
+    "flavio": 45.0
+   },
+   "resultado": {
+    "flavio": 47.03,
+    "lula": 45.16
+   },
+   "erro_lula_pp": 0.84,
+   "erro_flavio_pp": -2.03,
+   "erro_medio_pp": 1.44,
+   "erro_margem_pp": -2.87,
+   "base_validos": "divulgados pela casa (g1, canal do contratante; modelo de eleitor provável)",
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/03/quaest-presidente-3-outubro.ghtml"
+  },
+  {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "pesquisa_data": "2026-10-03",
+   "registro": "BR-03519/2026",
+   "previa": {
+    "lula": 45.0,
+    "flavio": 43.0
+   },
+   "resultado": {
+    "flavio": 47.03,
+    "lula": 45.16
+   },
+   "erro_lula_pp": -0.16,
+   "erro_flavio_pp": -4.03,
+   "erro_medio_pp": 2.09,
+   "erro_margem_pp": -3.87,
+   "base_validos": "divulgados pela casa (Poder360)",
+   "fonte_url": "https://www.poder360.com.br/poderdata/na-vespera-do-1o-turno-lula-tem-45-e-flavio-43-dos-votos-validos/"
+  },
+  {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "pesquisa_data": "2026-10-03",
+   "registro": "BR-01708/2026",
+   "previa": {
+    "lula": 45.0,
+    "flavio": 42.0
+   },
+   "resultado": {
+    "flavio": 47.03,
+    "lula": 45.16
+   },
+   "erro_lula_pp": -0.16,
+   "erro_flavio_pp": -5.03,
+   "erro_medio_pp": 2.59,
+   "erro_margem_pp": -4.87,
+   "base_validos": "divulgados pela casa (g1, canal do contratante)",
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/03/datafolha-presidente-3-outubro.ghtml"
+  },
+  {
+   "casa_id": "real-time-big-data",
+   "casa": "Real Time Big Data",
+   "pesquisa_data": "2026-10-01",
+   "registro": "BR-09503/2026",
+   "previa": {
+    "lula": 45.74,
+    "flavio": 41.49
+   },
+   "resultado": {
+    "flavio": 47.03,
+    "lula": 45.16
+   },
+   "erro_lula_pp": 0.58,
+   "erro_flavio_pp": -5.54,
+   "erro_medio_pp": 3.06,
+   "erro_margem_pp": -6.12,
+   "base_validos": "calculados dos votos totais lidos pelo extrator do Radar",
+   "fonte_url": "https://realtimebigdata.com.br/wp-content/uploads/2026/10/Brasil-BR-09503-2026-Out26.pdf"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "pesquisa_data": "2026-09-28",
+   "registro": "BR-07557/2026",
+   "previa": {
+    "lula": 44.21,
+    "flavio": 38.95
+   },
+   "resultado": {
+    "flavio": 47.03,
+    "lula": 45.16
+   },
+   "erro_lula_pp": -0.95,
+   "erro_flavio_pp": -8.08,
+   "erro_medio_pp": 4.51,
+   "erro_margem_pp": -7.13,
+   "base_validos": "calculados dos votos totais aceitos pelo funil (última nacional da casa antes de 04/10)",
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-16-28.set_.2026.pdf"
+  },
+  {
+   "casa_id": "mda",
+   "casa": "MDA (CNT)",
+   "pesquisa_data": "2026-10-03",
+   "registro": "BR-04756/2026",
+   "previa": {
+    "lula": 47.84,
+    "flavio": 42.18
+   },
+   "resultado": {
+    "flavio": 47.03,
+    "lula": 45.16
+   },
+   "erro_lula_pp": 2.68,
+   "erro_flavio_pp": -4.85,
+   "erro_medio_pp": 3.77,
+   "erro_margem_pp": -7.53,
+   "base_validos": "calculados dos votos totais (participação entre os votos em candidatos)",
+   "fonte_url": "https://api.cnt.org.br/cms2/api/PortalPublicacao/publicacao/pesquisa-cntmda-mostra-cenrio-eleitoral-s-vsperas-do-primeiro-turno"
+  }
+ ],
+ "erro_1t_2026_pp": -3.04,
+ "erro_historico_2t": {
+  "janela": "d30",
+  "eleicoes": [
+   {
+    "ano": 2014,
+    "casas": 4,
+    "erro_da_media_pp": -0.21,
+    "dispersao_entre_casas_pp": 1.4
+   },
+   {
+    "ano": 2018,
+    "casas": 6,
+    "erro_da_media_pp": 0.38,
+    "dispersao_entre_casas_pp": 2.58
+   },
+   {
+    "ano": 2022,
+    "casas": 14,
+    "erro_da_media_pp": 0.1,
+    "dispersao_entre_casas_pp": 2.03
+   }
+  ]
+ },
+ "pesquisas": [
+  {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "data": "2026-10-22",
+   "campo": "19 a 21/10",
+   "amostra": 4000,
+   "margem_erro_pp": 1.6,
+   "registro": "BR-07926/2026",
+   "totais": {
+    "lula": 48.0,
+    "flavio": 49.0,
+    "branco_nulo": 3.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/10/Relatorio-PoderData-Eleitoral-21out26-2.pdf",
+   "pos_1o_turno": true,
+   "na_media": true,
+   "peso": 0.217
+  },
+  {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "data": "2026-10-22",
+   "campo": "20 a 22/10",
+   "amostra": 2154,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-09709/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 47.0,
+    "branco_nulo": 5.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-presidente-segundo-turno-22-outubro.ghtml",
+   "pos_1o_turno": true,
+   "na_media": true,
+   "peso": 0.195
+  },
+  {
+   "casa_id": "quaest",
+   "casa": "Quaest",
+   "data": "2026-10-21",
+   "campo": "17 a 20/10",
+   "amostra": 2154,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-08535/2026",
+   "totais": {
+    "lula": 44.0,
+    "flavio": 45.0,
+    "branco_nulo": 9.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 50.6,
+    "lula": 49.4
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-presidente-21-outubro.ghtml",
+   "pos_1o_turno": true,
+   "na_media": true,
+   "peso": 0.18
+  },
+  {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "data": "2026-10-19",
+   "campo": "16 a 18/10",
+   "amostra": 3000,
+   "margem_erro_pp": 1.8,
+   "registro": "BR-02586/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 49.0,
+    "branco_nulo": 4.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 51.6,
+    "lula": 48.4
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/10/Relatorio-PoderData-Eleitoral-18out26.pdf",
+   "pos_1o_turno": true,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "a casa tem pesquisa mais recente"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-10-19",
+   "campo": "16 a 18/10",
+   "amostra": 2002,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-04499/2026",
+   "totais": {
+    "lula": 45.9,
+    "flavio": 46.5,
+    "branco_nulo": 4.7,
+    "indecisos": 2.9
+   },
+   "validos": {
+    "flavio": 50.3,
+    "lula": 49.7
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/10/BTG-Nexus-Eleicoes-2026-Rodada-18-19.out_.2026.pdf",
+   "pos_1o_turno": true,
+   "na_media": true,
+   "peso": 0.155
+  },
+  {
+   "casa_id": "ipespe",
+   "casa": "Ipespe",
+   "data": "2026-10-17",
+   "campo": "13 a 15/10",
+   "amostra": 1500,
+   "margem_erro_pp": 2.6,
+   "registro": "BR-00223/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 48.0,
+    "branco_nulo": 3.0,
+    "indecisos": 3.0
+   },
+   "validos": {
+    "flavio": 51.1,
+    "lula": 48.9
+   },
+   "fonte_url": "https://ipespe.org.br/wp-content/uploads/2026/10/TRK-CAMPANHA-02_-IPESPE-ABRAPEL_2T_-13-a-15-OUT-2026.pdf",
+   "pos_1o_turno": true,
+   "na_media": true,
+   "peso": 0.127
+  },
+  {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "data": "2026-10-16",
+   "campo": "13 a 15/10",
+   "amostra": 3000,
+   "margem_erro_pp": 1.8,
+   "registro": "BR-04258/2026",
+   "totais": {
+    "lula": 47.0,
+    "flavio": 47.0,
+    "branco_nulo": 4.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 50.0,
+    "lula": 50.0
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/10/Relatorio-PoderData-Eleitoral-15out26.pdf",
+   "pos_1o_turno": true,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "a casa tem pesquisa mais recente"
+  },
+  {
+   "casa_id": "mda",
+   "casa": "MDA (CNT)",
+   "data": "2026-10-16",
+   "campo": "13 a 15/10",
+   "amostra": 2014,
+   "margem_erro_pp": 2.2,
+   "registro": "BR-00652/2026",
+   "totais": {
+    "lula": 45.9,
+    "flavio": 46.8,
+    "branco_nulo": 4.9,
+    "indecisos": 2.4
+   },
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "fonte_url": "https://api.cnt.org.br/cms2/api/PortalPublicacao/publicacao/pesquisa-cnt-mda-retrata-disputa-acirrada-no-2-turno",
+   "pos_1o_turno": true,
+   "na_media": true,
+   "peso": 0.127
+  },
+  {
+   "casa_id": "quaest",
+   "casa": "Quaest",
+   "data": "2026-10-14",
+   "campo": "10 a 13/10",
+   "amostra": 2154,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-08729/2026",
+   "totais": {
+    "lula": 44.0,
+    "flavio": 46.0,
+    "branco_nulo": 9.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "flavio": 51.1,
+    "lula": 48.9
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/14/quaest-presidente-14-outubro.ghtml",
+   "pos_1o_turno": true,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "a casa tem pesquisa mais recente"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-10-13",
+   "campo": "10 a 12/10",
+   "amostra": 2002,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-07997/2026",
+   "totais": {
+    "lula": 45.0,
+    "flavio": 48.0,
+    "branco_nulo": 5.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 51.6,
+    "lula": 48.4
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/10/BTG-Nexus-Eleicoes-2026-Rodada-17-13.out_.2026.pdf",
+   "pos_1o_turno": true,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "a casa tem pesquisa mais recente"
+  },
+  {
+   "casa_id": "ipespe",
+   "casa": "Ipespe",
+   "data": "2026-10-10",
+   "campo": "06 a 08/10",
+   "amostra": 1500,
+   "margem_erro_pp": 2.6,
+   "registro": "BR-00933/2026",
+   "totais": {
+    "lula": 44.0,
+    "flavio": 49.0,
+    "branco_nulo": 5.0,
+    "indecisos": 3.0
+   },
+   "validos": {
+    "flavio": 52.7,
+    "lula": 47.3
+   },
+   "fonte_url": "https://ipespe.org.br/wp-content/uploads/2026/10/TCK-CAMPANHA-01_-IPESPE-ABRAPEL_2T_-6-a-8-OUT-2026_vf.pdf",
+   "pos_1o_turno": true,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "a casa tem pesquisa mais recente"
+  },
+  {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "data": "2026-10-08",
+   "campo": "06 a 07/10",
+   "amostra": 2520,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-02949/2026",
+   "totais": {
+    "lula": 45.0,
+    "flavio": 49.0,
+    "branco_nulo": 5.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "flavio": 52.1,
+    "lula": 47.9
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/08/datafolha-presidente-8-outubro.ghtml",
+   "pos_1o_turno": true,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "a casa tem pesquisa mais recente"
+  },
+  {
+   "casa_id": "quaest",
+   "casa": "Quaest",
+   "data": "2026-09-28",
+   "campo": "24 a 27/09",
+   "amostra": 2004,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-06520/2026",
+   "totais": {
+    "lula": 42.0,
+    "flavio": 42.0,
+    "branco_nulo": 13.0,
+    "indecisos": 3.0
+   },
+   "validos": {
+    "flavio": 50.0,
+    "lula": 50.0
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/noticia/2026/09/28/quaest-presidente-2o-turno-28-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-09-28",
+   "campo": "25 a 27/09",
+   "amostra": 2000,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-07557/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 44.0,
+    "branco_nulo": 8.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 51.1,
+    "flavio": 48.9
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-16-28.set_.2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "real-time-big-data",
+   "casa": "Real Time Big Data",
+   "data": "2026-09-24",
+   "campo": "19 a 23/09",
+   "amostra": 2000,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-04202/2026",
+   "totais": {
+    "lula": 44.0,
+    "flavio": 45.0,
+    "branco_nulo": 8.0,
+    "indecisos": 3.0
+   },
+   "validos": {
+    "lula": 49.4,
+    "flavio": 50.6
+   },
+   "fonte_url": "https://realtimebigdata.com.br/wp-content/uploads/2026/09/Brasil-BR-04202-2026-Set26.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "data": "2026-09-24",
+   "campo": "22 a 23/09",
+   "amostra": 2002,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-00304/2026",
+   "totais": {
+    "lula": 47.0,
+    "flavio": 45.0,
+    "branco_nulo": 7.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 51.1,
+    "flavio": 48.9
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/24/datafolha-presidente-segundo-turno-24-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "quaest",
+   "casa": "Quaest",
+   "data": "2026-09-21",
+   "campo": "17 a 20/09",
+   "amostra": 2004,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-06004/2026",
+   "totais": {
+    "lula": 41.0,
+    "flavio": 42.0,
+    "branco_nulo": 14.0,
+    "indecisos": 3.0
+   },
+   "validos": {
+    "flavio": 50.6,
+    "lula": 49.4
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-09-21",
+   "campo": "18 a 20/09",
+   "amostra": 2006,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-00485/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 45.0,
+    "branco_nulo": 7.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 50.5,
+    "flavio": 49.5
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "data": "2026-09-17",
+   "campo": "15 a 16/09",
+   "amostra": 2002,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-04029/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 44.0,
+    "branco_nulo": 8.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 51.1,
+    "flavio": 48.9
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/17/datafolha-17-setembro-lula-flavio-bolsonaro-1-turno-2-turno-rejeicao.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "mda",
+   "casa": "MDA (CNT)",
+   "data": "2026-09-15",
+   "campo": "09 a 13/09",
+   "amostra": 2002,
+   "margem_erro_pp": 2.2,
+   "registro": "BR-06902/2026",
+   "totais": {
+    "lula": 47.3,
+    "flavio": 40.0,
+    "branco_nulo": 10.2,
+    "indecisos": 2.5
+   },
+   "validos": {
+    "lula": 54.2,
+    "flavio": 45.8
+   },
+   "fonte_url": "https://data.cnt.org.br/wp-content/uploads/2026/09/Relatorio-Pesquisa-CNT-de-Opiniao-R170-SETEMBRO26.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "quaest",
+   "casa": "Quaest",
+   "data": "2026-09-14",
+   "campo": "10 a 13/09",
+   "amostra": 2004,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-03607/2026",
+   "totais": {
+    "lula": 40.0,
+    "flavio": 42.0,
+    "branco_nulo": 13.0,
+    "indecisos": 5.0
+   },
+   "validos": {
+    "flavio": 51.2,
+    "lula": 48.8
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/14/quaest-2-turno-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-09-14",
+   "campo": "11 a 13/09",
+   "amostra": 2003,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-04076/2026",
+   "totais": {
+    "lula": 47.0,
+    "flavio": 46.0,
+    "branco_nulo": 6.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 50.5,
+    "flavio": 49.5
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-14-14.set_.2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "data": "2026-09-11",
+   "campo": "08 a 10/09",
+   "amostra": 2002,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-01833/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 44.0,
+    "branco_nulo": 8.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 51.1,
+    "flavio": 48.9
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/11/datafolha-2o-turno-presidente-11-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "data": "2026-09-10",
+   "campo": "06 a 09/09",
+   "amostra": 3000,
+   "margem_erro_pp": 1.8,
+   "registro": "BR-04914/2026",
+   "totais": {
+    "lula": 45.0,
+    "flavio": 47.0,
+    "branco_nulo": 6.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 51.1,
+    "lula": 48.9
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/09/Relatorio-PoderData-Eleitoral-9set26-1.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-09-08",
+   "campo": "04 a 07/09",
+   "amostra": 2002,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-06790/2026",
+   "totais": {
+    "lula": 45.0,
+    "flavio": 46.0,
+    "branco_nulo": 8.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 49.5,
+    "flavio": 50.5
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-13-08.set_.2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "quaest",
+   "casa": "Quaest",
+   "data": "2026-09-07",
+   "campo": "03 a 06/09",
+   "amostra": 2004,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-01720/2026",
+   "totais": {
+    "lula": 41.0,
+    "flavio": 41.0,
+    "branco_nulo": 13.0,
+    "indecisos": 5.0
+   },
+   "validos": {
+    "lula": 50.0,
+    "flavio": 50.0
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/07/quaest-2-turno-7-de-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "data": "2026-09-03",
+   "campo": "01 a 03/09",
+   "amostra": 2002,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-03669/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 44.0,
+    "branco_nulo": 9.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "lula": 51.1,
+    "flavio": 48.9
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/03/datafolha-presidente-3-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "quaest",
+   "casa": "Quaest",
+   "data": "2026-09-02",
+   "campo": "30/08 a 01/09",
+   "amostra": 2004,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-07065/2026",
+   "totais": {
+    "lula": 42.0,
+    "flavio": 41.0,
+    "branco_nulo": 13.0,
+    "indecisos": 4.0
+   },
+   "validos": {
+    "lula": 50.6,
+    "flavio": 49.4
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/02/quaest-presidente-2-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "real-time-big-data",
+   "casa": "Real Time Big Data",
+   "data": "2026-09-01",
+   "campo": "27 a 31/08",
+   "amostra": 2000,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-03490/2026",
+   "totais": {
+    "lula": 44.0,
+    "flavio": 44.0,
+    "branco_nulo": 9.0,
+    "indecisos": 3.0
+   },
+   "validos": {
+    "lula": 50.0,
+    "flavio": 50.0
+   },
+   "fonte_url": "https://realtimebigdata.com.br/wp-content/uploads/2026/09/Brasil-BR-03490-2026-Set26.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-08-31",
+   "campo": "28 a 30/08",
+   "amostra": 2005,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-08900/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 45.0,
+    "branco_nulo": 8.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 50.5,
+    "flavio": 49.5
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/08/BTG-Nexus-Eleicoes-2026-Rodada-12-31.ago_.2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-08-24",
+   "campo": "21 a 23/08",
+   "amostra": 2006,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-09028/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 45.0,
+    "branco_nulo": 8.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 50.5,
+    "flavio": 49.5
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/08/BTG-Nexus-Eleicoes-2026-Rodada-11-24.ago_.2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "data": "2026-08-21",
+   "campo": "18 a 20/08",
+   "amostra": 2058,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-04496/2026",
+   "totais": {
+    "lula": 47.0,
+    "flavio": 43.0,
+    "branco_nulo": 9.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "lula": 52.2,
+    "flavio": 47.8
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/08/21/datafolha-primeiro-turno-21-agosto.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-08-10",
+   "campo": "07 a 09/08",
+   "amostra": 2001,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-08428/2026",
+   "totais": {
+    "lula": 47.0,
+    "flavio": 44.0,
+    "branco_nulo": 8.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 51.6,
+    "flavio": 48.4
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/08/BTG-Nexus-Eleicoes-2026-Rodada-9-10.ago_.2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-08-03",
+   "campo": "31/07 a 02/08",
+   "amostra": 2002,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-02874/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 45.0,
+    "branco_nulo": 8.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "lula": 50.5,
+    "flavio": 49.5
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/08/BTG-Nexus-Eleicoes-2026-Rodada-8-03.ago_.2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-07-27",
+   "campo": "24 a 26/07",
+   "amostra": 2004,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-01489/2026",
+   "totais": {
+    "lula": 47.0,
+    "flavio": 43.0,
+    "branco_nulo": 9.0,
+    "indecisos": 1.0
+   },
+   "validos": {
+    "lula": 52.2,
+    "flavio": 47.8
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/07/BTG-Nexus-Eleicoes-2026-Rodada-7-27jul2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  }
+ ],
+ "serie_media": [
+  {
+   "data": "2026-10-08",
+   "lula": 47.9,
+   "flavio": 52.1,
+   "casas": 1
+  },
+  {
+   "data": "2026-10-09",
+   "lula": 47.9,
+   "flavio": 52.1,
+   "casas": 1
+  },
+  {
+   "data": "2026-10-10",
+   "lula": 47.7,
+   "flavio": 52.3,
+   "casas": 2
+  },
+  {
+   "data": "2026-10-11",
+   "lula": 47.7,
+   "flavio": 52.3,
+   "casas": 2
+  },
+  {
+   "data": "2026-10-12",
+   "lula": 47.7,
+   "flavio": 52.3,
+   "casas": 2
+  },
+  {
+   "data": "2026-10-13",
+   "lula": 47.9,
+   "flavio": 52.1,
+   "casas": 3
+  },
+  {
+   "data": "2026-10-14",
+   "lula": 48.2,
+   "flavio": 51.8,
+   "casas": 4
+  },
+  {
+   "data": "2026-10-15",
+   "lula": 48.2,
+   "flavio": 51.8,
+   "casas": 4
+  },
+  {
+   "data": "2026-10-16",
+   "lula": 48.7,
+   "flavio": 51.3,
+   "casas": 6
+  },
+  {
+   "data": "2026-10-17",
+   "lula": 48.9,
+   "flavio": 51.1,
+   "casas": 6
+  },
+  {
+   "data": "2026-10-18",
+   "lula": 48.9,
+   "flavio": 51.1,
+   "casas": 6
+  },
+  {
+   "data": "2026-10-19",
+   "lula": 48.8,
+   "flavio": 51.2,
+   "casas": 6
+  },
+  {
+   "data": "2026-10-20",
+   "lula": 48.8,
+   "flavio": 51.2,
+   "casas": 6
+  },
+  {
+   "data": "2026-10-21",
+   "lula": 48.9,
+   "flavio": 51.1,
+   "casas": 6
+  },
+  {
+   "data": "2026-10-22",
+   "lula": 49.4,
+   "flavio": 50.6,
+   "casas": 6
+  },
+  {
+   "data": "2026-10-23",
+   "lula": 49.4,
+   "flavio": 50.6,
+   "casas": 6
+  }
+ ],
+ "serie_media_base": "validos",
+ "projecao": {
+  "rotulo": "Projeção com abstenção",
+  "eleitorado": 158745502,
+  "abstencao_estimada_pct": 22.9,
+  "abstencao_faixa_pct": [
+   20.7,
+   24.5
+  ],
+  "base_abstencao": {
+   "t1_2026_pct": 21.08,
+   "delta_medio_t1_t2_pp": 1.78,
+   "media_t2_2002_2022_pct": 20.66,
+   "deltas": {
+    "2002": 2.73,
+    "2006": 2.24,
+    "2010": 3.38,
+    "2014": 1.71,
+    "2018": 0.97,
+    "2022": -0.36
+   }
+  },
+  "brancos_nulos_estimado_pct": 4.77,
+  "comparecimento_estimado": 122456280,
+  "votos_validos_estimados": 116615116,
+  "votos": {
+   "lula": 57782790,
+   "flavio": 58832326
+  },
+  "margem_votos": 1049536,
+  "lider": "flavio",
+  "virada": {
+   "quem": "lula",
+   "diferenca_comparecimento_pp": 1.4,
+   "texto": "Lula vira se o comparecimento do eleitorado de Flávio Bolsonaro ficar 1,4 ponto(s) abaixo do comparecimento do eleitorado de Lula. Para comparar: do 1º para o 2º turno a abstenção total sobe em média 1,78 ponto."
+  },
+  "cenarios": [
+   {
+    "nome": "Abstenção como em 2022 (20,7%)",
+    "central": false,
+    "abstencao_pct": 20.7,
+    "validos": {
+     "lula": 49.5,
+     "flavio": 50.5
+    },
+    "votos": {
+     "lula": 59385787,
+     "flavio": 60464439
+    },
+    "margem_votos": 1078652,
+    "lider": "flavio"
+   },
+   {
+    "nome": "Central",
+    "central": true,
+    "abstencao_pct": 22.9,
+    "validos": {
+     "lula": 49.5,
+     "flavio": 50.5
+    },
+    "votos": {
+     "lula": 57782790,
+     "flavio": 58832326
+    },
+    "margem_votos": 1049536,
+    "lider": "flavio"
+   },
+   {
+    "nome": "Maior alta da série, 2010 (24,5%)",
+    "central": false,
+    "abstencao_pct": 24.5,
+    "validos": {
+     "lula": 49.5,
+     "flavio": 50.5
+    },
+    "votos": {
+     "lula": 56584288,
+     "flavio": 57612055
+    },
+    "margem_votos": 1027767,
+    "lider": "flavio"
+   },
+   {
+    "nome": "Se cada casa errar como no 1º turno (média: +3,0 p.p. para Flávio)",
+    "central": false,
+    "abstencao_pct": 22.9,
+    "validos": {
+     "lula": 46.6,
+     "flavio": 53.4
+    },
+    "votos": {
+     "lula": 54336857,
+     "flavio": 62278259
+    },
+    "margem_votos": 7941402,
+    "lider": "flavio"
+   }
+  ],
+  "nota": "Abstenção do 2º turno = a do 1º turno de 2026 (21,08%) + a alta média entre os turnos de 2002 a 2022 (1,78 ponto; subiu em 5 de 6 eleições, caiu só em 2022). Brancos e nulos mantidos no nível do 1º turno (4,77%). Votos válidos repartidos pela média das pesquisas. A abstenção só muda o vencedor se for maior num eleitorado do que no outro: a linha 'vira se' mostra quanto."
+ },
+ "modelo_nacional": {
+  "lula_par": 49.55,
+  "flavio_par": 50.45,
+  "sigma_pp": 1.54,
+  "prob_vitoria": {
+   "lula": 0.384,
+   "flavio": 0.616
+  },
+  "tendencia_pp_por_dia": 0.113,
+  "componentes": {
+   "media_das_pesquisas_lula_pp": 49.44,
+   "ajuste_tendencia_pp": 0.11,
+   "erro_sistematico_pp": 1.54,
+   "dispersao_entre_casas_pp": 0.23
+  },
+  "tendencia": {
+   "pp_por_dia": 0.113,
+   "horizonte_dias": 2,
+   "amortecimento": 0.5,
+   "ajuste_pp": 0.11,
+   "casas": [
+    {
+     "casa": "Datafolha",
+     "de": "2026-10-08",
+     "ate": "2026-10-22",
+     "variacao_pp": 1.59,
+     "dias": 14,
+     "pp_por_dia": 0.114
+    },
+    {
+     "casa": "Ipespe",
+     "de": "2026-10-10",
+     "ate": "2026-10-17",
+     "variacao_pp": 1.62,
+     "dias": 7,
+     "pp_por_dia": 0.232
+    },
+    {
+     "casa": "Nexus (BTG)",
+     "de": "2026-10-13",
+     "ate": "2026-10-19",
+     "variacao_pp": 1.29,
+     "dias": 6,
+     "pp_por_dia": 0.215
+    },
+    {
+     "casa": "Quaest",
+     "de": "2026-10-14",
+     "ate": "2026-10-21",
+     "variacao_pp": 0.55,
+     "dias": 7,
+     "pp_por_dia": 0.078
+    },
+    {
+     "casa": "PoderData",
+     "de": "2026-10-16",
+     "ate": "2026-10-22",
+     "variacao_pp": -0.52,
+     "dias": 6,
+     "pp_por_dia": -0.086
+    }
+   ]
+  },
+  "nota": "Média das pesquisas (peso pelo erro histórico da casa e pela amostra) + metade da tendência medida dentro de cada casa desde o 1º turno, até 25/10 (teto de 1,5 ponto). Incerteza = erro da média em 2014, 2018, 2022 e no 1º turno de 2026 + dispersão entre as casas."
+ },
+ "modelo_uf": [
+  {
+   "uf": "AC",
+   "eleitorado": 613742,
+   "prior_lula_par": 29.64,
+   "prior_comparecimento": 73.83,
+   "prior_brancos_nulos": 3.94,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.102,
+   "par_1t": 30.8,
+   "validos_esperados": 435273,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "AL",
+   "eleitorado": 2442126,
+   "prior_lula_par": 57.34,
+   "prior_comparecimento": 76.52,
+   "prior_brancos_nulos": 6.17,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.993,
+   "par_1t": 57.5,
+   "validos_esperados": 1753415,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "AP",
+   "eleitorado": 576988,
+   "prior_lula_par": 49.96,
+   "prior_comparecimento": 78.16,
+   "prior_brancos_nulos": 2.46,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.176,
+   "par_1t": 50.03,
+   "validos_esperados": 439880,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "AM",
+   "eleitorado": 2798611,
+   "prior_lula_par": 50.03,
+   "prior_comparecimento": 76.21,
+   "prior_brancos_nulos": 2.85,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.829,
+   "par_1t": 51.74,
+   "validos_esperados": 2072036,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "BA",
+   "eleitorado": 11312752,
+   "prior_lula_par": 68.99,
+   "prior_comparecimento": 78.16,
+   "prior_brancos_nulos": 5.45,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.023,
+   "par_1t": 69.87,
+   "validos_esperados": 8360155,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "CE",
+   "eleitorado": 6996545,
+   "prior_lula_par": 67.77,
+   "prior_comparecimento": 82.53,
+   "prior_brancos_nulos": 4.95,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.28,
+   "par_1t": 66.93,
+   "validos_esperados": 5488423,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "DF",
+   "eleitorado": 2258320,
+   "prior_lula_par": 44.76,
+   "prior_comparecimento": 79.99,
+   "prior_brancos_nulos": 3.2,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.48,
+   "par_1t": 42.62,
+   "validos_esperados": 1748624,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "ES",
+   "eleitorado": 2991650,
+   "prior_lula_par": 41.64,
+   "prior_comparecimento": 76.35,
+   "prior_brancos_nulos": 4.3,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.051,
+   "par_1t": 40.8,
+   "validos_esperados": 2185907,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "GO",
+   "eleitorado": 5080590,
+   "prior_lula_par": 38.81,
+   "prior_comparecimento": 75.78,
+   "prior_brancos_nulos": 3.62,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.043,
+   "par_1t": 36.69,
+   "validos_esperados": 3710699,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "MA",
+   "eleitorado": 5183115,
+   "prior_lula_par": 65.89,
+   "prior_comparecimento": 76.63,
+   "prior_brancos_nulos": 3.6,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.179,
+   "par_1t": 67.44,
+   "validos_esperados": 3828835,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "MT",
+   "eleitorado": 2637801,
+   "prior_lula_par": 32.49,
+   "prior_comparecimento": 75.08,
+   "prior_brancos_nulos": 2.87,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.877,
+   "par_1t": 30.94,
+   "validos_esperados": 1923622,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "MS",
+   "eleitorado": 2024430,
+   "prior_lula_par": 37.77,
+   "prior_comparecimento": 73.58,
+   "prior_brancos_nulos": 3.31,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.9,
+   "par_1t": 37.18,
+   "validos_esperados": 1440271,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "MG",
+   "eleitorado": 16372372,
+   "prior_lula_par": 49.11,
+   "prior_comparecimento": 75.72,
+   "prior_brancos_nulos": 5.23,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.949,
+   "par_1t": 47.32,
+   "validos_esperados": 11748789,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "PA",
+   "eleitorado": 6262397,
+   "prior_lula_par": 52.11,
+   "prior_comparecimento": 77.59,
+   "prior_brancos_nulos": 4.01,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.946,
+   "par_1t": 52.87,
+   "validos_esperados": 4664148,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "PB",
+   "eleitorado": 3248531,
+   "prior_lula_par": 65.3,
+   "prior_comparecimento": 81.69,
+   "prior_brancos_nulos": 6.34,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.956,
+   "par_1t": 64.96,
+   "validos_esperados": 2485479,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "PR",
+   "eleitorado": 8613657,
+   "prior_lula_par": 35.53,
+   "prior_comparecimento": 77.91,
+   "prior_brancos_nulos": 3.75,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.963,
+   "par_1t": 34.24,
+   "validos_esperados": 6459241,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "PE",
+   "eleitorado": 7223450,
+   "prior_lula_par": 66.08,
+   "prior_comparecimento": 80.35,
+   "prior_brancos_nulos": 5.25,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.049,
+   "par_1t": 67.16,
+   "validos_esperados": 5499330,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "PI",
+   "eleitorado": 2704758,
+   "prior_lula_par": 74.48,
+   "prior_comparecimento": 80.09,
+   "prior_brancos_nulos": 4.22,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.81,
+   "par_1t": 74.66,
+   "validos_esperados": 2074825,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "RJ",
+   "eleitorado": 12857648,
+   "prior_lula_par": 44.58,
+   "prior_comparecimento": 74.88,
+   "prior_brancos_nulos": 4.97,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.112,
+   "par_1t": 42.65,
+   "validos_esperados": 9149305,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "RN",
+   "eleitorado": 2659825,
+   "prior_lula_par": 63.1,
+   "prior_comparecimento": 79.73,
+   "prior_brancos_nulos": 4.57,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.005,
+   "par_1t": 63.21,
+   "validos_esperados": 2023763,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "RS",
+   "eleitorado": 8522545,
+   "prior_lula_par": 40.07,
+   "prior_comparecimento": 77.16,
+   "prior_brancos_nulos": 4.18,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.998,
+   "par_1t": 39.1,
+   "validos_esperados": 6301119,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "RO",
+   "eleitorado": 1265893,
+   "prior_lula_par": 27.84,
+   "prior_comparecimento": 75.36,
+   "prior_brancos_nulos": 2.32,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.042,
+   "par_1t": 27.74,
+   "validos_esperados": 931845,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "RR",
+   "eleitorado": 401521,
+   "prior_lula_par": 24.98,
+   "prior_comparecimento": 78.97,
+   "prior_brancos_nulos": 2.17,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.207,
+   "par_1t": 24.34,
+   "validos_esperados": 310200,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "SC",
+   "eleitorado": 5734651,
+   "prior_lula_par": 28.54,
+   "prior_comparecimento": 79.66,
+   "prior_brancos_nulos": 3.17,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.016,
+   "par_1t": 27.31,
+   "validos_esperados": 4423410,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "SP",
+   "eleitorado": 34122892,
+   "prior_lula_par": 43.96,
+   "prior_comparecimento": 76.29,
+   "prior_brancos_nulos": 5.86,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.046,
+   "par_1t": 42.38,
+   "validos_esperados": 24506858,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "SE",
+   "eleitorado": 1740135,
+   "prior_lula_par": 67.44,
+   "prior_comparecimento": 80.89,
+   "prior_brancos_nulos": 5.2,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 1.095,
+   "par_1t": 67.2,
+   "validos_esperados": 1334400,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  },
+  {
+   "uf": "TO",
+   "eleitorado": 1182023,
+   "prior_lula_par": 46.97,
+   "prior_comparecimento": 77.13,
+   "prior_brancos_nulos": 3.6,
+   "sigma_uf_pp": 2.5,
+   "elasticidade": 0.959,
+   "par_1t": 46.26,
+   "validos_esperados": 878873,
+   "fonte": "1º turno 2026 (TSE) + padrão da UF entre os turnos 2002–2022 (TSE), calibrado na média nacional"
+  }
+ ],
+ "historico_abstencao": [
+  {
+   "ano": 2002,
+   "t1_pct": 17.74,
+   "t2_pct": 20.47,
+   "brancos_nulos_t2_pct": 6.0
+  },
+  {
+   "ano": 2006,
+   "t1_pct": 16.75,
+   "t2_pct": 18.99,
+   "brancos_nulos_t2_pct": 6.04
+  },
+  {
+   "ano": 2010,
+   "t1_pct": 18.12,
+   "t2_pct": 21.5,
+   "brancos_nulos_t2_pct": 6.7
+  },
+  {
+   "ano": 2014,
+   "t1_pct": 19.39,
+   "t2_pct": 21.1,
+   "brancos_nulos_t2_pct": 6.34
+  },
+  {
+   "ano": 2018,
+   "t1_pct": 20.33,
+   "t2_pct": 21.3,
+   "brancos_nulos_t2_pct": 9.57
+  },
+  {
+   "ano": 2022,
+   "t1_pct": 20.95,
+   "t2_pct": 20.58,
+   "brancos_nulos_t2_pct": 4.59
+  },
+  {
+   "ano": 2026,
+   "t1_pct": 21.08,
+   "t2_pct": null,
+   "brancos_nulos_t2_pct": null
+  }
+ ],
+ "glossario": [
+  {
+   "termo": "Votos válidos",
+   "texto": "Só os votos dados aos candidatos. Brancos, nulos e abstenções ficam de fora. É a conta que o TSE usa para declarar o vencedor."
+  },
+  {
+   "termo": "Votos totais",
+   "texto": "Todos os entrevistados, incluindo quem vota branco, nulo ou ainda não decidiu."
+  },
+  {
+   "termo": "Abstenção",
+   "texto": "Eleitores aptos que não foram votar. No 1º turno de 2026 foram 21,08% do eleitorado."
+  },
+  {
+   "termo": "Empate técnico",
+   "texto": "Quando a diferença entre os dois é menor que a soma das incertezas: a pesquisa não consegue dizer quem está na frente."
+  },
+  {
+   "termo": "Margem de erro",
+   "texto": "Quanto o resultado de uma pesquisa pode variar só pelo sorteio da amostra (em geral ±2 pontos)."
+  },
+  {
+   "termo": "Faixa de 80%",
+   "texto": "Intervalo onde o resultado cai 8 em cada 10 vezes, dado o erro histórico das pesquisas."
+  },
+  {
+   "termo": "TSE",
+   "texto": "Tribunal Superior Eleitoral: organiza a eleição, registra as pesquisas e divulga o resultado oficial."
+  },
+  {
+   "termo": "Registro (BR-XXXXX/2026)",
+   "texto": "Número que toda pesquisa eleitoral divulgada precisa ter no TSE."
+  },
+  {
+   "termo": "Mercado de previsão",
+   "texto": "Plataforma estrangeira em que se negociam contratos que pagam US$ 1 se um evento acontecer; o preço vira uma probabilidade implícita."
+  },
+  {
+   "termo": "p.p. (pontos percentuais)",
+   "texto": "Diferença entre dois percentuais: de 45% para 47% são 2 p.p."
+  }
+ ],
+ "avisos": [
+  "Pesquisas retratam o momento em que foram feitas; não são previsão do resultado.",
+  "Mercados de previsão são estrangeiros e não regulados no Brasil; o preço é informativo e não é convite a apostar.",
+  "Nada aqui é recomendação de investimento ou de voto."
+ ],
+ "lacunas": [
+  "AtlasIntel BR-00999/2026 (03/10) fora do ranking: os percentuais só existem em PDF bloqueado pelo robots.txt da casa.",
+  "Datafolha BR-00466/2026 (divulgação prevista 15/10): bloqueada por gate.",
+  "AtlasIntel BR-02418/2026 (divulgação prevista 19/10): não descoberta.",
+  "AtlasIntel BR-03663/2026 (divulgação prevista 09/10): não descoberta.",
+  "PoderData BR-01209/2026 (divulgação prevista 13/10): bloqueada por gate.",
+  "PoderData BR-08134/2026 (divulgação prevista 08/10): bloqueada por gate.",
+  "Ipespe BR-04350/2026 (divulgação prevista 23/10): não descoberta.",
+  "Real Time Big Data BR-09670/2026 (divulgação prevista 23/10): não descoberta.",
+  "Real Time Big Data BR-02952/2026 (divulgação prevista 20/10): bloqueada por gate."
+ ],
+ "fontes": {
+  "tse": "https://resultados.tse.jus.br/oficial/ele2026/6257/dados/br/br-c0001-e006257-u.json",
+  "tse_historico": "https://dadosabertos.tse.jus.br/",
+  "pesquisas": "Funil do Radar Eleitoral: release da casa ou veículo do contratante, casado com o registro do TSE (PesqEle)."
+ }
+}

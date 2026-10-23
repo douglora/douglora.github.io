@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    <meta name="description" content="2º turno para presidente, 25/10/2026: apuração ao vivo com projeção, resultado do 1º turno, média das pesquisas, projeção com abstenção e mercados de previsão." />
+    <meta property="og:title" content="Radar Eleitoral · 2º turno" />
+    <meta property="og:description" content="Lula × Flávio Bolsonaro: 1º turno oficial, média das pesquisas, projeção com abstenção e mercados de previsão." />
+    <meta name="twitter:card" content="summary" />
+    <title>2º turno · Radar Eleitoral</title>
+    <link rel="stylesheet" href="/2turno/style.css" />
+    <script type="module" src="/2turno/app.js"></script>
+  </head>
+  <body>
+    <header class="topo">
+      <div class="col topo-in">
+        <p class="marca">Radar Eleitoral · 2º turno · Presidente</p>
+        <button type="button" class="tv-botao" data-acao="tv" aria-label="Modo TV: tela cheia com letras grandes">Modo TV</button>
+      </div>
+      <div class="col"><p class="contagem-mini" id="contagem-mini"></p></div>
+    </header>
+
+    <nav class="abas" aria-label="Seções da página">
+      <div class="col abas-in">
+        <a href="#resumo" data-aba="resumo" aria-current="page">Resumo</a>
+        <a href="#apuracao" data-aba="apuracao">Apuração</a>
+        <a href="#pesquisas" data-aba="pesquisas">Pesquisas</a>
+        <a href="#mercados" data-aba="mercados">Mercados</a>
+        <a href="#metodo" data-aba="metodo">Método</a>
+      </div>
+    </nav>
+
+    <main class="col" id="conteudo">
+      <div id="faixa-topo" class="faixa-topo" aria-live="polite"></div>
+      <section class="painel" id="painel-resumo" data-painel="resumo" aria-label="Resumo">
+        <p class="estado">Carregando os dados…</p>
+      </section>
+      <section class="painel" id="painel-apuracao" data-painel="apuracao" aria-label="Apuração ao vivo" hidden>
+        <p class="estado">Carregando a apuração…</p>
+      </section>
+      <section class="painel" id="painel-pesquisas" data-painel="pesquisas" aria-label="Pesquisas" hidden></section>
+      <section class="painel" id="painel-mercados" data-painel="mercados" aria-label="Mercados" hidden></section>
+      <section class="painel" id="painel-metodo" data-painel="metodo" aria-label="Método" hidden></section>
+      <noscript><p class="lacuna-bloco">Esta página precisa de JavaScript ligado para mostrar os números.</p></noscript>
+    </main>
+
+    <footer class="rodape">
+      <div class="col">
+        <p class="compliance">Pesquisas retratam o momento e não são previsão. Nada aqui é recomendação.</p>
+        <p class="rodape-meta" id="rodape-meta">Radar Eleitoral · versão de bolso do 2º turno</p>
+      </div>
+    </footer>
+
+    <dialog class="folha" id="folha" aria-labelledby="folha-tit">
+      <div class="folha-in">
+        <p class="folha-tit" id="folha-tit"></p>
+        <p class="folha-txt" id="folha-txt"></p>
+        <button type="button" class="folha-fechar" data-acao="fechar-folha">Entendi</button>
+      </div>
+    </dialog>
+
+    <div class="aviso-toque" id="aviso-toque" role="status" hidden></div>
+  </body>
+</html>
