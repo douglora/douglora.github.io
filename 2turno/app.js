@@ -572,7 +572,7 @@ function atualizarContagem() {
   if (agora < ab) {
     const p = partes(fe - agora);
     if (p.d >= 1) {
-      grande = p.d === 1 ? 'Falta 1 dia' : `Faltam ${p.d} dias`;
+      grande = p.d === 1 ? 'Falta 1\u00a0dia' : `Faltam ${p.d}\u00a0dias`;
       linha = relogio(p, false, 'e');
       legenda = `até as urnas fecharem, às ${fecha} de Brasília`;
       mini = `faltam ${p.d} ${p.d === 1 ? 'dia' : 'dias'} e ${p.h} h para o fechamento das urnas (${fecha} de Brasília)`;
@@ -868,11 +868,10 @@ function htmlResumo(d) {
       <div class="heroi-col heroi-esq">
         ${blocoContagem()}
         <div class="heroi-item ord-2" data-bloco="pesquisas">${blocoPesquisas(d)}</div>
-        <div class="heroi-item ord-3">${blocoManchete(d)}</div>
       </div>
       <div class="heroi-col heroi-dir">
         <div class="heroi-item ord-4" data-tri-bloco>${blocoTriangulacao()}</div>
-        <div class="heroi-item ord-5">${blocoPrimeiroTurno(d)}</div>
+        <div class="heroi-item ord-3">${blocoManchete(d)}</div>
       </div>
     </div>
     ${blocoProjecao(d)}
@@ -893,17 +892,43 @@ const BANDEIRA_MINI = cru(`<svg class="bandeira-mini" viewBox="0 0 20 14" aria-h
   <rect width="20" height="14" fill="#009C3B"/><path d="M10 1.7 18.3 7 10 12.3 1.7 7Z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.5" fill="#002776"/>
 </svg>`);
 
+// 1º turno dentro do cartão verde: quem terminou na frente primeiro, foto pequena,
+// nome curto e % dos válidos; um toque leva ao detalhe na aba Pesquisas.
+function bloco1TCartao() {
+  const t = obj(st.dados?.primeiro_turno);
+  const lista = arr(t?.candidatos).filter(obj);
+  const res = { lula: acharNo1T(lista, 'lula'), flavio: acharNo1T(lista, 'flavio') };
+  const pL = num(res.lula?.validos_pct);
+  const pF = num(res.flavio?.validos_pct);
+  if (pL === null || pF === null) {
+    return h`<a class="cont-1t" href="#pesquisas" data-ir="1turno"><span class="c1-tit">1º turno · TSE</span><span class="c1-dif">resultado: sem dado ainda</span></a>`;
+  }
+  const ordem = pF > pL ? ['flavio', 'lula'] : ['lula', 'flavio'];
+  const dpp = Math.abs(pF - pL);
+  const dv = num(t.diferenca_votos) ?? (num(res.lula?.votos) !== null && num(res.flavio?.votos) !== null ? Math.abs(res.lula.votos - res.flavio.votos) : null);
+  const pct = (id) => (id === 'lula' ? pL : pF);
+  const rotulo = `1º turno, resultado do TSE: ${ordem.map((id) => `${curto(id)} ${fPct(pct(id), 2)}`).join(', ')}. Ver detalhes do 1º turno`;
+  return h`<a class="cont-1t" href="#pesquisas" data-ir="1turno" aria-label="${rotulo}">
+    <span class="c1-tit">1º turno · TSE</span>
+    ${ordem.map((id) => h`<span class="c1-l">${avatar(id, 30)}<span class="c1-nome">${curto(id)}</span><b>${fPct(pct(id), 2)}</b></span>`)}
+    <span class="c1-dif">+${fNum(dpp, 2)} ${dpp < 2 ? 'ponto' : 'pontos'}${dv !== null ? ` · ${fGrande(dv)} de votos` : ''}</span>
+    <span class="c1-ver">ver detalhes do 1º turno →</span>
+  </a>`;
+}
+
 function blocoContagem() {
   const e = obj(st.dados?.eleicao) || {};
   const ab = msDe(e.abertura) ?? msDe(CFG.abertura);
   const fe = msDe(e.fechamento) ?? msDe(CFG.fechamento);
   return h`<section class="heroi-item ord-1 cont" id="sec-contagem" aria-label="Contagem até o fechamento das urnas">
     <div class="cont-cartao">
-      ${BANDEIRA}
-      <p class="cont-quando">2º turno · ${fSemana(fe) || 'domingo'}, ${fData(fe) || '25/10'}</p>
-      <p class="cont-grande" id="cont-grande">&nbsp;</p>
-      <p class="cont-relogio" id="cont-relogio" aria-live="off"></p>
-      <p class="cont-legenda" id="cont-legenda"></p>
+      <div class="cont-principal">
+        <p class="cont-quando">2º turno · ${fSemana(fe) || 'domingo'}, ${fData(fe) || '25/10'}</p>
+        <p class="cont-grande" id="cont-grande">&nbsp;</p>
+        <p class="cont-relogio" id="cont-relogio" aria-live="off"></p>
+        <p class="cont-legenda" id="cont-legenda"></p>
+      </div>
+      <div class="cont-lado">${BANDEIRA}${bloco1TCartao()}</div>
       <div id="cont-acao"></div>
       <p class="cont-nota">Urnas abrem às ${fHoraCurta(ab)} e fecham às ${fHoraCurta(fe)} (horário de Brasília). A apuração começa em seguida, ao vivo, na aba <a href="#apuracao">Apuração</a>.</p>
     </div>
@@ -978,7 +1003,7 @@ function htmlMediaSel(d) {
     ${txt(m.nota) ? h`<p class="nota">${m.nota}</p>` : ''}
     <div class="mq" role="group" aria-label="As médias lado a lado; toque para ver como cada uma é feita">${mini}</div>
     ${st.explicaAberta ? painelExplica(k, m) : ''}
-    <p class="fonte">Fonte: pesquisas registradas no TSE (Tribunal Superior Eleitoral); médias calculadas pelo Radar${fDataHora(d.gerado_em) ? ` · gerado em ${fDataHora(d.gerado_em)}` : ''}</p>`;
+    <p class="fonte">Fonte: pesquisas registradas no TSE (Tribunal Superior Eleitoral); médias calculadas pelo Radar${fDataHora(d.gerado_em) ? ` · gerado em ${fDataHora(d.gerado_em)}` : ''}${creditosFotos() ? ` · Fotos: ${creditosFotos()}` : ''}</p>`;
 }
 
 function painelExplica(k, m) {
@@ -1105,9 +1130,15 @@ function acharNo1T(lista, id) {
   );
 }
 
+const creditosFotos = () =>
+  ['lula', 'flavio']
+    .map((id) => txt(cand(id).foto_credito))
+    .filter(Boolean)
+    .join('; ');
+
 function blocoPrimeiroTurno(d) {
   const t = obj(d.primeiro_turno);
-  const tit = h`<div class="op-cab"><h2 class="titulo-heroi">Como terminou o 1º turno</h2><p class="op-unid">${fData(t?.data) ? `${fData(t.data)} · ` : ''}votos válidos</p></div>`;
+  const tit = h`<div class="op-cab"><h2 class="sobre pt-tit">Como terminou o 1º turno</h2><p class="op-unid">${fData(t?.data) ? `${fData(t.data)} · ` : ''}votos válidos · resultado oficial</p></div>`;
   if (!t) return h`<section class="bloco heroi-bloco" id="sec-1turno">${tit}${lacunaBloco('Resultado oficial do 1º turno: sem dado ainda.')}</section>`;
   const lista = arr(t.candidatos).filter(obj);
   const res = { lula: acharNo1T(lista, 'lula'), flavio: acharNo1T(lista, 'flavio') };
@@ -1555,6 +1586,7 @@ function htmlPesquisas(d) {
       ${listaCasas(d)}
       <p class="fonte">Fonte: divulgação de cada casa e registro no TSE${gerado ? ` · gerado em ${gerado}` : ''}</p>
     </section>
+    ${blocoPrimeiroTurno(d)}
     <section class="bloco" id="sec-ranking">
       <h2 class="sobre">Quem mais acertou o 1º turno</h2>
       ${ranking(d)}
@@ -2385,6 +2417,11 @@ function esconderDica(el) {
 
 /* ------------------------------------------------------------ abas */
 
+function abaDoHashTexto(hash) {
+  const a = norm(String(hash || '').replace(/^#/, ''));
+  return ABAS.includes(a) ? a : null;
+}
+
 function abaDoHash() {
   let s = location.hash.replace(/^#/, '');
   try {
@@ -2545,9 +2582,10 @@ function ligarEventos() {
     const ir = alvo.closest('a[data-ir]');
     if (ir) {
       st.irPara = `sec-${ir.dataset.ir}`;
-      if (st.aba === 'metodo' && ir.getAttribute('href') === '#metodo') {
+      const destino = abaDoHashTexto(ir.getAttribute('href'));
+      if (destino && destino === st.aba) {
         e.preventDefault();
-        mostrarAba('metodo', false);
+        mostrarAba(destino, false);
       }
       return;
     }
