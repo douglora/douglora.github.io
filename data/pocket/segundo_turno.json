@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-23T10:53:18-03:00",
+ "gerado_em": "2026-10-23T10:56:03-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,7% dos votos válidos na média de 7 casas, contra 49,3% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -1171,6 +1171,30 @@
    "peso": 0.108
   },
   {
+   "casa_id": "datafolha",
+   "casa": "Datafolha",
+   "data": "2026-10-15",
+   "campo": "13 a 14/10",
+   "amostra": 2520,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-00466/2026",
+   "totais": {
+    "lula": 45.0,
+    "flavio": 47.0,
+    "branco_nulo": 6.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 51.1,
+    "lula": 48.9
+   },
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/15/datafolha-presidente-segundo-turno-15-outubro.ghtml",
+   "pos_1o_turno": true,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "a casa tem pesquisa mais recente"
+  },
+  {
    "casa_id": "quaest",
    "casa": "Quaest",
    "data": "2026-10-14",
@@ -1912,44 +1936,44 @@
   },
   {
    "data": "2026-10-15",
-   "lula": 48.4,
-   "flavio": 51.6,
+   "lula": 48.6,
+   "flavio": 51.4,
    "casas": 5
   },
   {
    "data": "2026-10-16",
-   "lula": 48.7,
-   "flavio": 51.3,
+   "lula": 48.9,
+   "flavio": 51.1,
    "casas": 6
   },
   {
    "data": "2026-10-17",
-   "lula": 48.9,
-   "flavio": 51.1,
+   "lula": 49.1,
+   "flavio": 50.9,
    "casas": 6
   },
   {
    "data": "2026-10-18",
-   "lula": 48.9,
-   "flavio": 51.1,
+   "lula": 49.1,
+   "flavio": 50.9,
    "casas": 6
   },
   {
    "data": "2026-10-19",
-   "lula": 48.8,
-   "flavio": 51.2,
+   "lula": 49.0,
+   "flavio": 51.0,
    "casas": 6
   },
   {
    "data": "2026-10-20",
-   "lula": 48.7,
-   "flavio": 51.3,
+   "lula": 48.9,
+   "flavio": 51.1,
    "casas": 7
   },
   {
    "data": "2026-10-21",
-   "lula": 48.8,
-   "flavio": 51.2,
+   "lula": 49.0,
+   "flavio": 51.0,
    "casas": 7
   },
   {
@@ -2555,7 +2579,6 @@
   "PoderData (25/10): registrada no TSE; entra sozinha quando a casa publicar.",
   "Nexus (BTG) (24/10): registrada no TSE; entra sozinha quando a casa publicar.",
   "MDA (CNT) (24/10): registrada no TSE; entra sozinha quando a casa publicar.",
-  "Datafolha (15/10, BR-00466/2026): em conferência pelo robô (um dos testes automáticos ainda não fechou).",
   "Ipespe (23/10, BR-04350/2026): em conferência.",
   "Real Time Big Data (23/10, BR-09670/2026): material achado, leitura dos números em andamento."
  ],

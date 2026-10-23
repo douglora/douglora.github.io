@@ -13,10 +13,13 @@
 
 const CFG = {
   url: 'https://raw.githubusercontent.com/douglora/douglora.github.io/mercados/simulador.json',
-  demo: '/2turno/simulador_demo.json',
+  // ?v= muda quando a demonstração for refeita (o navegador guarda a anterior).
+  demo: '/2turno/simulador_demo.json?v=2',
   cadaMs: 30000,
   velhoMs: 3 * 60 * 1000,
   fechamento: '2026-10-25T17:00:00-03:00',
+  // Antes disto a página não pede nada ao ramo (o processador só começa às 16h50 de 25/10).
+  inicio: '2026-10-25T16:50:00-03:00',
   simMs: 120000,
   simPassoMs: 1000,
   rotacaoMs: 8000,
@@ -44,7 +47,7 @@ const EXPLICA = {
   simulador:
     'Projeção do resultado final feita município a município, antes de 100% apurado. Parte do 1º turno de 2026 de cada cidade (quem votou em Lula, em Flávio, nos outros, branco/nulo e quem não foi votar), mede na apuração para onde cada grupo foi no 2º turno e projeta o que falta. Roda num computador à parte e atualiza a cada minuto. Resultado oficial é só o do TSE.',
   faixa:
-    'Faixa de 80%: em 8 de cada 10 noites parecidas, o resultado final cai dentro dela. A largura foi calibrada repetindo as apurações reais de 2018, 2022 e do 1º turno de 2026, na ordem em que os boletins chegaram ao TSE.',
+    'Faixa de 80%: em 8 de cada 10 noites parecidas, o resultado final cai dentro dela. A largura foi calibrada repetindo as apurações reais de 2018, 2022 e do 1º turno de 2026, na ordem em que os boletins chegaram ao TSE, e usa a noite mais difícil das três. No começo, a chance tem teto: no máximo 90% com menos de 5% do eleitorado no modelo e 97% com menos de 15%, a não ser que a conta já esteja fechada.',
   transferencia:
     'Fração de cada grupo de eleitores do 1º turno de 2026 que foi para Lula, para Flávio, para branco/nulo ou não votou no 2º turno. É medida comparando, cidade a cidade, o 2º turno já apurado com a composição do 1º turno (regressão ecológica com encolhimento: com pouco dado, fica perto do padrão de 2022).',
   virada:
@@ -72,6 +75,7 @@ const S = {
   mostrarLeais: false,
   esqueleto: null,
   apurSim: false,
+  ultimoBom: 0,
 };
 
 const arr = (v) => (Array.isArray(v) ? v : []);
@@ -213,21 +217,27 @@ async function lerArquivo() {
   } catch (e) {
     erro = String(e?.message || e).slice(0, 80);
   }
-  // O raw do GitHub guarda cada endereço por ~5 min (e ignora parâmetros). O processador grava também um
-  // arquivo por minuto; os dos últimos minutos são endereços novos, sem cópia velha no meio do caminho.
-  // Só pede minuto que já passou (o arquivo dele já existe): assim nenhum "não encontrado" fica guardado.
-  if (base === CFG.url) {
+  if (d && fin(d.gerado_ms) && !d.teste && d.gerado_ms > (S.ultimoBom ?? 0)) S.ultimoBom = d.gerado_ms;
+  // O raw do GitHub guarda cada endereço por ~5 min (e ignora parâmetros). Na noite, o processador grava também
+  // um arquivo por minuto (sim/AAAAMMDD-HHMM.json): endereços novos, sem cópia velha no caminho. Regras para não
+  // gerar "não encontrado": só depois das 16h50 de 25/10, só com o simulador.json real (não de teste) já lido, só
+  // minutos depois do último arquivo bom e que já passaram há 90 s, e no máximo dois pedidos por leitura.
+  const real = d && !d.teste;
+  if (base === CFG.url && real && Date.now() >= C.msDe(CFG.inicio)) {
     const dir = base.replace(/simulador\.json$/, '');
-    const agora = Date.now();
-    for (let k = 1; k <= 6; k++) {
-      const t = agora - k * 60000;
-      if (d && fin(d.gerado_ms) && t < d.gerado_ms - 60000) break;
-      const nome = balde(t);
+    const ultimoMin = Math.floor((S.ultimoBom ?? 0) / 60000);
+    const agoraMin = Math.floor((Date.now() - 90000) / 60000);
+    let pedidos = 0;
+    for (let m = agoraMin; m > ultimoMin && pedidos < 2; m--) {
+      const nome = balde(m * 60000);
       if (faltam.has(nome)) continue;
+      pedidos += 1;
       try {
         const x = await pegar(dir + nome);
-        if (!d || (fin(x.gerado_ms) && x.gerado_ms > (d.gerado_ms ?? 0))) d = x;
-        erro = null;
+        if (!x.teste && fin(x.gerado_ms) && x.gerado_ms > (d.gerado_ms ?? 0)) {
+          d = x;
+          S.ultimoBom = Math.max(S.ultimoBom ?? 0, x.gerado_ms);
+        }
         break;
       } catch {
         faltam.add(nome);
@@ -245,7 +255,7 @@ async function lerArquivo() {
 async function lerDemo() {
   if (S.demo) return S.demo;
   try {
-    const r = await fetch(CFG.demo, { cache: 'force-cache' });
+    const r = await fetch(CFG.demo);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const d = await r.json();
     if (!Array.isArray(d?.quadros) || !d.quadros.length) throw new Error('sem quadros');
@@ -822,8 +832,16 @@ function modoInicial() {
 
 async function ciclo() {
   if (S.modo === 'sim') return;
-  const d = await lerArquivo();
   const fe = C.msDe(C.dados()?.eleicao?.fechamento) ?? C.msDe(CFG.fechamento);
+  // Fora da noite não há o que ler: nada de pedido ao ramo (salvo o teste pedido na URL).
+  if (!aceitaTeste() && Date.now() < C.msDe(CFG.inicio)) {
+    if (S.esqueleto !== 'pre') {
+      S.modo = 'pre';
+      montar();
+    }
+    return;
+  }
+  const d = await lerArquivo();
   if (d) {
     S.doc = d;
     S.docEm = Date.now();
