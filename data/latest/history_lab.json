@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-10-22",
+  "as_of": "2026-10-23",
   "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
-  "config_hash": "245c45fb16988769ba0dddca349eb8c9c497d6e4f722431b910c608e0a774b69",
+  "config_hash": "8c3bf707de000abcd69cdecaae0db27bb3219ad24b33dee056cc1c0cbfbfd41a",
   "coverage": {
     "cells": [
       {
@@ -391,7 +391,7 @@
       }
     },
     "generated_from": "inputs/ (evidência preservada); nenhuma métrica usa fixture",
-    "house_registry_version": "2026-09-24-v2",
+    "house_registry_version": "2026-10-23-v1",
     "houses": [
       {
         "cells": [
@@ -1608,9 +1608,9 @@
     "version": "1.2.0-history-error-lab-hypothetical-runoff"
   },
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
-  "house_registry_version": "2026-09-24-v2",
-  "live_hash": "2fe5eccf473de42046463c74030ffd91624b2de0cecb92f9845d8c688a2c1b2e",
-  "live_source_run_id": "run-20261022-db461039-6ead4d5d",
+  "house_registry_version": "2026-10-23-v1",
+  "live_hash": "bcd17d71c209700f34aa4b87635dca293faf4d4eb8bf7615deeb6ab40024b3e7",
+  "live_source_run_id": "run-20261023-aa4148fe-eccb85ae",
   "metric_definitions": [
     {
       "formula": "percentual publicado − percentual oficial de votos válidos",
@@ -19904,7 +19904,7 @@
     "usage": "reliability_ratio > 1 significa erro histórico acima da média e vira peso menor e faixa mais larga. O centro por candidatura não é deslocado por este objeto.",
     "window": "d14"
   },
-  "run_id": "hist-20261022-8d90558c-245c45fb-2fe5eccf-08a374",
+  "run_id": "hist-20261023-8d90558c-8c3bf707-bcd17d71-08a374",
   "summaries": {
     "campaign": {
       "cells": [
