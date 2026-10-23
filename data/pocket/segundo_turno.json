@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-23T17:37:35-03:00",
+ "gerado_em": "2026-10-23T17:58:32-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 7 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -742,7 +742,7 @@
     "lula": 47.9,
     "flavio": 52.1
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-14-outubro-medo.ghtml"
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-presidente-21-outubro.ghtml"
   },
   {
    "casa": "Real Time Big Data",
@@ -1081,7 +1081,7 @@
     "flavio": 50.6,
     "lula": 49.4
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-14-outubro-medo.ghtml",
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-presidente-21-outubro.ghtml",
    "pos_1o_turno": true,
    "na_media": true,
    "peso": 0.146
@@ -1509,7 +1509,7 @@
     "flavio": 50.6,
     "lula": 49.4
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
    "pos_1o_turno": false,
    "na_media": false,
    "peso": null,
@@ -1822,6 +1822,30 @@
     "flavio": 49.5
    },
    "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/08/BTG-Nexus-Eleicoes-2026-Rodada-12-31.ago_.2026.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "data": "2026-08-27",
+   "campo": "23 a 26/08",
+   "amostra": 2400,
+   "margem_erro_pp": 2.0,
+   "registro": "BR-04974/2026",
+   "totais": {
+    "lula": 45.0,
+    "flavio": 44.0,
+    "branco_nulo": 9.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 49.4,
+    "lula": 50.6
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/08/Relatorio-PoderData-Eleitoral-26ago26-1.pdf",
    "pos_1o_turno": false,
    "na_media": false,
    "peso": null,
