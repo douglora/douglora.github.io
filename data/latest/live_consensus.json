@@ -392,7 +392,7 @@
     "houses": 7,
     "min_houses": 2,
     "min_polls": 3,
-    "polls": 17,
+    "polls": 19,
     "window_days": 21
   },
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
@@ -431,8 +431,8 @@
     "point_pp": 4.38356164383562,
     "runner_up_id": "2026-tse-280002551544"
   },
-  "live_hash": "dd11943edfe2a2b1d92b5b423d7b7b424de0c18b30bef6cd459e249cfa4b69ad",
-  "live_source_run_id": "run-20261023-7942a6e6-809867b2",
+  "live_hash": "a18d4b79dcf51903378fb22ad7759c21362112f5df674b2532552723ff778dd6",
+  "live_source_run_id": "run-20261023-ecdae2dd-41bf13e6",
   "model": "M2",
   "polls_used": [
     {
@@ -503,7 +503,7 @@
       "2026-tse-280002553884",
       "2026-tse-280002554479"
     ],
-    "canonical_registration_no": "BR-09709/2026",
+    "canonical_registration_no": "BR-04350/2026",
     "canonical_scenario_id": "president-br-t2-dbec719fff",
     "order_or_label_changes_ignored": true,
     "partial_roster_polls": [
@@ -634,6 +634,25 @@
         "scenario_id": "president-br-t1-951265c95b",
         "tested_count": 13,
         "untested_candidate_ids": [
+          "2026-tse-280002554479"
+        ]
+      },
+      {
+        "registration_no": "BR-00466/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "tested_count": 2,
+        "untested_candidate_ids": [
+          "2026-tse-280002538811",
+          "2026-tse-280002539826",
+          "2026-tse-280002540694",
+          "2026-tse-280002541457",
+          "2026-tse-280002548139",
+          "2026-tse-280002551547",
+          "2026-tse-280002551932",
+          "2026-tse-280002551975",
+          "2026-tse-280002552484",
+          "2026-tse-280002552487",
+          "2026-tse-280002553884",
           "2026-tse-280002554479"
         ]
       },
@@ -1427,6 +1446,25 @@
       },
       {
         "registration_no": "BR-04258/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "tested_count": 2,
+        "untested_candidate_ids": [
+          "2026-tse-280002538811",
+          "2026-tse-280002539826",
+          "2026-tse-280002540694",
+          "2026-tse-280002541457",
+          "2026-tse-280002548139",
+          "2026-tse-280002551547",
+          "2026-tse-280002551932",
+          "2026-tse-280002551975",
+          "2026-tse-280002552484",
+          "2026-tse-280002552487",
+          "2026-tse-280002553884",
+          "2026-tse-280002554479"
+        ]
+      },
+      {
+        "registration_no": "BR-04350/2026",
         "scenario_id": "president-br-t2-dbec719fff",
         "tested_count": 2,
         "untested_candidate_ids": [
@@ -2470,7 +2508,7 @@
     "selection_rule": "union_of_tested_candidates_metadata_from_latest",
     "untested_is_missing_not_zero": true
   },
-  "run_id": "hist-20261023-8d90558c-8c3bf707-dd11943e-08a374",
+  "run_id": "hist-20261023-8d90558c-8c3bf707-a18d4b79-08a374",
   "status": "published",
   "version": "1.1.0-additive-or-multiplicative-band"
 }
