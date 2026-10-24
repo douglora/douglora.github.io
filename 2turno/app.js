@@ -35,9 +35,9 @@ const ABAS = ['resumo', 'apuracao', 'pesquisas', 'mercados', 'metodo'];
 const NOME_ABA = { resumo: 'Resumo', apuracao: 'Apuração', pesquisas: 'Pesquisas', mercados: 'Mercados', metodo: 'Método' };
 const URL_APURACAO = '/2turno/apuracao.js';
 const URL_SIMULADOR = '/2turno/simulador.js';
-const COR_T1 = '#8f8e87';
-const COR_T2 = '#262522';
-const COR_OUTROS = '#a3a29b';
+const COR_T1 = '#7d8492';
+const COR_T2 = '#e3e6ec';
+const COR_OUTROS = '#6b7280';
 
 const PADRAO_CAND = {
   lula: {
@@ -46,7 +46,7 @@ const PADRAO_CAND = {
     nome_completo: 'Luiz Inácio Lula da Silva',
     partido: 'PT',
     numero: 13,
-    cor: '#C8102E',
+    cor: '#EF4A5E',
     foto: '/candidates/2026/2026-tse-280002542548.webp',
     foto_credito: 'Ricardo Stuckert/Palácio do Planalto (CC BY 2.0)',
   },
@@ -56,7 +56,7 @@ const PADRAO_CAND = {
     nome_completo: 'Flávio Nantes Bolsonaro',
     partido: 'PL',
     numero: 22,
-    cor: '#1F4E9C',
+    cor: '#5B8CF0',
     foto: '/candidates/2026/2026-tse-280002551544.webp',
     foto_credito: 'TSE (CC BY 4.0)',
   },
@@ -151,7 +151,7 @@ const st = {
   aba: 'resumo',
   irPara: null,
   apur: null,
-  mediaSel: 'ponderada',
+  mediaSel: 'radar',
   explicaAberta: false,
   animarExplica: false,
   subaba: 'media',
@@ -415,7 +415,9 @@ function cand(id) {
   const dd = arr(st.dados?.candidatos).find((c) => obj(c) && c.id === id) || {};
   const out = { ...base };
   for (const [k, v] of Object.entries(dd)) if (v !== null && v !== undefined && v !== '') out[k] = v;
-  out.cor = /^#[0-9a-fA-F]{3,8}$/.test(String(dd.cor || '')) ? dd.cor : base.cor;
+  // Modo escuro: as cores do JSON (vermelho e azul escuros, pensados para fundo branco) somem no
+  // fundo escuro; Lula e Flávio usam a versão clara da mesma cor, que lê bem sobre o fundo.
+  out.cor = PADRAO_CAND[id] ? base.cor : /^#[0-9a-fA-F]{3,8}$/.test(String(dd.cor || '')) ? dd.cor : base.cor;
   out.nome = txt(out.nome) || base.nome;
   return out;
 }
@@ -489,8 +491,9 @@ const info = (termo) =>
 
 /* ------------------------------------------------ médias (dois formatos) */
 
-const MEDIAS_PADRAO = ['ponderada', 'simples', 'ajustada_1t', 'acerto_1t'];
+const MEDIAS_PADRAO = ['radar', 'ponderada', 'simples', 'ajustada_1t', 'acerto_1t'];
 const ROTULO_CURTO = {
+  radar: 'Média Radar',
   ponderada: 'Ponderada',
   simples: 'Simples',
   ajustada_1t: 'Ajustada pelo 1º turno',
@@ -519,6 +522,20 @@ function explicacaoSimples(k, m) {
   const proprio = txt(m?.explicacao);
   if (proprio) return [proprio];
   const F = curto('flavio');
+  if (k === 'radar') {
+    const c = obj(m?.componentes) || {};
+    const ps = arr(m?.pesquisas).filter(obj);
+    const top = ps.slice(0, 4).map((q) => `${q.casa} ${fNum((num(q.peso) ?? 0) * 100, 0)}%`);
+    const sen = obj(m?.sensibilidade);
+    return [
+      `É a média do próprio Radar. Junta as ${ps.length || num(m?.n_casas) || ''} casas com pesquisa recente de 2º turno, inclusive as que acertaram o 1º turno e não estão no resto do painel.`,
+      `Pesa mais quem errou menos no 1º turno, a pesquisa mais nova e a que ouviu mais gente. Quem mais pesa hoje: ${top.join(', ')}.`,
+      `No 1º turno as casas mostraram ${F} em média ${fNum(Math.abs(num(c.erro_medio_1t_casas_pp) ?? 0), 1)} ${Math.abs(num(c.erro_medio_1t_casas_pp) ?? 0) < 2 ? 'ponto' : 'pontos'} abaixo da urna. Corrigimos ${fNum((num(c.alfa) ?? 0.3) * 100, 0)}% desse erro: nos 2º turnos de 2014, 2018 e 2022 a média das pesquisas errou bem menos que no 1º turno, então o erro não costuma se repetir inteiro.`,
+      `Soma a tendência das últimas semanas e o efeito da abstenção: em todas as 6 eleições desde 2002 a falta subiu um pouco mais no 2º turno nos estados mais petistas (efeito de ${fNum(Math.abs(num(c.abstencao_diferencial_pp) ?? 0), 2)} ponto).`,
+      sen ? `Sem corrigir nada, daria ${curto('lula')} ${fNum(sen.sem_corrigir?.lula)} × ${F} ${fNum(sen.sem_corrigir?.flavio)}; corrigindo o erro inteiro, ${curto('lula')} ${fNum(sen.corrigindo_tudo?.lula)} × ${F} ${fNum(sen.corrigindo_tudo?.flavio)}.` : '',
+      'Atualiza sozinha a cada pesquisa nova. A projeção com abstenção e a prévia da apuração partem dela.',
+    ].filter(Boolean);
+  }
   if (k === 'ponderada') {
     return [
       'Pegamos a pesquisa mais recente de cada instituto.',
@@ -1309,8 +1326,8 @@ function barraDupla(vL, vF, fxL) {
 // A projeção contada para leigo: de cada 100 eleitores, por que a abstenção
 // sai daquele tamanho e quando ela muda o resultado. Os números vêm prontos
 // do JSON (projecao.explicacao); aqui só se desenha.
-const COR_FALTA = '#dcdbd5';
-const COR_BN = '#9d9c95';
+const COR_FALTA = '#3a404c';
+const COR_BN = '#6b7280';
 
 function cemEleitores(e) {
   const c = obj(e?.de_cada_100);
@@ -2667,7 +2684,7 @@ function ligarEventos() {
         st.explicaAberta = abrir;
       }
       st.mediaSel = bm.dataset.media;
-      gravarPref('mediaSel', st.mediaSel);
+      gravarPref('mediaSel2', st.mediaSel);
       const seletor = bm.classList.contains('chip') ? `.chip[data-media="${st.mediaSel}"]` : `.mq-c[data-media="${st.mediaSel}"]`;
       const tinhaFoco = document.activeElement === bm;
       for (const c of $$('[data-bloco="pesquisas"]')) {
@@ -2971,7 +2988,8 @@ function abaPadrao() {
 /* ------------------------------------------------------------ início */
 
 function iniciar() {
-  st.mediaSel = lerPref('mediaSel', 'ponderada');
+  // Chave nova em 24/10: todo mundo passa a abrir na Média Radar (a escolha antiga era a ponderada).
+  st.mediaSel = lerPref('mediaSel2', 'radar');
   st.dias = lerPref('dias', '30') === '7' ? 7 : 30;
   ligarEventos();
   atualizarContagem();
