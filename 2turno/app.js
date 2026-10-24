@@ -19,7 +19,9 @@ const CFG = {
   dados: '/data/pocket/segundo_turno.json',
   mercados: '/2turno/mercados.js',
   cadaMercado: 60 * 1000,
-  cadaDado: 5 * 60 * 1000,
+  // Pesquisa nova chega ao site em ~2 min (vigia rápida + publicação); a página confere a cada
+  // minuto. Depois de falha, tenta de novo em segundos (TENTATIVAS_MS), não em minutos.
+  cadaDado: 60 * 1000,
   cadaModulo: 5 * 60 * 1000,
   cadaHistorico: 5 * 60 * 1000,
   tz: 'America/Sao_Paulo',
@@ -137,6 +139,9 @@ const st = {
   dados: null,
   texto: null,
   erro: null,
+  falhasSeguidas: 0,
+  erroDesde: 0,
+  timerTentativa: null,
   carregando: true,
   lidoEm: 0,
   mod: undefined, // undefined = ainda não tentou; null = falhou; objeto = módulo
@@ -666,6 +671,20 @@ function atualizarContagem() {
 
 /* ------------------------------------------------------ carga de dados */
 
+const TENTATIVAS_MS = [3000, 8000, 15000, 30000, 60000];
+
+// Mensagem de rede em português (o navegador diz "Failed to fetch" ou "Load failed").
+function erroLegivel(e) {
+  const m = String(e?.message || e || '');
+  if (/failed to fetch|load failed|networkerror|network request failed/i.test(m)) return 'sem conexão com a internet ou com o site neste momento';
+  if (/abort/i.test(m)) return 'o servidor demorou a responder';
+  if (/HTTP 5\d\d/.test(m)) return 'o servidor do site está instável';
+  return m;
+}
+
+// Só avisa quando a falha persiste: duas tentativas seguidas e mais de 2 minutos sem conseguir.
+const falhaPersistente = () => st.erro && st.falhasSeguidas >= 2 && Date.now() - st.erroDesde > 120000;
+
 async function carregarDados() {
   const sep = URL_DADOS.includes('?') ? '&' : '?';
   const url = `${URL_DADOS}${sep}v=${Math.floor(Date.now() / 60000)}`;
@@ -682,6 +701,9 @@ async function carregarDados() {
     if (!obj(dados)) throw new Error('formato inesperado');
     normalizarDados(dados);
     st.erro = null;
+    st.falhasSeguidas = 0;
+    st.erroDesde = 0;
+    clearTimeout(st.timerTentativa);
     st.lidoEm = Date.now();
     st.carregando = false;
     if (texto !== st.texto) {
@@ -693,8 +715,14 @@ async function carregarDados() {
       renderizarFaixaTopo();
     }
   } catch (e) {
-    st.erro = String(e?.message || e);
+    st.erro = erroLegivel(e);
+    st.falhasSeguidas += 1;
+    if (!st.erroDesde) st.erroDesde = Date.now();
     st.lidoEm = Date.now();
+    // Nova tentativa em segundos: a falha típica é a rede acordando (Mac saindo do repouso,
+    // celular trocando de Wi-Fi para 4G); esperar o próximo minuto deixava o aviso na tela.
+    clearTimeout(st.timerTentativa);
+    st.timerTentativa = setTimeout(carregarDados, TENTATIVAS_MS[Math.min(st.falhasSeguidas - 1, TENTATIVAS_MS.length - 1)]);
     const primeira = st.carregando;
     st.carregando = false;
     if (primeira || !st.dados) renderizarTudo();
@@ -724,7 +752,7 @@ async function carregarModulo() {
     if (typeof api.aoMudar === 'function' && !st.desfazAoMudar) st.desfazAoMudar = api.aoMudar(() => atualizarMercados());
   } catch (e) {
     st.mod = null;
-    st.modErro = String(e?.message || e).slice(0, 140);
+    st.modErro = erroLegivel(e).slice(0, 140);
     st.modProxima = Date.now() + CFG.cadaModulo;
   }
 }
@@ -743,7 +771,7 @@ async function atualizarMercados() {
         st.mercErro = null;
         st.mercEm = Date.now();
       } catch (e) {
-        st.mercErro = String(e?.message || e).slice(0, 140);
+        st.mercErro = erroLegivel(e).slice(0, 140);
       }
     }
   } finally {
@@ -797,7 +825,7 @@ async function carregarHistoricos(forcar = false) {
           lendo: false,
         });
       } catch (e) {
-        st.hist.set(k, { ...atual, erro: String(e?.message || e).slice(0, 140), em: Date.now(), lendo: false });
+        st.hist.set(k, { ...atual, erro: erroLegivel(e).slice(0, 140), em: Date.now(), lendo: false });
       }
     }),
   );
@@ -858,7 +886,7 @@ function atualizarHistoricoDom(forcar = false) {
 function htmlSemDados() {
   if (st.carregando) return h`<p class="estado">Carregando os dados…</p>`;
   return lacunaBloco(
-    `Sem dados ainda: não consegui ler ${URL_DADOS}${st.erro ? ` (${st.erro})` : ''}. A página tenta de novo sozinha a cada 5 minutos.`,
+    `Sem dados ainda: não consegui ler os dados do Radar${st.erro ? ` (${st.erro})` : ''}. A página tenta de novo sozinha em alguns segundos.`,
   );
 }
 
@@ -869,11 +897,11 @@ function renderizarFaixaTopo() {
   const itens = [];
   if (st.erro && !d && !st.carregando) {
     itens.push(
-      h`<div class="alerta"><p><b>Não consegui carregar os dados agora</b> (${st.erro}). Nova tentativa automática a cada 5 minutos.</p><button type="button" data-acao="recarregar">Tentar agora</button></div>`,
+      h`<div class="alerta"><p><b>Não consegui carregar os dados agora</b> (${st.erro}). A página tenta de novo sozinha em alguns segundos.</p><button type="button" data-acao="recarregar">Tentar agora</button></div>`,
     );
-  } else if (st.erro && d) {
+  } else if (d && falhaPersistente()) {
     itens.push(
-      h`<div class="alerta"><p>A última atualização falhou (${st.erro}). Mostrando os dados de ${ou(fDataHora(d.gerado_em))}.</p><button type="button" data-acao="recarregar">Tentar agora</button></div>`,
+      h`<div class="alerta"><p>Sem atualização há alguns minutos (${st.erro}). Os números abaixo são de ${ou(fDataHora(d.gerado_em))}; a página continua tentando sozinha.</p><button type="button" data-acao="recarregar">Tentar agora</button></div>`,
     );
   }
   if (d) {
@@ -2905,8 +2933,14 @@ function ligarEventos() {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible') return;
     atualizarContagem();
-    if (Date.now() - st.lidoEm > CFG.cadaDado) carregarDados();
+    // Voltou para a aba (ou o Mac acordou): relê se o dado tem mais de 30 s ou se a última falhou.
+    if (st.erro || Date.now() - st.lidoEm > 30000) carregarDados();
     if (Date.now() - st.mercEm > CFG.cadaMercado) atualizarMercados();
+  });
+  // A rede voltou: relê na hora, sem esperar o próximo minuto.
+  window.addEventListener('online', () => {
+    carregarDados();
+    atualizarMercados();
   });
 }
 
@@ -3069,7 +3103,7 @@ async function carregarApuracao() {
     });
     if (st.aba === 'apuracao') st.apur.mostrar();
   } catch (e) {
-    raiz.innerHTML = emHtml(lacunaBloco(`Apuração ao vivo indisponível agora: o módulo não carregou (${String(e?.message || e).slice(0, 120)}).`));
+    raiz.innerHTML = emHtml(lacunaBloco(`Apuração ao vivo indisponível agora: o módulo não carregou (${erroLegivel(e).slice(0, 120)}).`));
   }
 }
 
