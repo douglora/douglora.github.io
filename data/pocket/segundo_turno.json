@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-23T23:26:10-03:00",
+ "gerado_em": "2026-10-23T23:43:43-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 7 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -413,14 +413,14 @@
   "rotulo": "Média das casas que mais acertaram o 1º turno",
   "casas": [
    "Gerp",
-   "Veritá",
-   "Palver"
+   "Futura",
+   "Veritá"
   ],
-  "criterio": "As 3 casas que chegaram mais perto da diferença Flávio − Lula no 1º turno, entre todas as 9 que publicaram pesquisa nacional no próprio canal (Gerp errou 0,1; Veritá errou 1,4; Palver errou 1,7 ponto); quem errou menos pesa mais (peso = 1 / erro², com piso de 1 ponto, porque acertar por menos que isso não se distingue de sorte). Vale a pesquisa de 2º turno mais recente de cada uma.",
+  "criterio": "As 3 casas que chegaram mais perto da diferença Flávio − Lula no 1º turno, entre todas as 10 que publicaram pesquisa nacional no próprio canal (Gerp errou 0,1; Futura errou 0,3; Veritá errou 1,4 ponto); quem errou menos pesa mais (peso = 1 / erro², com piso de 1 ponto, porque acertar por menos que isso não se distingue de sorte). Vale a pesquisa de 2º turno mais recente de cada uma.",
   "pesos": {
-   "Gerp": 0.534,
-   "Veritá": 0.281,
-   "Palver": 0.185
+   "Gerp": 0.396,
+   "Futura": 0.396,
+   "Veritá": 0.208
   },
   "pesquisas": [
    {
@@ -433,8 +433,25 @@
      "flavio": 53.0
     },
     "fonte_url": "https://www.gerp.com.br/relatorios/manifest.json",
+    "documento_url": "https://www.gerp.com.br/relatorios/20261021%20Relat%C3%B3rio%20Presid%C3%AAncia%202026%202%C2%BA%20Turno%20-%20DIVULGA%C3%87%C3%83O.pdf",
+    "ressalva": null,
     "no_painel": false,
     "erro_margem_1t_pp": 0.13
+   },
+   {
+    "casa": "Futura",
+    "registro": "BR-06614/2026",
+    "data": "2026-10-21",
+    "campo": "19 a 20/10",
+    "validos": {
+     "lula": 48.9,
+     "flavio": 51.1
+    },
+    "fonte_url": "https://www.futurainteligencia.com.br/pesquisas",
+    "documento_url": "https://static.poder360.com.br/uploads/2026/10/pesquisaFutura-presidente-21out2026.pdf",
+    "ressalva": "Registrada no TSE em nome da 100% Cidades Participações (mesma série); PDF da Futura Inteligência hospedado pelo veículo (o site da casa exige cadastro para abrir); autoria conferida nos metadados e no tamanho do arquivo listado pela casa; quem pagou a pesquisa não está confirmado em fonte oficial.",
+    "no_painel": false,
+    "erro_margem_1t_pp": 0.33
    },
    {
     "casa": "Veritá",
@@ -446,40 +463,29 @@
      "flavio": 51.1
     },
     "fonte_url": "https://eleicoes26.institutoverita.com.br/pesquisa/c4a804a2-abef-443b-9357-1ce21ca5377a",
+    "documento_url": "https://lgjdbpskgjfbmlffbntx.supabase.co/storage/v1/object/public/pesquisas/pdfs/1792597282291_Relatorio_Brasil_10.2026.pdf",
+    "ressalva": null,
     "no_painel": false,
     "erro_margem_1t_pp": -1.38
-   },
-   {
-    "casa": "Palver",
-    "registro": "BR-04612/2026",
-    "data": "2026-10-21",
-    "campo": "18 a 20/10",
-    "validos": {
-     "lula": 48.9,
-     "flavio": 51.1
-    },
-    "fonte_url": "https://www.palver.com.br/survey",
-    "no_painel": false,
-    "erro_margem_1t_pp": 1.7
    }
   ],
   "validos": {
-   "lula": 47.9,
-   "flavio": 52.1
+   "lula": 48.2,
+   "flavio": 51.8
   },
   "faixa_validos": {
    "lula": [
-    45.9,
-    49.9
+    46.2,
+    50.1
    ],
    "flavio": [
-    50.1,
-    54.1
+    49.9,
+    53.8
    ]
   },
   "prob_vitoria": {
-   "lula": 0.086,
-   "flavio": 0.914
+   "lula": 0.116,
+   "flavio": 0.884
   },
   "nota": "Mesma incerteza da média geral; muda só quem entra e o peso."
  },
@@ -590,28 +596,28 @@
    "id": "acerto_1t",
    "rotulo": "Só as que mais acertaram",
    "validos": {
-    "lula": 47.9,
-    "flavio": 52.1
+    "lula": 48.2,
+    "flavio": 51.8
    },
    "faixa_validos": {
     "lula": [
-     45.9,
-     49.9
+     46.2,
+     50.1
     ],
     "flavio": [
-     50.1,
-     54.1
+     49.9,
+     53.8
     ]
    },
    "prob_vitoria": {
-    "lula": 0.086,
-    "flavio": 0.914
+    "lula": 0.116,
+    "flavio": 0.884
    },
    "n_casas": 3,
    "casas": [
     "Gerp",
-    "Veritá",
-    "Palver"
+    "Futura",
+    "Veritá"
    ],
    "pesquisas": [
     {
@@ -624,8 +630,25 @@
       "flavio": 53.0
      },
      "fonte_url": "https://www.gerp.com.br/relatorios/manifest.json",
+     "documento_url": "https://www.gerp.com.br/relatorios/20261021%20Relat%C3%B3rio%20Presid%C3%AAncia%202026%202%C2%BA%20Turno%20-%20DIVULGA%C3%87%C3%83O.pdf",
+     "ressalva": null,
      "no_painel": false,
      "erro_margem_1t_pp": 0.13
+    },
+    {
+     "casa": "Futura",
+     "registro": "BR-06614/2026",
+     "data": "2026-10-21",
+     "campo": "19 a 20/10",
+     "validos": {
+      "lula": 48.9,
+      "flavio": 51.1
+     },
+     "fonte_url": "https://www.futurainteligencia.com.br/pesquisas",
+     "documento_url": "https://static.poder360.com.br/uploads/2026/10/pesquisaFutura-presidente-21out2026.pdf",
+     "ressalva": "Registrada no TSE em nome da 100% Cidades Participações (mesma série); PDF da Futura Inteligência hospedado pelo veículo (o site da casa exige cadastro para abrir); autoria conferida nos metadados e no tamanho do arquivo listado pela casa; quem pagou a pesquisa não está confirmado em fonte oficial.",
+     "no_painel": false,
+     "erro_margem_1t_pp": 0.33
     },
     {
      "casa": "Veritá",
@@ -637,24 +660,13 @@
       "flavio": 51.1
      },
      "fonte_url": "https://eleicoes26.institutoverita.com.br/pesquisa/c4a804a2-abef-443b-9357-1ce21ca5377a",
+     "documento_url": "https://lgjdbpskgjfbmlffbntx.supabase.co/storage/v1/object/public/pesquisas/pdfs/1792597282291_Relatorio_Brasil_10.2026.pdf",
+     "ressalva": null,
      "no_painel": false,
      "erro_margem_1t_pp": -1.38
-    },
-    {
-     "casa": "Palver",
-     "registro": "BR-04612/2026",
-     "data": "2026-10-21",
-     "campo": "18 a 20/10",
-     "validos": {
-      "lula": 48.9,
-      "flavio": 51.1
-     },
-     "fonte_url": "https://www.palver.com.br/survey",
-     "no_painel": false,
-     "erro_margem_1t_pp": 1.7
     }
    ],
-   "nota": "As 3 casas que chegaram mais perto da diferença Flávio − Lula no 1º turno, entre todas as 9 que publicaram pesquisa nacional no próprio canal (Gerp errou 0,1; Veritá errou 1,4; Palver errou 1,7 ponto); quem errou menos pesa mais (peso = 1 / erro², com piso de 1 ponto, porque acertar por menos que isso não se distingue de sorte). Vale a pesquisa de 2º turno mais recente de cada uma."
+   "nota": "As 3 casas que chegaram mais perto da diferença Flávio − Lula no 1º turno, entre todas as 10 que publicaram pesquisa nacional no próprio canal (Gerp errou 0,1; Futura errou 0,3; Veritá errou 1,4 ponto); quem errou menos pesa mais (peso = 1 / erro², com piso de 1 ponto, porque acertar por menos que isso não se distingue de sorte). Vale a pesquisa de 2º turno mais recente de cada uma."
   }
  },
  "radar_1t": {
@@ -2439,10 +2451,34 @@
    "erro_medio_pp": 1.09,
    "erro_margem_pp": 0.13,
    "base_validos": "votos válidos publicados pela casa (números inteiros)",
-   "fonte_url": "https://www.gerp.com.br/relatorios/manifest.json",
+   "fonte_url": "https://www.gerp.com.br/relatorios/20261003%20Relat%C3%B3rio%20Presid%C3%AAncia%202026%20-%20DIVULGA%C3%87%C3%83O.pdf",
    "no_painel": false,
    "nota": "Última de 1º turno no site da casa. A rodada de 01 a 03/10 (BR-08168/2026) não saiu no site.",
-   "peso_acerto": 0.534,
+   "peso_acerto": 0.396,
+   "tem_2o_turno": true
+  },
+  {
+   "casa_id": "futura",
+   "casa": "Futura",
+   "pesquisa_data": "2026-10-03",
+   "registro": "BR-02431/2026",
+   "previa": {
+    "lula": 42.6,
+    "flavio": 44.8
+   },
+   "resultado": {
+    "flavio": 47.03,
+    "lula": 45.16
+   },
+   "erro_lula_pp": -2.56,
+   "erro_flavio_pp": -2.23,
+   "erro_medio_pp": 2.39,
+   "erro_margem_pp": 0.33,
+   "base_validos": "votos válidos publicados pela casa (cenário 1, véspera do 1º turno)",
+   "fonte_url": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/10/Relatorio_Tracking_Nacional_1_Turno_Final_Votos_Validos-3-1.pdf",
+   "no_painel": false,
+   "nota": "Registrada no TSE em nome da 100% Cidades Participações (mesma série); PDF da Futura Inteligência hospedado pelo veículo (o site da casa exige cadastro para abrir); autoria conferida nos metadados e no tamanho do arquivo listado pela casa; quem pagou a pesquisa não está confirmado em fonte oficial.",
+   "peso_acerto": 0.396,
    "tem_2o_turno": true
   },
   {
@@ -2463,10 +2499,10 @@
    "erro_medio_pp": 1.2,
    "erro_margem_pp": -1.38,
    "base_validos": "votos válidos publicados pela casa (consolidação das 27 UFs)",
-   "fonte_url": "https://eleicoes26.institutoverita.com.br/pesquisa/d0841135-eb7c-4cc6-95a4-f06ed72d63cb",
+   "fonte_url": "https://lgjdbpskgjfbmlffbntx.supabase.co/storage/v1/object/public/pesquisas/pdfs/1790855512625_Relatorio_Nacional_Verita_Imprensa_27_UFs_20_a_25_Setembro_2026.pdf",
    "no_painel": false,
    "nota": "Última nacional de 1º turno no site da casa. A rodada de 26/09 a 02/10 (BR-04522/2026, 40.500 entrevistas) não saiu como nacional no site; só os estados, em 05/10.",
-   "peso_acerto": 0.281,
+   "peso_acerto": 0.208,
    "tem_2o_turno": true
   },
   {
@@ -2487,10 +2523,10 @@
    "erro_medio_pp": 1.03,
    "erro_margem_pp": 1.7,
    "base_validos": "calculados do total publicado pela casa (sem brancos, nulos e indecisos); a Palver publica só votos totais",
-   "fonte_url": "https://www.palver.com.br/survey",
+   "fonte_url": "https://research.cdn.palver.com.br/2026-10-03/BR001982026_W6.pdf",
    "no_painel": false,
    "nota": null,
-   "peso_acerto": 0.185,
+   "peso_acerto": null,
    "tem_2o_turno": true
   },
   {

@@ -545,6 +545,7 @@ function explicacaoSimples(k, m) {
       `Comparamos a última pesquisa de 1º turno de cada instituto com a urna, inclusive os que não estão no resto do painel, e medimos o erro na diferença entre ${F} e ${curto('lula')}.`,
       `Ficam os ${ps.length} que chegaram mais perto: ${listaNomes(quem)} ${ps.length > 1 ? 'pontos' : 'ponto'}. Quem errou menos pesa mais.`,
       `Vale a pesquisa de 2º turno mais recente de cada um: ${usadas.join('; ')}.`,
+      ...ps.filter((q) => txt(q.ressalva)).map((q) => `Ressalva sobre ${q.casa}: ${q.ressalva}`),
     ];
   }
   return [txt(m?.nota) || 'Explicação desta média: sem dado ainda.'];
