@@ -1378,6 +1378,66 @@ function porqueAbstencao(e, p) {
 
 const listaOu = (xs) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join('; ')} ou ${xs[xs.length - 1]}`);
 
+// Abstenção estado a estado (projecao.cenarios_uf, calculado em build_pocket.py): a tabela com
+// a mudança de cada eleição desde 2002 e o simulador por região, refeito no navegador.
+function contaAbstencao(cu, extraNNE, extraSul) {
+  let val = 0;
+  let lula = 0;
+  let elei = 0;
+  let falta = 0;
+  for (const u of arr(cu?.ufs).filter(obj)) {
+    const ex = u.regiao === 'N' || u.regiao === 'NE' ? extraNNE : extraSul;
+    const ab = Math.min(95, Math.max(0, num(u.abst_base) + ex));
+    const v = num(u.eleitorado) * (1 - ab / 100) * (1 - num(u.bn) / 100);
+    val += v;
+    lula += (v * num(u.lula_par)) / 100;
+    elei += num(u.eleitorado);
+    falta += (num(u.eleitorado) * ab) / 100;
+  }
+  if (!val) return null;
+  return { abst: (100 * falta) / elei, lula: (100 * lula) / val, flavio: 100 - (100 * lula) / val, margem: val - 2 * lula };
+}
+
+function htmlSimAbst(cu, nne, sul) {
+  const r = contaAbstencao(cu, nne, sul);
+  const c = obj(cu?.centro);
+  if (!r) return '';
+  const lid = r.flavio >= r.lula ? 'flavio' : 'lula';
+  const dl = c ? r.lula - num(c.lula) : null;
+  return h`<p class="sim-ab-res"><b>${curto('lula')} ${fNum(r.lula, 2)}% × ${curto('flavio')} ${fNum(r.flavio, 2)}%</b> · ${curto(lid)} à frente por ${fGrande(Math.abs(r.margem))} de votos · abstenção total de ${fPct(r.abst, 1)}${dl !== null && Math.abs(dl) >= 0.005 ? ` · ${fSinal(dl * 1)} ${Math.abs(dl) < 2 ? 'ponto' : 'pontos'} para ${curto('lula')} em relação ao centro` : ''}</p>`;
+}
+
+function cenariosEstado(p) {
+  const cu = obj(p?.cenarios_uf);
+  if (!cu || !arr(cu.ufs).length) return '';
+  const c = obj(cu.centro);
+  const anos = arr(cu.anos).filter(obj);
+  const linha = (rot, r, destaque) => {
+    const lid = num(r.flavio) >= num(r.lula) ? 'flavio' : 'lula';
+    return h`<tr class="${destaque ? 'destaque' : ''}"><td>${rot}</td><td class="n">${ou(fPct(r.abstencao_pct, 1))}</td><td class="n">${fNum(r.lula, 1)} × ${fNum(r.flavio, 1)}</td><td class="n">${curto(lid)} +${fGrande(Math.abs(num(r.margem_votos)))}</td></tr>`;
+  };
+  const amplitude = anos.length ? Math.max(...anos.map((a) => num(a.lula))) - Math.min(...anos.map((a) => num(a.lula))) : null;
+  return h`<div class="cen-uf">
+      <p class="cem-tit">Estado a estado: e se a abstenção mudar como em outras eleições?</p>
+      <p class="porque-txt">Cada estado parte da falta que teve no 1º turno de 2026 e soma a mudança que teve entre os turnos em cada eleição desde 2002. A preferência de cada estado fica igual; só muda quem vai votar.</p>
+      <div class="tab-wrap"><table class="tab">
+        <thead><tr><th style="width:30%">Se mudar como em</th><th class="n">Abstenção</th><th class="n">${curto('lula')} × ${curto('flavio')}</th><th class="n">Diferença</th></tr></thead>
+        <tbody>${c ? linha('Média de 2002 a 2022', c, true) : ''}${anos.map((a) => linha(String(a.ano), a, false))}</tbody>
+        <caption>% dos votos válidos, Brasil sem o exterior. Diferença em votos.</caption>
+      </table></div>
+      ${amplitude !== null ? h`<p class="porque-txt">Entre o melhor e o pior desses cenários, ${curto('lula')} varia só <b>${fNum(amplitude, 2)} ponto</b>. Faltar mais gente numa região mexe pouco; o que vira o jogo é faltar mais eleitor de um dos candidatos, em qualquer lugar.</p>` : ''}
+      <p class="cem-tit">Simule: e se faltar mais gente numa região?</p>
+      <div class="sim-ab" data-sim-ab>
+        <label>Norte e Nordeste <output data-sim-ab-v="nne">0 ponto</output>
+          <input type="range" min="-5" max="5" step="0.5" value="0" data-sim-ab-in="nne" aria-label="Abstenção extra no Norte e Nordeste, em pontos" /></label>
+        <label>Sul, Sudeste e Centro-Oeste <output data-sim-ab-v="sul">0 ponto</output>
+          <input type="range" min="-5" max="5" step="0.5" value="0" data-sim-ab-in="sul" aria-label="Abstenção extra no Sul, Sudeste e Centro-Oeste, em pontos" /></label>
+        <div data-sim-ab-res>${htmlSimAbst(cu, 0, 0)}</div>
+      </div>
+      <p class="fonte">Abstenção por estado: TSE (1º turno de 2026 e 2º turnos de 2002 a 2022); preferência por estado: prévia do Radar.</p>
+    </div>`;
+}
+
 function mudaResultado(p, e) {
   const cen = arr(p.cenarios).filter(obj);
   const centro = cen.find((c) => c.central) || cen[1];
@@ -1423,6 +1483,7 @@ function blocoProjecao(d) {
     ${cemEleitores(e)}
     ${porqueAbstencao(e, p)}
     ${mudaResultado(p, e)}
+    ${cenariosEstado(p)}
     <p class="cem-tit">Em votos, na previsão do meio</p>
     <div class="votos-duelo">${coluna('lula', vL, false)}${coluna('flavio', vF, true)}</div>
     <p class="linha-forte">Diferença: <b>${mg !== null ? `${fGrande(mg)} de votos` : LAC}</b>${lider && mg !== null ? ` (${curto(lider)} à frente)` : ''} ${info('Margem')}</p>
@@ -2664,6 +2725,21 @@ async function compartilhar() {
 /* ---------------------------------------------------------- eventos */
 
 function ligarEventos() {
+  // Simulador de abstenção por região: refaz a conta a cada movimento do controle.
+  document.addEventListener('input', (e) => {
+    const el = e.target instanceof Element ? e.target.closest('[data-sim-ab-in]') : null;
+    if (!el) return;
+    const caixa = el.closest('[data-sim-ab]');
+    const cu = obj(st.dados?.projecao?.cenarios_uf);
+    if (!caixa || !cu) return;
+    const val = (k) => num(caixa.querySelector(`[data-sim-ab-in="${k}"]`)?.value) ?? 0;
+    for (const k of ['nne', 'sul']) {
+      const o = caixa.querySelector(`[data-sim-ab-v="${k}"]`);
+      if (o) o.textContent = `${val(k) > 0 ? '+' : ''}${fNum(val(k), 1)} ${Math.abs(val(k)) < 2 ? 'ponto' : 'pontos'}`;
+    }
+    const res = caixa.querySelector('[data-sim-ab-res]');
+    if (res) res.innerHTML = emHtml(htmlSimAbst(cu, val('nne'), val('sul')));
+  });
   document.addEventListener('click', (e) => {
     const alvo = e.target instanceof Element ? e.target : null;
     if (!alvo) return;

@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-24T10:06:01-03:00",
+ "gerado_em": "2026-10-24T10:36:49-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 7 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -4189,6 +4189,311 @@
     "diferenca": 4.8
    },
    "frase": "Esperamos que cerca de 23 em cada 100 eleitores não votem no domingo, um pouco mais que no 1º turno (21 em cada 100), como aconteceu em 5 das 6 eleições desde 2002. Isso sozinho não muda quem ganha: só muda se um lado faltar mais que o outro."
+  },
+  "cenarios_uf": {
+   "centro": {
+    "abstencao_pct": 22.67,
+    "lula": 48.43,
+    "flavio": 51.57,
+    "margem_votos": 3648529
+   },
+   "anos": [
+    {
+     "ano": 2002,
+     "abstencao_pct": 23.69,
+     "lula": 48.34,
+     "flavio": 51.66,
+     "margem_votos": 3805762
+    },
+    {
+     "ano": 2006,
+     "abstencao_pct": 23.15,
+     "lula": 48.43,
+     "flavio": 51.57,
+     "margem_votos": 3635201
+    },
+    {
+     "ano": 2010,
+     "abstencao_pct": 24.26,
+     "lula": 48.47,
+     "flavio": 51.53,
+     "margem_votos": 3487291
+    },
+    {
+     "ano": 2014,
+     "abstencao_pct": 22.58,
+     "lula": 48.46,
+     "flavio": 51.54,
+     "margem_votos": 3576057
+    },
+    {
+     "ano": 2018,
+     "abstencao_pct": 21.84,
+     "lula": 48.44,
+     "flavio": 51.56,
+     "margem_votos": 3654735
+    },
+    {
+     "ano": 2022,
+     "abstencao_pct": 20.49,
+     "lula": 48.44,
+     "flavio": 51.56,
+     "margem_votos": 3732131
+    }
+   ],
+   "regioes": [
+    {
+     "regiao": "Norte e Nordeste",
+     "extra_pp": 2.0,
+     "abstencao_pct": 23.39,
+     "lula": 48.31,
+     "flavio": 51.69,
+     "margem_votos": 3888212
+    },
+    {
+     "regiao": "Norte e Nordeste",
+     "extra_pp": -2.0,
+     "abstencao_pct": 21.95,
+     "lula": 48.55,
+     "flavio": 51.45,
+     "margem_votos": 3408847
+    },
+    {
+     "regiao": "Sul, Sudeste e Centro-Oeste",
+     "extra_pp": 2.0,
+     "abstencao_pct": 23.95,
+     "lula": 48.55,
+     "flavio": 51.45,
+     "margem_votos": 3304776
+    },
+    {
+     "regiao": "Sul, Sudeste e Centro-Oeste",
+     "extra_pp": -2.0,
+     "abstencao_pct": 21.39,
+     "lula": 48.31,
+     "flavio": 51.69,
+     "margem_votos": 3992283
+    }
+   ],
+   "ufs": [
+    {
+     "uf": "AC",
+     "regiao": "N",
+     "eleitorado": 613742,
+     "abst_base": 28.09,
+     "lula_par": 28.45,
+     "bn": 3.94
+    },
+    {
+     "uf": "AL",
+     "regiao": "NE",
+     "eleitorado": 2442126,
+     "abst_base": 23.96,
+     "lula_par": 56.28,
+     "bn": 6.17
+    },
+    {
+     "uf": "AP",
+     "regiao": "N",
+     "eleitorado": 576988,
+     "abst_base": 23.11,
+     "lula_par": 48.69,
+     "bn": 2.46
+    },
+    {
+     "uf": "AM",
+     "regiao": "N",
+     "eleitorado": 2798611,
+     "abst_base": 24.65,
+     "lula_par": 49.15,
+     "bn": 2.85
+    },
+    {
+     "uf": "BA",
+     "regiao": "NE",
+     "eleitorado": 11312752,
+     "abst_base": 21.83,
+     "lula_par": 67.89,
+     "bn": 5.45
+    },
+    {
+     "uf": "CE",
+     "regiao": "NE",
+     "eleitorado": 6996545,
+     "abst_base": 17.48,
+     "lula_par": 66.38,
+     "bn": 4.95
+    },
+    {
+     "uf": "DF",
+     "regiao": "CO",
+     "eleitorado": 2258320,
+     "abst_base": 19.61,
+     "lula_par": 43.15,
+     "bn": 3.2
+    },
+    {
+     "uf": "ES",
+     "regiao": "SE",
+     "eleitorado": 2991650,
+     "abst_base": 23.84,
+     "lula_par": 40.51,
+     "bn": 4.3
+    },
+    {
+     "uf": "GO",
+     "regiao": "CO",
+     "eleitorado": 5080590,
+     "abst_base": 24.47,
+     "lula_par": 37.7,
+     "bn": 3.62
+    },
+    {
+     "uf": "MA",
+     "regiao": "NE",
+     "eleitorado": 5183115,
+     "abst_base": 24.24,
+     "lula_par": 64.62,
+     "bn": 3.6
+    },
+    {
+     "uf": "MT",
+     "regiao": "CO",
+     "eleitorado": 2637801,
+     "abst_base": 25.33,
+     "lula_par": 31.55,
+     "bn": 2.87
+    },
+    {
+     "uf": "MS",
+     "regiao": "CO",
+     "eleitorado": 2024430,
+     "abst_base": 26.74,
+     "lula_par": 36.81,
+     "bn": 3.31
+    },
+    {
+     "uf": "MG",
+     "regiao": "SE",
+     "eleitorado": 16372372,
+     "abst_base": 24.06,
+     "lula_par": 48.1,
+     "bn": 5.23
+    },
+    {
+     "uf": "PA",
+     "regiao": "N",
+     "eleitorado": 6262397,
+     "abst_base": 23.12,
+     "lula_par": 51.1,
+     "bn": 4.01
+    },
+    {
+     "uf": "PB",
+     "regiao": "NE",
+     "eleitorado": 3248531,
+     "abst_base": 17.83,
+     "lula_par": 64.28,
+     "bn": 6.34
+    },
+    {
+     "uf": "PR",
+     "regiao": "S",
+     "eleitorado": 8613657,
+     "abst_base": 21.89,
+     "lula_par": 34.5,
+     "bn": 3.75
+    },
+    {
+     "uf": "PE",
+     "regiao": "NE",
+     "eleitorado": 7223450,
+     "abst_base": 19.44,
+     "lula_par": 64.96,
+     "bn": 5.25
+    },
+    {
+     "uf": "PI",
+     "regiao": "NE",
+     "eleitorado": 2704758,
+     "abst_base": 20.33,
+     "lula_par": 73.62,
+     "bn": 4.22
+    },
+    {
+     "uf": "RJ",
+     "regiao": "SE",
+     "eleitorado": 12857648,
+     "abst_base": 25.07,
+     "lula_par": 43.38,
+     "bn": 4.97
+    },
+    {
+     "uf": "RN",
+     "regiao": "NE",
+     "eleitorado": 2659825,
+     "abst_base": 20.27,
+     "lula_par": 62.02,
+     "bn": 4.57
+    },
+    {
+     "uf": "RS",
+     "regiao": "S",
+     "eleitorado": 8522545,
+     "abst_base": 22.64,
+     "lula_par": 39.0,
+     "bn": 4.18
+    },
+    {
+     "uf": "RO",
+     "regiao": "N",
+     "eleitorado": 1265893,
+     "abst_base": 25.15,
+     "lula_par": 26.73,
+     "bn": 2.32
+    },
+    {
+     "uf": "RR",
+     "regiao": "N",
+     "eleitorado": 401521,
+     "abst_base": 22.03,
+     "lula_par": 23.68,
+     "bn": 2.17
+    },
+    {
+     "uf": "SC",
+     "regiao": "S",
+     "eleitorado": 5734651,
+     "abst_base": 20.09,
+     "lula_par": 27.45,
+     "bn": 3.17
+    },
+    {
+     "uf": "SP",
+     "regiao": "SE",
+     "eleitorado": 34122892,
+     "abst_base": 23.34,
+     "lula_par": 42.84,
+     "bn": 5.86
+    },
+    {
+     "uf": "SE",
+     "regiao": "NE",
+     "eleitorado": 1740135,
+     "abst_base": 19.06,
+     "lula_par": 66.26,
+     "bn": 5.2
+    },
+    {
+     "uf": "TO",
+     "regiao": "N",
+     "eleitorado": 1182023,
+     "abst_base": 24.19,
+     "lula_par": 45.94,
+     "bn": 3.6
+    }
+   ],
+   "nota": "Cada estado parte da abstenção que teve no 1º turno de 2026 e soma a mudança entre os turnos: a média dele de 2002 a 2022 (centro) ou a de um ano específico. A preferência de cada estado é a prévia do Radar; só o comparecimento muda. Exterior fora da conta."
   }
  },
  "modelo_nacional": {

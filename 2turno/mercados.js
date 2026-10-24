@@ -10,29 +10,49 @@
  *       id: 'polymarket' | 'kalshi', nome, url, titulo,
  *       candidatos: { lula: {prob, compra, venda, ultimo}, flavio: {prob, compra, venda, ultimo} },
  *       volume_usd, liquidez_usd, encerra_em,
- *       status: 'ok' | 'erro', erro, origem: 'ao_vivo' | 'snapshot',
- *       atualizado_em,   // extra: hora do dado DESTA fonte (no snapshot, a hora da coleta)
+ *       status: 'ok' | 'erro', erro,
+ *       origem: 'ao_vivo' | 'vivo-15s' | 'snapshot',   // por qual caminho o preço chegou
+ *       via: 'websocket' | 'rest' | 'vivo-15s' | 'snapshot',   // extra: o detalhe do caminho
+ *       atualizado_em,   // extra: hora do dado DESTA fonte (ver abaixo, é a hora do preço, não da leitura)
  *     }]
  *   }
  *   lerHistorico(id, dias = 30) → [{ t: ISO, lula: 0..1 | null, flavio: 0..1 | null }]
  *     (o array traz também, não enumeráveis, .origem e .atualizado_em)
+ *   aoMudar(fn) → desfaz()   // extra: chama fn() quando chega preço novo (WebSocket ou balde novo do
+ *     canal vivo); quem usa chama lerMercados() de novo. Sem ouvinte o módulo não tem relógio próprio.
+ *   diagnostico() → objeto com o estado interno (WebSocket, canal vivo), para o console.
  *
- * Como lê: primeiro ao vivo, direto da API pública (fetch com timeout de 8 s,
- * sem chave e sem cabeçalho extra, então sem preflight). Se falhar (CORS, rede
- * ou formato), lê /data/pocket/mercados.json, gravado por
- * scripts/pocket_mercados.py, e marca origem: 'snapshot'. Uma fonte falhar não
- * derruba a outra.
+ * Como lê, em camadas (cada fonte cai para a próxima; uma fonte falhar não derruba a outra):
+ *   1. ao_vivo, Polymarket: WebSocket público do livro (wss://ws-subscriptions-clob.polymarket.com),
+ *      tempo real de verdade, onde a rede do visitante alcança; senão a leitura REST direta
+ *      (clob /book, fetch com timeout de 8 s, sem chave e sem cabeçalho extra, então sem
+ *      preflight). atualizado_em = último sinal de vida da conexão (preço, ou PONG a cada 10 s).
+ *   2. vivo-15s: o Mac do Radar lê as duas casas a cada 15 s (scripts/pocket_mercados_vivo.py) e
+ *      grava um arquivo por balde no ramo `vivo` de douglora.github.io (vivo/AAAAMMDD/HH/MMSS.json,
+ *      horário de Brasília). raw.githubusercontent.com serve na hora um caminho NOVO (medido em
+ *      24/10/2026); só um caminho pedido antes de existir fica em cache como 404 por 1 a 2 min. Por
+ *      isso a página só pede baldes que começaram há pelo menos 12 s, no máximo 2 pedidos por leitura:
+ *      o do instante (agora − 12 s) e, se não existir, o alinhado ao minuto (que o Mac grava
+ *      sempre, mudando o preço ou não; parado há mais de 3 min, só esses saem). Nunca pede balde futuro.
+ *      atualizado_em = hora em que o Mac leu a casa. É o caminho de quem está no Brasil, onde o
+ *      provedor bloqueia a Polymarket e a Kalshi (Resolução CMN 5.298/2026), e o da Kalshi sempre.
+ *   3. snapshot: /data/pocket/mercados.json do site e o do ramo `mercados` (5 em 5 min, mais cache
+ *      de ~5 min do raw), gravado por scripts/pocket_mercados.py. Vale o mais novo dos dois.
+ *      Também é a reserva quando o vivo está mais velho que 2,5 min.
  *
  * CORS medido em 22/10/2026 com Origin https://douglora.github.io:
  *   - Polymarket (gamma-api e clob): libera (Access-Control-Allow-Origin: *) → ao vivo.
  *   - Kalshi: recusa (403 do CloudFront para qualquer Origin que não seja
- *     kalshi.com, inclusive localhost) → no navegador sai sempre do snapshot;
+ *     kalshi.com, inclusive localhost) → no navegador sai do vivo-15s ou do snapshot;
  *     no Node, que não aplica CORS, sai ao vivo.
+ *   - raw.githubusercontent.com libera (*), inclusive no 404.
  *
  * Preços (de 0 a 1 = US$ por contrato que paga US$ 1 se o candidato vencer):
  *   compra = melhor oferta de compra do "Sim" (bid); venda = melhor oferta de
  *   venda (ask); ultimo = último negócio; prob = (compra + venda) / 2, ou ultimo
  *   quando falta um lado do livro. O que não existe vira null.
+ *   Polymarket: igual ao que o polymarket.com mostra, que é o meio do livro, ou o último
+ *   negócio quando a faixa compra–venda passa de US$ 0,10.
  * volume_usd: total do evento como a própria plataforma mostra (na Kalshi é
  *   contagem de contratos de US$ 1; na Polymarket, dólares negociados).
  * liquidez_usd: Polymarket = número da própria Polymarket para o evento;
@@ -52,6 +72,27 @@ const CACHE_SNAPSHOT_MS = 30 * 1000;
 // Depois de uma falha de rede/CORS, espera 2 min antes de tentar o ao vivo de
 // novo (no navegador a Kalshi falha sempre; assim não suja o console a cada leitura).
 const PAUSA_APOS_BLOQUEIO_MS = 2 * 60 * 1000;
+
+// Canal vivo (arquivos de 15 s do Mac no ramo `vivo`; ver o cabeçalho).
+const VIVO_BASE = 'https://raw.githubusercontent.com/douglora/douglora.github.io/vivo/vivo/';
+const VIVO_BALDE_MS = 15 * 1000;
+// O Mac grava o balde logo na virada e o push leva de 1,5 s (Mac livre) a 6,5 s (medido com o Mac
+// carregado, load médio 45); com 12 s de folga o arquivo já existe. Pedir antes de existir deixa um 404
+// em cache no raw por 1 a 2 min, para todo mundo.
+const VIVO_MARGEM_MS = 12 * 1000;
+const VIVO_BATIMENTO = 4; // balde de índice múltiplo de 4 começa no segundo :00 e o Mac sempre grava
+const VIVO_VALE_MS = 150 * 1000; // preço do Mac mais velho que isso perde para o snapshot mais novo
+const VIVO_TEMPO_LIMITE_MS = 6000;
+
+// WebSocket público do livro da Polymarket (sem chave; a Polymarket libera de qualquer origem).
+const WS_URL = 'wss://ws-subscriptions-clob.polymarket.com/ws/market';
+const WS_PING_MS = 10 * 1000; // a Polymarket pede um PING a cada 10 s e responde PONG
+const WS_ABRIR_MS = 6 * 1000;
+const WS_VALE_MS = 25 * 1000; // sem sinal de vida por 25 s: conexão morta
+const WS_ESPERA_PRIMEIRA_MS = 2500; // a primeira leitura da página espera o livro chegar por até 2,5 s
+const WS_OCULTA_FECHA_MS = 60 * 1000; // aba escondida por 1 min: fecha a conexão
+const NOTIFICAR_MIN_MS = 1000;
+
 const HORA = 3600;
 const DIA = 86400;
 
@@ -185,6 +226,17 @@ function cotacao(compra, venda, ultimo) {
 
 const cotacaoVazia = () => ({ prob: null, compra: null, venda: null, ultimo: null });
 
+/* O que o polymarket.com mostra: o meio do livro, ou o último negócio quando a faixa
+ * compra–venda passa de US$ 0,10 (regra da própria Polymarket; sem último, fica o meio). */
+const LIMITE_SPREAD_POLY = 0.1;
+function cotacaoPoly(compra, venda, ultimo) {
+  const cot = cotacao(compra, venda, ultimo);
+  if (cot.compra !== null && cot.venda !== null && cot.ultimo !== null && cot.venda - cot.compra > LIMITE_SPREAD_POLY + 1e-9) {
+    cot.prob = cot.ultimo;
+  }
+  return cot;
+}
+
 function validarCandidatos(candidatos, onde) {
   for (const lado of LADOS) {
     const p = candidatos[lado]?.prob;
@@ -243,8 +295,8 @@ async function polymarketAoVivo() {
     const livroServe =
       livro && Array.isArray(livro.bids) && Array.isArray(livro.asks) && tokenSim(mercado) === P.token[lado];
     candidatos[lado] = livroServe
-      ? cotacao(melhorPreco(livro.bids, true), melhorPreco(livro.asks, false), num(livro.last_trade_price))
-      : cotacao(num(mercado.bestBid), num(mercado.bestAsk), num(mercado.lastTradePrice));
+      ? cotacaoPoly(melhorPreco(livro.bids, true), melhorPreco(livro.asks, false), num(livro.last_trade_price))
+      : cotacaoPoly(num(mercado.bestBid), num(mercado.bestAsk), num(mercado.lastTradePrice));
   });
   validarCandidatos(candidatos, 'Polymarket');
 
@@ -257,6 +309,7 @@ async function polymarketAoVivo() {
     status: 'ok',
     erro: null,
     origem: 'ao_vivo',
+    via: 'rest',
     atualizado_em: iso(Date.now()),
   };
 }
@@ -333,6 +386,7 @@ async function kalshiAoVivo() {
     status: 'ok',
     erro: null,
     origem: 'ao_vivo',
+    via: 'rest',
     atualizado_em: iso(Date.now()),
   };
 }
@@ -415,37 +469,514 @@ function fonteComErro(F, mensagem) {
   };
 }
 
+/* ------------------------------------------------------------ ouvintes */
+
+/* `aoMudar(fn)`: a página registra um ouvinte e é chamada quando chega preço novo (WebSocket ou
+ * balde novo do canal vivo). O módulo só tem relógio próprio enquanto houver ouvinte. */
+const ouvintes = new Set();
+let ultimaNotificacao = 0;
+let notificacaoPendente = null;
+
+function notificar() {
+  if (!ouvintes.size) return;
+  const espera = ultimaNotificacao + NOTIFICAR_MIN_MS - Date.now();
+  if (espera > 0) {
+    if (!notificacaoPendente) {
+      notificacaoPendente = setTimeout(() => {
+        notificacaoPendente = null;
+        notificar();
+      }, espera);
+    }
+    return;
+  }
+  ultimaNotificacao = Date.now();
+  for (const fn of [...ouvintes]) {
+    try {
+      fn();
+    } catch (e) {
+      console.warn('[mercados] ouvinte falhou:', e?.message || e);
+    }
+  }
+}
+
+export function aoMudar(fn) {
+  if (typeof fn !== 'function') throw new TypeError('aoMudar espera uma função');
+  ouvintes.add(fn);
+  agendarVivo();
+  return () => ouvintes.delete(fn);
+}
+
+/* ----------------------------------------------------- canal vivo (15 s) */
+
+const vivo = { ultimo: null, faltam: new Set(), emCurso: null, erro: null, pedidos: 0, naoEncontrados: 0 };
+
+// Nome do arquivo do balde k (k·15 s desde 1970): AAAAMMDD/HH/MMSS.json em Brasília (UTC−3 fixo desde 2019).
+function caminhoBalde(k) {
+  const x = new Date(k * VIVO_BALDE_MS - 3 * 3600e3).toISOString();
+  return `${x.slice(0, 4)}${x.slice(5, 7)}${x.slice(8, 10)}/${x.slice(11, 13)}/${x.slice(14, 16)}${x.slice(17, 19)}.json`;
+}
+
+async function pegarBalde(k) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), VIVO_TEMPO_LIMITE_MS);
+  vivo.pedidos += 1;
+  try {
+    const r = await fetch(VIVO_BASE + caminhoBalde(k), { cache: 'no-store', signal: ctrl.signal });
+    if (r.status === 404) {
+      const e = new Error('balde não existe (parado, ou o Mac ainda não enviou)');
+      e.ausente = true;
+      throw e;
+    }
+    if (!r.ok) throw new Error(`HTTP ${r.status} em raw.githubusercontent.com`);
+    const doc = await r.json();
+    if (!doc || doc.v !== 1 || typeof doc.fontes !== 'object' || doc.fontes === null) throw new Error('balde em formato inesperado');
+    return doc;
+  } catch (e) {
+    if (ctrl.signal.aborted) throw new Error(`sem resposta em ${VIVO_TEMPO_LIMITE_MS / 1000} s (raw.githubusercontent.com)`);
+    throw e;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/* Acha o balde mais novo que já existe, com no máximo 2 pedidos por leitura:
+ *   1. o do instante: o balde que começou há pelo menos VIVO_MARGEM_MS (nunca um balde futuro);
+ *   2. se esse não existir (o Mac só grava todo balde enquanto o preço mexe, ou o envio atrasou), o
+ *      alinhado ao minuto, que o Mac grava sempre; com o preço parado ele vale igual ao do balde que faltou.
+ * Balde que já deu 404 não é pedido de novo e nada mais velho que o último bom é pedido: sem balde novo,
+ * fica o último bom, com a hora dele (a idade aparece na tela). */
+async function lerVivoAgora() {
+  const k0 = Math.floor((Date.now() - VIVO_MARGEM_MS) / VIVO_BALDE_MS);
+  const kBat = k0 - (((k0 % VIVO_BATIMENTO) + VIVO_BATIMENTO) % VIVO_BATIMENTO);
+  const candidatos = kBat === k0 ? [k0] : [k0, kBat];
+  let pedidos = 0;
+  let erro = null;
+  for (const k of candidatos) {
+    if (vivo.ultimo && k <= vivo.ultimo.k) break;
+    if (vivo.faltam.has(k)) continue;
+    if (pedidos >= 2) break;
+    pedidos += 1;
+    try {
+      const doc = await pegarBalde(k);
+      vivo.ultimo = { k, doc, lidoEm: Date.now() };
+      erro = null;
+      break;
+    } catch (e) {
+      if (e.ausente) {
+        vivo.faltam.add(k);
+        vivo.naoEncontrados += 1;
+      } else {
+        erro = e;
+      }
+    }
+  }
+  if (vivo.faltam.size > 64) {
+    for (const k of [...vivo.faltam].sort((a, b) => a - b).slice(0, 32)) vivo.faltam.delete(k);
+  }
+  vivo.erro = erro ? erro.message : null;
+  return vivo.ultimo;
+}
+
+function lerVivo() {
+  if (!NO_NAVEGADOR) return Promise.resolve(null);
+  if (!vivo.emCurso) {
+    vivo.emCurso = lerVivoAgora()
+      .catch((e) => {
+        vivo.erro = e?.message || String(e);
+        return vivo.ultimo;
+      })
+      .finally(() => {
+        vivo.emCurso = null;
+      });
+  }
+  return vivo.emCurso;
+}
+
+function cotacaoDoVivo(c) {
+  const lado = limparCotacao(c);
+  return lado.prob === null ? null : lado;
+}
+
+// Uma casa no arquivo do balde → fonte no formato de lerMercados(). Devolve null sem preço dos dois lados.
+function fonteDoVivo(F, doc) {
+  const c = doc?.fontes?.[F.id];
+  const em = num(c?.em);
+  const lula = cotacaoDoVivo(c?.lula);
+  const flavio = cotacaoDoVivo(c?.flavio);
+  if (em === null || !lula || !flavio) return null;
+  return {
+    ...cabecalho(F),
+    candidatos: { lula, flavio },
+    volume_usd: num(c.vol),
+    liquidez_usd: num(c.liq),
+    encerra_em: typeof c.fim === 'string' ? c.fim : null,
+    status: 'ok',
+    erro: null,
+    origem: 'vivo-15s',
+    via: 'vivo-15s',
+    atualizado_em: iso(em),
+    balde: doc.b || null,
+    aviso: typeof c.erro === 'string' && c.erro ? `o Mac não conseguiu reler agora (${c.erro}); vale o último preço lido` : null,
+    bloqueio: null,
+  };
+}
+
+const idadeMs = (f) => (f?.atualizado_em ? Date.now() - Date.parse(f.atualizado_em) : Infinity);
+
+/* Com ouvinte, o módulo relê o canal vivo logo depois de cada balde novo ficar pronto
+ * (virada de 15 s + margem + folga de 0,4 a 1 s, para os visitantes não baterem juntos). */
+let agendaVivo = null;
+function agendarVivo() {
+  if (!NO_NAVEGADOR || !ouvintes.size || agendaVivo) return;
+  const agora = Date.now();
+  const proximo = (Math.floor((agora - VIVO_MARGEM_MS) / VIVO_BALDE_MS) + 1) * VIVO_BALDE_MS + VIVO_MARGEM_MS;
+  agendaVivo = setTimeout(async () => {
+    agendaVivo = null;
+    if (!document.hidden && ouvintes.size) {
+      const antes = vivo.ultimo?.k;
+      await lerVivo();
+      if (vivo.ultimo?.k !== antes) notificar();
+    }
+    agendarVivo();
+  }, Math.max(250, proximo - agora + 400 + Math.random() * 600));
+}
+
+/* ------------------------------------------------- Polymarket WebSocket */
+
+const novoLivro = () => ({ bids: new Map(), asks: new Map(), compra: null, venda: null, ultimo: null, pronto: false });
+const LADO_DO_TOKEN = { [POLYMARKET.token.lula]: 'lula', [POLYMARKET.token.flavio]: 'flavio' };
+const ws = {
+  soc: null,
+  estado: 'parado', // parado | abrindo | aberto | falhou
+  proxima: 0,
+  falhas: 0,
+  abriuEm: 0,
+  vida: 0,
+  erro: null,
+  livros: { lula: novoLivro(), flavio: novoLivro() },
+  pronto: null,
+  resolverPronto: null,
+  timerPing: null,
+  timerOculta: null,
+  fechandoDeProposito: false,
+  mensagens: 0,
+  assinatura: '',
+};
+
+const topoDoLivro = (mapa, maior) => {
+  let melhor = null;
+  for (const [p, q] of mapa) if (q > 0 && (melhor === null || (maior ? p > melhor : p < melhor))) melhor = p;
+  return melhor;
+};
+
+function wsAtualizarTopo(livro) {
+  livro.compra = topoDoLivro(livro.bids, true);
+  livro.venda = topoDoLivro(livro.asks, false);
+}
+
+function wsLivro(ev) {
+  const lado = LADO_DO_TOKEN[ev.asset_id];
+  if (!lado) return;
+  const livro = ws.livros[lado];
+  const montar = (lista) => {
+    const mapa = new Map();
+    for (const o of Array.isArray(lista) ? lista : []) {
+      const p = num(o?.price);
+      const q = num(o?.size);
+      if (p !== null && q > 0) mapa.set(p, q);
+    }
+    return mapa;
+  };
+  livro.bids = montar(ev.bids);
+  livro.asks = montar(ev.asks);
+  const u = num(ev.last_trade_price);
+  if (u !== null) livro.ultimo = u;
+  wsAtualizarTopo(livro);
+  livro.pronto = true;
+}
+
+function wsMudanca(ch) {
+  const lado = LADO_DO_TOKEN[ch?.asset_id];
+  if (!lado) return;
+  const livro = ws.livros[lado];
+  if (!livro.pronto) return; // sem o livro inteiro de partida, a diferença não serve
+  const p = num(ch.price);
+  const q = num(ch.size);
+  const mapa = String(ch.side).toUpperCase() === 'BUY' ? livro.bids : String(ch.side).toUpperCase() === 'SELL' ? livro.asks : null;
+  if (mapa && p !== null && q !== null) {
+    if (q > 0) mapa.set(p, q);
+    else mapa.delete(p);
+  }
+  wsAtualizarTopo(livro);
+}
+
+function wsNegocio(ev) {
+  const lado = LADO_DO_TOKEN[ev?.asset_id];
+  const p = num(ev?.price);
+  if (lado && p !== null) ws.livros[lado].ultimo = p;
+}
+
+function wsMensagem(texto) {
+  ws.vida = Date.now();
+  ws.mensagens += 1;
+  if (texto === 'PONG') return;
+  let dados;
+  try {
+    dados = JSON.parse(texto);
+  } catch {
+    return;
+  }
+  for (const ev of Array.isArray(dados) ? dados : [dados]) {
+    if (!ev || typeof ev !== 'object') continue;
+    if (ev.event_type === 'book') wsLivro(ev);
+    else if (ev.event_type === 'price_change') for (const ch of Array.isArray(ev.price_changes) ? ev.price_changes : []) wsMudanca(ch);
+    else if (ev.event_type === 'last_trade_price') wsNegocio(ev);
+  }
+  if (LADOS.every((l) => ws.livros[l].pronto)) {
+    ws.resolverPronto?.();
+    const f = polymarketDoWs();
+    const assinatura = f ? LADOS.map((l) => ['prob', 'compra', 'venda', 'ultimo'].map((c) => f.candidatos[l][c]).join('/')).join('|') : '';
+    if (assinatura !== ws.assinatura) {
+      ws.assinatura = assinatura;
+      notificar();
+    }
+  }
+}
+
+function wsLimpar() {
+  clearInterval(ws.timerPing);
+  ws.timerPing = null;
+  ws.livros = { lula: novoLivro(), flavio: novoLivro() };
+  ws.assinatura = '';
+}
+
+function wsFalhou(abriu, motivo) {
+  const durou = abriu ? Date.now() - ws.abriuEm : 0;
+  wsLimpar();
+  ws.soc = null;
+  ws.estado = ws.fechandoDeProposito ? 'parado' : 'falhou';
+  ws.erro = motivo || (abriu ? 'conexão encerrada' : 'não abriu (bloqueio de rede, DNS ou proxy)');
+  if (ws.fechandoDeProposito) {
+    ws.proxima = 0;
+  } else if (abriu) {
+    if (durou > 30000) ws.falhas = 0;
+    ws.falhas += 1;
+    ws.proxima = Date.now() + Math.min(60000, 2000 * 2 ** Math.min(ws.falhas, 5));
+  } else {
+    // não abriu: quase sempre é bloqueio (o provedor do Brasil barra o DNS): tenta de novo só a cada 3, 6, 10 min
+    ws.proxima = Date.now() + Math.min(10 * 60000, 3 * 60000 * 2 ** Math.min(ws.falhas, 2));
+    ws.falhas += 1;
+  }
+  ws.fechandoDeProposito = false;
+  ws.resolverPronto?.();
+}
+
+function abrirWs() {
+  if (!NO_NAVEGADOR || typeof WebSocket === 'undefined') return;
+  if (ws.estado === 'abrindo' || ws.estado === 'aberto' || Date.now() < ws.proxima) return;
+  let soc;
+  ws.estado = 'abrindo';
+  ws.erro = null;
+  ws.pronto = new Promise((resolve) => {
+    ws.resolverPronto = resolve;
+  });
+  try {
+    soc = new WebSocket(WS_URL);
+  } catch (e) {
+    wsFalhou(false, e?.message);
+    return;
+  }
+  ws.soc = soc;
+  const limite = setTimeout(() => {
+    if (ws.soc === soc && ws.estado === 'abrindo') {
+      try {
+        soc.close();
+      } catch {}
+      wsFalhou(false, `sem resposta em ${WS_ABRIR_MS / 1000} s`);
+    }
+  }, WS_ABRIR_MS);
+  soc.onopen = () => {
+    clearTimeout(limite);
+    if (ws.soc !== soc) return;
+    ws.estado = 'aberto';
+    ws.abriuEm = Date.now();
+    ws.vida = ws.abriuEm;
+    soc.send(JSON.stringify({ assets_ids: LADOS.map((l) => POLYMARKET.token[l]), type: 'market' }));
+    ws.timerPing = setInterval(() => {
+      if (ws.soc !== soc) return;
+      if (Date.now() - ws.vida > WS_VALE_MS) {
+        try {
+          soc.close();
+        } catch {}
+        return;
+      }
+      try {
+        soc.send('PING');
+      } catch {}
+    }, WS_PING_MS);
+  };
+  soc.onmessage = (e) => {
+    if (ws.soc === soc && typeof e.data === 'string') wsMensagem(e.data);
+  };
+  soc.onerror = () => {}; // o onclose vem em seguida e trata
+  soc.onclose = () => {
+    clearTimeout(limite);
+    if (ws.soc === soc) wsFalhou(ws.estado === 'aberto');
+  };
+}
+
+function fecharWs() {
+  const soc = ws.soc;
+  if (!soc) return;
+  ws.fechandoDeProposito = true;
+  try {
+    soc.close();
+  } catch {}
+  if (ws.soc === soc && ws.estado !== 'aberto') wsFalhou(false);
+}
+
+if (NO_NAVEGADOR) {
+  // Aba escondida por 1 min: fecha o WebSocket (o navegador segura os timers do PING); volta a abrir na próxima leitura.
+  document.addEventListener?.('visibilitychange', () => {
+    clearTimeout(ws.timerOculta);
+    if (document.hidden) ws.timerOculta = setTimeout(fecharWs, WS_OCULTA_FECHA_MS);
+    else agendarVivo();
+  });
+}
+
+// Preço da Polymarket pelo livro que o WebSocket mantém; null se a conexão não está viva.
+function polymarketDoWs() {
+  if (ws.estado !== 'aberto' || Date.now() - ws.vida > WS_VALE_MS) return null;
+  if (!LADOS.every((l) => ws.livros[l].pronto)) return null;
+  const candidatos = {};
+  for (const lado of LADOS) {
+    const L = ws.livros[lado];
+    candidatos[lado] = cotacaoPoly(L.compra, L.venda, L.ultimo);
+  }
+  try {
+    validarCandidatos(candidatos, 'Polymarket (WebSocket)');
+  } catch {
+    return null;
+  }
+  return {
+    ...cabecalho(POLYMARKET),
+    candidatos,
+    volume_usd: null,
+    liquidez_usd: null,
+    encerra_em: null,
+    status: 'ok',
+    erro: null,
+    origem: 'ao_vivo',
+    via: 'websocket',
+    atualizado_em: iso(ws.vida),
+  };
+}
+
+// O WebSocket só traz preço; volume, liquidez e prazo vêm do canal vivo (ou do snapshot, se já lido).
+function comMeta(fonte, docVivo) {
+  if (fonte.volume_usd !== null && fonte.encerra_em !== null) return fonte;
+  const m = fonteDoVivo(fonte.id === 'polymarket' ? POLYMARKET : KALSHI, docVivo);
+  if (!m) return fonte;
+  return {
+    ...fonte,
+    volume_usd: fonte.volume_usd ?? m.volume_usd,
+    liquidez_usd: fonte.liquidez_usd ?? m.liquidez_usd,
+    encerra_em: fonte.encerra_em ?? m.encerra_em,
+  };
+}
+
 /* ---------------------------------------------------------- lerMercados */
 
-async function lerFonte(F, aoVivo) {
+async function doSnapshot(F, erroVivo) {
+  const snap = await lerSnapshot();
+  const f = snap.fontes.find((x) => x && x.id === F.id);
+  if (!f) throw new Error(`snapshot sem ${F.id}`);
+  return { ...fonteDoSnapshot(F, f, snap, erroVivo), via: 'snapshot' };
+}
+
+function comLimite(promessa, ms, F) {
+  let timer;
+  const limite = new Promise((_, rejeitar) => {
+    timer = setTimeout(() => rejeitar(new ErroBloqueio(`sem resposta em ${ms / 1000} s (${F.nome})`)), ms);
+  });
+  promessa.catch(() => {}); // se perder a corrida, o erro dela não vira "rejeição sem tratamento"
+  return Promise.race([promessa, limite]).finally(() => clearTimeout(timer));
+}
+
+/* Camadas de uma fonte, da mais nova para a mais velha: ao vivo (WebSocket, depois REST) → vivo-15s →
+ * snapshot. O vivo só vale enquanto o preço do Mac tiver menos de 2,5 min; mais velho que isso, vale
+ * o que for mais novo entre ele e o snapshot. */
+async function lerFonte(F, aoVivoDireto, docVivo) {
   const chave = `${F.id}:mercados`;
   let erroVivo = new Error(motivoSemVivo(chave));
-  if (podeTentar(chave)) {
+  if (F.id === 'polymarket') {
+    const w = polymarketDoWs();
+    if (w) return comMeta(w, docVivo);
+  }
+  const doVivo = fonteDoVivo(F, docVivo);
+  if (aoVivoDireto && podeTentar(chave)) {
     try {
-      return await aoVivo();
+      // Com o vivo em dia como reserva, não espera mais que 3 s por uma leitura direta que não responde.
+      return await (doVivo && idadeMs(doVivo) <= VIVO_VALE_MS ? comLimite(aoVivoDireto(), 3000, F) : aoVivoDireto());
     } catch (e) {
       erroVivo = e;
       registrarFalha(chave, e);
     }
   }
+  if (doVivo && idadeMs(doVivo) <= VIVO_VALE_MS) return doVivo;
   try {
-    const snap = await lerSnapshot();
-    const f = snap.fontes.find((x) => x && x.id === F.id);
-    if (!f) throw new Error(`snapshot sem ${F.id}`);
-    return fonteDoSnapshot(F, f, snap, erroVivo);
+    const snap = await doSnapshot(F, erroVivo);
+    if (doVivo && snap.status === 'ok' && idadeMs(doVivo) < idadeMs(snap)) return doVivo;
+    return snap;
   } catch (e) {
-    return fonteComErro(F, `ao vivo: ${erroVivo.message}; snapshot: ${e.message}`);
+    if (doVivo) return doVivo;
+    const vivoMsg = vivo.erro ? `; vivo: ${vivo.erro}` : NO_NAVEGADOR ? '; vivo: sem balde recente' : '';
+    return fonteComErro(F, `ao vivo: ${erroVivo.message}${vivoMsg}; snapshot: ${e.message}`);
   }
 }
 
-export async function lerMercados() {
-  const fontes = await Promise.all([lerFonte(POLYMARKET, polymarketAoVivo), lerFonte(KALSHI, kalshiAoVivo)]);
+let leituraEmCurso = null;
+
+async function lerMercadosAgora() {
+  abrirWs();
+  // Na primeira leitura da página o WebSocket ainda está abrindo: espera o livro chegar (até 2,5 s).
+  const espera = ws.estado === 'abrindo' && ws.pronto ? Promise.race([ws.pronto, new Promise((r) => setTimeout(r, WS_ESPERA_PRIMEIRA_MS))]) : null;
+  const [ultimoVivo] = await Promise.all([lerVivo(), espera]);
+  const docVivo = ultimoVivo?.doc || null;
+  const fontes = await Promise.all([
+    lerFonte(POLYMARKET, polymarketAoVivo, docVivo),
+    lerFonte(KALSHI, NO_NAVEGADOR ? null : kalshiAoVivo, docVivo),
+  ]);
   // Hora do dado mais novo entre as fontes que responderam; cada fonte traz a sua.
   const horas = fontes
     .filter((f) => f.status === 'ok' && f.atualizado_em)
     .map((f) => Date.parse(f.atualizado_em))
     .filter(Number.isFinite);
   return { atualizado_em: iso(horas.length ? Math.max(...horas) : Date.now()), fontes };
+}
+
+export function lerMercados() {
+  if (!leituraEmCurso) {
+    leituraEmCurso = lerMercadosAgora().finally(() => {
+      leituraEmCurso = null;
+    });
+  }
+  return leituraEmCurso;
+}
+
+export function diagnostico() {
+  return {
+    navegador: NO_NAVEGADOR,
+    websocket: { estado: ws.estado, falhas: ws.falhas, erro: ws.erro, mensagens: ws.mensagens, vida_ha_s: ws.vida ? Math.round((Date.now() - ws.vida) / 1000) : null, proxima_tentativa_em_s: Math.max(0, Math.round((ws.proxima - Date.now()) / 1000)) },
+    vivo: {
+      balde: vivo.ultimo ? vivo.ultimo.doc.b : null,
+      lido_ha_s: vivo.ultimo ? Math.round((Date.now() - vivo.ultimo.lidoEm) / 1000) : null,
+      pedidos: vivo.pedidos,
+      baldes_ausentes: vivo.naoEncontrados,
+      erro: vivo.erro,
+    },
+    ouvintes: ouvintes.size,
+  };
 }
 
 /* --------------------------------------------------------- lerHistorico */
