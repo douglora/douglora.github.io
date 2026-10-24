@@ -15,7 +15,8 @@ const CFG = {
   url: 'https://raw.githubusercontent.com/douglora/douglora.github.io/mercados/simulador.json',
   // ?v= muda quando a demonstração for refeita (o navegador guarda a anterior).
   demo: '/2turno/simulador_demo.json?v=2',
-  cadaMs: 30000,
+  // a cada 15 s (antes 30): o arquivo novo do Mac só aparece ~90 s depois de gerado, então cada segundo de espera aqui pesa
+  cadaMs: 15000,
   velhoMs: 3 * 60 * 1000,
   fechamento: '2026-10-25T17:00:00-03:00',
   // Antes disto a página não pede nada ao ramo (o processador só começa às 16h50 de 25/10).
@@ -40,9 +41,35 @@ const GRADE = {
   SC: [2, 7],
   RS: [2, 8],
 };
-const VERDE = '#0b7a3b';
-const VERMELHO = '#b42318';
-const NEUTRO = '#f3f3ef';
+// Cores: tudo vem das variáveis CSS do site (modo escuro); os valores abaixo só valem se a variável faltar.
+const TEMA_PADRAO = {
+  cartao: '#171a21', sobreTinta: '#0f1115', tinta: '#eceef2', tinta2: '#b9bfca', suave: '#1b1f27',
+  lulaTexto: '#ff7b8a', flavioTexto: '#8fb0ff', chanceVerde: '#176b3d', chanceVermelho: '#a83a38',
+};
+const TEMA_VARS = {
+  cartao: '--cartao', sobreTinta: '--sobre-tinta', tinta: '--tinta', tinta2: '--tinta-2', suave: '--suave',
+  lulaTexto: '--lula-texto', flavioTexto: '--flavio-texto', chanceVerde: '--chance-verde', chanceVermelho: '--chance-vermelho',
+};
+let temaCache = null;
+let temaEm = 0;
+function tema() {
+  const agora = Date.now();
+  if (temaCache && agora - temaEm < 5000) return temaCache;
+  const t = {};
+  let cs = null;
+  try {
+    cs = getComputedStyle(document.documentElement);
+  } catch {
+    cs = null;
+  }
+  for (const [k, v] of Object.entries(TEMA_VARS)) {
+    const x = cs ? String(cs.getPropertyValue(v) || '').trim() : '';
+    t[k] = hexRgbOuNulo(x) ? x : TEMA_PADRAO[k];
+  }
+  temaCache = t;
+  temaEm = agora;
+  return t;
+}
 const EXPLICA = {
   simulador:
     'Projeção do resultado final feita município a município, antes de 100% apurado. Parte do 1º turno de 2026 de cada cidade (quem votou em Lula, em Flávio, nos outros, branco/nulo e quem não foi votar), mede na apuração para onde cada grupo foi no 2º turno e projeta o que falta. Roda num computador à parte e atualiza a cada minuto. Resultado oficial é só o do TSE.',
@@ -107,24 +134,48 @@ const chanceTxt = (p) => {
   if (v > 99 && v < 100) return '>99%';
   return `${C.fNum(v, 0)}%`;
 };
-function hexRgb(hx) {
-  let x = String(hx).replace('#', '');
-  if (x.length === 3) x = x.split('').map((c) => c + c).join('');
-  const n = parseInt(x.slice(0, 6), 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+function hexRgbOuNulo(s) {
+  const x = String(s ?? '').trim();
+  let m = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(x);
+  if (m) {
+    let h = m[1];
+    if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+    const n = parseInt(h, 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  m = /^rgba?\(\s*(\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)/i.exec(x);
+  return m ? [Math.round(+m[1]), Math.round(+m[2]), Math.round(+m[3])] : null;
 }
+const hexRgb = (hx) => hexRgbOuNulo(hx) ?? [0, 0, 0];
 function misturar(a, b, t) {
   const p = hexRgb(a);
   const q = hexRgb(b);
   return p.map((v, i) => Math.round(v + (q[i] - v) * t));
 }
 const rgb = (c) => `rgb(${c.join(',')})`;
-const claro = (c) => (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255 > 0.55;
+function luminancia(c) {
+  const f = (v) => {
+    const s = v / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]);
+}
+const contraste = (a, b) => {
+  const la = luminancia(a);
+  const lb = luminancia(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+};
+// A tinta do texto sobre um fundo: a clara (--tinta) ou a escura (--sobre-tinta), a de maior contraste.
+function tintaSobre(fundoRgb) {
+  const T = tema();
+  return contraste(fundoRgb, hexRgb(T.tinta)) >= contraste(fundoRgb, hexRgb(T.sobreTinta)) ? T.tinta : T.sobreTinta;
+}
 function corChance(p) {
-  if (!fin(p)) return { fundo: NEUTRO, tinta: '#0b0b0b' };
+  const T = tema();
+  if (!fin(p)) return { fundo: T.suave, tinta: T.tinta };
   const forca = Math.pow(Math.min(1, Math.abs(p - 0.5) * 2), 0.8);
-  const c = misturar(NEUTRO, p >= 0.5 ? VERDE : VERMELHO, forca);
-  return { fundo: rgb(c), tinta: claro(c) ? '#0b0b0b' : '#ffffff' };
+  const c = misturar(T.suave, p >= 0.5 ? T.chanceVerde : T.chanceVermelho, forca);
+  return { fundo: rgb(c), tinta: tintaSobre(c) };
 }
 function animar(el, para, fmt) {
   if (!el) return;
@@ -421,7 +472,7 @@ function faixaSim() {
 function htmlLado(id) {
   const h = C.h;
   const c = candSim(id);
-  return h`<div class="sim-lado" data-sim-lado="${id}" style="--c:${c.cor}">
+  return h`<div class="sim-lado" data-sim-lado="${id}" style="--c:${c.cor};--ct:${id === 'lula' ? 'var(--lula-texto)' : 'var(--flavio-texto)'}">
     <div class="ap-quem">${C.foto(c)}<div><p class="ap-nome">${c.nome}</p><p class="ap-part">${S.modo === 'sim' && id === 'flavio' ? 'PL · 22 (2022)' : `${C.txt(c.partido) || ''}${fin(C.num(c.numero)) ? ` · ${c.numero}` : ''}`}</p></div></div>
     <p class="sim-rot">projeção final</p>
     <p class="sim-num"><span data-sim-pct="${id}">—</span><small>%</small></p>
@@ -593,7 +644,7 @@ function barraTransf(g) {
   const L = candSim('lula');
   const F = candSim('flavio');
   const parte = (v, cor, cls, rotulo) => (fin(v) && v > 0 ? h`<span class="${cls}" style="flex-grow:${v.toFixed(2)};--c:${cor}" title="${rotulo} ${C.fNum(v, 1)}%"></span>` : '');
-  return h`<div class="sim-tb">${parte(g.lula, L.cor, 'tb-l', rot().lula)}${parte(g.flavio, F.cor, 'tb-f', rot().flavio)}${parte(g.bn, '#a3a29b', 'tb-n', 'branco/nulo')}${parte(g.abst, '#e4e3dd', 'tb-a', 'não votou')}</div>`;
+  return h`<div class="sim-tb">${parte(g.lula, L.cor, 'tb-l', rot().lula)}${parte(g.flavio, F.cor, 'tb-f', rot().flavio)}${parte(g.bn, 'var(--tinta-3)', 'tb-n', 'branco/nulo')}${parte(g.abst, 'var(--linha-2)', 'tb-a', 'não votou')}</div>`;
 }
 
 function renderTransf(d) {
@@ -668,9 +719,10 @@ function renderMapa(d) {
     const ref = u.lula_2022;
     const vir = fin(proj) && fin(ref) ? proj - ref : null;
     const t = fin(vir) ? clamp(Math.abs(vir) / 8, 0, 1) : 0;
-    const c = misturar('#ffffff', fin(vir) && vir >= 0 ? L : F, (prev ? 0.12 : 0.18) + t * (prev ? 0.3 : 0.72));
+    // fundo escuro com a cor de quem andou (mais forte = virada maior); a letra é a de maior contraste
+    const c = misturar(tema().cartao, fin(vir) && vir >= 0 ? L : F, (prev ? 0.1 : 0.14) + t * (prev ? 0.2 : 0.26));
     el.style.background = rgb(c);
-    el.style.color = claro(c) ? '#0b0b0b' : '#ffffff';
+    el.style.color = tintaSobre(c);
     el.classList.toggle('prev', prev);
     el.classList.toggle('sel', S.ufSel === u.uf);
     const v = el.querySelector('[data-v]');
@@ -803,7 +855,7 @@ function desenharGraf() {
   const sep = Math.abs(yl - yf) < 16 ? (16 - Math.abs(yl - yf)) / 2 : 0;
   const [ylT, yfT] = yl < yf ? [yl - sep, yf + sep] : [yl + sep, yf - sep];
   out.push(`<circle class="mk" cx="${xu}" cy="${n2(yl)}" r="4" style="--c:${L}"/><circle class="mk" cx="${xu}" cy="${n2(yf)}" r="4" style="--c:${F}"/>`);
-  out.push(`<text class="rot fim" x="${xu + 7}" y="${n2(ylT + 4)}" style="fill:${L}">${C.fNum(ult.lula, 1)}</text><text class="rot fim" x="${xu + 7}" y="${n2(yfT + 4)}" style="fill:${F}">${C.fNum(100 - ult.lula, 1)}</text>`);
+  out.push(`<text class="rot fim" x="${xu + 7}" y="${n2(ylT + 4)}" style="fill:${tema().lulaTexto}">${C.fNum(ult.lula, 1)}</text><text class="rot fim" x="${xu + 7}" y="${n2(yfT + 4)}" style="fill:${tema().flavioTexto}">${C.fNum(100 - ult.lula, 1)}</text>`);
   const svg = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-hidden="true">${out.join('')}</svg>`;
   if (el._svg !== svg) {
     el._svg = svg;
@@ -1061,22 +1113,22 @@ function estilos() {
 .sim-aviso[hidden] { display: none; }
 .sim.sim-velho .sim-hero, .sim.sim-velho .sim-barra { opacity: 0.6; }
 .sim-hero { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
-.sim-lado { min-width: 0; padding: 12px 12px 12px; border: 1px solid var(--linha); border-radius: 14px; background: #fff; }
-.sim-lado .ap-quem .foto-wrap { width: 44px; height: 44px; flex: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--c, #ccc); }
+.sim-lado { min-width: 0; padding: 12px 12px 12px; border: 1px solid var(--linha); border-radius: 14px; background: var(--cartao); }
+.sim-lado .ap-quem .foto-wrap { width: 44px; height: 44px; flex: none; box-shadow: 0 0 0 2px var(--cartao), 0 0 0 4px var(--c, var(--linha-2)); }
 .sim-lado .ap-quem .foto { width: 44px; height: 44px; }
 .sim-lado .ap-quem .foto-ini { font-size: 14px; }
 .sim-rot { margin: 12px 0 0; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--tinta-2); }
-.sim-num { margin: 0; font-size: 40px; line-height: 1.05; font-weight: 790; letter-spacing: -0.03em; color: var(--c); font-variant-numeric: tabular-nums; }
+.sim-num { margin: 0; font-size: 40px; line-height: 1.05; font-weight: 790; letter-spacing: -0.03em; color: var(--ct, var(--tinta)); font-variant-numeric: tabular-nums; }
 .sim-num small { font-size: 20px; font-weight: 700; margin-left: 1px; }
 .sim-faixa-txt { margin: 2px 0 0; font-size: 12.5px; color: var(--tinta-2); font-variant-numeric: tabular-nums; }
 .sim-chance { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 10px 0 0; font-size: 12px; color: var(--tinta-2); }
-.sim-chance b { padding: 3px 9px; border-radius: 999px; font-size: 14px; font-weight: 760; background: ${NEUTRO}; transition: background-color 1.2s ease, color 1.2s ease; font-variant-numeric: tabular-nums; }
+.sim-chance b { padding: 3px 9px; border-radius: 999px; font-size: 14px; font-weight: 760; background: var(--suave-2); transition: background-color 1.2s ease, color 1.2s ease; font-variant-numeric: tabular-nums; }
 .sim-barra { position: relative; display: flex; gap: 2px; height: 12px; margin: 14px 0 0; }
-.sim-barra span { flex: 50 1 0px; min-width: 2px; background: #d9d8d2; transition: flex-grow 1s ease, background-color 1s ease; }
+.sim-barra span { flex: 50 1 0px; min-width: 2px; background: var(--linha-2); transition: flex-grow 1s ease, background-color 1s ease; }
 .sim-barra span:first-of-type { border-radius: 6px 0 0 6px; }
 .sim-barra span:last-of-type { border-radius: 0 6px 6px 0; }
 .sim-barra i { position: absolute; left: 50%; top: -5px; bottom: -5px; border-left: 2px solid var(--tinta); transform: translateX(-1px); }
-.sim-barra b { position: absolute; top: -3px; bottom: -3px; border: 1.5px solid rgba(11,11,11,0.55); border-radius: 4px; background: rgba(255,255,255,0.18); transition: left 1s ease, width 1s ease; pointer-events: none; }
+.sim-barra b { position: absolute; top: -3px; bottom: -3px; border: 1.5px solid var(--tinta-2); border-radius: 4px; background: color-mix(in srgb, var(--tinta) 12%, transparent); transition: left 1s ease, width 1s ease; pointer-events: none; }
 .sim-modelado { margin: 10px 0 14px; font-size: 12px; line-height: 1.45; color: var(--tinta-3); }
 .sim-ins { margin-top: 2px; }
 .sim-transf { display: grid; gap: 12px; }
@@ -1085,7 +1137,7 @@ function estilos() {
 .sim-tl-rot { font-weight: 650; min-width: 0; }
 .sim-tl-n { margin-left: auto; font-size: 12px; color: var(--tinta-3); white-space: nowrap; }
 .sim-mini { display: inline-flex; flex: none; }
-.sim-mini img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1.5px #fff; background: var(--suave-2); }
+.sim-mini img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1.5px var(--cartao); background: var(--suave-2); }
 .sim-mini img + img { margin-left: -6px; }
 .sim-tb { display: flex; gap: 2px; height: 14px; overflow: hidden; border-radius: 7px; background: var(--suave-2); }
 .sim-tb span { min-width: 2px; background: var(--c); transition: flex-grow 1s ease; }
@@ -1099,7 +1151,7 @@ function estilos() {
 .graf .sim-band { fill: var(--c); fill-opacity: 0.13; stroke: none; }
 .sim-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 6px 0 0; font-size: 12px; color: var(--tinta-3); }
 .sim-leg span { display: inline-flex; align-items: center; gap: 6px; }
-.sim-band-l { display: inline-block; width: 18px; height: 10px; border-radius: 2px; background: rgba(11,11,11,0.1); }
+.sim-band-l { display: inline-block; width: 18px; height: 10px; border-radius: 2px; background: color-mix(in srgb, var(--tinta) 18%, transparent); }
 .sim-virar-t { margin: 0; font-size: 14px; line-height: 1.5; }
 .sim-regua { position: relative; height: 12px; margin: 14px 0 0; border-radius: 6px; background: linear-gradient(90deg, var(--suave-2), var(--suave-2)); }
 .sim-regua .r-50 { position: absolute; left: 50%; top: -4px; bottom: -4px; border-left: 1.5px dashed var(--tinta-3); }

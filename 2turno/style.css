@@ -1579,10 +1579,44 @@ body.tv .ap-atraso { display: none !important; }
 .sim-ab-res { margin: 2px 0 0; font-size: 14px; line-height: 1.5; color: var(--tinta-2); }
 .sim-ab-res b { color: var(--tinta); }
 
-/* PROVISÓRIO até a apuração v4 (cores do apuracao.js no modo escuro): os ladrilhos do mapa
-   ainda vêm claros do JS, então o texto deles fica escuro. A v4 substitui esta regra. */
-.ap-mapa .lad { color: #0b0b0b; }
-.ap-mapa .lad .lad-a, .ap-mapa .lad .lad-sp, .ap-mapa .lad .lad-uf { color: #2b2a26; }
-.ap-mapa .lad .lad-barra { background: rgba(11, 11, 11, 0.14); }
-.ap-mapa .lad .lad-barra i { background: #45443f; }
-.ap-sim-barra button, .ap-sim-rodape button { background: #fffaf0; color: #2e2200; }
+/* ------------------------------------------------------------------------------------------
+   Apuração v4 (24/10/2026): modo escuro, motor da projeção final e novos destaques.
+   Seção do apuracao.js / simulador.js; as cores vêm dos tokens do :root (o JS lê as mesmas variáveis).
+   ------------------------------------------------------------------------------------------ */
+:root {
+  /* chance de vitória (apuracao.js e simulador.js leem estas duas): verde e vermelho escuros o bastante
+     para a letra clara por cima; os dois lados da chance nunca usam as cores dos candidatos */
+  --chance-verde: #176b3d;
+  --chance-vermelho: #a83a38;
+  /* fita amarela da SIMULAÇÃO (números fictícios): continua amarela e escura no tema escuro, de propósito */
+  --fita: #ffd84d;
+  --fita-2: #ffcb1f;
+  --fita-tinta: #2e2200;
+  --fita-botao: #fffaf0;
+  --alerta-fundo-2: #33281a; /* segunda listra da faixa âmbar da simulação */
+}
+.ap-motor { margin: 0 0 6px; font-size: 12.5px; line-height: 1.4; color: var(--tinta-2); }
+.ap-motor b { color: var(--tinta); }
+.ap-motor-div { margin: 8px 0 0; padding: 8px 10px; border-left: 3px solid var(--alerta); border-radius: 0 8px 8px 0; background: var(--alerta-fundo); color: var(--tinta-2); font-size: 12.5px; line-height: 1.45; }
+.ap-motor-div b { color: var(--tinta); }
+body.tv .ap-motor-div { display: none; }
+
+/* ladrilho ainda sem voto: o texto "sem votos" no tom de leitura (o --tinta-3 não alcança 4,5:1 sobre o ladrilho tingido) */
+.ap-mapa.v2 .lad.prev .lad-sv { color: var(--tinta-2); }
+.ap-mapa.v2 .lad-a, .ap-mapa.v2 .lad-sp { color: var(--tinta-2); }
+.ap-mapa.v2 .lad-uf { color: var(--tinta); }
+.ap-mapa.v2 .lad-k { opacity: 1; }
+
+/* estado "venceu": etiqueta cheia na cor do candidato, letra escura por cima (a antiga era branca sobre a cor clara de texto) */
+.uf-it.s-def.q-lula .uf-sit { background: var(--lula); color: var(--sobre-tinta); }
+.uf-it.s-def.q-flavio .uf-sit { background: var(--flavio); color: var(--sobre-tinta); }
+
+/* faixa de simulação: no tema escuro a faixa do topo fica âmbar escura e a fixa de baixo continua amarela */
+.ap-sim { border-color: var(--alerta-borda); background: repeating-linear-gradient(135deg, var(--alerta-fundo) 0 10px, var(--alerta-fundo-2) 10px 20px); color: var(--alerta); }
+.ap-sim b { color: var(--alerta); }
+.ap-sim-acoes button { border-color: var(--alerta-borda); background: var(--cartao); color: var(--alerta); }
+.ap-sim-fixa { background: repeating-linear-gradient(135deg, var(--fita) 0 12px, var(--fita-2) 12px 24px); color: var(--fita-tinta); }
+.ap-sim-fixa button { border-color: var(--fita-tinta); background: var(--fita-botao); color: var(--fita-tinta); }
+
+/* rótulos pequenos dentro do cartão de chance (verde/vermelho): sem transparência, para o texto passar de 4,5:1 */
+.ap-lado .ap-part, .ap-lado .ap-ch-rot, .ap-lado .ap-sub { opacity: 1; }

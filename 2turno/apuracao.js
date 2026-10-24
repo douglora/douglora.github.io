@@ -1,14 +1,18 @@
 /* Radar Eleitoral · 2º turno · APURAÇÃO AO VIVO (o "processador" da noite de 25/10)
  *
  * Módulo ES sem dependências, carregado pelo app.js com import dinâmico.
- * - Lê o TSE direto do navegador (CORS liberado): Brasil a cada 5 s; a abrangência
- *   (progresso de cada UF, um arquivo só) a cada 5 s diz quais UFs mudaram, e só essas
- *   são relidas, até 4 por vez. As 27 capitais (arquivo de cada município) são lidas a
- *   cada ~30 s, escalonadas, sem nunca atrasar o Brasil nem os estados. Detalhes em
- *   "leitura do TSE".
+ * - Lê o TSE direto do navegador (CORS liberado): Brasil a cada 1 s; a abrangência
+ *   (progresso de cada UF, um arquivo só) a cada 1 s diz quais UFs mudaram, e só essas
+ *   são relidas, até 5 por vez, na hora em que a rede do TSE renova a cópia do arquivo
+ *   (o Cache-Control de cada resposta diz quando). As 27 capitais (arquivo de cada
+ *   município) são lidas a cada ~30 s, escalonadas, sem nunca atrasar o Brasil nem os
+ *   estados. Detalhes em "leitura do TSE".
  * - Projeta o resultado final UF por UF: o que já foi apurado + o que falta,
  *   misturando o observado na UF com a prévia (modelo_uf do JSON; se faltar,
  *   o cálculo de reserva descrito em montarBase).
+ * - Projeção final: dois motores. O simulador municipal do Mac (simulador.js repassa o
+ *   arquivo) quando o dado tem até 3 min e cobre parte relevante; senão, o modelo por UF
+ *   desta página. A tela diz qual está em uso e mostra os dois quando divergem.
  * - Chance de vitória por Monte Carlo (2.000 sorteios, sementes fixas para o
  *   número não "tremer" entre leituras). Os MESMOS sorteios dão a chance de cada
  *   estado (fatia de sorteios em que cada candidato vence naquele estado), então a
@@ -52,17 +56,28 @@ export const MODELO = {
   // Monte Carlo: sorteios e semente fixa (mesmos sorteios a cada leitura).
   SORTEIOS: 2000,
   SEMENTE: 20261025,
-  // Ritmo de leitura do TSE. Por que 5 s é tão rápido quanto o próprio site do TSE:
-  // o site resultados.tse.jus.br e esta página leem OS MESMOS arquivos, servidos pela mesma
-  // rede de distribuição (Akamai), que guarda cada arquivo por 45 a 57 s (max-age medido em
-  // 23/10/2026) e só então busca a versão nova na origem. Ninguém, nem o site do TSE, vê um
-  // número antes de o arquivo trocar na borda. Pedindo a cada 5 s, com pedido condicional
-  // (If-None-Match / If-Modified-Since), a página descobre a troca em até 5 s depois dela e,
-  // enquanto nada muda, o TSE responde 304 (uns 200 bytes). Nada de parâmetro na URL para
-  // "furar" o cache: isso iria até a origem do TSE, aumentaria a carga na noite da apuração
-  // e arriscaria bloqueio (429), sem trazer número mais novo.
-  CADA_BR_MS: 5000,
-  CADA_AB_MS: 5000,
+  // Ritmo de leitura do TSE (medido na rede real em 24/10/2026, resultados.tse.jus.br, Akamai):
+  // cada resposta traz Cache-Control: max-age = tempo que falta para a cópia daquela máquina vencer
+  // (59 s logo depois de renovada), mas a máquina RENOVA a cópia sozinha quando ela chega a ~12 s
+  // de idade: numa conexão fixa o max-age vai de 57 a 45 e volta a 57, de 12 em 12 s, e é nesse
+  // ritmo que um número novo do TSE chega a quem lê. Ninguém, nem o site do TSE, vê um número
+  // antes de a máquina renovar a cópia. O que esta página controla é o tempo entre a renovação
+  // e a tela: lê o Brasil e a abrangência a cada 1 s, com pedido condicional (If-None-Match; sem
+  // mudança o TSE responde 304, uns 300 bytes), e caça os estados que a abrangência diz que
+  // mudaram na hora em que o max-age mostra que a máquina vai renovar. Nada de parâmetro na URL
+  // para "furar" o cache e nada de cabeçalho que force preflight: iria até a origem do TSE.
+  // Custo por aba aberta: ~2 pedidos/s de 304 + estados que mudam + capitais (ver o fim do arquivo).
+  CADA_BR_MS: 1000,
+  CADA_AB_MS: 1000,
+  // Relógio interno (decide o que pedir) e variação sorteada em cada espera (aparelhos não sincronizam).
+  TIQUE_MS: 250,
+  JITTER: 0.08,
+  // Renovação da cópia na rede do TSE: idade, em s, em que a máquina renova (aprendida em tempo real,
+  // este é o ponto de partida) e max-age de uma cópia recém-renovada.
+  RENOVA_S: 12.5,
+  TTL_REDE_S: 59,
+  // Caça a um estado que a abrangência diz ter mudado: desiste depois deste tempo (a leitura de rotina segue).
+  CACA_MAX_MS: 60000,
   // Capitais (arquivo de cada município, mesmo formato do arquivo do estado): no máximo 4
   // pedidos no ar, uma leitura nova por segundo no máximo (escalonadas), cada capital a
   // cada ~30 s (90 s enquanto ainda sem voto) e só quando não há Brasil, abrangência nem
@@ -76,13 +91,13 @@ export const MODELO = {
   UF_PROVAVEL_SEC: 25,
   // Mínimo de apuração (% das seções) para cada tipo de destaque nascer: com pouco contado,
   // a ordem em que as urnas chegam enviesa os números e o texto afirmaria demais.
-  INS_MIN: { vs1t: 20, virou: 30, placar: 10, regiao: 15, termometro: 30, capital: 20, capitais: 30, momento: 5, pesquisas: 15, transf: 1 },
+  INS_MIN: { vs1t: 20, virou: 30, placar: 10, regiao: 15, termometro: 30, capital: 20, capitais: 30, momento: 5, pesquisas: 15, transf: 1, ponto: 8, falta: 15, ritmo: 12 },
   // Atrasos (hora da totalização do TSE → hora da leitura aqui) guardados para a mediana.
   ATRASOS_N: 30,
-  // Estados: no máximo 4 pedidos no ar; cada um relido quando a abrangência avisa que
+  // Estados: no máximo 5 pedidos no ar; cada um relido quando a abrangência avisa que
   // mudou e, como rede de segurança, ao menos a cada 60 s enquanto conta (15 s se a
   // abrangência falhar; 5 min depois de 100% totalizado).
-  UF_PARALELO: 4,
+  UF_PARALELO: 5,
   UF_IDADE_MS: 60000,
   UF_IDADE_SEM_AB_MS: 15000,
   UF_IDADE_FIM_MS: 300000,
@@ -95,6 +110,15 @@ export const MODELO = {
   ESPERA_429_MS: 30000,
   // Aba em segundo plano (ou outra aba da página aberta): metade do ritmo.
   OCULTA_FATOR: 2,
+  // Projeção final pelo simulador municipal do Mac: arquivo com até 3 min (4 min para sair, histerese),
+  // ao menos 5% das seções e 8% do eleitorado no modelo; mostra os dois motores se divergirem mais que 1 ponto.
+  SIM_FRESCO_MS: 180000,
+  SIM_FRESCO_SAI_MS: 240000,
+  SIM_MIN_SECOES: 5,
+  SIM_MIN_MODELADO: 8,
+  DIVERGE_PP: 1.0,
+  // Curva da contagem de referência (1º turno de 2026 e 2º turno de 2022), arquivo opcional do site.
+  CURVA_URL: '/data/pocket/curva_apuracao.json',
   // Sem nenhuma resposta do TSE por mais que isso, o aviso diz desde quando.
   SEM_RESPOSTA_MS: 90000,
   // Simulação: 3h30 de apuração em 2 minutos, um passo por segundo.
@@ -144,10 +168,42 @@ const PARTE_2022 = {
 // Simulação: quando cada região começa e quanto tempo leva (fração da noite simulada).
 const RITMO_SIM = { S: [0.0, 0.45], SE: [0.02, 0.55], CO: [0.05, 0.62], NE: [0.12, 0.7], N: [0.15, 0.75], EX: [0.4, 0.55] };
 
-// Cores só para a chance de vitória (não são cores de partido).
-const VERDE = '#0b7a3b';
-const VERMELHO = '#b42318';
-const NEUTRO = '#f3f3ef';
+// Cores: tudo vem das variáveis CSS do site (modo escuro). Os valores abaixo só entram se a variável
+// faltar (por exemplo, se o CSS ainda não carregou). A chance de vitória usa --chance-verde e
+// --chance-vermelho (não são cores de partido).
+const TEMA_PADRAO = {
+  fundo: '#0f1115', cartao: '#171a21', sobreTinta: '#0f1115', tinta: '#eceef2', tinta2: '#b9bfca', tinta3: '#8d95a3',
+  linha: '#262b35', linha2: '#363c48', suave: '#1b1f27', suave2: '#232832',
+  lula: '#ef4a5e', lulaTexto: '#ff7b8a', flavio: '#5b8cf0', flavioTexto: '#8fb0ff',
+  vivo: '#34c27a', alerta: '#f2c46b', chanceVerde: '#176b3d', chanceVermelho: '#a83a38',
+};
+const TEMA_VARS = {
+  fundo: '--fundo', cartao: '--cartao', sobreTinta: '--sobre-tinta', tinta: '--tinta', tinta2: '--tinta-2', tinta3: '--tinta-3',
+  linha: '--linha', linha2: '--linha-2', suave: '--suave', suave2: '--suave-2',
+  lula: '--lula', lulaTexto: '--lula-texto', flavio: '--flavio', flavioTexto: '--flavio-texto',
+  vivo: '--vivo', alerta: '--alerta', chanceVerde: '--chance-verde', chanceVermelho: '--chance-vermelho',
+};
+let temaCache = null;
+let temaEm = 0;
+// Lê as variáveis CSS (cache de 5 s: o tema não muda no meio da noite, mas o CSS pode chegar depois do módulo).
+function tema() {
+  const agora = Date.now();
+  if (temaCache && agora - temaEm < 5000) return temaCache;
+  const t = {};
+  let cs = null;
+  try {
+    cs = getComputedStyle(document.documentElement);
+  } catch {
+    cs = null;
+  }
+  for (const [k, v] of Object.entries(TEMA_VARS)) {
+    const x = cs ? String(cs.getPropertyValue(v) || '').trim() : '';
+    t[k] = corParaRgb(x) ? x : TEMA_PADRAO[k];
+  }
+  temaCache = t;
+  temaEm = agora;
+  return t;
+}
 
 /* ================================================================ estado */
 
@@ -180,6 +236,8 @@ const A = {
   cap: new Map(), // capitais: cod → arquivo do TSE lido
   atrasos: [], // hora da totalização do TSE × hora em que esta página viu a versão
   simDoc: null, // simulador.json do Mac, repassado pelo simulador.js ({ doc, em, modo })
+  motorSim: false, // a projeção final está usando o simulador municipal (com histerese: entra com 3 min, sai com 4)
+  curva: null, // curva da contagem de referência (1º turno de 2026 e 2º turno de 2022): objeto, ou false se o arquivo não existe
   rot: 0,
   timers: [],
   sim: null,
@@ -231,32 +289,60 @@ function normal(rng) {
   while (u === 0) u = rng();
   return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * rng());
 }
-function hexRgb(hx) {
-  let x = String(hx).replace('#', '');
-  if (x.length === 3) x = x.split('').map((c) => c + c).join('');
-  const n = parseInt(x.slice(0, 6), 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+// Cor em #rgb, #rrggbb, rgb() ou rgba() → [r, g, b] (ou null).
+function corParaRgb(s) {
+  const x = String(s ?? '').trim();
+  let m = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(x);
+  if (m) {
+    let h = m[1];
+    if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+    const n = parseInt(h, 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  m = /^rgba?\(\s*(\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)[ ,]+(\d+(?:\.\d+)?)/i.exec(x);
+  return m ? [Math.round(+m[1]), Math.round(+m[2]), Math.round(+m[3])] : null;
 }
+const hexRgb = (hx) => corParaRgb(hx) ?? [0, 0, 0];
 function misturar(a, b, t) {
   const p = hexRgb(a);
   const q = hexRgb(b);
   return p.map((v, i) => Math.round(v + (q[i] - v) * t));
 }
 const rgb = (c) => `rgb(${c.join(',')})`;
-const claro = (c) => (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255 > 0.55;
-// Do neutro ao verde forte (quem ganha chance) ou ao vermelho (quem perde).
-function corChance(p) {
-  if (p === null || p === undefined || !Number.isFinite(p)) return { fundo: rgb(hexRgb(NEUTRO)), tinta: '#0b0b0b', forca: 0 };
-  const forca = Math.pow(Math.min(1, Math.abs(p - 0.5) * 2), 0.8);
-  const c = misturar(NEUTRO, p >= 0.5 ? VERDE : VERMELHO, forca);
-  return { fundo: rgb(c), tinta: claro(c) ? '#0b0b0b' : '#ffffff', forca };
+function luminancia(c) {
+  const f = (v) => {
+    const s = v / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]);
 }
-// Ladrilho com números: fundo sempre claro (tinta do partido de quem lidera na projeção,
-// mais forte = margem maior) para que os números nas cores dos candidatos fiquem legíveis.
+const contraste = (a, b) => {
+  const la = luminancia(a);
+  const lb = luminancia(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+};
+// A tinta do texto sobre um fundo: a clara (--tinta) ou a escura (--sobre-tinta), a de maior contraste.
+function tintaSobre(fundoRgb) {
+  const T = tema();
+  const a = hexRgb(T.tinta);
+  const b = hexRgb(T.sobreTinta);
+  return contraste(fundoRgb, a) >= contraste(fundoRgb, b) ? T.tinta : T.sobreTinta;
+}
+// Do neutro ao verde forte (quem ganha chance) ou ao vermelho (quem perde), sobre o fundo escuro.
+function corChance(p) {
+  const T = tema();
+  if (p === null || p === undefined || !Number.isFinite(p)) return { fundo: rgb(hexRgb(T.suave)), tinta: T.tinta, forca: 0, neutro: true };
+  const forca = Math.pow(Math.min(1, Math.abs(p - 0.5) * 2), 0.8);
+  const c = misturar(T.suave, p >= 0.5 ? T.chanceVerde : T.chanceVermelho, forca);
+  return { fundo: rgb(c), tinta: tintaSobre(c), forca, neutro: forca < 0.02 };
+}
+// Ladrilho com números: fundo escuro com um toque da cor de quem lidera na projeção (mais forte = margem
+// maior); os números nas cores de texto dos candidatos (--lula-texto / --flavio-texto) ficam legíveis em cima.
 function corLadrilhoNum(corPartido, margem, prev) {
-  const t = prev ? 0.06 + Math.min(0.12, margem * 0.6) : 0.1 + Math.min(0.26, (margem / 0.3) * 0.26);
-  const c = misturar('#ffffff', corPartido, t);
-  return { fundo: rgb(c), tinta: claro(c) ? '#0b0b0b' : '#ffffff' };
+  const T = tema();
+  const t = prev ? 0.05 + Math.min(0.08, margem * 0.4) : 0.08 + Math.min(0.14, (margem / 0.3) * 0.14);
+  const c = misturar(T.cartao, corPartido, t);
+  return { fundo: rgb(c), tinta: tintaSobre(c) };
 }
 function animarNumero(el, para, fmt, dur = 900) {
   if (!el) return;
@@ -701,13 +787,18 @@ function processar() {
   const completo =
     A.modo === 'sim' || semLeitura.length === 0 || (desde > 20000 && semLeitura.every(desistiu)) || desde > 120000;
   const totalVal = vvCont + rem;
-  const proj = {
+  const projUF = {
     L: projL,
     F: projF,
     pL: totalVal > 0 ? (projL / totalVal) * 100 : null,
     pF: totalVal > 0 ? (projF / totalVal) * 100 : null,
     parL: projL + projF > 0 ? (projL / (projL + projF)) * 100 : null,
+    motor: 'estados',
   };
+  // Motor da projeção final: o simulador municipal do Mac, quando o dado é recente e cobre parte relevante; senão, o
+  // modelo por estado desta página. Os dois ficam à mão: a tela mostra os dois quando divergem.
+  const sim = projecaoSimulador(cont);
+  const proj = sim ? sim.proj : projUF;
   // Matematicamente definido: quem está atrás não alcança nem com todo o eleitorado que
   // falta (eleitores das seções não totalizadas, pela mesma fonte do apurado na tela).
   const remMaxCont = Math.max(0, cont.te - cont.est);
@@ -728,13 +819,17 @@ function processar() {
   // Os mesmos sorteios dão a chance nacional e a de cada estado (ver montecarlo).
   const mc = montecarlo(linhas, projL, projF, rem);
   let pL;
+  let pLUF;
   if (tudo || definido) {
     pL = dif > 0 ? 1 : dif < 0 ? 0 : 0.5;
+    pLUF = pL;
   } else if (eleitoTSE) {
     pL = eleitoTSE === 'lula' ? 1 : 0;
+    pLUF = pL;
   } else {
     // 100% e 0% ficam para quando está decidido; antes disso, no máximo ">99%".
-    pL = clamp(mc.nac, 0.001, 0.999);
+    pLUF = clamp(mc.nac, 0.001, 0.999);
+    pL = sim && Number.isFinite(sim.chanceL) ? clamp(sim.chanceL, 0.001, 0.999) : pLUF;
   }
   // Situação de cada estado. "Definido": vantagem maior que o eleitorado que falta no estado
   // (ou estado 100% apurado). "Provável": chance ≥ 99% (ou ≤ 1%) E ao menos 25% das seções
@@ -765,8 +860,8 @@ function processar() {
     }
   });
   return {
-    linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, proj, pL, definido, tudo, eleitoTSE, decidido,
-    lidos, semLeitura, completo, totalVal,
+    linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, proj, projUF, sim, motor: sim ? 'simulador' : 'estados', pL, pLUF,
+    definido, tudo, eleitoTSE, decidido, lidos, semLeitura, completo, totalVal,
   };
 }
 
@@ -1298,6 +1393,205 @@ function insightsNovos(r, out, { n, h, agora, MIN }) {
       });
     }
   }
+
+  // k) neste ponto da contagem, em eleições anteriores (arquivo curva_apuracao.json; sem ele, nada disto aparece)
+  const contando = r.cont.pst > 0 && r.cont.pst < 99.5 && !r.tudo && !r.decidido;
+  if (contando && r.cont.pst >= MIN.ponto && r.cont.L + r.cont.F > 0 && A.curva) {
+    const p = r.cont.pst;
+    const hoje = (100 * r.cont.L) / (r.cont.L + r.cont.F);
+    const dif = r.cont.L - r.cont.F;
+    const refs = A.curva.series.map((s) => ({ s, ...pontoCurva(s, p) })).filter((x) => x.ok);
+    for (const x of refs) {
+      const s = x.s;
+      const adv = nomeAdvCurva(s);
+      const liderRef = x.dif >= 0 ? n('lula') : adv;
+      const fimPar = s.final.par_pt_pct;
+      const virada = s.trocas_pct?.length ? s.trocas_pct[0] : null;
+      const viradaTxt =
+        virada === null ? '' : virada > p ? h` ${n('lula')} só passou à frente aos <b>${C.fNum(virada, 0)}%</b> apurados.` : h` A virada já tinha acontecido, aos ${C.fNum(virada, 0)}%.`;
+      out.push({
+        id: `ponto-${s.id}`,
+        tag: 'Histórico',
+        p: s.turno === 1 ? 57 : 56,
+        html: h`Neste ponto da contagem (<b>${pctPiso(p, 0)}</b> das seções), ${s.turno === 1 ? 'no 1º turno' : 'no 2º turno'} de ${s.ano}, ${liderRef} liderava por <b>${votosDif(x.dif)}</b> (${x.dif >= 0 ? '' : n('lula') + ' com '}<b>${pct1(x.par)}</b> dos votos dos dois); no fim, ${n('lula')} chegou a <b>${pct1(fimPar)}</b> (${sinalPP(fimPar - x.par)} ${pontosTxt(fimPar - x.par)}).${viradaTxt} Hoje: ${n('lula')} <b>${pct1(hoje)}</b>. <span class="ap-nota-in">Contagens de eleições diferentes chegam em ordens diferentes: compare a tendência, não o número.</span>`,
+      });
+    }
+    if (refs.length) {
+      const quemHoje = dif > 0 ? n('lula') : dif < 0 ? n('flavio') : null;
+      const partes = refs.map((x) => {
+        const q = x.dif >= 0 ? n('lula') : nomeAdvCurva(x.s);
+        return h`<b>${votosCurto(Math.abs(x.dif))}</b> a favor de ${q} ${x.s.turno === 1 ? 'no 1º turno' : 'no 2º turno'} de ${x.s.ano}`;
+      });
+      out.push({
+        id: 'diferenca-ponto',
+        tag: 'Histórico',
+        p: 54,
+        html: h`${quemHoje ? h`Na contagem de agora, ${quemHoje} está à frente por <b>${votosDif(dif)}</b>.` : 'A contagem de agora está empatada.'} No mesmo ponto (${pctPiso(p, 0)} das seções), a diferença era de ${partes.map((x, i) => h`${i ? ' e de ' : ''}${x}`)}.`,
+      });
+    }
+  }
+
+  // l) onde está o que falta e o que deve render, por região
+  if (contando && r.cont.pst >= MIN.falta && r.rem > 0) {
+    const nomeR = { ...REGIAO_NOME, EX: 'Exterior' };
+    const por = {};
+    for (const u of r.linhas) {
+      const g = REGIAO[u.uf];
+      por[g] = por[g] || { rem: 0, net: 0 };
+      por[g].rem += u.rem;
+      por[g].net += u.rem * (2 * u.share - 1);
+    }
+    const lista = Object.entries(por)
+      .map(([g, v]) => ({ g, ...v }))
+      .filter((x) => x.rem >= 20000)
+      .sort((a, b) => b.rem - a.rem)
+      .slice(0, 3);
+    const netTot = Object.values(por).reduce((s, v) => s + v.net, 0);
+    const dif = r.cont.L - r.cont.F;
+    const lc2 = lider(r.cont.L, r.cont.F);
+    if (lista.length && lc2) {
+      const quemNet = netTot >= 0 ? 'lula' : 'flavio';
+      const suficiente = (netTot > 0 && dif < 0 && netTot > -dif) || (netTot < 0 && dif > 0 && -netTot > dif);
+      const veredito = suficiente
+        ? h`pela estimativa, o que falta é suficiente para ${n(quemNet)} passar à frente`
+        : quemNet === lc2
+          ? h`o que falta reforça a vantagem de ${n(lc2)}`
+          : h`pela estimativa, o que falta não chega para ${n(quemNet)} virar`;
+      out.push({
+        id: 'falta-regiao',
+        tag: 'Brasil',
+        p: 59,
+        html: h`O que falta apurar, por região (estimativa da mesa): ${lista.map((x, i) => h`${i ? '; ' : ''}<b>${nomeR[x.g]}</b> ${votosCurto(x.rem)} de votos válidos, saldo de ${votosCurto(Math.abs(x.net))} para ${n(x.net >= 0 ? 'lula' : 'flavio')}`)}. Somando o país, o que falta deve render <b>+${votosCurto(Math.abs(netTot))}</b> a ${n(quemNet)}; hoje ${n(lc2)} está à frente por ${votosCurto(Math.abs(dif))}: ${veredito}.`,
+      });
+    }
+  }
+
+  // m) ritmo da contagem e quando chega a 95% (faixa entre o ritmo de 2022 e o do 1º turno de 2026)
+  const rit = ritmoContagem();
+  if (contando && rit && r.cont.pst >= MIN.ritmo) {
+    const eta = rit.eta;
+    const nomeSerie = (s) => (s.turno === 1 ? `do 1º turno de ${s.ano}` : `de ${s.ano}`);
+    let tail = '';
+    if (eta?.length === 1) {
+      tail = h` Pelo ritmo de hoje, com a reta final ${nomeSerie(eta[0].s)}, 95% das seções sai por volta de <b>${C.fHora(eta[0].t)}</b> (estimativa).`;
+    } else if (eta?.length >= 2) {
+      const [a, b] = eta;
+      tail =
+        Math.abs(b.t - a.t) <= 120000
+          ? h` Pelo ritmo de hoje, 95% das seções sai por volta de <b>${C.fHora(a.t)}</b> (estimativa).`
+          : h` Pelo ritmo de hoje, com a reta final ${nomeSerie(a.s)}, 95% das seções sai por volta de <b>${C.fHora(a.t)}</b>; com a reta final mais lenta ${nomeSerie(b.s)}, por volta de <b>${C.fHora(b.t)}</b> (estimativas).`;
+    }
+    out.push({
+      id: 'ritmo-contagem',
+      tag: 'Brasil',
+      p: 45,
+      html: h`Nos últimos <b>${rit.min} min</b>, a apuração foi de ${pctPiso(rit.de, 0)} para <b>${pctPiso(rit.ate, 0)}</b> das seções (${C.fNum(rit.porMin, 1)} ${rit.porMin < 2 ? 'ponto' : 'pontos'} por minuto${rit.votosMin ? `, uns ${votosCurto(rit.votosMin)} votos válidos por minuto` : ''}).${tail}`,
+    });
+  }
+}
+
+// Valor da curva de referência (votos acumulados dos dois finalistas) quando a contagem estava em p% das seções.
+function pontoCurva(s, p) {
+  const x = s?.pct;
+  if (!Array.isArray(x) || x.length < 3 || !(p > 0)) return { ok: false };
+  const interp = (arrY, i, t) => arrY[i] + (arrY[i + 1] - arrY[i]) * t;
+  let i = 0;
+  while (i < x.length - 2 && x[i + 1] <= p) i++;
+  const t = clamp((p - x[i]) / (x[i + 1] - x[i]), 0, 1);
+  const pt = interp(s.pt, i, t);
+  const adv = interp(s.adv, i, t);
+  if (!(pt + adv > 0)) return { ok: false };
+  return { ok: true, pt, adv, par: (100 * pt) / (pt + adv), dif: pt - adv, min: interp(s.min, i, t) };
+}
+// Minuto (depois das 17h) em que a série de referência chegou a p% das seções.
+const minutoCurva = (s, p) => {
+  const r = pontoCurva(s, p);
+  return r.ok ? r.min : null;
+};
+// Adversário de Lula em cada série, como a página o chama.
+const nomeAdvCurva = (s) => (s.id === '2t2022' ? 'Bolsonaro' : C.curto('flavio'));
+
+// Ritmo da contagem nos últimos ~15 min (da própria série da tela, na hora do TSE) e quando chega a 95% pelas curvas
+// de referência. Só com ao menos 10 min de série, avanço de ao menos 1 ponto e ritmo parecido nas duas metades.
+function ritmoContagem() {
+  const s = A.serie.filter((x) => Number.isFinite(x.t) && Number.isFinite(x.pst) && x.pst > 0);
+  if (s.length < 4) return null;
+  const ult = s[s.length - 1];
+  let ref = null;
+  for (let i = s.length - 2; i >= 0; i--) {
+    if (s[i].t <= ult.t - 15 * 60000) {
+      ref = s[i];
+      break;
+    }
+  }
+  if (!ref && ult.t - s[0].t >= 10 * 60000) ref = s[0];
+  if (!ref) return null;
+  const dMin = (ult.t - ref.t) / 60000;
+  const dP = ult.pst - ref.pst;
+  if (dMin < 10 || dP < 1) return null;
+  // metades: ritmo parecido nas duas
+  const meioT = ref.t + (ult.t - ref.t) / 2;
+  let mid = ref;
+  for (const x of s) if (x.t <= meioT && x.t >= ref.t) mid = x;
+  const p1 = ((mid.pst - ref.pst) / Math.max(1e-9, (mid.t - ref.t) / 60000));
+  const p2 = ((ult.pst - mid.pst) / Math.max(1e-9, (ult.t - mid.t) / 60000));
+  if (!(p1 > 0 && p2 > 0) || p2 / p1 > 2 || p1 / p2 > 2) return null;
+  const votosMin = Number.isFinite(ult.vv) && Number.isFinite(ref.vv) && ult.vv > ref.vv ? (ult.vv - ref.vv) / dMin : null;
+  let eta = null;
+  if (A.curva && ult.pst < 93) {
+    const ts = [];
+    for (const sr of A.curva.series) {
+      const ma = minutoCurva(sr, ref.pst);
+      const mb = minutoCurva(sr, ult.pst);
+      const m95 = minutoCurva(sr, 95);
+      if (ma === null || mb === null || m95 === null || mb - ma < 2) continue;
+      const k = clamp(dMin / (mb - ma), 0.4, 3);
+      ts.push({ s: sr, t: ult.t + k * (m95 - mb) * 60000 });
+    }
+    if (ts.length) eta = ts.sort((a, b) => a.t - b.t);
+  }
+  return { min: Math.round(dMin), de: ref.pst, ate: ult.pst, porMin: dP / dMin, votosMin, eta };
+}
+
+// Curva da contagem de referência (1º turno de 2026 e 2º turno de 2022). Arquivo opcional do site; sem ele, os destaques
+// "Neste ponto da contagem" e a estimativa de horário simplesmente não aparecem.
+async function carregarCurva() {
+  if (A.curva !== null) return;
+  A.curva = false;
+  // se a rede falhar na hora, tenta mais uma vez daqui a 90 s (404 = o site ainda não publicou o arquivo: não insiste)
+  const outraVez = () => {
+    if ((A.curvaTent ?? 0) < 1) {
+      A.curvaTent = (A.curvaTent ?? 0) + 1;
+      setTimeout(() => {
+        if (A.curva === false) {
+          A.curva = null;
+          carregarCurva();
+        }
+      }, 90000);
+    }
+  };
+  try {
+    const r = await fetch(MODELO.CURVA_URL, { cache: 'no-cache' });
+    if (!r.ok) {
+      if (r.status >= 500) outraVez();
+      return;
+    }
+    const d = await r.json();
+    const num = (v) => Number.isFinite(v);
+    const series = arr(d?.series).filter(
+      (s) =>
+        s && typeof s.id === 'string' && num(s.turno) && num(s.ano) && Array.isArray(s.pct) && s.pct.length >= 10 &&
+        ['pt', 'adv', 'min'].every((k) => Array.isArray(s[k]) && s[k].length === s.pct.length && s[k].every(num)) &&
+        s.pct.every(num) && obj(s.final) && num(s.final.par_pt_pct),
+    );
+    if (series.length) {
+      A.curva = { series };
+      if (A.res && A.raiz && A.modo === 'vivo') pedirTela();
+    }
+  } catch {
+    /* sem curva: tudo segue sem os destaques históricos por ponto da contagem */
+    outraVez();
+  }
 }
 
 // O simulador.json do Mac, repassado pelo simulador.js, só vale na apuração real (ou no teste que usa
@@ -1312,6 +1606,75 @@ function simVivo() {
   const ger = C.num(s.doc.gerado_ms);
   if (s.modo === 'vivo' && !teste && !s.doc.teste && !s.doc.simulacao && ger !== null && Date.now() - ger <= 30 * 60000) return s;
   return null;
+}
+
+/* Projeção final pelo simulador municipal. Devolve null (e a tela usa o modelo por estado) se: não há arquivo do
+ * simulador, ele é de teste fora do teste, tem mais de 3 min (4 min para sair, histerese), cobre menos de 5% das seções
+ * ou 8% do eleitorado, está mais de 15 pontos de seções atrás da leitura do TSE feita aqui, ou veio sem os números.
+ * Com tudo apurado, a projeção é o próprio resultado e o motor não importa (tela usa a contagem). */
+function projecaoSimulador(cont) {
+  A.simParado = null;
+  A.simAval = null;
+  const s = simVivo();
+  if (!s) {
+    A.motorSim = false;
+    return null;
+  }
+  const d = s.doc;
+  const ger = C.num(d.gerado_ms);
+  const p = obj(d.projecao);
+  const ap = obj(d.apuracao);
+  const lulaPct = C.num(p?.lula_pct);
+  const flavioPct = C.num(p?.flavio_pct);
+  const secoes = C.num(ap?.secoes_pct);
+  const modelado = C.num(ap?.eleitorado_modelado_pct);
+  const vot = obj(p?.votos);
+  const vL = C.num(vot?.lula);
+  const vF = C.num(vot?.flavio);
+  const agora = A.modo === 'sim' ? Date.now() : Date.now();
+  if (ger === null || lulaPct === null || flavioPct === null || vL === null || vF === null || secoes === null || modelado === null) {
+    A.motorSim = false;
+    return null;
+  }
+  const idade = agora - ger;
+  const lim = A.motorSim ? MODELO.SIM_FRESCO_SAI_MS : MODELO.SIM_FRESCO_MS;
+  const atras = (cont?.pst ?? 0) - secoes;
+  A.simAval = { ger, idade, secoes, modelado, lulaPct, faixa: p?.faixa80?.lula ?? null, chance: C.num(p?.chance?.lula), vL, vF, antes: A.motorSim, atras };
+  const cobre = secoes >= MODELO.SIM_MIN_SECOES && modelado >= MODELO.SIM_MIN_MODELADO;
+  if (idade > lim || idade < -600000 || !cobre || atras > 15) {
+    A.motorSim = false;
+    // o simulador existe mas não serve agora: a tela diz por quê, em uma linha
+    A.simParado = { ger, idade, cobre, atras, secoes };
+    return null;
+  }
+  A.motorSim = true;
+  const fx = Array.isArray(p?.faixa80?.lula) ? p.faixa80.lula : null;
+  const ch = C.num(p?.chance?.lula);
+  return {
+    doc: d,
+    ger,
+    idade,
+    secoes,
+    modelado,
+    faixa: fx && C.num(fx[0]) !== null && C.num(fx[1]) !== null ? [C.num(fx[0]), C.num(fx[1])] : null,
+    chanceL: ch,
+    comparecimento: C.num(p?.comparecimento_pct),
+    proj: { L: vL, F: vF, pL: lulaPct, pF: flavioPct, parL: lulaPct, motor: 'simulador' },
+  };
+}
+
+// "Quando fica definido", só com fatos do simulador: desde quando (e com quanto apurado) a faixa de 80% deixou de
+// incluir 50% e continua assim. Não projeta o futuro: antes disso, só diz que a faixa ainda inclui 50%.
+function faixaDefinida(doc) {
+  const s = arr(doc?.serie).filter((x) => x && Number.isFinite(x.t) && Number.isFinite(x.pct) && Number.isFinite(x.lula) && Number.isFinite(x.lo) && Number.isFinite(x.hi));
+  if (s.length < 3) return null;
+  const ult = s[s.length - 1];
+  const lado = (x) => (x.lo > 50 ? 1 : x.hi < 50 ? -1 : 0);
+  const l0 = lado(ult);
+  if (l0 === 0) return { fora: false, lo: ult.lo, hi: ult.hi };
+  let i = s.length - 1;
+  while (i > 0 && lado(s[i - 1]) === l0) i--;
+  return { fora: true, quem: l0 > 0 ? 'lula' : 'flavio', t: s[i].t, pct: s[i].pct, n: s.length - i };
 }
 
 // Sincroniza uma lista de destaques sem recriar o que já está na tela: o que continua só troca
@@ -1426,7 +1789,7 @@ function htmlMapa(contagem) {
     const [c, l] = GRADE[uf];
     return h`<button type="button" class="lad" data-uf="${uf}" style="grid-column:${c};grid-row:${l}" aria-label="${NOME_UF[uf]}">${miolo(uf)}</button>`;
   });
-  return h`<div class="ap-mapa v2${contagem ? ' com-contagem' : ''}" role="group" aria-label="Mapa de ladrilhos dos estados" style="--lad-l:${rgb(misturar(C.cand('lula').cor, '#000000', 0.3))};--lad-f:${rgb(misturar(C.cand('flavio').cor, '#000000', 0.3))}">
+  return h`<div class="ap-mapa v2${contagem ? ' com-contagem' : ''}" role="group" aria-label="Mapa de ladrilhos dos estados" style="--lad-l:${tema().lulaTexto};--lad-f:${tema().flavioTexto}">
     ${lad}
     <button type="button" class="lad lad-ext" data-uf="ZZ" style="grid-column:4 / span 3;grid-row:8" aria-label="Exterior">${miolo('Exterior')}</button>
   </div>`;
@@ -1538,7 +1901,7 @@ function htmlEstados() {
       <span class="uf-ord-r">Ordenar por</span>
       ${ORDENS.map(([k, rot]) => h`<button type="button" class="uf-ord-b" data-ap="ord-uf" data-ord="${k}" aria-pressed="${A.ufOrd === k ? 'true' : 'false'}">${rot}</button>`)}
     </div>
-    <div class="uf-tab" style="--uf-l:${rgb(misturar(C.cand('lula').cor, '#000000', 0.12))};--uf-f:${rgb(misturar(C.cand('flavio').cor, '#000000', 0.12))}">
+    <div class="uf-tab" style="--uf-l:${tema().lulaTexto};--uf-f:${tema().flavioTexto}">
       <div class="uf-cab" aria-hidden="true"><span>Estado e apuração</span><span>Apurado agora</span><span>vs 1º turno</span><span>Situação</span></div>
       <ol class="uf-lista" data-ap-ufs>${lin}</ol>
     </div>
@@ -1804,6 +2167,8 @@ function pontoSerie(r) {
     pL: r.pL,
     aL: r.cont.L + r.cont.F > 0 ? (r.cont.L / (r.cont.L + r.cont.F)) * 100 : null,
     jL: r.proj.parL,
+    vv: r.cont.L + r.cont.F,
+    m: r.motor === 'simulador' ? 's' : 'e',
   };
   const n = A.serie.length;
   const ult = A.serie[n - 1];
@@ -1812,7 +2177,7 @@ function pontoSerie(r) {
     // Mesma totalização: refaz o último ponto (a projeção muda a cada UF lida). Antes cada
     // UF lida virava um ponto novo com a mesma hora: o teto de 1.500 chegava em ~50 min e o
     // gráfico perdia o começo da noite.
-    if (ult.pst === p.pst && ult.pL === p.pL && ult.jL === p.jL && ult.aL === p.aL) return false;
+    if (ult.pst === p.pst && ult.pL === p.pL && ult.jL === p.jL && ult.aL === p.aL && ult.m === p.m) return false;
     A.serie[n - 1] = p;
     marcarTroca(A.serie[n - 2], p);
   } else {
@@ -1886,6 +2251,7 @@ function desenharChance(el) {
   const mL = new Map(pts.map((p) => [p.t, p.pL * 100]));
   const mF = new Map(pts.map((p) => [p.t, 100 - p.pL * 100]));
   const pst = new Map(pts.map((p) => [p.t, p.pst]));
+  const mo = new Map(pts.map((p) => [p.t, p.m === 's' ? 'simulador municipal' : 'modelo por estado']));
   let x0 = xs[0];
   let x1 = xs[xs.length - 1];
   if (x1 - x0 < 10 * 60000) x1 = x0 + 10 * 60000;
@@ -1907,7 +2273,7 @@ function desenharChance(el) {
     vFmt: (v) => (v > 99 && v < 100 ? '>99' : v > 0 && v < 1 ? '<1' : C.fNum(arredPar(v), 0)),
     minDist: 56,
     dica: (t) =>
-      C.h`<p class="dica-tit">${C.fHora(t)} · ${pctPiso(pst.get(t), 1)} apurado</p><p class="dica-l"><i class="lk" style="--c:${L.cor}"></i><b>${chanceTxt(mL.get(t) / 100)}</b><span>${C.curto('lula')}</span></p><p class="dica-l"><i class="lk" style="--c:${F.cor}"></i><b>${chanceTxt(mF.get(t) / 100)}</b><span>${C.curto('flavio')}</span></p>`,
+      C.h`<p class="dica-tit">${C.fHora(t)} · ${pctPiso(pst.get(t), 1)} apurado</p><p class="dica-l"><i class="lk" style="--c:${L.cor}"></i><b>${chanceTxt(mL.get(t) / 100)}</b><span>${C.curto('lula')}</span></p><p class="dica-l"><i class="lk" style="--c:${F.cor}"></i><b>${chanceTxt(mF.get(t) / 100)}</b><span>${C.curto('flavio')}</span></p><p class="dica-sep">Motor: ${mo.get(t)}</p>`,
   });
 }
 
@@ -1925,6 +2291,7 @@ function desenharVotos(el) {
   const aL = new Map(pts.filter((p) => p.aL !== null).map((p) => [p.t, p.aL]));
   const aF = new Map(pts.filter((p) => p.aL !== null).map((p) => [p.t, 100 - p.aL]));
   const pst = new Map(pts.map((p) => [p.t, p.pst]));
+  const mo = new Map(pts.map((p) => [p.t, p.m === 's' ? 'simulador municipal' : 'modelo por estado']));
   const vals = [...jL.values(), ...jF.values(), ...aL.values(), ...aF.values()];
   const longe = Math.max(...vals.map((v) => Math.abs(v - 50))) + 1.5;
   const meia = Math.max(10, Math.ceil(longe / 5) * 5);
@@ -1953,7 +2320,7 @@ function desenharVotos(el) {
       C.h`<p class="dica-tit">${C.fHora(t)} · ${pctPiso(pst.get(t), 1)} apurado</p>
         <p class="dica-l"><i class="lk" style="--c:${L.cor}"></i><b>${pct1(jL.get(t))}</b><span>${C.curto('lula')}, projeção</span></p>
         <p class="dica-l"><i class="lk" style="--c:${F.cor}"></i><b>${pct1(jF.get(t))}</b><span>${C.curto('flavio')}, projeção</span></p>
-        <p class="dica-sep">Apurado: ${C.curto('lula')} ${pct1(aL.get(t))} · ${C.curto('flavio')} ${pct1(aF.get(t))}</p>`,
+        <p class="dica-sep">Apurado: ${C.curto('lula')} ${pct1(aL.get(t))} · ${C.curto('flavio')} ${pct1(aF.get(t))} · projeção: ${mo.get(t)}</p>`,
   });
 }
 
@@ -2035,8 +2402,9 @@ function htmlComoFunciona() {
         <li><b>Swing observado</b> ${C.info('Swing observado')}: quanto a apuração está, em média, acima ou abaixo da prévia nos estados já contados. Ele corrige a prévia dos estados que ainda não começaram, com peso crescente pela parte do país já apurada.</li>
         <li><b>Chance de vitória</b>: ${C.fInt(MODELO.SORTEIOS)} sorteios. Um erro nacional comum (incerteza de ${C.fNum(A.base?.sigmaNac ?? MODELO.SIGMA_NACIONAL, 1)} ponto × parte que falta apurar) mais um erro próprio de cada estado (incerteza do estado × √(1 − f)). Com tudo apurado, 100% e 0%.</li>
         <li><b>Matematicamente definido</b> ${C.info('Matematicamente definido')}: quando a diferença na contagem é maior que todo o eleitorado que ainda falta apurar.</li>
+        <li><b>Dois motores para a projeção final</b>: o <b>simulador municipal</b> (um computador à parte projeta cidade a cidade e manda uma versão nova a cada minuto) vale quando o dado tem até 3 minutos e já cobre parte relevante da apuração; senão vale o <b>modelo por estado</b> desta página. A tela diz qual está valendo e mostra os dois se divergirem mais de 1 ponto. A chance de vitória do topo acompanha o motor em uso.</li>
       </ol>
-      <p class="nota">Leitura do TSE: Brasil e a lista de estados a cada 5 segundos; cada estado assim que o TSE mostra que ele mudou (e ao menos a cada minuto); as 27 capitais a cada cerca de 30 segundos. É o mesmo arquivo, da mesma rede de distribuição, que o site do TSE lê, e o TSE só troca cada arquivo a cada 45 a 57 segundos: não há como ver um número antes do site do TSE, e esta página o mostra assim que o arquivo troca. Fonte: resultados.tse.jus.br.</p>
+      <p class="nota">Leitura do TSE: Brasil e a lista de estados a cada 1 segundo, com pedido condicional (se nada mudou, o TSE responde com uma resposta vazia de uns 300 bytes); cada estado na hora em que a abrangência mostra que ele mudou e ao menos a cada minuto; as 27 capitais a cada cerca de 30 segundos. É o mesmo arquivo, da mesma rede de distribuição (Akamai), que o site do TSE lê. Medido em 24/10/2026: a rede renova a cópia de cada arquivo a cada ~12 segundos, e é nesse ritmo que um número novo do TSE chega a qualquer leitor. A página lê logo depois de cada renovação, então mostra o número assim que a rede o tem. Fonte: resultados.tse.jus.br.</p>
     </div>
   </details>`;
 }
@@ -2054,7 +2422,7 @@ function esqueletoPainel() {
       <p class="sobre">Apuração ao vivo · ${sim ? 'simulação' : 'TSE'} ${C.info('Apuração')}</p>
       <div class="ap-hero">${htmlLados(false)}</div>
       <div class="ap-chbar" aria-hidden="true"><span data-seg="lula"></span><span data-seg="flavio"></span><i></i></div>
-      <p class="ap-chleg">Chance de vitória pelo modelo da mesa ${C.info('Chance de vitória')}<span class="ap-def" data-ap-def hidden></span></p>
+      <p class="ap-chleg">Chance de vitória <span data-ap-chmotor>pelo modelo da mesa</span> ${C.info('Chance de vitória')}<span class="ap-def" data-ap-def hidden></span></p>
     </section>
     <section class="bloco ap-prog-b ap-sec-prog">
       <div class="ap-prog-cab"><p class="ap-prog-num"><b data-ap-pst>0,0%</b> das seções apuradas</p><p class="ap-prog-lido" data-ap-lidos></p></div>
@@ -2097,9 +2465,9 @@ function esqueletoPainel() {
       <div class="leg"><span><i class="lk" style="--c:${C.cand('lula').cor}"></i>${C.curto('lula')}</span><span><i class="lk" style="--c:${C.cand('flavio').cor}"></i>${C.curto('flavio')}</span></div>
       <div class="graf" data-grafico="apur-chance" tabindex="0" role="img" aria-label="Chance de vitória ao longo da apuração"></div>
       <h3 class="sub">Apurado × projeção, em % dos votos dados aos dois</h3>
-      <div class="leg"><span><i class="lk" style="--c:${C.cand('lula').cor}"></i>${C.curto('lula')}, projeção</span><span><i class="lk" style="--c:${C.cand('flavio').cor}"></i>${C.curto('flavio')}, projeção</span><span><i class="lk trac" style="--c:#45443f"></i>apurado</span></div>
+      <div class="leg"><span><i class="lk" style="--c:${C.cand('lula').cor}"></i>${C.curto('lula')}, projeção</span><span><i class="lk" style="--c:${C.cand('flavio').cor}"></i>${C.curto('flavio')}, projeção</span><span><i class="lk trac" style="--c:var(--tinta-2)"></i>apurado</span></div>
       <div class="graf" data-grafico="apur-votos" tabindex="0" role="img" aria-label="Apurado e projeção ao longo da apuração"></div>
-      <p class="fonte">${sim ? 'Simulação: guardada só na memória.' : 'Pontos guardados neste aparelho a cada leitura que muda.'}</p>
+      <p class="fonte">${sim ? 'Simulação: guardada só na memória.' : 'Pontos guardados neste aparelho a cada leitura que muda.'} A chance e a projeção usam o simulador municipal quando ele está valendo e o modelo por estado nos demais momentos; o balão de cada ponto diz qual.</p>
     </section>
     <section class="bloco ap-sec-previa">
       ${htmlOrigemPrevia()}
@@ -2115,12 +2483,12 @@ function esqueletoPre() {
       <h2 class="sobre">Apuração ao vivo</h2>
       <p class="ap-pre-g" data-ap-pre-g>—</p>
       <p class="ap-pre-r" data-ap-pre-r></p>
-      <p class="texto">A partir das 17h, esta aba lê o TSE (Tribunal Superior Eleitoral) a cada 5 segundos e mostra, sem você precisar recarregar:</p>
+      <p class="texto">A partir das 17h, esta aba lê o TSE (Tribunal Superior Eleitoral) a cada segundo e mostra, sem você precisar recarregar:</p>
       <ul class="lista-texto">
         <li>votos apurados de cada um, contando na tela, e a chance de vitória: quem ganha chance fica verde, quem perde fica vermelho;</li>
-        <li>o apurado agora ao lado da projeção final, onde aparece a virada que a contagem ainda não mostrou;</li>
+        <li>o apurado agora ao lado da projeção final (pelo simulador cidade a cidade, quando ele estiver valendo, ou pelo modelo por estado), onde aparece a virada que a contagem ainda não mostrou;</li>
         <li>o mapa dos estados e a tabela “Estados, número a número”, com quem lidera em cada um, quanto já foi apurado e a diferença para o 1º turno;</li>
-        <li>destaques que entram e saem conforme a apuração anda (estados decididos, capitais, histórico de 2002 a 2022, quanto falta, o swing contra as pesquisas).</li>
+        <li>destaques que entram e saem conforme a apuração anda (estados decididos, capitais, histórico de 2002 a 2022, a comparação com o mesmo ponto da contagem do 1º turno e de 2022, onde está o que falta, o ritmo da apuração e o swing contra as pesquisas).</li>
       </ul>
       <div class="ap-pre-acoes"><button type="button" class="botao-link" data-ap="sim">Ver simulação</button><span class="nota">números fictícios, só para conhecer a tela</span></div>
     </section>
@@ -2150,10 +2518,10 @@ function pintarChance(pL) {
     for (const lado of $$(`.ap-lado[data-lado="${id}"]`)) {
       lado.style.background = cor.fundo;
       lado.style.color = cor.tinta;
-      lado.classList.toggle('escuro', cor.tinta === '#ffffff');
+      lado.classList.toggle('escuro', luminancia(hexRgb(cor.tinta)) > 0.4);
     }
     for (const seg of $$(`.ap-chbar [data-seg="${id}"]`)) {
-      seg.style.background = cor.fundo === rgb(hexRgb(NEUTRO)) ? '#d9d8d2' : cor.fundo;
+      seg.style.background = cor.neutro ? 'var(--linha-2)' : cor.fundo;
       seg.style.flexGrow = String(p === null ? 1 : Math.max(0.0001, p));
     }
     for (const el of $$(`[data-ch="${id}"]`)) {
@@ -2176,6 +2544,40 @@ function blocoPar(L, F, pL, pF, rotDif, casas = 1) {
     <p class="ap-dif">${quem ? h`${rotDif}: <b>${C.curto(quem)} +${votosCurto(Math.abs(dif))}</b>` : h`${rotDif}: <b>empate</b>`}</p>`;
 }
 
+// O cartão "Projeção final": o simulador municipal quando está em uso (com a faixa de 80%, a chance, os votos
+// projetados e a margem), senão o modelo por estado, sempre dizendo qual motor está valendo. Se os dois divergirem
+// mais que 1 ponto, mostra os dois e explica a diferença em uma frase.
+function htmlProjecao(r, temVoto) {
+  const h = C.h;
+  const c = r.cont;
+  if (r.tudo && temVoto) return blocoPar(c.L, c.F, c.pL, c.pF, 'Resultado final da contagem', 2);
+  const L = C.curto('lula');
+  const F = C.curto('flavio');
+  if (r.motor === 'simulador' && r.sim) {
+    const s = r.sim;
+    const pu = r.projUF;
+    const idade = Math.round(s.idade / 60000);
+    const fd = faixaDefinida(s.doc);
+    const dv = pu.parL !== null && Math.abs(pu.parL - s.proj.parL) > MODELO.DIVERGE_PP ? pu.parL - s.proj.parL : null;
+    return h`<p class="ap-motor"><b>Simulador municipal</b> · dado das ${hms(s.ger)}${idade >= 2 ? `, de ${idade} min atrás` : ''}</p>
+      ${blocoPar(s.proj.L, s.proj.F, s.proj.pL, s.proj.pF, 'Diferença projetada')}
+      <p class="ap-dif">Votos projetados: ${L} <b>${votosCurto(s.proj.L)}</b> × ${F} <b>${votosCurto(s.proj.F)}</b>.</p>
+      ${s.faixa ? h`<p class="ap-dif">Faixa de 80%: ${L} entre <b>${pct1(s.faixa[0])}</b> e <b>${pct1(s.faixa[1])}</b> dos votos dos dois${s.chanceL !== null ? h`; chance de vitória de ${L}: <b>${chanceTxt(r.pL)}</b>` : ''}.</p>` : ''}
+      ${fd ? (fd.fora ? h`<p class="ap-dif">A faixa de 80% não inclui 50% desde <b>${C.fHora(fd.t)}</b> (com ${pctPiso(fd.pct, 0)} das seções apuradas): ${C.curto(fd.quem)} segue à frente na projeção.</p>` : h`<p class="ap-dif">Ainda não está definido: a faixa de 80% inclui 50%. Ela estreita à medida que a apuração avança.</p>`) : ''}
+      ${dv !== null ? h`<p class="ap-motor-div">O modelo por estado dá ${L} <b>${pct1(pu.parL)}</b> (${C.fNum(Math.abs(dv), 1)} ${pontosTxt(dv)} ${dv > 0 ? 'a mais' : 'a menos'}): ele mistura a prévia com a contagem de cada estado, enquanto o simulador parte de cada cidade e mede a ordem em que as urnas chegam.</p>` : ''}`;
+  }
+  if (!r.completo) return h`<p class="ap-vazio">Lendo os estados (${r.lidos} de ${UFS.length})… a projeção aparece quando todos tiverem sido lidos.</p>`;
+  let nota = '';
+  const sp = A.simParado;
+  if (sp) {
+    const motivo =
+      sp.idade > MODELO.SIM_FRESCO_SAI_MS ? `sem atualizar há ${Math.max(1, Math.round(sp.idade / 60000))} min` : !sp.cobre ? `ainda com pouca apuração (${pctPiso(sp.secoes, 0)} das seções)` : 'atrás da contagem do TSE';
+    nota = h`<p class="ap-motor-div">O simulador municipal não está valendo agora (${motivo}; último dado às ${hms(sp.ger)}); a projeção usa só o modelo por estado.</p>`;
+  }
+  return h`<p class="ap-motor"><b>Modelo por estado</b> · prévia de cada UF + contagem</p>
+    ${blocoPar(r.proj.L, r.proj.F, r.proj.pL, r.proj.pF, 'Diferença projetada')}${nota}`;
+}
+
 function atualizarTela() {
   const r = processar();
   A.res = r;
@@ -2194,9 +2596,10 @@ function atualizarTela() {
   // Com votos já apurados mas estados ainda carregando, a chance espera a projeção completa
   // (salvo se já está decidido: 100% apurado, matematicamente definido ou eleito pelo TSE).
   const decidido = r.decidido;
-  pintarChance(!r.completo && temVoto && !decidido ? null : r.pL);
+  pintarChance(!r.completo && r.motor !== 'simulador' && temVoto && !decidido ? null : r.pL);
+  texto('[data-ap-chmotor]', r.motor === 'simulador' && !decidido ? 'pelo simulador municipal' : 'pelo modelo por estado');
   for (const id of ['lula', 'flavio']) {
-    animarNumero($(`[data-votos="${id}"]`), id === 'lula' ? c.L : c.F, (v) => C.fInt(v));
+    animarNumero($(`[data-votos="${id}"]`), id === 'lula' ? c.L : c.F, (v) => C.fInt(v), 450);
     const el = $(`[data-pct="${id}"]`);
     if (el) el.textContent = temVoto ? pct2(id === 'lula' ? c.pL : c.pF) : '—';
   }
@@ -2220,18 +2623,11 @@ function atualizarTela() {
   atualizarHora();
   // Apurado × projeção
   htmlEm('[data-ap-apurado]', temVoto ? blocoPar(c.L, c.F, c.pL, c.pF, 'Diferença', 2) : C.h`<p class="ap-vazio">Ainda sem votos apurados.</p>`);
-  htmlEm(
-    '[data-ap-proj]',
-    r.tudo && temVoto
-      ? blocoPar(c.L, c.F, c.pL, c.pF, 'Resultado final da contagem', 2)
-      : r.completo
-      ? blocoPar(r.proj.L, r.proj.F, r.proj.pL, r.proj.pF, 'Diferença projetada')
-      : C.h`<p class="ap-vazio">Lendo os estados (${r.lidos} de ${UFS.length})… a projeção aparece quando todos tiverem sido lidos.</p>`,
-  );
+  htmlEm('[data-ap-proj]', htmlProjecao(r, temVoto));
   const vir = $('[data-ap-virada]');
   const lc = lider(c.L, c.F);
   const lp = lider(r.proj.L, r.proj.F);
-  const temVirada = r.completo && temVoto && !r.decidido && lc && lp && lc !== lp;
+  const temVirada = (r.completo || r.motor === 'simulador') && temVoto && !r.decidido && lc && lp && lc !== lp;
   if (vir) {
     vir.hidden = !temVirada;
     if (temVirada) vir.textContent = `A projeção aponta virada: ${C.curto(lp)} termina à frente, embora ${C.curto(lc)} lidere a contagem agora.`;
@@ -2307,6 +2703,9 @@ function atualizarAtraso() {
     }
     const ds = A.atrasos.map((x) => x.atraso).filter((x) => x >= -3000 && x < 3600e3).sort((a, b) => a - b);
     if (ds.length >= 3) p.push(`mediana das últimas ${ds.length}: ${dur(ds[Math.floor(ds.length / 2)])}`);
+    // A parte que a página não controla: a rede do TSE renova a cópia de cada arquivo de tempos em tempos.
+    const idadeBR = idadeRede('br');
+    if (idadeBR !== null && R.fixa >= 0.6) p.push(`cópia do arquivo na rede do TSE com ${Math.round(idadeBR)} s (a rede renova a cada ~${Math.round(R.renovaS)} s)`);
     s = p.join(' · ');
   }
   el.hidden = !s;
@@ -2343,28 +2742,25 @@ function atualizarPre() {
 
 /* =============================================================== leitura */
 
-/* Como a página lê o TSE (revisto em 23/10/2026 contra o simulador de
- * work/pocket/qa_apuracao/sim_tse.py, com 503, 429, resposta de 8 s, JSON cortado, UF
- * parada, Brasil à frente e atrás dos estados e versão velha depois da nova):
- * - Um relógio de 1 s decide o que pedir. Cada arquivo tem no máximo um pedido no ar,
- *   com tempo-limite. Antes o Brasil era pedido de novo a cada segundo enquanto a
- *   resposta não chegava (TSE lento = 8 pedidos simultâneos, e o mais velho podia chegar
- *   por último), e as UFs empilhavam um pedido a cada 2 s.
- * - Brasil a cada 10 s. Abrangência a cada 10 s: diz quais UFs mudaram; essas são
- *   relidas na hora (até 4 no ar, primeiro as com mais eleitorado por apurar) e de novo
- *   em 3, 6, 12… s se a borda do cache ainda entregar a versão anterior. Rede de
- *   segurança: toda UF em contagem é relida ao menos a cada 60 s (15 s sem abrangência).
- *   Se a abrangência mostra o Brasil à frente do arquivo Brasil lido, ele é relido já.
- * - cache: 'no-cache': o navegador revalida com If-None-Match/If-Modified-Since e, sem
- *   mudança, o TSE devolve 304 (~200 bytes). Nada de parâmetro para furar o cache. Depois
- *   de um JSON cortado, o próximo pedido daquele arquivo é cache: 'reload' (sem isso o
- *   navegador revalidava, recebia 304 e reusava o corpo cortado até a próxima versão).
+/* Como a página lê o TSE (v4, 24/10/2026; revisto contra o simulador work/pocket/qa_apuracao/sim_tse4.py, que imita
+ * o que foi medido na rede real: renovação da cópia a cada ~12 s, uma máquina por conexão, duas camadas de cache,
+ * 503, 429, resposta de 8 s, JSON cortado, UF parada, Brasil à frente e atrás dos estados e versão velha depois da nova):
+ * - Um relógio de 250 ms decide o que pedir. Cada arquivo tem no máximo um pedido no ar, com tempo-limite.
+ * - Brasil e abrangência a cada 1 s (a abrangência com 0,5 s de defasagem em relação ao Brasil). A abrangência diz
+ *   quais UFs mudaram; essas são relidas na hora (até 5 no ar, primeiro as com mais eleitorado por apurar).
+ * - Caça: se a abrangência já mostra uma versão que a cópia da rede do TSE ainda não entrega, o próximo pedido
+ *   daquele arquivo sai quando o max-age mostra que a máquina vai renovar a cópia (ver esperaCaca), em vez de
+ *   tentar às cegas. Sem max-age, ou se a página muda de máquina o tempo todo, volta a 1 s, 1 s, 1,5 s, 2 s, 3 s...
+ *   Rede de segurança: toda UF em contagem é relida ao menos a cada 60 s (15 s sem abrangência).
+ *   Se a abrangência mostra o Brasil à frente do arquivo Brasil lido, o Brasil também é caçado.
+ * - cache: 'no-cache': o navegador revalida com If-None-Match/If-Modified-Since e, sem mudança, o TSE devolve 304
+ *   (~300 bytes). Nada de parâmetro para furar o cache. Depois de um JSON cortado, o próximo pedido daquele arquivo
+ *   é cache: 'reload' (sem isso o navegador revalidava, recebia 304 e reusava o corpo cortado).
  * - Versão mais velha que a já lida é descartada (compVersao).
- * - Erro: nova tentativa em 5, 10, 20, 40 s, até 1 min; 429 pausa tudo por 30 s; três
- *   erros seguidos pausam UFs e abrangência e só o Brasil sonda até o TSE voltar.
- * - Aba do navegador em segundo plano, ou outra aba da página aberta: continua lendo, em
- *   metade do ritmo (o navegador pode espaçar mais depois de 5 min oculta); ao voltar,
- *   lê na hora.
+ * - Erro: nova tentativa em 5, 10, 20, 40 s, até 1 min; 429 pausa tudo por 30 s; três erros seguidos pausam UFs e
+ *   abrangência e só o Brasil sonda até o TSE voltar.
+ * - Aba do navegador em segundo plano, ou outra aba da página aberta: continua lendo, em metade do ritmo (o navegador
+ *   pode espaçar mais depois de 5 min oculta); ao voltar, lê na hora.
  */
 const R = {
   relogio: null,
@@ -2373,7 +2769,13 @@ const R = {
   erros: new Map(), // arquivo -> { n, msg, status, cortado }
   tentou: new Map(), // UF -> pedidos feitos
   lidoEm: new Map(), // UF -> última resposta boa (ms)
-  pend: new Map(), // UF -> { st, n }: a abrangência diz que há versão nova
+  pend: new Map(), // UF -> { st, n, t0 }: a abrangência diz que há versão nova
+  pendBR: null, // { st, n, t0 }: idem para o arquivo Brasil
+  rede: new Map(), // arquivo -> { em, max }: Cache-Control da última resposta (hora de chegada e max-age)
+  ttlRede: MODELO.TTL_REDE_S, // max-age de uma cópia recém-renovada (aprendido: o maior visto)
+  renovaS: MODELO.RENOVA_S, // idade em que a máquina renova a cópia (aprendida das renovações vistas no Brasil)
+  fixa: 0.5, // 0..1: quanto a página fica na mesma máquina do TSE (o max-age cai 1 por segundo, sem saltos aleatórios)
+  renovacoes: 0, // renovações vistas no arquivo Brasil/abrangência (para a tela)
   ab: null,
   abOk: false,
   abAtrasoDesde: 0, // desde quando o arquivo Brasil está à frente da abrangência
@@ -2385,6 +2787,7 @@ const R = {
   velhas: 0,
   pedidos: 0,
   tela: null,
+  ultTela: 0, // última vez que a tela foi refeita (uma leitura sem novidade não a refaz, mas a cada 5 s ela é refeita mesmo assim)
 };
 
 function zerarLeitura() {
@@ -2393,7 +2796,12 @@ function zerarLeitura() {
   clearTimeout(R.tela);
   R.relogio = null;
   R.tela = null;
-  for (const k of ['emVoo', 'prox', 'erros', 'tentou', 'lidoEm', 'pend']) R[k] = new Map();
+  for (const k of ['emVoo', 'prox', 'erros', 'tentou', 'lidoEm', 'pend', 'rede']) R[k] = new Map();
+  R.pendBR = null;
+  R.ttlRede = MODELO.TTL_REDE_S;
+  R.renovaS = MODELO.RENOVA_S;
+  R.fixa = 0.5;
+  R.renovacoes = 0;
   R.ab = null;
   R.abOk = false;
   R.abAtrasoDesde = 0;
@@ -2404,6 +2812,7 @@ function zerarLeitura() {
   R.inicio = 0;
   R.velhas = 0;
   R.pedidos = 0;
+  R.ultTela = 0;
 }
 
 function falha(msg, status = 0) {
@@ -2411,6 +2820,58 @@ function falha(msg, status = 0) {
   e.status = status;
   return e;
 }
+
+// Cache-Control de cada resposta = tempo que falta para a cópia daquela máquina do TSE vencer. Daí saem: a idade da
+// cópia, quando a máquina vai renová-la e se a página continua na mesma máquina. Nada disso muda o que é mostrado:
+// só decide QUANDO pedir de novo.
+function registrarRede(chave, cacheControl) {
+  const m = /max-age\s*=\s*(\d+)/i.exec(cacheControl || '');
+  if (!m) {
+    R.rede.delete(chave);
+    return;
+  }
+  const max = Number(m[1]);
+  const agora = Date.now();
+  const p = R.rede.get(chave);
+  if (max > R.ttlRede && max <= 120) R.ttlRede = max;
+  if (p && agora - p.em <= 2500 && (chave === 'br' || chave === 'ab')) {
+    const dt = (agora - p.em) / 1000;
+    const esperado = p.max - dt;
+    const renovou = max > esperado + 2.5 && max >= R.ttlRede - 8;
+    const seguiu = Math.abs(max - esperado) <= 2.5;
+    R.fixa = R.fixa * 0.85 + (renovou || seguiu ? 1 : 0) * 0.15;
+    if (renovou) {
+      // a cópia estava com idade (ttl − max anterior) + dt quando renovou: aprende o ponto de renovação
+      const idade = R.ttlRede - p.max + dt;
+      if (idade >= 6 && idade <= 60) R.renovaS = R.renovaS * 0.7 + idade * 0.3;
+      R.renovacoes += 1;
+    }
+  }
+  R.rede.set(chave, { em: agora, max });
+}
+
+// Idade estimada, em s, da cópia que a rede do TSE tem agora do arquivo (a partir da última resposta).
+function idadeRede(chave) {
+  const m = R.rede.get(chave);
+  if (!m) return null;
+  return Math.max(0, R.ttlRede - m.max + (Date.now() - m.em) / 1000);
+}
+
+// Quanto esperar (ms) para pedir de novo um arquivo que a abrangência diz ter versão nova que a cópia ainda não
+// entrega. Com a página fixa numa máquina do TSE, a nova versão chega quando a máquina renova a cópia (aos ~12 s de
+// idade): espera até lá (de 4 em 4 s, no máximo) e depois pede a cada 0,5 a 1,25 s. Sem essa informação, escada de 1 a 5 s.
+const ESCADA_CACA = [1000, 1000, 1500, 2000, 3000, 5000];
+function esperaCaca(chave, n) {
+  const idade = idadeRede(chave);
+  if (idade !== null && R.fixa >= 0.6) {
+    const falta = R.renovaS - idade;
+    // no máximo 4 s de espera por vez: se a página trocar de máquina do TSE no meio, a próxima leitura já refaz a conta
+    if (falta > 0.7) return Math.min(falta + 0.3, 4) * 1000;
+    return 500 + 250 * Math.min(n, 4);
+  }
+  return ESCADA_CACA[Math.min(n, ESCADA_CACA.length - 1)];
+}
+const comJitter = (ms) => ms * (1 - MODELO.JITTER + Math.random() * 2 * MODELO.JITTER);
 
 async function baixarJSON(chave, url) {
   const ctl = typeof AbortController === 'function' ? new AbortController() : null;
@@ -2429,6 +2890,11 @@ async function baixarJSON(chave, url) {
       throw falha(e?.name === 'AbortError' ? `demorou mais de ${MODELO.LIMITE_MS / 1000} s` : 'sem conexão');
     }
     if (!r.ok) throw falha(r.status === 429 ? 'pediu uma pausa, HTTP 429' : `HTTP ${r.status}`, r.status);
+    try {
+      registrarRede(chave, r.headers.get('cache-control'));
+    } catch {
+      /* cabeçalho ilegível: só deixa de caçar pelo max-age */
+    }
     let txt;
     try {
       txt = await r.text();
@@ -2485,19 +2951,22 @@ function deuErro(chave, e) {
   if (R.pausaAte > agora && (R.prox.get('br') ?? 0) > R.pausaAte) R.prox.set('br', R.pausaAte);
 }
 
-// Junta as respostas que chegam juntas (até 4 UFs) num redesenho só.
+// Junta as respostas que chegam juntas (até 5 UFs) num redesenho só. 25 ms: o número novo vai à tela quase na hora.
 function pedirTela() {
   if (R.tela) return;
   R.tela = setTimeout(() => {
     R.tela = null;
+    R.ultTela = Date.now();
     atualizarTela();
-  }, 60);
+  }, 25);
 }
 
 async function lerBR() {
+  let mudou = true; // um erro também refaz a tela (a linha de aviso)
   try {
     const novo = lerTSE(await baixarJSON('br', urlTSE('br')));
     deuCerto('br');
+    mudou = compVersao(A.br, novo) > 0;
     if (compVersao(A.br, novo) >= 0) {
       // "Visto em": quando esta totalização apareceu pela primeira vez aqui (um 304 que devolve a
       // mesma versão não conta). Só mede atraso quando a mudança foi vista ao vivo, não na abertura.
@@ -2515,16 +2984,30 @@ async function lerBR() {
       if (abSt !== undefined && abSt !== null && (novo.st ?? 0) > abSt) {
         if (!R.abAtrasoDesde) R.abAtrasoDesde = Date.now();
       } else R.abAtrasoDesde = 0;
-      R.prox.set('br', Date.now() + MODELO.CADA_BR_MS * ritmo());
+      // Caça ao Brasil: a abrangência já mostrava mais seções do que este arquivo trouxe.
+      const p = R.pendBR;
+      if (p && (novo.st ?? 0) >= p.st) R.pendBR = null;
+      if (R.pendBR && Date.now() - R.pendBR.t0 < MODELO.CACA_MAX_MS) {
+        // Caça ao Brasil: nunca mais devagar que a leitura de rotina (1 s). Com a página fixa numa máquina do TSE, perto da
+        // hora em que ela renova a cópia (ver idadeRede) lê de 0,5 em 0,5 s.
+        R.pendBR.n += 1;
+        const idade = idadeRede('br');
+        const perto = idade !== null && R.fixa >= 0.6 && R.renovaS - idade > -1.5 && R.renovaS - idade < 1.2;
+        R.prox.set('br', Date.now() + comJitter(perto ? 500 : MODELO.CADA_BR_MS * ritmo()));
+      } else {
+        R.pendBR = null;
+        R.prox.set('br', Date.now() + comJitter(MODELO.CADA_BR_MS * ritmo()));
+      }
     } else {
-      // Borda do cache com versão mais velha: descarta e tenta de novo mais cedo.
+      // Máquina do TSE com versão mais velha que a já lida: descarta e tenta de novo mais cedo.
       R.velhas += 1;
       R.prox.set('br', Date.now() + (MODELO.CADA_BR_MS * ritmo()) / 2);
     }
   } catch (e) {
     deuErro('br', e);
   }
-  pedirTela();
+  if (mudou) pedirTela();
+  puxarUFs();
 }
 
 async function lerAB() {
@@ -2539,43 +3022,53 @@ async function lerAB() {
         const x = ab.ufs.get(uf);
         const st = A.ufs.get(uf)?.st ?? -1;
         if (x && x.st > st) {
-          if (!R.pend.has(uf)) R.pend.set(uf, { st: x.st, n: 0 });
-          else R.pend.get(uf).st = Math.max(R.pend.get(uf).st, x.st);
+          if (!R.pend.has(uf)) {
+            R.pend.set(uf, { st: x.st, n: 0, t0: Date.now() });
+            if (!R.erros.has(uf)) R.prox.set(uf, 0); // lê já: a cópia daquele estado pode ter renovado antes da abrangência
+          } else R.pend.get(uf).st = Math.max(R.pend.get(uf).st, x.st);
         } else if (x) R.pend.delete(uf);
       }
-      // O Brasil na abrangência já está à frente do arquivo Brasil lido: relê agora.
-      if (ab.br && A.br && ab.br.st > (A.br.st ?? 0) && !R.erros.has('br')) R.prox.set('br', 0);
+      // O Brasil na abrangência já está à frente do arquivo Brasil lido: lê e caça o Brasil.
+      if (ab.br && A.br && ab.br.st > (A.br.st ?? 0) && !R.erros.has('br')) {
+        if (!R.pendBR) R.pendBR = { st: ab.br.st, n: 0, t0: Date.now() };
+        else R.pendBR.st = Math.max(R.pendBR.st, ab.br.st);
+        if (!R.emVoo.has('br') && (R.prox.get('br') ?? 0) > Date.now() + 1000) R.prox.set('br', 0);
+      }
     }
-    R.prox.set('ab', Date.now() + MODELO.CADA_AB_MS * ritmo());
+    R.prox.set('ab', Date.now() + comJitter(MODELO.CADA_AB_MS * ritmo()));
   } catch (e) {
     deuErro('ab', e);
     // Sem abrangência (fora do ar ou formato novo): as UFs voltam ao ciclo curto.
     if ((R.erros.get('ab')?.n ?? 0) >= 2) R.abOk = false;
   }
+  puxarUFs();
 }
 
 async function lerUF(uf) {
   R.tentou.set(uf, (R.tentou.get(uf) ?? 0) + 1);
+  let mudou = true;
   try {
     const novo = lerTSE(await baixarJSON(uf, urlTSE(uf)));
     deuCerto(uf);
-    if (compVersao(A.ufs.get(uf), novo) >= 0) A.ufs.set(uf, novo);
+    const cmp = compVersao(A.ufs.get(uf), novo);
+    mudou = cmp > 0;
+    if (cmp >= 0) A.ufs.set(uf, novo);
     else R.velhas += 1;
     R.lidoEm.set(uf, Date.now());
     const p = R.pend.get(uf);
     if (p) {
       if ((A.ufs.get(uf)?.st ?? -1) >= p.st) R.pend.delete(uf);
+      else if (Date.now() - p.t0 > MODELO.CACA_MAX_MS) R.pend.delete(uf);
       else {
-        // A abrangência já mostra a versão nova, mas a borda ainda entrega a anterior.
+        // A abrangência já mostra a versão nova, mas a cópia da rede do TSE ainda entrega a anterior: caça.
         p.n += 1;
-        R.prox.set(uf, Date.now() + Math.min(30000, 3000 * 2 ** Math.min(4, p.n - 1)));
-        if (p.n > 8) R.pend.delete(uf);
+        R.prox.set(uf, Date.now() + comJitter(esperaCaca(uf, p.n - 1)));
       }
     }
   } catch (e) {
     deuErro(uf, e);
   }
-  pedirTela();
+  if (mudou) pedirTela();
   puxarUFs();
 }
 
@@ -2586,10 +3079,13 @@ const urlCap = (c) => `${A.fonte}/${A.eleicao}/dados/${c.uf.toLowerCase()}/${c.c
 async function lerCap(c) {
   const chave = `cap:${c.cod}`;
   R.tentou.set(chave, (R.tentou.get(chave) ?? 0) + 1);
+  let mudou = true;
   try {
     const novo = lerTSE(await baixarJSON(chave, urlCap(c)));
     R.erros.delete(chave);
-    if (compVersao(A.cap.get(c.cod), novo) >= 0) A.cap.set(c.cod, novo);
+    const cmp = compVersao(A.cap.get(c.cod), novo);
+    mudou = cmp > 0;
+    if (cmp >= 0) A.cap.set(c.cod, novo);
     else R.velhas += 1;
     R.lidoEm.set(chave, Date.now());
     const o = A.cap.get(c.cod);
@@ -2600,10 +3096,10 @@ async function lerCap(c) {
   } catch (e) {
     deuErro(chave, e);
   }
-  pedirTela();
+  if (mudou) pedirTela();
 }
 
-// No máximo uma capital nova por tique (1 s), até 4 no ar, e só quando o Brasil, a abrangência e
+// No máximo uma capital nova por tique, até 4 no ar, e só quando o Brasil, a abrangência e
 // os estados não estão esperando: capital nunca atrasa o que importa mais.
 function puxarCapitais() {
   const agora = Date.now();
@@ -2665,8 +3161,8 @@ function agendar() {
   puxarUFs();
   puxarCapitais();
 }
-// Ocupa as vagas de UF. Chamada a cada segundo e também ao fim de cada UF lida: a carga
-// inicial das 28 (e uma rodada de UFs que mudaram) anda no ritmo da rede, não do relógio.
+// Ocupa as vagas de UF. Chamada a cada tique e também ao fim de cada leitura: a carga inicial das 28
+// (e uma rodada de UFs que mudaram) anda no ritmo da rede, não do relógio.
 function puxarUFs() {
   const agora = Date.now();
   if (A.modo !== 'vivo' || agora < R.pausaAte) return;
@@ -2681,12 +3177,14 @@ function tique() {
   R.relogio = null;
   if (A.modo !== 'vivo') return;
   // Agenda o próximo antes de trabalhar: um erro aqui não para o relógio.
-  R.relogio = setTimeout(tique, 1000);
+  R.relogio = setTimeout(tique, MODELO.TIQUE_MS);
   try {
     agendar();
   } catch (e) {
     console.error('[apuração] leitura', e);
   }
+  // Leituras sem novidade não refazem a tela; mesmo assim ela é refeita a cada 5 s (idade do simulador, "há N min", destaques com prazo)
+  if (Date.now() - R.ultTela > 5000) pedirTela();
   atualizarHora();
 }
 
@@ -2709,6 +3207,7 @@ function ligarVivo() {
     if (!R.erros.has('br') && (R.prox.get('br') ?? 0) > agora + MODELO.CADA_BR_MS) R.prox.set('br', agora);
     if (!R.erros.has('ab') && (R.prox.get('ab') ?? 0) > agora + MODELO.CADA_AB_MS) R.prox.set('ab', agora);
   }
+  if (!R.prox.has('ab')) R.prox.set('ab', Date.now() + MODELO.CADA_AB_MS / 2); // abrangência meio ciclo atrás do Brasil: os pedidos não saem juntos
   if (!A.timers.length) A.timers.push(setInterval(girarDestaques, 8000));
   tique();
 }
@@ -2921,7 +3420,7 @@ async function manterTelaAcesa() {
 
 // Só com ?tse= (simulador local): leitura do estado para os testes automáticos.
 function ganchoTeste() {
-  if (!A.fonteTeste) return;
+  if (!A.fonteTeste && !A.teste) return; // só no simulador local (?tse=) ou no teste com outra eleição (?eleicao=6257)
   const txt = (html) => C.emHtml(html).replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
   window.__apuracao = {
     estado() {
@@ -2949,9 +3448,28 @@ function ganchoTeste() {
         abOk: R.abOk,
         pausa: Math.max(0, R.pausaAte - Date.now()),
         res: r && {
-          pL: r.pL, parL: r.proj.parL, projL: r.proj.L, projF: r.proj.F, definido: r.definido, tudo: r.tudo,
+          // pL e parL são os efetivos (motor em uso); projL/projF/parLUF/pLUF são sempre os do modelo por estado
+          pL: r.pL, pLUF: r.pLUF, parL: r.proj.parL, parLUF: r.projUF.parL, projL: r.projUF.L, projF: r.projUF.F,
+          motor: r.motor, efL: r.proj.L, efF: r.proj.F, definido: r.definido, tudo: r.tudo,
           eleitoTSE: r.eleitoTSE, completo: r.completo, lidos: r.lidos, remCont: r.remCont, remMax: r.remMax, swing: r.swing,
+          sim: r.sim && { ger: r.sim.ger, idade: r.sim.idade, secoes: r.sim.secoes, modelado: r.sim.modelado, faixa: r.sim.faixa, chanceL: r.sim.chanceL },
         },
+        rede: { fixa: R.fixa, renovaS: R.renovaS, ttl: R.ttlRede, renovacoes: R.renovacoes, idadeBR: idadeRede('br'), caca: R.pend.size, cacaBR: !!R.pendBR },
+        curva: A.curva ? A.curva.series.map((s) => s.id) : A.curva,
+        simParado: A.simParado,
+        simAval: A.simAval,
+        simDoc: A.simDoc && obj(A.simDoc.doc) && {
+          modo: A.simDoc.modo, em: A.simDoc.em, ger: C.num(A.simDoc.doc.gerado_ms), secoes: C.num(A.simDoc.doc.apuracao?.secoes_pct),
+          modelado: C.num(A.simDoc.doc.apuracao?.eleitorado_modelado_pct), lulaPct: C.num(A.simDoc.doc.projecao?.lula_pct),
+          faixa: A.simDoc.doc.projecao?.faixa80?.lula ?? null, chance: C.num(A.simDoc.doc.projecao?.chance?.lula),
+          vL: C.num(A.simDoc.doc.projecao?.votos?.lula), vF: C.num(A.simDoc.doc.projecao?.votos?.flavio), serieN: arr(A.simDoc.doc.serie).length,
+        },
+        motorSim: A.motorSim,
+        ritmo: (() => {
+          const x = ritmoContagem();
+          return x && { ...x, eta: x.eta && x.eta.map((y) => ({ id: y.s.id, t: y.t })) };
+        })(),
+        agoraPag: Date.now(),
         insights: r && A.modo !== 'pre' ? calcularInsights(r).map((x) => ({ id: x.id, tag: x.tag, p: x.p, txt: txt(x.html) })) : [],
         // painel dos estados: o que a conta (processar) decidiu para cada linha
         estados: Object.fromEntries(
@@ -2961,7 +3479,7 @@ function ganchoTeste() {
               status: u.status, quem: u.quem, chance: u.chance, prevChance: u.prevChance, sec: u.sec, fim: u.fim, defUF: u.defUF,
               L: u.L, F: u.F, te: u.te, est: u.est, rem: u.rem, sig: u.sig, projL: u.projL, projF: u.projF, parObs: u.parObs,
               t1Par: u.t1Par, dT1: u.dT1, lider: u.lider, lider1T: u.lider1T, faixa: u.faixa, projPar: u.projPar, faltaMax: u.faltaMax,
-              compObs: u.compObs, tTot: u.o?.tTot ?? null, st: u.o?.st ?? null, ts: u.o?.ts ?? null, c: u.o?.c ?? null,
+              compObs: u.compObs, tTot: u.o?.tTot ?? null, st: u.o?.st ?? null, ts: u.o?.ts ?? null, c: u.o?.c ?? null, share: u.share,
             },
           ]),
         ),
@@ -3063,6 +3581,7 @@ export function iniciar(ctx) {
   receberSim(window.__radar2tSimulador); // se ele já tinha lido antes de este módulo carregar
   vigiarTV();
   ganchoTeste();
+  carregarCurva();
   montarTela();
   return {
     mostrar() {

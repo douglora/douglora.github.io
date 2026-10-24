@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "4c5b0d470955bf0282ae594658dc75a75d9945b6c5bea805bf830520627c23c5",
-  "live_source_run_id": "run-20261024-7c6f043e-ae78ab90",
-  "run_id": "hist-20261024-8d90558c-8c3bf707-4c5b0d47-08a374",
+  "live_hash": "a175d5938a74e0e41c33917e7559bbd92dd1cbc0dcbf699b6437b1ec6324f6a0",
+  "live_source_run_id": "run-20261024-0a7b91db-ae78ab90",
+  "run_id": "hist-20261024-8d90558c-8c3bf707-a175d593-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [],
@@ -17231,7 +17231,7 @@
       "min_houses": 2,
       "min_polls": 3,
       "note": "O gate vivo do agregador não foi alterado. Este cenário é publicado abaixo dele, como exercício, e por isso não pode ser lido como consenso.",
-      "polls": 20,
+      "polls": 21,
       "window_days": 21
     },
     "houses": [],
@@ -17243,7 +17243,16 @@
         "history_status": "unavailable",
         "house_id": "quaest",
         "house_name": "Quaest",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_today_unverified",
+          "field_end": "2026-10-24",
+          "field_start": "2026-10-23",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR091582026",
+          "sample_size": 3702,
+          "scenario_status": "release_not_found"
+        }
       },
       {
         "applied_to": null,
@@ -17252,7 +17261,16 @@
         "history_status": "unavailable",
         "house_id": "atlasintel",
         "house_name": "AtlasIntel",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_today_unverified",
+          "field_end": "2026-10-23",
+          "field_start": "2026-10-18",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR063802026",
+          "sample_size": 5000,
+          "scenario_status": "release_not_found"
+        }
       },
       {
         "applied_to": null,
@@ -17279,7 +17297,16 @@
         "history_status": "unavailable",
         "house_id": "datafolha",
         "house_name": "Datafolha",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_today_unverified",
+          "field_end": "2026-10-24",
+          "field_start": "2026-10-23",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR095402026",
+          "sample_size": 4050,
+          "scenario_status": "release_not_found"
+        }
       }
     ],
     "method": {
@@ -17392,6 +17419,29 @@
           "published_at": "2026-10-23",
           "regime": "post_registration",
           "registration_no": "BR-04350/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_pct": 49.0,
+              "published_valid_pct": 52.12765957446808
+            },
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 45.0,
+              "published_valid_pct": 47.87234042553192
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-10-22",
+          "house_id": "real-time-big-data",
+          "house_name": "Real Time Big Data",
+          "published_at": "2026-10-23",
+          "regime": "post_registration",
+          "registration_no": "BR-09670/2026"
         },
         {
           "candidates": [
@@ -17652,29 +17702,6 @@
               "label": "FLAVIO BOLSONARO",
               "party": "PL",
               "published_pct": 48.0,
-              "published_valid_pct": 51.61290322580645
-            },
-            {
-              "label": "LULA",
-              "party": "PT",
-              "published_pct": 45.0,
-              "published_valid_pct": 48.38709677419355
-            }
-          ],
-          "corrected_note": null,
-          "field_end": "2026-10-12",
-          "house_id": "nexus",
-          "house_name": "Nexus",
-          "published_at": "2026-10-13",
-          "regime": "post_registration",
-          "registration_no": "BR-07997/2026"
-        },
-        {
-          "candidates": [
-            {
-              "label": "FLAVIO BOLSONARO",
-              "party": "PL",
-              "published_pct": 48.0,
               "published_valid_pct": 51.06382978723404
             },
             {
@@ -17691,6 +17718,29 @@
           "published_at": "2026-10-13",
           "regime": "post_registration",
           "registration_no": "BR-01209/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_pct": 48.0,
+              "published_valid_pct": 51.61290322580645
+            },
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 45.0,
+              "published_valid_pct": 48.38709677419355
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-10-12",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "published_at": "2026-10-13",
+          "regime": "post_registration",
+          "registration_no": "BR-07997/2026"
         },
         {
           "candidates": [
@@ -17787,6 +17837,29 @@
         {
           "candidates": [
             {
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_pct": 46.0,
+              "published_valid_pct": 50.0
+            },
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 46.0,
+              "published_valid_pct": 50.0
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-10-02",
+          "house_id": "poderdata",
+          "house_name": "PoderData",
+          "published_at": "2026-10-03",
+          "regime": "post_registration",
+          "registration_no": "BR-03519/2026"
+        },
+        {
+          "candidates": [
+            {
               "label": "LULA",
               "party": "PT",
               "published_pct": 42.0,
@@ -17806,6 +17879,29 @@
           "published_at": "2026-09-28",
           "regime": "post_registration",
           "registration_no": "BR-06520/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 48.0,
+              "published_valid_pct": 55.172413793103445
+            },
+            {
+              "label": "ZEMA",
+              "party": "NOVO",
+              "published_pct": 39.0,
+              "published_valid_pct": 44.827586206896555
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-09-27",
+          "house_id": "nexus",
+          "house_name": "Nexus",
+          "published_at": "2026-09-28",
+          "regime": "post_registration",
+          "registration_no": "BR-07557/2026"
         },
         {
           "candidates": [
@@ -17967,29 +18063,6 @@
           "published_at": "2026-09-28",
           "regime": "post_registration",
           "registration_no": "BR-06520/2026"
-        },
-        {
-          "candidates": [
-            {
-              "label": "LULA",
-              "party": "PT",
-              "published_pct": 48.0,
-              "published_valid_pct": 55.172413793103445
-            },
-            {
-              "label": "ZEMA",
-              "party": "NOVO",
-              "published_pct": 39.0,
-              "published_valid_pct": 44.827586206896555
-            }
-          ],
-          "corrected_note": null,
-          "field_end": "2026-09-27",
-          "house_id": "nexus",
-          "house_name": "Nexus",
-          "published_at": "2026-09-28",
-          "regime": "post_registration",
-          "registration_no": "BR-07557/2026"
         },
         {
           "candidates": [
@@ -18272,6 +18345,29 @@
             {
               "label": "LULA",
               "party": "PT",
+              "published_pct": 46.0,
+              "published_valid_pct": 58.97435897435897
+            },
+            {
+              "label": "ZEMA",
+              "party": "NOVO",
+              "published_pct": 32.0,
+              "published_valid_pct": 41.02564102564103
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-09-20",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "LULA",
+              "party": "PT",
               "published_pct": 47.0,
               "published_valid_pct": 53.40909090909091
             },
@@ -18441,29 +18537,6 @@
               "party": "PSD",
               "published_pct": 39.0,
               "published_valid_pct": 48.75
-            }
-          ],
-          "corrected_note": null,
-          "field_end": "2026-09-20",
-          "house_id": "quaest",
-          "house_name": "Quaest",
-          "published_at": "2026-09-21",
-          "regime": "post_registration",
-          "registration_no": "BR-06004/2026"
-        },
-        {
-          "candidates": [
-            {
-              "label": "LULA",
-              "party": "PT",
-              "published_pct": 46.0,
-              "published_valid_pct": 58.97435897435897
-            },
-            {
-              "label": "ZEMA",
-              "party": "NOVO",
-              "published_pct": 32.0,
-              "published_valid_pct": 41.02564102564103
             }
           ],
           "corrected_note": null,
