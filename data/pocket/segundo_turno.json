@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-24T18:55:04-03:00",
+ "gerado_em": "2026-10-24T19:01:02-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,8% dos votos válidos na média de 7 casas, contra 49,2% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -388,24 +388,24 @@
   },
   "faixa_nivel": 0.8,
   "totais": {
-   "lula": 45.8,
+   "lula": 45.9,
    "flavio": 47.3,
    "branco_nulo": 5.1,
-   "indecisos": 2.0
+   "indecisos": 1.8
   },
   "prob_vitoria": {
-   "lula": 0.308,
-   "flavio": 0.692
+   "lula": 0.305,
+   "flavio": 0.695
   },
   "sigma_pp": 1.55,
   "pesos": {
-   "Datafolha": 0.143,
-   "Ipespe": 0.141,
-   "MDA (CNT)": 0.161,
-   "Nexus (BTG)": 0.114,
-   "PoderData": 0.159,
-   "Quaest": 0.132,
-   "Real Time Big Data": 0.151
+   "Datafolha": 0.136,
+   "Ipespe": 0.135,
+   "MDA (CNT)": 0.154,
+   "Nexus (BTG)": 0.154,
+   "PoderData": 0.152,
+   "Quaest": 0.126,
+   "Real Time Big Data": 0.144
   },
   "nota": "Uma pesquisa por casa: a mais recente divulgada depois do 1º turno, nos últimos 21 dias. Votos válidos = só os dois nomes, sem branco, nulo e indecisos. Peso = recência (cai à metade a cada 10 dias) ÷ (erro histórico da casa no 2º turno² + variância da amostra). De 2014 a 2022 as casas erraram parecido no 2º turno (≈2,2 pontos), então quem mais pesa é a pesquisa mais nova e de amostra maior."
  },
@@ -509,8 +509,8 @@
     ]
    },
    "prob_vitoria": {
-    "lula": 0.164,
-    "flavio": 0.836
+    "lula": 0.163,
+    "flavio": 0.837
    },
    "sigma_pp": 1.55,
    "n_casas": 11,
@@ -524,12 +524,12 @@
     "Quaest",
     "Datafolha",
     "MDA (CNT)",
-    "Real Time Big Data",
-    "Nexus (BTG)"
+    "Nexus (BTG)",
+    "Real Time Big Data"
    ],
    "lula_par": 48.48,
    "componentes": {
-    "media_corrigida_pp": 48.49,
+    "media_corrigida_pp": 48.48,
     "tendencia_pp": 0.05,
     "abstencao_diferencial_pp": -0.054,
     "erro_medio_1t_casas_pp": -1.77,
@@ -555,7 +555,7 @@
      "erro_1t_pp": 0.97,
      "erro_considerado_pp": -1.2,
      "lula_corrigido": 48.7,
-     "peso": 0.177
+     "peso": 0.172
     },
     {
      "casa": "Gerp",
@@ -565,7 +565,7 @@
      "erro_1t_pp": 0.1,
      "erro_considerado_pp": -1.38,
      "lula_corrigido": 47.6,
-     "peso": 0.132
+     "peso": 0.128
     },
     {
      "casa": "Veritá",
@@ -575,7 +575,7 @@
      "erro_1t_pp": -0.74,
      "erro_considerado_pp": -1.55,
      "lula_corrigido": 48.5,
-     "peso": 0.108
+     "peso": 0.105
     },
     {
      "casa": "Futura",
@@ -585,7 +585,7 @@
      "erro_1t_pp": 0.24,
      "erro_considerado_pp": -1.35,
      "lula_corrigido": 48.5,
-     "peso": 0.095
+     "peso": 0.092
     },
     {
      "casa": "PoderData",
@@ -595,7 +595,7 @@
      "erro_1t_pp": -2.15,
      "erro_considerado_pp": -1.85,
      "lula_corrigido": 48.9,
-     "peso": 0.084
+     "peso": 0.082
     },
     {
      "casa": "Ipespe",
@@ -605,7 +605,7 @@
      "erro_1t_pp": null,
      "erro_considerado_pp": -1.77,
      "lula_corrigido": 48.9,
-     "peso": 0.08
+     "peso": 0.078
     },
     {
      "casa": "Quaest",
@@ -615,7 +615,7 @@
      "erro_1t_pp": -1.56,
      "erro_considerado_pp": -1.72,
      "lula_corrigido": 48.9,
-     "peso": 0.073
+     "peso": 0.071
     },
     {
      "casa": "Datafolha",
@@ -625,7 +625,7 @@
      "erro_1t_pp": -2.74,
      "erro_considerado_pp": -1.97,
      "lula_corrigido": 48.9,
-     "peso": 0.07
+     "peso": 0.068
     },
     {
      "casa": "MDA (CNT)",
@@ -635,7 +635,17 @@
      "erro_1t_pp": -4.16,
      "erro_considerado_pp": -2.26,
      "lula_corrigido": 48.6,
-     "peso": 0.07
+     "peso": 0.068
+    },
+    {
+     "casa": "Nexus (BTG)",
+     "data": "2026-10-24",
+     "registro": "BR-08234/2026",
+     "lula": 49.5,
+     "erro_1t_pp": -4.18,
+     "erro_considerado_pp": -2.27,
+     "lula_corrigido": 48.8,
+     "peso": 0.068
     },
     {
      "casa": "Real Time Big Data",
@@ -645,17 +655,7 @@
      "erro_1t_pp": -3.45,
      "erro_considerado_pp": -2.12,
      "lula_corrigido": 47.2,
-     "peso": 0.069
-    },
-    {
-     "casa": "Nexus (BTG)",
-     "data": "2026-10-19",
-     "registro": "BR-04499/2026",
-     "lula": 49.7,
-     "erro_1t_pp": -4.18,
-     "erro_considerado_pp": -2.27,
-     "lula_corrigido": 49.0,
-     "peso": 0.042
+     "peso": 0.067
     }
    ],
    "nota": "O agregador próprio do Radar, com as 11 casas que têm pesquisa de 2º turno nos últimos 21 dias. Pesa mais quem errou menos no 1º turno, a pesquisa mais nova e a de amostra maior; corrige 30% do erro de cada casa no 1º turno; soma a tendência das últimas semanas e o efeito da abstenção, que historicamente sobe um pouco mais nos estados mais petistas. Atualiza sozinha a cada pesquisa nova."
@@ -678,8 +678,8 @@
     ]
    },
    "prob_vitoria": {
-    "lula": 0.308,
-    "flavio": 0.692
+    "lula": 0.305,
+    "flavio": 0.695
    },
    "sigma_pp": 1.55,
    "n_casas": 7,
@@ -703,17 +703,17 @@
    },
    "faixa_validos": {
     "lula": [
-     47.3,
+     47.2,
      51.2
     ],
     "flavio": [
      48.8,
-     52.7
+     52.8
     ]
    },
    "prob_vitoria": {
-    "lula": 0.313,
-    "flavio": 0.687
+    "lula": 0.306,
+    "flavio": 0.694
    },
    "sigma_pp": 1.55,
    "n_casas": 7,
@@ -732,22 +732,22 @@
    "id": "ajustada_1t",
    "rotulo": "Ajustada pelo 1º turno",
    "validos": {
-    "lula": 46.2,
-    "flavio": 53.8
+    "lula": 46.1,
+    "flavio": 53.9
    },
    "faixa_validos": {
     "lula": [
      41.8,
-     50.6
+     50.5
     ],
     "flavio": [
-     49.4,
+     49.5,
      58.2
     ]
    },
    "prob_vitoria": {
-    "lula": 0.132,
-    "flavio": 0.868
+    "lula": 0.128,
+    "flavio": 0.872
    },
    "sigma_pp": 3.41,
    "n_casas": 7,
@@ -2404,6 +2404,40 @@
  },
  "por_instituto": [
   {
+   "casa": "Nexus (BTG)",
+   "data": "2026-10-24",
+   "campo": "23 a 24/10",
+   "amostra": 2000,
+   "registro": "BR-08234/2026",
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "totais": {
+    "lula": 46.0,
+    "flavio": 47.0,
+    "branco_nulo": 5.2,
+    "indecisos": 1.8
+   },
+   "peso_ponderada": 0.154,
+   "erro_1t_flavio_par_pp": -4.2,
+   "pesquisa_1t": {
+    "data": "2026-09-28",
+    "registro": "BR-07557/2026",
+    "previa": {
+     "lula": 44.21,
+     "flavio": 38.95
+    }
+   },
+   "ajuste_aplicado_pp": -4.2,
+   "ajuste_origem": "erro da própria casa no 1º turno",
+   "validos_ajustados": {
+    "lula": 45.3,
+    "flavio": 54.7
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/10/BTG-Nexus-Eleicoes-2026-Rodada-19-24.out_.2026.pdf"
+  },
+  {
    "casa": "MDA (CNT)",
    "data": "2026-10-24",
    "campo": "21 a 23/10",
@@ -2419,7 +2453,7 @@
     "branco_nulo": 5.8,
     "indecisos": 2.9
    },
-   "peso_ponderada": 0.161,
+   "peso_ponderada": 0.154,
    "erro_1t_flavio_par_pp": -4.2,
    "pesquisa_1t": {
     "data": "2026-10-03",
@@ -2453,7 +2487,7 @@
     "branco_nulo": 3.0,
     "indecisos": 1.0
    },
-   "peso_ponderada": 0.159,
+   "peso_ponderada": 0.152,
    "erro_1t_flavio_par_pp": -2.2,
    "pesquisa_1t": {
     "data": "2026-10-03",
@@ -2487,7 +2521,7 @@
     "branco_nulo": 5.0,
     "indecisos": 1.0
    },
-   "peso_ponderada": 0.151,
+   "peso_ponderada": 0.144,
    "erro_1t_flavio_par_pp": -3.5,
    "pesquisa_1t": {
     "data": "2026-10-01",
@@ -2521,7 +2555,7 @@
     "branco_nulo": 5.0,
     "indecisos": 2.0
    },
-   "peso_ponderada": 0.143,
+   "peso_ponderada": 0.136,
    "erro_1t_flavio_par_pp": -2.7,
    "pesquisa_1t": {
     "data": "2026-10-03",
@@ -2555,7 +2589,7 @@
     "branco_nulo": 3.0,
     "indecisos": 2.0
    },
-   "peso_ponderada": 0.141,
+   "peso_ponderada": 0.135,
    "erro_1t_flavio_par_pp": null,
    "pesquisa_1t": null,
    "ajuste_aplicado_pp": -3.0,
@@ -2582,7 +2616,7 @@
     "branco_nulo": 9.0,
     "indecisos": 2.0
    },
-   "peso_ponderada": 0.132,
+   "peso_ponderada": 0.126,
    "erro_1t_flavio_par_pp": -1.6,
    "pesquisa_1t": {
     "data": "2026-10-03",
@@ -2599,40 +2633,6 @@
     "flavio": 52.1
    },
    "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-presidente-21-outubro.ghtml"
-  },
-  {
-   "casa": "Nexus (BTG)",
-   "data": "2026-10-19",
-   "campo": "16 a 18/10",
-   "amostra": 2002,
-   "registro": "BR-04499/2026",
-   "validos": {
-    "flavio": 50.3,
-    "lula": 49.7
-   },
-   "totais": {
-    "lula": 45.9,
-    "flavio": 46.5,
-    "branco_nulo": 4.7,
-    "indecisos": 2.9
-   },
-   "peso_ponderada": 0.114,
-   "erro_1t_flavio_par_pp": -4.2,
-   "pesquisa_1t": {
-    "data": "2026-09-28",
-    "registro": "BR-07557/2026",
-    "previa": {
-     "lula": 44.21,
-     "flavio": 38.95
-    }
-   },
-   "ajuste_aplicado_pp": -4.2,
-   "ajuste_origem": "erro da própria casa no 1º turno",
-   "validos_ajustados": {
-    "lula": 45.5,
-    "flavio": 54.5
-   },
-   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/10/BTG-Nexus-Eleicoes-2026-Rodada-18-19.out_.2026.pdf"
   }
  ],
  "ranking_1t": [
@@ -2897,6 +2897,31 @@
  },
  "pesquisas": [
   {
+   "casa_id": "nexus",
+   "casa": "Nexus (BTG)",
+   "data": "2026-10-24",
+   "campo": "23 a 24/10",
+   "amostra": 2000,
+   "margem_erro_pp": 2.2,
+   "registro": "BR-08234/2026",
+   "totais": {
+    "lula": 46.0,
+    "flavio": 47.0,
+    "branco_nulo": 5.2,
+    "indecisos": 1.8
+   },
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/10/BTG-Nexus-Eleicoes-2026-Rodada-19-24.out_.2026.pdf",
+   "pos_1o_turno": true,
+   "na_media": true,
+   "modo": "Por telefone",
+   "contratante": "contratada por terceiros (o nome está no registro, no PesqEle do TSE)",
+   "peso": 0.154
+  },
+  {
    "casa_id": "mda",
    "casa": "MDA (CNT)",
    "data": "2026-10-24",
@@ -2919,7 +2944,7 @@
    "na_media": true,
    "modo": "Presencial",
    "contratante": "contratada por terceiros (o nome está no registro, no PesqEle do TSE)",
-   "peso": 0.161
+   "peso": 0.154
   },
   {
    "casa_id": "real-time-big-data",
@@ -2944,7 +2969,7 @@
    "na_media": true,
    "modo": "Por telefone e com apoio de inteligência artificial",
    "contratante": "a própria casa (recursos próprios, segundo o registro no TSE)",
-   "peso": 0.151
+   "peso": 0.144
   },
   {
    "casa_id": "ipespe",
@@ -2969,7 +2994,7 @@
    "na_media": true,
    "modo": "Por telefone",
    "contratante": "a própria casa (recursos próprios, segundo o registro no TSE)",
-   "peso": 0.141
+   "peso": 0.135
   },
   {
    "casa_id": "poderdata",
@@ -2994,7 +3019,7 @@
    "na_media": true,
    "modo": "Por telefone",
    "contratante": "a própria casa (recursos próprios, segundo o registro no TSE)",
-   "peso": 0.159
+   "peso": 0.152
   },
   {
    "casa_id": "datafolha",
@@ -3019,7 +3044,7 @@
    "na_media": true,
    "modo": "Presencial",
    "contratante": "contratada por terceiros (o nome está no registro, no PesqEle do TSE)",
-   "peso": 0.143
+   "peso": 0.136
   },
   {
    "casa_id": "quaest",
@@ -3044,7 +3069,7 @@
    "na_media": true,
    "modo": "Presencial",
    "contratante": "contratada por terceiros (o nome está no registro, no PesqEle do TSE)",
-   "peso": 0.132
+   "peso": 0.126
   },
   {
    "casa_id": "real-time-big-data",
@@ -3118,10 +3143,11 @@
    },
    "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/10/BTG-Nexus-Eleicoes-2026-Rodada-18-19.out_.2026.pdf",
    "pos_1o_turno": true,
-   "na_media": true,
+   "na_media": false,
    "modo": "Por telefone",
    "contratante": "contratada por terceiros (o nome está no registro, no PesqEle do TSE)",
-   "peso": 0.114
+   "peso": null,
+   "motivo_fora": "a casa tem pesquisa mais recente"
   },
   {
    "casa_id": "ipespe",
@@ -4119,8 +4145,8 @@
   },
   {
    "data": "2026-10-13",
-   "lula": 48.1,
-   "flavio": 51.9,
+   "lula": 48.2,
+   "flavio": 51.8,
    "casas": 4
   },
   {
@@ -4143,26 +4169,26 @@
   },
   {
    "data": "2026-10-17",
-   "lula": 49.2,
-   "flavio": 50.8,
+   "lula": 49.1,
+   "flavio": 50.9,
    "casas": 6
   },
   {
    "data": "2026-10-18",
-   "lula": 49.2,
-   "flavio": 50.8,
+   "lula": 49.1,
+   "flavio": 50.9,
    "casas": 6
   },
   {
    "data": "2026-10-19",
-   "lula": 49.0,
-   "flavio": 51.0,
+   "lula": 49.1,
+   "flavio": 50.9,
    "casas": 6
   },
   {
    "data": "2026-10-20",
-   "lula": 48.9,
-   "flavio": 51.1,
+   "lula": 49.0,
+   "flavio": 51.0,
    "casas": 7
   },
   {
@@ -4277,14 +4303,14 @@
     "central": false,
     "abstencao_pct": 22.9,
     "validos": {
-     "lula": 46.2,
-     "flavio": 53.8
+     "lula": 46.1,
+     "flavio": 53.9
     },
     "votos": {
-     "lula": 53862181,
-     "flavio": 62752935
+     "lula": 53787586,
+     "flavio": 62827530
     },
-    "margem_votos": 8890755,
+    "margem_votos": 9039944,
     "lider": "flavio"
    }
   ],
@@ -4662,7 +4688,7 @@
   "clima": {
    "fonte": "Open-Meteo (previsão por hora e arquivo histórico), 3 maiores cidades de cada estado pesadas pelo eleitorado (TSE)",
    "previsao_para": "2026-10-25, das 8h às 17h",
-   "coletado_em": "2026-10-24T18:53-03:00",
+   "coletado_em": "2026-10-24T18:59-03:00",
    "coef_pp_por_mm": 0.0235,
    "coef_medido": 0.0235,
    "coef_erro_padrao": 0.0656,
@@ -4960,18 +4986,18 @@
   "flavio_par": 51.52,
   "sigma_pp": 1.55,
   "prob_vitoria": {
-   "lula": 0.164,
-   "flavio": 0.836
+   "lula": 0.163,
+   "flavio": 0.837
   },
-  "tendencia_pp_por_dia": 0.108,
+  "tendencia_pp_por_dia": 0.097,
   "componentes": {
-   "media_das_pesquisas_lula_pp": 49.22,
+   "media_das_pesquisas_lula_pp": 49.21,
    "ajuste_tendencia_pp": 0.05,
    "erro_sistematico_pp": 1.54,
-   "dispersao_entre_casas_pp": 0.57
+   "dispersao_entre_casas_pp": 0.55
   },
   "tendencia": {
-   "pp_por_dia": 0.108,
+   "pp_por_dia": 0.097,
    "horizonte_dias": 1,
    "amortecimento": 0.5,
    "ajuste_pp": 0.05,
@@ -5003,10 +5029,10 @@
     {
      "casa": "Nexus (BTG)",
      "de": "2026-10-13",
-     "ate": "2026-10-19",
-     "variacao_pp": 1.29,
-     "dias": 6,
-     "pp_por_dia": 0.215
+     "ate": "2026-10-24",
+     "variacao_pp": 1.08,
+     "dias": 11,
+     "pp_por_dia": 0.098
     },
     {
      "casa": "Quaest",
@@ -5036,7 +5062,7 @@
   },
   "nota": "Centro = Média Radar (todas as casas, peso pela qualidade no 1º turno, recência e amostra, 30% do erro de cada casa corrigido, tendência e abstenção diferencial). Incerteza = erro da média em 2014, 2018, 2022 e no 1º turno de 2026 + dispersão entre as casas.",
   "media_radar": {
-   "media_corrigida_pp": 48.49,
+   "media_corrigida_pp": 48.48,
    "tendencia_pp": 0.05,
    "abstencao_diferencial_pp": -0.054,
    "erro_medio_1t_casas_pp": -1.77,
@@ -5466,7 +5492,6 @@
   "AtlasIntel (09/10, 19/10, 24/10): fora da média por regra. Os números da casa só existem num PDF que o robots.txt dela bloqueia; o Radar não usa número de imprensa.",
   "Quaest (24/10): registrada no TSE; entra sozinha quando a casa publicar.",
   "PoderData (25/10): registrada no TSE; entra sozinha quando a casa publicar.",
-  "Nexus (BTG) (24/10): registrada no TSE; entra sozinha quando a casa publicar.",
   "Datafolha (24/10, BR-09540/2026): em conferência pelo robô (um dos testes automáticos ainda não fechou)."
  ],
  "fontes": {
