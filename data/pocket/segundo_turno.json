@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-23T23:01:50-03:00",
+ "gerado_em": "2026-10-23T23:26:10-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 7 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -690,6 +690,1497 @@
   },
   "texto": "No 1º turno, todas as pesquisas do painel mostravam Lula na frente. O cenário corrigido do Radar (cada casa corrigida pelo erro histórico dela) apontou Flávio liderando e errou a diferença final por 0,66 ponto. Os percentuais ficaram abaixo da urna porque as últimas pesquisas que tinham entrado eram de 24 a 28/09, quando os outros candidatos ainda tinham mais votos; as de 01 a 03/10 não chegaram a tempo."
  },
+ "estados_historico": {
+  "fonte": "TSE, dados abertos do 2º turno de 2002 a 2022 (inputs/pocket/historico_uf.json)",
+  "anos": [
+   {
+    "ano": 2002,
+    "vencedor": "Lula",
+    "pt_par": 61.27
+   },
+   {
+    "ano": 2006,
+    "vencedor": "Lula",
+    "pt_par": 60.83
+   },
+   {
+    "ano": 2010,
+    "vencedor": "Dilma",
+    "pt_par": 56.05
+   },
+   {
+    "ano": 2014,
+    "vencedor": "Dilma",
+    "pt_par": 51.64
+   },
+   {
+    "ano": 2018,
+    "vencedor": "Jair Bolsonaro",
+    "pt_par": 44.87
+   },
+   {
+    "ano": 2022,
+    "vencedor": "Lula",
+    "pt_par": 50.9
+   }
+  ],
+  "ufs": {
+   "AC": {
+    "acompanhou": 3,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 59.94,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 52.36,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 30.33,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 36.32,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 22.78,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 29.7,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 15.69
+   },
+   "AL": {
+    "acompanhou": 4,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 43.61,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2006,
+      "pt_par": 61.45,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 53.63,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 62.11,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 59.92,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 58.68,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 9.0
+   },
+   "AP": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 75.51,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 70.4,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 62.66,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 61.44,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 49.8,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 48.64,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 7.9
+   },
+   "AM": {
+    "acompanhou": 6,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 69.88,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 86.8,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 80.57,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 65.0,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 49.73,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 51.1,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 12.92
+   },
+   "BA": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 65.69,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 78.08,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 70.85,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 70.15,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 72.69,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 72.12,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 17.34
+   },
+   "CE": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 71.78,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 82.38,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 77.35,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 76.73,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 71.11,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 69.97,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 20.63
+   },
+   "DF": {
+    "acompanhou": 4,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 62.26,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 56.96,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 52.81,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 38.1,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 30.01,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 41.19,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 7.7
+   },
+   "ES": {
+    "acompanhou": 3,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 59.36,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 65.54,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 49.17,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 46.13,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 36.94,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 41.96,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 5.98
+   },
+   "GO": {
+    "acompanhou": 3,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 57.08,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 54.78,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 49.25,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 42.89,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 34.48,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 41.29,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 7.63
+   },
+   "MA": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 58.48,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 84.63,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 79.09,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 78.76,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 73.26,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 71.14,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 20.9
+   },
+   "MT": {
+    "acompanhou": 2,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 54.46,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 49.69,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2010,
+      "pt_par": 48.89,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 45.32,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 33.58,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 34.92,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 9.78
+   },
+   "MS": {
+    "acompanhou": 2,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 55.14,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 44.98,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2010,
+      "pt_par": 44.87,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 43.65,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 34.78,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 40.51,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 10.27
+   },
+   "MG": {
+    "acompanhou": 6,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 66.45,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 65.19,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 58.45,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 52.4,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 41.81,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 50.2,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 2.74
+   },
+   "PA": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 52.65,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 60.12,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 53.2,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 57.41,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 54.81,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 54.75,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 5.29
+   },
+   "PB": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 57.02,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 75.01,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 61.55,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 64.25,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 64.98,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 66.62,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 12.06
+   },
+   "PR": {
+    "acompanhou": 2,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 59.22,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 49.25,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2010,
+      "pt_par": 44.56,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 39.0,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 31.57,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 37.6,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 10.73
+   },
+   "PE": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 57.07,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 78.48,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 75.65,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 70.19,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 66.5,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 66.93,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 16.28
+   },
+   "PI": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 60.73,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 77.32,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 69.98,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 78.29,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 77.05,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 76.86,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 19.29
+   },
+   "RJ": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 78.97,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 69.69,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 60.48,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 54.92,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 32.05,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 43.47,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 9.09
+   },
+   "RN": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 58.64,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 69.73,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 59.54,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 69.94,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 63.41,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 65.1,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 11.01
+   },
+   "RS": {
+    "acompanhou": 2,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 55.84,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 44.65,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2010,
+      "pt_par": 49.06,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 46.46,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 36.76,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 43.65,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 8.19
+   },
+   "RO": {
+    "acompanhou": 3,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 55.56,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 55.33,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 47.37,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 45.14,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 27.82,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 29.34,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 10.83
+   },
+   "RR": {
+    "acompanhou": 2,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 65.55,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 38.51,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2010,
+      "pt_par": 33.44,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 41.08,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 28.45,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 23.92,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 17.19
+   },
+   "SC": {
+    "acompanhou": 2,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 64.14,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 45.47,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2010,
+      "pt_par": 43.39,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 35.4,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 24.08,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 30.73,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 14.68
+   },
+   "SP": {
+    "acompanhou": 2,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 55.39,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 47.74,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2010,
+      "pt_par": 45.95,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 35.68,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 32.03,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 44.76,
+      "venceu": "adversário",
+      "acompanhou": false
+     }
+    ],
+    "distancia_media_pp": 10.67
+   },
+   "SE": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 57.5,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 60.16,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 53.56,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 66.99,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 67.54,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 67.21,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 10.21
+   },
+   "TO": {
+    "acompanhou": 5,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 54.03,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 70.27,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2010,
+      "pt_par": 58.88,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2014,
+      "pt_par": 59.47,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2018,
+      "pt_par": 51.02,
+      "venceu": "PT",
+      "acompanhou": false
+     },
+     {
+      "ano": 2022,
+      "pt_par": 51.36,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 5.66
+   },
+   "ZZ": {
+    "acompanhou": 3,
+    "eleicoes": 6,
+    "anos": [
+     {
+      "ano": 2002,
+      "pt_par": 60.18,
+      "venceu": "PT",
+      "acompanhou": true
+     },
+     {
+      "ano": 2006,
+      "pt_par": 46.19,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2010,
+      "pt_par": 40.87,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2014,
+      "pt_par": 22.98,
+      "venceu": "adversário",
+      "acompanhou": false
+     },
+     {
+      "ano": 2018,
+      "pt_par": 28.98,
+      "venceu": "adversário",
+      "acompanhou": true
+     },
+     {
+      "ano": 2022,
+      "pt_par": 51.28,
+      "venceu": "PT",
+      "acompanhou": true
+     }
+    ],
+    "distancia_media_pp": 12.64
+   }
+  },
+  "termometros": [
+   "AM",
+   "MG"
+  ],
+  "nota": "Acompanhou = o mais votado na UF no 2º turno foi o eleito no Brasil. Histórico não garante nada: é contexto."
+ },
+ "capitais": [
+  {
+   "uf": "SP",
+   "cod": "sp71072",
+   "nome": "São Paulo",
+   "eleitorado": 9145124,
+   "lula_par_1t": 52.51,
+   "lula_par_2022": 53.54,
+   "secoes": 26696
+  },
+  {
+   "uf": "RJ",
+   "cod": "rj60011",
+   "nome": "Rio de Janeiro",
+   "eleitorado": 4952612,
+   "lula_par_1t": 47.84,
+   "lula_par_2022": 47.34,
+   "secoes": 12809
+  },
+  {
+   "uf": "DF",
+   "cod": "df97012",
+   "nome": "Brasília",
+   "eleitorado": 2258320,
+   "lula_par_1t": 42.62,
+   "lula_par_2022": 41.19,
+   "secoes": 7050
+  },
+  {
+   "uf": "MG",
+   "cod": "mg41238",
+   "nome": "Belo Horizonte",
+   "eleitorado": 1966966,
+   "lula_par_1t": 46.14,
+   "lula_par_2022": 45.75,
+   "secoes": 5059
+  },
+  {
+   "uf": "BA",
+   "cod": "ba38490",
+   "nome": "Salvador",
+   "eleitorado": 1955479,
+   "lula_par_1t": 70.71,
+   "lula_par_2022": 70.73,
+   "secoes": 5212
+  },
+  {
+   "uf": "CE",
+   "cod": "ce13897",
+   "nome": "Fortaleza",
+   "eleitorado": 1795713,
+   "lula_par_1t": 57.62,
+   "lula_par_2022": 58.18,
+   "secoes": 5461
+  },
+  {
+   "uf": "AM",
+   "cod": "am02550",
+   "nome": "Manaus",
+   "eleitorado": 1477265,
+   "lula_par_1t": 40.62,
+   "lula_par_2022": 38.72,
+   "secoes": 4075
+  },
+  {
+   "uf": "PR",
+   "cod": "pr75353",
+   "nome": "Curitiba",
+   "eleitorado": 1415148,
+   "lula_par_1t": 34.56,
+   "lula_par_2022": 35.22,
+   "secoes": 4061
+  },
+  {
+   "uf": "PE",
+   "cod": "pe25313",
+   "nome": "Recife",
+   "eleitorado": 1230407,
+   "lula_par_1t": 59.03,
+   "lula_par_2022": 56.32,
+   "secoes": 3548
+  },
+  {
+   "uf": "RS",
+   "cod": "rs88013",
+   "nome": "Porto Alegre",
+   "eleitorado": 1064200,
+   "lula_par_1t": 53.71,
+   "lula_par_2022": 53.5,
+   "secoes": 3078
+  },
+  {
+   "uf": "PA",
+   "cod": "pa04278",
+   "nome": "Belém",
+   "eleitorado": 1048781,
+   "lula_par_1t": 52.32,
+   "lula_par_2022": 50.28,
+   "secoes": 3143
+  },
+  {
+   "uf": "GO",
+   "cod": "go93734",
+   "nome": "Goiânia",
+   "eleitorado": 1019261,
+   "lula_par_1t": 34.04,
+   "lula_par_2022": 36.05,
+   "secoes": 3066
+  },
+  {
+   "uf": "MA",
+   "cod": "ma09210",
+   "nome": "São Luís",
+   "eleitorado": 761443,
+   "lula_par_1t": 59.56,
+   "lula_par_2022": 60.38,
+   "secoes": 2288
+  },
+  {
+   "uf": "AL",
+   "cod": "al27855",
+   "nome": "Maceió",
+   "eleitorado": 646463,
+   "lula_par_1t": 43.97,
+   "lula_par_2022": 42.82,
+   "secoes": 1701
+  },
+  {
+   "uf": "MS",
+   "cod": "ms90514",
+   "nome": "Campo Grande",
+   "eleitorado": 641185,
+   "lula_par_1t": 35.56,
+   "lula_par_2022": 37.35,
+   "secoes": 2242
+  },
+  {
+   "uf": "PI",
+   "cod": "pi12190",
+   "nome": "Teresina",
+   "eleitorado": 592974,
+   "lula_par_1t": 66.03,
+   "lula_par_2022": 66.44,
+   "secoes": 1930
+  },
+  {
+   "uf": "PB",
+   "cod": "pb20516",
+   "nome": "João Pessoa",
+   "eleitorado": 591750,
+   "lula_par_1t": 50.45,
+   "lula_par_2022": 50.1,
+   "secoes": 1719
+  },
+  {
+   "uf": "RN",
+   "cod": "rn17612",
+   "nome": "Natal",
+   "eleitorado": 573148,
+   "lula_par_1t": 52.59,
+   "lula_par_2022": 52.96,
+   "secoes": 1482
+  },
+  {
+   "uf": "MT",
+   "cod": "mt90670",
+   "nome": "Cuiabá",
+   "eleitorado": 456517,
+   "lula_par_1t": 37.13,
+   "lula_par_2022": 38.5,
+   "secoes": 1400
+  },
+  {
+   "uf": "SC",
+   "cod": "sc81051",
+   "nome": "Florianópolis",
+   "eleitorado": 423969,
+   "lula_par_1t": 45.64,
+   "lula_par_2022": 46.67,
+   "secoes": 1211
+  },
+  {
+   "uf": "SE",
+   "cod": "se31054",
+   "nome": "Aracaju",
+   "eleitorado": 422179,
+   "lula_par_1t": 59.17,
+   "lula_par_2022": 57.26,
+   "secoes": 1387
+  },
+  {
+   "uf": "RO",
+   "cod": "ro00035",
+   "nome": "Porto Velho",
+   "eleitorado": 367902,
+   "lula_par_1t": 34.84,
+   "lula_par_2022": 35.37,
+   "secoes": 1344
+  },
+  {
+   "uf": "AP",
+   "cod": "ap06050",
+   "nome": "Macapá",
+   "eleitorado": 321597,
+   "lula_par_1t": 47.86,
+   "lula_par_2022": 45.08,
+   "secoes": 1045
+  },
+  {
+   "uf": "AC",
+   "cod": "ac01392",
+   "nome": "Rio Branco",
+   "eleitorado": 270174,
+   "lula_par_1t": 29.96,
+   "lula_par_2022": 27.49,
+   "secoes": 959
+  },
+  {
+   "uf": "ES",
+   "cod": "es57053",
+   "nome": "Vitória",
+   "eleitorado": 267102,
+   "lula_par_1t": 45.68,
+   "lula_par_2022": 45.3,
+   "secoes": 805
+  },
+  {
+   "uf": "RR",
+   "cod": "rr03018",
+   "nome": "Boa Vista",
+   "eleitorado": 241509,
+   "lula_par_1t": 20.77,
+   "lula_par_2022": 20.53,
+   "secoes": 932
+  },
+  {
+   "uf": "TO",
+   "cod": "to73440",
+   "nome": "Palmas",
+   "eleitorado": 219783,
+   "lula_par_1t": 36.48,
+   "lula_par_2022": 39.68,
+   "secoes": 679
+  }
+ ],
  "medias_ordem": [
   "ponderada",
   "simples",
@@ -763,7 +2254,7 @@
     "lula": 46.7,
     "flavio": 53.3
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-aprova-desaprova-governo-22-outubro.ghtml"
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-presidente-segundo-turno-22-outubro.ghtml"
   },
   {
    "casa": "Ipespe",
@@ -1230,7 +2721,7 @@
     "flavio": 50.5,
     "lula": 49.5
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-aprova-desaprova-governo-22-outubro.ghtml",
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-presidente-segundo-turno-22-outubro.ghtml",
    "pos_1o_turno": true,
    "na_media": true,
    "peso": 0.158
