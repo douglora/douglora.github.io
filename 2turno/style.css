@@ -1363,3 +1363,7 @@ body.com-faixa-sim { padding-bottom: 56px; }
 
 /* ranking do 1º turno: casa de fora do painel */
 .fora-painel { margin-left: 4px; padding: 1px 6px; border: 1px solid var(--linha-2); border-radius: 999px; font-size: 11px; font-weight: 500; color: var(--tinta-3); white-space: nowrap; }
+
+/* cartão verde: o que o Radar dava no dia do 1º turno */
+.c1-radar { font-size: 12px; font-weight: 600; color: var(--dourado, #e9c46a); }
+body.tv .c1-radar { font-size: 14px; }

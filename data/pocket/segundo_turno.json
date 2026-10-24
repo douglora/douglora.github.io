@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-23T23:43:43-03:00",
+ "gerado_em": "2026-10-23T23:52:20-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 7 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -3167,6 +3167,30 @@
    "motivo_fora": "simulação feita antes do 1º turno"
   },
   {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "data": "2026-09-24",
+   "campo": "20 a 23/09",
+   "amostra": 3000,
+   "margem_erro_pp": 1.8,
+   "registro": "BR-01739/2026",
+   "totais": {
+    "lula": 45.0,
+    "flavio": 46.0,
+    "branco_nulo": 7.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 50.5,
+    "lula": 49.5
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/09/Relatorio-PoderData-Eleitoral-23set26-final.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
    "casa_id": "datafolha",
    "casa": "Datafolha",
    "data": "2026-09-24",
@@ -3208,7 +3232,7 @@
     "flavio": 50.6,
     "lula": 49.4
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
    "pos_1o_turno": false,
    "na_media": false,
    "peso": null,

@@ -925,8 +925,21 @@ function bloco1TCartao() {
     <span class="c1-tit">1º turno · TSE</span>
     ${ordem.map((id) => h`<span class="c1-l">${avatar(id, 30)}<span class="c1-nome">${curto(id)}</span><b>${fPct(pct(id), 2)}</b></span>`)}
     <span class="c1-dif">+${fNum(dpp, 2)} ${dpp < 2 ? 'ponto' : 'pontos'}${dv !== null ? ` · ${fGrande(dv)} de votos` : ''}</span>
+    ${radar1tLinha()}
     <span class="c1-ver">ver detalhes do 1º turno →</span>
   </a>`;
+}
+
+// O que o Radar publicava no dia do 1º turno (radar_1t), em uma linha no cartão verde.
+function radar1tLinha() {
+  const r = obj(st.dados?.radar_1t);
+  const c = obj(r?.corrigida);
+  const res = obj(r?.resultado);
+  if (!c || num(c.lula) === null || num(c.flavio) === null) return '';
+  const lid = num(c.flavio) >= num(c.lula) ? 'flavio' : 'lula';
+  const out = lid === 'flavio' ? 'lula' : 'flavio';
+  const acertou = res && num(res.flavio) !== null && num(res.lula) !== null && (num(res.flavio) >= num(res.lula)) === (lid === 'flavio');
+  return h`<span class="c1-radar">Radar na véspera: ${curto(lid)} ${fNum(c[lid])} × ${curto(out)} ${fNum(c[out])}${acertou ? ' · acertou quem venceria' : ''}</span>`;
 }
 
 function blocoContagem() {
