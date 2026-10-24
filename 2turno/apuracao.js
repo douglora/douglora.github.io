@@ -20,6 +20,19 @@
  * - Painel "Estados, número a número" (todos os 27 + Exterior), situação de cada estado
  *   (aguardando, indefinido, provável, definido) e destaques ("O que está
  *   acontecendo") com 1º turno, histórico 2002-2022, capitais e pesquisas.
+ * - Urnas apuradas (v5, 24/10/2026): o TSE conta seções eleitorais, e cada seção tem uma urna. A página mostra
+ *   "312.450 de 499.248 urnas apuradas (62,58%)" no país, "N de M urnas" em cada estado (tabela, detalhe, ícone e
+ *   rótulo do ladrilho) e usa as urnas que faltam, o ritmo (urnas por minuto) e a fase de cada estado em quatro
+ *   destaques novos (urnas-onde, urnas-ritmo, urnas-fases, urnas-triangulacao). O percentual apurado sai de
+ *   seções totalizadas ÷ seções (st ÷ ts), com piso: nunca arredonda para cima.
+ * - Tela estável (v5): no iPhone o Safari não tem "scroll anchoring", então tudo que muda de altura acima da leitura faz a
+ *   página pular. Por isso cada bloco ao vivo tem altura reservada pelo pior caso (CSS no fim do style.css e, para o que
+ *   depende da largura real, medições únicas: reservarLinhasUF e reservarDuo): os destaques ocupam seis espaços de altura
+ *   fixa (texto cortado com "ler tudo", troca no lugar), a faixa "a projeção aponta virada" tem sempre o mesmo tamanho, as
+ *   linhas dos estados têm a altura do pior caso e as ordens "% apurado" e "Mais disputados" só refazem ao toque. Nada rola
+ *   a página sozinho: só o toque do leitor (abrir um estado) faz scroll. Medido com overflow-anchor desligado: CLS < 0,05.
+ * - Erros de rede nunca aparecem em inglês: a linha de status traduz ("sem conexão com o TSE neste momento;
+ *   tentando de novo em N s"). O texto técnico fica só no console e no gancho de teste.
  * - Antes das 17h de 25/10: contagem até o fechamento, prévia por estado e o
  *   botão da SIMULAÇÃO (números fictícios, faixa fixa na tela).
  * - Teste com o 1º turno, que tem o mesmo formato: ?eleicao=6257.
@@ -91,7 +104,18 @@ export const MODELO = {
   UF_PROVAVEL_SEC: 25,
   // Mínimo de apuração (% das seções) para cada tipo de destaque nascer: com pouco contado,
   // a ordem em que as urnas chegam enviesa os números e o texto afirmaria demais.
-  INS_MIN: { vs1t: 20, virou: 30, placar: 10, regiao: 15, termometro: 30, capital: 20, capitais: 30, momento: 5, pesquisas: 15, transf: 1, ponto: 8, falta: 15, ritmo: 12 },
+  INS_MIN: { vs1t: 20, virou: 30, placar: 10, regiao: 15, termometro: 30, capital: 20, capitais: 30, momento: 5, pesquisas: 15, transf: 1, ponto: 8, falta: 15, ritmo: 12, urnas: 15, urnasRitmo: 12, urnasFase: 10 },
+  // Destaques das urnas (v5). Estado entra em "onde estão as urnas que faltam" com ao menos URNAS_LISTA_MIN urnas por apurar;
+  // "quase pronto" = URNAS_FECHADO% das urnas ou mais; "mal começou" = abaixo de URNAS_LARGADA%; o ritmo pede uma janela de
+  // URNAS_JANELA_MIN minutos (de preferência 15) e ao menos URNAS_RITMO_MIN urnas novas dentro dela.
+  URNAS_LISTA_MIN: 300,
+  URNAS_FECHADO: 95,
+  URNAS_LARGADA: 10,
+  URNAS_JANELA_MIN: 10,
+  URNAS_JANELA_PREF: 15,
+  URNAS_RITMO_MIN: 100,
+  // Eleitores por urna na simulação (o país tem 158,7 milhões de eleitores em 499.248 seções).
+  ELEITORES_POR_URNA_SIM: 318,
   // Atrasos (hora da totalização do TSE → hora da leitura aqui) guardados para a mediana.
   ATRASOS_N: 30,
   // Estados: no máximo 5 pedidos no ar; cada um relido quando a abrangência avisa que
@@ -425,6 +449,80 @@ function votosCurto(v) {
   return C.fNum(a, 0);
 }
 
+// Botão "i" das urnas: abre a folha de explicação do site (a mesma dos demais termos), com texto próprio desta aba.
+const iUrnas = () =>
+  C.h`<button type="button" class="i" data-ap-termo="urnas" aria-label="O que são urnas apuradas?"><span aria-hidden="true">i</span></button>`;
+const EXPLICA_AP = {
+  urnas: [
+    'Urnas (seções)',
+    'O TSE (Tribunal Superior Eleitoral) conta a apuração por seção eleitoral, e cada seção eleitoral tem uma urna: urnas e seções são a mesma contagem. “312.450 de 499.248 urnas apuradas” quer dizer que 312.450 seções já foram totalizadas, de 499.248 no país. O percentual é urnas apuradas ÷ urnas, sem arredondar para cima: só chega a 100% com todas. Em média, cada urna tem pouco mais de 300 eleitores aptos, e nem todos comparecem; por isso as urnas que faltam não viram votos na mesma proporção em todo estado.',
+  ],
+};
+function abrirExplicaAp(chave) {
+  const x = EXPLICA_AP[chave];
+  const dlg = document.getElementById('folha');
+  const tit = document.getElementById('folha-tit');
+  const txt = document.getElementById('folha-txt');
+  if (!x || !dlg || !tit || !txt) return;
+  tit.textContent = x[0];
+  txt.textContent = x[1];
+  if (typeof dlg.showModal === 'function') {
+    if (!dlg.open) dlg.showModal();
+  } else dlg.setAttribute('open', '');
+}
+
+// Urnas (= seções eleitorais, uma urna por seção). Número inteiro com ponto de milhar; "uma urna" no singular.
+const fUrn = (v) => (v === null || v === undefined || !Number.isFinite(v) ? '—' : C.fInt(v));
+const urnasTxt = (n) => `${fUrn(n)} ${n === 1 ? 'urna' : 'urnas'}`;
+// Eleitores aptos por extenso curto, com a preposição certa: "58,3 milhões de eleitores aptos", "812 mil eleitores aptos".
+function eleitoresAptos(v) {
+  const a = Math.abs(v);
+  if (a >= 1e6) return `${votosCurto(a)} de eleitores aptos`;
+  return `${votosCurto(a)} ${a === 1 ? 'eleitor apto' : 'eleitores aptos'}`;
+}
+// Ritmo em urnas por minuto: inteiro a partir de 10, uma casa abaixo disso.
+const fRate = (v) => (v >= 10 ? C.fInt(Math.round(v)) : C.fNum(v, 1));
+// Regiões para somar urnas (ZZ = Exterior); a ordem é a dos vetores guardados em cada ponto da série.
+const REGS = ['N', 'NE', 'CO', 'SE', 'S', 'EX'];
+const REGS_NOME = { N: 'Norte', NE: 'Nordeste', CO: 'Centro-Oeste', SE: 'Sudeste', S: 'Sul', EX: 'Exterior' };
+// Urnas apuradas por região (vetor na ordem de REGS); null onde falta ler algum estado da região.
+function urnasPorRegiao(linhas) {
+  return REGS.map((g) => {
+    let s = 0;
+    for (const u of linhas) {
+      if (REGIAO[u.uf] !== g) continue;
+      if (u.st === null) return null;
+      s += u.st;
+    }
+    return s;
+  });
+}
+function urnasTotaisRegiao(linhas) {
+  return REGS.map((g) => {
+    let s = 0;
+    for (const u of linhas) {
+      if (REGIAO[u.uf] !== g) continue;
+      if (u.ts === null) return null;
+      s += u.ts;
+    }
+    return s;
+  });
+}
+// Urnas do país para a tela: do mesmo arquivo do apurado (Brasil, ou a soma dos 28 estados quando todos foram lidos).
+// Antes de qualquer leitura de voto, o total vem da abrangência. Sem os dois números, não mostra nada.
+function urnasNacional(cont) {
+  let st = null;
+  let ts = cont.ts > 0 ? cont.ts : null;
+  if (cont.fonte === 'br' || (cont.fonte === 'estados' && ts !== null)) st = Number.isFinite(cont.st) ? cont.st : null;
+  else if (cont.fonte === 'nada') st = 0;
+  if (ts === null && st !== null) {
+    const abTs = R.ab?.br?.ts;
+    ts = abTs > 0 ? abTs : null;
+  }
+  if (st === null || ts === null) return null;
+  return { st, ts, falta: Math.max(0, ts - st), pct: (st / ts) * 100, aptos: Math.max(0, (cont.te ?? 0) - (cont.est ?? 0)), fonte: cont.fonte };
+}
+
 /* ================================================= base: a prévia por UF */
 
 /* Prévia de cada UF, antes de contar.
@@ -644,10 +742,14 @@ function lerTSE(j) {
   // O TSE marca e = "s" e st = "Eleito" quando declara o eleito (no 1º turno, e = "s"
   // vinha com st = "2º turno": isso não conta).
   const eleito = (c) => c?.e === 's' && /eleit/i.test(String(c?.st || '')) && !/n[ãa]o/i.test(String(c?.st || ''));
+  const st = pBR(s.st);
+  const ts = pBR(s.ts);
   return {
-    st: pBR(s.st),
-    ts: pBR(s.ts),
-    pst: pBR(s.pstn ?? s.pst) ?? 0,
+    st,
+    ts,
+    // % das seções: seções totalizadas ÷ seções (o mesmo número que as urnas mostram). O pst do arquivo vem arredondado
+    // e chega a "100,00" com seções faltando; sem st/ts, vale o do arquivo.
+    pst: ts > 0 && st !== null ? (st / ts) * 100 : pBR(s.pstn ?? s.pst) ?? 0,
     te: pBR(e.te) ?? 0,
     est: pBR(e.est) ?? 0,
     c: pBR(e.c) ?? 0,
@@ -725,7 +827,14 @@ function processar() {
     // Seções apuradas (%): seções totalizadas ÷ seções, como o TSE; sem isso, o percentual do arquivo.
     const fim = !!(o && o.ts > 0 && o.st !== null && o.st >= o.ts);
     const sec = !o ? 0 : o.ts > 0 && o.st !== null ? (o.st / o.ts) * 100 : Number.isFinite(o.pst) ? o.pst : f * 100;
-    return { uf, b, o, te, est, f, L, F, vv: o ? o.vv : 0, shareObs, compObs, bnObs, fim, sec };
+    // Urnas (= seções, uma urna por seção): apuradas, total e as que faltam. Sem leitura do estado só se sabe o total
+    // (a abrangência traz o de todos os estados); as apuradas só vêm do arquivo do próprio estado, para a tela nunca
+    // mostrar um número da abrangência e depois um menor do arquivo.
+    const abTs = R.ab?.ufs?.get(uf)?.ts;
+    const ts = o ? (o.ts > 0 ? o.ts : null) : abTs > 0 ? abTs : null;
+    const st = o && o.st !== null ? o.st : null;
+    const urnasFalta = ts !== null && st !== null ? Math.max(0, ts - st) : null;
+    return { uf, b, o, te, est, f, L, F, vv: o ? o.vv : 0, shareObs, compObs, bnObs, fim, sec, st, ts, urnasFalta };
   });
   // Swing observado: média, ponderada pelos votos apurados, de (observado − prévia).
   let sn = 0;
@@ -774,6 +883,7 @@ function processar() {
     vvCont += u.vv;
   }
   const cont = vistaNacional(linhas, { estTot, teTot, fNac, vvCont });
+  const urnas = urnasNacional(cont);
   const lidos = linhas.filter((u) => u.o).length;
   const semLeitura = linhas.filter((u) => !u.o).map((u) => u.uf);
   // Projeção completa = todas as UFs lidas. Uma UF que não responde (TSE fora do ar só
@@ -860,7 +970,7 @@ function processar() {
     }
   });
   return {
-    linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, proj, projUF, sim, motor: sim ? 'simulador' : 'estados', pL, pLUF,
+    linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, urnas, proj, projUF, sim, motor: sim ? 'simulador' : 'estados', pL, pLUF,
     definido, tudo, eleitoTSE, decidido, lidos, semLeitura, completo, totalVal,
   };
 }
@@ -1434,29 +1544,17 @@ function insightsNovos(r, out, { n, h, agora, MIN }) {
   // l) onde está o que falta e o que deve render, por região
   if (contando && r.cont.pst >= MIN.falta && r.rem > 0) {
     const nomeR = { ...REGIAO_NOME, EX: 'Exterior' };
-    const por = {};
-    for (const u of r.linhas) {
-      const g = REGIAO[u.uf];
-      por[g] = por[g] || { rem: 0, net: 0 };
-      por[g].rem += u.rem;
-      por[g].net += u.rem * (2 * u.share - 1);
-    }
+    const { por, netTot } = faltaPorRegiao(r);
     const lista = Object.entries(por)
       .map(([g, v]) => ({ g, ...v }))
       .filter((x) => x.rem >= 20000)
       .sort((a, b) => b.rem - a.rem)
       .slice(0, 3);
-    const netTot = Object.values(por).reduce((s, v) => s + v.net, 0);
     const dif = r.cont.L - r.cont.F;
     const lc2 = lider(r.cont.L, r.cont.F);
     if (lista.length && lc2) {
       const quemNet = netTot >= 0 ? 'lula' : 'flavio';
-      const suficiente = (netTot > 0 && dif < 0 && netTot > -dif) || (netTot < 0 && dif > 0 && -netTot > dif);
-      const veredito = suficiente
-        ? h`pela estimativa, o que falta é suficiente para ${n(quemNet)} passar à frente`
-        : quemNet === lc2
-          ? h`o que falta reforça a vantagem de ${n(lc2)}`
-          : h`pela estimativa, o que falta não chega para ${n(quemNet)} virar`;
+      const veredito = vereditoFalta(h, n, netTot, dif, lc2);
       out.push({
         id: 'falta-regiao',
         tag: 'Brasil',
@@ -1488,6 +1586,171 @@ function insightsNovos(r, out, { n, h, agora, MIN }) {
       html: h`Nos últimos <b>${rit.min} min</b>, a apuração foi de ${pctPiso(rit.de, 0)} para <b>${pctPiso(rit.ate, 0)}</b> das seções (${C.fNum(rit.porMin, 1)} ${rit.porMin < 2 ? 'ponto' : 'pontos'} por minuto${rit.votosMin ? `, uns ${votosCurto(rit.votosMin)} votos válidos por minuto` : ''}).${tail}`,
     });
   }
+
+  // n) as urnas (seções) que faltam: onde estão, em que ritmo entram, fase de cada estado e a conta do que vem por aí
+  insightsUrnas(r, out, { n, h, MIN, contando });
+}
+
+// Quatro destaques com as urnas apuradas (uma urna por seção): onde estão as que faltam, o ritmo, a fase de cada estado e a
+// triangulação urnas × comparecimento × participação projetada. Cada um tem mínimo de apuração (INS_MIN) para não nascer
+// com a contagem ainda no início, e nenhum fala em resultado nacional: só em estimativa do que falta.
+function insightsUrnas(r, out, { n, h, MIN, contando }) {
+  if (!contando) return;
+  const c = r.cont;
+  const ufs = r.linhas.filter((u) => u.uf !== 'ZZ');
+  const todasLidas = r.linhas.every((u) => u.o && u.st !== null && u.ts !== null);
+
+  // a) onde estão as urnas que faltam e o que devem render (estados com mais urnas por apurar)
+  if (c.pst >= MIN.urnas && todasLidas && r.rem > 0) {
+    const totFalta = r.linhas.reduce((s, u) => s + u.urnasFalta, 0);
+    const maiores = r.linhas
+      .filter((u) => u.urnasFalta >= MODELO.URNAS_LISTA_MIN)
+      .sort((a, b) => b.urnasFalta - a.urnasFalta || b.te - a.te)
+      .slice(0, 3);
+    if (maiores.length && totFalta > 0) {
+      const parte = maiores.reduce((s, u) => s + u.urnasFalta, 0) / totFalta;
+      const itens = maiores.map((u, i) => {
+        const net = u.rem * (2 * u.share - 1);
+        const saldo = Math.abs(net) < 500 ? 'saldo esperado perto de zero' : `saldo esperado de ${votosCurto(Math.abs(net))} para ${n(net >= 0 ? 'lula' : 'flavio')}`;
+        return h`${i ? '; ' : ''}<b>${nomeUF(u.uf)}</b> ${urnasTxt(u.urnasFalta)} (${pctPiso(u.sec, 0)} apurado), ${saldo}`;
+      });
+      out.push({
+        id: 'urnas-onde',
+        tag: 'Estado',
+        p: 52,
+        html: h`Onde estão as urnas que faltam: ${itens}. ${maiores.length === 1 ? 'Esse estado tem' : `Os ${maiores.length} juntos têm`} <b>${C.fNum(parte * 100, 0)}%</b> das ${fUrn(totFalta)} urnas que faltam no país. O saldo é a estimativa da mesa para os votos que ainda vão entrar.`,
+      });
+    }
+  }
+
+  // b) ritmo em urnas por minuto, no país e por região
+  const rt = ritmoUrnas();
+  if (rt && c.pst >= MIN.urnasRitmo) {
+    const tsReg = urnasTotaisRegiao(r.linhas);
+    const stReg = urnasPorRegiao(r.linhas);
+    const pctReg = (i) => (tsReg[i] > 0 && stReg[i] !== null ? (stReg[i] / tsReg[i]) * 100 : null);
+    const lista = rt.regs
+      .map((x, i) => (x && x.d > 0 && pctReg(i) !== null ? { ...x, i, taxa: x.d / rt.dMin, pct: pctReg(i) } : null))
+      .filter(Boolean)
+      .sort((a, b) => b.d - a.d);
+    const paradas = rt.regs
+      .map((x, i) => (x && x.d === 0 && pctReg(i) !== null && pctReg(i) < 100 ? { ...x, i, pct: pctReg(i) } : null))
+      .filter(Boolean);
+    const porRegiao = lista.length
+      ? h` Por região: ${lista.map((x, i) => h`${i ? '; ' : ''}<b>${REGS_NOME[x.g]}</b> ${fRate(x.taxa)} por minuto (${pctPiso(x.pct, 0)} apurado)`)}.`
+      : '';
+    const sem = paradas.length ? h` Sem urna nova no período: ${paradas.map((x, i) => h`${i ? '; ' : ''}${REGS_NOME[x.g]} (${pctPiso(x.pct, 0)} apurado)`)}.` : '';
+    out.push({
+      id: 'urnas-ritmo',
+      tag: 'Brasil',
+      p: 46,
+      html: h`Nos últimos <b>${rt.min} min</b> entraram <b>${fUrn(rt.d)}</b> urnas no país, em média <b>${fRate(rt.porMin)} por minuto</b>.${porRegiao}${sem}`,
+    });
+  }
+
+  // c) fase de cada estado: quase prontos (95% das urnas ou mais) e os que mal começaram (abaixo de 10%)
+  if (c.pst >= MIN.urnasFase) {
+    const lidos = ufs.filter((u) => u.o && u.st !== null && u.ts > 0);
+    const pctU = (u) => (u.st / u.ts) * 100;
+    const prontos = lidos.filter((u) => pctU(u) >= MODELO.URNAS_FECHADO).sort((a, b) => b.te - a.te);
+    const largada = lidos.filter((u) => pctU(u) < MODELO.URNAS_LARGADA).sort((a, b) => b.te - a.te);
+    if (prontos.length || largada.length) {
+      const totE = ufs.reduce((s, u) => s + u.te, 0) || 1;
+      const nL = prontos.filter((u) => u.lider === 'lula').length;
+      const nF = prontos.filter((u) => u.lider === 'flavio').length;
+      const parte1 = prontos.length
+        ? h`<b>${prontos.length}</b> ${prontos.length === 1 ? 'estado já passou' : 'estados já passaram'} de ${MODELO.URNAS_FECHADO}% das urnas (${nomesUF(prontos.map((u) => u.uf))}): ${n('lula')} lidera em <b>${nL}</b> e ${n('flavio')} em <b>${nF}</b>`
+        : '';
+      const parte2 = largada.length
+        ? h`<b>${largada.length}</b> ${largada.length === 1 ? 'ainda está' : 'ainda estão'} abaixo de ${MODELO.URNAS_LARGADA}% (${nomesUF(largada.map((u) => u.uf))}), com <b>${C.fNum((largada.reduce((s, u) => s + u.te, 0) / totE) * 100, 1)}%</b> do eleitorado: ali a projeção ainda se apoia mais na prévia do que na contagem`
+        : '';
+      out.push({
+        id: 'urnas-fases',
+        tag: 'Estado',
+        p: 53,
+        html: h`Fase da contagem por estado, pelas urnas apuradas: ${parte1}${prontos.length && largada.length ? '; ' : ''}${parte2}.`,
+      });
+    }
+  }
+
+  // d) triangulação: urnas que faltam × eleitores por urna × comparecimento × brancos e nulos × participação projetada
+  const u0 = r.urnas;
+  const lc = lider(c.L, c.F);
+  if (c.pst >= MIN.urnas && u0 && u0.falta > 0 && u0.aptos > 0 && r.rem > 0 && r.remCont > 0 && lc) {
+    const aptosUF = r.linhas.reduce((s, u) => s + u.remMax, 0);
+    const compens = r.linhas.reduce((s, u) => s + u.remMax * clamp(u.comp, 0, 1), 0);
+    if (aptosUF > 0 && compens > 0) {
+      const comp = compens / aptosUF;
+      const bn = 1 - r.rem / compens;
+      const shareL = r.linhas.reduce((s, u) => s + u.rem * u.share, 0) / r.rem;
+      const { netTot } = faltaPorRegiao(r);
+      const dif = c.L - c.F;
+      const quemNet = netTot >= 0 ? 'lula' : 'flavio';
+      out.push({
+        id: 'urnas-triangulacao',
+        tag: 'Brasil',
+        p: 61,
+        html: h`Triangulação do que falta: <b>${urnasTxt(u0.falta)}</b>, com ${eleitoresAptos(u0.aptos)} (cerca de <b>${C.fInt(u0.aptos / u0.falta)}</b> por urna). Com comparecimento esperado de <b>${C.fNum(comp * 100, 1)}%</b> e <b>${C.fNum(bn * 100, 1)}%</b> de brancos e nulos, são uns <b>${votosDif(r.remCont, 'válido')}</b>. Pela mesa, ${n('lula')} fica com <b>${C.fNum(shareL * 100, 1)}%</b> deles, saldo de <b>+${votosCurto(Math.abs(netTot))}</b> para ${n(quemNet)}; hoje ${n(lc)} está à frente por ${votosCurto(Math.abs(dif))}: ${vereditoFalta(h, n, netTot, dif, lc)}.`,
+      });
+    }
+  }
+}
+
+// Votos válidos que faltam e saldo esperado (Lula − Flávio) por região, pela conta de cada estado (rem e share).
+function faltaPorRegiao(r) {
+  const por = {};
+  for (const u of r.linhas) {
+    const g = REGIAO[u.uf];
+    por[g] = por[g] || { rem: 0, net: 0 };
+    por[g].rem += u.rem;
+    por[g].net += u.rem * (2 * u.share - 1);
+  }
+  const netTot = Object.values(por).reduce((s, v) => s + v.net, 0);
+  return { por, netTot };
+}
+// O que o saldo esperado do que falta quer dizer para a diferença de hoje (dif = Lula − Flávio na contagem).
+function vereditoFalta(h, n, netTot, dif, lc) {
+  const quemNet = netTot >= 0 ? 'lula' : 'flavio';
+  const suficiente = (netTot > 0 && dif < 0 && netTot > -dif) || (netTot < 0 && dif > 0 && -netTot > dif);
+  return suficiente
+    ? h`pela estimativa, o que falta é suficiente para ${n(quemNet)} passar à frente`
+    : quemNet === lc
+      ? h`o que falta reforça a vantagem de ${n(lc)}`
+      : h`pela estimativa, o que falta não chega para ${n(quemNet)} virar`;
+}
+
+// "São Paulo, Minas Gerais e mais 2" (nomes sem preposição, até max nomes).
+function nomesUF(ufs, max = 4) {
+  const nomes = ufs.slice(0, max).map(nomeUF);
+  const mais = ufs.length - nomes.length;
+  if (mais > 0) nomes.push(`mais ${mais}`);
+  return nomes.length > 1 ? `${nomes.slice(0, -1).join(', ')} e ${nomes[nomes.length - 1]}` : nomes[0] || '';
+}
+
+// Ritmo da contagem em urnas por minuto: país e regiões, da série da própria tela (hora da totalização do TSE). Janela de
+// 15 min (ou, sem ponto tão antigo, a série toda desde que tenha ao menos 10 min), com ao menos URNAS_RITMO_MIN urnas novas.
+function ritmoUrnas() {
+  const s = A.serie.filter((x) => Number.isFinite(x.t) && Number.isFinite(x.st));
+  if (s.length < 3) return null;
+  const ult = s[s.length - 1];
+  let ref = null;
+  for (let i = s.length - 2; i >= 0; i--) {
+    if (s[i].t <= ult.t - MODELO.URNAS_JANELA_PREF * 60000) {
+      ref = s[i];
+      break;
+    }
+  }
+  if (!ref && ult.t - s[0].t >= MODELO.URNAS_JANELA_MIN * 60000) ref = s[0];
+  if (!ref) return null;
+  const dMin = (ult.t - ref.t) / 60000;
+  const d = ult.st - ref.st;
+  if (!(dMin >= MODELO.URNAS_JANELA_MIN) || !(d >= MODELO.URNAS_RITMO_MIN)) return null;
+  const regs = REGS.map((g, i) => {
+    const a = ult.rg?.[i];
+    const b = ref.rg?.[i];
+    return Number.isFinite(a) && Number.isFinite(b) && a >= b ? { g, d: a - b } : null;
+  });
+  return { min: Math.round(dMin), dMin, d, porMin: d / dMin, regs, t: ult.t };
 }
 
 // Valor da curva de referência (votos acumulados dos dois finalistas) quando a contagem estava em p% das seções.
@@ -1677,9 +1940,98 @@ function faixaDefinida(doc) {
   return { fora: true, quem: l0 > 0 ? 'lula' : 'flavio', t: s[i].t, pct: s[i].pct, n: s.length - i };
 }
 
-// Sincroniza uma lista de destaques sem recriar o que já está na tela: o que continua só troca
-// o texto (se mudou); o que entra anima de cima; o que sai desliza para a direita.
+// Destaque na tela (v5): etiqueta + texto dentro de .ap-corpo (que o CSS limita a poucas linhas, com "ler tudo"), e o botão
+// "ler tudo / recolher" por cima da última linha. Altura fixa por espaço: o conteúdo que muda nunca empurra o resto da página.
+function criarLi(x, completa) {
+  const li = document.createElement('li');
+  li.dataset.id = x.id;
+  li.className = 'ap-in';
+  li.innerHTML = `<div class="ap-corpo"><span class="ap-tag t-${slugTag(x.tag)}">${x.tag}</span><span class="ap-txt"></span></div>${completa ? '<small class="ap-desde"></small>' : ''}<button type="button" class="ap-mais" aria-expanded="false" tabindex="-1"></button>`;
+  return li;
+}
+// Marca o destaque que não cabe nas linhas do espaço (para mostrar "ler tudo"). Só mexe em classe e texto do botão: o tamanho não muda.
+function medirCorte(li) {
+  const c = li.querySelector('.ap-corpo');
+  const bt = li.querySelector('.ap-mais');
+  if (!c || !bt) return;
+  const aberto = li.classList.contains('aberto');
+  const corta = aberto || c.scrollHeight > c.clientHeight + 2;
+  li.classList.toggle('cortado', corta);
+  const rot = aberto ? 'recolher' : 'ler tudo';
+  if (bt.textContent !== rot) bt.textContent = rot;
+  bt.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+  bt.tabIndex = corta ? 0 : -1;
+}
+function medirCortes() {
+  for (const li of $$('.ap-in')) medirCorte(li);
+}
+function preencherLi(li, x, completa, animar) {
+  const corpo = C.emHtml(x.html);
+  const trocou = li.dataset.id !== x.id;
+  if (trocou) {
+    li.dataset.id = x.id;
+    li.classList.remove('aberto');
+    const tg = li.querySelector('.ap-tag');
+    tg.className = `ap-tag t-${slugTag(x.tag)}`;
+    tg.textContent = x.tag;
+    li._h = undefined;
+  }
+  let mudou = false;
+  if (li._h !== corpo) {
+    mudou = li._h !== undefined;
+    li.querySelector('.ap-txt').innerHTML = corpo;
+    li._h = corpo;
+    medirCorte(li);
+  }
+  li.classList.toggle('forte', x.tom === 'forte');
+  if (animar && !reduzMovimento()) {
+    if (trocou) {
+      // só a opacidade: troca de destaque no mesmo espaço, sem mexer no tamanho
+      li.classList.add('entrando');
+      requestAnimationFrame(() => requestAnimationFrame(() => li.classList.remove('entrando')));
+      setTimeout(() => li.classList.remove('entrando'), 600); // aba em segundo plano não roda requestAnimationFrame
+    } else if (mudou && (!li._acesoEm || Date.now() - li._acesoEm > 20000)) {
+      // Acende no máximo a cada 20 s: com a leitura a cada poucos segundos os números mudam toda hora.
+      li._acesoEm = Date.now();
+      li.classList.remove('mudou');
+      void li.offsetWidth;
+      li.classList.add('mudou');
+    }
+  }
+  if (completa) {
+    const d = li.querySelector('.ap-desde');
+    const t = A.insVisto.get(x.id)?.d;
+    const txt = t ? `desde ${C.fHora(t).replace('h', ':')}` : '';
+    if (d && d.textContent !== txt) d.textContent = txt;
+  }
+}
+// Lista com espaços fixos (v5, celular e computador): o espaço i mostra o i-ésimo destaque; quando o destaque do espaço muda,
+// o texto é trocado no lugar (sem inserir nem tirar linhas da página), então o que está abaixo nunca se mexe sozinho.
+function sincronizarSlots(ol, itens) {
+  if (ol._modo !== 'slots') {
+    ol.innerHTML = '';
+    ol._modo = 'slots';
+  }
+  while (ol.children.length > itens.length) ol.lastElementChild.remove();
+  itens.forEach((x, i) => {
+    let li = ol.children[i];
+    if (!li) {
+      li = criarLi(x, false);
+      ol.appendChild(li);
+      li.classList.add('entrando');
+      requestAnimationFrame(() => requestAnimationFrame(() => li.classList.remove('entrando')));
+      setTimeout(() => li.classList.remove('entrando'), 600);
+    }
+    preencherLi(li, x, false, true);
+  });
+}
+// Sincroniza uma lista de destaques sem recriar o que já está na tela: o que continua só troca o texto (se mudou); o que
+// entra anima de cima; o que sai desliza para a direita. Usada na lista completa ("Ver todos") e no Modo TV.
 function sincronizarLista(ol, itens, { animar, completa }) {
+  if (ol._modo !== 'lista') {
+    ol.innerHTML = '';
+    ol._modo = 'lista';
+  }
   const ids = new Set(itens.map((x) => x.id));
   for (const li of Array.from(ol.children)) {
     if (!ids.has(li.dataset.id) && !li.classList.contains('saindo')) {
@@ -1692,36 +2044,15 @@ function sincronizarLista(ol, itens, { animar, completa }) {
   let ref = null;
   for (const x of itens) {
     let li = Array.from(ol.children).find((e) => e.dataset.id === x.id && !e.classList.contains('saindo'));
-    const corpo = C.emHtml(x.html);
     if (!li) {
-      li = document.createElement('li');
-      li.dataset.id = x.id;
-      li.className = `ap-in${animar ? ' entrando' : ''}${x.tom === 'forte' ? ' forte' : ''}`;
-      li.innerHTML = `<span class="ap-tag t-${slugTag(x.tag)}">${x.tag}</span><span class="ap-txt"></span>${completa ? '<small class="ap-desde"></small>' : ''}`;
-      li.querySelector('.ap-txt').innerHTML = corpo;
-      li._h = corpo;
+      li = criarLi(x, completa);
+      li.className = `ap-in${animar ? ' entrando' : ''}`;
       if (animar) {
         requestAnimationFrame(() => requestAnimationFrame(() => li.classList.remove('entrando')));
         setTimeout(() => li.classList.remove('entrando'), 600); // aba em segundo plano não roda requestAnimationFrame
       }
-    } else if (li._h !== corpo) {
-      li.querySelector('.ap-txt').innerHTML = corpo;
-      li._h = corpo;
-      // Acende no máximo a cada 20 s: com a leitura a cada 5 s os números mudam toda hora.
-      if (animar && (!li._acesoEm || Date.now() - li._acesoEm > 20000)) {
-        li._acesoEm = Date.now();
-        li.classList.remove('mudou');
-        void li.offsetWidth;
-        li.classList.add('mudou');
-      }
     }
-    li.classList.toggle('forte', x.tom === 'forte');
-    if (completa) {
-      const d = li.querySelector('.ap-desde');
-      const t = A.insVisto.get(x.id)?.d;
-      const txt = t ? `desde ${C.fHora(t).replace('h', ':')}` : '';
-      if (d && d.textContent !== txt) d.textContent = txt;
-    }
+    preencherLi(li, x, completa, animar);
     const alvo = ref ? ref.nextSibling : ol.firstChild;
     if (li !== alvo) ol.insertBefore(li, alvo);
     ref = li;
@@ -1753,7 +2084,8 @@ function renderInsights(lista) {
     for (let k = 0; k < Math.min(nGiro, resto.length); k++) giro.push(resto[(A.rot * nGiro + k) % resto.length]);
     mostrar = [...fixos, ...giro.filter((x, i) => giro.indexOf(x) === i)];
   }
-  sincronizarLista(ol, mostrar, { animar: true, completa: false });
+  if (emTV()) sincronizarLista(ol, mostrar, { animar: true, completa: false });
+  else sincronizarSlots(ol, mostrar);
   const vazio = $('[data-ap-ins-vazio]');
   if (vazio) vazio.hidden = mostrar.length > 0;
   // Lista completa (Ver todos): todos os destaques vivos, com a etiqueta e o "desde".
@@ -1763,12 +2095,15 @@ function renderInsights(lista) {
     const rot = A.insTodos ? 'Esconder a lista' : `Ver todos (${lista.length})`;
     if (bt.textContent !== rot) bt.textContent = rot;
     bt.setAttribute('aria-expanded', A.insTodos ? 'true' : 'false');
-    bt.hidden = lista.length === 0;
+    // o botão fica sempre no lugar (sem destaque ainda, só desabilitado): aparecer e sumir mexeria na página
+    bt.disabled = lista.length === 0;
   }
   if (todos) {
     todos.hidden = !A.insTodos || lista.length === 0;
     if (A.insTodos) sincronizarLista(todos, lista, { animar: false, completa: true });
   }
+  // depois de tudo no lugar (e visível): quais destaques não cabem nas linhas do espaço (mostram "ler tudo")
+  medirCortes();
 }
 
 /* ================================================================ mapa */
@@ -1866,11 +2201,18 @@ function atualizarMapa(r) {
     }
     if (mudou) brilhar(el);
     const nome = u.uf === 'ZZ' ? 'Exterior' : NOME_UF[u.uf];
+    const urnT = contagem ? urnasLinha(u) : '';
     el.setAttribute(
       'aria-label',
       `${nome}: ${prev ? 'prévia' : 'projeção'} ${C.curto('lula')} ${f1(pL)}%, ${C.curto('flavio')} ${f1(pF)}%` +
-        (contagem ? (aL !== null ? `; apurado ${f1(aL)}% a ${f1(um(100 - aL))}%` : '; ainda sem votos') + `; ${fSec(secP)} das seções` : ''),
+        (contagem ? (aL !== null ? `; apurado ${f1(aL)}% a ${f1(um(100 - aL))}%` : '; ainda sem votos') + `; ${fSec(secP)} das seções${urnT ? ` (${urnT}${u.urnasFalta ? `; faltam ${fUrn(u.urnasFalta)}` : ''})` : ''}` : ''),
     );
+    // Dica ao passar o mouse: o absoluto das urnas (o ladrilho só cabe o percentual)
+    const dica = urnT ? `${nome}: ${urnT} apuradas${u.urnasFalta ? `; faltam ${fUrn(u.urnasFalta)}` : ''}` : '';
+    if ((el.getAttribute('title') || '') !== dica) {
+      if (dica) el.setAttribute('title', dica);
+      else el.removeAttribute('title');
+    }
   }
   atualizarEstados(r);
   atualizarDetalheUF(r);
@@ -1891,7 +2233,7 @@ function htmlEstados() {
   const h = C.h;
   const lin = UFS.map(
     (uf) => h`<li class="uf-it" data-uf="${uf}"><button type="button" class="uf-lin" data-uf="${uf}" data-ap-lin aria-expanded="false" aria-label="${nomeUF(uf)}">
-      <span class="uf-c1" aria-hidden="true"><span class="uf-nome">${nomeUF(uf)}</span><span class="uf-sec"><b data-sp>0%</b> apurado</span><span class="uf-barra"><i data-b></i></span></span>
+      <span class="uf-c1" aria-hidden="true"><span class="uf-nome">${nomeUF(uf)}</span><span class="uf-sec"><b data-sp>0%</b> apurado</span><span class="uf-urn" data-urn></span><span class="uf-barra"><i data-b></i></span></span>
       <span class="uf-c2" aria-hidden="true"><span class="uf-n uf-nl"><span class="uf-k">${C.curto('lula')}</span> <b data-al>—</b></span><span class="uf-n uf-nf"><span class="uf-k">${C.curto('flavio')}</span> <b data-af>—</b></span></span>
       <span class="uf-c3" aria-hidden="true"><span class="uf-d" data-dw><span class="uf-dq" data-dq></span> <b data-d>—</b></span><span class="uf-d2" data-d2></span></span>
       <span class="uf-c4" aria-hidden="true"><b class="uf-sit" data-sit>lendo…</b><span class="uf-sit2" data-sit2></span></span>
@@ -1905,12 +2247,20 @@ function htmlEstados() {
       <div class="uf-cab" aria-hidden="true"><span>Estado e apuração</span><span>Apurado agora</span><span>vs 1º turno</span><span>Situação</span></div>
       <ol class="uf-lista" data-ap-ufs>${lin}</ol>
     </div>
-    <p class="ap-leg uf-leg">Apurado agora: % dos votos dos dois já contados. vs 1º turno: quanto a fatia de ${C.curto('lula')} entre os dois mudou desde o 1º turno (aparece o nome de quem ganhou terreno; “virou” = hoje lidera quem não liderava lá); o número pequeno é a fatia de ${C.curto('lula')} no 1º turno. Situação: “definido” quando a vantagem é maior que todo o eleitorado que falta apurar no estado; “provável” só com chance de 99% ou mais e ao menos 25% das seções contadas; sem voto contado, “aguardando”. Mais disputados: projeção mais perto de 50%. Toque numa linha para o detalhe.</p>`;
+    <p class="ap-leg uf-leg">Apurado agora: % dos votos dos dois já contados. vs 1º turno: quanto a fatia de ${C.curto('lula')} entre os dois mudou desde o 1º turno (aparece o nome de quem ganhou terreno; “virou” = hoje lidera quem não liderava lá); o número pequeno é a fatia de ${C.curto('lula')} no 1º turno. Situação: “definido” quando a vantagem é maior que todo o eleitorado que falta apurar no estado; “provável” só com chance de 99% ou mais e ao menos 25% das seções contadas; sem voto contado, “aguardando”. Mais disputados: projeção mais perto de 50%. A ordem de “% apurado” e de “Mais disputados” é refeita quando você toca no botão, para as linhas não pularem enquanto você lê. Urnas: o TSE conta seções eleitorais, e cada seção tem uma urna; “3.120 de 5.000 urnas” são as já totalizadas do total do estado ${iUrnas()}. Toque numa linha para o detalhe.</p>`;
 }
 
 const f1p = (v) => (v === null || v === undefined || !Number.isFinite(v) ? '—' : C.fNum(um(v), 1));
 // Seções em % com uma casa, sem arredondar para cima (99,96% fica 99,9%; 100 só com tudo apurado).
 const fSec1 = (v) => (v > 0 && v < 0.1 ? '<0,1%' : v >= 100 ? '100%' : `${C.fNum(Math.floor(v * 10) / 10, 1)}%`);
+
+// "3.120 de 5.000 urnas" (estado lido) ou "5.000 urnas" (só o total, antes da primeira leitura do estado); '' sem dado.
+function urnasLinha(u) {
+  if (u.st !== null && u.ts !== null) return `${fUrn(u.st)} de ${fUrn(u.ts)} urnas`;
+  if (u.ts !== null) return `${fUrn(u.ts)} urnas`;
+  if (u.st !== null) return urnasTxt(u.st);
+  return '';
+}
 
 function situacaoUF(u) {
   const n = (id) => C.curto(id);
@@ -1937,6 +2287,9 @@ function atualizarEstados(r) {
     const comVoto = !!u.o && u.L + u.F > 0;
     let mudou = false;
     mudou = numLad(bt.querySelector('[data-sp]'), u.o ? Math.max(0, u.sec) : 0, fSec1) || mudou;
+    const urnEl = bt.querySelector('[data-urn]');
+    const urnT = urnasLinha(u);
+    if (urnEl && urnEl.textContent !== urnT) urnEl.textContent = urnT;
     const bar = bt.querySelector('[data-b]');
     if (bar) bar.style.width = `${clamp(u.sec, 0, 100).toFixed(1)}%`;
     const al = bt.querySelector('[data-al]');
@@ -1985,17 +2338,55 @@ function atualizarEstados(r) {
     }
     if (mudou) brilhar(bt);
     const rotulo =
-      `${nomeUF(u.uf)}: ${fSec1(u.sec)} das seções apuradas; ` +
+      `${nomeUF(u.uf)}: ${fSec1(u.sec)} das seções apuradas${urnT ? ` (${urnT})` : ''}; ` +
       (comVoto ? `apurado ${L} ${f1p(u.parObs)}%, ${F} ${f1p(100 - u.parObs)}%` : 'sem voto contado') +
       (comVoto && u.dT1 !== null ? `; ${C.fNum(Math.abs(u.dT1), 1)} ${pontosTxt(u.dT1)} ${u.dT1 >= 0 ? 'a mais' : 'a menos'} para ${L} que no 1º turno${u.lider && u.lider1T && u.lider !== u.lider1T ? `; virou para ${C.curto(u.lider)}` : ''}` : '') +
       `; ${sit.txt}${sit.sub ? `, ${sit.sub}` : ''}`;
     if (bt.getAttribute('aria-label') !== rotulo) bt.setAttribute('aria-label', rotulo);
   }
-  reordenarEstados(r, false);
+  reservarLinhasUF();
+  // a primeira vez (tela recém-montada) ordena mesmo nas ordens que depois só mudam por toque
+  reordenarEstados(r, !ol._ordenado);
+  ol._ordenado = true;
 }
 
-// Reordena as linhas no lugar (sem recriar). Eleitorado é fixo; as outras mudam com a contagem,
-// então só reordenam a cada 15 s (ou ao tocar no botão) para a lista não ficar pulando.
+// Altura de cada linha reservada pelo pior caso (v5): a linha ganha, uma vez, a altura que teria com o texto mais comprido de
+// cada coluna (urnas "999.999 de 999.999 urnas", etiqueta "virou", situação "provável" com "chance ..." em duas linhas). Assim o
+// texto que muda durante a contagem nunca muda a altura da linha, e as de baixo não se mexem. Refeito quando a largura muda.
+function reservarLinhasUF() {
+  const ol = $('[data-ap-ufs]');
+  if (!ol || !ol.clientWidth) return;
+  if (A.ufLarg === ol.clientWidth && A.ufLargTV === emTV()) return;
+  A.ufLarg = ol.clientWidth;
+  A.ufLargTV = emTV();
+  for (const li of Array.from(ol.children)) {
+    const bt = li.querySelector('.uf-lin');
+    if (!bt) continue;
+    const q = (s) => bt.querySelector(s);
+    const campos = ['[data-urn]', '[data-dq]', '[data-d]', '[data-d2]', '[data-sit]', '[data-sit2]', '[data-sp]', '[data-al]', '[data-af]'].map((s) => q(s));
+    const salvo = campos.map((el) => el && el.textContent);
+    const cls = li.className;
+    const d2cls = q('[data-d2]')?.className;
+    bt.style.minHeight = '0px';
+    const pior = ['999.999 de 999.999 urnas', 'Flávio', '+9,9', '⇄ virou p/ Flávio', 'Flávio provável', 'chance Flávio >99%', '100,0%', '100,0', '100,0'];
+    campos.forEach((el, i) => {
+      if (el) el.textContent = pior[i];
+    });
+    li.className = 'uf-it s-prov q-flavio lid-f';
+    q('[data-d2]')?.classList.add('virou');
+    const h = Math.ceil(bt.getBoundingClientRect().height);
+    campos.forEach((el, i) => {
+      if (el) el.textContent = salvo[i];
+    });
+    li.className = cls;
+    if (q('[data-d2]') && d2cls !== undefined) q('[data-d2]').className = d2cls;
+    bt.style.minHeight = `${h}px`;
+  }
+}
+
+// Reordena as linhas no lugar (sem recriar). Eleitorado é fixo. As outras ordens ("% apurado" e "Mais disputados") são
+// refeitas só quando o leitor toca no botão: reordenar sozinho, com a leitura em curso, faria as linhas pularem na tela.
+// (v5: antes reordenava a cada 15 s.)
 function chaveOrdem(u) {
   if (A.ufOrd === 'apurado') return [u.o ? u.sec : -1, u.te];
   if (A.ufOrd === 'disputa') return [u.o && u.L + u.F > 0 && u.projPar !== null ? -Math.abs(u.projPar - 50) : -1e9, u.te];
@@ -2005,7 +2396,7 @@ function reordenarEstados(r, forcar) {
   const ol = $('[data-ap-ufs]');
   if (!ol) return;
   const agora = Date.now();
-  if (!forcar && A.ufOrd !== 'eleitorado' && agora - A.ufOrdEm < 15000) return;
+  if (!forcar && A.ufOrd !== 'eleitorado') return;
   const ordem = [...r.linhas].sort((a, b) => {
     const ka = chaveOrdem(a);
     const kb = chaveOrdem(b);
@@ -2080,6 +2471,9 @@ function atualizarDetalheUF(r) {
   caixa.hidden = !u;
   if (!u) {
     htmlEm('[data-ap-uf]', '');
+    caixa._uf = null;
+    caixa._mh = 0;
+    caixa.style.minHeight = '';
     return;
   }
   // O painel mora embaixo do que foi tocado (mapa ou linha da tabela).
@@ -2132,6 +2526,7 @@ function atualizarDetalheUF(r) {
     h`<div class="ap-uf-cab"><p class="ap-uf-nome">${nomeUF(u.uf)} <small>${u.uf === 'ZZ' ? '' : u.uf}</small></p><button type="button" class="ap-uf-x" data-ap="fechar-uf" aria-label="Fechar">×</button></div>
       <p class="ap-uf-sit ${sit.cls}">${sitTxt}</p>
       <p class="ap-uf-l">${u.o ? h`<b>${fSec1(u.sec)}</b> das seções apuradas · ${pctPiso(u.f * 100, 1)} do eleitorado · ${C.fInt(u.L + u.F)} votos nos dois` : 'Ainda sem leitura deste estado'}</p>
+      ${u.st !== null && u.ts !== null ? h`<p class="ap-uf-l ap-uf-urnas"><b>${fUrn(u.st)}</b> de <b>${fUrn(u.ts)}</b> urnas apuradas ${iUrnas()}${u.urnasFalta > 0 ? h` · faltam <b>${urnasTxt(u.urnasFalta)}</b>, com <b>${eleitoresAptos(u.remMax)}</b> (cerca de ${fUrn(u.remMax / u.urnasFalta)} por urna)` : ' · todas as urnas do estado foram apuradas'}.</p>` : u.ts !== null ? h`<p class="ap-uf-l ap-uf-urnas">${urnasTxt(u.ts)} neste estado, ainda sem leitura ${iUrnas()}.</p>` : ''}
       <table class="tab"><thead><tr><th style="width:30%">% do par</th><th class="n">Apurado</th><th class="n">Prévia</th><th class="n">Projeção</th></tr></thead><tbody>${linha('lula')}${linha('flavio')}</tbody></table>
       ${pjPar !== null ? h`<p class="ap-uf-l">${u.faixa ? h`Faixa de 80% da projeção: ${L} entre <b>${pct1(u.faixa[0])}</b> e <b>${pct1(u.faixa[1])}</b> do par. ` : ''}${comVoto && u.status !== 'definido' ? h`Chance de vencer aqui: ${L} <b>${chanceTxt(u.chance)}</b> × ${F} <b>${chanceTxt(1 - u.chance)}</b> (os mesmos sorteios da chance nacional).` : u.status === 'definido' ? '' : h`Sem voto contado: a prévia daria ${L} ${chanceTxt(u.prevChance)} de chance, mas isso não conta como resultado.`}</p>` : ''}
       ${l1.length ? h`<p class="ap-uf-l">${l1}</p>` : ''}
@@ -2143,6 +2538,13 @@ function atualizarDetalheUF(r) {
       ${elTxt}
       <p class="fonte">Prévia: ${u.b.fonte}. Peso da observação neste estado: ${C.fNum(u.w * 100, 0)}%.</p>`,
   );
+  // O painel aberto pelo leitor nunca encolhe enquanto é o mesmo estado (linha que some ou entra não puxa a página); cresce só se
+  // o texto de fato aumentar. Fechar ou trocar de estado zera a reserva.
+  caixa.style.minHeight = '';
+  const nat = caixa.offsetHeight;
+  caixa._mh = caixa._uf === u.uf + A.ufOrigem ? Math.max(caixa._mh || 0, nat) : nat;
+  caixa._uf = u.uf + A.ufOrigem;
+  caixa.style.minHeight = `${caixa._mh}px`;
 }
 const nomeCidadeSim = (s) =>
   String(s || '')
@@ -2169,6 +2571,9 @@ function pontoSerie(r) {
     jL: r.proj.parL,
     vv: r.cont.L + r.cont.F,
     m: r.motor === 'simulador' ? 's' : 'e',
+    // urnas apuradas no país e por região (vetor na ordem de REGS): base do ritmo em urnas por minuto
+    st: r.urnas ? r.urnas.st : null,
+    rg: urnasPorRegiao(r.linhas),
   };
   const n = A.serie.length;
   const ult = A.serie[n - 1];
@@ -2177,7 +2582,7 @@ function pontoSerie(r) {
     // Mesma totalização: refaz o último ponto (a projeção muda a cada UF lida). Antes cada
     // UF lida virava um ponto novo com a mesma hora: o teto de 1.500 chegava em ~50 min e o
     // gráfico perdia o começo da noite.
-    if (ult.pst === p.pst && ult.pL === p.pL && ult.jL === p.jL && ult.aL === p.aL && ult.m === p.m) return false;
+    if (ult.pst === p.pst && ult.pL === p.pL && ult.jL === p.jL && ult.aL === p.aL && ult.m === p.m && ult.st === p.st && JSON.stringify(ult.rg) === JSON.stringify(p.rg)) return false;
     A.serie[n - 1] = p;
     marcarTroca(A.serie[n - 2], p);
   } else {
@@ -2404,7 +2809,7 @@ function htmlComoFunciona() {
         <li><b>Matematicamente definido</b> ${C.info('Matematicamente definido')}: quando a diferença na contagem é maior que todo o eleitorado que ainda falta apurar.</li>
         <li><b>Dois motores para a projeção final</b>: o <b>simulador municipal</b> (um computador à parte projeta cidade a cidade e manda uma versão nova a cada minuto) vale quando o dado tem até 3 minutos e já cobre parte relevante da apuração; senão vale o <b>modelo por estado</b> desta página. A tela diz qual está valendo e mostra os dois se divergirem mais de 1 ponto. A chance de vitória do topo acompanha o motor em uso.</li>
       </ol>
-      <p class="nota">Leitura do TSE: Brasil e a lista de estados a cada 1 segundo, com pedido condicional (se nada mudou, o TSE responde com uma resposta vazia de uns 300 bytes); cada estado na hora em que a abrangência mostra que ele mudou e ao menos a cada minuto; as 27 capitais a cada cerca de 30 segundos. É o mesmo arquivo, da mesma rede de distribuição (Akamai), que o site do TSE lê. Medido em 24/10/2026: a rede renova a cópia de cada arquivo a cada ~12 segundos, e é nesse ritmo que um número novo do TSE chega a qualquer leitor. A página lê logo depois de cada renovação, então mostra o número assim que a rede o tem. Fonte: resultados.tse.jus.br.</p>
+      <p class="nota">Leitura do TSE: Brasil e a lista de estados a cada 1 segundo, com pedido condicional (se nada mudou, o TSE responde com uma resposta vazia de uns 300 bytes); cada estado na hora em que a abrangência mostra que ele mudou e ao menos a cada minuto; as 27 capitais a cada cerca de 30 segundos. É o mesmo arquivo, da mesma rede de distribuição (Akamai), que o site do TSE lê. Medido em 24/10/2026: a rede renova a cópia de cada arquivo a cada ~12 segundos, e é nesse ritmo que um número novo do TSE chega a qualquer leitor. A página lê logo depois de cada renovação, então mostra o número assim que a rede o tem. Urnas: o TSE conta seções eleitorais e cada seção tem uma urna, então “urnas apuradas” e “seções apuradas” são o mesmo número; o percentual é urnas apuradas ÷ urnas, sem arredondar para cima. Fonte: resultados.tse.jus.br.</p>
     </div>
   </details>`;
 }
@@ -2427,12 +2832,13 @@ function esqueletoPainel() {
     <section class="bloco ap-prog-b ap-sec-prog">
       <div class="ap-prog-cab"><p class="ap-prog-num"><b data-ap-pst>0,0%</b> das seções apuradas</p><p class="ap-prog-lido" data-ap-lidos></p></div>
       <div class="ap-prog" aria-hidden="true"><i data-ap-barra></i></div>
+      <p class="ap-urnas" data-ap-urnas></p>
       <p class="fonte" data-ap-hora>Aguardando a primeira leitura…</p>
       <p class="fonte ap-atraso" data-ap-atraso hidden></p>
     </section>
     <section class="bloco ap-sec-duo">
       <h2 class="sobre">Apurado agora × projeção final ${C.info('Projeção final')}</h2>
-      <p class="ap-virada" data-ap-virada hidden></p>
+      <p class="ap-virada" data-ap-virada data-v="espera">Sem votos ainda: a comparação entre a projeção e a contagem começa com os primeiros votos.</p>
       <div class="ap-duo">
         <div class="ap-card"><p class="ap-card-tit">Apurado agora</p><div data-ap-apurado></div></div>
         <div class="ap-card ap-card-proj"><p class="ap-card-tit">Projeção final</p><div data-ap-proj></div></div>
@@ -2440,17 +2846,19 @@ function esqueletoPainel() {
     </section>
     <section class="bloco ap-sec-ins">
       <h2 class="sobre">O que está acontecendo</h2>
-      <ol class="ap-ins" data-ap-ins aria-live="polite"></ol>
-      <p class="estado" data-ap-ins-vazio hidden>Os destaques aparecem aqui assim que a contagem começar.</p>
+      <div class="ap-ins-caixa">
+        <ol class="ap-ins" data-ap-ins aria-live="polite"></ol>
+        <p class="estado" data-ap-ins-vazio hidden>Os destaques aparecem aqui assim que a contagem começar.</p>
+      </div>
       <div class="ap-ins-mais"><button type="button" class="ap-ins-bt" data-ap="ins-todos" aria-expanded="false" hidden>Ver todos (0)</button></div>
       <ol class="ap-ins ap-ins-lista" data-ap-ins-todos hidden></ol>
-      <p class="fonte ap-ins-nota">Cada destaque tem a etiqueta do assunto (Brasil, Estado, Cidade, Histórico ou Pesquisas). “Desde” é a hora em que este aparelho viu o destaque pela primeira vez. Nenhum deles é recomendação.</p>
+      <p class="fonte ap-ins-nota">Cada destaque tem a etiqueta do assunto (Brasil, Estado, Cidade, Histórico ou Pesquisas). “Desde” é a hora em que este aparelho viu o destaque pela primeira vez. Destaque com “ler tudo”: toque nele para abrir o texto inteiro. Nenhum deles é recomendação.</p>
     </section>
     <section class="bloco ap-sec-mapa">
       <h2 class="sobre">Estados ${C.info('UF')}</h2>
       <div class="ap-mapa-wrap v2">
         <div>${htmlMapa(true)}
-          <p class="ap-leg">Projeção de cada estado (antes da contagem: prévia) · L = ${C.curto('lula')}, F = ${C.curto('flavio')} · linha menor = apurado até agora · barra = seções apuradas · tracejado = estado ainda sem votos. Toque num estado para o detalhe.</p>
+          <p class="ap-leg">Projeção de cada estado (antes da contagem: prévia) · L = ${C.curto('lula')}, F = ${C.curto('flavio')}<span class="ap-leg-ap"> · linha menor = apurado até agora</span> · barra e porcentagem = urnas apuradas · tracejado = estado ainda sem votos. Toque num estado para o detalhe.</p>
         </div>
         <div class="ap-uf" data-ap-uf hidden></div>
       </div>
@@ -2485,10 +2893,10 @@ function esqueletoPre() {
       <p class="ap-pre-r" data-ap-pre-r></p>
       <p class="texto">A partir das 17h, esta aba lê o TSE (Tribunal Superior Eleitoral) a cada segundo e mostra, sem você precisar recarregar:</p>
       <ul class="lista-texto">
-        <li>votos apurados de cada um, contando na tela, e a chance de vitória: quem ganha chance fica verde, quem perde fica vermelho;</li>
+        <li>votos apurados de cada um, contando na tela, as urnas já apuradas (país e cada estado) e a chance de vitória: quem ganha chance fica verde, quem perde fica vermelho;</li>
         <li>o apurado agora ao lado da projeção final (pelo simulador cidade a cidade, quando ele estiver valendo, ou pelo modelo por estado), onde aparece a virada que a contagem ainda não mostrou;</li>
         <li>o mapa dos estados e a tabela “Estados, número a número”, com quem lidera em cada um, quanto já foi apurado e a diferença para o 1º turno;</li>
-        <li>destaques que entram e saem conforme a apuração anda (estados decididos, capitais, histórico de 2002 a 2022, a comparação com o mesmo ponto da contagem do 1º turno e de 2022, onde está o que falta, o ritmo da apuração e o swing contra as pesquisas).</li>
+        <li>destaques que entram e saem conforme a apuração anda (estados decididos, capitais, histórico de 2002 a 2022, a comparação com o mesmo ponto da contagem do 1º turno e de 2022, onde estão as urnas que faltam, o ritmo da apuração em urnas por minuto e o swing contra as pesquisas).</li>
       </ul>
       <div class="ap-pre-acoes"><button type="button" class="botao-link" data-ap="sim">Ver simulação</button><span class="nota">números fictícios, só para conhecer a tela</span></div>
     </section>
@@ -2578,6 +2986,72 @@ function htmlProjecao(r, temVoto) {
     ${blocoPar(r.proj.L, r.proj.F, r.proj.pL, r.proj.pF, 'Diferença projetada')}${nota}`;
 }
 
+// "312.450 de 499.248 urnas apuradas (62,58%)" e, abaixo, o que falta (urnas e eleitores aptos nelas).
+function htmlUrnasNac(u, tudo) {
+  const h = C.h;
+  const pct = tudo || u.falta === 0 ? '100%' : u.st <= 0 ? '0%' : pctPiso(u.pct, 2);
+  const falta = u.falta === 1 ? h`Falta <b>1</b> urna` : h`Faltam <b>${fUrn(u.falta)}</b> urnas`;
+  return h`<span class="ap-urnas-l"><b>${fUrn(u.st)}</b> de <b>${fUrn(u.ts)}</b> urnas apuradas (${pct}) ${iUrnas()}</span>
+    <span class="ap-urnas-f">${u.falta > 0 ? h`${falta}, com <b>${eleitoresAptos(u.aptos)}</b>.` : 'Todas as urnas foram apuradas.'}</span>`;
+}
+
+// O pior caso do cartão "Projeção final" (simulador municipal com faixa, 'não inclui 50%' e a nota de divergência): serve só
+// para medir a altura a reservar (ver reservarDuo).
+function htmlProjecaoPior(variante) {
+  const h = C.h;
+  const L = C.curto('lula');
+  const F = C.curto('flavio');
+  const faixa =
+    variante === 1
+      ? h`<p class="ap-dif">Ainda não está definido: a faixa de 80% inclui 50%. Ela estreita à medida que a apuração avança.</p>`
+      : h`<p class="ap-dif">A faixa de 80% não inclui 50% desde <b>23h59</b> (com 99% das seções apuradas): ${F} segue à frente na projeção.</p>`;
+  return h`<p class="ap-motor"><b>Simulador municipal</b> · dado das 23:59:59, de 99 min atrás</p>
+    ${blocoPar(58000000, 58000000, 50.0, 50.0, 'Diferença projetada')}
+    <p class="ap-dif">Votos projetados: ${L} <b>58,2 milhões</b> × ${F} <b>58,1 milhões</b>.</p>
+    <p class="ap-dif">Faixa de 80%: ${L} entre <b>49,9%</b> e <b>50,2%</b> dos votos dos dois; chance de vitória de ${L}: <b>>99%</b>.</p>
+    ${faixa}
+    <p class="ap-motor-div">O modelo por estado dá ${L} <b>50,0%</b> (9,9 pontos a mais): ele mistura a prévia com a contagem de cada estado, enquanto o simulador parte de cada cidade e mede a ordem em que as urnas chegam.</p>`;
+}
+
+// Altura reservada dos dois cartões "Apurado agora" e "Projeção final" (v5): a do pior caso do cartão da projeção, medida
+// num clone invisível com a largura real. Os cartões trocam de conteúdo durante a noite (simulador municipal, modelo por estado,
+// resultado final) e, sem isso, mudariam de altura e empurrariam tudo o que está abaixo. Refeita quando a largura muda.
+function reservarDuo() {
+  const duo = $('.ap-duo');
+  const card = $('.ap-card-proj');
+  if (!duo || !card || !card.offsetWidth) return;
+  const chave = `${card.offsetWidth}${emTV() ? 'tv' : ''}`;
+  if (A.duoChave === chave) return;
+  A.duoChave = chave;
+  if (emTV()) {
+    for (const c of $$('.ap-card')) c.style.minHeight = '';
+    return;
+  }
+  // mede as duas variantes do texto da faixa ("não inclui 50%" e "ainda não está definido") e fica com a mais alta
+  let alt = 0;
+  for (const variante of [0, 1]) {
+    const clone = document.createElement('div');
+    clone.className = 'ap-card ap-card-proj';
+    clone.setAttribute('aria-hidden', 'true');
+    clone.style.cssText = `position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;width:${card.offsetWidth}px;min-height:0`;
+    clone.innerHTML = C.emHtml(C.h`<p class="ap-card-tit">Projeção final</p><div>${htmlProjecaoPior(variante)}</div>`);
+    duo.appendChild(clone);
+    alt = Math.max(alt, Math.ceil(clone.getBoundingClientRect().height));
+    clone.remove();
+  }
+  // uma linha de folga: o texto real pode quebrar uma linha a mais que o de teste
+  for (const c of $$('.ap-card')) c.style.minHeight = `${alt + 18}px`;
+}
+// Rede de segurança: se algum texto real ainda assim passar da altura reservada, os cartões crescem uma vez e ficam nessa altura
+// (nunca voltam a encolher), em vez de subir e descer a cada troca de texto.
+function crescerDuo() {
+  if (emTV()) return;
+  const cards = $$('.ap-card');
+  const mh = parseFloat(cards[0]?.style.minHeight) || 0;
+  const h = Math.max(0, ...cards.map((c) => c.offsetHeight));
+  if (mh > 0 && h > mh + 0.5) for (const c of cards) c.style.minHeight = `${Math.ceil(h)}px`;
+}
+
 function atualizarTela() {
   const r = processar();
   A.res = r;
@@ -2613,6 +3087,8 @@ function atualizarTela() {
   texto('[data-ap-pst]', r.tudo ? '100%' : c.pst <= 0 ? '0%' : pctPiso(c.pst, 2));
   const barra = $('[data-ap-barra]');
   if (barra) barra.style.width = `${clamp(c.pst, 0, 100)}%`;
+  // o espaço das urnas fica sempre reservado (CSS): sem número ainda, só fica em branco
+  htmlEm('[data-ap-urnas]', r.urnas ? htmlUrnasNac(r.urnas, r.tudo) : '');
   const falta = r.semLeitura.map((uf) => (uf === 'ZZ' ? 'Exterior' : uf));
   texto(
     '[data-ap-lidos]',
@@ -2622,15 +3098,34 @@ function atualizarTela() {
   );
   atualizarHora();
   // Apurado × projeção
+  reservarDuo();
   htmlEm('[data-ap-apurado]', temVoto ? blocoPar(c.L, c.F, c.pL, c.pF, 'Diferença', 2) : C.h`<p class="ap-vazio">Ainda sem votos apurados.</p>`);
   htmlEm('[data-ap-proj]', htmlProjecao(r, temVoto));
+  crescerDuo();
   const vir = $('[data-ap-virada]');
   const lc = lider(c.L, c.F);
   const lp = lider(r.proj.L, r.proj.F);
-  const temVirada = (r.completo || r.motor === 'simulador') && temVoto && !r.decidido && lc && lp && lc !== lp;
+  const comparavel = r.completo || r.motor === 'simulador';
+  const temVirada = comparavel && temVoto && !r.decidido && lc && lp && lc !== lp;
   if (vir) {
-    vir.hidden = !temVirada;
-    if (temVirada) vir.textContent = `A projeção aponta virada: ${C.curto(lp)} termina à frente, embora ${C.curto(lc)} lidere a contagem agora.`;
+    // Faixa de altura fixa: a mensagem muda de texto (e de cor, na virada), mas a página não se mexe quando ela muda.
+    let v = 'igual';
+    let t;
+    if (temVirada) {
+      v = 'virada';
+      t = `A projeção aponta virada: ${C.curto(lp)} termina à frente, embora ${C.curto(lc)} lidere a contagem agora.`;
+    } else if (!temVoto) {
+      v = 'espera';
+      t = 'Sem votos ainda: a comparação entre a projeção e a contagem começa com os primeiros votos.';
+    } else if (!comparavel) {
+      v = 'espera';
+      t = 'Lendo os estados: a comparação entre a projeção e a contagem aparece quando todos forem lidos.';
+    } else if (r.tudo) t = 'Apuração concluída: a contagem é o resultado.';
+    else if (r.decidido) t = 'A contagem já está decidida; veja o aviso no topo da página.';
+    else if (lc && lp) t = `Projeção e contagem apontam o mesmo lado: ${C.curto(lc)} à frente.`;
+    else t = 'Contagem ou projeção empatada: ainda não há quem esteja à frente.';
+    if (vir.dataset.v !== v) vir.dataset.v = v;
+    if (vir.textContent !== t) vir.textContent = t;
   }
   if (r.completo) {
     renderInsights(calcularInsights(r));
@@ -2666,7 +3161,7 @@ function atualizarHora() {
   const e = R.erros.get('br');
   const falta = Math.max(0, Math.ceil(((R.prox.get('br') ?? agora) - agora) / 1000));
   if (R.emVoo.has('br') && !e) partes.push('lendo o TSE…');
-  else if (e) partes.push(`TSE instável (${e.msg}); nova tentativa em ${falta} s`);
+  else if (e) partes.push(`${e.amigavel || 'falha ao ler o TSE'}; tentando de novo em ${falta} s`);
   else partes.push(`próxima leitura em ${falta} s`);
   if (A.res.cont.fonte === 'estados') partes.push('apurado = soma dos estados, enquanto o arquivo Brasil não responde');
   if (R.okEm && agora - R.okEm > MODELO.SEM_RESPOSTA_MS) partes.push(`sem resposta do TSE desde ${hms(R.okEm)}; os números são dessa hora`);
@@ -2708,7 +3203,8 @@ function atualizarAtraso() {
     if (idadeBR !== null && R.fixa >= 0.6) p.push(`cópia do arquivo na rede do TSE com ${Math.round(idadeBR)} s (a rede renova a cada ~${Math.round(R.renovaS)} s)`);
     s = p.join(' · ');
   }
-  el.hidden = !s;
+  // No ao vivo o espaço do atraso fica reservado (ele só ganha texto); fora dele, nunca é mostrado.
+  el.hidden = A.modo !== 'vivo';
   if (el.textContent !== s) el.textContent = s;
 }
 
@@ -2821,6 +3317,21 @@ function falha(msg, status = 0) {
   return e;
 }
 
+// Texto de erro para a tela: sempre em português e curto. O texto técnico (message) fica só no console e no gancho de teste.
+function erroAmigavel(e) {
+  const m = String(e?.message || e || '');
+  const st = Number(e?.status) || 0;
+  if (e?.cortado || /incompleto|interrompid/i.test(m)) return 'o TSE enviou um arquivo incompleto';
+  if (st === 429 || /\b429\b|pausa/i.test(m)) return 'o TSE pediu uma pausa';
+  if (st === 404) return 'o TSE ainda não publicou este arquivo';
+  if (st >= 500) return 'o servidor do TSE está instável';
+  if (st >= 400) return 'o TSE recusou o pedido';
+  if (/demorou|abort|timeout|timed out/i.test(m)) return 'o TSE demorou a responder';
+  if (/sem conex|failed to fetch|load failed|network|fetch/i.test(m)) return 'sem conexão com o TSE neste momento';
+  if (/formato|sem lula|inesperado/i.test(m)) return 'o arquivo do TSE veio em formato inesperado';
+  return 'falha ao ler o TSE';
+}
+
 // Cache-Control de cada resposta = tempo que falta para a cópia daquela máquina do TSE vencer. Daí saem: a idade da
 // cópia, quando a máquina vai renová-la e se a página continua na mesma máquina. Nada disso muda o que é mostrado:
 // só decide QUANDO pedir de novo.
@@ -2931,7 +3442,7 @@ function deuErro(chave, e) {
   if (e.status === 429) espera = Math.max(espera, MODELO.ESPERA_429_MS);
   // Espalha as novas tentativas (muitos aparelhos não voltam todos no mesmo segundo).
   espera *= 0.85 + Math.random() * 0.3;
-  R.erros.set(chave, { n, msg: String(e?.message || e).slice(0, 60), status: e.status ?? 0, cortado: !!e.cortado });
+  R.erros.set(chave, { n, msg: String(e?.message || e).slice(0, 60), amigavel: erroAmigavel(e), status: e.status ?? 0, cortado: !!e.cortado });
   R.prox.set(chave, agora + espera);
   if (chave === 'ab') return; // abrangência é ajuda: falha dela não pausa a leitura
   if (chave.startsWith('cap:')) {
@@ -3229,6 +3740,7 @@ function iniciarSimulacao() {
     ufs.set(uf, {
       te,
       share: clamp(b.prior + nac + normal(rng) * (b.sigma / 100), 0.05, 0.95),
+      ts: Math.max(1, Math.round(te / MODELO.ELEITORES_POR_URNA_SIM)),
       comp: clamp(b.comp + normal(rng) * 0.012, 0.3, 0.98),
       bn: clamp(b.bn + normal(rng) * 0.006, 0.005, 0.2),
       vies: normal(rng) * 0.035,
@@ -3257,17 +3769,22 @@ function passoSimulacao() {
   let vv = 0;
   let L = 0;
   let F = 0;
+  let stT = 0;
+  let tsT = 0;
   for (const uf of UFS) {
     const u = s.ufs.get(uf);
     const p = clamp((tau - u.ini) / u.dur, 0, 1);
     const f = p * p * (3 - 2 * p);
     const e = Math.round(u.te * f);
+    const st = Math.round(u.ts * f);
+    stT += st;
+    tsT += u.ts;
     const cc = Math.round(e * u.comp);
     const bn = Math.round(cc * u.bn);
     const v = cc - bn;
     const sh = clamp(u.share + u.vies * (1 - f), 0.02, 0.98);
     const l = Math.round(v * sh);
-    A.ufs.set(uf, { pst: f * 100, te: u.te, est: e, c: cc, vb: Math.round(bn * 0.4), tvn: bn - Math.round(bn * 0.4), vv: v, L: l, F: v - l, pL: null, pF: null, tTot: s.relogio, em: Date.now() });
+    A.ufs.set(uf, { pst: u.ts > 0 ? (st / u.ts) * 100 : f * 100, st, ts: u.ts, te: u.te, est: e, c: cc, vb: Math.round(bn * 0.4), tvn: bn - Math.round(bn * 0.4), vv: v, L: l, F: v - l, pL: null, pF: null, tTot: s.relogio, em: Date.now() });
     te += u.te;
     est += e;
     c += cc;
@@ -3276,7 +3793,7 @@ function passoSimulacao() {
     L += l;
     F += v - l;
   }
-  A.br = { pst: te > 0 ? (est / te) * 100 : 0, te, est, c, vb, tvn: 0, vv, L, F, pL: vv > 0 ? (L / vv) * 100 : null, pF: vv > 0 ? (F / vv) * 100 : null, tTot: s.relogio };
+  A.br = { pst: tsT > 0 ? (stT / tsT) * 100 : 0, st: stT, ts: tsT, te, est, c, vb, tvn: 0, vv, L, F, pL: vv > 0 ? (L / vv) * 100 : null, pF: vv > 0 ? (F / vv) * 100 : null, tTot: s.relogio };
   if (tau >= 1) {
     s.fim = true;
     pararTimers();
@@ -3430,7 +3947,7 @@ function ganchoTeste() {
       // ufsLidas: o que já chegou do TSE (pode estar um passo à frente da conta).
       const ufs = {};
       for (const u of r?.linhas || []) {
-        if (u.o) ufs[u.uf] = { st: u.o.st, ts: u.o.ts, est: u.est, te: u.te, c: u.o.c, L: u.L, F: u.F, tTot: u.o.tTot, rem: u.rem, share: u.share };
+        if (u.o) ufs[u.uf] = { st: u.o.st, ts: u.o.ts, est: u.est, te: u.te, c: u.o.c, L: u.L, F: u.F, tTot: u.o.tTot, rem: u.rem, share: u.share, comp: u.comp, bn: u.bn };
       }
       const ufsLidas = {};
       for (const [uf, o] of A.ufs) ufsLidas[uf] = { st: o.st, L: o.L, F: o.F, tTot: o.tTot };
@@ -3451,7 +3968,7 @@ function ganchoTeste() {
           // pL e parL são os efetivos (motor em uso); projL/projF/parLUF/pLUF são sempre os do modelo por estado
           pL: r.pL, pLUF: r.pLUF, parL: r.proj.parL, parLUF: r.projUF.parL, projL: r.projUF.L, projF: r.projUF.F,
           motor: r.motor, efL: r.proj.L, efF: r.proj.F, definido: r.definido, tudo: r.tudo,
-          eleitoTSE: r.eleitoTSE, completo: r.completo, lidos: r.lidos, remCont: r.remCont, remMax: r.remMax, swing: r.swing,
+          eleitoTSE: r.eleitoTSE, completo: r.completo, lidos: r.lidos, remCont: r.remCont, remMax: r.remMax, swing: r.swing, urnas: r.urnas,
           sim: r.sim && { ger: r.sim.ger, idade: r.sim.idade, secoes: r.sim.secoes, modelado: r.sim.modelado, faixa: r.sim.faixa, chanceL: r.sim.chanceL },
         },
         rede: { fixa: R.fixa, renovaS: R.renovaS, ttl: R.ttlRede, renovacoes: R.renovacoes, idadeBR: idadeRede('br'), caca: R.pend.size, cacaBR: !!R.pendBR },
@@ -3480,6 +3997,7 @@ function ganchoTeste() {
               L: u.L, F: u.F, te: u.te, est: u.est, rem: u.rem, sig: u.sig, projL: u.projL, projF: u.projF, parObs: u.parObs,
               t1Par: u.t1Par, dT1: u.dT1, lider: u.lider, lider1T: u.lider1T, faixa: u.faixa, projPar: u.projPar, faltaMax: u.faltaMax,
               compObs: u.compObs, tTot: u.o?.tTot ?? null, st: u.o?.st ?? null, ts: u.o?.ts ?? null, c: u.o?.c ?? null, share: u.share,
+              urnasFalta: u.urnasFalta, tsTotal: u.ts, remMax: u.remMax, comp: u.comp, bn: u.bn,
             },
           ]),
         ),
@@ -3489,7 +4007,9 @@ function ganchoTeste() {
         sigmaNac: A.base?.sigmaNac,
         rot: A.rot,
         serie: A.serie.length,
-        serieFim: A.serie.slice(-80).map((x) => ({ ...x })),
+        serieFim: A.serie.slice(-150).map((x) => ({ ...x })),
+        // texto técnico dos erros (só no gancho) e o que a tela mostrou no lugar
+        errosTela: Object.fromEntries([...R.erros].map(([k, e]) => [k, e.amigavel])),
         trocas: A.trocas.map((x) => ({ ...x })),
       };
     },
@@ -3521,8 +4041,22 @@ export function iniciar(ctx) {
   C.registrarDesenho('apur-chance', desenharChance);
   C.registrarDesenho('apur-votos', desenharVotos);
   document.addEventListener('click', (e) => {
-    const alvo = e.target instanceof Element ? e.target.closest('[data-ap], .lad[data-uf], .uf-lin[data-uf]') : null;
+    const li = e.target instanceof Element ? e.target.closest('.ap-in') : null;
+    if (li && A.raiz?.contains(li) && !e.target.closest('a, .i')) {
+      // toque num destaque cortado: abre o texto inteiro (ou recolhe); só muda por toque do próprio leitor
+      if (li.classList.contains('cortado') || li.classList.contains('aberto')) {
+        li.classList.toggle('aberto');
+        medirCorte(li);
+      }
+      return;
+    }
+    const alvo = e.target instanceof Element ? e.target.closest('[data-ap], [data-ap-termo], .lad[data-uf], .uf-lin[data-uf]') : null;
     if (!alvo) return;
+    if (alvo.matches('[data-ap-termo]')) {
+      e.preventDefault();
+      abrirExplicaAp(alvo.dataset.apTermo);
+      return;
+    }
     if (alvo.matches('.lad[data-uf]')) {
       // O detalhe abre embaixo do mapa: traz para a tela sem pular a página toda.
       abrirUF(alvo.dataset.uf, 'mapa');
@@ -3570,6 +4104,17 @@ export function iniciar(ctx) {
   document.addEventListener('visibilitychange', () => {
     if (A.modo === 'vivo') ligarVivo();
     manterTelaAcesa();
+  });
+  // Girou o aparelho ou mudou a largura: refaz as alturas reservadas (linhas dos estados, cartões) e o corte dos destaques.
+  let rz = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(rz);
+    rz = requestAnimationFrame(() => {
+      if (!A.raiz || !A.res || A.modo === 'pre') return;
+      reservarLinhasUF();
+      reservarDuo();
+      medirCortes();
+    });
   });
   // O simulador.js (bloco de baixo, outro arquivo) avisa a cada leitura boa do simulador.json do Mac.
   const receberSim = (d) => {

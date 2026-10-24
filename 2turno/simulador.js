@@ -245,6 +245,26 @@ function urlArquivo() {
 }
 const aceitaTeste = () => C.params.get('simteste') !== null || !!C.params.get('simulador');
 
+// Texto de erro para a tela: sempre em português e curto ("Failed to fetch", "HTTP 503" e afins nunca aparecem). O texto
+// técnico fica só no console.
+function msgErro(e) {
+  const m = String(e?.message || e || '');
+  const http = /HTTP\s*(\d{3})/.exec(m);
+  if (http) {
+    const st = Number(http[1]);
+    if (st === 404) return 'o arquivo do simulador ainda não foi publicado';
+    if (st === 429) return 'o simulador pediu uma pausa';
+    if (st >= 500) return 'o servidor do simulador está instável';
+    return 'o simulador recusou o pedido';
+  }
+  if (/formato inesperado/i.test(m)) return 'o arquivo do simulador veio em formato inesperado';
+  if (/sem quadros/i.test(m)) return 'a demonstração veio sem quadros';
+  if (/unexpected|json|syntax|incompleto/i.test(m)) return 'o arquivo do simulador veio incompleto';
+  if (e?.name === 'AbortError' || /abort|timeout|demorou/i.test(m)) return 'o simulador demorou a responder';
+  if (/failed to fetch|load failed|network|fetch|conex/i.test(m)) return 'sem conexão com o simulador neste momento';
+  return 'falha ao ler o simulador';
+}
+
 async function pegar(u) {
   const r = await fetch(u, { cache: 'no-store' });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -266,7 +286,8 @@ async function lerArquivo() {
   try {
     d = await pegar(base);
   } catch (e) {
-    erro = String(e?.message || e).slice(0, 80);
+    erro = msgErro(e);
+    console.debug('[simulador] leitura', e?.message || e);
   }
   if (d && fin(d.gerado_ms) && !d.teste && d.gerado_ms > (S.ultimoBom ?? 0)) S.ultimoBom = d.gerado_ms;
   // O raw do GitHub guarda cada endereço por ~5 min (e ignora parâmetros). Na noite, o processador grava também
@@ -313,7 +334,8 @@ async function lerDemo() {
     S.demo = d;
     return d;
   } catch (e) {
-    S.demoErro = String(e?.message || e).slice(0, 80);
+    S.demoErro = msgErro(e);
+    console.debug('[simulador] demonstração', e?.message || e);
     return null;
   }
 }
@@ -953,7 +975,7 @@ async function ligarSim() {
   S.esqueleto = null;
   const demo = await lerDemo();
   if (!demo) {
-    S.raiz.innerHTML = C.emHtml(C.h`<section class="bloco sim"><p class="sobre">Simulador do resultado final</p>${C.lacunaBloco(`A simulação não carregou (${S.demoErro || 'erro'}).`)}<div class="ap-pre-acoes"><button type="button" class="botao-link" data-sim="sair">Voltar</button></div></section>`);
+    S.raiz.innerHTML = C.emHtml(C.h`<section class="bloco sim"><p class="sobre">Simulador do resultado final</p>${C.lacunaBloco(`A simulação não carregou: ${S.demoErro || 'falha ao ler a demonstração'}. Tente de novo em instantes.`)}<div class="ap-pre-acoes"><button type="button" class="botao-link" data-sim="sair">Voltar</button></div></section>`);
     return;
   }
   S.quadro = 0;
@@ -1110,7 +1132,9 @@ function estilos() {
 @keyframes simPulso { 50% { opacity: 0.25; } }
 .sim-faixa { margin: 12px 0 4px; }
 .sim-aviso { margin: 12px 0 0; padding: 9px 12px; border: 1px solid var(--alerta-borda); border-radius: 10px; background: var(--alerta-fundo); color: var(--alerta); font-size: 13px; line-height: 1.45; }
-.sim-aviso[hidden] { display: none; }
+.sim-aviso[hidden] { display: block; visibility: hidden; }
+.sim-aviso { min-height: calc(2 * 1.45 * 13px + 20px); }
+@media (max-width: 359px) { .sim-aviso { min-height: calc(3 * 1.45 * 13px + 20px); } }
 .sim.sim-velho .sim-hero, .sim.sim-velho .sim-barra { opacity: 0.6; }
 .sim-hero { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
 .sim-lado { min-width: 0; padding: 12px 12px 12px; border: 1px solid var(--linha); border-radius: 14px; background: var(--cartao); }

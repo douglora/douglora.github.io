@@ -1925,3 +1925,145 @@ input, select, textarea { font-size: 16px; }
 
 /* Modo TV: com o agregador próprio escolhido, o cartão verde já traz os mesmos números */
 body.tv[data-media-sel="radar"] [data-bloco="pesquisas"] { display: none; }
+
+/* >>> apuracao v5 (inicio): bloco do apuracao.js e do simulador.js; o instalador troca só o que está entre estas duas marcas */
+/* ------------------------------------------------------------------------------------------
+   Apuração v5 (24/10/2026): urnas apuradas (país, estados, detalhe) e erros de leitura em português.
+   Seção do apuracao.js; as cores são as do :root.
+   ------------------------------------------------------------------------------------------ */
+.ap-urnas { margin: 10px 0 0; font-variant-numeric: tabular-nums; }
+.ap-urnas[hidden] { display: none; }
+.ap-urnas-l { display: block; font-size: 15px; line-height: 1.35; color: var(--tinta); }
+.ap-urnas-l b { font-weight: 720; }
+.ap-urnas-f { display: block; margin-top: 2px; font-size: 12.5px; line-height: 1.4; color: var(--tinta-2); }
+.ap-urnas-f b { font-weight: 680; color: var(--tinta); }
+.uf-urn { display: block; margin-top: 1px; font-size: 11px; line-height: 1.25; color: var(--tinta-2); font-variant-numeric: tabular-nums; }
+.uf-urn:empty { display: none; }
+.ap-uf-urnas b { font-weight: 700; }
+@media (max-width: 359px) {
+  .uf-urn { font-size: 10px; }
+  .ap-urnas-l { font-size: 14px; }
+}
+@media (min-width: 720px) {
+  .uf-urn { font-size: 12px; }
+  .ap-urnas-l { font-size: 16px; }
+  .ap-urnas-f { font-size: 13.5px; }
+}
+body.tv .ap-urnas { margin-top: 8px; }
+
+/* ------------------------------------------------------------------------------------------
+   Apuração v5: tela estável. Nada que muda durante a contagem empurra o que está abaixo (no iPhone o Safari não tem
+   "scroll anchoring", então qualquer mudança de altura acima da leitura faz a página pular). Cada bloco ao vivo tem altura
+   reservada pelo pior caso; o texto muda por dentro. Destaques: seis espaços de altura fixa, texto cortado com "ler tudo".
+   ------------------------------------------------------------------------------------------ */
+.ap-sec-ins { --ap-linhas: 4; --ap-lh: 20.3px; }
+@media (max-width: 359px) { .ap-sec-ins { --ap-linhas: 5; } }
+@media (min-width: 720px) { .ap-sec-ins { --ap-linhas: 3; } }
+body:not(.tv) .ap-ins-caixa { position: relative; min-height: calc(6 * (var(--ap-linhas) * var(--ap-lh) + 20px) + 5 * 8px); }
+body:not(.tv) .ap-ins-caixa > .estado { position: absolute; top: 0; left: 0; right: 0; margin: 12px 0 0; }
+body:not(.tv) .ap-in { position: relative; min-height: calc(var(--ap-linhas) * var(--ap-lh) + 20px); }
+body:not(.tv) .ap-ins-lista .ap-in { min-height: calc(var(--ap-linhas) * var(--ap-lh) + 20px + 17px); }
+body:not(.tv) .ap-in .ap-corpo { max-height: calc(var(--ap-linhas) * var(--ap-lh)); overflow: hidden; }
+body:not(.tv) .ap-in.cortado:not(.aberto) .ap-corpo { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--ap-lh)), rgba(0, 0, 0, 0.3)); mask-image: linear-gradient(to bottom, #000 calc(100% - var(--ap-lh)), rgba(0, 0, 0, 0.3)); }
+body:not(.tv) .ap-in.aberto { min-height: 0; }
+body:not(.tv) .ap-in.aberto .ap-corpo { max-height: none; }
+.ap-in .ap-mais {
+  appearance: none;
+  position: absolute;
+  right: 8px;
+  bottom: 7px;
+  display: none;
+  min-height: 22px;
+  padding: 0 8px 0 24px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--suave) 18px);
+  color: var(--tinta);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 22px;
+  cursor: pointer;
+}
+.ap-in .ap-mais::after { content: ''; position: absolute; inset: -12px -8px; }
+.ap-in.cortado .ap-mais { display: block; }
+body:not(.tv) .ap-in.cortado { cursor: pointer; }
+.ap-in.aberto .ap-mais { position: static; display: block; margin: 4px 0 0 auto; padding: 0 8px; background: none; }
+body.tv .ap-in .ap-mais { display: none; }
+body:not(.tv) .ap-ins-lista { max-height: 560px; overflow-y: auto; }
+.ap-in .ap-desde { height: 14px; line-height: 14px; }
+/* faixa "a projeção aponta virada": sempre ocupa o mesmo espaço; muda de texto (e de cor na virada) */
+.ap-virada { display: flex; align-items: center; min-height: 62px; }
+.ap-virada[data-v="igual"], .ap-virada[data-v="espera"] { background: var(--suave); color: var(--tinta-2); font-size: 13px; font-weight: 500; line-height: 1.4; }
+@media (max-width: 359px) { .ap-virada { min-height: 84px; } }
+/* topo, progresso e leituras: espaço reservado para o texto mais comprido (duas ou três linhas) */
+@media (max-width: 719px) {
+  .ap-chleg { min-height: 42px; align-content: flex-start; }
+  .ap-prog-lido { flex-basis: 100%; min-height: calc(2 * 1.4 * 12px); line-height: 1.4; }
+  .ap-urnas { min-height: 84px; }
+  .ap-sec-prog [data-ap-hora] { min-height: 54px; }
+  .ap-atraso { min-height: 90px; }
+}
+@media (max-width: 359px) {
+  .ap-prog-lido { min-height: calc(3 * 1.4 * 12px); }
+  .ap-sec-prog [data-ap-hora] { min-height: 72px; }
+  .ap-atraso { min-height: 90px; }
+}
+@media (min-width: 720px) {
+  .ap-urnas { min-height: 50px; }
+  .ap-sec-prog [data-ap-hora] { min-height: 36px; }
+  .ap-atraso { min-height: 54px; }
+}
+
+.ap-ins-bt:disabled { opacity: 0.55; cursor: default; }
+/* linhas internas com altura reservada: o número que muda de tamanho não desloca o resto do cartão ou da linha */
+.uf-urn { min-height: calc(2 * 1.25em); line-height: 1.25; }
+.ap-votos { line-height: 1.35; }
+@media (max-width: 359px) {
+  .uf-sec { min-height: calc(2 * 1.25em); line-height: 1.25; }
+  .ap-votos { min-height: calc(2 * 1.35em); }
+  .ap-sub { min-height: calc(2 * 1.5 * 12.5px); }
+}
+
+/* ---- toque (v5): todo botão da aba tem ao menos 44 px de altura; o ícone ⓘ já tem 44 x 44 no CSS do site */
+.ap-ins-bt, .ap-hist-bt, .uf-ord-b, .ap-sim-acoes button, .ap-sim-fixa button, .sim-mais, .ap-pre-acoes .botao-link, .sim-sair-bt { min-height: 44px; }
+.ap-uf-x { position: relative; }
+.ap-uf-x::after { content: ''; position: absolute; inset: -5px; }
+.ap-hist-bt { padding: 0 14px; }
+.uf-ord-b { padding-top: 0; padding-bottom: 0; }
+/* barra fixa da simulação: respeita a área segura de baixo (iPhone com barra de início) e deixa espaço no fim da página */
+.ap-sim-fixa { padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
+body.com-faixa-sim { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+
+/* ---- leitura no celular (v5): nenhum texto abaixo de 11 px (o glifo do ícone ⓘ também sobe para 11 px). No ladrilho do mapa não
+   cabe a linha pequena "apurado" nem o "sem votos" em 11 px: ficam o estado, a projeção (L e F), a barra e o % de urnas; o apurado
+   de cada estado está na tabela logo abaixo. */
+.ap-in .ap-tag { font-size: 11px; }
+@media (max-width: 430px) {
+  .ap-in .ap-tag { padding: 0 7px; letter-spacing: 0.03em; }
+  .uf-cab span { font-size: 11px; letter-spacing: 0; line-height: 1.2; }
+  .uf-sec, .uf-d2, .uf-sit2, .uf-urn { font-size: 11px; }
+  .ap-mapa.v2 .lad-uf { font-size: 11px; }
+  .ap-mapa.v2 .lad-n { font-size: max(11px, clamp(10.5px, 3.75cqi, 21px)); }
+  .ap-mapa.v2 .lad-k { font-size: 11px; }
+  .ap-mapa.v2 .lad-a, .ap-mapa.v2 .lad-sv { display: none; }
+  .ap-mapa.v2 .lad-sp { font-size: 11px; }
+  .lad-v { font-size: 11px; }
+  .ap-leg-ap { display: none; }
+}
+.lad-v { font-size: 11px; }
+
+/* cartões de chance: a linha "% dos válidos apurados" sempre com duas linhas de altura (o número cresce durante a noite) */
+@media (max-width: 719px) {
+  .ap-sub { min-height: calc(2 * 1.5 * 12.5px); }
+}
+/* gráficos da noite: a altura do desenho já vale antes do primeiro ponto (a mensagem "O gráfico começa..." ocupa o mesmo espaço) */
+.ap-sec-graf .graf { min-height: 264px; }
+@media (min-width: 540px) {
+  .ap-sec-graf .graf { min-height: 300px; }
+}
+#painel-apuracao .i > span, #ap-simulador .i > span { font-size: 11px; }
+@media (max-width: 719px) {
+  .uf-sec { min-height: calc(2 * 1.25em); line-height: 1.25; }
+}
+/* <<< apuracao v5 (fim) */
