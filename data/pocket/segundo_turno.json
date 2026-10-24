@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-23T17:58:32-03:00",
+ "gerado_em": "2026-10-23T22:48:26-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 7 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -412,33 +412,74 @@
  "media_acerto_1t": {
   "rotulo": "Média das casas que mais acertaram o 1º turno",
   "casas": [
+   "Veritá",
    "Quaest",
-   "PoderData",
-   "Datafolha"
+   "PoderData"
   ],
-  "criterio": "Casas cujo erro na diferença Flávio − Lula da última pesquisa de 1º turno ficou até a mediana (5,5 pontos); peso = 1 / erro².",
+  "criterio": "As 3 casas que chegaram mais perto da diferença Flávio − Lula no 1º turno, entre todas as 7 que publicaram pesquisa nacional no próprio canal (Veritá errou 1,3; Quaest errou 2,9; PoderData errou 3,9 ponto); quem errou menos pesa mais (peso = 1 / erro²). Vale a pesquisa de 2º turno mais recente de cada uma.",
   "pesos": {
-   "Quaest": 0.527,
-   "PoderData": 0.29,
-   "Datafolha": 0.183
+   "Veritá": 0.75,
+   "Quaest": 0.161,
+   "PoderData": 0.089
   },
+  "pesquisas": [
+   {
+    "casa": "Veritá",
+    "registro": "BR-01107/2026",
+    "data": "2026-10-21",
+    "campo": "12 a 16/10",
+    "validos": {
+     "lula": 48.9,
+     "flavio": 51.1
+    },
+    "fonte_url": "https://eleicoes26.institutoverita.com.br/pesquisa/c4a804a2-abef-443b-9357-1ce21ca5377a",
+    "no_painel": false,
+    "erro_margem_1t_pp": -1.33
+   },
+   {
+    "casa": "Quaest",
+    "registro": "BR-08535/2026",
+    "data": "2026-10-21",
+    "campo": "17 a 20/10",
+    "validos": {
+     "flavio": 50.6,
+     "lula": 49.4
+    },
+    "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/21/quaest-presidente-21-outubro.ghtml",
+    "no_painel": true,
+    "erro_margem_1t_pp": -2.87
+   },
+   {
+    "casa": "PoderData",
+    "registro": "BR-07926/2026",
+    "data": "2026-10-22",
+    "campo": "19 a 21/10",
+    "validos": {
+     "flavio": 50.5,
+     "lula": 49.5
+    },
+    "fonte_url": "https://static.poder360.com.br/uploads/2026/10/Relatorio-PoderData-Eleitoral-21out26-2.pdf",
+    "no_painel": true,
+    "erro_margem_1t_pp": -3.87
+   }
+  ],
   "validos": {
-   "lula": 49.5,
-   "flavio": 50.5
+   "lula": 49.1,
+   "flavio": 50.9
   },
   "faixa_validos": {
    "lula": [
-    47.5,
-    51.4
+    47.1,
+    51.0
    ],
    "flavio": [
-    48.6,
-    52.5
+    49.0,
+    52.9
    ]
   },
   "prob_vitoria": {
-   "lula": 0.362,
-   "flavio": 0.638
+   "lula": 0.271,
+   "flavio": 0.729
   },
   "nota": "Mesma incerteza da média geral; muda só quem entra e o peso."
  },
@@ -549,30 +590,30 @@
    "id": "acerto_1t",
    "rotulo": "Só as que mais acertaram",
    "validos": {
-    "lula": 49.5,
-    "flavio": 50.5
+    "lula": 49.1,
+    "flavio": 50.9
    },
    "faixa_validos": {
     "lula": [
-     47.5,
-     51.4
+     47.1,
+     51.0
     ],
     "flavio": [
-     48.6,
-     52.5
+     49.0,
+     52.9
     ]
    },
    "prob_vitoria": {
-    "lula": 0.362,
-    "flavio": 0.638
+    "lula": 0.271,
+    "flavio": 0.729
    },
    "n_casas": 3,
    "casas": [
+    "Veritá",
     "Quaest",
-    "PoderData",
-    "Datafolha"
+    "PoderData"
    ],
-   "nota": "Casas cujo erro na diferença Flávio − Lula da última pesquisa de 1º turno ficou até a mediana (5,5 pontos); peso = 1 / erro²."
+   "nota": "As 3 casas que chegaram mais perto da diferença Flávio − Lula no 1º turno, entre todas as 7 que publicaram pesquisa nacional no próprio canal (Veritá errou 1,3; Quaest errou 2,9; PoderData errou 3,9 ponto); quem errou menos pesa mais (peso = 1 / erro²). Vale a pesquisa de 2º turno mais recente de cada uma."
   }
  },
  "radar_1t": {
@@ -849,6 +890,30 @@
  ],
  "ranking_1t": [
   {
+   "casa_id": "verita",
+   "casa": "Veritá",
+   "pesquisa_data": "2026-10-01",
+   "registro": "27 registros estaduais",
+   "previa": {
+    "lula": 49.73,
+    "flavio": 50.27
+   },
+   "resultado": {
+    "flavio": 47.03,
+    "lula": 45.16
+   },
+   "erro_lula_pp": 4.57,
+   "erro_flavio_pp": 3.24,
+   "erro_medio_pp": 3.91,
+   "erro_margem_pp": -1.33,
+   "base_validos": "votos válidos publicados pela casa (consolidação das 27 UFs)",
+   "fonte_url": "https://eleicoes26.institutoverita.com.br/pesquisa/d0841135-eb7c-4cc6-95a4-f06ed72d63cb",
+   "no_painel": false,
+   "nota": "Última nacional de 1º turno no site da casa. A rodada de 26/09 a 02/10 (BR-04522/2026, 40.500 entrevistas) não saiu como nacional no site; só os estados, em 05/10.",
+   "peso_acerto": 0.75,
+   "tem_2o_turno": true
+  },
+  {
    "casa_id": "quaest",
    "casa": "Quaest",
    "pesquisa_data": "2026-10-03",
@@ -866,7 +931,10 @@
    "erro_medio_pp": 1.44,
    "erro_margem_pp": -2.87,
    "base_validos": "divulgados pela casa (g1, canal do contratante; modelo de eleitor provável)",
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/03/quaest-presidente-3-outubro.ghtml"
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/03/quaest-presidente-3-outubro.ghtml",
+   "no_painel": true,
+   "peso_acerto": 0.161,
+   "tem_2o_turno": true
   },
   {
    "casa_id": "poderdata",
@@ -886,7 +954,10 @@
    "erro_medio_pp": 2.09,
    "erro_margem_pp": -3.87,
    "base_validos": "divulgados pela casa (Poder360)",
-   "fonte_url": "https://www.poder360.com.br/poderdata/na-vespera-do-1o-turno-lula-tem-45-e-flavio-43-dos-votos-validos/"
+   "fonte_url": "https://www.poder360.com.br/poderdata/na-vespera-do-1o-turno-lula-tem-45-e-flavio-43-dos-votos-validos/",
+   "no_painel": true,
+   "peso_acerto": 0.089,
+   "tem_2o_turno": true
   },
   {
    "casa_id": "datafolha",
@@ -906,7 +977,10 @@
    "erro_medio_pp": 2.59,
    "erro_margem_pp": -4.87,
    "base_validos": "divulgados pela casa (g1, canal do contratante)",
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/03/datafolha-presidente-3-outubro.ghtml"
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/03/datafolha-presidente-3-outubro.ghtml",
+   "no_painel": true,
+   "peso_acerto": null,
+   "tem_2o_turno": true
   },
   {
    "casa_id": "real-time-big-data",
@@ -926,7 +1000,10 @@
    "erro_medio_pp": 3.06,
    "erro_margem_pp": -6.12,
    "base_validos": "calculados dos votos totais lidos pelo extrator do Radar",
-   "fonte_url": "https://realtimebigdata.com.br/wp-content/uploads/2026/10/Brasil-BR-09503-2026-Out26.pdf"
+   "fonte_url": "https://realtimebigdata.com.br/wp-content/uploads/2026/10/Brasil-BR-09503-2026-Out26.pdf",
+   "no_painel": true,
+   "peso_acerto": null,
+   "tem_2o_turno": true
   },
   {
    "casa_id": "nexus",
@@ -946,7 +1023,10 @@
    "erro_medio_pp": 4.51,
    "erro_margem_pp": -7.13,
    "base_validos": "calculados dos votos totais aceitos pelo funil (última nacional da casa antes de 04/10)",
-   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-16-28.set_.2026.pdf"
+   "fonte_url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-16-28.set_.2026.pdf",
+   "no_painel": true,
+   "peso_acerto": null,
+   "tem_2o_turno": true
   },
   {
    "casa_id": "mda",
@@ -966,7 +1046,10 @@
    "erro_medio_pp": 3.77,
    "erro_margem_pp": -7.53,
    "base_validos": "calculados dos votos totais (participação entre os votos em candidatos)",
-   "fonte_url": "https://api.cnt.org.br/cms2/api/PortalPublicacao/publicacao/pesquisa-cntmda-mostra-cenrio-eleitoral-s-vsperas-do-primeiro-turno"
+   "fonte_url": "https://api.cnt.org.br/cms2/api/PortalPublicacao/publicacao/pesquisa-cntmda-mostra-cenrio-eleitoral-s-vsperas-do-primeiro-turno",
+   "no_painel": true,
+   "peso_acerto": null,
+   "tem_2o_turno": true
   }
  ],
  "erro_1t_2026_pp": -3.04,

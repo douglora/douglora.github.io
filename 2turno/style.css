@@ -1360,3 +1360,6 @@ body.com-faixa-sim { padding-bottom: 56px; }
 
 /* mercados parados pelo bloqueio no Brasil */
 .aviso-bloqueio { margin: 10px 0 0; padding: 9px 12px; border: 1px solid var(--alerta-borda); background: var(--alerta-fundo); color: var(--alerta); border-radius: 10px; font-size: 13.5px; line-height: 1.45; }
+
+/* ranking do 1º turno: casa de fora do painel */
+.fora-painel { margin-left: 4px; padding: 1px 6px; border: 1px solid var(--linha-2); border-radius: 999px; font-size: 11px; font-weight: 500; color: var(--tinta-3); white-space: nowrap; }

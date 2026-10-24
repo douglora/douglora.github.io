@@ -534,8 +534,18 @@ function explicacaoSimples(k, m) {
     ];
   }
   if (k === 'acerto_1t') {
-    const casas = listaNomes(m?.casas);
-    return [`Usamos só os institutos que chegaram mais perto do resultado do 1º turno${casas ? ` (${casas})` : ''} e quem acertou mais pesa mais.`];
+    const ps = arr(m?.pesquisas).filter(obj);
+    const quem = ps.map((q) => `${q.casa} (errou ${fNum(Math.abs(num(q.erro_margem_1t_pp) ?? 0))})`);
+    const usadas = ps.map((q) => `${q.casa}, ${txt(q.campo) || fData(q.data) || 'sem data'}: ${curto('lula')} ${fNum(q.validos?.lula) ?? '—'} × ${curto('flavio')} ${fNum(q.validos?.flavio) ?? '—'}`);
+    if (!ps.length) {
+      const casas = listaNomes(m?.casas);
+      return [`Usamos só os institutos que chegaram mais perto do resultado do 1º turno${casas ? ` (${casas})` : ''} e quem acertou mais pesa mais.`];
+    }
+    return [
+      `Comparamos a última pesquisa de 1º turno de cada instituto com a urna, inclusive os que não estão no resto do painel, e medimos o erro na diferença entre ${F} e ${curto('lula')}.`,
+      `Ficam os ${ps.length} que chegaram mais perto: ${listaNomes(quem)} ${ps.length > 1 ? 'pontos' : 'ponto'}. Quem errou menos pesa mais.`,
+      `Vale a pesquisa de 2º turno mais recente de cada um: ${usadas.join('; ')}.`,
+    ];
   }
   return [txt(m?.nota) || 'Explicação desta média: sem dado ainda.'];
 }
@@ -1819,28 +1829,31 @@ function itemPesquisa(p, casa, d, i) {
 function ranking(d) {
   const r = arr(d.ranking_1t).filter((x) => obj(x) && txt(x.casa));
   if (!r.length) return lacunaBloco('Ranking das casas no 1º turno: sem dado ainda.');
-  const ord = [...r].sort((a, b) => (num(a.erro_medio_pp) ?? 1e9) - (num(b.erro_medio_pp) ?? 1e9));
+  // Ordem pelo erro na diferença Flávio − Lula, o mesmo critério da média.
+  const ord = [...r].sort((a, b) => Math.abs(num(a.erro_margem_pp) ?? 1e9) - Math.abs(num(b.erro_margem_pp) ?? 1e9));
   const top = new Set(arr(d.media_acerto_1t?.casas).map(norm));
-  return h`<p class="nota">Quanto cada casa errou na última pesquisa antes do 1º turno, contra o resultado do TSE, em pontos percentuais (pp) ${info('Pontos percentuais (pp)')}. Quem errou menos pesa mais na média. Toque numa casa para ver a prévia contra a urna.</p>
-    <p class="nota">Erro médio ${info('Erro médio')} · erro na margem ${info('Erro na margem')} · peso ${info('Peso')}</p>
+  const fora = ord.some((x) => x.no_painel === false);
+  return h`<p class="nota">Quanto cada casa errou a diferença entre ${curto('flavio')} e ${curto('lula')} na última pesquisa nacional antes do 1º turno, contra o resultado do TSE, em pontos percentuais (pp) ${info('Pontos percentuais (pp)')}. As que chegaram mais perto formam a média “Só as que mais acertaram”. Toque numa casa para ver a prévia contra a urna.</p>
+    <p class="nota">Erro na diferença ${info('Erro na margem')} · erro médio ${info('Erro médio')} · peso na média ${info('Peso')}</p>
     <div class="rank">
-      <div class="rank-cab" aria-hidden="true"><span>Casa</span><span class="n">Erro médio</span><span class="n">Erro na margem</span><span class="n">Peso</span><span></span></div>
+      <div class="rank-cab" aria-hidden="true"><span>Casa</span><span class="n">Erro na diferença</span><span class="n">Erro médio</span><span class="n">Peso</span><span></span></div>
       ${ord.map((x, i) => {
         const pv = obj(x.previa);
         const rs = obj(x.resultado);
+        const peso = num(x.peso_acerto);
         return h`<details class="rank-l" data-k="r:${x.casa}">
           <summary>
-            <span><span class="rank-pos">${i + 1}.</span>${x.casa}${top.has(norm(x.casa)) ? h` <span class="selo" title="Entra na média das que mais acertaram">✓</span>` : ''}</span>
-            <span class="n">${ou(fPP(x.erro_medio_pp))}</span>
+            <span><span class="rank-pos">${i + 1}.</span>${x.casa}${top.has(norm(x.casa)) ? h` <span class="selo" title="Entra na média das que mais acertaram">✓</span>` : ''}${x.no_painel === false ? h` <small class="fora-painel">fora do painel</small>` : ''}</span>
             <span class="n">${ou(fPP(x.erro_margem_pp))}</span>
-            <span class="n">${ou(fNum(x.peso, 2))}</span>
+            <span class="n">${ou(fPP(x.erro_medio_pp))}</span>
+            <span class="n">${peso !== null ? `${fNum(peso * 100, 0)}%` : '—'}</span>
             <span class="chev" aria-hidden="true"></span>
           </summary>
-          <p class="rank-det">Última pesquisa antes do 1º turno: ${ou(fData(x.pesquisa_data))}. A casa previa ${curto('lula')} ${ou(fPct(pv?.lula))} e ${curto('flavio')} ${ou(fPct(pv?.flavio))} dos válidos; o TSE apurou ${ou(fPct(rs?.lula))} e ${ou(fPct(rs?.flavio))}.</p>
+          <p class="rank-det">Última pesquisa nacional antes do 1º turno: ${ou(fData(x.pesquisa_data))}${txt(x.registro) ? ` (${x.registro})` : ''}. A casa previa ${curto('lula')} ${ou(fPct(pv?.lula))} e ${curto('flavio')} ${ou(fPct(pv?.flavio))} dos válidos; o TSE apurou ${ou(fPct(rs?.lula))} e ${ou(fPct(rs?.flavio))}.${x.tem_2o_turno === false ? ' Não tem pesquisa de 2º turno publicada no próprio canal nos últimos 21 dias, por isso fica fora da média.' : ''}${txt(x.nota) ? ` ${x.nota}` : ''}${txt(x.fonte_url) ? h` <a href="${x.fonte_url}" target="_blank" rel="noopener">Fonte</a>` : ''}</p>
         </details>`;
       })}
     </div>
-    ${top.size ? h`<p class="nota">✓ = entra na média das casas que mais acertaram o 1º turno.</p>` : ''}`;
+    <p class="nota">${top.size ? '✓ = entra na média das casas que mais acertaram o 1º turno; o peso é quanto conta nela. ' : ''}${fora ? '“Fora do painel” = a casa não entra nas outras médias do Radar; aqui conta só pelo acerto no 1º turno, com números lidos no documento da própria casa e registro conferido no TSE.' : ''}</p>`;
 }
 
 /* --------------------------------------------------------------- MÉTODO */
