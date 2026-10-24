@@ -17,6 +17,36 @@
     "as_of": "2026-10-24",
     "items": [
       {
+        "anchors": [],
+        "current_published_pct": {
+          "2026-tse-280002542548": 45.0,
+          "2026-tse-280002551544": 46.3
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 49.28806133625411,
+          "2026-tse-280002551544": 50.71193866374589
+        },
+        "days_to_election": 2,
+        "headline": null,
+        "house_id": "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+        "house_name": "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-10-24",
+        "reason": "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP não tem observação histórica no 2º turno (confronto definido) a D-2 ± 12 dias no corpus preservado.",
+        "reference_date": "2026-10-23",
+        "registration_no": "BR-02136/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "status": "sem_ancora_historica",
+        "turn": 2
+      },
+      {
         "anchors": [
           {
             "comparability_warnings": [],
@@ -1378,7 +1408,7 @@
       }
     ],
     "not_a_projection": "Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
-    "polls_examined": 19,
+    "polls_examined": 20,
     "polls_with_anchor": 14,
     "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
     "status": "available",
@@ -1389,52 +1419,53 @@
       {
         "beyond_sampling_noise": false,
         "candidate_id": "2026-tse-280002551544",
-        "delta_pp": 0.0,
-        "direction": "estavel",
+        "delta_pp": -0.5,
+        "direction": "baixa",
         "label": "FLAVIO BOLSONARO",
-        "latest_pct": 48.0,
+        "latest_pct": 46.3,
         "party": "PL",
-        "previous_pct": 48.0,
-        "sampling_se_pp": 1.8242806801586209,
-        "sentence": "FLAVIO BOLSONARO ficou igual: 48% antes, 48% agora."
+        "previous_pct": 46.8,
+        "sampling_se_pp": 1.5683762848882445,
+        "sentence": "FLAVIO BOLSONARO caiu 0.5 pontos: de 46.8% para 46.3% (dentro do ruído amostral)."
       },
       {
         "beyond_sampling_noise": false,
         "candidate_id": "2026-tse-280002542548",
-        "delta_pp": 1.0,
-        "direction": "alta",
+        "delta_pp": -0.8999999999999986,
+        "direction": "baixa",
         "label": "LULA",
-        "latest_pct": 47.0,
+        "latest_pct": 45.0,
         "party": "PT",
-        "previous_pct": 46.0,
-        "sampling_se_pp": 1.8211717839530313,
-        "sentence": "LULA subiu 1 ponto: de 46% para 47% (dentro do ruído amostral)."
+        "previous_pct": 45.9,
+        "sampling_se_pp": 1.5655593445385212,
+        "sentence": "LULA caiu 0.9 pontos: de 45.9% para 45% (dentro do ruído amostral)."
       }
     ],
     "comparability_rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
-    "days_between": 7,
-    "gained": [
-      "2026-tse-280002542548"
-    ],
+    "days_between": 8,
+    "gained": [],
     "latest": {
       "base": "totais",
-      "evidence_id": "ev-release-f366ff06fd1f3cc4be1b",
-      "field_end": "2026-10-22",
-      "field_start": "2026-10-20",
-      "institute": "Ipespe",
-      "institute_id": "ipespe",
-      "mode": "telefone",
+      "evidence_id": "ev-release-b5341fa1f91ded0895dc",
+      "field_end": "2026-10-23",
+      "field_start": "2026-10-21",
+      "institute": "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+      "institute_id": "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+      "mode": "presencial",
       "n_candidates": 2,
-      "published_at": "2026-10-23",
-      "reference_date": "2026-10-22",
-      "registration_no": "BR-04350/2026",
-      "sample_size": 1500,
+      "published_at": "2026-10-24",
+      "reference_date": "2026-10-23",
+      "registration_no": "BR-02136/2026",
+      "sample_size": 2032,
       "scenario_id": "president-br-t2-dbec719fff"
     },
-    "lost": [],
+    "lost": [
+      "2026-tse-280002542548",
+      "2026-tse-280002551544"
+    ],
     "other_houses_in_window": [
       "Datafolha",
-      "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+      "Ipespe",
       "Nexus",
       "PoderData",
       "Quaest",
@@ -1442,28 +1473,28 @@
     ],
     "previous": {
       "base": "totais",
-      "evidence_id": "ev-release-7b9556512817d8023cc4",
+      "evidence_id": "ev-release-9973debe9a7be167a6a1",
       "field_end": "2026-10-15",
       "field_start": "2026-10-13",
-      "institute": "Ipespe",
-      "institute_id": "ipespe",
-      "mode": "telefone",
+      "institute": "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+      "institute_id": "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+      "mode": "presencial",
       "n_candidates": 2,
-      "published_at": "2026-10-17",
+      "published_at": "2026-10-16",
       "reference_date": "2026-10-15",
-      "registration_no": "BR-00223/2026",
-      "sample_size": 1500,
+      "registration_no": "BR-00652/2026",
+      "sample_size": 2014,
       "scenario_id": "president-br-t2-dbec719fff"
     },
     "status": "compared",
-    "summary": "Ganharam espaço: LULA. Ninguém perdeu. Nenhuma variação ficou fora do ruído amostral."
+    "summary": "Ninguém ganhou espaço. Perderam: LULA, FLAVIO BOLSONARO. Nenhuma variação ficou fora do ruído amostral."
   },
-  "live_hash": "4ab709da097847db880b240c015bd7c89654a08c70a5c6d5756b9581540b554b",
-  "live_source_run_id": "run-20261024-1fa3d5aa-41bf13e6",
-  "run_id": "hist-20261024-8d90558c-8c3bf707-4ab709da-08a374",
+  "live_hash": "4c5b0d470955bf0282ae594658dc75a75d9945b6c5bea805bf830520627c23c5",
+  "live_source_run_id": "run-20261024-7c6f043e-ae78ab90",
+  "run_id": "hist-20261024-8d90558c-8c3bf707-4c5b0d47-08a374",
   "signals": [
     {
-      "between_house_sd_pp": 1.159779168332595,
+      "between_house_sd_pp": 1.1668558743816426,
       "candidate_id": "2026-tse-280002551544",
       "candidate_label": "FLAVIO BOLSONARO",
       "direction": "baixa",
@@ -1471,18 +1502,17 @@
       "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
       "historical_context": null,
       "houses_in_window": 7,
-      "houses_with_comparable_series": 5,
+      "houses_with_comparable_series": 6,
       "houses_with_single_measurement": [
-        "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
         "REAL TIME BIG DATA"
       ],
       "median_delta_pp": -1.0,
-      "median_sampling_se_pp": 1.517309596706047,
+      "median_sampling_se_pp": 1.5428429407971458,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
         {
           "base": "totais",
-          "evidence_id": "ev-release-5de58d946c3aa9b3e663",
+          "evidence_id": "ev-release-2ec792166d96c0dd4c03",
           "field_end": "2026-10-07",
           "institute": "Datafolha",
           "institute_id": "datafolha",
@@ -1797,7 +1827,7 @@
         },
         {
           "base": "totais",
-          "evidence_id": "ev-release-adf6d29a3ebf5e3f77e2",
+          "evidence_id": "ev-release-5c8d3ea17622492bdd9f",
           "field_end": "2026-10-20",
           "institute": "Quaest",
           "institute_id": "quaest",
@@ -1878,6 +1908,27 @@
               "2026-tse-280002551544"
             ]
           ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b5341fa1f91ded0895dc",
+          "field_end": "2026-10-23",
+          "institute": "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+          "institute_id": "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+          "mode": "presencial",
+          "pct": 46.3,
+          "published_at": "2026-10-24",
+          "reference_date": "2026-10-23",
+          "registration_no": "BR-02136/2026",
+          "sample_size": 2032,
+          "scenario_key": [
+            "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
         }
       ],
       "same_direction_across_houses": false,
@@ -1887,7 +1938,7 @@
           "delta_pp": -2.0,
           "evidence_ids": [
             "ev-release-1237be44bad41f8dcb0a",
-            "ev-release-5de58d946c3aa9b3e663",
+            "ev-release-2ec792166d96c0dd4c03",
             "ev-release-d51f6c020b375a012e25"
           ],
           "from": {
@@ -1926,6 +1977,28 @@
             "date": "2026-10-22",
             "pct": 48.0,
             "registration_no": "BR-04350/2026"
+          }
+        },
+        {
+          "days_between": 8,
+          "delta_pp": -0.5,
+          "evidence_ids": [
+            "ev-release-9973debe9a7be167a6a1",
+            "ev-release-b5341fa1f91ded0895dc"
+          ],
+          "from": {
+            "date": "2026-10-15",
+            "pct": 46.8,
+            "registration_no": "BR-00652/2026"
+          },
+          "house": "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+          "institute_id": "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5683762848882445,
+          "to": {
+            "date": "2026-10-23",
+            "pct": 46.3,
+            "registration_no": "BR-02136/2026"
           }
         },
         {
@@ -1980,7 +2053,7 @@
           "delta_pp": -1.0,
           "evidence_ids": [
             "ev-release-0ea2838f6b55ead852df",
-            "ev-release-adf6d29a3ebf5e3f77e2"
+            "ev-release-5c8d3ea17622492bdd9f"
           ],
           "from": {
             "date": "2026-10-13",
@@ -2000,7 +2073,7 @@
       ]
     },
     {
-      "between_house_sd_pp": 1.117484644111301,
+      "between_house_sd_pp": 1.093653943150401,
       "candidate_id": "2026-tse-280002542548",
       "candidate_label": "LULA",
       "direction": "alta",
@@ -2008,18 +2081,17 @@
       "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
       "historical_context": null,
       "houses_in_window": 7,
-      "houses_with_comparable_series": 5,
+      "houses_with_comparable_series": 6,
       "houses_with_single_measurement": [
-        "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
         "REAL TIME BIG DATA"
       ],
-      "median_delta_pp": 1.0,
-      "median_sampling_se_pp": 1.5125596130735501,
+      "median_delta_pp": 0.9499999999999993,
+      "median_sampling_se_pp": 1.5390594788060357,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
         {
           "base": "totais",
-          "evidence_id": "ev-release-5de58d946c3aa9b3e663",
+          "evidence_id": "ev-release-2ec792166d96c0dd4c03",
           "field_end": "2026-10-07",
           "institute": "Datafolha",
           "institute_id": "datafolha",
@@ -2334,7 +2406,7 @@
         },
         {
           "base": "totais",
-          "evidence_id": "ev-release-adf6d29a3ebf5e3f77e2",
+          "evidence_id": "ev-release-5c8d3ea17622492bdd9f",
           "field_end": "2026-10-20",
           "institute": "Quaest",
           "institute_id": "quaest",
@@ -2415,6 +2487,27 @@
               "2026-tse-280002551544"
             ]
           ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-b5341fa1f91ded0895dc",
+          "field_end": "2026-10-23",
+          "institute": "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+          "institute_id": "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+          "mode": "presencial",
+          "pct": 45.0,
+          "published_at": "2026-10-24",
+          "reference_date": "2026-10-23",
+          "registration_no": "BR-02136/2026",
+          "sample_size": 2032,
+          "scenario_key": [
+            "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
         }
       ],
       "same_direction_across_houses": false,
@@ -2424,7 +2517,7 @@
           "delta_pp": 1.0,
           "evidence_ids": [
             "ev-release-1237be44bad41f8dcb0a",
-            "ev-release-5de58d946c3aa9b3e663",
+            "ev-release-2ec792166d96c0dd4c03",
             "ev-release-d51f6c020b375a012e25"
           ],
           "from": {
@@ -2463,6 +2556,28 @@
             "date": "2026-10-22",
             "pct": 47.0,
             "registration_no": "BR-04350/2026"
+          }
+        },
+        {
+          "days_between": 8,
+          "delta_pp": -0.8999999999999986,
+          "evidence_ids": [
+            "ev-release-9973debe9a7be167a6a1",
+            "ev-release-b5341fa1f91ded0895dc"
+          ],
+          "from": {
+            "date": "2026-10-15",
+            "pct": 45.9,
+            "registration_no": "BR-00652/2026"
+          },
+          "house": "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+          "institute_id": "mda-pesquisa-de-opiniao-publica-e-consult-estatist-ltda-epp",
+          "n_polls": 2,
+          "sampling_se_pp": 1.5655593445385212,
+          "to": {
+            "date": "2026-10-23",
+            "pct": 45.0,
+            "registration_no": "BR-02136/2026"
           }
         },
         {
@@ -2517,7 +2632,7 @@
           "delta_pp": 0.0,
           "evidence_ids": [
             "ev-release-0ea2838f6b55ead852df",
-            "ev-release-adf6d29a3ebf5e3f77e2"
+            "ev-release-5c8d3ea17622492bdd9f"
           ],
           "from": {
             "date": "2026-10-13",
