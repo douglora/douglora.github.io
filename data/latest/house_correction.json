@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "da3cb61f3002a0a19d0318e5b239c30fbb72386700e2e82f69f3616958a8dacf",
-  "live_source_run_id": "run-20261024-2be5ef70-ae78ab90",
-  "run_id": "hist-20261024-8d90558c-8c3bf707-da3cb61f-08a374",
+  "live_hash": "01c2a16196abe2a7e7e4253b3ffe089998d4a9b242d0c93a7c13afad6b8e972d",
+  "live_source_run_id": "run-20261024-10b4e183-ae78ab90",
+  "run_id": "hist-20261024-8d90558c-8c3bf707-01c2a161-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [],
@@ -17243,7 +17243,16 @@
         "history_status": "unavailable",
         "house_id": "quaest",
         "house_name": "Quaest",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_today_unverified",
+          "field_end": "2026-10-24",
+          "field_start": "2026-10-23",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR091582026",
+          "sample_size": 3702,
+          "scenario_status": "release_not_found"
+        }
       },
       {
         "applied_to": null,
@@ -17252,7 +17261,16 @@
         "history_status": "unavailable",
         "house_id": "atlasintel",
         "house_name": "AtlasIntel",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_today_unverified",
+          "field_end": "2026-10-23",
+          "field_start": "2026-10-18",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR063802026",
+          "sample_size": 5000,
+          "scenario_status": "release_not_found"
+        }
       },
       {
         "applied_to": null,
@@ -17279,7 +17297,16 @@
         "history_status": "unavailable",
         "house_id": "datafolha",
         "house_name": "Datafolha",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_today_unverified",
+          "field_end": "2026-10-24",
+          "field_start": "2026-10-23",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR095402026",
+          "sample_size": 4050,
+          "scenario_status": "blocked"
+        }
       }
     ],
     "method": {
@@ -17813,29 +17840,6 @@
               "label": "FLAVIO BOLSONARO",
               "party": "PL",
               "published_pct": 49.0,
-              "published_valid_pct": 52.12765957446808
-            },
-            {
-              "label": "LULA",
-              "party": "PT",
-              "published_pct": 45.0,
-              "published_valid_pct": 47.87234042553192
-            }
-          ],
-          "corrected_note": null,
-          "field_end": "2026-10-07",
-          "house_id": "datafolha",
-          "house_name": "Datafolha",
-          "published_at": "2026-10-08",
-          "regime": "post_registration",
-          "registration_no": "BR-02949/2026"
-        },
-        {
-          "candidates": [
-            {
-              "label": "FLAVIO BOLSONARO",
-              "party": "PL",
-              "published_pct": 49.0,
               "published_valid_pct": 52.68817204301075
             },
             {
@@ -17852,6 +17856,29 @@
           "published_at": "2026-10-08",
           "regime": "post_registration",
           "registration_no": "BR-08134/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_pct": 49.0,
+              "published_valid_pct": 52.12765957446808
+            },
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 45.0,
+              "published_valid_pct": 47.87234042553192
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-10-07",
+          "house_id": "datafolha",
+          "house_name": "Datafolha",
+          "published_at": "2026-10-08",
+          "regime": "post_registration",
+          "registration_no": "BR-02949/2026"
         },
         {
           "candidates": [
