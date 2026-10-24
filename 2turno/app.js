@@ -3,8 +3,10 @@
  * Módulo ES, JavaScript puro, sem framework nem biblioteca externa.
  *
  * - Dados: /data/pocket/segundo_turno.json (para teste: ?dados=/outro.json, só
- *   caminho do mesmo site), relidos a cada 5 min. Campo ausente ou null vira
- *   lacuna visível ("sem dado ainda"), nunca tela quebrada.
+ *   caminho do mesmo site), relidos a cada 60 s. Campo ausente ou null vira
+ *   lacuna visível ("sem dado ainda"), nunca tela quebrada. Pesquisa que não estava
+ *   na leitura anterior aparece num aviso "Acabou de entrar" e fica destacada na
+ *   aba Pesquisas por alguns minutos; as médias contam do valor antigo ao novo.
  * - Mercados: import dinâmico de /2turno/mercados.js (lerMercados e
  *   lerHistorico, aoMudar), relidos a cada 60 s e na hora em que chega preço novo
  *   (WebSocket ou balde de 15 s do Mac). Se o módulo não carregar, a página
@@ -133,6 +135,8 @@ const GLOSSARIO_PADRAO = [
   ['Estado provável', 'Um estado aparece como “provável” quando o modelo dá 99% ou mais de chance a um dos lados e pelo menos 25% das seções do estado já foram apuradas. Não é resultado oficial: pode mudar até o estado terminar de contar.'],
   ['Estado definido', 'Um estado fica “definido” quando a vantagem de quem lidera lá é maior que todo o eleitorado que ainda falta apurar no estado: nem com todos os votos restantes o outro alcança. Vale também para estado com 100% das seções apuradas.'],
   ['Par', 'Só os votos dados aos dois finalistas, somados como 100%. É a base dos números “do par”: brancos, nulos e votos de quem ficou fora do 2º turno não entram.'],
+  ['Agregador próprio', 'A média das pesquisas feita pelo próprio Radar. Junta as casas com pesquisa recente de 2º turno, dá mais peso a quem errou menos no 1º turno, à pesquisa mais nova e à que ouviu mais gente, e corrige parte do erro que as casas tiveram no 1º turno. Atualiza sozinha a cada pesquisa nova.'],
+  ['Chance normalizada', 'Nos mercados de previsão cada candidato tem o seu próprio preço, e os dois preços quase nunca somam exatamente 100. Para comparar, a página mostra a chance de cada um dividida pela soma dos dois (Lula ÷ (Lula + Flávio)), arredondada para que as duas somem 100%. Os preços originais (compra, venda e último) continuam na tabela de detalhes.'],
 ];
 
 const st = {
@@ -144,6 +148,9 @@ const st = {
   timerTentativa: null,
   carregando: true,
   lidoEm: 0,
+  okEm: 0, // última leitura que deu certo (lidoEm também conta as que falharam)
+  novas: new Map(), // pesquisas que acabaram de entrar: chave → { ate, id }
+  timerNovas: null,
   mod: undefined, // undefined = ainda não tentou; null = falhou; objeto = módulo
   modErro: null,
   modTentativas: 0,
@@ -278,6 +285,44 @@ const fPP = (v) => {
   const s = fNum(v, 1);
   return s === null ? null : `${s} pp`;
 };
+// Com sinal e duas casas (+0,09), para efeitos pequenos que uma casa só esconderia.
+function fSinal2(v) {
+  v = num(v);
+  if (v === null) return null;
+  const s = nf(2).format(Math.abs(v));
+  return v > 0 ? `+${s}` : v < 0 ? `−${s}` : s;
+}
+
+// Duas chances que somam exatamente 100%. Cada mercado dá um preço próprio a cada candidato
+// (compra e venda de um lado, de outro), e os dois quase nunca somam 100. Aqui cada um é dividido
+// pela soma dos dois (Lula ÷ (Lula + Flávio)) e os inteiros mostrados saem pelo método do maior
+// resto: o que sobra para chegar a 100 vai a quem tem a maior parte fracionária.
+// Entrada: probabilidades de 0 a 1. Saída: { l, f } exatos em % e { li, fi } inteiros, ou null.
+function parChances(pL, pF) {
+  pL = num(pL);
+  pF = num(pF);
+  if (pL === null || pF === null || pL < 0 || pF < 0 || pL + pF <= 0) return null;
+  const t = pL + pF;
+  const l = (pL / t) * 100;
+  const f = (pF / t) * 100;
+  let li = Math.floor(l + 1e-9);
+  let fi = Math.floor(f + 1e-9);
+  let sobra = 100 - li - fi;
+  const ordem = l - li >= f - fi ? ['l', 'f'] : ['f', 'l'];
+  for (let i = 0; sobra > 0; i++, sobra--) {
+    if (ordem[i % 2] === 'l') li += 1;
+    else fi += 1;
+  }
+  return { l, f, li, fi };
+}
+const parDe = (o) => parChances(o?.lula, o?.flavio);
+const fChance = (par, id) => (par ? `${id === 'lula' ? par.li : par.fi}%` : null);
+const parMercado = (f) => parChances(f?.candidatos?.lula?.prob, f?.candidatos?.flavio?.prob);
+// Número que conta do valor antigo ao novo quando a leitura traz média diferente (ver animarNumeros).
+const cuNum = (chave, v, casas = 1, sufixo = '') =>
+  v === null
+    ? cru('—')
+    : h`<span data-cu="${chave}" data-v="${v}" data-casas="${casas}"${cru(sufixo ? ` data-sufixo="${sufixo}"` : '')}>${nf(casas).format(v)}${sufixo}</span>`;
 function faixa(v) {
   if (!Array.isArray(v) || v.length < 2) return null;
   const a = num(v[0]);
@@ -509,7 +554,7 @@ const info = (termo) =>
 
 const MEDIAS_PADRAO = ['radar', 'ponderada', 'simples', 'ajustada_1t', 'acerto_1t'];
 const ROTULO_CURTO = {
-  radar: 'Média Radar',
+  radar: 'Agregador próprio',
   ponderada: 'Ponderada',
   simples: 'Simples',
   ajustada_1t: 'Ajustada pelo 1º turno',
@@ -526,6 +571,13 @@ function normalizarDados(d) {
   if (!medias.acerto_1t && obj(d.media_acerto_1t)) medias.acerto_1t = d.media_acerto_1t;
   const ordem = arr(d.medias_ordem).filter((k) => typeof k === 'string' && medias[k]);
   for (const k of [...MEDIAS_PADRAO, ...Object.keys(medias)]) if (medias[k] && !ordem.includes(k)) ordem.push(k);
+  // O agregador próprio já se chamou "Média Radar": arquivo antigo (ou em cache) sai com o nome novo.
+  const rd = medias.radar;
+  if (rd) {
+    for (const campo of ['rotulo', 'rotulo_curto']) {
+      if (!txt(rd[campo]) || /^m[eé]dia radar$/i.test(String(rd[campo]).trim())) rd[campo] = ROTULO_CURTO.radar;
+    }
+  }
   d.medias = medias;
   d.medias_ordem = ordem;
   if (!obj(d.media) && medias.ponderada) d.media = medias.ponderada;
@@ -544,7 +596,7 @@ function explicacaoSimples(k, m) {
     const top = ps.slice(0, 4).map((q) => `${q.casa} ${fNum((num(q.peso) ?? 0) * 100, 0)}%`);
     const sen = obj(m?.sensibilidade);
     return [
-      `É a média do próprio Radar. Junta as ${ps.length || num(m?.n_casas) || ''} casas com pesquisa recente de 2º turno, inclusive as que acertaram o 1º turno e não estão no resto do painel.`,
+      `É o agregador próprio do Radar: a nossa média das pesquisas. Junta as ${ps.length || num(m?.n_casas) || ''} casas com pesquisa recente de 2º turno, inclusive as que acertaram o 1º turno e não estão no resto do painel.`,
       `Pesa mais quem errou menos no 1º turno, a pesquisa mais nova e a que ouviu mais gente. Quem mais pesa hoje: ${top.join(', ')}.`,
       `No 1º turno as casas mostraram ${F} em média ${fNum(Math.abs(num(c.erro_medio_1t_casas_pp) ?? 0), 1)} ${Math.abs(num(c.erro_medio_1t_casas_pp) ?? 0) < 2 ? 'ponto' : 'pontos'} abaixo da urna. Corrigimos ${fNum((num(c.alfa) ?? 0.3) * 100, 0)}% desse erro: nos 2º turnos de 2014, 2018 e 2022 a média das pesquisas errou bem menos que no 1º turno, então o erro não costuma se repetir inteiro.`,
       `Soma a tendência das últimas semanas e o efeito da abstenção: em todas as 6 eleições desde 2002 a falta subiu um pouco mais no 2º turno nos estados mais petistas (efeito de ${fNum(Math.abs(num(c.abstencao_diferencial_pp) ?? 0), 2)} ponto).`,
@@ -661,6 +713,7 @@ function atualizarContagem() {
     a._h = ah;
     a.innerHTML = ah;
   }
+  atualizarCarimbo();
   const mi = $('#contagem-mini');
   const mh = emHtml(h`${BANDEIRA_MINI}<span>${mini}</span>`);
   if (mi && mi._h !== mh) {
@@ -673,13 +726,36 @@ function atualizarContagem() {
 
 const TENTATIVAS_MS = [3000, 8000, 15000, 30000, 60000];
 
-// Mensagem de rede em português (o navegador diz "Failed to fetch" ou "Load failed").
+// Texto de erro em português para quem lê no celular. O navegador e a rede dizem "Failed to fetch",
+// "Load failed", "HTTP 503": nada disso chega à tela. limparErro troca os pedaços em inglês dentro de
+// frases que já vêm em português (como as do módulo de mercados, que junta a mensagem do navegador).
+const TROCAS_ERRO = [
+  [/failed to fetch dynamically imported module[^;,)]*/gi, 'não consegui carregar uma parte da página'],
+  [/importing a module script failed\.?/gi, 'não consegui carregar uma parte da página'],
+  [/failed to fetch|load failed|network ?error[^;,)]*|network request failed|networkerror when attempting to fetch resource\.?|err_internet_disconnected|err_network_changed|net::err_[a-z_]+/gi, 'sem conexão'],
+  [/the operation was aborted\.?|signal is aborted[^;,)]*|aborterror|request timed out|timed? ?out/gi, 'sem resposta a tempo'],
+  [/bloqueia por CORS/gi, 'não libera a leitura direta pelo navegador'],
+  [/bloqueado \(CORS\)/gi, 'bloqueado pelo navegador'],
+  [/\bCORS\b/g, 'regra do navegador'],
+  [/HTTP (5\d\d)/g, 'o servidor está instável (erro $1)'],
+  [/HTTP 404/g, 'arquivo não encontrado (erro 404)'],
+  [/HTTP 403/g, 'acesso negado (erro 403)'],
+  [/HTTP 429/g, 'muitos pedidos seguidos (erro 429)'],
+  [/HTTP (\d{3})/g, 'o servidor respondeu com erro $1'],
+  [/unexpected (token|end of json)[^;,)]*|json\.parse[^;,)]*|is not valid json[^;,)]*/gi, 'o arquivo veio incompleto'],
+  [/\b(type|reference|syntax|range)error:?[^;,)]*/gi, 'erro inesperado na página'],
+];
+function limparErro(t) {
+  let s = String(t ?? '');
+  for (const [re, troca] of TROCAS_ERRO) s = s.replace(re, troca);
+  return s;
+}
 function erroLegivel(e) {
   const m = String(e?.message || e || '');
-  if (/failed to fetch|load failed|networkerror|network request failed/i.test(m)) return 'sem conexão com a internet ou com o site neste momento';
-  if (/abort/i.test(m)) return 'o servidor demorou a responder';
+  if (/failed to fetch|load failed|networkerror|network request failed|net::err_/i.test(m)) return 'sem conexão com a internet ou com o site neste momento';
+  if (/abort|timed? ?out/i.test(m)) return 'o servidor demorou a responder';
   if (/HTTP 5\d\d/.test(m)) return 'o servidor do site está instável';
-  return m;
+  return limparErro(m);
 }
 
 // Só avisa quando a falha persiste: duas tentativas seguidas e mais de 2 minutos sem conseguir.
@@ -705,14 +781,23 @@ async function carregarDados() {
     st.erroDesde = 0;
     clearTimeout(st.timerTentativa);
     st.lidoEm = Date.now();
+    st.okEm = st.lidoEm;
     st.carregando = false;
     if (texto !== st.texto) {
+      const anterior = st.dados;
+      // Só há "novidade" a partir da segunda leitura: a primeira carga nunca dispara o aviso.
+      const novas = anterior ? acharNovas(anterior, dados) : [];
+      const antes = anterior ? fotografarNumeros() : null;
+      if (novas.length) marcarNovas(novas);
       st.texto = texto;
       st.dados = dados;
       aplicarCores();
       renderizarTudo();
+      if (antes) animarNumeros(antes);
+      if (novas.length) anunciarNovas(novas, anterior, dados);
     } else {
       renderizarFaixaTopo();
+      atualizarCarimbo();
     }
   } catch (e) {
     st.erro = erroLegivel(e);
@@ -728,6 +813,227 @@ async function carregarDados() {
     if (primeira || !st.dados) renderizarTudo();
     else renderizarFaixaTopo();
   }
+}
+
+/* ----------------------------------------- pesquisa que acabou de entrar */
+
+const NOVA_DESTAQUE_MS = 5 * 60 * 1000; // a linha fica destacada na aba Pesquisas
+const AVISO_NOVA_MS = 20 * 1000; // o aviso do topo some sozinho
+
+// Identidade de uma pesquisa entre uma leitura e outra: casa + registro no TSE (ou data e campo,
+// quando a casa não informa o registro).
+function chavePesquisa(p) {
+  const reg = txt(p?.registro);
+  return `${norm(p?.casa)}|${reg ? norm(reg) : `${txt(p?.data) || ''}|${norm(p?.campo)}`}`;
+}
+const idPesquisa = (chave) => `pq-${chave.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`;
+
+// Pesquisas da leitura nova que não estavam na anterior. Sem pesquisa na anterior não dá para dizer
+// o que é novo (arquivo vazio ou lacuna passageira): não anuncia nada.
+function acharNovas(ant, novo) {
+  const antes = arr(ant?.pesquisas).filter(obj);
+  if (!antes.length) return [];
+  const vistas = new Set(antes.map(chavePesquisa));
+  const achadas = new Map();
+  for (const p of arr(novo?.pesquisas).filter(obj)) {
+    const k = chavePesquisa(p);
+    if (txt(p.casa) && !vistas.has(k) && !achadas.has(k)) achadas.set(k, p);
+  }
+  return [...achadas.values()];
+}
+
+function marcarNovas(novas) {
+  const ate = Date.now() + NOVA_DESTAQUE_MS;
+  for (const p of novas) {
+    const chave = chavePesquisa(p);
+    st.novas.set(chave, { ate, id: idPesquisa(chave) });
+  }
+  agendarFimDestaque();
+}
+const novaAtiva = (p) => {
+  const n = st.novas.get(chavePesquisa(p));
+  return n && n.ate > Date.now() ? n : null;
+};
+function agendarFimDestaque() {
+  clearTimeout(st.timerNovas);
+  const agora = Date.now();
+  for (const [k, v] of st.novas) if (v.ate <= agora) st.novas.delete(k);
+  for (const el of $$('.pesq.nova')) {
+    if (!st.novas.has(el.dataset.chave)) {
+      el.classList.remove('nova');
+      $('.nova-tag', el)?.remove();
+    }
+  }
+  if (!st.novas.size) return;
+  const prox = Math.min(...[...st.novas.values()].map((v) => v.ate));
+  st.timerNovas = setTimeout(agendarFimDestaque, Math.max(1000, prox - agora + 300));
+}
+
+// "Quaest 24/10: Flávio 51 × Lula 49" (votos válidos; sem eles, os totais como a casa divulgou).
+function resumoPesquisa(p) {
+  const v = obj(p.validos);
+  const t = obj(p.totais);
+  const base = num(v?.lula) !== null && num(v?.flavio) !== null ? v : num(t?.lula) !== null && num(t?.flavio) !== null ? t : null;
+  const casa = txt(p.casa) || 'Casa';
+  const dia = fData(p.data);
+  const quando = dia ? ` ${dia}` : '';
+  if (!base) return `${casa}${quando}: números ainda sem leitura`;
+  const cp = casasPub(base.lula, base.flavio);
+  const lid = num(base.flavio) >= num(base.lula) ? 'flavio' : 'lula';
+  const outro = lid === 'flavio' ? 'lula' : 'flavio';
+  return `${casa}${quando}: ${curto(lid)} ${nf(cp).format(num(base[lid]))} × ${curto(outro)} ${nf(cp).format(num(base[outro]))}`;
+}
+
+// A frase da média: "o agregador próprio mudou: Flávio de 51,6% para 51,9%".
+function fraseMedia(ant, novo) {
+  const a = obj(ant?.medias?.radar) || obj(ant?.media);
+  const b = obj(novo?.medias?.radar) || obj(novo?.media);
+  const aL = num(a?.validos?.lula);
+  const aF = num(a?.validos?.flavio);
+  const bL = num(b?.validos?.lula);
+  const bF = num(b?.validos?.flavio);
+  if (bL === null || bF === null) return '';
+  const lid = bF >= bL ? 'flavio' : 'lula';
+  const antes = lid === 'flavio' ? aF : aL;
+  const depois = lid === 'flavio' ? bF : bL;
+  const nome = (obj(novo?.medias?.radar) ? rotuloCurto('radar', novo.medias.radar) : 'a média').toLowerCase();
+  if (antes === null) return `${nome}: ${curto(lid)} ${fNum(depois)}%`;
+  if (fNum(antes) === fNum(depois)) return `a média não mudou: ${curto(lid)} segue em ${fNum(depois)}%`;
+  return `a média mudou de ${fNum(antes)}% para ${fNum(depois)}% (${curto(lid)}, ${nome})`;
+}
+
+function anunciarNovas(novas, ant, novo) {
+  const el = $('#novas');
+  if (!el || !novas.length) return;
+  st.avisoItens = [...novas.map(resumoPesquisa), ...(el.hidden ? [] : st.avisoItens || [])].slice(0, 6);
+  const ids = novas.map((p) => novaAtiva(p)?.id).filter(Boolean);
+  st.avisoDestino = ids[0] || st.avisoDestino || null;
+  const qtd = st.avisoItens.length;
+  el.innerHTML = emHtml(h`<div class="novas-cartao" role="status">
+      <div class="novas-cab">
+        <span class="novas-pulso" aria-hidden="true"></span>
+        <b class="novas-tit">Acabou de entrar</b>
+        <span class="novas-qtd">${qtd === 1 ? 'pesquisa nova' : `${qtd} pesquisas novas`}</span>
+        <button type="button" class="novas-x" data-acao="fechar-novas" aria-label="Fechar o aviso">×</button>
+      </div>
+      <ul class="novas-lista">${st.avisoItens.map((x) => h`<li>${x}</li>`)}</ul>
+      ${fraseMedia(ant, novo) ? h`<p class="novas-media">${fraseMedia(ant, novo).replace(/^./, (c) => c.toUpperCase())}.</p>` : ''}
+      <a class="novas-ver" href="#pesquisas" data-acao="ver-novas">Ver na lista →</a>
+    </div>`);
+  el.hidden = false;
+  posicionarNovas();
+  requestAnimationFrame(() => el.classList.add('aberto'));
+  window.addEventListener('scroll', posicionarNovas, { passive: true });
+  armarAvisoNovas();
+}
+// O aviso só começa a contar o tempo com a aba à vista: quem volta depois de uma hora ainda o vê.
+function armarAvisoNovas() {
+  clearTimeout(st.timerAviso);
+  if (!document.hidden) st.timerAviso = setTimeout(ocultarNovas, AVISO_NOVA_MS);
+}
+// Logo abaixo da barra de abas (que gruda no topo ao rolar), sem tapar o conteúdo que o leitor lê.
+function posicionarNovas() {
+  const el = $('#novas');
+  const abas = $('.abas');
+  if (!el || el.hidden || !abas) return;
+  el.style.top = `${Math.max(0, abas.getBoundingClientRect().bottom) + 8}px`;
+}
+function ocultarNovas() {
+  const el = $('#novas');
+  if (!el) return;
+  clearTimeout(st.timerAviso);
+  window.removeEventListener('scroll', posicionarNovas);
+  el.classList.remove('aberto');
+  st.avisoItens = [];
+  setTimeout(() => {
+    if (!el.classList.contains('aberto')) {
+      el.hidden = true;
+      el.innerHTML = '';
+    }
+  }, reduzMovimento() ? 0 : 320);
+}
+
+/* ------------------------------------------ média que se move no lugar */
+
+// Antes de redesenhar, guarda o valor de cada número e a barra dos blocos; depois do desenho, os
+// números contam do valor antigo ao novo (sem piscar: o texto já começa no valor antigo) e as
+// barras deslizam. Quem pede "reduzir movimento" vê o valor novo direto.
+function fotografarNumeros() {
+  const cu = new Map();
+  for (const el of $$('[data-cu]')) {
+    const v = Number(el.dataset.v);
+    if (Number.isFinite(v)) cu.set(el.dataset.cu, v);
+  }
+  const seg = new Map();
+  for (const el of $$('[data-segag]')) seg.set(el.dataset.segag, el.style.flexGrow);
+  return { cu, seg, placar: $$('[data-bloco="pesquisas"]').map((c) => lerPlacar(c)) };
+}
+
+function contar(el, de, para, ms = 900) {
+  const casas = Number(el.dataset.casas) || 0;
+  const suf = el.dataset.sufixo || '';
+  const final = el.textContent;
+  cancelAnimationFrame(el._raf);
+  const t0 = performance.now();
+  const passo = (agora) => {
+    const k = Math.min(1, (agora - t0) / ms);
+    if (k >= 1) {
+      el.textContent = final;
+      return;
+    }
+    const e = 1 - Math.pow(1 - k, 3);
+    el.textContent = `${nf(casas).format(de + (para - de) * e)}${suf}`;
+    el._raf = requestAnimationFrame(passo);
+  };
+  el.textContent = `${nf(casas).format(de)}${suf}`;
+  el._raf = requestAnimationFrame(passo);
+}
+
+function animarNumeros(antes) {
+  if (!antes || reduzMovimento()) return;
+  for (const el of $$('[data-cu]')) {
+    const de = antes.cu.get(el.dataset.cu);
+    const para = Number(el.dataset.v);
+    if (Number.isFinite(de) && Number.isFinite(para) && de !== para) contar(el, de, para);
+  }
+  const segs = $$('[data-segag]');
+  const novos = segs.map((el) => el.style.flexGrow);
+  segs.forEach((el) => {
+    const a = antes.seg.get(el.dataset.segag);
+    if (a) el.style.flexGrow = a;
+  });
+  if (segs.length) {
+    void segs[0].offsetWidth;
+    requestAnimationFrame(() => segs.forEach((el, i) => (el.style.flexGrow = novos[i])));
+  }
+  $$('[data-bloco="pesquisas"]').forEach((c, i) => {
+    if (antes.placar[i]) animarPlacar(c, antes.placar[i]);
+  });
+}
+
+/* ------------------------------------------------- "atualizado às ..." */
+
+// Diz a verdade sobre a idade do número: a hora em que os dados foram gerados, a hora em que a página
+// conseguiu conferir pela última vez e, se a rede falhou, que o último dado é aquele.
+function textoCarimbo() {
+  const g = msDe(st.dados?.gerado_em);
+  if (g === null) return st.dados ? 'hora de geração dos dados não informada' : '';
+  const quando = mesmoDia(g, Date.now()) ? `às ${fHora(g)}` : `em ${fDataHora(g)}`;
+  if (falhaPersistente()) return `sem conexão agora; o último dado foi gerado ${quando}`;
+  return `atualizado ${quando}${st.okEm ? ` · conferido às ${fHora(st.okEm)}` : ''}`;
+}
+function atualizarCarimbo() {
+  const el = $('#ag-carimbo');
+  if (!el) return;
+  const t = textoCarimbo();
+  if (el._t !== t) {
+    el._t = t;
+    el.textContent = t;
+  }
+  const ok = !st.erro;
+  if (el.dataset.estado !== (ok ? 'ok' : 'erro')) el.dataset.estado = ok ? 'ok' : 'erro';
+  const v = $('#ag-vivo');
+  if (v && v.dataset.estado !== (ok ? 'ok' : 'erro')) v.dataset.estado = ok ? 'ok' : 'erro';
 }
 
 function aplicarCores() {
@@ -783,6 +1089,27 @@ async function atualizarMercados() {
   st.apur?.mercadosMudaram();
 }
 
+// A aba Apuração lê os mercados daqui: o preço de cada candidato já vem normalizado (soma 100%), para
+// o número que ela mostra bater com o das outras abas. O preço original fica em prob_bruta.
+let _mercNorm = { de: null, para: null };
+function mercadosNormalizados() {
+  const m = st.merc;
+  if (!m) return m;
+  if (_mercNorm.de === m) return _mercNorm.para;
+  const para = {
+    ...m,
+    fontes: arr(m.fontes).map((f) => {
+      const par = obj(f) && f.status !== 'erro' ? parMercado(f) : null;
+      if (!par) return f;
+      const L = f.candidatos.lula;
+      const F = f.candidatos.flavio;
+      return { ...f, candidatos: { ...f.candidatos, lula: { ...L, prob_bruta: L.prob, prob: par.li / 100 }, flavio: { ...F, prob_bruta: F.prob, prob: par.fi / 100 } } };
+    }),
+  };
+  _mercNorm = { de: m, para };
+  return para;
+}
+
 function normalizarHist(pontos) {
   const lista = arr(pontos)
     .map((p) => ({ t: msDe(p?.t), l: num(p?.lula), f: num(p?.flavio) }))
@@ -790,7 +1117,21 @@ function normalizarHist(pontos) {
     .sort((a, b) => a.t - b.t);
   const max = Math.max(0, ...lista.flatMap((p) => [p.l ?? 0, p.f ?? 0]));
   const k = max <= 1.5 ? 100 : 1; // 0..1 vira %; se já vier em %, mantém
-  return lista.map((p) => ({ t: p.t, l: p.l === null ? null : p.l * k, f: p.f === null ? null : p.f * k }));
+  // O histórico também sai normalizado (soma 100,0 em cada ponto, uma casa decimal), como os cartões.
+  return lista.map((p) => {
+    const l = p.l === null ? null : p.l * k;
+    const f = p.f === null ? null : p.f * k;
+    if (l === null || f === null || !(l + f > 0)) return { t: p.t, l, f };
+    const a = (l / (l + f)) * 1000;
+    const b = (f / (l + f)) * 1000;
+    let ai = Math.floor(a + 1e-9);
+    let bi = Math.floor(b + 1e-9);
+    if (1000 - ai - bi > 0) {
+      if (a - ai >= b - bi) ai += 1;
+      else bi += 1;
+    }
+    return { t: p.t, l: ai / 10, f: bi / 10 };
+  });
 }
 
 async function carregarHistoricos(forcar = false) {
@@ -837,14 +1178,30 @@ async function carregarHistoricos(forcar = false) {
 function trocarHtml(el, conteudo) {
   if (!el) return;
   const abertos = new Set($$('details[open][data-k]', el).map((x) => x.dataset.k));
+  // Controle deslizante do simulador de abstenção: a leitura nova não zera o que o leitor ajustou.
+  const sims = $$('[data-sim-ab-in]', el).map((i) => [i.dataset.simAbIn, i.value]);
   el.innerHTML = emHtml(conteudo);
   if (abertos.size) for (const x of $$('details[data-k]', el)) if (abertos.has(x.dataset.k)) x.open = true;
+  if (sims.some(([, v]) => v !== '0')) {
+    for (const [k, v] of sims) {
+      const i = $(`[data-sim-ab-in="${k}"]`, el);
+      if (i) i.value = v;
+    }
+    const caixa = $('[data-sim-ab]', el);
+    if (caixa) atualizarSimAbst(caixa);
+  }
   desenharVisiveis(false, el);
+}
+
+// Só para o CSS do Modo TV: com o agregador próprio escolhido, o cartão verde já mostra os mesmos números.
+function marcarMedia() {
+  document.body.dataset.mediaSel = (st.dados && mediaSelKey(st.dados)) || '';
 }
 
 function renderizarTudo() {
   renderizarFaixaTopo();
   const d = st.dados;
+  marcarMedia();
   trocarHtml($('#painel-resumo'), htmlResumo(d));
   trocarHtml($('#painel-pesquisas'), htmlPesquisas(d));
   trocarHtml($('#painel-mercados'), htmlAbaMercados());
@@ -953,21 +1310,63 @@ function htmlResumo(d) {
     <p class="ver-mais"><a href="#pesquisas">Ver cada pesquisa →</a><a href="#metodo">Como é calculado →</a></p>`;
 }
 
-// Bandeira do Brasil em SVG próprio (proporção 20:14, cores oficiais, faixa branca
-// curva fina no círculo, sem o lema: em tamanho pequeno ele vira ruído).
-const BANDEIRA = cru(`<svg class="bandeira" viewBox="0 0 20 14" role="img" aria-label="Bandeira do Brasil" focusable="false">
-  <defs><clipPath id="bandeira-globo"><circle cx="10" cy="7" r="3.5"/></clipPath></defs>
-  <rect width="20" height="14" fill="#009C3B"/>
-  <path d="M10 1.7 18.3 7 10 12.3 1.7 7Z" fill="#FFDF00"/>
-  <circle cx="10" cy="7" r="3.5" fill="#002776"/>
-  <path d="M6.3 7.55Q10.1 5.35 13.8 7.05" fill="none" stroke="#fff" stroke-width="0.6" clip-path="url(#bandeira-globo)"/>
-</svg>`);
+// Bandeira do Brasil em SVG com a geometria oficial (Lei 5.700/1971, anexo): retângulo de 20 × 14
+// módulos, losango a 1,7 módulo das bordas, círculo de 3,5 módulos de raio, faixa branca de 0,5
+// módulo em arco de 8 e 7,5 módulos, e as 27 estrelas nas posições do desenho oficial. 1 módulo = 210
+// unidades; a origem é o centro do círculo. Sem o lema: em tamanho de celular ele não se lê.
+// A página mostra a bandeira em fatias verticais que sobem e descem em fase (ondulação suave, só com
+// transform de CSS, sem JavaScript por quadro); com "reduzir movimento" fica parada.
+const COR_BANDEIRA = { verde: '#009C3B', amarelo: '#FFDF00', azul: '#002776' };
+const ESTRELAS_BANDEIRA = [
+  // [x, y, raio]: raios 31,5 (1ª grandeza) 26,25 21 15 e 10,5 (5ª)
+  [-600, -132, 31.5], [-535, 177, 31.5], [-625, 243, 26.25], [-463, 132, 15], [-382, 250, 26.25], [-404, 323, 21],
+  [228, -228, 31.5], [515, 258, 31.5], [617, 265, 21], [545, 323, 26.25], [368, 477, 26.25], [367, 551, 21],
+  [441, 419, 21], [500, 382, 26.25], [365, 405, 21], [-280, 30, 26.25], [200, -37, 21], [0, 330, 31.5],
+  [85, 184, 26.25], [0, 118, 26.25], [-74, 184, 21], [-37, 235, 15], [220, 495, 26.25], [283, 430, 21],
+  [162, 412, 21], [-295, 390, 31.5], [0, 575, 10.5],
+];
+function estrelaBandeira(cx, cy, R) {
+  const r = R * 0.381966;
+  const pts = [];
+  for (let k = 0; k < 10; k++) {
+    const ang = (-90 + k * 36) * (Math.PI / 180);
+    const rr = k % 2 === 0 ? R : r;
+    pts.push(`${(cx + rr * Math.cos(ang)).toFixed(1)},${(cy + rr * Math.sin(ang)).toFixed(1)}`);
+  }
+  return `<polygon points="${pts.join(' ')}"/>`;
+}
+function svgBandeira() {
+  const c = COR_BANDEIRA;
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2100 -1470 4200 2940" width="4200" height="2940">` +
+    `<rect x="-2100" y="-1470" width="4200" height="2940" fill="${c.verde}"/>` +
+    `<path d="M-1743 0 0 1113 1743 0 0-1113Z" fill="${c.amarelo}"/>` +
+    `<circle r="735" fill="${c.azul}"/>` +
+    `<clipPath id="g"><circle r="735"/></clipPath>` +
+    `<path clip-path="url(#g)" fill="#fff" d="m-2205 1470a1785 1785 0 0 1 3570 0h-105a1680 1680 0 1 0-3360 0z"/>` +
+    `<g fill="#fff">${ESTRELAS_BANDEIRA.map(([x, y, R]) => estrelaBandeira(x, y, R)).join('')}</g>` +
+    `</svg>`
+  );
+}
+const FATIAS_BANDEIRA = 24;
+// O SVG vira imagem de fundo de cada fatia (uma folha de estilo criada uma vez, no início).
+function instalarBandeira() {
+  if (document.getElementById('estilo-bandeira')) return;
+  const uri = `data:image/svg+xml,${encodeURIComponent(svgBandeira()).replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29')}`;
+  const el = document.createElement('style');
+  el.id = 'estilo-bandeira';
+  el.textContent = `.bandeira-onda i{background-image:url("${uri}")}`;
+  document.head.append(el);
+}
+const BANDEIRA = cru(
+  `<span class="bandeira-onda" role="img" aria-label="Bandeira do Brasil">${Array.from({ length: FATIAS_BANDEIRA }, (_, i) => `<i style="--i:${i}"></i>`).join('')}<b class="onda-luz" aria-hidden="true"></b></span>`,
+);
 const BANDEIRA_MINI = cru(`<svg class="bandeira-mini" viewBox="0 0 20 14" aria-hidden="true" focusable="false">
   <rect width="20" height="14" fill="#009C3B"/><path d="M10 1.7 18.3 7 10 12.3 1.7 7Z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.5" fill="#002776"/>
 </svg>`);
 
-// 1º turno dentro do cartão verde: quem terminou na frente primeiro, foto pequena,
-// nome curto e % dos válidos; um toque leva ao detalhe na aba Pesquisas.
+// 1º turno dentro do cartão verde: quem terminou na frente primeiro, foto grande, nome curto e % dos
+// válidos, em linhas alinhadas (foto, nome, %); um toque leva ao detalhe na aba Pesquisas.
 function bloco1TCartao() {
   const t = obj(st.dados?.primeiro_turno);
   const lista = arr(t?.candidatos).filter(obj);
@@ -983,24 +1382,69 @@ function bloco1TCartao() {
   const pct = (id) => (id === 'lula' ? pL : pF);
   const rotulo = `1º turno, resultado do TSE: ${ordem.map((id) => `${curto(id)} ${fPct(pct(id), 2)}`).join(', ')}. Ver detalhes do 1º turno`;
   return h`<a class="cont-1t" href="#pesquisas" data-ir="1turno" aria-label="${rotulo}">
-    <span class="c1-tit">1º turno · TSE</span>
-    ${ordem.map((id) => h`<span class="c1-l">${avatar(id, 30)}<span class="c1-nome">${curto(id)}</span><b>${fPct(pct(id), 2)}</b></span>`)}
+    <span class="c1-tit">1º turno · TSE${fData(t.data) ? ` · ${fData(t.data)}` : ''}</span>
+    <span class="c1-linhas">${ordem.map((id) => h`<span class="c1-l">${avatar(id, 48)}<span class="c1-nome">${curto(id)}</span><b>${fPct(pct(id), 2)}</b></span>`)}</span>
     <span class="c1-dif">+${fNum(dpp, 2)} ${dpp < 2 ? 'ponto' : 'pontos'}${dv !== null ? ` · ${fGrande(dv)} de votos` : ''}</span>
-    ${radar1tLinha()}
     <span class="c1-ver">ver detalhes do 1º turno →</span>
   </a>`;
 }
 
-// O que o Radar publicava no dia do 1º turno (radar_1t), em uma linha no cartão verde.
-function radar1tLinha() {
+// Como o agregador próprio se saiu no 1º turno (radar_1t): o placar corrigido contra a urna.
+function recordeAgregador() {
   const r = obj(st.dados?.radar_1t);
   const c = obj(r?.corrigida);
-  const res = obj(r?.resultado);
+  const u = obj(r?.resultado);
   if (!c || num(c.lula) === null || num(c.flavio) === null) return '';
-  const lid = num(c.flavio) >= num(c.lula) ? 'flavio' : 'lula';
-  const out = lid === 'flavio' ? 'lula' : 'flavio';
-  const acertou = res && num(res.flavio) !== null && num(res.lula) !== null && (num(res.flavio) >= num(res.lula)) === (lid === 'flavio');
-  return h`<span class="c1-radar">Radar na véspera: ${curto(lid)} ${fNum(c[lid])} × ${curto(out)} ${fNum(c[out])}${acertou ? ' · acertou quem venceria' : ''}</span>`;
+  const lid = (o) => (num(o.flavio) >= num(o.lula) ? 'flavio' : 'lula');
+  const outro = (id) => (id === 'flavio' ? 'lula' : 'flavio');
+  const temUrna = u && num(u.lula) !== null && num(u.flavio) !== null;
+  const margemC = num(c.flavio) - num(c.lula);
+  let erro = num(r?.erro_margem_pp?.corrigida);
+  if (erro === null && temUrna) erro = margemC - (num(u.flavio) - num(u.lula));
+  erro = erro === null ? null : Math.abs(erro);
+  const pontos = erro === null ? '' : `${fNum(erro, 2)} ${erro < 2 ? 'ponto' : 'pontos'}`;
+  const acertou = temUrna ? lid(c) === lid(u) : null;
+  const frase =
+    acertou === null || erro === null
+      ? h`No 1º turno, o agregador mostrou ${curto(lid(c))} na frente${pontos ? h` e errou a diferença por <b>${pontos}</b>` : ''}.`
+      : acertou
+        ? h`No 1º turno, o agregador <b>cravou o vencedor</b> e errou a diferença por <b>${erro < 1 ? 'só ' : ''}${pontos}</b>.`
+        : h`No 1º turno, o agregador <b>não acertou o vencedor</b> e errou a diferença por <b>${pontos}</b>.`;
+  const par = (o, casas) => `${curto(lid(o))} ${fNum(o[lid(o)], casas)} × ${curto(outro(lid(o)))} ${fNum(o[outro(lid(o))], casas)}`;
+  return h`<p class="ag-rec">${frase}</p>
+    ${temUrna ? h`<p class="ag-rec-det">Agregador: ${par(c, 1)} · urna (TSE): ${par(u, 2)}, em % dos votos válidos.</p>` : ''}`;
+}
+
+// "Agregador próprio": o valor de hoje da nossa média, grande, com a chance de cada um e o retrospecto.
+function blocoAgregador() {
+  const d = st.dados;
+  const m = obj(d?.medias?.radar);
+  const vL = num(m?.validos?.lula);
+  const vF = num(m?.validos?.flavio);
+  const par = parDe(m?.prob_vitoria);
+  const nc = num(m?.n_casas) ?? (arr(m?.casas).length || null);
+  const ate = fData(m?.as_of) || fData(d?.media?.as_of);
+  const col = (id, v, ch, dir) => {
+    const c = cand(id);
+    return h`<div class="ag-c${dir ? ' dir' : ''}" data-cand="${id}" style="--c:${c.cor}">
+      <div class="ag-quem">${dir ? '' : avatar(id, 40)}<span>${curto(id)}</span>${dir ? avatar(id, 40) : ''}</div>
+      <div class="ag-num">${v !== null ? h`<span data-cu="ag-${id}" data-v="${v}" data-casas="1">${fNum(v)}</span><small>%</small>` : LAC}</div>
+      <div class="ag-ch">${ch !== null ? h`<b data-cu="ag-ch-${id}" data-v="${ch}" data-casas="0" data-sufixo="%">${ch}%</b> de chance` : 'chance: sem dado'}</div>
+    </div>`;
+  };
+  let barra = '';
+  if (vL !== null && vF !== null && vL + vF > 0) {
+    const a = (vL / (vL + vF)) * 100;
+    barra = h`<div class="ag-barra" role="img" aria-label="${curto('lula')} ${fPct(vL)}, ${curto('flavio')} ${fPct(vF)} dos votos válidos"><span data-segag="lula" style="flex:${pctCss(a)} 1 0px"></span><span data-segag="flavio" style="flex:${pctCss(100 - a)} 1 0px"></span><i aria-hidden="true"></i></div>`;
+  }
+  return h`<section class="agreg" id="sec-agregador" aria-label="Agregador próprio: a média das pesquisas de hoje">
+    <div class="ag-cab"><p class="ag-tit">Agregador próprio ${info('Agregador próprio')}</p><span class="ag-vivo" id="ag-vivo"><i aria-hidden="true"></i>hoje</span></div>
+    <p class="ag-sub">A nossa média das pesquisas, em % dos votos válidos</p>
+    ${m ? h`<div class="ag-duelo">${col('lula', vL, par?.li ?? null, false)}${col('flavio', vF, par?.fi ?? null, true)}</div>${barra}` : lacunaBloco('Agregador próprio: sem dado ainda.')}
+    <p class="ag-fatos">${nc !== null ? `${fInt(nc)} ${plural(nc, 'casa', 'casas')} de pesquisa` : ''}${nc !== null && ate ? ' · ' : ''}${ate ? `pesquisas até ${ate}` : ''}</p>
+    <p class="ag-carimbo" id="ag-carimbo" aria-live="off">${textoCarimbo()}</p>
+    ${recordeAgregador()}
+  </section>`;
 }
 
 function blocoContagem() {
@@ -1009,13 +1453,14 @@ function blocoContagem() {
   const fe = msDe(e.fechamento) ?? msDe(CFG.fechamento);
   return h`<section class="heroi-item ord-1 cont" id="sec-contagem" aria-label="Contagem até o fechamento das urnas">
     <div class="cont-cartao">
+      <p class="cont-quando"><span>2º turno</span><b>${fSemana(fe) || 'domingo'}, ${fData(fe) || '25/10'}</b></p>
       <div class="cont-principal">
-        <p class="cont-quando">2º turno · ${fSemana(fe) || 'domingo'}, ${fData(fe) || '25/10'}</p>
         <p class="cont-grande" id="cont-grande">&nbsp;</p>
         <p class="cont-relogio" id="cont-relogio" aria-live="off"></p>
         <p class="cont-legenda" id="cont-legenda"></p>
       </div>
       <div class="cont-lado">${BANDEIRA}${bloco1TCartao()}</div>
+      ${st.dados ? blocoAgregador() : ''}
       <div id="cont-acao"></div>
       <p class="cont-nota">Urnas abrem às ${fHoraCurta(ab)} e fecham às ${fHoraCurta(fe)} (horário de Brasília). A apuração começa em seguida, ao vivo, na aba <a href="#apuracao">Apuração</a>.</p>
     </div>
@@ -1048,16 +1493,15 @@ function htmlMediaSel(d) {
   const vF = num(m.validos?.flavio);
   const fxL = faixa(m.faixa_validos?.lula);
   const fxF = faixa(m.faixa_validos?.flavio);
-  const pL = num(m.prob_vitoria?.lula);
-  const pF = num(m.prob_vitoria?.flavio);
-  const coluna = (id, v, fx, p, dir) => {
+  const parP = parDe(m.prob_vitoria);
+  const coluna = (id, v, fx, ch, dir) => {
     const c = cand(id);
     const quem = h`<span class="placar-quem">${curto(id)}<small>${txt(c.partido) || ''}${num(c.numero) !== null ? ` · ${c.numero}` : ''}</small></span>`;
     return h`<div class="placar-c${dir ? ' dir' : ''}" style="--c:${c.cor}">
         <div class="placar-nome">${dir ? h`${quem}${avatar(id, null, 'av-placar')}` : h`${avatar(id, null, 'av-placar')}${quem}`}</div>
         <div class="placar-num">${v !== null ? h`<span data-anim="${id}" data-v="${v}" data-casas="1">${fNum(v)}</span><small>%</small>` : LAC}</div>
         <div class="placar-faixa">${fx ? `faixa de ${fNum(fx[0])} a ${fNum(fx[1])}` : h`faixa: ${LAC}`}</div>
-        <div class="placar-ch">chance de vitória <b>${num(p) !== null ? h`<span data-anim="ch-${id}" data-v="${num(p) * 100}" data-casas="0" data-sufixo="%">${fProb(p)}</span>` : LAC}</b></div>
+        <div class="placar-ch">chance de vitória <b>${ch !== null ? h`<span data-anim="ch-${id}" data-v="${ch}" data-casas="0" data-sufixo="%">${ch}%</span>` : LAC}</b></div>
       </div>`;
   };
   const np = num(m.n_pesquisas) ?? (k === 'ponderada' ? num(base.n_pesquisas) : null);
@@ -1071,20 +1515,19 @@ function htmlMediaSel(d) {
     const q = d.medias[x];
     const a = num(q.validos?.lula);
     const b = num(q.validos?.flavio);
-    const qa = num(q.prob_vitoria?.lula);
-    const qb = num(q.prob_vitoria?.flavio);
-    const lid = qa !== null && qb !== null ? (qa >= qb ? 'lula' : 'flavio') : null;
+    const pq = parDe(q.prob_vitoria);
+    const lid = pq ? (pq.li >= pq.fi ? 'lula' : 'flavio') : null;
     return h`<button type="button" class="mq-c" data-media="${x}" aria-pressed="${String(x === k)}" aria-expanded="${String(x === k && st.explicaAberta)}" aria-controls="mq-explica" aria-label="${rotuloCurto(x, q)}: escolher e ver como é feita">
         <span class="mq-i" aria-hidden="true">i</span>
         <span class="mq-rot">${rotuloCurto(x, q)}</span>
-        <span class="mq-v"><i class="mc" style="--c:${cand('lula').cor}"></i>${fNum(a) ?? '—'}<span class="mq-x">×</span>${fNum(b) ?? '—'}<i class="mc" style="--c:${cand('flavio').cor}"></i></span>
-        <span class="mq-ch">${lid ? `chance: ${curto(lid)} ${fProb(lid === 'lula' ? qa : qb)}` : 'chance: sem dado'}</span>
+        <span class="mq-v"><i class="mc" style="--c:${cand('lula').cor}"></i>${cuNum(`mq-${x}-l`, a)}<span class="mq-x">×</span>${cuNum(`mq-${x}-f`, b)}<i class="mc" style="--c:${cand('flavio').cor}"></i></span>
+        <span class="mq-ch">${lid ? `chance: ${curto(lid)} ${fChance(pq, lid)}` : 'chance: sem dado'}</span>
       </button>`;
   });
   return h`<p class="op-qual">Qual média ${info('Quatro médias')}</p>
     ${chips}
     <p class="op-rot">${txt(m.rotulo) || rotuloCurto(k, m)}</p>
-    <div class="placar">${coluna('lula', vL, fxL, pL, false)}${coluna('flavio', vF, fxF, pF, true)}</div>
+    <div class="placar">${coluna('lula', vL, fxL, parP?.li ?? null, false)}${coluna('flavio', vF, fxF, parP?.fi ?? null, true)}</div>
     ${barraDupla(vL, vF, fxL)}
     <p class="contexto">${conta || h`Pesquisas: ${LAC}`} · depois do 1º turno${asOf ? ` · até ${asOf}` : ''}${casas ? ` · ${casas}` : ''}</p>
     ${txt(m.nota) ? h`<p class="nota">${m.nota}</p>` : ''}
@@ -1181,13 +1624,14 @@ function htmlTriangulacao() {
   const d = st.dados;
   const k = mediaSelKey(d);
   const m = k ? d.medias[k] : null;
+  const parP = parDe(m?.prob_vitoria);
   const fontes = arr(st.merc?.fontes).filter(obj);
   const fonte = (id) => fontes.find((f) => f.id === id);
   const merc = (id, quem) => {
     if (st.mod === undefined) return '…';
     const f = fonte(id);
     if (!f || f.status === 'erro') return '—';
-    return fProb(f.candidatos?.[quem]?.prob) ?? '—';
+    return fChance(parMercado(f), quem) ?? '—';
   };
   const estado = (id) => {
     const f = fonte(id);
@@ -1202,12 +1646,12 @@ function htmlTriangulacao() {
   return h`<table class="tab tri-tab">
       <thead><tr><th style="width:44%">Fonte</th>${cabecalhoCand('lula')}${cabecalhoCand('flavio')}</tr></thead>
       <tbody>
-        ${linha('Pesquisas', m ? rotuloCurto(k, m).toLowerCase() : 'sem dado', ou(fProb(m?.prob_vitoria?.lula)), ou(fProb(m?.prob_vitoria?.flavio)), true)}
+        ${linha('Pesquisas', m ? rotuloCurto(k, m).toLowerCase() : 'sem dado', parP ? cuNum('tri-l', parP.li, 0, '%') : LAC, parP ? cuNum('tri-f', parP.fi, 0, '%') : LAC, true)}
         ${linha('Polymarket', estado('polymarket'), merc('polymarket', 'lula'), merc('polymarket', 'flavio'))}
         ${linha('Kalshi', estado('kalshi'), merc('kalshi', 'lula'), merc('kalshi', 'flavio'))}
       </tbody>
     </table>
-    <p class="nota">Pesquisas: ${m ? rotuloCurto(k, m).toLowerCase() : 'sem dado'} (modelo do Radar). Mercados estrangeiros; preço é informativo, não é convite a apostar. ${st.mod === null ? 'Mercados indisponíveis agora.' : ''}</p>
+    <p class="nota">Pesquisas: ${m ? rotuloCurto(k, m).toLowerCase() : 'sem dado'} (modelo do Radar). Mercados estrangeiros; preço é informativo, não é convite a apostar. ${st.mod === null ? 'Mercados indisponíveis agora. ' : ''}Chance dos mercados normalizada para somar 100% entre os dois ${info('Chance normalizada')}</p>
     <p class="ver-mais"><a href="#mercados">Ver mercados e gráfico →</a></p>`;
 }
 
@@ -1393,32 +1837,6 @@ function cemEleitores(e) {
     </div>`;
 }
 
-function porqueAbstencao(e, p) {
-  const t1 = num(e?.t1_2026);
-  const ab = num(p.abstencao_estimada_pct);
-  const dl = num(p.base_abstencao?.delta_medio_t1_t2_pp);
-  const hist = arr(e?.historico).filter((r) => obj(r) && num(r.variacao) !== null);
-  if (t1 === null || ab === null || dl === null) return '';
-  const max = Math.max(...hist.map((r) => Math.abs(num(r.variacao))), 0.1);
-  const fx = faixa(p.abstencao_faixa_pct);
-  return h`<div class="porque">
-      <p class="cem-tit">Por que ${fNum(ab)}%?</p>
-      <div class="conta">
-        <div><small>Faltaram no 1º turno</small><b>${fNum(t1)}%</b></div>
-        <span aria-hidden="true">+</span>
-        <div><small>Alta de costume no 2º turno</small><b>${fNum(dl)} ponto</b></div>
-        <span aria-hidden="true">=</span>
-        <div class="res"><small>Previsão para domingo</small><b>${fNum(ab)}%</b></div>
-      </div>
-      ${hist.length ? h`<p class="porque-txt">A falta quase sempre aumenta no 2º turno: subiu em ${num(e.subiu_em) ?? '?'} das ${num(e.eleicoes) ?? hist.length} eleições desde 2002. Quanto mudou do 1º para o 2º turno em cada uma:</p>
-      <ul class="hist-abst">${hist.map((r) => {
-        const v = num(r.variacao);
-        return h`<li><span>${r.ano}</span><span class="trilho"><span class="${v < 0 ? 'neg' : ''}" style="width:${((Math.abs(v) / max) * 100).toFixed(1)}%"></span></span><b>${fSinal(v)}</b>${v < 0 ? h`<small>caiu</small>` : ''}</li>`;
-      })}</ul>` : ''}
-      ${fx ? h`<p class="porque-txt">Por isso a faixa vai de ${fPct(fx[0])} (se cair como em 2022) a ${fPct(fx[1])} (se subir como em 2010, a maior alta).</p>` : ''}
-    </div>`;
-}
-
 const listaOu = (xs) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join('; ')} ou ${xs[xs.length - 1]}`);
 
 // Abstenção estado a estado (projecao.cenarios_uf, calculado em build_pocket.py): a tabela com
@@ -1481,24 +1899,106 @@ function cenariosEstado(p) {
     </div>`;
 }
 
+// Cartão 1: por que ~23 em cada 100 vão faltar (a conta do 1º turno mais a alta de costume, numa linha).
+function cartaoFalta(e, p) {
+  const t1 = num(e?.t1_2026);
+  const ab = num(p.abstencao_estimada_pct);
+  const dl = num(p.base_abstencao?.delta_medio_t1_t2_pp);
+  const faltam = num(e?.de_cada_100?.nao_votam) ?? (ab !== null ? Math.round(ab) : null);
+  if (t1 === null || ab === null || dl === null || faltam === null) return '';
+  const subiu = num(e?.subiu_em);
+  const total = num(e?.eleicoes);
+  return h`<article class="proj-card">
+      <h3 class="proj-tit">Por que ~${fInt(faltam)} em cada 100 vão faltar</h3>
+      <p>No 1º turno faltaram <b>${fNum(t1)}%</b> dos eleitores. No 2º turno a falta costuma subir um pouco (<b>${fSinal(dl)} ponto</b> em média${subiu !== null && total !== null ? `; subiu em ${fInt(subiu)} das ${fInt(total)} eleições desde 2002` : ''}). A conta: <b>${fNum(t1)} + ${fNum(Math.abs(dl))} = ${fNum(ab)}%</b>.</p>
+    </article>`;
+}
+
+// Cartão 2: isso muda quem ganha? Só se um lado faltar mais que o outro (o número vem de explicacao.virada).
 function mudaResultado(p, e) {
-  const cen = arr(p.cenarios).filter(obj);
-  const centro = cen.find((c) => c.central) || cen[1];
-  const mesmo = (c) => centro && num(c.validos?.lula) === num(centro.validos?.lula);
-  const so_abst = cen.filter(mesmo);
-  const outro = cen.find((c) => !mesmo(c));
   const v = obj(e?.virada);
   const casa = obj(v?.ficam_em_casa_de_cada_100);
   const quem = v?.quem_vira;
   const falta = v?.quem_falta_mais;
-  return h`<div class="muda">
-      <p class="cem-tit">Isso muda quem ganha?</p>
-      ${centro && so_abst.length > 1 ? h`<div class="muda-card"><p class="muda-sim-nao">Não, se faltar gente igual dos dois lados.</p>
-        <p>Com ${listaOu(so_abst.map((c) => fPct(c.abstencao_pct)))} de abstenção, o placar fica igual: ${curto('lula')} ${fPct(centro.validos.lula)} × ${curto('flavio')} ${fPct(centro.validos.flavio)} dos votos válidos. Só o total de votos muda.</p></div>` : ''}
-      ${casa && quem && falta ? h`<div class="muda-card forte"><p class="muda-sim-nao">Sim, se um lado faltar mais.</p>
-        <p>${curto(quem)} vira se, de cada 100 eleitores do ${curto(falta)}, <b>${fNum(casa[falta])}</b> ficarem em casa, e de cada 100 do ${curto(quem)}, só <b>${fNum(casa[quem])}</b>. A diferença é de ${fNum(v.diferenca)} ${num(v.diferenca) !== null && num(v.diferenca) < 2 ? 'ponto' : 'pontos'}: quase o quanto a falta costuma subir de um turno para o outro, só que concentrada num lado.</p></div>` : h`<div class="virada"><p class="virada-tit">O que vira o jogo</p><p class="virada-txt">${ou(txt(p.virada?.texto))}</p></div>`}
-      ${outro ? h`<p class="porque-txt"><b>Outro risco, que não é abstenção:</b> se cada instituto errar como errou no 1º turno, o placar vai a ${curto('lula')} ${fPct(outro.validos?.lula)} × ${curto('flavio')} ${fPct(outro.validos?.flavio)}.</p>` : ''}
-    </div>`;
+  const dif = num(v?.diferenca);
+  const pode = casa && quem && falta && num(casa[falta]) !== null && num(casa[quem]) !== null;
+  return h`<article class="proj-card">
+      <h3 class="proj-tit">Isso muda quem ganha?</h3>
+      ${pode
+        ? h`<p><b>Só se um lado faltar mais que o outro.</b> ${curto(quem)} passaria à frente se ficassem em casa <b>${fNum(casa[falta])}</b> de cada 100 eleitores de ${curto(falta)} e só <b>${fNum(casa[quem])}</b> de cada 100 de ${curto(quem)}${dif !== null ? h` (<b>${fNum(dif)} ${dif < 2 ? 'ponto' : 'pontos'}</b> de diferença)` : ''}. Faltar igual dos dois lados não muda o placar.</p>`
+        : h`<p>${ou(txt(p.virada?.texto))}</p>`}
+    </article>`;
+}
+
+// Fora da abstenção: o outro risco é as pesquisas errarem como erraram no 1º turno.
+function outroRisco(p) {
+  const cen = arr(p.cenarios).filter(obj);
+  const centro = cen.find((c) => c.central) || cen[1];
+  const outro = cen.find((c) => centro && num(c.validos?.lula) !== num(centro.validos?.lula));
+  if (!outro) return '';
+  return h`<p class="porque-txt"><b>Outro risco, que não é abstenção:</b> se cada instituto errar como errou no 1º turno, o placar vai a ${curto('lula')} ${fPct(outro.validos?.lula)} × ${curto('flavio')} ${fPct(outro.validos?.flavio)}.</p>`;
+}
+
+// Cartão 3: chuva e locomoção no domingo (projecao.clima; sem ele o cartão some).
+const LIMITE_CHUVA_MM = 2; // abaixo disso a região não entra na lista "vai chover"
+const LIMITE_EFEITO_PP = 0.1; // abaixo disso o efeito no placar vira "praticamente nada"
+function quandoClima(c) {
+  const t = txt(c.previsao_para);
+  if (!t) return 'o domingo da eleição';
+  return t.replace(/^(\d{4})-(\d{2})-(\d{2})/, (_, a, m, d) => `${d}/${m}`);
+}
+function tabelaRegioesClima(regs) {
+  return h`<div class="tab-wrap"><table class="tab clima-tab">
+      <thead><tr><th style="width:36%">Região</th><th class="n">Chuva</th><th class="n">Chance de chuva</th><th class="n">Falta extra (pontos)</th></tr></thead>
+      <tbody>${regs.map((r) => h`<tr><td>${r.nome}</td><td class="n">${ou(num(r.chuva_mm) !== null ? `${fNum(r.chuva_mm)} mm` : null)}</td><td class="n">${ou(num(r.prob_chuva_pct) !== null ? `${fInt(r.prob_chuva_pct)}%` : null)}</td><td class="n">${ou(num(r.abst_extra_pp) !== null ? fSinal2(r.abst_extra_pp) : null)}</td></tr>`)}</tbody>
+    </table></div>`;
+}
+function cartaoClima(p) {
+  const c = obj(p.clima);
+  if (!c) return '';
+  const regs = arr(c.regioes).filter((r) => obj(r) && txt(r.nome) && num(r.chuva_mm) !== null);
+  const ef = num(c.efeito_abstencao_pp);
+  const efL = num(c.efeito_lula_par_pp);
+  if (!regs.length && ef === null) return '';
+  const chove = regs.filter((r) => num(r.chuva_mm) >= LIMITE_CHUVA_MM).sort((a, b) => num(b.chuva_mm) - num(a.chuva_mm));
+  const secas = regs.filter((r) => num(r.chuva_mm) < LIMITE_CHUVA_MM).map((r) => r.nome);
+  const pequeno = efL !== null && Math.abs(efL) < LIMITE_EFEITO_PP;
+  return h`<article class="proj-card">
+      <h3 class="proj-tit">Chuva e locomoção no domingo</h3>
+      ${chove.length
+        ? h`${tabelaRegioesClima(chove)}${secas.length ? h`<p class="proj-nota">Chuva fraca ou nenhuma em ${listaNomes(secas)}.</p>` : ''}`
+        : h`<p>Sem chuva relevante prevista (mais de ${fInt(LIMITE_CHUVA_MM)} mm) em nenhuma região.</p>`}
+      ${ef !== null || efL !== null
+        ? h`<p class="proj-efeito">Somando o país${ef !== null ? h`, a chuva muda a falta em <b>${fSinal2(ef)} ponto</b>` : ''}${efL !== null ? h`${ef !== null ? ' e' : ', a chuva muda'} a parte de ${curto('lula')} nos votos válidos em <b>${fSinal2(efL)} ponto</b>` : ''}${pequeno ? ': praticamente nada' : ''}.</p>`
+        : ''}
+      <p class="proj-nota">Previsão para ${quandoClima(c)}${txt(c.fonte) ? ` · ${c.fonte.split(',')[0]}` : ''}.</p>
+    </article>`;
+}
+// Dentro do bloco recolhido: todas as regiões, a frase pronta e como o efeito foi medido.
+function detalheClima(p) {
+  const c = obj(p.clima);
+  if (!c) return '';
+  const regs = arr(c.regioes).filter((r) => obj(r) && txt(r.nome));
+  return h`<p class="cem-tit">Chuva no domingo: como foi medida</p>
+    ${regs.length ? tabelaRegioesClima(regs) : ''}
+    ${txt(c.frase) ? h`<p class="porque-txt">${c.frase}</p>` : ''}
+    ${txt(c.evidencia) ? h`<p class="porque-txt">${c.evidencia}</p>` : ''}
+    <p class="fonte">${txt(c.fonte) ? `Fonte: ${c.fonte}` : ''}${fDataHora(c.coletado_em) ? ` · coletado em ${fDataHora(c.coletado_em)}` : ''}</p>`;
+}
+
+// Quanto a falta mudou do 1º para o 2º turno em cada eleição (barras), para quem quiser ver o histórico.
+function historicoFalta(e, p) {
+  const hist = arr(e?.historico).filter((r) => obj(r) && num(r.variacao) !== null);
+  if (!hist.length) return '';
+  const max = Math.max(...hist.map((r) => Math.abs(num(r.variacao))), 0.1);
+  const fx = faixa(p.abstencao_faixa_pct);
+  return h`<p class="cem-tit">Como a falta mudou em cada eleição</p>
+    <p class="porque-txt">Pontos percentuais a mais (ou a menos) de eleitores faltando no 2º turno, comparado ao 1º.</p>
+    <ul class="hist-abst">${hist.map((r) => {
+      const v = num(r.variacao);
+      return h`<li><span>${r.ano}</span><span class="trilho"><span class="${v < 0 ? 'neg' : ''}" style="width:${((Math.abs(v) / max) * 100).toFixed(1)}%"></span></span><b>${fSinal(v)}</b>${v < 0 ? h`<small>caiu</small>` : ''}</li>`;
+    })}</ul>
+    ${fx ? h`<p class="porque-txt">Por isso a previsão vai de ${fPct(fx[0])} (se cair como em 2022) a ${fPct(fx[1])} (se subir como em 2010, a maior alta).</p>` : ''}`;
 }
 
 function blocoProjecao(d) {
@@ -1524,13 +2024,26 @@ function blocoProjecao(d) {
     ${tit}
     ${txt(e?.frase) ? h`<p class="em-frase"><b>Em uma frase:</b> ${e.frase}</p>` : ''}
     ${cemEleitores(e)}
-    ${porqueAbstencao(e, p)}
-    ${mudaResultado(p, e)}
-    ${cenariosEstado(p)}
-    <p class="cem-tit">Em votos, na previsão do meio</p>
-    <div class="votos-duelo">${coluna('lula', vL, false)}${coluna('flavio', vF, true)}</div>
-    <p class="linha-forte">Diferença: <b>${mg !== null ? `${fGrande(mg)} de votos` : LAC}</b>${lider && mg !== null ? ` (${curto(lider)} à frente)` : ''} ${info('Margem')}</p>
-    <details class="mais" data-k="tab-cenarios"><summary>Ver os cenários em votos</summary>${tabelaCenarios(p, ab)}</details>
+    <div class="proj-cards">
+      ${cartaoFalta(e, p)}
+      ${mudaResultado(p, e)}
+      ${cartaoClima(p)}
+    </div>
+    <details class="mais" data-k="cenarios-abst">
+      <summary>Cenários de abstenção</summary>
+      <div class="mais-corpo">
+        <p class="porque-txt">As contas por trás dos cartões: em votos, se a falta mudar como em eleições passadas, estado a estado, e a chuva.</p>
+        <p class="cem-tit">Em votos, na previsão do meio</p>
+        <div class="votos-duelo">${coluna('lula', vL, false)}${coluna('flavio', vF, true)}</div>
+        <p class="linha-forte">Diferença: <b>${mg !== null ? `${fGrande(mg)} de votos` : LAC}</b>${lider && mg !== null ? ` (${curto(lider)} à frente)` : ''} ${info('Margem')}</p>
+        ${cenariosEstado(p)}
+        <p class="cem-tit">Cenários em votos</p>
+        ${tabelaCenarios(p, ab)}
+        ${historicoFalta(e, p)}
+        ${detalheClima(p)}
+        ${outroRisco(p)}
+      </div>
+    </details>
     <p class="fonte">Eleitorado: ${num(p.eleitorado) !== null ? `${fGrande(p.eleitorado)} de eleitores (TSE)` : LAC} · comparecimento estimado: ${ou(fGrande(p.comparecimento_estimado))} · votos válidos estimados: ${ou(fGrande(p.votos_validos_estimados))} · abstenção e brancos e nulos de 2002 a 2026: TSE · cálculo do Radar${fDataHora(d.gerado_em) ? ` · gerado em ${fDataHora(d.gerado_em)}` : ''}</p>
   </section>`;
 }
@@ -1580,7 +2093,8 @@ function htmlMercados(variante) {
       ? lacunaBloco(`Mercados indisponíveis agora (${st.mercErro}). Nova tentativa em 1 minuto.`)
       : h`<p class="estado">Lendo os mercados…</p>`;
   }
-  return h`<div class="mercs">${fontes.map((f) => cartaoMercado(f, variante))}</div>`;
+  return h`<div class="mercs">${fontes.map((f) => cartaoMercado(f, variante))}</div>
+    <p class="merc-norm">Normalizado para somar 100% entre os dois ${info('Chance normalizada')}</p>`;
 }
 
 function statusMercado(f) {
@@ -1605,19 +2119,18 @@ function volumeTexto(f) {
 function cartaoMercado(f, variante) {
   const nome = txt(f.nome) || txt(f.id) || 'Mercado';
   const ok = f.status !== 'erro';
-  const pL = num(f.candidatos?.lula?.prob);
-  const pF = num(f.candidatos?.flavio?.prob);
+  // O que vai para a tela como chance é o par normalizado (soma 100%); o preço de cada lado
+  // (compra, venda, último) segue como veio, na tabela do cartão completo.
+  const par = ok ? parMercado(f) : null;
   const linhas = ['lula', 'flavio'].map((id) => {
-    const c = cand(id);
-    const p = num(f.candidatos?.[id]?.prob);
-    return h`<div class="merc-linha"><span class="merc-cand">${avatar(id, 24)}${curto(id)}</span><span class="merc-num">${ok && p !== null ? fProb(p) : LAC}</span></div>`;
+    const bruto = num(f.candidatos?.[id]?.prob);
+    const txtChance = par ? fChance(par, id) : ok && bruto !== null ? fProb(bruto) : null;
+    return h`<div class="merc-linha"><span class="merc-cand">${avatar(id, 24)}${curto(id)}</span><span class="merc-num">${ok && txtChance !== null ? txtChance : LAC}</span></div>`;
   });
   let barra = '';
-  if (ok && pL !== null && pF !== null) {
-    const soma = Math.max(1, pL + pF);
-    const resto = Math.max(0, 1 - pL - pF);
-    barra = h`<div class="barra fina" role="img" aria-label="${curto('lula')} ${fProb(pL)}, ${curto('flavio')} ${fProb(pF)}">
-        <span class="seg" style="--c:${cand('lula').cor};flex:${pctCss((pL / soma) * 100)} 1 0px"></span>${resto > 0.005 ? h`<span class="resto" style="flex:${pctCss(resto * 100)} 1 0px"></span>` : ''}<span class="seg" style="--c:${cand('flavio').cor};flex:${pctCss((pF / soma) * 100)} 1 0px"></span>
+  if (par) {
+    barra = h`<div class="barra fina" role="img" aria-label="${curto('lula')} ${fChance(par, 'lula')}, ${curto('flavio')} ${fChance(par, 'flavio')}">
+        <span class="seg" style="--c:${cand('lula').cor};flex:${pctCss(par.l)} 1 0px"></span><span class="seg" style="--c:${cand('flavio').cor};flex:${pctCss(par.f)} 1 0px"></span>
       </div>`;
   }
   const link = linkExt(f.url, `abrir na ${nome} ↗`);
@@ -1631,6 +2144,9 @@ function cartaoMercado(f, variante) {
       ${link ? h`<p class="merc-link">${link}</p>` : ''}
     </article>`;
   }
+  const brutoL = num(f.candidatos?.lula?.prob);
+  const brutoF = num(f.candidatos?.flavio?.prob);
+  const soma = brutoL !== null && brutoF !== null ? (brutoL + brutoF) * 100 : null;
   const precos = ['lula', 'flavio'].map((id) => {
     const c = obj(f.candidatos?.[id]) || {};
     return h`<tr><td>${curto(id)}</td><td class="n">${ou(fProb1(c.compra))}</td><td class="n">${ou(fProb1(c.venda))}</td><td class="n">${ou(fProb1(c.ultimo))}</td></tr>`;
@@ -1644,8 +2160,8 @@ function cartaoMercado(f, variante) {
     ${txt(f.titulo) ? h`<p class="merc-tit">${f.titulo}</p>` : ''}
     ${linhas}${barra}
     ${ok
-      ? h`<table class="tab"><thead><tr><th style="width:28%">Preço</th><th class="n">Compra</th><th class="n">Venda</th><th class="n">Último</th></tr></thead><tbody>${precos}</tbody><caption>Em centavos de dólar por contrato que paga US$ 1, lido como %. ${info('Compra, venda e último')}</caption></table>`
-      : h`<p class="merc-erro">Sem preço agora; nova tentativa em 1 minuto.${txt(f.erro) ? h`<small>${f.erro}</small>` : ''}</p>`}
+      ? h`<table class="tab"><thead><tr><th style="width:28%">Preço</th><th class="n">Compra</th><th class="n">Venda</th><th class="n">Último</th></tr></thead><tbody>${precos}</tbody><caption>Preços originais, em centavos de dólar por contrato que paga US$ 1, lidos como %. ${info('Compra, venda e último')}${soma !== null ? ` Os dois preços do meio somam ${fNum(soma, 1)}%.` : ''}</caption></table>`
+      : h`<p class="merc-erro">Sem preço agora; nova tentativa em 1 minuto.${txt(f.erro) ? h`<small>${limparErro(f.erro)}</small>` : ''}</p>`}
     ${meta.length ? h`<p class="merc-meta">${meta.map((x, i) => h`${i ? ' · ' : ''}${x}`)}</p>` : ''}
     ${link ? h`<p class="merc-link">${link}</p>` : ''}
   </article>`;
@@ -1678,8 +2194,8 @@ function htmlComparacao() {
   const linhas = arr(d?.medias_ordem).map((k) => ({
     nome: `Pesquisas: ${rotuloCurto(k, d.medias[k]).toLowerCase()}`,
     sub: 'modelo do Radar',
-    l: d.medias[k]?.prob_vitoria?.lula,
-    f: d.medias[k]?.prob_vitoria?.flavio,
+    l: fChance(parDe(d.medias[k]?.prob_vitoria), 'lula'),
+    f: fChance(parDe(d.medias[k]?.prob_vitoria), 'flavio'),
   }));
   if (!linhas.length) linhas.push({ nome: 'Pesquisas', sub: 'sem dado ainda', l: null, f: null });
   if (st.mod === null) linhas.push({ nome: 'Mercados', sub: 'indisponíveis agora', l: null, f: null, traco: true });
@@ -1689,18 +2205,18 @@ function htmlComparacao() {
     linhas.push({
       nome: txt(f.nome) || txt(f.id) || 'Mercado',
       sub: ok ? (f.origem === 'ao_vivo' ? 'mercado, ao vivo' : f.origem === 'vivo-15s' ? `mercado, quase ao vivo (${fHoraSeg(f.atualizado_em) || 'hora sem registro'})` : `mercado, snapshot de ${fQuando(f.atualizado_em) || 'hora sem registro'}`) : 'mercado indisponível agora',
-      l: ok ? f.candidatos?.lula?.prob : null,
-      f: ok ? f.candidatos?.flavio?.prob : null,
+      l: ok ? fChance(parMercado(f), 'lula') : null,
+      f: ok ? fChance(parMercado(f), 'flavio') : null,
       traco: !ok,
     });
   }
   return h`<table class="tab">
     <thead><tr><th style="width:52%">Fonte</th>${cabecalhoCand('lula')}${cabecalhoCand('flavio')}</tr></thead>
     <tbody>${linhas.map((x) => {
-      const cel = (v) => (fProb(v) ?? (x.traco ? '—' : LAC));
+      const cel = (v) => v ?? (x.traco ? '—' : LAC);
       return h`<tr><td>${x.nome}<small>${x.sub}</small></td><td class="n">${cel(x.l)}</td><td class="n">${cel(x.f)}</td></tr>`;
     })}</tbody>
-    <caption>A chance das pesquisas sai do modelo do Radar; a dos mercados, do preço do contrato. São medidas diferentes e podem divergir.</caption>
+    <caption>A chance das pesquisas sai do modelo do Radar; a dos mercados, do preço do contrato, normalizada para somar 100% entre os dois ${info('Chance normalizada')}. São medidas diferentes e podem divergir.</caption>
   </table>`;
 }
 
@@ -1723,7 +2239,7 @@ function htmlHistoricos() {
     } else {
       const ult = hs.pontos[hs.pontos.length - 1];
       corpo = h`<div class="leg"><span><i class="lk" style="--c:${L.cor}"></i>${curto('lula')}</span><span><i class="lk" style="--c:${F.cor}"></i>${curto('flavio')}</span></div>
-        <div class="graf" data-grafico="mercado" data-fonte="${f.id}" tabindex="0" role="img" aria-label="Histórico de ${nome}: ${curto('lula')} ${fNum(ult.l, 0) || 'sem dado'}%, ${curto('flavio')} ${fNum(ult.f, 0) || 'sem dado'}% no último ponto"></div>
+        <div class="graf" data-grafico="mercado" data-fonte="${f.id}" tabindex="0" role="img" aria-label="Histórico de ${nome}: ${curto('lula')} ${fNum(ult.l, 1) || 'sem dado'}%, ${curto('flavio')} ${fNum(ult.f, 1) || 'sem dado'}% no último ponto"></div>
         <details class="mais" data-k="th:${f.id}"><summary>Ver em tabela</summary>${tabelaHist(hs.pontos)}</details>`;
     }
     const origem = hs?.origem === 'ao_vivo' ? 'ao vivo' : hs?.origem === 'snapshot' ? `snapshot de ${fQuando(hs.atualizado) || 'hora sem registro'}` : null;
@@ -1747,7 +2263,7 @@ function htmlLacunasMercado() {
   if (st.mod === null) out.push(`Mercados de previsão: o módulo não carregou${st.modErro ? ` (${st.modErro})` : ''}; nova tentativa a cada 5 minutos.`);
   else if (st.mercErro) out.push(`Mercados de previsão: a última leitura falhou (${st.mercErro}).`);
   for (const f of arr(st.merc?.fontes).filter(obj)) {
-    if (f.status === 'erro') out.push(`${txt(f.nome) || f.id}: indisponível agora${txt(f.erro) ? ` (${f.erro})` : ''}.`);
+    if (f.status === 'erro') out.push(`${txt(f.nome) || f.id}: indisponível agora${txt(f.erro) ? ` (${limparErro(f.erro)})` : ''}.`);
     else if (f.origem === 'vivo-15s') out.push(`${txt(f.nome) || f.id}: sem leitura direta neste aparelho; mostra a leitura do Radar de ${fHoraSeg(f.atualizado_em) || 'hora sem registro'} (o Radar lê a cada 15 segundos).`);
     else if (f.origem === 'snapshot') out.push(`${txt(f.nome) || f.id}: sem leitura ao vivo neste aparelho; mostra o snapshot de ${fQuando(f.atualizado_em) || 'hora sem registro'}.`);
   }
@@ -1774,7 +2290,7 @@ function htmlAbaMercados() {
         <button type="button" data-dias="30" aria-pressed="${String(st.dias === 30)}">30 dias</button>
       </div>
       <div data-hist>${htmlHistoricos()}</div>
-      <p class="fonte">Probabilidade implícita no preço, de hora em hora. Toque no gráfico para ver a hora.</p>
+      <p class="fonte">Probabilidade implícita no preço, de hora em hora, normalizada para somar 100% entre os dois ${info('Chance normalizada')}. Toque no gráfico para ver a hora.</p>
     </section>
     <section class="bloco" id="sec-como-ler">
       <h2 class="sobre">Como ler</h2>
@@ -1948,9 +2464,10 @@ function itemPesquisa(p, casa, d, i) {
       ? `sim${num(p.peso) !== null ? `, com peso ${fNum(p.peso, 2)}` : ''}`
       : null;
   const k = `p:${casa}:${txt(p.data) || i}:${txt(p.registro) || ''}`;
-  return h`<details class="pesq" data-k="${k}">
+  const nv = novaAtiva(p);
+  return h`<details class="pesq${nv ? ' nova' : ''}" data-k="${k}" data-chave="${chavePesquisa(p)}"${cru(nv ? ` id="${nv.id}"` : '')}>
     <summary>
-      <span class="pesq-quando"><b>${ou(fData(p.data))}</b>${txt(p.campo) ? h`<small>campo ${p.campo}</small>` : ''}${fora ? h`<small class="fora">fora da média</small>` : ''}</span>
+      <span class="pesq-quando"><b>${ou(fData(p.data))}</b>${nv ? h`<small class="nova-tag">acabou de entrar</small>` : ''}${txt(p.campo) ? h`<small>campo ${p.campo}</small>` : ''}${fora ? h`<small class="fora">fora da média</small>` : ''}</span>
       <span class="pesq-v" style="--c:${L.cor}"><i class="mc"></i>${tL !== null ? fPub(tL, cp) : '—'}</span>
       <span class="pesq-v" style="--c:${F.cor}"><i class="mc"></i>${tF !== null ? fPub(tF, cp) : '—'}</span>
       <span class="chev" aria-hidden="true"></span>
@@ -2019,7 +2536,8 @@ function passosProjecao(p) {
       <li><b>Quem anula ou vota em branco:</b> ${ou(fPct(bn))} de quem vota, como no 1º turno ${info('Brancos e nulos')}. Sobram ${val !== null ? `${fGrande(val)} de votos válidos` : LAC}.</li>
       <li><b>Como os votos se dividem:</b> pela média das pesquisas, ${curto('lula')} ${ou(fPct(sL))} → ${vL !== null ? `${fGrande(vL)} de votos` : LAC}; ${curto('flavio')} ${ou(fPct(sF))} → ${vF !== null ? `${fGrande(vF)} de votos` : LAC}. Diferença: ${mg !== null ? `${fGrande(mg)} de votos` : LAC}.</li>
     </ol>
-    ${mudaResultado(p, obj(p.explicacao))}`;
+    ${mudaResultado(p, obj(p.explicacao))}
+    ${outroRisco(p)}`;
 }
 
 function htmlMetodo(d) {
@@ -2431,7 +2949,7 @@ function desenharMercado(el) {
       { cor: L.cor, pts: pts.map((p) => ({ t: p.t, y: p.l })), mapa: mapaL },
       { cor: F.cor, pts: pts.map((p) => ({ t: p.t, y: p.f })), mapa: mapaF },
     ],
-    vFmt: (v) => fNum(v, 0),
+    vFmt: (v) => fNum(v, 1),
     minDist: 56,
     dica: (t) =>
       h`<p class="dica-tit">${fDataHora(t)}</p>${linhaDica(L.cor, fPct(mapaL.get(t), 1), curto('lula'))}${linhaDica(F.cor, fPct(mapaF.get(t), 1), curto('flavio'))}`,
@@ -2601,10 +3119,20 @@ function desenharVisiveis(forcar = false, raiz = document) {
 function ligarDica(el) {
   if (el._ligado) return;
   el._ligado = true;
+  // Mouse: a dica segue o cursor. Toque: aparece ao tocar e acompanha o dedo enquanto ele arrasta na
+  // horizontal (a rolagem vertical continua da página: touch-action pan-y no gráfico).
   el.addEventListener('pointermove', (e) => {
-    if (e.pointerType === 'mouse') moverDica(el, e.clientX);
+    if (e.pointerType === 'mouse' || el._baixo) moverDica(el, e.clientX);
   });
-  el.addEventListener('pointerdown', (e) => moverDica(el, e.clientX));
+  el.addEventListener('pointerdown', (e) => {
+    el._baixo = true;
+    moverDica(el, e.clientX);
+  });
+  const soltar = () => {
+    el._baixo = false;
+  };
+  el.addEventListener('pointerup', soltar);
+  el.addEventListener('pointercancel', soltar);
   el.addEventListener('pointerleave', (e) => {
     if (e.pointerType === 'mouse') esconderDica(el);
   });
@@ -2772,21 +3300,26 @@ async function compartilhar() {
 
 /* ---------------------------------------------------------- eventos */
 
+// Refaz o rótulo e o resultado do simulador de abstenção por região a partir dos dois controles.
+function atualizarSimAbst(caixa) {
+  const cu = obj(st.dados?.projecao?.cenarios_uf);
+  if (!caixa || !cu) return;
+  const val = (k) => num(caixa.querySelector(`[data-sim-ab-in="${k}"]`)?.value) ?? 0;
+  for (const k of ['nne', 'sul']) {
+    const o = caixa.querySelector(`[data-sim-ab-v="${k}"]`);
+    if (o) o.textContent = `${val(k) > 0 ? '+' : ''}${fNum(val(k), 1)} ${Math.abs(val(k)) < 2 ? 'ponto' : 'pontos'}`;
+  }
+  const res = caixa.querySelector('[data-sim-ab-res]');
+  if (res) res.innerHTML = emHtml(htmlSimAbst(cu, val('nne'), val('sul')));
+}
+
 function ligarEventos() {
   // Simulador de abstenção por região: refaz a conta a cada movimento do controle.
   document.addEventListener('input', (e) => {
     const el = e.target instanceof Element ? e.target.closest('[data-sim-ab-in]') : null;
     if (!el) return;
     const caixa = el.closest('[data-sim-ab]');
-    const cu = obj(st.dados?.projecao?.cenarios_uf);
-    if (!caixa || !cu) return;
-    const val = (k) => num(caixa.querySelector(`[data-sim-ab-in="${k}"]`)?.value) ?? 0;
-    for (const k of ['nne', 'sul']) {
-      const o = caixa.querySelector(`[data-sim-ab-v="${k}"]`);
-      if (o) o.textContent = `${val(k) > 0 ? '+' : ''}${fNum(val(k), 1)} ${Math.abs(val(k)) < 2 ? 'ponto' : 'pontos'}`;
-    }
-    const res = caixa.querySelector('[data-sim-ab-res]');
-    if (res) res.innerHTML = emHtml(htmlSimAbst(cu, val('nne'), val('sul')));
+    if (caixa) atualizarSimAbst(caixa);
   });
   document.addEventListener('click', (e) => {
     const alvo = e.target instanceof Element ? e.target : null;
@@ -2809,6 +3342,7 @@ function ligarEventos() {
       }
       st.mediaSel = bm.dataset.media;
       gravarPref('mediaSel2', st.mediaSel);
+      marcarMedia();
       const seletor = bm.classList.contains('chip') ? `.chip[data-media="${st.mediaSel}"]` : `.mq-c[data-media="${st.mediaSel}"]`;
       const tinhaFoco = document.activeElement === bm;
       for (const c of $$('[data-bloco="pesquisas"]')) {
@@ -2850,6 +3384,14 @@ function ligarEventos() {
         st.explicaAberta = false;
         for (const c of $$('[data-bloco="pesquisas"]')) trocarHtml(c, blocoPesquisas(st.dados));
         $(`.mq-c[data-media="${mediaSelKey(st.dados)}"]`)?.focus({ preventScroll: true });
+      }
+      else if (a === 'fechar-novas') ocultarNovas();
+      else if (a === 'ver-novas') {
+        e.preventDefault();
+        st.irPara = st.avisoDestino || 'sec-casas';
+        ocultarNovas();
+        if (st.aba === 'pesquisas') mostrarAba('pesquisas', false);
+        else location.hash = '#pesquisas';
       }
       else if (a === 'compartilhar') compartilhar();
       else if (a === 'fechar-folha') fecharFolha();
@@ -2933,6 +3475,7 @@ function ligarEventos() {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible') return;
     atualizarContagem();
+    if (!$('#novas')?.hidden) armarAvisoNovas();
     // Voltou para a aba (ou o Mac acordou): relê se o dado tem mais de 30 s ou se a última falhou.
     if (st.erro || Date.now() - st.lidoEm > 30000) carregarDados();
     if (Date.now() - st.mercEm > CFG.cadaMercado) atualizarMercados();
@@ -2985,11 +3528,12 @@ function animarPlacar(raiz, antes) {
     if (!Number.isFinite(de) || !Number.isFinite(para) || de === para) continue;
     const casas = Number(el.dataset.casas) || 0;
     const suf = el.dataset.sufixo || '';
+    const final = el.textContent;
     const t0 = performance.now();
     const passo = (agora) => {
       const k = Math.min(1, (agora - t0) / 450);
       const e = 1 - Math.pow(1 - k, 3);
-      el.textContent = `${nf(casas).format(de + (para - de) * e)}${suf}`;
+      el.textContent = k >= 1 ? final : `${nf(casas).format(de + (para - de) * e)}${suf}`;
       if (k < 1) requestAnimationFrame(passo);
     };
     el.textContent = `${nf(casas).format(de)}${suf}`;
@@ -3086,7 +3630,7 @@ async function carregarApuracao() {
       lacunaBloco,
       params: PARAMS,
       dados: () => st.dados,
-      mercados: () => st.merc,
+      mercados: () => mercadosNormalizados(),
       desenharLinhasTempo,
       registrarDesenho: (tipo, fn) => {
         DESENHOS[tipo] = fn;
@@ -3118,9 +3662,10 @@ function abaPadrao() {
 /* ------------------------------------------------------------ início */
 
 function iniciar() {
-  // Chave nova em 24/10: todo mundo passa a abrir na Média Radar (a escolha antiga era a ponderada).
+  // Chave nova em 24/10: todo mundo passa a abrir no Agregador próprio (a escolha antiga era a ponderada).
   st.mediaSel = lerPref('mediaSel2', 'radar');
   st.dias = lerPref('dias', '30') === '7' ? 7 : 30;
+  instalarBandeira();
   ligarEventos();
   atualizarContagem();
   setInterval(atualizarContagem, 1000);

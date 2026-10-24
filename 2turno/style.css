@@ -1620,3 +1620,308 @@ body.tv .ap-motor-div { display: none; }
 
 /* rótulos pequenos dentro do cartão de chance (verde/vermelho): sem transparência, para o texto passar de 4,5:1 */
 .ap-lado .ap-part, .ap-lado .ap-ch-rot, .ap-lado .ap-sub { opacity: 1; }
+
+/* ------------------------------------------------------------------------------------------
+   Resumo v5 (24/10/2026, app.js): cartão verde com bandeira ondulando, 1º turno em linhas alinhadas,
+   bloco "Agregador próprio", aviso "Acabou de entrar", cartões curtos da projeção e a nota das
+   chances normalizadas. Tudo escopado em .cont-cartao, .bandeira-onda, .agreg, .novas, .proj-*.
+   ------------------------------------------------------------------------------------------ */
+
+/* ---- cartão verde: grade. No celular: rótulo + bandeira, relógio, agregador, 1º turno. */
+.cont-cartao {
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: none;
+  grid-template-areas:
+    "quando bandeira"
+    "principal principal"
+    "agreg agreg"
+    "t1 t1"
+    "acao acao"
+    "nota nota";
+  column-gap: 12px;
+}
+.cont-lado { display: contents; }
+.cont-quando { grid-area: quando; align-self: center; margin: 0; font-size: inherit; letter-spacing: 0; text-transform: none; color: var(--creme); }
+.cont-quando span { display: block; font-size: 12px; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dourado); }
+.cont-quando b { display: block; margin-top: 3px; font-size: 18px; line-height: 1.2; font-weight: 760; letter-spacing: -0.01em; text-transform: capitalize; color: var(--creme); }
+.cont-principal { grid-area: principal; }
+.cont-grande { margin-top: 14px; }
+
+/* ---- bandeira: 24 fatias do mesmo SVG. Cada uma sobe e desce (translate) e se inclina (skewY) em
+   fase com as vizinhas: uma onda que anda da esquerda para a direita, com a borda contínua. Só
+   propriedades de transformação do CSS (vão para a placa de vídeo): custo de CPU desprezível. */
+.bandeira-onda {
+  --w: 120px;
+  --a: calc(var(--w) * 0.02);
+  grid-area: bandeira;
+  justify-self: end;
+  position: relative;
+  display: block;
+  width: var(--w);
+  height: calc(var(--w) * 0.7);
+  flex: none;
+}
+.bandeira-onda::before { content: ""; position: absolute; inset: 0; box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.6); }
+.bandeira-onda i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--i) * var(--w) / 24);
+  width: calc(var(--w) / 24 + 1px);
+  background-repeat: no-repeat;
+  background-size: var(--w) 100%;
+  background-position: calc(var(--i) * var(--w) / -24) 0;
+  --d: calc((23 - var(--i)) * -0.15s);
+  animation: bandeiraOnda 1.8s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate, bandeiraInclina 1.8s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+  animation-delay: var(--d), calc(var(--d) + var(--fase, 0.9s));
+}
+.onda-luz { position: absolute; inset: var(--a) 0; overflow: hidden; pointer-events: none; }
+.onda-luz::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 200%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(0, 0, 0, 0.2) 75%, rgba(255, 255, 255, 0.2) 100%);
+  animation: bandeiraLuz 3.6s linear infinite;
+}
+@keyframes bandeiraOnda {
+  from { translate: 0 calc(var(--a) * -1); }
+  to { translate: 0 var(--a); }
+}
+@keyframes bandeiraInclina {
+  from { transform: skewY(-7.1deg); }
+  to { transform: skewY(7.1deg); }
+}
+@keyframes bandeiraLuz {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bandeira-onda i { animation: none; }
+  .onda-luz::before { animation: none; transform: translateX(-12%); }
+  .ag-vivo i::after { animation: none; opacity: 0; }
+}
+
+/* ---- 1º turno: foto grande, nome e % em linhas alinhadas */
+.cont-1t { grid-area: t1; margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(251, 246, 233, 0.16); gap: 10px; }
+.c1-tit { font-size: 12px; }
+.c1-linhas { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; column-gap: 12px; row-gap: 10px; }
+.c1-l { display: contents; }
+.c1-l .av { background: var(--creme); }
+.c1-nome { min-width: 0; font-size: 17px; font-weight: 700; line-height: 1.2; }
+.c1-l b { justify-self: end; font-size: 22px; line-height: 1; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.c1-dif { font-size: 12.5px; }
+
+/* ---- Agregador próprio: o destaque do cartão (placa clara dentro do verde) */
+.agreg {
+  --ag-tinta: #15231d;
+  --ag-suave: #4a5a52;
+  --ag-verde: #0e4b3a;
+  grid-area: agreg;
+  margin-top: 22px;
+  padding: 16px 16px 14px;
+  border-radius: 14px;
+  background: var(--creme);
+  color: var(--ag-tinta);
+  box-shadow: 0 12px 26px -14px rgba(0, 0, 0, 0.7);
+  min-width: 0;
+}
+.ag-cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ag-tit { display: flex; align-items: center; gap: 4px; margin: 0; font-size: 12.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ag-verde); }
+.agreg .i { color: var(--ag-suave); }
+.agreg .i:hover { color: var(--ag-tinta); }
+.agreg :focus-visible { outline-color: var(--ag-verde); }
+.ag-vivo { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 650; color: var(--ag-suave); }
+.ag-vivo i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #1f9d55; }
+.ag-vivo i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #1f9d55; animation: pulso 2.4s ease-out infinite; }
+.ag-vivo[data-estado="erro"] i, .ag-vivo[data-estado="erro"] i::after { background: #b86a00; }
+.ag-vivo[data-estado="erro"] i::after { animation: none; opacity: 0; }
+.ag-sub { margin: 4px 0 0; font-size: 13px; line-height: 1.4; color: var(--ag-suave); }
+.ag-duelo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+.ag-c { min-width: 0; }
+.ag-c[data-cand="lula"] { --ag: #b3122b; --ag-barra: #e0344a; }
+.ag-c[data-cand="flavio"] { --ag: #1b4fc0; --ag-barra: #3d6fe0; }
+.ag-c.dir { text-align: right; }
+.ag-quem { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 750; color: var(--ag); }
+.ag-c.dir .ag-quem { justify-content: flex-end; }
+.agreg .av { background: var(--creme); }
+.ag-num { margin-top: 8px; font-size: 46px; line-height: 1; font-weight: 820; letter-spacing: -0.035em; font-variant-numeric: tabular-nums; color: var(--ag); white-space: nowrap; }
+.ag-num small { margin-left: 1px; font-size: 0.48em; font-weight: 700; letter-spacing: 0; }
+.ag-num .lac { color: var(--ag-suave); font-size: 14px; }
+.ag-ch { margin-top: 7px; font-size: 12.5px; line-height: 1.35; color: var(--ag-suave); }
+.ag-ch b { font-size: 15px; font-weight: 750; color: var(--ag-tinta); font-variant-numeric: tabular-nums; }
+.ag-barra { position: relative; display: flex; height: 12px; margin-top: 14px; border-radius: 6px; overflow: hidden; background: #d9d3c2; }
+.ag-barra span { min-width: 2px; transition: flex-grow 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.ag-barra span[data-segag="lula"] { background: #e0344a; }
+.ag-barra span[data-segag="flavio"] { background: #3d6fe0; }
+.ag-barra i { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--creme); }
+.ag-fatos { margin: 10px 0 0; font-size: 12.5px; color: var(--ag-suave); }
+.ag-fatos:empty { display: none; }
+.ag-carimbo { margin: 2px 0 0; font-size: 12.5px; color: var(--ag-suave); }
+.ag-carimbo[data-estado="erro"] { color: #8a4b00; font-weight: 650; }
+.ag-carimbo:empty { display: none; }
+.ag-rec { margin: 12px 0 0; padding-top: 12px; border-top: 1px solid rgba(14, 75, 58, 0.2); font-size: 14.5px; line-height: 1.45; color: var(--ag-tinta); }
+.ag-rec b { color: var(--ag-verde); font-weight: 760; }
+.ag-rec-det { margin: 4px 0 0; font-size: 12.5px; line-height: 1.45; color: var(--ag-suave); }
+/* Modo TV: a altura da tela manda no zoom, então o bloco enxuga o que é texto miúdo */
+body.tv .ag-sub, body.tv .ag-rec-det, body.tv .ag-fatos { display: none; }
+body.tv .agreg { margin-top: 14px; padding: 12px 20px 12px; }
+body.tv .ag-duelo { margin-top: 8px; }
+body.tv .ag-rec { margin-top: 8px; padding-top: 8px; }
+body.tv .c1-dif { display: none; }
+
+/* ---- grade larga (cartão com 500 px ou mais): relógio à esquerda; bandeira e 1º turno à direita,
+   rente à borda; o agregador ocupa a largura toda embaixo. */
+@container (min-width: 500px) {
+  .cont-cartao {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr auto auto auto;
+    grid-template-areas:
+      "quando lado"
+      "principal lado"
+      "agreg agreg"
+      "acao acao"
+      "nota nota";
+    column-gap: 20px;
+  }
+  .cont-lado { grid-area: lado; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; margin: 0; padding: 0; border: 0; }
+  .bandeira-onda { --w: 168px; }
+  .cont-1t { width: 228px; max-width: none; margin: 0; padding: 0; border: 0; align-items: stretch; align-self: flex-end; text-align: left; }
+  .c1-tit, .c1-dif, .c1-ver { text-align: right; }
+  .c1-nome { min-width: 0; }
+  .cont-principal { align-self: start; }
+  .cont-grande { font-size: 46px; }
+  .cont-relogio { font-size: 28px; }
+  .c1-l b { font-size: 21px; }
+  .agreg { padding: 18px 22px 16px; }
+  .ag-num { font-size: 54px; }
+  .ag-rec { font-size: 15px; }
+}
+@media (max-width: 359px) {
+  .bandeira-onda { --w: 96px; }
+  .cont-quando b { font-size: 16px; }
+  .agreg { padding: 14px 12px 12px; }
+  .ag-num { font-size: 38px; }
+  .ag-quem { font-size: 15px; }
+  .ag-tit { letter-spacing: 0.04em; font-size: 12px; }
+  .c1-l b { font-size: 20px; }
+  .c1-nome { font-size: 15.5px; }
+}
+body.tv .cont-nota { display: none; }
+
+/* ---- aviso "Acabou de entrar" (pesquisa nova na leitura de 60 s): fixo no topo, não bloqueia */
+.novas {
+  position: fixed;
+  left: 50%;
+  top: 64px;
+  z-index: 45;
+  width: min(calc(100vw - 24px), 520px);
+  transform: translate(-50%, -14px);
+  opacity: 0;
+  transition: transform 0.32s ease, opacity 0.32s ease;
+  pointer-events: none;
+}
+.novas[hidden] { display: none; }
+.novas.aberto { transform: translate(-50%, 0); opacity: 1; }
+.novas-cartao {
+  pointer-events: auto;
+  padding: 12px 14px 12px;
+  border: 1px solid rgba(215, 179, 90, 0.6);
+  border-left: 4px solid var(--ouro);
+  border-radius: 12px;
+  background: #15271f;
+  color: #fbf6e9;
+  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.75);
+}
+.novas-cab { display: flex; align-items: center; gap: 8px; }
+.novas-pulso { position: relative; flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--vivo); }
+.novas-pulso::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--vivo); animation: pulso 2s ease-out infinite; }
+.novas-tit { font-size: 14.5px; font-weight: 780; letter-spacing: 0.01em; color: #f6d055; }
+.novas-qtd { flex: 1; font-size: 12.5px; color: rgba(251, 246, 233, 0.82); }
+.novas-x { appearance: none; flex: none; width: 32px; height: 32px; margin: -6px -8px -6px 0; border: 0; border-radius: 50%; background: transparent; color: #fbf6e9; font-size: 22px; line-height: 1; cursor: pointer; }
+.novas-x:hover { background: rgba(251, 246, 233, 0.12); }
+.novas-lista { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
+.novas-lista li { font-size: 15px; line-height: 1.35; font-weight: 650; font-variant-numeric: tabular-nums; }
+.novas-media { margin: 8px 0 0; font-size: 13.5px; line-height: 1.4; color: rgba(251, 246, 233, 0.9); }
+.novas-ver { display: inline-block; margin-top: 8px; font-size: 13.5px; font-weight: 700; color: #f6d055; text-underline-offset: 3px; }
+.novas :focus-visible { outline-color: #f6d055; }
+body.tv .novas { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .novas { transition: none; transform: translate(-50%, 0); }
+  .novas-pulso::after { animation: none; opacity: 0; }
+}
+
+/* linha da pesquisa que acabou de entrar, na aba Pesquisas */
+.pesq { scroll-margin-top: 64px; }
+.pesq.nova { background: linear-gradient(90deg, rgba(79, 184, 189, 0.16), rgba(79, 184, 189, 0) 75%); box-shadow: inset 3px 0 0 var(--destaque); animation: novaBrilho 2.6s ease-out 1; }
+.pesq-quando .nova-tag { color: var(--destaque); font-weight: 750; }
+.pesq.nova > summary { padding-left: 10px; }
+@keyframes novaBrilho {
+  from { background-color: rgba(246, 208, 85, 0.3); }
+  to { background-color: rgba(246, 208, 85, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pesq.nova { animation: none; }
+}
+
+/* ---- projeção enxuta: três cartões curtos e um bloco recolhido */
+.proj-cards { display: grid; gap: 10px; margin-top: 18px; }
+.proj-card { padding: 13px 14px; border: 1px solid var(--linha); border-radius: 12px; background: var(--cartao); min-width: 0; }
+.proj-tit { margin: 0 0 6px; font-size: 15.5px; line-height: 1.3; font-weight: 720; color: var(--tinta); }
+.proj-card p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--tinta-2); }
+.proj-card p b { color: var(--tinta); }
+.proj-card .proj-nota { margin-top: 8px; font-size: 12px; color: var(--tinta-3); }
+.proj-card .proj-efeito { margin-top: 10px; }
+.proj-card .tab-wrap { margin-top: 4px; }
+.clima-tab { font-size: 13px; }
+.clima-tab th { white-space: normal; }
+.clima-tab td.n { white-space: nowrap; }
+@media (min-width: 640px) {
+  .proj-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .proj-cards .proj-card:nth-child(3) { grid-column: 1 / -1; }
+}
+
+/* ---- mercados: chance normalizada para somar 100% */
+.merc-norm { display: flex; align-items: center; gap: 4px; margin: 10px 0 0; font-size: 12.5px; color: var(--tinta-3); }
+
+/* ---- celular: alvos de toque de 44 px (mesmo tamanho visual), sem 100vh e com área segura nos fixos */
+.topo { padding: 6px 0 6px; }
+.tv-botao { min-height: 44px; padding: 0 16px; }
+.i { width: 44px; height: 44px; margin: -14px -11px; }
+.chip { min-height: 44px; }
+.sub-abas button { min-height: 44px; }
+.alerta button { min-height: 44px; }
+.mq-fechar { width: 44px; height: 44px; margin: -10px -10px -10px 0; }
+.novas-x { width: 44px; height: 44px; margin: -12px -12px -12px 0; }
+.ver-mais a, .avisos-mini a, .merc-link a, .ficha dd a { display: inline-flex; align-items: center; min-height: 44px; }
+.ficha dd a { margin: -6px 0; }
+.merc-link { margin-top: 0; }
+.rodape-meta button { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; }
+.novas-ver { display: inline-flex; align-items: center; min-height: 44px; margin-top: 2px; }
+/* link no meio de uma frase: a caixa do texto não muda, a área de toque cresce para cima e para baixo */
+.cont-nota a, .fonte a, .rank-det a, .nota a, .texto a, .lista-texto a { padding: 14px 5px; margin: -14px -5px; }
+.aviso-toque { bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+.folha { max-height: 80vh; max-height: 80dvh; }
+.novas { width: min(calc(100vw - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)), 520px); }
+input, select, textarea { font-size: 16px; }
+
+/* controles deslizantes do simulador de abstenção: 44 px de altura para o dedo e marcador grande */
+.sim-ab input[type="range"] { -webkit-appearance: none; appearance: none; height: 44px; margin: 0; background: transparent; touch-action: pan-y; cursor: pointer; }
+.sim-ab input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: var(--linha-2); }
+.sim-ab input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; margin-top: -11px; border: 3px solid var(--suave); border-radius: 50%; background: var(--destaque); box-shadow: 0 0 0 1px var(--destaque); }
+.sim-ab input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: var(--linha-2); }
+.sim-ab input[type="range"]::-moz-range-thumb { box-sizing: border-box; width: 28px; height: 28px; border: 3px solid var(--suave); border-radius: 50%; background: var(--destaque); }
+.sim-ab input[type="range"]:focus-visible { outline-offset: 0; }
+
+/* números que contam de um valor a outro não mexem na largura nem nas quebras de linha */
+.ag-ch b, .tri-tab td.n, .mq-v, .placar-ch b, .placar-num, .novas-lista li { font-variant-numeric: tabular-nums; }
+.ag-carimbo { min-height: 1.45em; }
+@media (max-width: 430px) {
+  .ag-carimbo { min-height: 2.9em; }
+}
+@media (min-width: 431px) {
+  .ag-carimbo { min-height: 1.45em; }
+}
+
+/* Modo TV: com o agregador próprio escolhido, o cartão verde já traz os mesmos números */
+body.tv[data-media-sel="radar"] [data-bloco="pesquisas"] { display: none; }
