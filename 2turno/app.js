@@ -646,6 +646,12 @@ function mediaSelKey(d) {
 
 /* ------------------------------------------------- contagem regressiva */
 
+// Dias de calendário em Brasília (UTC-3, sem horário de verão desde 2019) entre agora e o instante ms.
+function diasAte(ms, agora = Date.now()) {
+  const dia = (t) => Math.floor((t - 3 * 3600000) / 86400000);
+  return dia(ms) - dia(agora);
+}
+
 function partesTempo(ms) {
   const tot = Math.ceil(ms / 60000);
   return { d: Math.floor(tot / 1440), h: Math.floor((tot % 1440) / 60), m: tot % 60 };
@@ -671,11 +677,19 @@ function atualizarContagem() {
   const fecha = fHoraCurta(fe);
   if (agora < ab) {
     const p = partes(fe - agora);
+    // "É hoje" vale pelo dia do calendário em Brasília, não por faltar menos de 24 h para o fechamento:
+    // no sábado depois das 17h o relógio já está abaixo de 24 h e ainda é véspera.
+    const dias = diasAte(fe, agora);
     if (p.d >= 1) {
       grande = p.d === 1 ? 'Falta 1\u00a0dia' : `Faltam ${p.d}\u00a0dias`;
       linha = relogio(p, false, 'e');
       legenda = `até as urnas fecharem, às ${fecha} de Brasília`;
       mini = `faltam ${p.d} ${p.d === 1 ? 'dia' : 'dias'} e ${p.h} h para o fechamento das urnas (${fecha} de Brasília)`;
+    } else if (dias >= 1) {
+      grande = 'É amanhã';
+      linha = relogio(p, true);
+      legenda = `até as urnas fecharem, amanhã às ${fecha} de Brasília · abrem às ${fHoraCurta(ab)}`;
+      mini = `amanhã: urnas abrem às ${fHoraCurta(ab)} e fecham às ${fecha} (Brasília)`;
     } else {
       grande = 'É hoje';
       linha = relogio(p, true);
