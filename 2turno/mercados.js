@@ -80,7 +80,7 @@ const VIVO_BALDE_MS = 15 * 1000;
 // carregado, load médio 45); com 12 s de folga o arquivo já existe. Pedir antes de existir deixa um 404
 // em cache no raw por 1 a 2 min, para todo mundo.
 const VIVO_MARGEM_MS = 12 * 1000;
-const VIVO_BATIMENTO = 4; // balde de índice múltiplo de 4 começa no segundo :00 e o Mac sempre grava
+const VIVO_BATIMENTO = 2; // balde par (segundo :00 ou :30): o Mac sempre grava, mesmo com o preço parado
 const VIVO_VALE_MS = 150 * 1000; // preço do Mac mais velho que isso perde para o snapshot mais novo
 const VIVO_TEMPO_LIMITE_MS = 6000;
 

@@ -6,7 +6,8 @@
  *   caminho do mesmo site), relidos a cada 5 min. Campo ausente ou null vira
  *   lacuna visível ("sem dado ainda"), nunca tela quebrada.
  * - Mercados: import dinâmico de /2turno/mercados.js (lerMercados e
- *   lerHistorico), relidos a cada 60 s. Se o módulo não carregar, a página
+ *   lerHistorico, aoMudar), relidos a cada 60 s e na hora em que chega preço novo
+ *   (WebSocket ou balde de 15 s do Mac). Se o módulo não carregar, a página
  *   mostra "mercados indisponíveis" e tenta de novo a cada 5 min.
  *   Para teste: ?mercados=/outro-modulo.js (só caminho do mesmo site).
  * - Abas com hash para link direto: #resumo, #pesquisas, #mercados, #metodo.
@@ -114,8 +115,9 @@ const GLOSSARIO_PADRAO = [
   ['Casa', 'O instituto que faz a pesquisa, como Datafolha, Quaest ou AtlasIntel.'],
   ['Mercado de previsão', 'Bolsa no exterior onde se negociam contratos que pagam US$ 1 (um dólar) se o candidato vencer e zero se perder. O preço do contrato, de 0 a 100 centavos, é lido como a chance que o mercado dá ao candidato. Não é pesquisa de opinião.'],
   ['Ao vivo', 'Preço lido direto na bolsa há instantes, pela internet do seu aparelho.'],
+  ['Quase ao vivo', 'No Brasil o provedor de internet bloqueia a Polymarket e a Kalshi (Resolução CMN 5.298/2026), então vários aparelhos não alcançam as bolsas. O computador do Radar lê as duas a cada 15 segundos e manda o preço para cá. A hora ao lado é a da leitura, com segundos: o preço tem essa idade.'],
   ['Snapshot', 'Foto do preço guardada na última coleta que deu certo, usada quando a leitura ao vivo falha. Sempre vem com a hora da coleta.'],
-  ['Compra, venda e último', 'Compra: a melhor oferta de quem quer comprar o contrato. Venda: a melhor oferta de quem quer vender. Último: o preço do último negócio fechado. A chance mostrada é o meio entre compra e venda (ou o último preço, quando falta um dos lados).'],
+  ['Compra, venda e último', 'Compra: a melhor oferta de quem quer comprar o contrato. Venda: a melhor oferta de quem quer vender. Último: o preço do último negócio fechado. A chance mostrada é o meio entre compra e venda (ou o último preço, quando falta um dos lados; na Polymarket, também quando a distância entre compra e venda passa de 10 centavos, como no site dela).'],
   ['Volume', 'Quanto já foi negociado desde que o mercado abriu. Na Polymarket, em dólares; na Kalshi, em contratos de US$ 1 (um dólar), como a própria plataforma mostra.'],
   ['Liquidez', 'Dinheiro parado em ofertas de compra e venda, pronto para negociar. Mais liquidez quer dizer preço mais difícil de mexer com pouco dinheiro.'],
   ['Seções totalizadas', 'Parte das urnas já somada pelo TSE (Tribunal Superior Eleitoral). 100% quer dizer apuração completa.'],
@@ -315,6 +317,15 @@ const fHora = (v) => {
   if (t === null) return null;
   const { h: hh, m } = partesHora(t);
   return `${hh}h${m}`;
+};
+// "10h18m15s": a hora do preço do canal vivo, com segundos, para a idade do dado aparecer na tela.
+const fmtHS = new Intl.DateTimeFormat('pt-BR', { timeZone: CFG.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+const fHoraSeg = (v) => {
+  const t = msDe(v);
+  if (t === null) return null;
+  const p = fmtHS.formatToParts(t);
+  const g = (tipo) => p.find((x) => x.type === tipo)?.value ?? '00';
+  return `${g('hour')}h${g('minute')}m${g('second')}s`;
 };
 const fHoraCurta = (v) => {
   const t = msDe(v);
@@ -709,6 +720,8 @@ async function carregarModulo() {
     if (!api) throw new Error('o módulo não tem lerMercados()');
     st.mod = api;
     st.modErro = null;
+    // Preço novo (WebSocket ou balde de 15 s do Mac): relê na hora, sem esperar o relógio de 60 s.
+    if (typeof api.aoMudar === 'function' && !st.desfazAoMudar) st.desfazAoMudar = api.aoMudar(() => atualizarMercados());
   } catch (e) {
     st.mod = null;
     st.modErro = String(e?.message || e).slice(0, 140);
@@ -1152,7 +1165,9 @@ function htmlTriangulacao() {
     const f = fonte(id);
     if (!f) return null;
     if (f.status === 'erro') return 'indisponível';
-    return f.origem === 'ao_vivo' ? 'ao vivo' : `snapshot ${fQuando(f.atualizado_em) || ''}`.trim();
+    if (f.origem === 'ao_vivo') return 'ao vivo';
+    if (f.origem === 'vivo-15s') return `quase ao vivo ${fHoraSeg(f.atualizado_em) || ''}`.trim();
+    return `snapshot ${fQuando(f.atualizado_em) || ''}`.trim();
   };
   const linha = (nome, sub, vL, vF, forte) =>
     h`<tr${forte ? cru(' class="tri-forte"') : ''}><td>${nome}${sub ? h`<small>${sub}</small>` : ''}</td><td class="n">${vL}</td><td class="n">${vF}</td></tr>`;
@@ -1546,6 +1561,9 @@ function statusMercado(f) {
   if (f.origem === 'ao_vivo') {
     return h`<span class="merc-st" title="Lido direto na bolsa"><i class="pulso"></i>ao vivo · ${fHora(quando) || 'agora'}</span>`;
   }
+  if (f.origem === 'vivo-15s') {
+    return h`<span class="merc-st" title="O Radar lê a bolsa a cada 15 segundos e manda para cá; a hora é a da leitura"><i class="pulso"></i>quase ao vivo · ${fHoraSeg(quando) || 'agora'}</span>`;
+  }
   return h`<span class="merc-st"><i class="ponto-snap"></i>snapshot de ${ou(fQuando(quando))}</span>`;
 }
 
@@ -1624,7 +1642,7 @@ function htmlFonteMercados() {
   const nomes = arr(st.merc?.fontes)
     .map((f) => txt(f?.nome) || txt(f?.id))
     .filter(Boolean);
-  return h`Fonte: ${listaNomes(nomes) || 'Polymarket e Kalshi'}, lidos a cada minuto${st.mercEm ? ` · última leitura às ${fHora(st.mercEm)}` : ''}${st.mercErro ? ` · a última leitura falhou (${st.mercErro})` : ''}`;
+  return h`Fonte: ${listaNomes(nomes) || 'Polymarket e Kalshi'}, lidos ao vivo ou a cada 15 segundos${st.mercEm ? ` · última leitura às ${fHora(st.mercEm)}` : ''}${st.mercErro ? ` · a última leitura falhou (${st.mercErro})` : ''}`;
 }
 
 function htmlComparacao() {
@@ -1642,7 +1660,7 @@ function htmlComparacao() {
     const ok = f.status !== 'erro';
     linhas.push({
       nome: txt(f.nome) || txt(f.id) || 'Mercado',
-      sub: ok ? (f.origem === 'ao_vivo' ? 'mercado, ao vivo' : `mercado, snapshot de ${fQuando(f.atualizado_em) || 'hora sem registro'}`) : 'mercado indisponível agora',
+      sub: ok ? (f.origem === 'ao_vivo' ? 'mercado, ao vivo' : f.origem === 'vivo-15s' ? `mercado, quase ao vivo (${fHoraSeg(f.atualizado_em) || 'hora sem registro'})` : `mercado, snapshot de ${fQuando(f.atualizado_em) || 'hora sem registro'}`) : 'mercado indisponível agora',
       l: ok ? f.candidatos?.lula?.prob : null,
       f: ok ? f.candidatos?.flavio?.prob : null,
       traco: !ok,
@@ -1702,6 +1720,7 @@ function htmlLacunasMercado() {
   else if (st.mercErro) out.push(`Mercados de previsão: a última leitura falhou (${st.mercErro}).`);
   for (const f of arr(st.merc?.fontes).filter(obj)) {
     if (f.status === 'erro') out.push(`${txt(f.nome) || f.id}: indisponível agora${txt(f.erro) ? ` (${f.erro})` : ''}.`);
+    else if (f.origem === 'vivo-15s') out.push(`${txt(f.nome) || f.id}: sem leitura direta neste aparelho; mostra a leitura do Radar de ${fHoraSeg(f.atualizado_em) || 'hora sem registro'} (o Radar lê a cada 15 segundos).`);
     else if (f.origem === 'snapshot') out.push(`${txt(f.nome) || f.id}: sem leitura ao vivo neste aparelho; mostra o snapshot de ${fQuando(f.atualizado_em) || 'hora sem registro'}.`);
   }
   if (!out.length) return '';
@@ -1735,7 +1754,8 @@ function htmlAbaMercados() {
         <li>Cada contrato paga US$ 1 (um dólar) se o candidato vencer e zero se perder. O preço, de 0 a 100 centavos, é lido como a chance que o mercado dá ao candidato.</li>
         <li>É o preço que apostadores no exterior aceitam pagar, não pesquisa de opinião. Pode mudar rápido com notícia e com pouco dinheiro quando a liquidez ${info('Liquidez')} é baixa.</li>
         <li><b>Ao vivo</b> ${info('Ao vivo')} é a leitura direta da bolsa pelo seu aparelho; <b>snapshot</b> ${info('Snapshot')} é a última coleta guardada, usada quando a leitura ao vivo falha, sempre com a hora.</li>
-        <li>Nem toda plataforma libera a leitura direta pelo navegador; quando não libera, o cartão mostra o snapshot.</li>
+        <li><b>Quase ao vivo</b> ${info('Quase ao vivo')} é a leitura do computador do Radar, a cada 15 segundos, com a hora (e os segundos) da leitura; é o que aparece quando o seu aparelho não alcança a bolsa.</li>
+        <li>Nem toda plataforma libera a leitura direta pelo navegador; quando não libera, o cartão mostra a leitura quase ao vivo e, se ela faltar, o snapshot.</li>
       </ul>
       <div data-merc-aviso>${avisoBloqueioMerc()}</div><p class="aviso-merc">Mercados estrangeiros; preço é informativo, não é convite a apostar.</p>
     </section>`;
@@ -2020,7 +2040,7 @@ function htmlMetodo(d) {
     </section>
     <section class="bloco" id="sec-sobre">
       <h2 class="sobre">Sobre os dados</h2>
-      <p class="texto">1º turno: TSE. Pesquisas: registro no TSE e divulgação de cada casa. Mercados: Polymarket e Kalshi, lidos pelo seu aparelho (ao vivo) ou da última coleta guardada (snapshot). Média e projeção: cálculo do Radar.</p>
+      <p class="texto">1º turno: TSE. Pesquisas: registro no TSE e divulgação de cada casa. Mercados: Polymarket e Kalshi, lidos pelo seu aparelho (ao vivo), pela leitura do Radar a cada 15 segundos (quase ao vivo) ou da última coleta guardada (snapshot). Média e projeção: cálculo do Radar.</p>
       <p class="fonte">Arquivo: <a href="${URL_DADOS}">${URL_DADOS}</a>${txt(d.versao) ? ` · versão ${d.versao}` : ''}${fDataHora(d.gerado_em) ? ` · gerado em ${fDataHora(d.gerado_em)}` : ''}</p>
       <p class="ver-mais"><a class="botao-link" href="${CFG.versaoCompleta}">Versão completa do Radar →</a></p>
     </section>`;
