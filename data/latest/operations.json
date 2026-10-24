@@ -12,7 +12,7 @@
     "selected_count": 0,
     "truncation_count": 0
   },
-  "as_of": "2026-10-24T20:36:12.611617-03:00",
+  "as_of": "2026-10-24T20:46:04.631485-03:00",
   "blocked_recent": [],
   "candidate_registry_status": {
     "candidate_count": 2,
@@ -42,7 +42,7 @@
     "release_missing": 0,
     "validated_awaiting_review": 0
   },
-  "coverage_message": "24 pesquisas validadas — gate de cobertura satisfeito",
+  "coverage_message": "25 pesquisas validadas — gate de cobertura satisfeito",
   "coverage_monitor": null,
   "daily_time_tick": "08:00",
   "data_availability": "preliminary_b1_m2",
@@ -55,18 +55,18 @@
   "last_accepted_discovery": null,
   "last_error": null,
   "last_published_run": {
-    "created_at": "2026-10-24T20:36:12.611617-03:00",
-    "run_id": "run-20261024-c072ab49-ae78ab90"
+    "created_at": "2026-10-24T20:46:04.631485-03:00",
+    "run_id": "run-20261024-6c9a3fad-8b932466"
   },
-  "last_search": "2026-10-24T20:25:11.645578-03:00",
-  "last_source_check": "2026-10-24T20:25:11.645578-03:00",
+  "last_search": "2026-10-24T20:33:43.886663-03:00",
+  "last_source_check": "2026-10-24T20:33:43.886663-03:00",
   "last_validated_poll": {
-    "fingerprint": "1f45ade02c3dfa5df78358cee2af6e83f6de5d2343a7c5a2ec11f7a39018ceaf",
+    "fingerprint": "9dc71953bf74d953982c8d092ebbb8abe5ca766b145c1b34c8c328383f96de6b",
     "published_at": "2026-10-24",
-    "registration_no": "BR-09158/2026",
+    "registration_no": "BR-09540/2026",
     "scenario_id": "president-br-t2-dbec719fff"
   },
-  "latency_seconds": 0.0966597079532221,
+  "latency_seconds": 0.11255558300763369,
   "latency_sla_seconds": {
     "champion_m3": 900,
     "preliminary_b1_m2": 300
@@ -77,10 +77,10 @@
     "house_details": [
       {
         "id": "datafolha",
-        "latest_field_end": "2026-10-22",
-        "latest_published_at": "2026-10-22",
+        "latest_field_end": "2026-10-24",
+        "latest_published_at": "2026-10-24",
         "name": "Datafolha",
-        "poll_count": 3
+        "poll_count": 4
       },
       {
         "id": "ipespe",
@@ -137,57 +137,104 @@
     "houses": 7,
     "min_houses": 2,
     "min_polls": 3,
-    "polls": 24,
+    "polls": 25,
     "window_days": 21
   },
   "live_diagnostic": {
     "availability": "preliminary_b1_m2",
     "base": "totais",
-    "blank_null_pct": 8.0,
+    "blank_null_pct": 3.0,
     "confidence_level": 95.0,
-    "coverage_reason": "24 pesquisa(s) de 7 casa(s) em 21 dias; o gate exige 3 pesquisas e 2 casas",
+    "coverage_reason": "25 pesquisa(s) de 7 casa(s) em 21 dias; o gate exige 3 pesquisas e 2 casas",
     "evidence_ids": [
-      "ev-release-7b922506c29bd8f650db",
+      "ev-release-cb9bc16c56fe8ec11f45",
       "ev-tse-9ef567c3b78f893d71af",
       "ev-tse-candidates-abd70ac3236e64e8190a"
     ],
     "field_end": "2026-10-24",
     "field_start": "2026-10-23",
     "forecast_available": false,
-    "institute": "Quaest",
+    "institute": "Datafolha",
     "margin_of_error": 2.0,
     "probabilities_available": false,
     "published_at": "2026-10-24",
-    "registration_no": "BR-09158/2026",
-    "run_id": "run-20261024-c072ab49-ae78ab90",
-    "sample_size": 3702,
+    "registration_no": "BR-09540/2026",
+    "run_id": "run-20261024-6c9a3fad-8b932466",
+    "sample_size": 4050,
     "scenario_id": "president-br-t2-dbec719fff",
     "source_tier": "A",
     "status": "published_poll_only",
     "sum_pct": 100.0,
-    "undecided_pct": 1.0,
+    "undecided_pct": 2.0,
     "unmodeled_mass": 1.0,
     "values": [
       {
         "candidate_id": "2026-tse-280002551544",
-        "evidence_id": "ev-release-7b922506c29bd8f650db",
+        "evidence_id": "ev-release-cb9bc16c56fe8ec11f45",
         "label": "FLAVIO BOLSONARO",
         "number": 22,
         "party": "PL",
-        "pct": 46.0
+        "pct": 48.0
       },
       {
         "candidate_id": "2026-tse-280002542548",
-        "evidence_id": "ev-release-7b922506c29bd8f650db",
+        "evidence_id": "ev-release-cb9bc16c56fe8ec11f45",
         "label": "LULA",
         "number": 13,
         "party": "PT",
-        "pct": 45.0
+        "pct": 47.0
       }
     ],
     "winner_publication_status": "indisponivel"
   },
   "live_polls": [
+    {
+      "base": "totais",
+      "blank_null_pct": 3.0,
+      "confidence_level": 95.0,
+      "contractor": "Globo e pelo jornal Folha de S",
+      "evidence_id": "ev-release-cb9bc16c56fe8ec11f45",
+      "evidence_ids": [
+        "ev-release-cb9bc16c56fe8ec11f45",
+        "ev-tse-9ef567c3b78f893d71af",
+        "ev-tse-candidates-abd70ac3236e64e8190a"
+      ],
+      "field_end": "2026-10-24",
+      "field_start": "2026-10-23",
+      "institute": "Datafolha",
+      "institute_id": "datafolha",
+      "margin_of_error": 2.0,
+      "methodology": "Pesquisa do tipo quantitativo, por amostragem, com aplicação de questionário estruturado e abordagem pessoal em pontos de fluxo populacional. O conjunto do eleitorado brasileiro foi tomado como universo da pesquisa.",
+      "mode": "presencial",
+      "payer": null,
+      "published_at": "2026-10-24",
+      "registration_no": "BR-09540/2026",
+      "sample_size": 4050,
+      "sample_size_basis": "declared",
+      "scenario_id": "president-br-t2-dbec719fff",
+      "source_tier": "A",
+      "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/24/datafolha-presidente-24-outubro.ghtml",
+      "sum_pct": 100.0,
+      "undecided_pct": 2.0,
+      "values": [
+        {
+          "candidate_id": "2026-tse-280002551544",
+          "evidence_id": "ev-release-cb9bc16c56fe8ec11f45",
+          "label": "FLAVIO BOLSONARO",
+          "number": 22,
+          "party": "PL",
+          "pct": 48.0
+        },
+        {
+          "candidate_id": "2026-tse-280002542548",
+          "evidence_id": "ev-release-cb9bc16c56fe8ec11f45",
+          "label": "LULA",
+          "number": 13,
+          "party": "PT",
+          "pct": 47.0
+        }
+      ]
+    },
     {
       "base": "totais",
       "blank_null_pct": 8.0,
@@ -1329,27 +1376,27 @@
   "local_runtime_limitation": "Atualizações só ocorrem enquanto o Mac e o processo Paseo estiverem ligados.",
   "methodology": {
     "auto_update": false,
-    "config_hash": "ae78ab902331dbcb0456bd6bc19f3140bad59210fdaeeeb5453e939c82c7c8d4",
+    "config_hash": "8b9324661dc7e864ea6620ec658f84a2deaa969849a032e2d799b5ae1f85bcf9",
     "rule": "Dados, posterior e probabilidades podem mudar em cada run validado. Metodologia e hiperparâmetros só mudam por nova versão, backtest, changelog e registry.",
     "version": "3.1.0-phase2"
   },
   "next_watch_attempt_at": null,
   "operational_provenance": {
     "artifact_hashes": {
-      "delta": "f8778318e4b4f0fbd9c60db041d79f368082817893c5abfd983bf158451198e3",
-      "evidence": "b61a18551ae42011d5f615a053087a495bd28613180f71c8983ae84b963c434b",
+      "delta": "e6c0a38b5713edbb668c629055df02dc641572698da1a2b076f2b2a93feab537",
+      "evidence": "f5a82dd532503be3bb9239cfb939ce4848d659df8b3c605ae419f995285a0e9d",
       "explanation": "34355e0b36a2e7d2a320d4d65d30de8eed581c411319ca54ee177ba3a54e98ee",
-      "feed_event": "8c8f017fb681069c2dd44c37e95f09d0c5d8d50e8a3c94ccfd6117f3091ba94f",
-      "result": "c24614de75ceb1d51c3d0a7ccfe6fcf7b12c3c5fafa2805beeeafb569773f24b"
+      "feed_event": "ec804b979b4e44c6c78a1348b80cbc01130b9341b49f7b0ea63797c599236d95",
+      "result": "604666298c929dc7c6558169e039cbd7e01d4489137be84fedb8ef0d6a91af4b"
     },
-    "config_hash": "ae78ab902331dbcb0456bd6bc19f3140bad59210fdaeeeb5453e939c82c7c8d4",
-    "created_at": "2026-10-24T20:36:12.611617-03:00",
-    "data_hash": "c072ab49763f15edd2bfb805e782438791bea2b5cb1d93c221189f0043be2c2d",
-    "run_id": "run-20261024-c072ab49-ae78ab90"
+    "config_hash": "8b9324661dc7e864ea6620ec658f84a2deaa969849a032e2d799b5ae1f85bcf9",
+    "created_at": "2026-10-24T20:46:04.631485-03:00",
+    "data_hash": "6c9a3fad6aa48b8f06c96046c5ba970b749f0d27c63e0dbc5476fd742d3e849e",
+    "run_id": "run-20261024-6c9a3fad-8b932466"
   },
   "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo.",
   "processing_message": "último run concluído",
-  "processing_started_at": "2026-10-24T20:36:12.611617-03:00",
+  "processing_started_at": "2026-10-24T20:46:04.631485-03:00",
   "processing_state": "idle",
   "processing_trigger": "new_poll",
   "recent_release_inventory": [],
@@ -1367,15 +1414,15 @@
   },
   "retry_queue_size": 0,
   "review_queue_items": [],
-  "run_id": "run-20261024-c072ab49-ae78ab90",
+  "run_id": "run-20261024-6c9a3fad-8b932466",
   "service_running": false,
   "source_checks": {},
   "stale": false,
   "stale_warning": null,
   "state_intelligence": [],
   "timezone": "America/Sao_Paulo",
-  "validated_poll_count": 24,
-  "visible_run_id": "run-20261024-c072ab49-ae78ab90",
+  "validated_poll_count": 25,
+  "visible_run_id": "run-20261024-6c9a3fad-8b932466",
   "watch_cycle_failures": 0,
   "watch_interval_minutes": 30,
   "watcher_prepared": true

@@ -17,6 +17,75 @@
     "as_of": "2026-10-24",
     "items": [
       {
+        "anchors": [
+          {
+            "comparability_warnings": [],
+            "days_to_election": 1,
+            "distance_gap_days": 0,
+            "election": "2022-T2",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
+            "leader_signed_error_pp": 0.7853932584269643,
+            "mae_pp": 0.7853932584269643,
+            "margin_error_pp": 1.5707865168539286,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 3.3707865168539257,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "bolsonaro": 48.31460674157304,
+              "lula": 51.68539325842696
+            },
+            "reading": "Em 2022-10-29 (D-1 de 2022-T2), a Quaest media Lula 51.7% × Bolsonaro 48.3% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 0.8 p.p.; a margem saiu de +3.4 para +1.8 p.p. (+1.6 p.p. de erro de margem).",
+            "reference_date": "2022-10-29",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -0.7853932584269643,
+              "lula": 0.7853932584269643
+            },
+            "turn": 2,
+            "year": 2022
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 45.0,
+          "2026-tse-280002551544": 46.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 49.45054945054945,
+          "2026-tse-280002551544": 50.54945054945055
+        },
+        "days_to_election": 1,
+        "headline": "Hoje a Quaest mede FLAVIO BOLSONARO 50.5% × LULA 49.5% (votos válidos, D-1). No mesmo estágio de 2022 (D-1), ela media Lula 51.7% × Bolsonaro 48.3% e a urna deu 50.9% × 49.1% — a margem encolheu 1.6 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "quaest",
+        "house_name": "Quaest",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "status": "insuficiente"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-10-24",
+        "reason": null,
+        "reference_date": "2026-10-24",
+        "registration_no": "BR-09158/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "status": "available",
+        "turn": 2
+      },
+      {
         "anchors": [],
         "current_published_pct": {
           "2026-tse-280002542548": 46.0,
@@ -1537,8 +1606,8 @@
       }
     ],
     "not_a_projection": "Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
-    "polls_examined": 23,
-    "polls_with_anchor": 15,
+    "polls_examined": 24,
+    "polls_with_anchor": 16,
     "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
     "status": "available",
     "tolerance_days": 12
@@ -1548,79 +1617,82 @@
       {
         "beyond_sampling_noise": false,
         "candidate_id": "2026-tse-280002551544",
-        "delta_pp": 0.0,
-        "direction": "estavel",
+        "delta_pp": 1.0,
+        "direction": "alta",
         "label": "FLAVIO BOLSONARO",
-        "latest_pct": 47.0,
+        "latest_pct": 46.0,
         "party": "PL",
-        "previous_pct": 47.0,
-        "sampling_se_pp": 1.5782902141241326,
-        "sentence": "FLAVIO BOLSONARO ficou igual: 47% antes, 47% agora."
+        "previous_pct": 45.0,
+        "sampling_se_pp": 1.349078842921748,
+        "sentence": "FLAVIO BOLSONARO subiu 1 ponto: de 45% para 46% (dentro do ruído amostral)."
       },
       {
         "beyond_sampling_noise": false,
         "candidate_id": "2026-tse-280002542548",
-        "delta_pp": 0.0,
-        "direction": "estavel",
+        "delta_pp": 1.0,
+        "direction": "alta",
         "label": "LULA",
-        "latest_pct": 46.0,
+        "latest_pct": 45.0,
         "party": "PT",
-        "previous_pct": 46.0,
-        "sampling_se_pp": 1.5760710643876437,
-        "sentence": "LULA ficou igual: 46% antes, 46% agora."
+        "previous_pct": 44.0,
+        "sampling_se_pp": 1.3462822245047206,
+        "sentence": "LULA subiu 1 ponto: de 44% para 45% (dentro do ruído amostral)."
       }
     ],
     "comparability_rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
-    "days_between": 0,
-    "gained": [],
+    "days_between": 4,
+    "gained": [
+      "2026-tse-280002551544",
+      "2026-tse-280002542548"
+    ],
     "latest": {
       "base": "totais",
-      "evidence_id": "ev-release-33fc22d6ef8dd7aae4fc",
+      "evidence_id": "ev-release-7b922506c29bd8f650db",
       "field_end": "2026-10-24",
       "field_start": "2026-10-23",
-      "institute": "Nexus",
-      "institute_id": "nexus",
-      "mode": "telefone",
+      "institute": "Quaest",
+      "institute_id": "quaest",
+      "mode": "presencial",
       "n_candidates": 2,
       "published_at": "2026-10-24",
       "reference_date": "2026-10-24",
-      "registration_no": "BR-08234/2026",
-      "sample_size": 2000,
-      "scenario_id": "president-br-t2-6674345612"
+      "registration_no": "BR-09158/2026",
+      "sample_size": 3702,
+      "scenario_id": "president-br-t2-dbec719fff"
     },
     "lost": [],
     "other_houses_in_window": [
       "Datafolha",
       "Ipespe",
       "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
+      "Nexus",
       "PoderData",
-      "Quaest",
       "REAL TIME BIG DATA"
     ],
     "previous": {
       "base": "totais",
-      "evidence_id": "ev-release-33fc22d6ef8dd7aae4fc",
-      "field_end": "2026-10-24",
-      "field_start": "2026-10-23",
-      "institute": "Nexus",
-      "institute_id": "nexus",
-      "mode": "telefone",
+      "evidence_id": "ev-release-0e1c3f1ef0666a1e4acb",
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-17",
+      "institute": "Quaest",
+      "institute_id": "quaest",
+      "mode": "presencial",
       "n_candidates": 2,
-      "published_at": "2026-10-24",
-      "reference_date": "2026-10-24",
-      "registration_no": "BR-08234/2026",
-      "sample_size": 2000,
+      "published_at": "2026-10-21",
+      "reference_date": "2026-10-20",
+      "registration_no": "BR-08535/2026",
+      "sample_size": 2154,
       "scenario_id": "president-br-t2-dbec719fff"
     },
     "status": "compared",
-    "summary": "Ninguém ganhou espaço. Ninguém perdeu. Nenhuma variação ficou fora do ruído amostral."
+    "summary": "Ganharam espaço: FLAVIO BOLSONARO, LULA. Ninguém perdeu. Nenhuma variação ficou fora do ruído amostral."
   },
-  "live_hash": "0abd85b8eaaa77b6692d7e1e27e4558eaef2280c1a7473ffad722a79e13a3d37",
-  "live_source_run_id": "run-20261024-51811d5c-ae78ab90",
-  "run_id": "hist-20261024-8d90558c-8c3bf707-0abd85b8-08a374",
+  "live_hash": "406ba7ae33eb1202799a13fc8dfb96bdf8cf7a056bd9f85b3b5d998935f0c21b",
+  "live_source_run_id": "run-20261024-d4085cd7-ae78ab90",
+  "run_id": "hist-20261024-8d90558c-8c3bf707-406ba7ae-08a374",
   "signals": [
     {
-      "between_house_sd_pp": 1.1395512604085938,
+      "between_house_sd_pp": 1.159639811645678,
       "candidate_id": "2026-tse-280002551544",
       "candidate_label": "FLAVIO BOLSONARO",
       "direction": "baixa",
@@ -1630,7 +1702,7 @@
       "houses_in_window": 7,
       "houses_with_comparable_series": 7,
       "houses_with_single_measurement": [],
-      "median_delta_pp": -1.0,
+      "median_delta_pp": -0.5,
       "median_sampling_se_pp": 1.5683762848882445,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
@@ -2116,6 +2188,27 @@
               "2026-tse-280002551544"
             ]
           ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-7b922506c29bd8f650db",
+          "field_end": "2026-10-24",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 46.0,
+          "published_at": "2026-10-24",
+          "reference_date": "2026-10-24",
+          "registration_no": "BR-09158/2026",
+          "sample_size": 3702,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
         }
       ],
       "same_direction_across_houses": false,
@@ -2237,11 +2330,12 @@
           }
         },
         {
-          "days_between": 7,
-          "delta_pp": -1.0,
+          "days_between": 11,
+          "delta_pp": 0.0,
           "evidence_ids": [
             "ev-release-0e1c3f1ef0666a1e4acb",
-            "ev-release-447e2c9981bd080257bd"
+            "ev-release-447e2c9981bd080257bd",
+            "ev-release-7b922506c29bd8f650db"
           ],
           "from": {
             "date": "2026-10-13",
@@ -2250,12 +2344,12 @@
           },
           "house": "Quaest",
           "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.517309596706047,
+          "n_polls": 3,
+          "sampling_se_pp": 1.3506265203229144,
           "to": {
-            "date": "2026-10-20",
-            "pct": 45.0,
-            "registration_no": "BR-08535/2026"
+            "date": "2026-10-24",
+            "pct": 46.0,
+            "registration_no": "BR-09158/2026"
           }
         },
         {
@@ -2283,7 +2377,7 @@
       ]
     },
     {
-      "between_house_sd_pp": 1.0330506647252728,
+      "between_house_sd_pp": 1.0156653420081447,
       "candidate_id": "2026-tse-280002542548",
       "candidate_label": "LULA",
       "direction": "alta",
@@ -2779,6 +2873,27 @@
               "2026-tse-280002551544"
             ]
           ]
+        },
+        {
+          "base": "totais",
+          "evidence_id": "ev-release-7b922506c29bd8f650db",
+          "field_end": "2026-10-24",
+          "institute": "Quaest",
+          "institute_id": "quaest",
+          "mode": "presencial",
+          "pct": 45.0,
+          "published_at": "2026-10-24",
+          "reference_date": "2026-10-24",
+          "registration_no": "BR-09158/2026",
+          "sample_size": 3702,
+          "scenario_key": [
+            "quaest",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
         }
       ],
       "same_direction_across_houses": false,
@@ -2900,11 +3015,12 @@
           }
         },
         {
-          "days_between": 7,
-          "delta_pp": 0.0,
+          "days_between": 11,
+          "delta_pp": 1.0,
           "evidence_ids": [
             "ev-release-0e1c3f1ef0666a1e4acb",
-            "ev-release-447e2c9981bd080257bd"
+            "ev-release-447e2c9981bd080257bd",
+            "ev-release-7b922506c29bd8f650db"
           ],
           "from": {
             "date": "2026-10-13",
@@ -2913,12 +3029,12 @@
           },
           "house": "Quaest",
           "institute_id": "quaest",
-          "n_polls": 2,
-          "sampling_se_pp": 1.5125596130735501,
+          "n_polls": 3,
+          "sampling_se_pp": 1.3462822245047206,
           "to": {
-            "date": "2026-10-20",
-            "pct": 44.0,
-            "registration_no": "BR-08535/2026"
+            "date": "2026-10-24",
+            "pct": 45.0,
+            "registration_no": "BR-09158/2026"
           }
         },
         {

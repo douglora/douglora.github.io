@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "0abd85b8eaaa77b6692d7e1e27e4558eaef2280c1a7473ffad722a79e13a3d37",
-  "live_source_run_id": "run-20261024-51811d5c-ae78ab90",
-  "run_id": "hist-20261024-8d90558c-8c3bf707-0abd85b8-08a374",
+  "live_hash": "406ba7ae33eb1202799a13fc8dfb96bdf8cf7a056bd9f85b3b5d998935f0c21b",
+  "live_source_run_id": "run-20261024-d4085cd7-ae78ab90",
+  "run_id": "hist-20261024-8d90558c-8c3bf707-406ba7ae-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [],
@@ -17231,7 +17231,7 @@
       "min_houses": 2,
       "min_polls": 3,
       "note": "O gate vivo do agregador não foi alterado. Este cenário é publicado abaixo dele, como exercício, e por isso não pode ser lido como consenso.",
-      "polls": 23,
+      "polls": 24,
       "window_days": 21
     },
     "houses": [],
@@ -17251,7 +17251,7 @@
           "planned_publish_date": "2026-10-24",
           "registration_no": "BR091582026",
           "sample_size": 3702,
-          "scenario_status": "validated_awaiting_review"
+          "scenario_status": "accepted"
         }
       },
       {
@@ -17305,7 +17305,7 @@
           "planned_publish_date": "2026-10-24",
           "registration_no": "BR095402026",
           "sample_size": 4050,
-          "scenario_status": "blocked"
+          "scenario_status": "validated_awaiting_review"
         }
       }
     ],
@@ -17373,6 +17373,29 @@
           "published_at": "2026-10-24",
           "regime": "post_registration",
           "registration_no": "BR-08234/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_pct": 46.0,
+              "published_valid_pct": 50.54945054945055
+            },
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 45.0,
+              "published_valid_pct": 49.45054945054945
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-10-24",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "published_at": "2026-10-24",
+          "regime": "post_registration",
+          "registration_no": "BR-09158/2026"
         },
         {
           "candidates": [
