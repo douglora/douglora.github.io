@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "9faff6047e78196a13974e8ba6430a72e3f57d33a23fd191484390007b040606",
-  "live_source_run_id": "run-20261023-f3b10fad-41bf13e6",
-  "run_id": "hist-20261024-8d90558c-8c3bf707-9faff604-08a374",
+  "live_hash": "acfcb77ed02e47d65fedab08126894db13eec148ca00e577043f29fb1ebb6642",
+  "live_source_run_id": "run-20261024-399f268a-41bf13e6",
+  "run_id": "hist-20261024-8d90558c-8c3bf707-acfcb77e-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [],
@@ -17244,14 +17244,14 @@
         "house_id": "quaest",
         "house_name": "Quaest",
         "next_expected_release": {
-          "expected_release_status": "future_expected",
+          "expected_release_status": "due_today_unverified",
           "field_end": "2026-10-24",
           "field_start": "2026-10-23",
           "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
           "planned_publish_date": "2026-10-24",
           "registration_no": "BR091582026",
           "sample_size": 3702,
-          "scenario_status": "not_yet_due"
+          "scenario_status": "release_not_found"
         }
       },
       {
@@ -17262,14 +17262,14 @@
         "house_id": "atlasintel",
         "house_name": "AtlasIntel",
         "next_expected_release": {
-          "expected_release_status": "future_expected",
+          "expected_release_status": "due_today_unverified",
           "field_end": "2026-10-23",
           "field_start": "2026-10-18",
           "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
           "planned_publish_date": "2026-10-24",
           "registration_no": "BR063802026",
           "sample_size": 5000,
-          "scenario_status": "not_yet_due"
+          "scenario_status": "release_not_found"
         }
       },
       {
@@ -17298,14 +17298,14 @@
         "house_id": "datafolha",
         "house_name": "Datafolha",
         "next_expected_release": {
-          "expected_release_status": "future_expected",
+          "expected_release_status": "due_today_unverified",
           "field_end": "2026-10-24",
           "field_start": "2026-10-23",
           "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
           "planned_publish_date": "2026-10-24",
           "registration_no": "BR095402026",
           "sample_size": 4050,
-          "scenario_status": "not_yet_due"
+          "scenario_status": "release_not_found"
         }
       }
     ],
@@ -19029,6 +19029,29 @@
           "published_at": "2026-09-03",
           "regime": "post_registration",
           "registration_no": "BR-03669/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "RENAN SANTOS",
+              "party": "MISSÃO",
+              "published_pct": 39.0,
+              "published_valid_pct": 46.98795180722892
+            },
+            {
+              "label": "LULA",
+              "party": "PT",
+              "published_pct": 44.0,
+              "published_valid_pct": 53.01204819277108
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-09-02",
+          "house_id": "poderdata",
+          "house_name": "PoderData",
+          "published_at": "2026-09-03",
+          "regime": "post_registration",
+          "registration_no": "BR-07561/2026"
         },
         {
           "candidates": [
