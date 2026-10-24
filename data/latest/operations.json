@@ -12,7 +12,7 @@
     "selected_count": 0,
     "truncation_count": 0
   },
-  "as_of": "2026-10-24T20:46:04.631485-03:00",
+  "as_of": "2026-10-24T20:49:34.407380-03:00",
   "blocked_recent": [],
   "candidate_registry_status": {
     "candidate_count": 2,
@@ -55,8 +55,8 @@
   "last_accepted_discovery": null,
   "last_error": null,
   "last_published_run": {
-    "created_at": "2026-10-24T20:46:04.631485-03:00",
-    "run_id": "run-20261024-6c9a3fad-8b932466"
+    "created_at": "2026-10-24T20:49:34.407380-03:00",
+    "run_id": "run-20261024-cb53a93a-8b932466"
   },
   "last_search": "2026-10-24T20:33:43.886663-03:00",
   "last_source_check": "2026-10-24T20:33:43.886663-03:00",
@@ -66,7 +66,7 @@
     "registration_no": "BR-09540/2026",
     "scenario_id": "president-br-t2-dbec719fff"
   },
-  "latency_seconds": 0.11255558300763369,
+  "latency_seconds": 0.18314666696824133,
   "latency_sla_seconds": {
     "champion_m3": 900,
     "preliminary_b1_m2": 300
@@ -159,7 +159,7 @@
     "probabilities_available": false,
     "published_at": "2026-10-24",
     "registration_no": "BR-09540/2026",
-    "run_id": "run-20261024-6c9a3fad-8b932466",
+    "run_id": "run-20261024-cb53a93a-8b932466",
     "sample_size": 4050,
     "scenario_id": "president-br-t2-dbec719fff",
     "source_tier": "A",
@@ -1383,20 +1383,20 @@
   "next_watch_attempt_at": null,
   "operational_provenance": {
     "artifact_hashes": {
-      "delta": "e6c0a38b5713edbb668c629055df02dc641572698da1a2b076f2b2a93feab537",
-      "evidence": "f5a82dd532503be3bb9239cfb939ce4848d659df8b3c605ae419f995285a0e9d",
-      "explanation": "34355e0b36a2e7d2a320d4d65d30de8eed581c411319ca54ee177ba3a54e98ee",
-      "feed_event": "ec804b979b4e44c6c78a1348b80cbc01130b9341b49f7b0ea63797c599236d95",
-      "result": "604666298c929dc7c6558169e039cbd7e01d4489137be84fedb8ef0d6a91af4b"
+      "delta": "652cc8558f33915229003cd1633538b4b6291654ea614d607070d297ea70347f",
+      "evidence": "050d285189d2b8fb1afa626f97de08ab7f0d6f654ef8fecfc854b02a70f706cd",
+      "explanation": "ff34f0ffe22fbb91011cb6b1a5c2da9a9f4cc8478253cbc92c3a84c38537fff9",
+      "feed_event": "73b6a7ff765685bbeb645bc228a208e822c8e51a63c17aad7f624f7c4e3c6137",
+      "result": "ab85ecfd47d05f23bb98ec7fb45fb90bbfb079b498a91ba0dd9cd61ee23cafae"
     },
     "config_hash": "8b9324661dc7e864ea6620ec658f84a2deaa969849a032e2d799b5ae1f85bcf9",
-    "created_at": "2026-10-24T20:46:04.631485-03:00",
-    "data_hash": "6c9a3fad6aa48b8f06c96046c5ba970b749f0d27c63e0dbc5476fd742d3e849e",
-    "run_id": "run-20261024-6c9a3fad-8b932466"
+    "created_at": "2026-10-24T20:49:34.407380-03:00",
+    "data_hash": "cb53a93abd23dbdb9135ec63b490de4a12c11283ba9e2f1358012bdbd2143841",
+    "run_id": "run-20261024-cb53a93a-8b932466"
   },
   "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo.",
   "processing_message": "último run concluído",
-  "processing_started_at": "2026-10-24T20:46:04.631485-03:00",
+  "processing_started_at": "2026-10-24T20:49:34.407380-03:00",
   "processing_state": "idle",
   "processing_trigger": "new_poll",
   "recent_release_inventory": [],
@@ -1414,7 +1414,7 @@
   },
   "retry_queue_size": 0,
   "review_queue_items": [],
-  "run_id": "run-20261024-6c9a3fad-8b932466",
+  "run_id": "run-20261024-cb53a93a-8b932466",
   "service_running": false,
   "source_checks": {},
   "stale": false,
@@ -1422,7 +1422,7 @@
   "state_intelligence": [],
   "timezone": "America/Sao_Paulo",
   "validated_poll_count": 25,
-  "visible_run_id": "run-20261024-6c9a3fad-8b932466",
+  "visible_run_id": "run-20261024-cb53a93a-8b932466",
   "watch_cycle_failures": 0,
   "watch_interval_minutes": 30,
   "watcher_prepared": true
