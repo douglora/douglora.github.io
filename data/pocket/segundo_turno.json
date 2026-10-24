@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-24T00:43:03-03:00",
+ "gerado_em": "2026-10-24T01:20:41-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,6% dos votos válidos na média de 7 casas, contra 49,4% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -2266,7 +2266,7 @@
     "lula": 46.7,
     "flavio": 53.3
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-presidente-segundo-turno-22-outubro.ghtml"
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-aprova-desaprova-governo-22-outubro.ghtml"
   },
   {
    "casa": "Ipespe",
@@ -2757,7 +2757,7 @@
     "flavio": 50.5,
     "lula": 49.5
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-presidente-segundo-turno-22-outubro.ghtml",
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/10/22/datafolha-aprova-desaprova-governo-22-outubro.ghtml",
    "pos_1o_turno": true,
    "na_media": true,
    "peso": 0.158
@@ -3449,6 +3449,30 @@
     "flavio": 50.0
    },
    "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/07/quaest-2-turno-7-de-setembro.ghtml",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "data": "2026-09-03",
+   "campo": "30/08 a 02/09",
+   "amostra": 3000,
+   "margem_erro_pp": 1.8,
+   "registro": "BR-07561/2026",
+   "totais": {
+    "lula": 44.0,
+    "flavio": 45.0,
+    "branco_nulo": 8.0,
+    "indecisos": 3.0
+   },
+   "validos": {
+    "flavio": 50.6,
+    "lula": 49.4
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/09/Relatorio-PoderData-Eleitoral-2set26.pdf",
    "pos_1o_turno": false,
    "na_media": false,
    "peso": null,

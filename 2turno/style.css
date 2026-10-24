@@ -1367,3 +1367,196 @@ body.com-faixa-sim { padding-bottom: 56px; }
 /* cartão verde: o que o Radar dava no dia do 1º turno */
 .c1-radar { font-size: 12px; font-weight: 600; color: var(--dourado, #e9c46a); }
 body.tv .c1-radar { font-size: 14px; }
+
+/* ------------------------------------------------------------------------------------------
+   Apuração: destaques com etiqueta e "Ver todos", painel "Estados, número a número" e detalhe do
+   estado (apuracao.js, 23/10/2026). Tudo escopado em .ap-in, .ap-ins-*, .ap-sec-estados e .uf-*.
+   ------------------------------------------------------------------------------------------ */
+
+/* destaque: etiqueta do assunto + texto + "desde" */
+.ap-in .ap-tag {
+  display: inline-block;
+  margin: 0 7px 0 0;
+  padding: 1px 8px;
+  border: 1px solid var(--linha-2);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--tinta-2);
+  font-size: 10.5px;
+  font-weight: 720;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+.ap-tag.t-estado { background: #e9f0fb; border-color: #c6d8f3; color: #1c3f78; }
+.ap-tag.t-cidade { background: #e5f4ec; border-color: #bfe0cd; color: #0f5a33; }
+.ap-tag.t-historico { background: #fdf2dc; border-color: #f0d9a8; color: #6b4300; }
+.ap-tag.t-pesquisas { background: #efe9fa; border-color: #d8cbee; color: #4a2a85; }
+.ap-in .ap-txt { overflow-wrap: anywhere; }
+.ap-in .ap-nota-in { display: block; margin-top: 3px; font-size: 12.5px; line-height: 1.4; color: var(--tinta-3); }
+.ap-in .ap-desde { display: block; margin-top: 3px; font-size: 11.5px; color: var(--tinta-3); }
+.ap-ins-mais { margin: 10px 0 0; }
+.ap-ins-bt {
+  appearance: none;
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--linha-2);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--tinta);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.ap-ins-bt[hidden] { display: none; }
+.ap-ins-bt:hover { background: var(--suave); }
+.ap-ins-lista { margin-top: 10px; }
+.ap-ins-lista[hidden] { display: none; }
+.ap-ins-nota { margin-top: 10px; }
+.ap-atraso { margin-top: 2px; }
+.ap-atraso[hidden] { display: none; }
+
+/* painel dos estados */
+.ap-sec-estados .uf-ord { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 10px; }
+.uf-ord-r { margin-right: 2px; font-size: 12px; color: var(--tinta-3); }
+.uf-ord-b {
+  appearance: none;
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid var(--linha-2);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--tinta);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 620;
+  cursor: pointer;
+}
+.uf-ord-b[aria-pressed="true"] { border-color: var(--tinta); background: var(--tinta); color: #fff; }
+.uf-tab { overflow: hidden; border: 1px solid var(--linha); border-radius: 12px; background: #fff; }
+.uf-cab,
+.uf-lin {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr) minmax(0, 1.02fr) minmax(0, 1.12fr);
+  align-items: stretch;
+}
+.uf-cab { padding: 7px 0; border-bottom: 1px solid var(--linha-2); background: var(--suave); }
+.uf-cab span {
+  padding: 0 7px;
+  font-size: 10px;
+  font-weight: 720;
+  line-height: 1.25;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--tinta-2);
+}
+.uf-cab span + span,
+.uf-lin > span + span { border-left: 1px solid var(--linha); }
+.uf-lista { margin: 0; padding: 0; list-style: none; }
+.uf-it { position: relative; border-bottom: 1px solid var(--linha); }
+.uf-it:last-child { border-bottom: 0; }
+.uf-lin {
+  position: relative;
+  width: 100%;
+  min-height: 56px;
+  padding: 8px 0;
+  border: 0;
+  background: #fff;
+  color: var(--tinta);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.uf-lin > span { display: block; min-width: 0; padding: 0 7px; }
+.uf-it.lid-l > .uf-lin { box-shadow: inset 4px 0 0 var(--uf-l, var(--lula)); }
+.uf-it.lid-f > .uf-lin { box-shadow: inset 4px 0 0 var(--uf-f, var(--flavio)); }
+.uf-it.sel > .uf-lin { background: var(--suave); }
+.uf-lin:hover { background: var(--suave); }
+.uf-lin:focus-visible { outline: 2px solid var(--tinta); outline-offset: -2px; }
+.uf-lin.brilha { animation: ufBrilho 0.65s ease-out; }
+@keyframes ufBrilho { from { background: var(--brilho, #fff1c2); } to { background: #fff; } }
+.uf-it.sel > .uf-lin.brilha { animation: none; }
+.uf-nome { display: block; font-size: 13.5px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.uf-sec { display: block; margin-top: 1px; font-size: 11.5px; color: var(--tinta-3); font-variant-numeric: tabular-nums; }
+.uf-sec b { font-weight: 650; color: var(--tinta-2); }
+.uf-barra { display: block; height: 3px; margin-top: 5px; overflow: hidden; border-radius: 2px; background: var(--suave-2); }
+.uf-barra i { display: block; width: 0; height: 100%; background: var(--tinta-2); transition: width 1s ease; }
+.uf-n { display: flex; justify-content: space-between; align-items: baseline; gap: 4px; font-size: 12.5px; line-height: 1.4; font-variant-numeric: tabular-nums; }
+.uf-n b { font-weight: 560; }
+.uf-nl .uf-k { color: var(--uf-l, var(--lula)); }
+.uf-nf .uf-k { color: var(--uf-f, var(--flavio)); }
+.uf-k { font-size: 12px; font-weight: 700; }
+.uf-it.lid-l .uf-nl b,
+.uf-it.lid-f .uf-nf b { font-weight: 820; }
+.uf-d { display: block; font-size: 13px; font-weight: 720; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.uf-d b { font-weight: 720; }
+.uf-d[data-s="l"] { color: var(--uf-l, var(--lula)); }
+.uf-d[data-s="f"] { color: var(--uf-f, var(--flavio)); }
+.uf-d2 { display: block; margin-top: 2px; font-size: 11px; line-height: 1.3; color: var(--tinta-3); font-variant-numeric: tabular-nums; }
+.uf-d2.virou { display: inline-block; padding: 0 5px; border-radius: 5px; background: #fff1c2; color: #4d3900; font-weight: 700; }
+.uf-sit { display: block; font-size: 12.5px; font-weight: 700; line-height: 1.25; }
+.uf-sit2 { display: block; margin-top: 2px; font-size: 11px; line-height: 1.3; color: var(--tinta-3); font-variant-numeric: tabular-nums; }
+.uf-it.s-ind .uf-sit { font-weight: 620; color: var(--tinta-2); }
+.uf-it.s-ag .uf-sit { font-weight: 500; color: var(--tinta-3); }
+.uf-it.s-def .uf-sit { display: inline-block; padding: 1px 7px; border-radius: 6px; color: #fff; }
+.uf-it.s-def.q-lula .uf-sit { background: var(--uf-l, var(--lula)); }
+.uf-it.s-def.q-flavio .uf-sit { background: var(--uf-f, var(--flavio)); }
+.uf-it.s-prov .uf-sit { display: inline-block; padding: 0 6px; border: 1.5px solid currentColor; border-radius: 6px; }
+.uf-it.s-prov.q-lula .uf-sit { color: var(--uf-l, var(--lula)); }
+.uf-it.s-prov.q-flavio .uf-sit { color: var(--uf-f, var(--flavio)); }
+.uf-it.pouco .uf-c2,
+.uf-it.pouco .uf-c3 { opacity: 0.68; }
+.uf-leg { max-width: none; }
+.uf-it > .ap-uf { margin: 0 8px 10px; border-color: var(--linha-2); background: #fff; }
+
+/* detalhe do estado (mapa ou tabela) */
+.ap-uf .ap-uf-sit { margin: 8px 0 0; padding: 8px 10px; border-left: 4px solid var(--linha-2); border-radius: 0 8px 8px 0; background: var(--suave); font-size: 14px; font-weight: 650; line-height: 1.4; }
+.ap-uf .ap-uf-sit.q-lula { border-left-color: var(--uf-l, var(--lula)); }
+.ap-uf .ap-uf-sit.q-flavio { border-left-color: var(--uf-f, var(--flavio)); }
+.ap-hist-bt { min-height: 36px; padding: 0 14px; border: 0; cursor: pointer; font: inherit; font-size: 13.5px; font-weight: 650; }
+.ap-uf .tab td small { margin-top: 0; }
+
+@media (max-width: 359px) {
+  /* nome do candidato vira só a inicial (L, F) nas telas bem estreitas */
+  .uf-k,
+  .uf-dq { display: inline-block; font-size: 0; }
+  .uf-k::first-letter,
+  .uf-dq::first-letter { font-size: 12px; }
+  .uf-cab,
+  .uf-lin { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) minmax(0, 0.95fr) minmax(0, 1.15fr); }
+  .uf-cab span { padding: 0 5px; font-size: 9px; letter-spacing: 0.03em; }
+  .uf-lin > span { padding: 0 5px; }
+  .uf-nome { font-size: 12.5px; }
+  .uf-sec,
+  .uf-d2,
+  .uf-sit2 { font-size: 10.5px; }
+  .uf-n { font-size: 12px; }
+  .uf-d,
+  .uf-sit { font-size: 12px; }
+  .ap-in .ap-tag { font-size: 10px; padding: 0 6px; }
+}
+@media (min-width: 720px) {
+  .uf-cab span { font-size: 11px; }
+  .uf-lin { min-height: 62px; padding: 10px 0; }
+  .uf-nome { font-size: 15px; }
+  .uf-sec,
+  .uf-d2,
+  .uf-sit2 { font-size: 12px; }
+  .uf-n { font-size: 14px; }
+  .uf-d,
+  .uf-sit { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .uf-lin.brilha { animation: none; }
+  .uf-barra i { transition: none; }
+}
+
+/* Modo TV: a tabela, a lista completa e as notas ficam de fora (o mapa já traz os números de cada estado) */
+body.tv .ap-sec-estados,
+body.tv .ap-ins-mais,
+body.tv .ap-ins-lista,
+body.tv .ap-ins-nota,
+body.tv .ap-atraso { display: none !important; }

@@ -1,14 +1,21 @@
 /* Radar Eleitoral · 2º turno · APURAÇÃO AO VIVO (o "processador" da noite de 25/10)
  *
  * Módulo ES sem dependências, carregado pelo app.js com import dinâmico.
- * - Lê o TSE direto do navegador (CORS liberado): Brasil a cada 10 s; a abrangência
- *   (progresso de cada UF, um arquivo só) a cada 10 s diz quais UFs mudaram, e só essas
- *   são relidas, até 4 por vez. Detalhes em "leitura do TSE".
+ * - Lê o TSE direto do navegador (CORS liberado): Brasil a cada 5 s; a abrangência
+ *   (progresso de cada UF, um arquivo só) a cada 5 s diz quais UFs mudaram, e só essas
+ *   são relidas, até 4 por vez. As 27 capitais (arquivo de cada município) são lidas a
+ *   cada ~30 s, escalonadas, sem nunca atrasar o Brasil nem os estados. Detalhes em
+ *   "leitura do TSE".
  * - Projeta o resultado final UF por UF: o que já foi apurado + o que falta,
  *   misturando o observado na UF com a prévia (modelo_uf do JSON; se faltar,
  *   o cálculo de reserva descrito em montarBase).
  * - Chance de vitória por Monte Carlo (2.000 sorteios, sementes fixas para o
- *   número não "tremer" entre leituras).
+ *   número não "tremer" entre leituras). Os MESMOS sorteios dão a chance de cada
+ *   estado (fatia de sorteios em que cada candidato vence naquele estado), então a
+ *   chance nacional e as dos estados são coerentes entre si.
+ * - Painel "Estados, número a número" (todos os 27 + Exterior), situação de cada estado
+ *   (aguardando, indefinido, provável, definido) e destaques ("O que está
+ *   acontecendo") com 1º turno, histórico 2002-2022, capitais e pesquisas.
  * - Antes das 17h de 25/10: contagem até o fechamento, prévia por estado e o
  *   botão da SIMULAÇÃO (números fictícios, faixa fixa na tela).
  * - Teste com o 1º turno, que tem o mesmo formato: ?eleicao=6257.
@@ -45,11 +52,33 @@ export const MODELO = {
   // Monte Carlo: sorteios e semente fixa (mesmos sorteios a cada leitura).
   SORTEIOS: 2000,
   SEMENTE: 20261025,
-  // Ritmo de leitura do TSE. O Akamai do TSE guarda cada arquivo de 30 a 60 s na borda
-  // (max-age medido em 23/10/2026: 45 a 57 s) e responde 304 a pedido condicional, então
-  // ler mais rápido que 10 s não traz número mais novo, só gasta requisição.
-  CADA_BR_MS: 10000,
-  CADA_AB_MS: 10000,
+  // Ritmo de leitura do TSE. Por que 5 s é tão rápido quanto o próprio site do TSE:
+  // o site resultados.tse.jus.br e esta página leem OS MESMOS arquivos, servidos pela mesma
+  // rede de distribuição (Akamai), que guarda cada arquivo por 45 a 57 s (max-age medido em
+  // 23/10/2026) e só então busca a versão nova na origem. Ninguém, nem o site do TSE, vê um
+  // número antes de o arquivo trocar na borda. Pedindo a cada 5 s, com pedido condicional
+  // (If-None-Match / If-Modified-Since), a página descobre a troca em até 5 s depois dela e,
+  // enquanto nada muda, o TSE responde 304 (uns 200 bytes). Nada de parâmetro na URL para
+  // "furar" o cache: isso iria até a origem do TSE, aumentaria a carga na noite da apuração
+  // e arriscaria bloqueio (429), sem trazer número mais novo.
+  CADA_BR_MS: 5000,
+  CADA_AB_MS: 5000,
+  // Capitais (arquivo de cada município, mesmo formato do arquivo do estado): no máximo 4
+  // pedidos no ar, uma leitura nova por segundo no máximo (escalonadas), cada capital a
+  // cada ~30 s (90 s enquanto ainda sem voto) e só quando não há Brasil, abrangência nem
+  // estado esperando. Capital 100% apurada deixa de ser lida.
+  CAP_PARALELO: 4,
+  CAP_CADA_MS: 30000,
+  CAP_PARADO_MS: 90000,
+  // Estado "provável": chance de 99% (ou 1%) E ao menos 25% das seções do estado apuradas.
+  // Nunca por prévia: sem voto contado, o estado fica "aguardando".
+  UF_PROVAVEL_CHANCE: 0.99,
+  UF_PROVAVEL_SEC: 25,
+  // Mínimo de apuração (% das seções) para cada tipo de destaque nascer: com pouco contado,
+  // a ordem em que as urnas chegam enviesa os números e o texto afirmaria demais.
+  INS_MIN: { vs1t: 20, virou: 30, placar: 10, regiao: 15, termometro: 30, capital: 20, capitais: 30, momento: 5, pesquisas: 15, transf: 1 },
+  // Atrasos (hora da totalização do TSE → hora da leitura aqui) guardados para a mediana.
+  ATRASOS_N: 30,
   // Estados: no máximo 4 pedidos no ar; cada um relido quando a abrangência avisa que
   // mudou e, como rede de segurança, ao menos a cada 60 s enquanto conta (15 s se a
   // abrangência falhar; 5 min depois de 100% totalizado).
@@ -142,6 +171,15 @@ const A = {
   serie: [],
   trocas: [],
   ufSel: null,
+  ufOrigem: 'mapa', // de onde veio o toque que abriu o detalhe: 'mapa' ou 'tabela'
+  ufOrd: 'eleitorado', // ordem do painel Estados: eleitorado | apurado | disputa
+  ufOrdEm: 0, // última reordenação das linhas (ms)
+  histAberto: false, // histórico 2002-2022 aberto no detalhe do estado
+  insTodos: false, // lista "Ver todos" aberta
+  insVisto: new Map(), // id do destaque → { d: desde quando aparece (ms), u: última vez visto (ms) }
+  cap: new Map(), // capitais: cod → arquivo do TSE lido
+  atrasos: [], // hora da totalização do TSE × hora em que esta página viu a versão
+  simDoc: null, // simulador.json do Mac, repassado pelo simulador.js ({ doc, em, modo })
   rot: 0,
   timers: [],
   sim: null,
@@ -281,6 +319,11 @@ const chanceTxt = (p) => {
   if (v > 99 && v < 100) return '>99%';
   return `${C.fNum(arredPar(v), 0)}%`;
 };
+// Para dentro de frase: "chance de mais de 99%", "chance de menos de 1%", "chance de 72%".
+const chanceDe = (p) => {
+  const t = chanceTxt(p);
+  return t.startsWith('>') ? `mais de ${t.slice(1)}` : t.startsWith('<') ? `menos de ${t.slice(1)}` : t;
+};
 // Arredonda a chance de modo que os dois lados somem 100: com 33,5% × 66,5% saía "34% × 67%".
 function arredPar(v) {
   return v > 50 ? 100 - Math.round(100 - v) : Math.round(v);
@@ -362,7 +405,18 @@ function montarBase(d) {
     const pl = C.num(p?.lula);
     const pf = C.num(p?.flavio);
     const t1ParUF = pl !== null && pf !== null && pl + pf > 0 ? pl / (pl + pf) : null;
-    const b = { ...padrao, t1Lula: t1ParUF, eleitorado: C.num(m?.eleitorado) ?? C.num(p?.eleitorado), fonte: 'média nacional' };
+    const b = {
+      ...padrao,
+      t1Lula: t1ParUF,
+      // 1º turno da UF: % dos válidos entre TODOS os candidatos (os outros somam 100 − L − F),
+      // abstenção e brancos+nulos. Servem para "vs 1º turno" e para o comparecimento por região.
+      t1L: pl,
+      t1F: pf,
+      abst1T: C.num(p?.abstencao_pct),
+      bn1T: C.num(p?.brancos_nulos_pct),
+      eleitorado: C.num(m?.eleitorado) ?? C.num(p?.eleitorado),
+      fonte: 'média nacional',
+    };
     if (m) {
       const pr = C.num(m.prior_lula_par);
       const cp = C.num(m.prior_comparecimento);
@@ -396,8 +450,18 @@ function montarBase(d) {
     }
   }
   if (semEleitorado) lac.push(`Eleitorado de ${semEleitorado} ${semEleitorado === 1 ? 'estado' : 'estados'} aproximado pela divisão de 2022, até o TSE informar.`);
+  // Histórico dos estados nos segundos turnos de 2002 a 2022 (TSE) e lista das capitais.
+  const hist = lerHistorico(d?.estados_historico);
+  if (!hist) lac.push('Sem o histórico dos estados (2002 a 2022) no JSON: os destaques históricos não aparecem.');
+  const capitais = lerCapitais(d?.capitais);
+  if (!capitais.length) lac.push('Sem a lista de capitais no JSON: a comparação por capital não aparece.');
+  const mediaAcerto = C.num(d?.medias?.acerto_1t?.validos?.lula) ?? C.num(d?.media_acerto_1t?.validos?.lula);
   return {
     ufs,
+    hist,
+    capitais,
+    mediaAcerto,
+    t1ParNac: t1Par,
     origem,
     lacunas: lac,
     nacPar: nacPar ?? 0.5,
@@ -409,6 +473,44 @@ function montarBase(d) {
     mediaL: vL,
     mediaF: vF,
   };
+}
+
+// estados_historico (inputs/pocket/historico_uf.json via build_pocket): para cada UF, em quantos
+// segundos turnos de 2002 a 2022 ela votou no mesmo lado do vencedor nacional ("acompanhou"),
+// a participação do PT no par em cada ano e a distância média, em pontos, entre a UF e o
+// resultado nacional. "termometros" = as UFs que mais acompanham (hoje AM e MG).
+function lerHistorico(eh) {
+  const e = obj(eh);
+  if (!e || !obj(e.ufs)) return null;
+  const ufs = new Map();
+  for (const [k, v] of Object.entries(e.ufs)) {
+    const uf = String(k).toUpperCase();
+    const x = obj(v);
+    const a = C.num(x?.acompanhou);
+    const n = C.num(x?.eleicoes);
+    if (!UFS.includes(uf) || a === null || n === null || n <= 0) continue;
+    const anos = arr(x.anos)
+      .map((y) => ({ ano: C.num(y?.ano), par: C.num(y?.pt_par), venceu: C.txt(y?.venceu), acompanhou: y?.acompanhou === true }))
+      .filter((y) => y.ano !== null && y.par !== null);
+    ufs.set(uf, { acompanhou: a, eleicoes: n, dist: C.num(x.distancia_media_pp), anos });
+  }
+  if (!ufs.size) return null;
+  const anos = arr(e.anos).map((y) => ({ ano: C.num(y?.ano), vencedor: C.txt(y?.vencedor), par: C.num(y?.pt_par) })).filter((y) => y.ano !== null);
+  const termometros = arr(e.termometros).map((x) => String(x).toUpperCase()).filter((x) => ufs.has(x));
+  return { ufs, anos, termometros, ano0: anos.length ? Math.min(...anos.map((y) => y.ano)) : 2002 };
+}
+// capitais: o cod é a chave do arquivo do TSE (ex.: sp71072 → .../dados/sp/sp71072-c0001-e006258-u.json).
+function lerCapitais(lista) {
+  const out = [];
+  const vistos = new Set();
+  for (const c of arr(lista)) {
+    const uf = String(c?.uf || '').toUpperCase();
+    const cod = String(c?.cod || '').toLowerCase();
+    if (!UFS.includes(uf) || uf === 'ZZ' || !/^[a-z]{2}\d{5}$/.test(cod) || !cod.startsWith(uf.toLowerCase()) || vistos.has(cod)) continue;
+    vistos.add(cod);
+    out.push({ uf, cod, nome: C.txt(c.nome) || NOME_UF[uf], eleitorado: C.num(c.eleitorado), par1t: C.num(c.lula_par_1t), par22: C.num(c.lula_par_2022), secoes: C.num(c.secoes) });
+  }
+  return out.sort((a, b) => (b.eleitorado ?? 0) - (a.eleitorado ?? 0));
 }
 
 /* ======================================================== leitura do TSE */
@@ -534,7 +636,10 @@ function processar() {
     const shareObs = L + F > 0 ? L / (L + F) : null;
     const compObs = o && est > 0 ? o.c / est : null;
     const bnObs = o && o.c > 0 ? (o.vb + o.tvn) / o.c : null;
-    return { uf, b, o, te, est, f, L, F, vv: o ? o.vv : 0, shareObs, compObs, bnObs };
+    // Seções apuradas (%): seções totalizadas ÷ seções, como o TSE; sem isso, o percentual do arquivo.
+    const fim = !!(o && o.ts > 0 && o.st !== null && o.st >= o.ts);
+    const sec = !o ? 0 : o.ts > 0 && o.st !== null ? (o.st / o.ts) * 100 : Number.isFinite(o.pst) ? o.pst : f * 100;
+    return { uf, b, o, te, est, f, L, F, vv: o ? o.vv : 0, shareObs, compObs, bnObs, fim, sec };
   });
   // Swing observado: média, ponderada pelos votos apurados, de (observado − prévia).
   let sn = 0;
@@ -567,6 +672,15 @@ function processar() {
     u.projL = u.L + u.rem * u.share;
     u.projF = u.F + u.rem * (1 - u.share);
     u.sig = (u.b.sigma / 100) * Math.sqrt(Math.max(0, 1 - u.f));
+    // Comparações com o 1º turno e quem está à frente (em % do par; nada disso usa prévia).
+    u.parObs = u.shareObs !== null ? u.shareObs * 100 : null;
+    u.t1Par = u.b.t1Lula !== null ? u.b.t1Lula * 100 : null;
+    u.lider = lider(u.L, u.F);
+    u.lider1T = u.t1Par === null ? null : u.t1Par > 50 ? 'lula' : u.t1Par < 50 ? 'flavio' : null;
+    u.dT1 = u.parObs !== null && u.t1Par !== null ? u.parObs - u.t1Par : null;
+    // Matematicamente definido no estado: a vantagem é maior que todo o eleitorado que falta lá.
+    u.faltaMax = u.fim ? 0 : u.remMax;
+    u.defUF = u.lider && Math.abs(u.L - u.F) > u.faltaMax ? u.lider : null;
     projL += u.projL;
     projF += u.projF;
     rem += u.rem;
@@ -611,6 +725,8 @@ function processar() {
   // das UFs, que podia estar alguns minutos atrás (ou à frente).
   const taxa = remMax > 0 ? rem / remMax : 0.75;
   const remCont = remMaxCont * taxa;
+  // Os mesmos sorteios dão a chance nacional e a de cada estado (ver montecarlo).
+  const mc = montecarlo(linhas, projL, projF, rem);
   let pL;
   if (tudo || definido) {
     pL = dif > 0 ? 1 : dif < 0 ? 0 : 0.5;
@@ -618,8 +734,36 @@ function processar() {
     pL = eleitoTSE === 'lula' ? 1 : 0;
   } else {
     // 100% e 0% ficam para quando está decidido; antes disso, no máximo ">99%".
-    pL = clamp(montecarlo(linhas, projL, projF, rem), 0.001, 0.999);
+    pL = clamp(mc.nac, 0.001, 0.999);
   }
+  // Situação de cada estado. "Definido": vantagem maior que o eleitorado que falta no estado
+  // (ou estado 100% apurado). "Provável": chance ≥ 99% (ou ≤ 1%) E ao menos 25% das seções
+  // do estado apuradas E o líder da contagem é o mesmo da projeção. Estado sem voto contado
+  // fica "aguardando" e nunca é declarado pela prévia.
+  linhas.forEach((u, i) => {
+    const temVoto = !!u.o && u.L + u.F > 0;
+    u.prevChance = mc.uf[i];
+    let ch = clamp(mc.uf[i], 0.001, 0.999);
+    if (u.defUF) ch = u.defUF === 'lula' ? 1 : 0;
+    u.chance = ch;
+    const ladoProj = u.projL > u.projF ? 'lula' : u.projF > u.projL ? 'flavio' : null;
+    const prov =
+      temVoto && !u.defUF && u.sec >= MODELO.UF_PROVAVEL_SEC && u.lider && u.lider === ladoProj &&
+      (ch >= MODELO.UF_PROVAVEL_CHANCE || ch <= 1 - MODELO.UF_PROVAVEL_CHANCE);
+    u.status = !u.o ? 'sem-leitura' : !temVoto ? 'aguardando' : u.defUF ? 'definido' : prov ? 'provavel' : 'indefinido';
+    u.quem = u.status === 'definido' ? u.defUF : u.status === 'provavel' ? (ch >= 0.5 ? 'lula' : 'flavio') : null;
+    // Faixa de 80% da participação final de Lula no par do estado (mesmas incertezas dos sorteios).
+    const tot = u.projL + u.projF;
+    if (tot > 0) {
+      const sh = u.projL / tot;
+      const sd = (u.rem / tot) * Math.sqrt(u.sig ** 2 + (A.base.sigmaNac / 100) ** 2);
+      u.faixa = u.rem > 0 && !u.defUF ? [Math.max(0, sh - 1.2816 * sd) * 100, Math.min(1, sh + 1.2816 * sd) * 100] : null;
+      u.projPar = sh * 100;
+    } else {
+      u.faixa = null;
+      u.projPar = null;
+    }
+  });
   return {
     linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, proj, pL, definido, tudo, eleitoTSE, decidido,
     lidos, semLeitura, completo, totalVal,
@@ -673,13 +817,21 @@ function vistaNacional(linhas, t) {
   return c;
 }
 
+// Devolve a chance nacional de Lula (nac) e a de Lula em cada estado (uf, na ordem de linhas).
+// Cada sorteio tem um erro nacional comum e um erro próprio de cada estado; o nacional soma os
+// estados, então os dois números saem dos mesmos sorteios e não se contradizem.
 function montecarlo(linhas, projL, projF, rem) {
   const z = normais();
   const S = UFS.length + 1;
   const V = projL + projF;
-  if (V <= 0) return 0.5;
+  const uf = new Float64Array(linhas.length);
+  if (V <= 0) {
+    uf.fill(0.5);
+    return { nac: 0.5, uf };
+  }
   const phi = clamp(rem / V, 0, 1);
   const sNac = (A.base.sigmaNac / 100) * phi;
+  const d0 = A.base.sigmaNac / 100; // deslocamento nacional comum, em fração dos válidos que faltam
   const base = projL - projF;
   let vit = 0;
   for (let k = 0; k < MODELO.SORTEIOS; k++) {
@@ -687,12 +839,19 @@ function montecarlo(linhas, projL, projF, rem) {
     let d = V * sNac * z[o];
     for (let i = 0; i < linhas.length; i++) {
       const u = linhas[i];
-      if (u.rem > 0) d += u.rem * u.sig * z[o + 1 + i];
+      let di = 0;
+      if (u.rem > 0) {
+        d += u.rem * u.sig * z[o + 1 + i];
+        di = u.rem * (d0 * z[o] + u.sig * z[o + 1 + i]);
+      }
+      const mu = u.projL - u.projF + 2 * di;
+      uf[i] += mu > 0 ? 1 : mu === 0 ? 0.5 : 0;
     }
     const m = base + 2 * d;
     vit += m > 0 ? 1 : m === 0 ? 0.5 : 0;
   }
-  return vit / MODELO.SORTEIOS;
+  for (let i = 0; i < uf.length; i++) uf[i] /= MODELO.SORTEIOS;
+  return { nac: vit / MODELO.SORTEIOS, uf };
 }
 
 /* ============================================================== insights */
@@ -700,6 +859,31 @@ function montecarlo(linhas, projL, projF, rem) {
 function lider(L, F) {
   return L > F ? 'lula' : F > L ? 'flavio' : null;
 }
+
+// "em Minas Gerais", "na Bahia", "no Ceará": a preposição certa de cada estado.
+const EM_UF = {
+  AC: 'no', AL: 'em', AM: 'no', AP: 'no', BA: 'na', CE: 'no', DF: 'no', ES: 'no', GO: 'em', MA: 'no', MG: 'em', MS: 'em',
+  MT: 'em', PA: 'no', PB: 'na', PE: 'em', PI: 'no', PR: 'no', RJ: 'no', RN: 'no', RO: 'em', RR: 'em', RS: 'no', SC: 'em',
+  SE: 'em', SP: 'em', TO: 'no', ZZ: 'no',
+};
+const REGIAO_NOME = { N: 'Norte', NE: 'Nordeste', CO: 'Centro-Oeste', SE: 'Sudeste', S: 'Sul' };
+const nomeUF = (uf) => (uf === 'ZZ' ? 'Exterior' : NOME_UF[uf]);
+const emUF = (uf) => `${EM_UF[uf] || 'em'} ${nomeUF(uf)}`;
+// "em Goiás, no Paraná e em Santa Catarina" (até 3 nomes, depois "e mais N").
+function listaEm(ufs, max = 3) {
+  const nomes = ufs.slice(0, max).map(emUF);
+  const mais = ufs.length - nomes.length;
+  if (mais > 0) nomes.push(`mais ${mais}`);
+  return nomes.length > 1 ? `${nomes.slice(0, -1).join(', ')} e ${nomes[nomes.length - 1]}` : nomes[0] || '';
+}
+// Com sinal e vírgula: "+1,2" / "−0,6".
+const sinalPP = (v, casas = 1) => {
+  const t = C.fNum(Math.abs(v), casas);
+  return Number(t.replace(',', '.')) === 0 ? t : `${v > 0 ? '+' : '−'}${t}`;
+};
+// "ponto" até 1,9 (como está escrito na tela); passou de 2, "pontos".
+const pontosTxt = (v, casas = 1) => (Math.round(Math.abs(v) * 10 ** casas) / 10 ** casas < 2 ? 'ponto' : 'pontos');
+const nEstados = (n) => `${n} ${n === 1 ? 'estado' : 'estados'}`;
 
 function calcularInsights(r) {
   const out = [];
@@ -712,13 +896,16 @@ function calcularInsights(r) {
   const lc = lider(c.L, c.F);
   const lp = lider(r.proj.L, r.proj.F);
   const agora = A.modo === 'sim' ? A.sim?.relogio ?? Date.now() : Date.now();
+  const MIN = MODELO.INS_MIN;
+  const BR = 'Brasil';
 
   if (A.modo !== 'pre' && c.pst <= 0 && c.L + c.F === 0) {
-    out.push({ id: 'aguardando', p: 30, html: h`Aguardando a primeira totalização do TSE. Enquanto isso, vale a prévia de cada estado.` });
+    out.push({ id: 'aguardando', tag: BR, p: 30, html: h`Aguardando a primeira totalização do TSE. Enquanto isso, vale a prévia de cada estado.` });
   }
   if (r.tudo && c.L + c.F > 0) {
     out.push({
       id: 'concluida',
+      tag: BR,
       p: 100,
       tom: 'forte',
       html:
@@ -729,6 +916,7 @@ function calcularInsights(r) {
   } else if (r.definido) {
     out.push({
       id: 'definido',
+      tag: BR,
       p: 100,
       tom: 'forte',
       html: h`Matematicamente definido: a diferença de <b>${votosDif(c.L - c.F)}</b> é maior que todo o eleitorado que falta apurar. ${n(r.definido)} não pode mais ser alcançado.`,
@@ -736,6 +924,7 @@ function calcularInsights(r) {
   } else if (r.eleitoTSE) {
     out.push({
       id: 'eleito-tse',
+      tag: BR,
       p: 100,
       tom: 'forte',
       html: h`O TSE já declarou <b>${n(r.eleitoTSE)}</b> eleito, com ${pctPiso(c.pst, 2)} das seções apuradas.`,
@@ -744,6 +933,7 @@ function calcularInsights(r) {
   if (aberta && lp && lc && lp !== lc) {
     out.push({
       id: 'virada',
+      tag: BR,
       p: 95,
       tom: 'forte',
       html: h`A projeção já aponta <b>${n(lp)}</b>, embora <b>${n(lc)}</b> lidere a contagem.`,
@@ -753,6 +943,7 @@ function calcularInsights(r) {
   if (troca && agora - troca.t < MODELO.TROCA_VALE_MS) {
     out.push({
       id: `troca-${troca.t}`,
+      tag: BR,
       p: 90,
       html: h`A liderança da contagem trocou de mãos às <b>${C.fHora(troca.t)}</b>, com ${pctPiso(troca.pst, 1)} apurado: <b>${n(troca.lider)}</b> passou à frente.`,
     });
@@ -763,6 +954,7 @@ function calcularInsights(r) {
     const precisa = ((r.remCont + def) / (2 * r.remCont)) * 100;
     out.push({
       id: 'precisa',
+      tag: BR,
       p: 80,
       html:
         precisa > 100
@@ -774,8 +966,9 @@ function calcularInsights(r) {
     const quem = r.swing > 0 ? 'lula' : 'flavio';
     out.push({
       id: 'swing',
+      tag: 'Pesquisas',
       p: 70,
-      html: h`Swing observado: a apuração está <b>${C.fNum(Math.abs(r.swing) * 100, 1)} ${Math.abs(r.swing) * 100 < 2 ? 'ponto' : 'pontos'}</b> mais favorável a ${n(quem)} do que a prévia indicava, estado por estado.`,
+      html: h`Swing observado: a apuração está <b>${C.fNum(Math.abs(r.swing) * 100, 1)} ${pontosTxt(r.swing * 100)}</b> mais favorável a ${n(quem)} do que a prévia indicava, estado por estado.`,
     });
   }
   if (contando) {
@@ -795,6 +988,7 @@ function calcularInsights(r) {
       const lento = ss > nn ? 'Norte e Nordeste' : 'Sul e Sudeste';
       out.push({
         id: 'ritmo',
+        tag: BR,
         p: 65,
         html: h`${rapido} já totalizaram <b>${pctPiso(Math.max(ss, nn), 0)}</b> do eleitorado; ${lento}, <b>${pctPiso(Math.min(ss, nn), 0)}</b>. A contagem ainda não mostra o peso de ${lento}.`,
       });
@@ -811,6 +1005,7 @@ function calcularInsights(r) {
     if (comBase > 0) {
       out.push({
         id: 'faltam',
+        tag: BR,
         p: 60,
         html: h`Faltam cerca de <b>${votosDif(r.remCont, 'válido')}</b>; <b>${C.fNum((emLula / comBase) * 100, 0)}%</b> deles em estados onde ${n('lula')} teve mais votos que ${n('flavio')} no 1º turno.`,
       });
@@ -821,6 +1016,7 @@ function calcularInsights(r) {
       const quem = liq >= 0 ? 'lula' : 'flavio';
       out.push({
         id: `estoque-${maior.uf}`,
+        tag: 'Estado',
         p: 55,
         html: h`Maior estoque de votos ainda por contar: <b>${maior.uf === 'ZZ' ? 'Exterior' : maior.uf}</b> (${pctPiso(maior.f * 100, 0)} apurado), deve render <b>+${votosCurto(Math.abs(liq))}</b> a ${n(quem)}.`,
       });
@@ -834,6 +1030,7 @@ function calcularInsights(r) {
     const proj = lp === 'lula' ? r.proj.parL : r.proj.parL === null ? null : 100 - r.proj.parL;
     out.push({
       id: 'triangulacao',
+      tag: 'Pesquisas',
       p: 50,
       html: h`Triangulação para <b>${n(lp)}</b>: apuração projetada <b>${pct1(proj)}</b> dos válidos · média das pesquisas <b>${pct1(med)}</b> · Polymarket <b>${pPoly !== null ? chanceTxt(pPoly) : 'sem leitura'}</b> de chance.`,
     });
@@ -841,6 +1038,7 @@ function calcularInsights(r) {
   if (c.pst > 0 && c.est > 0) {
     out.push({
       id: 'comparecimento',
+      tag: BR,
       p: 40,
       html: h`Comparecimento até agora: <b>${C.fNum((c.c / c.est) * 100, 1)}%</b> (1º turno: ${C.fNum(100 - A.base.abstT1, 1)}%).`,
     });
@@ -851,51 +1049,363 @@ function calcularInsights(r) {
       const quem = maiorV.L >= maiorV.F ? 'lula' : 'flavio';
       out.push({
         id: `vantagem-${maiorV.uf}-${quem}`,
+        tag: 'Estado',
         p: 35,
         html: h`Maior vantagem${r.tudo ? '' : ' até agora'}: <b>${maiorV.uf === 'ZZ' ? 'Exterior' : maiorV.uf}</b>, +${votosDif(maiorV.L - maiorV.F)} para ${n(quem)}.`,
       });
     }
   }
+  if (c.pst > 0) insightsNovos(r, out, { n, h, agora, MIN });
   return out.sort((a, b) => b.p - a.p);
 }
 
-function renderInsights(lista) {
-  const ol = $('[data-ap-ins]');
-  if (!ol) return;
-  const fixos = lista.slice(0, 3);
-  const resto = lista.slice(3);
-  const mostrar = resto.length ? [...fixos, resto[A.rot % resto.length]] : fixos;
-  const ids = new Set(mostrar.map((x) => x.id));
+// Destaques que cruzam estado, 1º turno, histórico, capitais, simulador e pesquisas. Cada um nasce
+// só com apuração mínima (MODELO.INS_MIN) e usa apenas números que estão na tela ou nos arquivos lidos.
+function insightsNovos(r, out, { n, h, agora, MIN }) {
+  const ufs = r.linhas.filter((u) => u.uf !== 'ZZ');
+  const totEleit = r.linhas.reduce((s, u) => s + u.te, 0) || 1;
+  const comVoto = (u) => !!u.o && u.L + u.F > 0;
+  const BR = 'Brasil';
+
+  // a) estado definido ou provável (os 10 maiores; o resto entra no placar)
+  const firmes = r.linhas.filter((u) => u.status === 'definido' || u.status === 'provavel').sort((a, b) => b.te - a.te);
+  for (const u of firmes.slice(0, 10)) {
+    const q = u.quem;
+    const part = u.te / totEleit;
+    const p = (u.status === 'definido' ? 66 : 60) + 14 * Math.min(1, part / 0.1);
+    if (u.status === 'definido') {
+      out.push({
+        id: `uf-def-${u.uf}`,
+        tag: 'Estado',
+        p,
+        html: u.fim
+          ? h`${n(q)} venceu ${emUF(u.uf)}: <b>${pct1(q === 'lula' ? u.parObs : 100 - u.parObs)}</b> dos votos válidos, diferença de <b>${votosDif(u.L - u.F)}</b> (apuração do estado concluída).`
+          : h`${n(q)} já venceu ${emUF(u.uf)}: a vantagem de <b>${votosDif(u.L - u.F)}</b> é maior que todo o eleitorado que falta apurar lá.`,
+      });
+    } else {
+      out.push({
+        id: `uf-prov-${u.uf}`,
+        tag: 'Estado',
+        p,
+        html: h`${n(q)} deve vencer ${emUF(u.uf)}: <b>${pct1(q === 'lula' ? u.parObs : 100 - u.parObs)}</b> com ${pctPiso(u.sec, 0)} das seções apuradas, e o modelo dá chance de <b>${chanceDe(q === 'lula' ? u.chance : 1 - u.chance)}</b> de vencer lá. Ainda não é matemática: pode mudar.`,
+      });
+    }
+  }
+
+  // b) termômetros históricos (AM e MG no JSON): estados que votaram no vencedor nacional em todos os segundos turnos
+  const hist = A.base.hist;
+  for (const uf of hist?.termometros ?? []) {
+    const u = r.linhas.find((x) => x.uf === uf);
+    const e = hist.ufs.get(uf);
+    if (!u || !e || !comVoto(u) || !u.lider) continue;
+    const firme = u.status === 'definido' || u.status === 'provavel';
+    if (!firme && u.sec < MIN.termometro) continue;
+    const part = u.lider === 'lula' ? u.parObs : 100 - u.parObs;
+    const verbo = u.status === 'definido' ? 'já venceu' : u.status === 'provavel' ? 'deve vencer' : 'lidera';
+    const seg = e.acompanhou === e.eleicoes ? h`nos <b>${e.eleicoes}</b> segundos turnos` : h`em <b>${e.acompanhou} dos ${e.eleicoes}</b> segundos turnos`;
+    out.push({
+      id: `termometro-${uf}`,
+      tag: 'Histórico',
+      p: firme ? 84 : 62,
+      html: h`<b>${nomeUF(uf)}</b> votou no vencedor nacional ${seg} desde ${hist.ano0}${e.dist !== null ? h` e, em média, ficou a <b>${C.fNum(e.dist, 1)} ${pontosTxt(e.dist)}</b> do resultado nacional do PT` : ''}. Hoje, com ${pctPiso(u.sec, 0)} apurado, ${n(u.lider)} ${verbo} lá com <b>${pct1(part)}</b>. <span class="ap-nota-in">É contexto histórico, não garantia: o resultado nacional só vem da contagem.</span>`,
+    });
+  }
+
+  // c) contra o 1º turno: variação média da fatia de Lula no par
+  const v1 = ufs.filter((u) => comVoto(u) && u.dT1 !== null && u.sec >= MIN.vs1t);
+  if (v1.length >= 3) {
+    const w = v1.reduce((s, u) => s + u.L + u.F, 0);
+    const media = v1.reduce((s, u) => s + (u.L + u.F) * u.dT1, 0) / w;
+    const melhorL = [...v1].sort((a, b) => b.dT1 - a.dT1)[0];
+    const melhorF = [...v1].sort((a, b) => a.dT1 - b.dT1)[0];
+    const frases = [];
+    if (melhorL.dT1 > 0.05) frases.push(h`de ${n('lula')}: <b>${nomeUF(melhorL.uf)}</b> (${sinalPP(melhorL.dT1)})`);
+    if (melhorF.dT1 < -0.05) frases.push(h`de ${n('flavio')}: <b>${nomeUF(melhorF.uf)}</b> (${sinalPP(-melhorF.dT1)})`);
+    out.push({
+      id: 'vs1t',
+      tag: 'Estado',
+      p: 69,
+      html: h`Contra o 1º turno, ${n('lula')} tem em média <b>${C.fNum(Math.abs(media), 1)} ${pontosTxt(media)} ${media >= 0 ? 'a mais' : 'a menos'}</b> na disputa entre os dois (${nEstados(v1.length)} com ${MIN.vs1t}% ou mais apurado, ponderados pelos votos já contados).${frases.length ? h` Maior avanço ${frases.map((f, i) => h`${i ? '; ' : ''}${f}`)}.` : ''}`,
+    });
+  }
+
+  // d) estados que trocaram de lado em relação ao 1º turno
+  const viraram = ufs.filter((u) => comVoto(u) && u.sec >= MIN.virou && u.lider && u.lider1T && u.lider !== u.lider1T).sort((a, b) => b.te - a.te);
+  if (viraram.length) {
+    const grupo = (q) => viraram.filter((u) => u.lider === q).map((u) => u.uf);
+    const gl = grupo('lula');
+    const gf = grupo('flavio');
+    const partes = [];
+    if (gl.length) partes.push(h`${n('lula')} passou à frente ${listaEm(gl)}`);
+    if (gf.length) partes.push(h`${n('flavio')} passou à frente ${listaEm(gf)}`);
+    const aberto = viraram.some((u) => u.sec < 70 && u.status !== 'definido');
+    out.push({
+      id: 'virou',
+      tag: 'Estado',
+      p: 76,
+      html: h`Trocaram de lado desde o 1º turno (${MIN.virou}% ou mais apurado): ${partes.map((x, i) => h`${i ? '; ' : ''}${x}`)}.${aberto ? ' Ainda falta apurar parte dos estados citados.' : ''}`,
+    });
+  }
+
+  // e) placar por estado
+  const lidera = ufs.filter((u) => comVoto(u) && u.sec >= MIN.placar && u.lider);
+  if (lidera.length >= 3) {
+    const nL = lidera.filter((u) => u.lider === 'lula');
+    const nF = lidera.filter((u) => u.lider === 'flavio');
+    const eleit27 = ufs.reduce((s, u) => s + u.te, 0) || 1;
+    const sh = (l) => (l.reduce((s, u) => s + u.te, 0) / eleit27) * 100;
+    const def = ufs.filter((u) => u.status === 'definido');
+    const prov = ufs.filter((u) => u.status === 'provavel');
+    const cont = (l, q) => l.filter((u) => u.quem === q).length;
+    out.push({
+      id: 'placar-uf',
+      tag: 'Estado',
+      p: 58,
+      html: h`Placar por estado (27 UFs, as com ${MIN.placar}% ou mais apurado): ${n('lula')} lidera em <b>${nL.length}</b> (${C.fNum(sh(nL), 0)}% do eleitorado) e ${n('flavio')} em <b>${nF.length}</b> (${C.fNum(sh(nF), 0)}%). Definidos: <b>${def.length}</b>${def.length ? h` (${n('lula')} ${cont(def, 'lula')}, ${n('flavio')} ${cont(def, 'flavio')})` : ''}; prováveis: <b>${prov.length}</b>.`,
+    });
+  }
+
+  // f) comparecimento contra o 1º turno, por região
+  const regs = [];
+  for (const rg of Object.keys(REGIAO_NOME)) {
+    const l = r.linhas.filter((u) => REGIAO[u.uf] === rg);
+    const te = l.reduce((s, u) => s + u.te, 0);
+    const est = l.reduce((s, u) => s + u.est, 0);
+    if (!te || (est / te) * 100 < MIN.regiao) continue;
+    let c = 0;
+    let es = 0;
+    let esp = 0;
+    for (const u of l) {
+      if (!u.o || u.est <= 0 || u.b.abst1T === null) continue;
+      c += u.o.c;
+      es += u.est;
+      esp += u.est * (1 - u.b.abst1T / 100);
+    }
+    if (es <= 0) continue;
+    regs.push({ rg, obs: (c / es) * 100, ant: (esp / es) * 100, dif: (c / es - esp / es) * 100, apur: (est / te) * 100 });
+  }
+  const relev = regs.filter((x) => Math.abs(x.dif) >= 0.5).sort((a, b) => Math.abs(b.dif) - Math.abs(a.dif)).slice(0, 3);
+  if (relev.length) {
+    out.push({
+      id: 'comp-regiao',
+      tag: BR,
+      p: 52,
+      html: h`Comparecimento contra o 1º turno nas regiões com ${MIN.regiao}% ou mais apurado: ${relev.map((x, i) => h`${i ? '; ' : ''}<b>${REGIAO_NOME[x.rg]}</b> ${pct1(x.obs)} (${sinalPP(x.dif)} ${pontosTxt(x.dif)})`)}. Cada região é comparada com a abstenção que os mesmos estados tiveram no 1º turno.`,
+    });
+  }
+
+  // g) capitais
+  const caps = (A.base.capitais || [])
+    .map((c) => {
+      const o = A.cap.get(c.cod);
+      if (!o || !(o.L + o.F > 0)) return null;
+      const sec = o.ts > 0 && o.st !== null ? (o.st / o.ts) * 100 : o.pst;
+      return { c, o, sec, par: (100 * o.L) / (o.L + o.F) };
+    })
+    .filter(Boolean);
+  const capsOk = caps.filter((x) => x.sec >= MIN.capital);
+  if (capsOk.length) {
+    const escolhidas = capsOk.slice(0, 3);
+    const mov = [...capsOk].filter((x) => x.c.par1t !== null).sort((a, b) => Math.abs(b.par - b.c.par1t) - Math.abs(a.par - a.c.par1t))[0];
+    if (mov && !escolhidas.includes(mov) && Math.abs(mov.par - mov.c.par1t) >= 1.5) escolhidas.push(mov);
+    escolhidas.forEach((x, i) => {
+      const refs = [];
+      if (x.c.par1t !== null) refs.push(`1º turno: ${pct1(x.c.par1t)}`);
+      if (x.c.par22 !== null) refs.push(`2022: ${pct1(x.c.par22)}`);
+      out.push({
+        id: `capital-${x.c.uf}`,
+        tag: 'Cidade',
+        p: 66 - i * 0.5,
+        html: h`Na capital ${x.c.nome} (${x.c.uf}), com <b>${pctPiso(x.sec, 0)}</b> apurado, ${n('lula')} tem <b>${pct1(x.par)}</b> do par${refs.length ? ` (${refs.join('; ')})` : ''}.`,
+      });
+    });
+  }
+  const agr = caps.filter((x) => x.sec >= MIN.capitais && x.c.par1t !== null && x.c.eleitorado);
+  if (agr.length >= 3) {
+    const w = agr.reduce((s, x) => s + x.c.eleitorado, 0);
+    const m1 = agr.reduce((s, x) => s + x.c.eleitorado * (x.par - x.c.par1t), 0) / w;
+    const a22 = agr.filter((x) => x.c.par22 !== null);
+    const w22 = a22.reduce((s, x) => s + x.c.eleitorado, 0);
+    const m22 = w22 ? a22.reduce((s, x) => s + x.c.eleitorado * (x.par - x.c.par22), 0) / w22 : null;
+    const acima = agr.filter((x) => x.par > x.c.par1t).length;
+    out.push({
+      id: 'capitais-agregado',
+      tag: 'Cidade',
+      p: 64,
+      html: h`Nas <b>${agr.length}</b> capitais com ${MIN.capitais}% ou mais apurado, ${n('lula')} está <b>${sinalPP(m1)} ${pontosTxt(m1)}</b> em relação ao 1º turno (média pelo tamanho do eleitorado; acima do 1º turno em ${acima}${m22 !== null ? h`; contra 2022: ${sinalPP(m22)}` : ''}).`,
+    });
+  }
+
+  // h) transferência de votos do 1º turno, medida pelo simulador municipal (arquivo do Mac, com atraso de minutos)
+  const sim = simVivo();
+  if (sim) {
+    const g = arr(sim.doc.transferencia?.grupos).find((x) => x?.id === 'outros');
+    const ab = arr(sim.doc.transferencia?.grupos).find((x) => x?.id === 'abstencao');
+    const ger = C.num(sim.doc.gerado_ms);
+    if (g && C.num(g.lula) !== null && C.num(g.flavio) !== null && (C.num(g.apurado_pct) ?? 0) >= MIN.transf && ger !== null) {
+      const idade = Math.max(0, Math.round((agora - ger) / 60000));
+      const nome = String(g.rotulo || 'Cury, Renan, Caiado e outros').replace(/^quem votou em\s+/i, '');
+      out.push({
+        id: 'transf-1t',
+        tag: 'Cidade',
+        p: 63,
+        html: h`Simulador municipal (dado das <b>${hms(ger)}</b>${idade >= 3 ? `, de ${idade} min atrás` : ''}): dos eleitores de ${nome} no 1º turno, <b>${C.fNum(g.flavio, 0)}%</b> foram para ${n('flavio')} e <b>${C.fNum(g.lula, 0)}%</b> para ${n('lula')}${C.num(g.flavio_2022) !== null ? h` (em 2022, o mesmo grupo: ${C.fNum(g.flavio_2022, 0)}% × ${C.fNum(g.lula_2022, 0)}%)` : ''}.${ab && C.num(ab.abst) !== null && (C.num(ab.apurado_pct) ?? 0) >= MIN.transf ? h` Dos que não votaram no 1º turno, <b>${C.fNum(100 - ab.abst, 0)}%</b> apareceram agora.` : ''}`,
+      });
+    }
+  }
+
+  // i) embalo da contagem nos últimos ~15 min (série da própria tela)
+  const s = A.serie;
+  if (s.length >= 2) {
+    const ult = s[s.length - 1];
+    let ref = null;
+    for (let i = s.length - 2; i >= 0; i--) {
+      if (s[i].t <= ult.t - 15 * 60000) {
+        ref = s[i];
+        break;
+      }
+    }
+    if (!ref && ult.t - s[0].t >= 8 * 60000) ref = s[0];
+    if (ref && ult.aL !== null && ref.aL !== null && ult.pst >= MIN.momento && ult.t > ref.t) {
+      const d = ult.aL - ref.aL;
+      if (Math.abs(d) >= 0.15) {
+        const min = Math.round((ult.t - ref.t) / 60000);
+        out.push({
+          id: 'momento',
+          tag: BR,
+          p: 47,
+          html: h`Nos últimos <b>${min} min</b>, a fatia de ${n('lula')} na contagem ${d > 0 ? 'subiu' : 'caiu'} de <b>${pct2(ref.aL)}</b> para <b>${pct2(ult.aL)}</b> (${sinalPP(d, 2)} ${pontosTxt(d, 2)}). Isso vem de quais urnas entraram na conta, não de eleitores mudando de voto.`,
+        });
+      }
+    }
+  }
+
+  // j) projeção contra as pesquisas (média e "só as que mais acertaram")
+  if (r.completo && r.cont.pst >= MIN.pesquisas && r.proj.parL !== null) {
+    const par = (a, b) => (a !== null && b !== null && a + b > 0 ? (a / (a + b)) * 100 : null);
+    const mp = par(A.base.mediaL, A.base.mediaF);
+    const ma = A.base.mediaAcerto !== null && A.base.mediaAcerto !== undefined ? A.base.mediaAcerto : null;
+    const acima = (m) => {
+      const d = r.proj.parL - m;
+      return h`${C.fNum(Math.abs(d), 1)} ${pontosTxt(d)} ${d >= 0 ? 'acima' : 'abaixo'}`;
+    };
+    if (mp !== null) {
+      out.push({
+        id: 'pesquisas-acerto',
+        tag: 'Pesquisas',
+        p: 48,
+        html: h`A projeção da apuração dá ${n('lula')} <b>${pct1(r.proj.parL)}</b> do par: <b>${acima(mp)}</b> da média das pesquisas (${pct1(mp)})${ma !== null ? h` e <b>${acima(ma)}</b> das que mais acertaram no 1º turno (${pct1(ma)})` : ''}.`,
+      });
+    }
+  }
+}
+
+// O simulador.json do Mac, repassado pelo simulador.js, só vale na apuração real (ou no teste que usa
+// ?tse=/?eleicao= com ?simteste=/?simulador=) e nunca na simulação da tela.
+function simVivo() {
+  const s = A.simDoc;
+  if (!s || !obj(s.doc) || A.modo !== 'vivo') return null;
+  const teste = A.teste || !!A.fonteTeste;
+  if (s.modo === 'teste' && teste) return s;
+  // Arquivo real: o Mac manda a cada ~60 s e o raw.githubusercontent guarda ~5 min. Mais de 30 min sem
+  // arquivo novo = processador parado: o dado deixa de entrar nos destaques (não vira número velho).
+  const ger = C.num(s.doc.gerado_ms);
+  if (s.modo === 'vivo' && !teste && !s.doc.teste && !s.doc.simulacao && ger !== null && Date.now() - ger <= 30 * 60000) return s;
+  return null;
+}
+
+// Sincroniza uma lista de destaques sem recriar o que já está na tela: o que continua só troca
+// o texto (se mudou); o que entra anima de cima; o que sai desliza para a direita.
+function sincronizarLista(ol, itens, { animar, completa }) {
+  const ids = new Set(itens.map((x) => x.id));
   for (const li of Array.from(ol.children)) {
     if (!ids.has(li.dataset.id) && !li.classList.contains('saindo')) {
-      li.classList.add('saindo');
-      setTimeout(() => li.remove(), reduzMovimento() ? 0 : 450);
+      if (animar && !reduzMovimento()) {
+        li.classList.add('saindo');
+        setTimeout(() => li.remove(), 450);
+      } else li.remove();
     }
   }
   let ref = null;
-  mostrar.forEach((x) => {
+  for (const x of itens) {
     let li = Array.from(ol.children).find((e) => e.dataset.id === x.id && !e.classList.contains('saindo'));
-    const s = C.emHtml(x.html);
+    const corpo = C.emHtml(x.html);
     if (!li) {
       li = document.createElement('li');
       li.dataset.id = x.id;
-      li.className = `ap-in entrando${x.tom === 'forte' ? ' forte' : ''}`;
-      li.innerHTML = s;
-      li._h = s;
-      requestAnimationFrame(() => requestAnimationFrame(() => li.classList.remove('entrando')));
-    } else if (li._h !== s) {
-      li.innerHTML = s;
-      li._h = s;
-      li.classList.remove('mudou');
-      void li.offsetWidth;
-      li.classList.add('mudou');
+      li.className = `ap-in${animar ? ' entrando' : ''}${x.tom === 'forte' ? ' forte' : ''}`;
+      li.innerHTML = `<span class="ap-tag t-${slugTag(x.tag)}">${x.tag}</span><span class="ap-txt"></span>${completa ? '<small class="ap-desde"></small>' : ''}`;
+      li.querySelector('.ap-txt').innerHTML = corpo;
+      li._h = corpo;
+      if (animar) {
+        requestAnimationFrame(() => requestAnimationFrame(() => li.classList.remove('entrando')));
+        setTimeout(() => li.classList.remove('entrando'), 600); // aba em segundo plano não roda requestAnimationFrame
+      }
+    } else if (li._h !== corpo) {
+      li.querySelector('.ap-txt').innerHTML = corpo;
+      li._h = corpo;
+      // Acende no máximo a cada 20 s: com a leitura a cada 5 s os números mudam toda hora.
+      if (animar && (!li._acesoEm || Date.now() - li._acesoEm > 20000)) {
+        li._acesoEm = Date.now();
+        li.classList.remove('mudou');
+        void li.offsetWidth;
+        li.classList.add('mudou');
+      }
+    }
+    li.classList.toggle('forte', x.tom === 'forte');
+    if (completa) {
+      const d = li.querySelector('.ap-desde');
+      const t = A.insVisto.get(x.id)?.d;
+      const txt = t ? `desde ${C.fHora(t).replace('h', ':')}` : '';
+      if (d && d.textContent !== txt) d.textContent = txt;
     }
     const alvo = ref ? ref.nextSibling : ol.firstChild;
     if (li !== alvo) ol.insertBefore(li, alvo);
     ref = li;
-  });
+  }
+}
+const slugTag = (t) => String(t || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z]/g, '');
+
+// Na tela do celular e do computador: 4 destaques fixos e 2 que giram. No Modo TV (sem rolagem), 3 e 1.
+const emTV = () => document.body.classList.contains('tv');
+function renderInsights(lista) {
+  const ol = $('[data-ap-ins]');
+  if (!ol) return;
+  const agora = A.modo === 'sim' ? A.sim?.relogio ?? Date.now() : Date.now();
+  // "desde": quando este aparelho viu o destaque pela primeira vez (some do registro se ficar 2 min fora)
+  for (const x of lista) {
+    const v = A.insVisto.get(x.id);
+    if (v) v.u = agora;
+    else A.insVisto.set(x.id, { d: agora, u: agora });
+  }
+  for (const [id, v] of A.insVisto) if (agora - v.u > 120000) A.insVisto.delete(id);
+  const nFixos = emTV() ? 3 : 4;
+  const nGiro = emTV() ? 1 : 2;
+  const fixos = lista.slice(0, nFixos);
+  const resto = lista.slice(nFixos);
+  let mostrar = fixos;
+  if (resto.length) {
+    // Os destaques que giram trocam a cada 8 s por entre os demais (de dois em dois, ou um a um na TV).
+    const giro = [];
+    for (let k = 0; k < Math.min(nGiro, resto.length); k++) giro.push(resto[(A.rot * nGiro + k) % resto.length]);
+    mostrar = [...fixos, ...giro.filter((x, i) => giro.indexOf(x) === i)];
+  }
+  sincronizarLista(ol, mostrar, { animar: true, completa: false });
   const vazio = $('[data-ap-ins-vazio]');
   if (vazio) vazio.hidden = mostrar.length > 0;
+  // Lista completa (Ver todos): todos os destaques vivos, com a etiqueta e o "desde".
+  const todos = $('[data-ap-ins-todos]');
+  const bt = $('[data-ap="ins-todos"]');
+  if (bt) {
+    const rot = A.insTodos ? 'Esconder a lista' : `Ver todos (${lista.length})`;
+    if (bt.textContent !== rot) bt.textContent = rot;
+    bt.setAttribute('aria-expanded', A.insTodos ? 'true' : 'false');
+    bt.hidden = lista.length === 0;
+  }
+  if (todos) {
+    todos.hidden = !A.insTodos || lista.length === 0;
+    if (A.insTodos) sincronizarLista(todos, lista, { animar: false, completa: true });
+  }
 }
 
 /* ================================================================ mapa */
@@ -999,20 +1509,223 @@ function atualizarMapa(r) {
         (contagem ? (aL !== null ? `; apurado ${f1(aL)}% a ${f1(um(100 - aL))}%` : '; ainda sem votos') + `; ${fSec(secP)} das seções` : ''),
     );
   }
+  atualizarEstados(r);
   atualizarDetalheUF(r);
+}
+
+/* ================================================== Estados, número a número */
+
+// Painel sob o mapa: os 27 estados e o Exterior, cada um em uma linha de 4 colunas que se
+// atualiza no lugar (mesmos números que contam e acendem como os do mapa; nada pisca o tempo todo).
+// [estado + % das seções apuradas] [apurado agora] [vs 1º turno] [situação]. Tocar abre o detalhe.
+const ORDENS = [
+  ['eleitorado', 'Eleitorado'],
+  ['apurado', '% apurado'],
+  ['disputa', 'Mais disputados'],
+];
+
+function htmlEstados() {
+  const h = C.h;
+  const lin = UFS.map(
+    (uf) => h`<li class="uf-it" data-uf="${uf}"><button type="button" class="uf-lin" data-uf="${uf}" data-ap-lin aria-expanded="false" aria-label="${nomeUF(uf)}">
+      <span class="uf-c1" aria-hidden="true"><span class="uf-nome">${nomeUF(uf)}</span><span class="uf-sec"><b data-sp>0%</b> apurado</span><span class="uf-barra"><i data-b></i></span></span>
+      <span class="uf-c2" aria-hidden="true"><span class="uf-n uf-nl"><span class="uf-k">${C.curto('lula')}</span> <b data-al>—</b></span><span class="uf-n uf-nf"><span class="uf-k">${C.curto('flavio')}</span> <b data-af>—</b></span></span>
+      <span class="uf-c3" aria-hidden="true"><span class="uf-d" data-dw><span class="uf-dq" data-dq></span> <b data-d>—</b></span><span class="uf-d2" data-d2></span></span>
+      <span class="uf-c4" aria-hidden="true"><b class="uf-sit" data-sit>lendo…</b><span class="uf-sit2" data-sit2></span></span>
+    </button></li>`,
+  );
+  return h`<div class="uf-ord" role="group" aria-label="Ordenar os estados">
+      <span class="uf-ord-r">Ordenar por</span>
+      ${ORDENS.map(([k, rot]) => h`<button type="button" class="uf-ord-b" data-ap="ord-uf" data-ord="${k}" aria-pressed="${A.ufOrd === k ? 'true' : 'false'}">${rot}</button>`)}
+    </div>
+    <div class="uf-tab" style="--uf-l:${rgb(misturar(C.cand('lula').cor, '#000000', 0.12))};--uf-f:${rgb(misturar(C.cand('flavio').cor, '#000000', 0.12))}">
+      <div class="uf-cab" aria-hidden="true"><span>Estado e apuração</span><span>Apurado agora</span><span>vs 1º turno</span><span>Situação</span></div>
+      <ol class="uf-lista" data-ap-ufs>${lin}</ol>
+    </div>
+    <p class="ap-leg uf-leg">Apurado agora: % dos votos dos dois já contados. vs 1º turno: quanto a fatia de ${C.curto('lula')} entre os dois mudou desde o 1º turno (aparece o nome de quem ganhou terreno; “virou” = hoje lidera quem não liderava lá); o número pequeno é a fatia de ${C.curto('lula')} no 1º turno. Situação: “definido” quando a vantagem é maior que todo o eleitorado que falta apurar no estado; “provável” só com chance de 99% ou mais e ao menos 25% das seções contadas; sem voto contado, “aguardando”. Mais disputados: projeção mais perto de 50%. Toque numa linha para o detalhe.</p>`;
+}
+
+const f1p = (v) => (v === null || v === undefined || !Number.isFinite(v) ? '—' : C.fNum(um(v), 1));
+// Seções em % com uma casa, sem arredondar para cima (99,96% fica 99,9%; 100 só com tudo apurado).
+const fSec1 = (v) => (v > 0 && v < 0.1 ? '<0,1%' : v >= 100 ? '100%' : `${C.fNum(Math.floor(v * 10) / 10, 1)}%`);
+
+function situacaoUF(u) {
+  const n = (id) => C.curto(id);
+  if (u.status === 'sem-leitura') return { txt: 'lendo…', sub: '', cls: '' };
+  if (u.status === 'aguardando') return { txt: 'aguardando', sub: 'sem voto contado', cls: 'ag' };
+  if (u.status === 'definido') return { txt: `${n(u.quem)} venceu`, sub: 'definido', cls: `def q-${u.quem}` };
+  if (u.status === 'provavel') return { txt: `${n(u.quem)} provável`, sub: `chance ${chanceTxt(u.quem === 'lula' ? u.chance : 1 - u.chance)}`, cls: `prov q-${u.quem}` };
+  const q = u.lider;
+  const sub = u.sec >= 10 && q ? `chance ${n(q)} ${chanceTxt(q === 'lula' ? u.chance : 1 - u.chance)}` : '';
+  return { txt: 'indefinido', sub, cls: 'ind' };
+}
+
+function atualizarEstados(r) {
+  const ol = $('[data-ap-ufs]');
+  if (!ol) return;
+  const L = C.curto('lula');
+  const F = C.curto('flavio');
+  // vs 1º turno: o nome de quem ganhou terreno (uf-dq) fica ao lado do número; em telas estreitas vira só a inicial
+  const fD = (v) => (v === 0 ? C.fNum(0, 1) : `+${C.fNum(Math.abs(v), 1)}`);
+  for (const u of r.linhas) {
+    const li = ol.querySelector(`:scope > .uf-it[data-uf="${u.uf}"]`);
+    if (!li) continue;
+    const bt = li.querySelector('.uf-lin');
+    const comVoto = !!u.o && u.L + u.F > 0;
+    let mudou = false;
+    mudou = numLad(bt.querySelector('[data-sp]'), u.o ? Math.max(0, u.sec) : 0, fSec1) || mudou;
+    const bar = bt.querySelector('[data-b]');
+    if (bar) bar.style.width = `${clamp(u.sec, 0, 100).toFixed(1)}%`;
+    const al = bt.querySelector('[data-al]');
+    const af = bt.querySelector('[data-af]');
+    if (comVoto) {
+      const pl = um(u.parObs);
+      mudou = numLad(al, pl, f1) || mudou;
+      mudou = numLad(af, um(100 - pl), f1) || mudou;
+    } else {
+      for (const x of [al, af]) if (x.textContent !== '—') { x._v = undefined; x.textContent = '—'; }
+    }
+    const d = bt.querySelector('[data-d]');
+    const dw = bt.querySelector('[data-dw]');
+    const dq = bt.querySelector('[data-dq]');
+    const d2 = bt.querySelector('[data-d2]');
+    let t2 = '';
+    if (comVoto && u.dT1 !== null) {
+      mudou = numLad(d, um(u.dT1), fD) || mudou;
+      dw.dataset.s = u.dT1 >= 0 ? 'l' : 'f';
+      const nomeQ = um(u.dT1) === 0 ? '' : u.dT1 >= 0 ? L : F;
+      if (dq.textContent !== nomeQ) dq.textContent = nomeQ;
+      const virou = u.lider && u.lider1T && u.lider !== u.lider1T;
+      t2 = virou ? `⇄ virou p/ ${C.curto(u.lider)}` : `1º t.: ${f1p(u.t1Par)}`;
+      d2.classList.toggle('virou', !!virou);
+    } else {
+      if (d.textContent !== '—') { d._v = undefined; d.textContent = '—'; }
+      if (dq.textContent) dq.textContent = '';
+      delete dw.dataset.s;
+      d2.classList.remove('virou');
+      t2 = u.t1Par !== null ? `1º t.: ${f1p(u.t1Par)}` : '';
+    }
+    if (d2.textContent !== t2) d2.textContent = t2;
+    const sit = situacaoUF(u);
+    const s1 = bt.querySelector('[data-sit]');
+    const s2 = bt.querySelector('[data-sit2]');
+    if (s1.textContent !== sit.txt) s1.textContent = sit.txt;
+    if (s2.textContent !== sit.sub) s2.textContent = sit.sub;
+    const [k, qcls] = sit.cls.split(' ');
+    const cls = `uf-it ${u.lider && comVoto ? (u.lider === 'lula' ? 'lid-l' : 'lid-f') : ''} ${k ? `s-${k}` : ''} ${qcls || ''} ${u.sec < 10 && comVoto ? 'pouco' : ''} ${A.ufSel === u.uf ? 'sel' : ''}`.replace(/\s+/g, ' ').trim();
+    if (li.className !== cls) li.className = cls;
+    const exp = A.ufSel === u.uf ? 'true' : 'false';
+    if (bt.getAttribute('aria-expanded') !== exp) bt.setAttribute('aria-expanded', exp);
+    if (comVoto) {
+      const [br, bg, bb] = hexRgb(C.cand(u.lider === 'flavio' ? 'flavio' : 'lula').cor);
+      bt.style.setProperty('--brilho', `rgba(${br},${bg},${bb},0.4)`);
+    }
+    if (mudou) brilhar(bt);
+    const rotulo =
+      `${nomeUF(u.uf)}: ${fSec1(u.sec)} das seções apuradas; ` +
+      (comVoto ? `apurado ${L} ${f1p(u.parObs)}%, ${F} ${f1p(100 - u.parObs)}%` : 'sem voto contado') +
+      (comVoto && u.dT1 !== null ? `; ${C.fNum(Math.abs(u.dT1), 1)} ${pontosTxt(u.dT1)} ${u.dT1 >= 0 ? 'a mais' : 'a menos'} para ${L} que no 1º turno${u.lider && u.lider1T && u.lider !== u.lider1T ? `; virou para ${C.curto(u.lider)}` : ''}` : '') +
+      `; ${sit.txt}${sit.sub ? `, ${sit.sub}` : ''}`;
+    if (bt.getAttribute('aria-label') !== rotulo) bt.setAttribute('aria-label', rotulo);
+  }
+  reordenarEstados(r, false);
+}
+
+// Reordena as linhas no lugar (sem recriar). Eleitorado é fixo; as outras mudam com a contagem,
+// então só reordenam a cada 15 s (ou ao tocar no botão) para a lista não ficar pulando.
+function chaveOrdem(u) {
+  if (A.ufOrd === 'apurado') return [u.o ? u.sec : -1, u.te];
+  if (A.ufOrd === 'disputa') return [u.o && u.L + u.F > 0 && u.projPar !== null ? -Math.abs(u.projPar - 50) : -1e9, u.te];
+  return [u.te, 0];
+}
+function reordenarEstados(r, forcar) {
+  const ol = $('[data-ap-ufs]');
+  if (!ol) return;
+  const agora = Date.now();
+  if (!forcar && A.ufOrd !== 'eleitorado' && agora - A.ufOrdEm < 15000) return;
+  const ordem = [...r.linhas].sort((a, b) => {
+    const ka = chaveOrdem(a);
+    const kb = chaveOrdem(b);
+    return kb[0] - ka[0] || kb[1] - ka[1];
+  });
+  const atual = Array.from(ol.children).map((li) => li.dataset.uf);
+  if (atual.length === ordem.length && ordem.every((u, i) => u.uf === atual[i])) {
+    if (forcar) A.ufOrdEm = agora;
+    return;
+  }
+  A.ufOrdEm = agora;
+  let ref = null;
+  for (const u of ordem) {
+    const li = ol.querySelector(`:scope > .uf-it[data-uf="${u.uf}"]`);
+    if (!li) continue;
+    const alvo = ref ? ref.nextSibling : ol.firstChild;
+    if (li !== alvo) ol.insertBefore(li, alvo);
+    ref = li;
+  }
+}
+function pintarOrdem() {
+  for (const b of $$('[data-ap="ord-uf"]')) b.setAttribute('aria-pressed', b.dataset.ord === A.ufOrd ? 'true' : 'false');
+}
+
+// Detalhe do estado: o mesmo painel serve ao mapa e à tabela; ele se muda para baixo de quem foi tocado.
+function abrirUF(uf, origem) {
+  if (A.ufSel === uf && A.ufOrigem === origem) A.ufSel = null;
+  else {
+    A.ufSel = uf;
+    A.ufOrigem = origem;
+  }
+  if (A.res) atualizarMapa(A.res);
+  const caixa = A.ufSel ? $('[data-ap-uf]') : null;
+  if (caixa && !caixa.hidden) caixa.scrollIntoView({ block: 'nearest', behavior: reduzMovimento() ? 'auto' : 'smooth' });
+}
+
+// A capital do estado (se lida), em uma frase.
+function textoCapital(uf) {
+  const c = (A.base.capitais || []).find((x) => x.uf === uf);
+  if (!c) return null;
+  const o = A.cap.get(c.cod);
+  if (!o) return C.h`Capital ${c.nome}: ainda sem leitura.`;
+  if (!(o.L + o.F > 0)) return C.h`Capital ${c.nome}: ainda sem voto contado.`;
+  const sec = o.ts > 0 && o.st !== null ? (o.st / o.ts) * 100 : o.pst;
+  const par = (100 * o.L) / (o.L + o.F);
+  const refs = [];
+  if (c.par1t !== null) refs.push(`1º turno: ${pct1(c.par1t)}`);
+  if (c.par22 !== null) refs.push(`2022: ${pct1(c.par22)}`);
+  return C.h`Capital ${c.nome}: <b>${fSec1(sec)}</b> apurado; ${C.curto('lula')} <b>${pct1(par)}</b> do par${refs.length ? ` (${refs.join('; ')})` : ''}.`;
+}
+
+function htmlHistorico(u) {
+  const h = C.h;
+  const hist = A.base.hist;
+  const e = hist?.ufs.get(u.uf);
+  if (!e) return '';
+  const nac = new Map((hist.anos || []).map((y) => [y.ano, y]));
+  const lin = e.anos.map((y) => {
+    const n = nac.get(y.ano);
+    return h`<tr><td>${y.ano}${n?.vencedor ? h`<small>país: ${n.vencedor}</small>` : ''}</td><td class="n">${pct1(y.par)}</td><td class="n">${n && n.par !== null ? pct1(n.par) : '—'}</td><td>${y.acompanhou ? 'sim' : 'não'}<small>estado: ${y.venceu === 'PT' ? 'PT' : 'adversário'}</small></td></tr>`;
+  });
+  return h`<p class="ap-uf-l">${nomeUF(u.uf)} votou no mesmo lado do vencedor nacional em <b>${e.acompanhou} dos ${e.eleicoes}</b> segundos turnos desde ${hist.ano0}${e.dist !== null ? h`; em média, ficou a <b>${C.fNum(e.dist, 1)} ${pontosTxt(e.dist)}</b> do resultado nacional do PT` : ''}.</p>
+    <table class="tab"><thead><tr><th>Ano</th><th class="n">PT no estado</th><th class="n">PT no país</th><th>Acompanhou o país?</th></tr></thead><tbody>${lin}</tbody></table>
+    <p class="fonte">PT = Lula, Dilma ou Haddad, em % dos votos dos dois finalistas. Histórico é contexto, não previsão. Fonte: TSE, dados abertos de 2002 a 2022.</p>`;
 }
 
 function atualizarDetalheUF(r) {
   const caixa = $('[data-ap-uf]');
   if (!caixa) return;
   const u = r.linhas.find((x) => x.uf === A.ufSel);
-  // Sem estado escolhido o painel some: os números já estão nos ladrilhos.
+  // Sem estado escolhido o painel some: os números já estão nos ladrilhos e na tabela.
   caixa.hidden = !u;
   if (!u) {
     htmlEm('[data-ap-uf]', '');
     return;
   }
+  // O painel mora embaixo do que foi tocado (mapa ou linha da tabela).
+  const destino = A.ufOrigem === 'tabela' ? $(`.uf-it[data-uf="${u.uf}"]`) : $('.ap-mapa-wrap');
+  if (destino && caixa.parentNode !== destino) destino.appendChild(caixa);
   const h = C.h;
+  const L = C.curto('lula');
+  const F = C.curto('flavio');
+  const comVoto = !!u.o && u.L + u.F > 0;
   const linha = (id) => {
     const ap = u.L + u.F > 0 ? ((id === 'lula' ? u.L : u.F) / (u.L + u.F)) * 100 : null;
     const pr = (id === 'lula' ? u.prior : 1 - u.prior) * 100;
@@ -1025,17 +1738,54 @@ function atualizarDetalheUF(r) {
     el !== null && el !== undefined && Number.isFinite(el)
       ? h`<p class="ap-uf-l">Aqui o voto costuma se mover <b>${C.fNum(el, 1)} ${el < 2 ? 'vez' : 'vezes'}</b> o que o país se move entre os turnos${el > 1.05 ? ' (mais que a média)' : el < 0.95 ? ' (menos que a média)' : ''}.</p>`
       : '';
+  const sit = situacaoUF(u);
+  const sitTxt =
+    u.status === 'definido'
+      ? h`${C.curto(u.quem)} venceu ${emUF(u.uf)}: ${u.fim ? 'estado 100% apurado.' : 'a vantagem é maior que todo o eleitorado que falta apurar aqui.'}`
+      : u.status === 'provavel'
+        ? h`${C.curto(u.quem)} provável: chance de <b>${chanceDe(u.quem === 'lula' ? u.chance : 1 - u.chance)}</b> com ${pctPiso(u.sec, 0)} das seções apuradas. Ainda não é matemática.`
+        : u.status === 'indefinido'
+          ? h`Indefinido: ainda dá para qualquer um dos dois.`
+          : u.status === 'aguardando'
+            ? h`Aguardando: sem voto contado neste estado.`
+            : h`Ainda sem leitura deste estado.`;
+  // 1º turno e 2022
+  const e22 = A.base.hist?.ufs.get(u.uf)?.anos.find((y) => y.ano === 2022);
+  const l1 = [];
+  if (u.b.t1L !== null && u.b.t1F !== null) l1.push(h`No 1º turno: ${L} <b>${pct1(u.b.t1L)}</b> × ${F} <b>${pct1(u.b.t1F)}</b> dos válidos (os outros candidatos somaram ${pct1(100 - u.b.t1L - u.b.t1F)}; entre os dois, ${L} tinha <b>${pct1(u.t1Par)}</b>).`);
+  if (comVoto && u.dT1 !== null) l1.push(h` Agora, apurado: ${L} <b>${pct1(u.parObs)}</b> do par, <b>${C.fNum(Math.abs(u.dT1), 1)} ${pontosTxt(u.dT1)} ${u.dT1 >= 0 ? 'a mais' : 'a menos'}</b>${u.lider && u.lider1T && u.lider !== u.lider1T ? h`; <b>virou</b>: ${C.curto(u.lider)} lidera hoje e ${C.curto(u.lider1T)} liderava no 1º turno` : ''}.`);
+  if (e22) l1.push(h` Em 2022 (Lula × Bolsonaro): ${L} <b>${pct1(e22.par)}</b> do par.`);
+  // comparecimento
+  const comp1T = u.b.abst1T !== null ? 100 - u.b.abst1T : null;
+  const dComp = u.compObs !== null && comp1T !== null ? u.compObs * 100 - comp1T : null;
+  const sim = simVivo();
+  const simUF = sim ? arr(sim.doc.ufs).find((x) => String(x?.uf).toUpperCase() === u.uf) : null;
+  const simCid = sim ? arr(sim.doc.pesam).filter((x) => String(x?.uf).toUpperCase() === u.uf).slice(0, 3) : [];
+  const gerSim = sim ? C.num(sim.doc.gerado_ms) : null;
+  const capTxt = textoCapital(u.uf);
+  const pjPar = u.projPar;
   htmlEm(
     '[data-ap-uf]',
-    h`<div class="ap-uf-cab"><p class="ap-uf-nome">${NOME_UF[u.uf]} <small>${u.uf === 'ZZ' ? '' : u.uf}</small></p><button type="button" class="ap-uf-x" data-ap="fechar-uf" aria-label="Fechar">×</button></div>
-      <p class="ap-uf-l">${u.o ? h`<b>${pctPiso(u.f * 100, 1)}</b> do eleitorado apurado` : 'Ainda sem leitura deste estado'}${u.o ? h` · ${C.fInt(u.L + u.F)} votos nos dois` : ''}</p>
+    h`<div class="ap-uf-cab"><p class="ap-uf-nome">${nomeUF(u.uf)} <small>${u.uf === 'ZZ' ? '' : u.uf}</small></p><button type="button" class="ap-uf-x" data-ap="fechar-uf" aria-label="Fechar">×</button></div>
+      <p class="ap-uf-sit ${sit.cls}">${sitTxt}</p>
+      <p class="ap-uf-l">${u.o ? h`<b>${fSec1(u.sec)}</b> das seções apuradas · ${pctPiso(u.f * 100, 1)} do eleitorado · ${C.fInt(u.L + u.F)} votos nos dois` : 'Ainda sem leitura deste estado'}</p>
       <table class="tab"><thead><tr><th style="width:30%">% do par</th><th class="n">Apurado</th><th class="n">Prévia</th><th class="n">Projeção</th></tr></thead><tbody>${linha('lula')}${linha('flavio')}</tbody></table>
+      ${pjPar !== null ? h`<p class="ap-uf-l">${u.faixa ? h`Faixa de 80% da projeção: ${L} entre <b>${pct1(u.faixa[0])}</b> e <b>${pct1(u.faixa[1])}</b> do par. ` : ''}${comVoto && u.status !== 'definido' ? h`Chance de vencer aqui: ${L} <b>${chanceTxt(u.chance)}</b> × ${F} <b>${chanceTxt(1 - u.chance)}</b> (os mesmos sorteios da chance nacional).` : u.status === 'definido' ? '' : h`Sem voto contado: a prévia daria ${L} ${chanceTxt(u.prevChance)} de chance, mas isso não conta como resultado.`}</p>` : ''}
+      ${l1.length ? h`<p class="ap-uf-l">${l1}</p>` : ''}
+      <p class="ap-uf-l">Comparecimento: ${u.compObs !== null ? h`<b>${C.fNum(u.compObs * 100, 1)}%</b> até agora` : 'sem leitura ainda'}${dComp !== null ? h`, ${C.fNum(Math.abs(dComp), 1)} ${pontosTxt(dComp)} ${dComp >= 0 ? 'acima' : 'abaixo'} do 1º turno (${C.fNum(comp1T, 1)}%)` : ''} (prévia ${C.fNum(u.b.comp * 100, 1)}%).</p>
       <p class="ap-uf-l">Faltam cerca de <b>${votosDif(u.rem, 'válido')}</b>${u.rem > 0 ? h`; devem render <b>+${votosCurto(Math.abs(liq))}</b> a ${C.curto(liq >= 0 ? 'lula' : 'flavio')}` : ''}.</p>
-      <p class="ap-uf-l">Comparecimento: ${u.compObs !== null ? h`<b>${C.fNum(u.compObs * 100, 1)}%</b> até agora` : 'sem leitura ainda'} (prévia ${C.fNum(u.b.comp * 100, 1)}%).</p>
+      ${capTxt ? h`<p class="ap-uf-l">${capTxt}</p>` : ''}
+      ${simUF && gerSim !== null ? h`<p class="ap-uf-l">Simulador municipal (dado das ${hms(gerSim)}, pode ter alguns minutos de atraso): projeção ${L} <b>${pct1(C.num(simUF.lula_proj))}</b> do par${C.num(simUF.lula_apurado) !== null ? h`, apurado ${pct1(C.num(simUF.lula_apurado))}` : ''}.${simCid.length ? h` Cidades que mais pesam no que falta: ${simCid.map((x, i) => h`${i ? '; ' : ''}<b>${nomeCidadeSim(x.nome)}</b> (${C.fNum(C.num(x.apurado_pct) ?? 0, 0)}% apurado, +${votosCurto(Math.abs(C.num(x.saldo) ?? 0))} a ${C.num(x.saldo) >= 0 ? L : F})`)}.` : ''}</p>` : ''}
+      ${A.base.hist?.ufs.has(u.uf) ? h`<p class="ap-uf-l"><button type="button" class="botao-link ap-hist-bt" data-ap="hist" aria-expanded="${A.histAberto ? 'true' : 'false'}">${A.histAberto ? 'Esconder' : 'Ver'} o histórico de 2002 a 2022 deste estado</button></p>${A.histAberto ? htmlHistorico(u) : ''}` : ''}
       ${elTxt}
       <p class="fonte">Prévia: ${u.b.fonte}. Peso da observação neste estado: ${C.fNum(u.w * 100, 0)}%.</p>`,
   );
 }
+const nomeCidadeSim = (s) =>
+  String(s || '')
+    .toLowerCase()
+    .replace(/(^|[\s'-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase())
+    .replace(/\b(Da|De|Do|Das|Dos|E)\b/g, (m) => m.toLowerCase());
 
 /* ============================================================= gráficos */
 
@@ -1093,7 +1843,7 @@ const chaveSerie = () => `radar2t.apuracao.${A.eleicao}${A.fonteTeste ? '.teste'
 function guardarSerie() {
   if (A.modo !== 'vivo') return; // a simulação fica só na memória
   try {
-    localStorage.setItem(chaveSerie(), JSON.stringify({ serie: A.serie, trocas: A.trocas }));
+    localStorage.setItem(chaveSerie(), JSON.stringify({ serie: A.serie, trocas: A.trocas, vistos: [...A.insVisto] }));
   } catch {
     /* sem armazenamento: fica na memória */
   }
@@ -1101,6 +1851,7 @@ function guardarSerie() {
 function carregarSerie() {
   A.serie = [];
   A.trocas = [];
+  A.insVisto = new Map();
   if (A.modo !== 'vivo') return;
   // Só pontos da contagem desta eleição: a versão anterior gravava pontos com a hora do
   // aparelho antes da primeira totalização (por exemplo, quem abriu ?eleicao=6258 antes do
@@ -1111,6 +1862,13 @@ function carregarSerie() {
     const s = JSON.parse(localStorage.getItem(chaveSerie()) || 'null');
     if (Array.isArray(s?.serie)) A.serie = s.serie.filter((p) => vale(p) && Number.isFinite(p.pst) && p.pst > 0).slice(-SERIE_MAX);
     if (Array.isArray(s?.trocas)) A.trocas = s.trocas.filter(vale).slice(-50);
+    // "desde" dos destaques: só entradas recentes e bem formadas
+    if (Array.isArray(s?.vistos)) {
+      const lim = Date.now() - 6 * 3600e3;
+      for (const x of s.vistos.slice(0, 200)) {
+        if (Array.isArray(x) && typeof x[0] === 'string' && Number.isFinite(x[1]?.d) && Number.isFinite(x[1]?.u) && x[1].u > lim && x[1].u <= Date.now() + 864e5) A.insVisto.set(x[0], { d: x[1].d, u: x[1].u });
+      }
+    }
   } catch {
     /* ignora */
   }
@@ -1278,7 +2036,7 @@ function htmlComoFunciona() {
         <li><b>Chance de vitória</b>: ${C.fInt(MODELO.SORTEIOS)} sorteios. Um erro nacional comum (incerteza de ${C.fNum(A.base?.sigmaNac ?? MODELO.SIGMA_NACIONAL, 1)} ponto × parte que falta apurar) mais um erro próprio de cada estado (incerteza do estado × √(1 − f)). Com tudo apurado, 100% e 0%.</li>
         <li><b>Matematicamente definido</b> ${C.info('Matematicamente definido')}: quando a diferença na contagem é maior que todo o eleitorado que ainda falta apurar.</li>
       </ol>
-      <p class="nota">Leitura do TSE: Brasil a cada 10 segundos; cada estado assim que o TSE mostra que ele mudou (e ao menos a cada minuto). O próprio TSE guarda cada arquivo de 30 a 60 segundos antes de trocar. Fonte: resultados.tse.jus.br.</p>
+      <p class="nota">Leitura do TSE: Brasil e a lista de estados a cada 5 segundos; cada estado assim que o TSE mostra que ele mudou (e ao menos a cada minuto); as 27 capitais a cada cerca de 30 segundos. É o mesmo arquivo, da mesma rede de distribuição, que o site do TSE lê, e o TSE só troca cada arquivo a cada 45 a 57 segundos: não há como ver um número antes do site do TSE, e esta página o mostra assim que o arquivo troca. Fonte: resultados.tse.jus.br.</p>
     </div>
   </details>`;
 }
@@ -1302,6 +2060,7 @@ function esqueletoPainel() {
       <div class="ap-prog-cab"><p class="ap-prog-num"><b data-ap-pst>0,0%</b> das seções apuradas</p><p class="ap-prog-lido" data-ap-lidos></p></div>
       <div class="ap-prog" aria-hidden="true"><i data-ap-barra></i></div>
       <p class="fonte" data-ap-hora>Aguardando a primeira leitura…</p>
+      <p class="fonte ap-atraso" data-ap-atraso hidden></p>
     </section>
     <section class="bloco ap-sec-duo">
       <h2 class="sobre">Apurado agora × projeção final ${C.info('Projeção final')}</h2>
@@ -1315,6 +2074,9 @@ function esqueletoPainel() {
       <h2 class="sobre">O que está acontecendo</h2>
       <ol class="ap-ins" data-ap-ins aria-live="polite"></ol>
       <p class="estado" data-ap-ins-vazio hidden>Os destaques aparecem aqui assim que a contagem começar.</p>
+      <div class="ap-ins-mais"><button type="button" class="ap-ins-bt" data-ap="ins-todos" aria-expanded="false" hidden>Ver todos (0)</button></div>
+      <ol class="ap-ins ap-ins-lista" data-ap-ins-todos hidden></ol>
+      <p class="fonte ap-ins-nota">Cada destaque tem a etiqueta do assunto (Brasil, Estado, Cidade, Histórico ou Pesquisas). “Desde” é a hora em que este aparelho viu o destaque pela primeira vez. Nenhum deles é recomendação.</p>
     </section>
     <section class="bloco ap-sec-mapa">
       <h2 class="sobre">Estados ${C.info('UF')}</h2>
@@ -1324,6 +2086,10 @@ function esqueletoPainel() {
         </div>
         <div class="ap-uf" data-ap-uf hidden></div>
       </div>
+    </section>
+    <section class="bloco ap-sec-estados" aria-label="Estados, número a número">
+      <h2 class="sobre">Estados, número a número ${C.info('UF')}</h2>
+      ${htmlEstados()}
     </section>
     <section class="bloco ap-sec-graf">
       <h2 class="sobre">Ao longo da noite</h2>
@@ -1349,12 +2115,12 @@ function esqueletoPre() {
       <h2 class="sobre">Apuração ao vivo</h2>
       <p class="ap-pre-g" data-ap-pre-g>—</p>
       <p class="ap-pre-r" data-ap-pre-r></p>
-      <p class="texto">A partir das 17h, esta aba lê o TSE (Tribunal Superior Eleitoral) a cada 10 segundos e mostra, sem você precisar recarregar:</p>
+      <p class="texto">A partir das 17h, esta aba lê o TSE (Tribunal Superior Eleitoral) a cada 5 segundos e mostra, sem você precisar recarregar:</p>
       <ul class="lista-texto">
         <li>votos apurados de cada um, contando na tela, e a chance de vitória: quem ganha chance fica verde, quem perde fica vermelho;</li>
         <li>o apurado agora ao lado da projeção final, onde aparece a virada que a contagem ainda não mostrou;</li>
-        <li>o mapa dos estados, com quem lidera em cada um e quanto já foi apurado;</li>
-        <li>destaques que entram e saem conforme a apuração anda (quanto falta, quem precisa de quanto, o swing contra as pesquisas).</li>
+        <li>o mapa dos estados e a tabela “Estados, número a número”, com quem lidera em cada um, quanto já foi apurado e a diferença para o 1º turno;</li>
+        <li>destaques que entram e saem conforme a apuração anda (estados decididos, capitais, histórico de 2002 a 2022, quanto falta, o swing contra as pesquisas).</li>
       </ul>
       <div class="ap-pre-acoes"><button type="button" class="botao-link" data-ap="sim">Ver simulação</button><span class="nota">números fictícios, só para conhecer a tela</span></div>
     </section>
@@ -1449,7 +2215,7 @@ function atualizarTela() {
     '[data-ap-lidos]',
     A.modo === 'sim'
       ? 'simulação acelerada'
-      : `${r.lidos} de ${UFS.length} estados lidos${falta.length && r.completo ? ` · sem leitura agora: ${falta.slice(0, 4).join(', ')}${falta.length > 4 ? '…' : ''} (entram pela prévia)` : ''}`,
+      : `${r.lidos} de ${UFS.length} estados lidos${falta.length && r.completo ? ` · sem leitura agora: ${falta.slice(0, 4).join(', ')}${falta.length > 4 ? '…' : ''} (entram pela prévia)` : ''}${A.base?.capitais?.length ? ` · ${A.cap.size} de ${A.base.capitais.length} capitais` : ''}`,
   );
   atualizarHora();
   // Apurado × projeção
@@ -1510,6 +2276,40 @@ function atualizarHora() {
   if (R.okEm && agora - R.okEm > MODELO.SEM_RESPOSTA_MS) partes.push(`sem resposta do TSE desde ${hms(R.okEm)}; os números são dessa hora`);
   else if (!R.okEm && R.inicio && agora - R.inicio > MODELO.SEM_RESPOSTA_MS) partes.push('o TSE ainda não respondeu desde que a página abriu');
   const s = partes.join(' · ');
+  if (el.textContent !== s) el.textContent = s;
+  atualizarAtraso();
+}
+
+// Quanto tempo passa entre o TSE totalizar e esta página mostrar. Mede só mudanças vistas ao vivo
+// (na abertura da página não há como saber quando a versão apareceu). Vem do relógio do aparelho.
+const dur = (ms) => {
+  const s = Math.round(Math.abs(ms) / 1000);
+  return s < 60 ? `${s} s` : `${Math.floor(s / 60)} min ${String(s % 60).padStart(2, '0')} s`;
+};
+function hmsQ(t) {
+  // hora com segundos; com a data quando não for de hoje (por exemplo, o teste com o 1º turno)
+  const hoje = new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit' });
+  return hoje.format(t) === hoje.format(Date.now()) ? hms(t) : `${hoje.format(t)} ${hms(t)}`;
+}
+function atualizarAtraso() {
+  const el = $('[data-ap-atraso]');
+  if (!el) return;
+  const br = A.br;
+  let s = '';
+  if (A.modo === 'vivo' && br && Number.isFinite(br.tTot)) {
+    const p = [];
+    if (br.vistoVivo && Number.isFinite(br.vistoEm)) {
+      const d = br.vistoEm - br.tTot;
+      p.push(`TSE totalizou às ${hmsQ(br.tTot)} · lido às ${hmsQ(br.vistoEm)}, ${d < -3000 ? 'antes da hora do TSE (o relógio deste aparelho parece atrasado)' : `${dur(d)} depois`}`);
+      if (Number.isFinite(br.tGer) && br.vistoEm - br.tGer >= -3000) p.push(`arquivo gerado às ${hmsQ(br.tGer)}, lido ${dur(br.vistoEm - br.tGer)} depois`);
+    } else {
+      p.push(`TSE totalizou às ${hmsQ(br.tTot)}; o atraso aparece na próxima totalização vista aqui`);
+    }
+    const ds = A.atrasos.map((x) => x.atraso).filter((x) => x >= -3000 && x < 3600e3).sort((a, b) => a - b);
+    if (ds.length >= 3) p.push(`mediana das últimas ${ds.length}: ${dur(ds[Math.floor(ds.length / 2)])}`);
+    s = p.join(' · ');
+  }
+  el.hidden = !s;
   if (el.textContent !== s) el.textContent = s;
 }
 
@@ -1621,7 +2421,10 @@ async function baixarJSON(chave, url) {
   try {
     let r;
     try {
-      r = await fetch(url, { cache: recarregar ? 'reload' : 'no-cache', signal: ctl?.signal });
+      // Capitais pedem com prioridade baixa: se o navegador precisar enfileirar, o Brasil e os estados passam na frente.
+      const opc = { cache: recarregar ? 'reload' : 'no-cache', signal: ctl?.signal };
+      if (chave.startsWith('cap:')) opc.priority = 'low';
+      r = await fetch(url, opc);
     } catch (e) {
       throw falha(e?.name === 'AbortError' ? `demorou mais de ${MODELO.LIMITE_MS / 1000} s` : 'sem conexão');
     }
@@ -1665,6 +2468,15 @@ function deuErro(chave, e) {
   R.erros.set(chave, { n, msg: String(e?.message || e).slice(0, 60), status: e.status ?? 0, cortado: !!e.cortado });
   R.prox.set(chave, agora + espera);
   if (chave === 'ab') return; // abrangência é ajuda: falha dela não pausa a leitura
+  if (chave.startsWith('cap:')) {
+    // Capital também é ajuda: erro dela só espera a sua vez (5, 10, 20… s), sem contar como falha do TSE.
+    // Mas 429 é o TSE pedindo calma: pausa tudo, como nos demais arquivos.
+    if (e.status === 429) {
+      R.pausaAte = Math.max(R.pausaAte, agora + MODELO.ESPERA_429_MS);
+      if ((R.prox.get('br') ?? 0) > R.pausaAte) R.prox.set('br', R.pausaAte);
+    }
+    return;
+  }
   R.falhasSeguidas += 1;
   if (e.status === 429) R.pausaAte = Math.max(R.pausaAte, agora + MODELO.ESPERA_429_MS);
   else if (R.falhasSeguidas >= 3) R.pausaAte = Math.max(R.pausaAte, agora + Math.min(MODELO.ESPERA_MAX_MS, MODELO.ESPERA_MIN_MS * 2 ** Math.min(4, R.falhasSeguidas - 3)));
@@ -1687,6 +2499,15 @@ async function lerBR() {
     const novo = lerTSE(await baixarJSON('br', urlTSE('br')));
     deuCerto('br');
     if (compVersao(A.br, novo) >= 0) {
+      // "Visto em": quando esta totalização apareceu pela primeira vez aqui (um 304 que devolve a
+      // mesma versão não conta). Só mede atraso quando a mudança foi vista ao vivo, não na abertura.
+      const nova = !A.br || novo.tTot !== A.br.tTot || novo.st !== A.br.st || novo.L !== A.br.L || novo.F !== A.br.F;
+      novo.vistoEm = nova ? novo.em : A.br.vistoEm ?? novo.em;
+      novo.vistoVivo = nova ? !!A.br : !!A.br.vistoVivo;
+      if (nova && A.br && novo.tTot) {
+        A.atrasos.push({ t: novo.tTot, visto: novo.vistoEm, ger: novo.tGer, atraso: novo.vistoEm - novo.tTot });
+        if (A.atrasos.length > MODELO.ATRASOS_N) A.atrasos.shift();
+      }
       A.br = novo;
       // Abrangência atrás do Brasil por mais de 45 s = abrangência parada ou com cache
       // longo: as UFs voltam ao ciclo curto (ver filaUF) até ela andar de novo.
@@ -1758,6 +2579,54 @@ async function lerUF(uf) {
   puxarUFs();
 }
 
+const urlCap = (c) => `${A.fonte}/${A.eleicao}/dados/${c.uf.toLowerCase()}/${c.cod}-c0001-e${codEleicao()}-u.json`;
+
+// Capital = arquivo do município, mesmo formato do arquivo do estado. Erro de uma capital não
+// derruba nada: ela espera a sua vez (deuErro) e as demais seguem.
+async function lerCap(c) {
+  const chave = `cap:${c.cod}`;
+  R.tentou.set(chave, (R.tentou.get(chave) ?? 0) + 1);
+  try {
+    const novo = lerTSE(await baixarJSON(chave, urlCap(c)));
+    R.erros.delete(chave);
+    if (compVersao(A.cap.get(c.cod), novo) >= 0) A.cap.set(c.cod, novo);
+    else R.velhas += 1;
+    R.lidoEm.set(chave, Date.now());
+    const o = A.cap.get(c.cod);
+    const fim = o.ts > 0 && o.st !== null && o.st >= o.ts;
+    const parado = (o.st ?? 0) === 0;
+    // 100% apurada: não precisa mais ler. Sem voto ainda: devagar. Contando: a cada ~30 s.
+    R.prox.set(chave, fim ? Infinity : Date.now() + (parado ? MODELO.CAP_PARADO_MS : MODELO.CAP_CADA_MS) * ritmo() * (0.85 + Math.random() * 0.3));
+  } catch (e) {
+    deuErro(chave, e);
+  }
+  pedirTela();
+}
+
+// No máximo uma capital nova por tique (1 s), até 4 no ar, e só quando o Brasil, a abrangência e
+// os estados não estão esperando: capital nunca atrasa o que importa mais.
+function puxarCapitais() {
+  const agora = Date.now();
+  const caps = A.base?.capitais;
+  if (A.modo !== 'vivo' || !caps?.length || agora < R.pausaAte || !A.br) return;
+  let noAr = 0;
+  let capsNoAr = 0;
+  for (const k of R.emVoo.keys()) {
+    noAr += 1;
+    if (k.startsWith('cap:')) capsNoAr += 1;
+  }
+  if (noAr > capsNoAr) return; // Brasil, abrangência ou estado em andamento
+  if (capsNoAr >= MODELO.CAP_PARALELO) return;
+  if (agora >= (R.prox.get('br') ?? 0) || (R.abOk && agora >= (R.prox.get('ab') ?? 0))) return;
+  if (filaUF(agora).length) return;
+  for (const c of caps) {
+    const chave = `cap:${c.cod}`;
+    if (R.emVoo.has(chave) || agora < (R.prox.get(chave) ?? 0)) continue;
+    lerCap(c);
+    return;
+  }
+}
+
 // Fila das UFs: nunca lidas primeiro (maior eleitorado antes), depois as que a abrangência
 // diz que mudaram, depois as vencidas pela idade; dentro de cada grupo, mais eleitorado
 // por apurar antes.
@@ -1794,6 +2663,7 @@ function agendar() {
   if (agora < R.pausaAte) return;
   if (!R.emVoo.has('ab') && agora >= (R.prox.get('ab') ?? 0)) lerAB();
   puxarUFs();
+  puxarCapitais();
 }
 // Ocupa as vagas de UF. Chamada a cada segundo e também ao fim de cada UF lida: a carga
 // inicial das 28 (e uma rodada de UFs que mudaram) anda no ritmo da rede, não do relógio.
@@ -1839,7 +2709,7 @@ function ligarVivo() {
     if (!R.erros.has('br') && (R.prox.get('br') ?? 0) > agora + MODELO.CADA_BR_MS) R.prox.set('br', agora);
     if (!R.erros.has('ab') && (R.prox.get('ab') ?? 0) > agora + MODELO.CADA_AB_MS) R.prox.set('ab', agora);
   }
-  if (!A.timers.length) A.timers.push(setInterval(() => (A.rot += 1), 8000));
+  if (!A.timers.length) A.timers.push(setInterval(girarDestaques, 8000));
   tique();
 }
 
@@ -1920,7 +2790,12 @@ function ligarSimulacao() {
   passoSimulacao();
   if (A.sim?.fim) return;
   A.timers.push(setInterval(passoSimulacao, MODELO.SIM_PASSO_MS));
-  A.timers.push(setInterval(() => (A.rot += 1), 8000));
+  A.timers.push(setInterval(girarDestaques, 8000));
+}
+// Os destaques que giram trocam a cada 8 s, sem esperar a próxima leitura do TSE.
+function girarDestaques() {
+  A.rot += 1;
+  if (A.res && A.raiz && A.modo !== 'pre' && A.res.completo) renderInsights(calcularInsights(A.res));
 }
 
 /* ================================================================= modos */
@@ -1954,6 +2829,10 @@ function trocarModo(modo) {
   A.rot = 0;
   A.sim = null;
   A.vista = null;
+  A.cap = new Map();
+  A.atrasos = [];
+  A.insVisto = new Map();
+  A.simDoc = modo === 'sim' ? null : A.simDoc;
   if (modo !== 'sim') {
     A.br = null;
     A.ufs = new Map();
@@ -2012,7 +2891,11 @@ function montarTela() {
 const TELA = { pedido: null, obs: null };
 function vigiarTV() {
   if (TELA.obs || typeof MutationObserver !== 'function') return;
-  TELA.obs = new MutationObserver(() => manterTelaAcesa());
+  TELA.obs = new MutationObserver(() => {
+    manterTelaAcesa();
+    // entrar ou sair do Modo TV muda quantos destaques cabem na tela
+    if (A.res && A.raiz && A.modo !== 'pre' && A.res.completo) renderInsights(calcularInsights(A.res));
+  });
   TELA.obs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
   manterTelaAcesa();
 }
@@ -2042,6 +2925,7 @@ function ganchoTeste() {
   const txt = (html) => C.emHtml(html).replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
   window.__apuracao = {
     estado() {
+      atualizarHora(); // o texto do atraso acompanha a última leitura (o teste lê no meio de um segundo)
       const r = A.res;
       // ufs: o que entrou na última conta (é com isso que os destaques foram escritos);
       // ufsLidas: o que já chegou do TSE (pode estar um passo à frente da conta).
@@ -2068,8 +2952,26 @@ function ganchoTeste() {
           pL: r.pL, parL: r.proj.parL, projL: r.proj.L, projF: r.proj.F, definido: r.definido, tudo: r.tudo,
           eleitoTSE: r.eleitoTSE, completo: r.completo, lidos: r.lidos, remCont: r.remCont, remMax: r.remMax, swing: r.swing,
         },
-        insights: r && A.modo !== 'pre' ? calcularInsights(r).map((x) => ({ id: x.id, txt: txt(x.html) })) : [],
+        insights: r && A.modo !== 'pre' ? calcularInsights(r).map((x) => ({ id: x.id, tag: x.tag, p: x.p, txt: txt(x.html) })) : [],
+        // painel dos estados: o que a conta (processar) decidiu para cada linha
+        estados: Object.fromEntries(
+          (r?.linhas || []).map((u) => [
+            u.uf,
+            {
+              status: u.status, quem: u.quem, chance: u.chance, prevChance: u.prevChance, sec: u.sec, fim: u.fim, defUF: u.defUF,
+              L: u.L, F: u.F, te: u.te, est: u.est, rem: u.rem, sig: u.sig, projL: u.projL, projF: u.projF, parObs: u.parObs,
+              t1Par: u.t1Par, dT1: u.dT1, lider: u.lider, lider1T: u.lider1T, faixa: u.faixa, projPar: u.projPar, faltaMax: u.faltaMax,
+              compObs: u.compObs, tTot: u.o?.tTot ?? null, st: u.o?.st ?? null, ts: u.o?.ts ?? null, c: u.o?.c ?? null,
+            },
+          ]),
+        ),
+        capitais: Object.fromEntries([...A.cap].map(([cod, o]) => [cod, { st: o.st, ts: o.ts, L: o.L, F: o.F, tTot: o.tTot }])),
+        atrasos: A.atrasos.map((x) => ({ ...x })),
+        brVisto: A.br && { vistoEm: A.br.vistoEm, vistoVivo: A.br.vistoVivo, tTot: A.br.tTot, tGer: A.br.tGer },
+        sigmaNac: A.base?.sigmaNac,
+        rot: A.rot,
         serie: A.serie.length,
+        serieFim: A.serie.slice(-80).map((x) => ({ ...x })),
         trocas: A.trocas.map((x) => ({ ...x })),
       };
     },
@@ -2101,17 +3003,37 @@ export function iniciar(ctx) {
   C.registrarDesenho('apur-chance', desenharChance);
   C.registrarDesenho('apur-votos', desenharVotos);
   document.addEventListener('click', (e) => {
-    const alvo = e.target instanceof Element ? e.target.closest('[data-ap], .lad[data-uf]') : null;
+    const alvo = e.target instanceof Element ? e.target.closest('[data-ap], .lad[data-uf], .uf-lin[data-uf]') : null;
     if (!alvo) return;
     if (alvo.matches('.lad[data-uf]')) {
-      A.ufSel = A.ufSel === alvo.dataset.uf ? null : alvo.dataset.uf;
-      if (A.res) atualizarMapa(A.res);
       // O detalhe abre embaixo do mapa: traz para a tela sem pular a página toda.
-      const caixa = A.ufSel ? $('[data-ap-uf]') : null;
-      if (caixa && !caixa.hidden) caixa.scrollIntoView({ block: 'nearest', behavior: reduzMovimento() ? 'auto' : 'smooth' });
+      abrirUF(alvo.dataset.uf, 'mapa');
+      return;
+    }
+    if (alvo.matches('.uf-lin[data-uf]')) {
+      // Na tabela, o detalhe abre logo abaixo da linha tocada.
+      abrirUF(alvo.dataset.uf, 'tabela');
       return;
     }
     const a = alvo.dataset.ap;
+    if (a === 'ord-uf') {
+      if (['eleitorado', 'apurado', 'disputa'].includes(alvo.dataset.ord)) {
+        A.ufOrd = alvo.dataset.ord;
+        pintarOrdem();
+        if (A.res) reordenarEstados(A.res, true);
+      }
+      return;
+    }
+    if (a === 'ins-todos') {
+      A.insTodos = !A.insTodos;
+      if (A.res && A.modo !== 'pre' && A.res.completo) renderInsights(calcularInsights(A.res));
+      return;
+    }
+    if (a === 'hist') {
+      A.histAberto = !A.histAberto;
+      if (A.res) atualizarDetalheUF(A.res);
+      return;
+    }
     if (a === 'sim') {
       trocarModo('sim');
       A.raiz?.scrollIntoView({ block: 'start' });
@@ -2131,6 +3053,14 @@ export function iniciar(ctx) {
     if (A.modo === 'vivo') ligarVivo();
     manterTelaAcesa();
   });
+  // O simulador.js (bloco de baixo, outro arquivo) avisa a cada leitura boa do simulador.json do Mac.
+  const receberSim = (d) => {
+    if (!obj(d?.doc)) return;
+    A.simDoc = { doc: d.doc, em: d.em ?? Date.now(), modo: d.modo };
+    if (A.raiz && A.modo === 'vivo') pedirTela();
+  };
+  window.addEventListener('radar2t:simulador', (e) => receberSim(e?.detail));
+  receberSim(window.__radar2tSimulador); // se ele já tinha lido antes de este módulo carregar
   vigiarTV();
   ganchoTeste();
   montarTela();

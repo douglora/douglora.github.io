@@ -126,6 +126,9 @@ const GLOSSARIO_PADRAO = [
   ['Prévia por estado', 'O que se espera de cada estado antes de contar: participação de cada candidato, comparecimento e brancos e nulos. Vem do modelo da mesa, feito com o 1º turno de 2026, o padrão de cada estado entre os turnos de 2002 a 2022, a tendência das pesquisas e o tamanho das amostras.'],
   ['Swing observado', 'Quanto a apuração está, em média, mais favorável a um dos dois do que a prévia indicava, comparando estado com estado. Serve para corrigir a prévia dos estados que ainda não começaram a contar.'],
   ['Matematicamente definido', 'Quando a diferença na contagem já é maior do que todo o eleitorado que falta apurar: nem com todos os votos restantes o segundo colocado alcança o primeiro.'],
+  ['Estado provável', 'Um estado aparece como “provável” quando o modelo dá 99% ou mais de chance a um dos lados e pelo menos 25% das seções do estado já foram apuradas. Não é resultado oficial: pode mudar até o estado terminar de contar.'],
+  ['Estado definido', 'Um estado fica “definido” quando a vantagem de quem lidera lá é maior que todo o eleitorado que ainda falta apurar no estado: nem com todos os votos restantes o outro alcança. Vale também para estado com 100% das seções apuradas.'],
+  ['Par', 'Só os votos dados aos dois finalistas, somados como 100%. É a base dos números “do par”: brancos, nulos e votos de quem ficou fora do 2º turno não entram.'],
 ];
 
 const st = {

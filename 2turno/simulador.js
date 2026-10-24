@@ -847,6 +847,7 @@ async function ciclo() {
     S.docEm = Date.now();
     if (S.modo !== 'teste') S.modo = 'vivo';
     atualizar();
+    publicar(d);
     return;
   }
   if (S.modo === 'teste') {
@@ -861,6 +862,19 @@ async function ciclo() {
   if (S.modo !== novo || S.esqueleto !== novo) {
     S.modo = novo;
     montar();
+  }
+}
+// Repassa o simulador.json lido à apuração por estado (apuracao.js), que o usa em dois lugares: no destaque
+// "transferência dos votos do 1º turno" e no detalhe de cada estado. Chega com a hora em que foi gerado
+// (gerado_ms) e só da leitura real ou de teste: a demonstração de 2022 (modo 'sim') nunca é repassada.
+function publicar(d) {
+  if (S.modo === 'sim' || !d) return;
+  const det = { doc: d, em: Date.now(), modo: S.modo };
+  window.__radar2tSimulador = det;
+  try {
+    window.dispatchEvent(new CustomEvent('radar2t:simulador', { detail: det }));
+  } catch {
+    /* sem CustomEvent: a apuração lê window.__radar2tSimulador ao carregar */
   }
 }
 function montarEspera() {
