@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "01c2a16196abe2a7e7e4253b3ffe089998d4a9b242d0c93a7c13afad6b8e972d",
-  "live_source_run_id": "run-20261024-10b4e183-ae78ab90",
-  "run_id": "hist-20261024-8d90558c-8c3bf707-01c2a161-08a374",
+  "live_hash": "0abd85b8eaaa77b6692d7e1e27e4558eaef2280c1a7473ffad722a79e13a3d37",
+  "live_source_run_id": "run-20261024-51811d5c-ae78ab90",
+  "run_id": "hist-20261024-8d90558c-8c3bf707-0abd85b8-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [],
@@ -17251,7 +17251,7 @@
           "planned_publish_date": "2026-10-24",
           "registration_no": "BR091582026",
           "sample_size": 3702,
-          "scenario_status": "release_not_found"
+          "scenario_status": "validated_awaiting_review"
         }
       },
       {
@@ -18483,6 +18483,29 @@
             {
               "label": "LULA",
               "party": "PT",
+              "published_pct": 41.0,
+              "published_valid_pct": 51.25
+            },
+            {
+              "label": "RONALDO CAIADO",
+              "party": "PSD",
+              "published_pct": 39.0,
+              "published_valid_pct": 48.75
+            }
+          ],
+          "corrected_note": null,
+          "field_end": "2026-09-20",
+          "house_id": "quaest",
+          "house_name": "Quaest",
+          "published_at": "2026-09-21",
+          "regime": "post_registration",
+          "registration_no": "BR-06004/2026"
+        },
+        {
+          "candidates": [
+            {
+              "label": "LULA",
+              "party": "PT",
               "published_pct": 45.0,
               "published_valid_pct": 50.0
             },
@@ -18569,29 +18592,6 @@
           "published_at": "2026-09-21",
           "regime": "post_registration",
           "registration_no": "BR-00485/2026"
-        },
-        {
-          "candidates": [
-            {
-              "label": "LULA",
-              "party": "PT",
-              "published_pct": 41.0,
-              "published_valid_pct": 51.25
-            },
-            {
-              "label": "RONALDO CAIADO",
-              "party": "PSD",
-              "published_pct": 39.0,
-              "published_valid_pct": 48.75
-            }
-          ],
-          "corrected_note": null,
-          "field_end": "2026-09-20",
-          "house_id": "quaest",
-          "house_name": "Quaest",
-          "published_at": "2026-09-21",
-          "regime": "post_registration",
-          "registration_no": "BR-06004/2026"
         },
         {
           "candidates": [
@@ -19539,16 +19539,16 @@
         {
           "candidates": [
             {
-              "label": "FLAVIO BOLSONARO",
-              "party": "PL",
+              "label": "RONALDO CAIADO",
+              "party": "PSD",
               "published_pct": 44.0,
-              "published_valid_pct": 49.438202247191015
+              "published_valid_pct": 50.57471264367816
             },
             {
               "label": "LULA",
               "party": "PT",
-              "published_pct": 45.0,
-              "published_valid_pct": 50.561797752808985
+              "published_pct": 43.0,
+              "published_valid_pct": 49.42528735632184
             }
           ],
           "corrected_note": null,
@@ -19562,16 +19562,16 @@
         {
           "candidates": [
             {
-              "label": "RONALDO CAIADO",
-              "party": "PSD",
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
               "published_pct": 44.0,
-              "published_valid_pct": 50.57471264367816
+              "published_valid_pct": 49.438202247191015
             },
             {
               "label": "LULA",
               "party": "PT",
-              "published_pct": 43.0,
-              "published_valid_pct": 49.42528735632184
+              "published_pct": 45.0,
+              "published_valid_pct": 50.561797752808985
             }
           ],
           "corrected_note": null,
@@ -19932,14 +19932,14 @@
             {
               "label": "LULA",
               "party": "PT",
-              "published_pct": 47.0,
-              "published_valid_pct": 55.95238095238095
+              "published_pct": 46.0,
+              "published_valid_pct": 50.54945054945055
             },
             {
-              "label": "RENAN SANTOS",
-              "party": "MISSÃO",
-              "published_pct": 37.0,
-              "published_valid_pct": 44.04761904761905
+              "label": "FLAVIO BOLSONARO",
+              "party": "PL",
+              "published_pct": 45.0,
+              "published_valid_pct": 49.45054945054945
             }
           ],
           "corrected_note": null,
@@ -19955,14 +19955,14 @@
             {
               "label": "LULA",
               "party": "PT",
-              "published_pct": 46.0,
-              "published_valid_pct": 50.54945054945055
+              "published_pct": 47.0,
+              "published_valid_pct": 55.95238095238095
             },
             {
-              "label": "FLAVIO BOLSONARO",
-              "party": "PL",
-              "published_pct": 45.0,
-              "published_valid_pct": 49.45054945054945
+              "label": "RENAN SANTOS",
+              "party": "MISSÃO",
+              "published_pct": 37.0,
+              "published_valid_pct": 44.04761904761905
             }
           ],
           "corrected_note": null,
