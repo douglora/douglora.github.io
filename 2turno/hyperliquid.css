@@ -1,7 +1,7 @@
 /* Cartões ao vivo da Hyperliquid (aba Mercados), 24/10/2026.
    Escuro, mesmos tokens do style.css. Tudo com o prefixo hl-. */
 
-.hl-vivo { margin: 0 0 22px; }
+.hl-vivo { margin: 0 0 22px; padding-top: 18px; }
 .hl-vivo:empty { display: none; }
 
 .hl-bloco {
@@ -227,7 +227,7 @@
     background: var(--vivo);
     animation: hlPulso 1.8s ease-out infinite;
   }
-  .hl-pt::after { animation: hlPulsoPt 1.8s ease-out infinite; }
+  .hl-bloco[data-modo="vivo"] .hl-pt::after, .hl-bloco[data-modo="rest"] .hl-pt::after { animation: hlPulsoPt 1.8s ease-out infinite; } /* só pulsa com dado vivo */
   .hl-f-alta { animation: hlAlta 0.9s ease-out; }
   .hl-f-queda { animation: hlQueda 0.9s ease-out; }
 }

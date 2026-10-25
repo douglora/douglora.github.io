@@ -170,7 +170,30 @@ b, strong { font-weight: 650; }
   white-space: nowrap;
 }
 .abas a:hover { color: var(--tinta); }
-.abas a[aria-current="page"] { color: var(--tinta); font-weight: 650; border-bottom-color: var(--tinta); }
+.abas a[aria-current="page"] { color: var(--tinta); font-weight: 650; }
+.abas a { position: relative; transition: color 0.2s ease; }
+.abas a::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(90deg, #1fa463, #f2c94c, #3d7be0);
+  transform: scaleX(0);
+  transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.abas a[aria-current="page"]::after { transform: scaleX(1); }
+@keyframes painelEntra {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.painel:not([hidden]) { animation: painelEntra 0.38s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .abas a::after { transition: none; }
+  .painel:not([hidden]) { animation: none; }
+}
 
 /* ------------------------------------------------------------ estrutura */
 
@@ -1067,14 +1090,14 @@ details > summary { cursor: pointer; }
   .abas .col { max-width: var(--col-larga); }
   .abas-in { display: flex; gap: 4px; }
   .abas a { padding: 0 18px; }
-  .heroi {
-    display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
-    gap: 0 56px;
-    align-items: start;
+  .heroi,
+  .duo-pesq,
+  #painel-resumo > .bloco {
     width: min(var(--col-larga), calc(100vw - 64px));
     margin-left: calc(50% - min(var(--col-larga), calc(100vw - 64px)) / 2);
   }
+  .duo-pesq { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 0 48px; align-items: start; }
+  .duo-pesq .bloco { border-top: 0; }
   .heroi-col { display: flex; flex-direction: column; }
   .heroi-dir .ord-4 { order: 1; }
   .heroi-dir .ord-3 { order: 2; }
@@ -1092,7 +1115,8 @@ body.tv .abas,
 body.tv .rodape,
 body.tv .ver-mais,
 body.tv .cont-nota,
-body.tv #painel-resumo > :not(.heroi),
+body.tv #painel-resumo > :not(.heroi):not(.duo-pesq),
+body.tv .duo-a,
 body.tv .op .nota,
 body.tv .op .fonte,
 body.tv .op .sub-abas,
@@ -1133,7 +1157,7 @@ body.tv #ap-vivo > .ap-rodape { grid-area: rod; }
 body.tv .ap-mapa-wrap { grid-template-columns: 1fr; }
 body.tv .ap-mapa { max-width: 330px; }
 body.tv main.col { max-width: 1240px; padding-top: 6px; zoom: var(--tv-zoom, 1.3); }
-body.tv .heroi { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 0 48px; width: auto; margin-left: 0; }
+body.tv .heroi { display: block; width: auto; margin-left: 0; }
 body.tv .heroi-col { display: flex; flex-direction: column; }
 body.tv .heroi-dir .ord-4 { order: 1; }
 body.tv .heroi-dir .ord-3 { order: 2; }
@@ -2115,3 +2139,125 @@ body.com-faixa-sim { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px
   .uf-sec { min-height: calc(2 * 1.25em); line-height: 1.25; }
 }
 /* <<< apuracao v5 (fim) */
+
+/* ------------------------------------------------------------------------------------------
+   Resumo v6 (24/10/2026 à noite): cartão verde inteiro no topo (no computador, o Agregador
+   próprio na coluna da direita), "O que dizem as pesquisas" ao lado das "Últimas pesquisas",
+   ranking do 1º turno com a última pesquisa de cada casa, "Nível de abstenção" em números.
+   ------------------------------------------------------------------------------------------ */
+
+.fonte { display: none !important; }
+.ag-pm { display: inline-block; margin-left: 2px; padding: 0 6px; border-radius: 5px; background: rgba(23, 95, 220, 0.1); color: #1f55c7; font-size: 11.5px; font-weight: 750; letter-spacing: 0.01em; }
+
+@container (min-width: 900px) {
+  .cont-cartao {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.08fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "quando lado agreg"
+      "principal lado agreg"
+      "acao acao agreg";
+    column-gap: 30px;
+  }
+  .cont-cartao .agreg { margin: 0; align-self: stretch; }
+  .cont-grande { font-size: 54px; }
+  .cont-relogio { font-size: 32px; }
+}
+
+@keyframes ulEntra {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ulBarra {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes ulChegou {
+  0%, 30% { background-color: rgba(52, 194, 122, 0.28); border-color: var(--vivo); }
+  100% { background-color: var(--cartao); }
+}
+
+.ul-vivo { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--vivo); }
+.ul-vivo i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--vivo); }
+.ul-vivo i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--vivo); animation: pulso 2s ease-out infinite; }
+.ul-vivo[data-estado="erro"] { color: var(--alerta); }
+.ul-vivo[data-estado="erro"] i, .ul-vivo[data-estado="erro"] i::after { background: var(--alerta); animation: none; }
+.ul .op-unid { margin: -6px 0 12px; }
+
+.ul-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ul-l { padding: 10px 12px 10px; border: 1px solid var(--linha); border-radius: 11px; background: var(--cartao); animation: ulEntra 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.ul-l:nth-child(2) { animation-delay: 0.04s; }
+.ul-l:nth-child(3) { animation-delay: 0.08s; }
+.ul-l:nth-child(4) { animation-delay: 0.12s; }
+.ul-l:nth-child(5) { animation-delay: 0.16s; }
+.ul-l:nth-child(6) { animation-delay: 0.2s; }
+.ul-l:nth-child(n + 7) { animation-delay: 0.24s; }
+.ul-l.hoje { border-color: rgba(52, 194, 122, 0.4); }
+.ul-l.chegou { animation: ulChegou 3s ease-out both; }
+.ul-cab { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.ul-casa { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14.5px; font-weight: 700; }
+.ul-nova { flex: none; padding: 1px 6px; border-radius: 4px; background: var(--vivo); color: #08130d; font-size: 10.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.ul-data { flex: none; margin-left: auto; font-size: 12.5px; color: var(--tinta-3); font-variant-numeric: tabular-nums; }
+.ul-par { display: grid; grid-template-columns: 3.1em minmax(0, 1fr) 3.1em; align-items: center; gap: 10px; margin-top: 7px; }
+.ul-v { font-size: 18px; line-height: 1; font-weight: 780; letter-spacing: -0.01em; color: var(--tinta-2); font-variant-numeric: tabular-nums; }
+.ul-v:last-child { text-align: right; }
+.ul-v.lid { color: var(--tinta); }
+.ul-barra { display: flex; gap: 2px; height: 8px; border-radius: 4px; overflow: hidden; }
+.ul-barra i { min-width: 2px; background: var(--c); transform-origin: left center; animation: ulBarra 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.ul-barra i + i { transform-origin: right center; }
+.ul-var { display: flex; align-items: center; gap: 5px; margin: 7px 0 0; font-size: 12.5px; color: var(--tinta-3); }
+.ul-var b { color: var(--tinta); font-variant-numeric: tabular-nums; }
+
+/* quem mais acertou o 1º turno */
+.rk { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.rk-l { min-width: 0; padding: 12px 12px 10px; border: 1px solid var(--linha); border-radius: 12px; background: var(--cartao); animation: ulEntra 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 50ms); }
+.rk-l.top { border-color: rgba(233, 196, 106, 0.45); background: linear-gradient(180deg, rgba(233, 196, 106, 0.08), transparent 55%), var(--cartao); }
+.rk-cab { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 10px; }
+.rk-pos { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--suave-2); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.rk-l.top .rk-pos { background: #e9c46a; color: #1a1406; }
+.rk-casa { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15.5px; }
+.rk-erro { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.15; }
+.rk-erro b { font-size: 16px; font-variant-numeric: tabular-nums; }
+.rk-erro small { font-size: 11.5px; color: var(--tinta-3); }
+.rk-trilho { display: block; height: 4px; margin: 10px 0 2px; border-radius: 2px; background: var(--suave-2); overflow: hidden; }
+.rk-trilho span { display: block; height: 100%; border-radius: 2px; background: linear-gradient(90deg, #e9c46a, #d9822b); transform-origin: left center; animation: ulBarra 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 50ms + 0.2s); }
+.rk-ult { margin-top: 8px; }
+.rk-ult .ul-l { padding: 8px 0 0; border: 0; border-top: 1px dashed var(--linha); border-radius: 0; background: none; animation: none; }
+.rk-ult .ul-casa { display: none; }
+.rk-ult .ul-cab::before { content: "Última de 2º turno"; font-size: 11px; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); }
+.rk-l > .ul-var { margin-top: 8px; }
+@media (min-width: 760px) {
+  .rk { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* nível de abstenção */
+.ab-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 4px; }
+.ab-tile { display: flex; flex-direction: column; gap: 3px; min-width: 0; padding: 12px; border: 1px solid var(--linha); border-radius: 12px; background: var(--cartao); animation: ulEntra 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.ab-tile:nth-child(2) { animation-delay: 0.07s; }
+.ab-tile:nth-child(3) { animation-delay: 0.14s; }
+.ab-rot { font-size: 11.5px; line-height: 1.25; font-weight: 650; color: var(--tinta-3); }
+.ab-tile b { font-size: 27px; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.ab-tile small { font-size: 12px; color: var(--tinta-3); }
+.ab-prev { border-color: rgba(79, 184, 189, 0.5); background: linear-gradient(160deg, rgba(79, 184, 189, 0.14), transparent 70%), var(--cartao); }
+.ab-prev b { color: var(--destaque); }
+.ab-duo { display: grid; gap: 20px; margin-top: 20px; }
+.ab-duo .cem { margin: 0; }
+.hist-abst li { animation: ulEntra 0.45s ease-out both; animation-delay: calc(var(--i, 0) * 60ms); }
+.ab-hist .hist-abst li { grid-template-columns: 38px 1fr 44px; }
+.ab-hist .trilho span { transform-origin: left center; animation: ulBarra 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: calc(var(--i, 0) * 60ms + 0.15s); }
+#sec-projecao .proj-cards { margin-top: 16px; }
+@media (min-width: 760px) {
+  .ab-duo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+}
+@media (max-width: 380px) {
+  .ab-tile { padding: 10px; }
+  .ab-tile b { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ul-l, .ul-barra i, .rk-l, .rk-trilho span, .ab-tile, .hist-abst li, .ab-hist .trilho span, .ul-vivo i::after { animation: none; }
+}
+
+/* Modo TV no Resumo: cartão verde e pesquisas; abstenção e mercados ficam para o celular. */
+body.tv #painel-resumo > .bloco { display: none; }
+body.tv .duo-pesq { display: block; width: auto; margin-left: 0; }
+body.tv .duo-b .ul-lista { grid-template-columns: repeat(4, minmax(0, 1fr)); }

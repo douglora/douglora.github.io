@@ -201,6 +201,7 @@ function criar(raiz) {
     ultimoWs: 0,
     restOkEm: 0,
     proxPoll: 0,
+    solto: 0,
     candlesEm: 0,
     temVivo: false,
     fotoOk: false,
@@ -627,7 +628,13 @@ function criar(raiz) {
 
   function tick() {
     if (S.destruido) return;
-    if (!S.raiz.isConnected) return;
+    if (!S.raiz.isConnected) {
+      // o contêiner saiu da página (alguém trocou o HTML da aba): depois de 30 s solto, encerra tudo
+      if (!S.solto) S.solto = Date.now();
+      else if (Date.now() - S.solto > 30000) destruir();
+      return;
+    }
+    S.solto = 0;
     if (!S.raiz.contains(S.bloco)) montarDom(); // alguém limpou o contêiner: refaz
     const agora = Date.now();
     // Sem sinal do WebSocket: REST a cada 20 s (ou o reconectar cuida do resto).
