@@ -134,10 +134,12 @@ export const MODELO = {
   ESPERA_429_MS: 30000,
   // Aba em segundo plano (ou outra aba da página aberta): metade do ritmo.
   OCULTA_FATOR: 2,
-  // Projeção final pelo simulador municipal do Mac: arquivo com até 3 min (4 min para sair, histerese),
-  // ao menos 5% das seções e 8% do eleitorado no modelo; mostra os dois motores se divergirem mais que 1 ponto.
-  SIM_FRESCO_MS: 180000,
-  SIM_FRESCO_SAI_MS: 240000,
+  // Projeção final pelo simulador municipal do Mac: arquivo com até 6 min (8 min para sair, histerese),
+  // ao menos 5% das seções e 8% do eleitorado no modelo, e maduro (simulador.js: 30% das seções e a projeção parada
+  // em 0,6 ponto por 10 min); mostra os dois motores se divergirem mais que 1 ponto. Com 3 min, o arquivo que chega
+  // atrasado pelo cache do raw tirava e punha o simulador na chance a cada poucos minutos (25/10/2026: 70% ↔ 85%).
+  SIM_FRESCO_MS: 360000,
+  SIM_FRESCO_SAI_MS: 480000,
   SIM_MIN_SECOES: 5,
   SIM_MIN_MODELADO: 8,
   DIVERGE_PP: 1.0,
@@ -956,7 +958,10 @@ function processar() {
       pL = pDiv ? (pS + pLUF) / 2 : pS;
     }
     pBruto = pL;
-    pL = suavizarChance(pL);
+    // Com estados ainda carregando, a conta não entra na suavização: senão a chance da tela nasce dessa conta parcial e
+    // leva um minuto escorregando até a certa (ao abrir a página em 25/10/2026: 25% → 70% em 60 s).
+    if (completo || sim) pL = suavizarChance(pL);
+    else A._pSuave = null;
   }
   // Situação de cada estado. "Definido": vantagem maior que o eleitorado que falta no estado
   // (ou estado 100% apurado). "Provável": chance ≥ 99% (ou ≤ 1%) E ao menos 25% das seções
@@ -1936,10 +1941,12 @@ function projecaoSimulador(cont) {
   const atras = (cont?.pst ?? 0) - secoes;
   A.simAval = { ger, idade, secoes, modelado, lulaPct, faixa: p?.faixa80?.lula ?? null, chance: C.num(p?.chance?.lula), vL, vF, antes: A.motorSim, atras };
   const cobre = secoes >= MODELO.SIM_MIN_SECOES && modelado >= MODELO.SIM_MIN_MODELADO;
-  if (idade > lim || idade < -600000 || !cobre || atras > 15) {
+  // Maturidade vem do simulador.js com o arquivo; sem ela (versão velha em cache), o simulador fica de fora.
+  const maduro = s.maduro?.ok === true;
+  if (idade > lim || idade < -600000 || !cobre || atras > 15 || !maduro) {
     A.motorSim = false;
     // o simulador existe mas não serve agora: a tela diz por quê, em uma linha
-    A.simParado = { ger, idade, cobre, atras, secoes };
+    A.simParado = { ger, idade, cobre, atras, secoes, maduro, mexeu: s.maduro?.mexeu ?? null };
     return null;
   }
   A.motorSim = true;
@@ -4177,7 +4184,7 @@ export function iniciar(ctx) {
   // O simulador.js (bloco de baixo, outro arquivo) avisa a cada leitura boa do simulador.json do Mac.
   const receberSim = (d) => {
     if (!obj(d?.doc)) return;
-    A.simDoc = { doc: d.doc, em: d.em ?? Date.now(), modo: d.modo };
+    A.simDoc = { doc: d.doc, em: d.em ?? Date.now(), modo: d.modo, maduro: d.maduro ?? null };
     if (A.raiz && A.modo === 'vivo') pedirTela();
   };
   window.addEventListener('radar2t:simulador', (e) => receberSim(e?.detail));

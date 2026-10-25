@@ -340,6 +340,29 @@ async function lerDemo() {
   }
 }
 
+/* ============================================================ maturidade */
+
+// O simulador só fala grosso (chance, "já aponta", "o modelo espera") quando já tem chão e parou de andar: 30% ou
+// mais das seções apuradas e a projeção de Lula mexendo no máximo 0,6 ponto nos últimos 10 min. Na noite de 25/10/2026
+// ele dava 100% a Lula com 10% apurado enquanto a própria projeção caía 2 pontos em 20 min (54,4 → 52,4): a faixa
+// calibrada nas noites de 2018 e 2022 não valia para esta. A apuração (apuracao.js) usa a mesma régua, repassada
+// junto com o arquivo (publicar), para decidir se o simulador entra na chance.
+const MADURO = { secoes: 30, janelaMs: 10 * 60000, mexeu: 0.6 };
+function maduro(d, serie = arr(d?.serie)) {
+  const a = obj(d?.apuracao) || {};
+  const secoes = fin(a.secoes_pct) ? a.secoes_pct : 0;
+  if (secoes >= 100) return { ok: true, secoes, mexeu: 0, min: 0 };
+  const s = serie.filter((x) => x && fin(x.t) && fin(x.lula));
+  const ult = s[s.length - 1];
+  const jan = ult ? s.filter((x) => x.t >= ult.t - MADURO.janelaMs) : [];
+  const vals = jan.map((x) => x.lula);
+  const mexeu = vals.length ? Math.max(...vals) - Math.min(...vals) : null;
+  const min = jan.length ? (ult.t - jan[0].t) / 60000 : 0;
+  // série com menos de 8 min não prova que parou de andar
+  const longa = !!ult && ult.t - s[0].t >= MADURO.janelaMs * 0.8;
+  return { ok: secoes >= MADURO.secoes && longa && mexeu !== null && mexeu <= MADURO.mexeu, secoes, mexeu, min };
+}
+
 /* ============================================================ insights */
 
 function insights(d) {
@@ -353,14 +376,18 @@ function insights(d) {
   const lp = fin(p.lula_pct) ? (p.lula_pct >= 50 ? 'lula' : 'flavio') : null;
   const lc = fin(cont.lula_pct) ? (cont.lula_pct >= 50 ? 'lula' : 'flavio') : null;
   const aberta = fin(a.secoes_pct) && a.secoes_pct > 0 && a.secoes_pct < 100;
+  const m = maduro(d, serieAtual());
   if (aberta && lp && lc && lp !== lc) {
-    // Mesma régua da faixa "Virada à vista" da apuração: afirmar só com 80% de chance ou mais para quem a projeção aponta.
+    // Mesma régua da faixa "Virada à vista" da apuração: afirmar só com 80% de chance ou mais para quem a projeção aponta,
+    // e só com o simulador maduro; antes disso ele diz quanto ainda está andando.
     const chL = C.num(p.chance?.lula);
     const chLp = chL === null ? null : lp === 'lula' ? chL : 1 - chL;
     out.push(
-      chLp !== null && chLp < 0.8
-        ? { id: 'virada-proj', p: 88, html: h`Disputa aberta: <b>${nome(lc)}</b> lidera a contagem, e o simulador dá a <b>${nome(lp)}</b> ${C.fNum(100 * chLp, 0)}% de chance de terminar à frente.` }
-        : { id: 'virada-proj', p: 95, tom: 'forte', html: h`O simulador já aponta <b>${nome(lp)}</b>, embora <b>${nome(lc)}</b> lidere a contagem: o que falta apurar é mais favorável a ${nome(lp)}.` },
+      !m.ok
+        ? { id: 'virada-proj', p: 88, html: h`O simulador projeta <b>${C.fNum(p.lula_pct, 1)}%</b> para ${r.lula}, mas ainda está se ajustando${fin(m.mexeu) && m.mexeu >= 0.1 ? h`: mexeu <b>${C.fNum(m.mexeu, 1)} ${m.mexeu < 2 ? 'ponto' : 'pontos'}</b> nos últimos ${C.fNum(Math.max(1, m.min), 0)} min` : ''}. Ele só entra na chance com 30% das seções apuradas no modelo e a projeção parada.` }
+        : chLp !== null && chLp < 0.8
+          ? { id: 'virada-proj', p: 88, html: h`Disputa aberta: <b>${nome(lc)}</b> lidera a contagem, e o simulador dá a <b>${nome(lp)}</b> ${C.fNum(100 * chLp, 0)}% de chance de terminar à frente.` }
+          : { id: 'virada-proj', p: 95, tom: 'forte', html: h`O simulador já aponta <b>${nome(lp)}</b>, embora <b>${nome(lc)}</b> lidere a contagem: o que falta apurar é mais favorável a ${nome(lp)}.` },
     );
   }
   const v = obj(d.virar);
@@ -370,7 +397,7 @@ function insights(d) {
       p: 85,
       html: v.impossivel
         ? h`${nome(v.atras)} não alcança mais: precisaria de mais votos do que os que faltam contar.`
-        : h`Para <b>${nome(v.atras)}</b> virar, precisaria de <b>${C.fNum(v.precisa_pct, 1)}%</b> dos ${votosCurto(v.faltam_validos)} de votos válidos que faltam; o modelo espera <b>${C.fNum(v.esperado_pct, 1)}%</b>.`,
+        : h`Para <b>${nome(v.atras)}</b> virar, precisaria de <b>${C.fNum(v.precisa_pct, 1)}%</b> dos ${votosCurto(v.faltam_validos)} de votos válidos que faltam${m.ok && fin(v.esperado_pct) ? h`; o modelo espera <b>${C.fNum(v.esperado_pct, 1)}%</b>` : ''}.`,
     });
   }
   const g = arr(d.transferencia?.grupos).find((x) => x?.id === 'outros');
@@ -608,13 +635,15 @@ function atualizar() {
   const r = rot();
   const p = obj(d.projecao) || {};
   const a = obj(d.apuracao) || {};
+  // Antes de maduro, a chance do simulador fica "em ajuste" (sem número nem cor): ver maduro().
+  const m = maduro(d, serieAtual());
   for (const id of ['lula', 'flavio']) {
     const v = p[`${id}_pct`];
     animar($(`[data-sim-pct="${id}"]`), v, (x) => (fin(x) ? C.fNum(x, 1) : '—'));
     const fx = p.faixa80?.[id];
     texto(`[data-sim-faixa="${id}"]`, Array.isArray(fx) && fin(fx[0]) ? (fx[0] === fx[1] ? 'resultado final' : `entre ${C.fNum(fx[0], 1)}% e ${C.fNum(fx[1], 1)}%`) : '—');
-    const ch = p.chance?.[id];
-    texto(`[data-sim-ch="${id}"]`, chanceTxt(ch));
+    const ch = m.ok ? p.chance?.[id] : null;
+    texto(`[data-sim-ch="${id}"]`, m.ok ? chanceTxt(ch) : 'em ajuste');
     const el = $(`[data-sim-ch="${id}"]`);
     if (el) {
       const cor = corChance(ch);
@@ -953,7 +982,7 @@ async function ciclo() {
 // (gerado_ms) e só da leitura real ou de teste: a demonstração de 2022 (modo 'sim') nunca é repassada.
 function publicar(d) {
   if (S.modo === 'sim' || !d) return;
-  const det = { doc: d, em: Date.now(), modo: S.modo };
+  const det = { doc: d, em: Date.now(), modo: S.modo, maduro: maduro(d) };
   window.__radar2tSimulador = det;
   try {
     window.dispatchEvent(new CustomEvent('radar2t:simulador', { detail: det }));
