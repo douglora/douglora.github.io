@@ -12,7 +12,7 @@
     "selected_count": 0,
     "truncation_count": 58
   },
-  "as_of": "2026-10-25T07:50:07.850629-03:00",
+  "as_of": "2026-10-25T08:46:47.169575-03:00",
   "blocked_recent": [
     {
       "agenda_label": "divulgacao_prevista_vencida_busca_ativa",
@@ -382,7 +382,7 @@
     "judicial_status_unknown_or_pending_count": 2,
     "warning": "O snapshot oficial confirma identidade e pedido de registro, mas não fornece situação judicial para as 13 candidaturas (#NE/-3); nenhum status final foi inferido."
   },
-  "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
+  "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
   "champion_latency_seconds": null,
   "commands": [
     "uv run agregador watch --connectors",
@@ -484,11 +484,11 @@
     "cycle_steps": {
       "coverage_monitor": {
         "alerts": 9,
-        "at": "2026-10-25T07:50:07.850629-03:00",
+        "at": "2026-10-25T08:46:47.169575-03:00",
         "ok": true
       },
       "cycle_press": {
-        "at": "2026-10-25T07:50:07.850629-03:00",
+        "at": "2026-10-25T08:46:47.169575-03:00",
         "fetch_failures": 0,
         "fetched": 0,
         "ok": true,
@@ -540,14 +540,14 @@
               "written": null
             },
             {
-              "action": "processed",
+              "action": "throttled",
               "registration_no": "BR-02418/2026",
-              "written": false
+              "written": null
             },
             {
-              "action": "processed",
+              "action": "throttled",
               "registration_no": "BR-06380/2026",
-              "written": false
+              "written": null
             }
           ]
         }
@@ -556,7 +556,7 @@
     "excluded_national_false_positives": [],
     "expected_due": 77,
     "future_days": 7,
-    "generated_at": "2026-10-25T07:50:07.850629-03:00",
+    "generated_at": "2026-10-25T08:46:47.169575-03:00",
     "houses": [
       {
         "cnpjs": [
@@ -1026,10 +1026,10 @@
             "field_start": "2026-09-24",
             "funnel_status": "completo",
             "last_source": {
-              "item_id": "item-f12845a1312a07cbdd7d27375d590c15",
+              "item_id": "item-fc81098ea6cc7f8d3ba7b5bdc0beb302",
               "source_id": "g1_declared_releases",
               "state": "accepted",
-              "transitioned_at": "2026-10-25T07:50:07.850629-03:00",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://g1.globo.com/politica/eleicoes/2026/noticia/2026/09/28/quaest-presidente-2o-turno-28-setembro.ghtml"
             },
             "national_basis": "classificador do TSE: nacional (territorio nacional)",
@@ -1052,11 +1052,11 @@
             "field_start": "2026-09-17",
             "funnel_status": "completo",
             "last_source": {
-              "item_id": "item-f85b2dd52c00f24c9f1824be16669c91",
+              "item_id": "item-00db24a9531c8b7bde9b89b37cdc0000",
               "source_id": "g1_declared_releases",
               "state": "accepted",
-              "transitioned_at": "2026-10-25T07:50:07.850629-03:00",
-              "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml"
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
+              "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml"
             },
             "national_basis": "classificador do TSE: nacional (territorio nacional)",
             "planned_publish_date": "2026-09-21",
@@ -1130,10 +1130,10 @@
             "field_start": "2026-08-30",
             "funnel_status": "completo",
             "last_source": {
-              "item_id": "item-c40a2b2b44968cbb466a9ddb4f507a0a",
+              "item_id": "item-036a0b08395d17c97917a4e059df15d4",
               "source_id": "g1_declared_releases",
               "state": "accepted",
-              "transitioned_at": "2026-10-25T00:04:17.146855-03:00",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/02/quaest-presidente-2-setembro.ghtml"
             },
             "national_basis": "classificador do TSE: nacional (territorio nacional)",
@@ -1572,10 +1572,10 @@
             "field_start": "2026-10-05",
             "funnel_status": "parcial_t2",
             "last_source": {
-              "item_id": "item-c04fa770372f8442da0289d4e864eb60",
-              "source_id": "poderdata_releases_2turno",
+              "item_id": "item-bbebe54b2ab663892f984ead0d23981e",
+              "source_id": "poderdata_official",
               "state": "accepted",
-              "transitioned_at": "2026-10-25T00:04:17.146855-03:00",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://static.poder360.com.br/uploads/2026/10/Relatorio-PoderData-Eleitoral-8out26-final.pdf"
             },
             "national_basis": "classificador do TSE: nacional (area de abrangencia da coleta e nacional)",
@@ -1600,10 +1600,10 @@
             "field_start": "2026-09-30",
             "funnel_status": "parcial_t2",
             "last_source": {
-              "item_id": "item-97884bc073cdc4b1ce7a97ce9820ee6d",
-              "source_id": "poderdata_poll_listing",
+              "item_id": "item-030b6bc9f6c594ed6a16dcf8c16417c3",
+              "source_id": "poderdata_official",
               "state": "accepted",
-              "transitioned_at": "2026-10-24T23:58:02.894558+00:00",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://static.poder360.com.br/uploads/2026/10/Relatorio-PoderData-Eleitoral-3out26-1.pdf"
             },
             "national_basis": "classificador do TSE: nacional (area de abrangencia da coleta e nacional)",
@@ -1933,10 +1933,10 @@
             "field_start": "2026-09-18",
             "funnel_status": "completo",
             "last_source": {
-              "item_id": "item-b38f61082aeed35fd6533a2565a9fcca",
+              "item_id": "item-ffe19e05160e3ad13b20cb9a08f9d087",
               "source_id": "nexus_current_release",
               "state": "accepted",
-              "transitioned_at": "2026-10-25T00:04:17.146855-03:00",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/09/BTG-Nexus-Eleicoes-2026-Rodada-15.pdf"
             },
             "national_basis": "classificador do TSE: nacional (eleitorado brasileiro)",
@@ -2011,10 +2011,10 @@
             "field_start": "2026-08-28",
             "funnel_status": "completo",
             "last_source": {
-              "item_id": "item-d7e019075f40a5baf0998df2bc464f0e",
+              "item_id": "item-ff64d6065455bb4115b04904932e6697",
               "source_id": "nexus_current_release",
               "state": "accepted",
-              "transitioned_at": "2026-10-25T00:43:39.366816-03:00",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://www.nexus.fsb.com.br/wp-content/uploads/2026/08/BTG-Nexus-Eleicoes-2026-Rodada-12-31.ago_.2026.pdf"
             },
             "national_basis": "classificador do TSE: nacional (eleitorado brasileiro)",
@@ -2361,10 +2361,10 @@
             "field_start": "2026-10-20",
             "funnel_status": "parcial_t2",
             "last_source": {
-              "item_id": "item-a0e545b5473fa8f1224b9180bbd1e7de",
+              "item_id": "item-023c8ba28e87e7ce49d68ae78aa0add3",
               "source_id": "ipespe_tracking_listing",
               "state": "accepted",
-              "transitioned_at": "2026-10-24T23:59:58.263872+00:00",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://ipespe.org.br/wp-content/uploads/2026/10/TRK-CAMPANHA-03_-IPESPE-ABRAPEL_2T_-20-a-22-OUT-2026_-VF_.pdf"
             },
             "national_basis": "classificador do TSE: nacional (eleitores brasileiros)",
@@ -2386,10 +2386,10 @@
             "field_start": "2026-10-13",
             "funnel_status": "parcial_t2",
             "last_source": {
-              "item_id": "item-dc015c91571ce20ac2276b704bceca83",
+              "item_id": "item-d7cdf0d5496eb4122e8ee0f2d05441b5",
               "source_id": "ipespe_tracking_2t_release",
               "state": "accepted",
-              "transitioned_at": "2026-10-25T00:43:39.366816-03:00",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://ipespe.org.br/wp-content/uploads/2026/10/TRK-CAMPANHA-02_-IPESPE-ABRAPEL_2T_-13-a-15-OUT-2026.pdf"
             },
             "national_basis": "classificador do TSE: nacional (eleitores brasileiros)",
@@ -2411,10 +2411,10 @@
             "field_start": "2026-10-06",
             "funnel_status": "parcial_t2",
             "last_source": {
-              "item_id": "item-02060d452bfdb55a122fd981f9970b32",
+              "item_id": "item-fc3732290c7230dbe416ea7d06a7bf7f",
               "source_id": "ipespe_tracking_2t_release",
-              "state": "validated",
-              "transitioned_at": "2026-10-24T20:43:06.062748-03:00",
+              "state": "accepted",
+              "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
               "url": "https://ipespe.org.br/wp-content/uploads/2026/10/TCK-CAMPANHA-01_-IPESPE-ABRAPEL_2T_-6-a-8-OUT-2026_vf.pdf"
             },
             "national_basis": "classificador do TSE: nacional (eleitores brasileiros)",
@@ -2696,7 +2696,7 @@
         "somente_comparativo": 0
       },
       "date": "2026-10-25",
-      "generated_at": "2026-10-25T07:50:07.850629-03:00",
+      "generated_at": "2026-10-25T08:46:47.169575-03:00",
       "headline": "5 do agregado (5 no Radar) e 1 fora do agregado",
       "recent_hours": 24.0,
       "rows": [
@@ -2910,8 +2910,8 @@
   "daily_time_tick": "08:00",
   "data_availability": "preliminary_b1_m2",
   "discovery_queue": {
-    "accepted": 176,
-    "ambiguous": 2322,
+    "accepted": 185,
+    "ambiguous": 2327,
     "discovered": 0,
     "extracted": 597,
     "failed": 66,
@@ -2920,7 +2920,7 @@
     "matched_tse": 0,
     "registration_only": 210,
     "rejected": 0,
-    "validated": 92
+    "validated": 83
   },
   "expected_releases": [
     {
@@ -4881,7 +4881,7 @@
   "fallback_used": false,
   "future_agenda": [],
   "future_window_end": "2026-11-01",
-  "human_review_queue_size": 3015,
+  "human_review_queue_size": 3011,
   "last_accepted_discovery": {
     "adapter": "html_listing",
     "detail": {
@@ -4908,18 +4908,18 @@
   },
   "last_error": null,
   "last_published_run": {
-    "created_at": "2026-10-25T07:50:07.850629-03:00",
-    "run_id": "run-20261025-6785d2db-8b932466"
+    "created_at": "2026-10-25T08:46:47.169575-03:00",
+    "run_id": "run-20261025-0eb120f1-8b932466"
   },
-  "last_search": "2026-10-25T07:50:07.850629-03:00",
-  "last_source_check": "2026-10-25T07:50:07.850629-03:00",
+  "last_search": "2026-10-25T08:46:47.169575-03:00",
+  "last_source_check": "2026-10-25T08:46:47.169575-03:00",
   "last_validated_poll": {
     "fingerprint": "635e9687445f3daf6df88d70990e7c0d753fc7bc9d022d74a0aad82420d888e8",
     "published_at": "2026-10-25",
     "registration_no": "BR-02828/2026",
     "scenario_id": "president-br-t2-dbec719fff"
   },
-  "latency_seconds": 0.0638553750468418,
+  "latency_seconds": 0.04129729198757559,
   "latency_sla_seconds": {
     "champion_m3": 900,
     "preliminary_b1_m2": 300
@@ -5013,7 +5013,7 @@
     "probabilities_available": false,
     "published_at": "2026-10-25",
     "registration_no": "BR-02828/2026",
-    "run_id": "run-20261025-6785d2db-8b932466",
+    "run_id": "run-20261025-0eb120f1-8b932466",
     "sample_size": 4000,
     "scenario_id": "president-br-t2-dbec719fff",
     "source_tier": "A",
@@ -5380,10 +5380,10 @@
       "contractor": null,
       "evidence_id": "ev-release-f366ff06fd1f3cc4be1b",
       "evidence_ids": [
-        "ev-published-942b513abe81eaedfa19",
+        "ev-published-0ee5379d93dd555f086a",
         "ev-release-f366ff06fd1f3cc4be1b",
-        "ev-tse-9ef567c3b78f893d71af",
-        "ev-tse-candidates-abd70ac3236e64e8190a"
+        "ev-tse-c16b230b14ec3919b45b",
+        "ev-tse-candidates-62bedfffa25f07678e88"
       ],
       "field_end": "2026-10-22",
       "field_start": "2026-10-20",
@@ -5759,7 +5759,7 @@
       "contractor": null,
       "evidence_id": "ev-release-7b9556512817d8023cc4",
       "evidence_ids": [
-        "ev-published-c2f12928601aa28a7a1b",
+        "ev-published-7fa1b7c54cdd971aa6a7",
         "ev-release-7b9556512817d8023cc4",
         "ev-tse-c16b230b14ec3919b45b",
         "ev-tse-candidates-62bedfffa25f07678e88"
@@ -6138,7 +6138,7 @@
       "contractor": null,
       "evidence_id": "ev-release-98fae1312d9e97224bda",
       "evidence_ids": [
-        "ev-published-eee84e59adb37ad8ac39",
+        "ev-published-4832dc90492ae6de780f",
         "ev-release-98fae1312d9e97224bda",
         "ev-tse-c16b230b14ec3919b45b",
         "ev-tse-candidates-62bedfffa25f07678e88"
@@ -6186,7 +6186,7 @@
       "contractor": null,
       "evidence_id": "ev-release-76d820c8267a1f465aab",
       "evidence_ids": [
-        "ev-published-6f0671403202b147f247",
+        "ev-published-098483ddf6357914b352",
         "ev-release-76d820c8267a1f465aab",
         "ev-tse-c16b230b14ec3919b45b",
         "ev-tse-candidates-62bedfffa25f07678e88"
@@ -6285,22 +6285,22 @@
   "next_watch_attempt_at": null,
   "operational_provenance": {
     "artifact_hashes": {
-      "delta": "3ec4a866d8108ddc16b924746db0ec0ed3c00cf827824c2a353695c9675a968b",
-      "evidence": "792833d91d6cf0cef22ecae1cc14814165163102b674b3d5c02efd3aa3335882",
-      "explanation": "ff34f0ffe22fbb91011cb6b1a5c2da9a9f4cc8478253cbc92c3a84c38537fff9",
-      "feed_event": "4e3b6ab4520f92952313690359ae4646a0620df3df1c698071eae1ec160b029a",
-      "result": "03a1225c0409095c2e25a9c253ce86f60150ae96b7517258899c06c01e969034"
+      "delta": "59bc78a342507648cd6b04f2175fc9acdfc27a2a9ef12bb2ecfb04b5f4d9da9a",
+      "evidence": "b8d3bfc80d808d79f774a01b9245e82bd3d3c5d3117c2355cc38a2cf5623b4ca",
+      "explanation": "a26ace0e21d4672c2b8c103531705f5cfe47aae08b737769877b4e5ace942d5c",
+      "feed_event": "591e94dff9443ffb1b0c846e817431147f72ba006509f4aa6beb146279cd16f3",
+      "result": "54d22d2d18f977811006d20459bee705817b8efeb00d11e14097dc8f154af0dc"
     },
     "config_hash": "8b9324661dc7e864ea6620ec658f84a2deaa969849a032e2d799b5ae1f85bcf9",
-    "created_at": "2026-10-25T07:50:07.850629-03:00",
-    "data_hash": "6785d2dbaf50340ccb89c127223bc9b38f3dc52a891689e954ac02157b116457",
-    "run_id": "run-20261025-6785d2db-8b932466"
+    "created_at": "2026-10-25T08:46:47.169575-03:00",
+    "data_hash": "0eb120f1290157fca09c750563dc5a7a50162e2fe4cdcb9498cf666a3471625e",
+    "run_id": "run-20261025-0eb120f1-8b932466"
   },
   "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo.",
   "processing_message": "último run concluído",
-  "processing_started_at": "2026-10-25T07:50:07.850629-03:00",
+  "processing_started_at": "2026-10-25T08:46:47.169575-03:00",
   "processing_state": "idle",
-  "processing_trigger": "new_poll",
+  "processing_trigger": "time_tick",
   "recent_release_inventory": [
     {
       "agenda_label": "prevista_para_hoje_aguardando_divulgacao",
@@ -7129,6 +7129,81 @@
       "approval_allowed": false,
       "approval_cannot_fill_missing_fields": true,
       "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/41/4166efa6546ab0a272068d7bb1256141019f468f31154ac58c6a676937a1c0f1.html",
+      "capture_sha256": "4166efa6546ab0a272068d7bb1256141019f468f31154ac58c6a676937a1c0f1",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-2d0b76d7a981138118010b024c9452c9",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "poderdata_poll_listing",
+      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
+      "state": "ambiguous",
+      "title": "Poder Eleições 2026",
+      "transitioned_at": "2026-10-25T11:37:16.102642+00:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/88/88d4568490905ed264781882d62e8eecefe2d0112b8495461a712e32c3bd6e48.html",
+      "capture_sha256": "88d4568490905ed264781882d62e8eecefe2d0112b8495461a712e32c3bd6e48",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-db4957c3c910ba0a9a826c15e1475d0d",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "poderdata_poll_listing",
+      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
+      "state": "ambiguous",
+      "title": "Poder Eleições 2026",
+      "transitioned_at": "2026-10-25T11:26:06.839434+00:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/26/26604d8eabf1ed0962146da0b14254fd13f1d3445ad6686de2c4166ede20a33c.html",
+      "capture_sha256": "26604d8eabf1ed0962146da0b14254fd13f1d3445ad6686de2c4166ede20a33c",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-d28a8f709f8963cc3a66e1e6bf57a392",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "poderdata_poll_listing",
+      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
+      "state": "ambiguous",
+      "title": "Poder Eleições 2026",
+      "transitioned_at": "2026-10-25T11:20:34.224595+00:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
       "capture_local_path": "inputs/evidence/discovery/raw/1c/1c3b137a28691c27d37365e2f9502d3d38fee28774832ee5b00bc126a129f69d.html",
       "capture_sha256": "1c3b137a28691c27d37365e2f9502d3d38fee28774832ee5b00bc126a129f69d",
       "checks": {},
@@ -7145,6 +7220,206 @@
       "state": "ambiguous",
       "title": "Poder Eleições 2026",
       "transitioned_at": "2026-10-25T10:50:07.509447+00:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/4c/4ce93fe1bfa5172db7a887bcc3e33a6e4264459a478933b45e5e75dd6ffc6662.html.excerpt",
+      "capture_sha256": "4ce93fe1bfa5172db7a887bcc3e33a6e4264459a478933b45e5e75dd6ffc6662",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-be37470fbf14c82d46e16843d10d70d0",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "g1_politica_rss",
+      "source_url": "https://g1.globo.com/pr/parana/eleicoes/2026/ao-vivo/cobertura-apuracao-votacao-2-turno-pr.ghtml",
+      "state": "ambiguous",
+      "title": "Eleições 2026: acompanhe a cobertura ao vivo da votação do 2º turno no Paraná",
+      "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/27/27089f0e5205dcc6e42bc86ae9456810e97dcbe310d60c7dbae3c020277fd75b.html.excerpt",
+      "capture_sha256": "27089f0e5205dcc6e42bc86ae9456810e97dcbe310d60c7dbae3c020277fd75b",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-9d83bc853b4fae1e8be9fb8538f869ff",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "jota_feed",
+      "source_url": "https://www.jota.info/eleicoes/eleicoes-2026/ao-vivo-eleicoes-2026-noticias-sobre-a-disputa-entre-flavio-bolsonaro-e-lula-no-2o-turno",
+      "state": "ambiguous",
+      "title": "AO VIVO Eleições 2026 – acompanhe a votação e notícias sobre a disputa entre Flávio Bolsonaro e Lula no 2º turno",
+      "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/b6/b6a044db32d24e9ca252331e609bdaf91ca2eaf7bf65371683a076de4266831a.html.excerpt",
+      "capture_sha256": "b6a044db32d24e9ca252331e609bdaf91ca2eaf7bf65371683a076de4266831a",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-828b4fd394876021a2c73f72c494b912",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "g1_politica_rss",
+      "source_url": "https://g1.globo.com/mundo/noticia/2026/10/25/eleicoes-2026-quem-ganhou-na-china.ghtml",
+      "state": "ambiguous",
+      "title": "Votação no exterior: quem ganhou na China no 2º turno das eleições 2026?",
+      "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/50/5089066c9d4b4f96899d6f19912808bc5ecfde2a135b88bc14722ed8361663c7.html.excerpt",
+      "capture_sha256": "5089066c9d4b4f96899d6f19912808bc5ecfde2a135b88bc14722ed8361663c7",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-7dcb8764cd910768ed39ea0980407d82",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "g1_politica_rss",
+      "source_url": "https://g1.globo.com/politica/eleicoes/2026/noticia/2026/10/25/eleicoes-2026-o-que-acontece-se-lula-e-flavio-bolsonaro-empatarem-no-segundo-turno.ghtml",
+      "state": "ambiguous",
+      "title": "Eleições 2026: o que acontece se Lula e Flávio Bolsonaro empatarem no segundo turno?",
+      "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/0c/0c9462b36a87e268f70b5b616618b2868742c356faaeb62b12b5ac2d36f4680a.html.excerpt",
+      "capture_sha256": "0c9462b36a87e268f70b5b616618b2868742c356faaeb62b12b5ac2d36f4680a",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-58e6ac80bd87464e0678fc8398bb2895",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "cnn_brasil_rss",
+      "source_url": "https://www.cnnbrasil.com.br/eleicoes/eleicoes-2026-qual-o-horario-de-votacao-neste-domingo-25/",
+      "state": "ambiguous",
+      "title": "Eleições 2026: Qual o horário de votação neste domingo (25)?",
+      "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/57/57b46091ae7136d9036a53762db45a60c968316ba96618527f325c8e3d878458.html.excerpt",
+      "capture_sha256": "57b46091ae7136d9036a53762db45a60c968316ba96618527f325c8e3d878458",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-545ff7098e227ec66566a3bdef266af7",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "g1_politica_rss",
+      "source_url": "https://g1.globo.com/mundo/noticia/2026/10/25/eleicoes-2026-quem-ganhou-no-japao.ghtml",
+      "state": "ambiguous",
+      "title": "Votação no exterior: quem ganhou no Japão no 2º turno das eleições 2026?",
+      "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/9b/9b419ce247e13288bab22c97711c7000858a259f35b1349c364dfb11098e34e1.html.excerpt",
+      "capture_sha256": "9b419ce247e13288bab22c97711c7000858a259f35b1349c364dfb11098e34e1",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-479635375be73ac9b8c147cf52ee7c48",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "cnn_brasil_rss",
+      "source_url": "https://www.cnnbrasil.com.br/eleicoes/eleicoes-2026-carmen-lucia-ministra-do-stf-vota-em-mg-neste-domingo-25/",
+      "state": "ambiguous",
+      "title": "Eleições 2026: Cármen Lúcia, ministra do STF, vota em MG neste domingo (25)",
+      "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
+      "warnings": [
+        "nenhum cenário de intenção de voto foi isolado",
+        "documento não contém exatamente um registro eleitoral inequívoco"
+      ]
+    },
+    {
+      "approval_allowed": false,
+      "approval_cannot_fill_missing_fields": true,
+      "candidate_registry": {},
+      "capture_local_path": "inputs/evidence/discovery/raw/5e/5e1ed7a1a0b5a45c30aa32f3098b0316a2389a9fc52d061431bc5cfbb998c711.html.excerpt",
+      "capture_sha256": "5e1ed7a1a0b5a45c30aa32f3098b0316a2389a9fc52d061431bc5cfbb998c711",
+      "checks": {},
+      "errors": [
+        "release precisa conter exatamente um número de registro inequívoco"
+      ],
+      "item_id": "item-21547703b22e4f1b574f482ced688071",
+      "matched_tse": false,
+      "publication_evidence": [],
+      "registration_no": null,
+      "scenario": null,
+      "source_id": "cnn_brasil_rss",
+      "source_url": "https://www.cnnbrasil.com.br/eleicoes/eleicoes-2026-flavio-bolsonaro-vota-no-rio-de-janeiro-2/",
+      "state": "ambiguous",
+      "title": "Eleições 2026: Flávio Bolsonaro vota no Rio de Janeiro",
+      "transitioned_at": "2026-10-25T08:46:47.169575-03:00",
       "warnings": [
         "nenhum cenário de intenção de voto foi isolado",
         "documento não contém exatamente um registro eleitoral inequívoco"
@@ -7349,304 +7624,29 @@
         "nenhum cenário de intenção de voto foi isolado",
         "documento não contém exatamente um registro eleitoral inequívoco"
       ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/6f/6f32f5c3cc15d3f5fdea1492c1a00ea1b68b316fed470d347e4d94431b0a4968.html",
-      "capture_sha256": "6f32f5c3cc15d3f5fdea1492c1a00ea1b68b316fed470d347e4d94431b0a4968",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-7c40937a3f94fd60b1b8be7c3af9a5e7",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "poderdata_poll_listing",
-      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
-      "state": "ambiguous",
-      "title": "Poder Eleições 2026",
-      "transitioned_at": "2026-10-25T04:00:49.977498+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/ac/ac246fe1cbdc9ceb8bc11616f9e6703810ff8550404adeb37f7b00a01872dfaf.html",
-      "capture_sha256": "ac246fe1cbdc9ceb8bc11616f9e6703810ff8550404adeb37f7b00a01872dfaf",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-618c97274cd604faeb0b9decfc65ad7a",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "poderdata_poll_listing",
-      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
-      "state": "ambiguous",
-      "title": "Poder Eleições 2026",
-      "transitioned_at": "2026-10-25T03:25:20.766500+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/f6/f63f3c4ef1f0d6a97bf0a32e58a0feb755e87ae23c6fa3e2283c4e0270e323e7.html",
-      "capture_sha256": "f63f3c4ef1f0d6a97bf0a32e58a0feb755e87ae23c6fa3e2283c4e0270e323e7",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-a5dae970024434d2262f38a8d22be994",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "poderdata_poll_listing",
-      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
-      "state": "ambiguous",
-      "title": "Poder Eleições 2026",
-      "transitioned_at": "2026-10-25T03:05:52.069219+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/82/82bd8213251142465260626c2b39bc9ac7bc71727c32a3ee5a49b1fe2aedf9c5.html",
-      "capture_sha256": "82bd8213251142465260626c2b39bc9ac7bc71727c32a3ee5a49b1fe2aedf9c5",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-1b6d10c599025df693d7123ae415a03f",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "poderdata_poll_listing",
-      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
-      "state": "ambiguous",
-      "title": "Poder Eleições 2026",
-      "transitioned_at": "2026-10-25T02:00:18.849125+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/67/679b40fe1ce3ab61ded1fc70405d66e8d7ad323042369423bf2f7f3d2bbdbf7d.html",
-      "capture_sha256": "679b40fe1ce3ab61ded1fc70405d66e8d7ad323042369423bf2f7f3d2bbdbf7d",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-916a86b37e3cb6ce3eca1467aa2688ec",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "poderdata_poll_listing",
-      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
-      "state": "ambiguous",
-      "title": "Poder Eleições 2026",
-      "transitioned_at": "2026-10-25T01:36:01.241434+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/8a/8a75976d333da71b088964a9f01781e58c0dbaa2eeeedc54a8b1be98a12b17ac.html",
-      "capture_sha256": "8a75976d333da71b088964a9f01781e58c0dbaa2eeeedc54a8b1be98a12b17ac",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-387f4f094e54ccd08d746dc3661ccdb7",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "poderdata_poll_listing",
-      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
-      "state": "ambiguous",
-      "title": "Poder Eleições 2026",
-      "transitioned_at": "2026-10-25T01:20:48.363359+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/84/8404f7ee919fdbd8fbaf234983f80e74a37e9c95525d4f09c59870987c7ea9e2.html",
-      "capture_sha256": "8404f7ee919fdbd8fbaf234983f80e74a37e9c95525d4f09c59870987c7ea9e2",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-f60c37149b7c9fb70beec309a65d328c",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "poderdata_poll_listing",
-      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
-      "state": "ambiguous",
-      "title": "Poder Eleições 2026",
-      "transitioned_at": "2026-10-25T01:13:22.016753+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/1f/1f2ead0794d0ee22d1cfd06e70baaa27b589b481a9a859750a63efa24d06bb34.html",
-      "capture_sha256": "1f2ead0794d0ee22d1cfd06e70baaa27b589b481a9a859750a63efa24d06bb34",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-05363f4e19abbb2b1275e97d9954df34",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "poderdata_poll_listing",
-      "source_url": "https://www.poder360.com.br/poder-eleicoes-2026/",
-      "state": "ambiguous",
-      "title": "Poder Eleições 2026",
-      "transitioned_at": "2026-10-25T00:35:11.217675+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/04/04a1ed6359af40889c646e1676a557fbd29246199e88a1a50a887a69d3b8cdd0.html",
-      "capture_sha256": "04a1ed6359af40889c646e1676a557fbd29246199e88a1a50a887a69d3b8cdd0",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-d1125aeff3a4a8a0db343d2b8e7803ec",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "g1_pesquisa_eleitoral",
-      "source_url": "https://g1.globo.com/politica/eleicoes/2026/",
-      "state": "ambiguous",
-      "title": "Eleições 2026",
-      "transitioned_at": "2026-10-25T00:24:31.476391+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/3c/3c77977d6f8a9eb03cba4e025fb793a8addab6c36ed0695133e4650b4b352872.html",
-      "capture_sha256": "3c77977d6f8a9eb03cba4e025fb793a8addab6c36ed0695133e4650b4b352872",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-9f196212fb2c34107499d78cf983ad73",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "g1_pesquisa_eleitoral",
-      "source_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/",
-      "state": "ambiguous",
-      "title": "Pular para o conteúdo",
-      "transitioned_at": "2026-10-25T00:24:31.476391+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
-    },
-    {
-      "approval_allowed": false,
-      "approval_cannot_fill_missing_fields": true,
-      "candidate_registry": {},
-      "capture_local_path": "inputs/evidence/discovery/raw/6b/6bfd9eb5baa6331b1c6cf883ccb988bd2ce823c4f31e9cf80ef7b4df260e442c.html",
-      "capture_sha256": "6bfd9eb5baa6331b1c6cf883ccb988bd2ce823c4f31e9cf80ef7b4df260e442c",
-      "checks": {},
-      "errors": [
-        "release precisa conter exatamente um número de registro inequívoco"
-      ],
-      "item_id": "item-55c190006af88b07cc5ecbbf61259779",
-      "matched_tse": false,
-      "publication_evidence": [],
-      "registration_no": null,
-      "scenario": null,
-      "source_id": "g1_pesquisa_eleitoral",
-      "source_url": "https://g1.globo.com/politica/eleicoes/2026/",
-      "state": "ambiguous",
-      "title": "Eleições 2026",
-      "transitioned_at": "2026-10-25T00:24:31.476391+00:00",
-      "warnings": [
-        "nenhum cenário de intenção de voto foi isolado",
-        "documento não contém exatamente um registro eleitoral inequívoco"
-      ]
     }
   ],
-  "run_id": "run-20261025-6785d2db-8b932466",
+  "run_id": "run-20261025-0eb120f1-8b932466",
   "service_running": true,
   "source_checks": {
     "atlas_public_polls": {
       "attempts": 1,
       "dated_items": 7,
       "discovered": 6,
-      "elapsed_seconds": 0.736531,
+      "elapsed_seconds": 0.746706,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "recent_dated_items_prioritized",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-4a68ff78108ac05132450c44b15a684c",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-2d52030401791e218feaab758b85b104",
       "outside_rolling_window": 13,
       "relevant_items": 20,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -7657,32 +7657,32 @@
     "broadcast_current_release": {
       "attempts": 0,
       "discovered": 1,
-      "elapsed_seconds": 6.8e-05,
+      "elapsed_seconds": 6.4e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "broadcast_latest": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 12,
-      "elapsed_seconds": 1.576737,
+      "elapsed_seconds": 1.434002,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-41906ac92f441641d3da8cf2432c45ac",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-d5eca77625c5e40b9e792ff513217968",
       "outside_rolling_window": 0,
       "relevant_items": 14,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -7696,7 +7696,7 @@
       "attempts": 1,
       "candidate_count": 16,
       "discovered": 0,
-      "elapsed_seconds": 0.06804,
+      "elapsed_seconds": 0.066824,
       "error": null,
       "fallback_zip_path": "/Users/douglaslora/Documents/Codex/2026-08-26/agregador-pesquisas-2026/inputs/tse/consulta_cand_2026.zip",
       "health": "healthy",
@@ -7705,8 +7705,8 @@
       "identity_registry_complete": true,
       "identity_registry_error": null,
       "judicial_status_coverage_count": 0,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "missing_judicial_status_count": 16,
       "registry_complete_for_promotion": true,
       "registry_source": "remote_capture",
@@ -7720,38 +7720,38 @@
     },
     "cnn_brasil_rss": {
       "attempts": 1,
-      "discovered": 2,
-      "elapsed_seconds": 0.230264,
+      "discovered": 5,
+      "elapsed_seconds": 0.270365,
       "error": null,
-      "feed_capture_id": "capture-40abfbc9ac6dcd2771566ab2703ff745",
+      "feed_capture_id": "capture-ff8d79ac50e5d1a64bd68855117eafc5",
       "freshness": {
-        "catch_up_since": "2026-10-22T10:50:07.850629+00:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T11:46:47.169575+00:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "outside_rolling_window": 0,
       "stale": false
     },
     "cnt_mda_agencia_listing": {
       "attempts": 1,
       "discovered": 1,
-      "elapsed_seconds": 2.298842,
+      "elapsed_seconds": 2.276234,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "date_precision": "date_only_conservative_cutoff_day",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "manifest_capture_id": "capture-4a73d670c2387c9ba7deae7df55a6566",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "manifest_capture_id": "capture-48ee34a349eed94d5d3cad2ce8b60600",
       "manifest_entries": 10,
       "outside_rolling_window": 9,
       "personal_data_form_submitted": false,
@@ -7761,43 +7761,43 @@
     "cnt_mda_agencia_release": {
       "attempts": 0,
       "discovered": 4,
-      "elapsed_seconds": 0.000169,
+      "elapsed_seconds": 0.000116,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "datafolha_national_reports": {
       "attempts": 0,
       "discovered": 3,
-      "elapsed_seconds": 0.000159,
+      "elapsed_seconds": 0.000133,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "datafolha_official": {
       "attempts": 1,
       "dated_items": 22,
       "discovered": 12,
-      "elapsed_seconds": 0.163982,
+      "elapsed_seconds": 0.398237,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-309b556377310653b077f5776c9dd241",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-a0a4ce2b8ba9bc373c9f77a54045e8cf",
       "outside_rolling_window": 48,
       "relevant_items": 72,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -7809,12 +7809,12 @@
       "attempts": 0,
       "child_resource_budget": 36,
       "discovered": 13,
-      "elapsed_seconds": 0.00037,
+      "elapsed_seconds": 0.000139,
       "error": "limite conservador atingido: 1 raiz(es) e 0 filho(s) não processados",
       "health": "degraded",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "root_resources_discovered": 13,
       "root_resources_selected": 12,
       "stale": false,
@@ -7825,20 +7825,20 @@
       "attempts": 1,
       "dated_items": 12,
       "discovered": 12,
-      "elapsed_seconds": 0.226533,
+      "elapsed_seconds": 0.212776,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-82bde5797c4636e8ad39a7d250ceb34f",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-94d1d30a8451cbb4e19293dc0a5b9534",
       "outside_rolling_window": 7,
       "relevant_items": 23,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -7849,37 +7849,37 @@
     "g1_politica_rss": {
       "attempts": 1,
       "discovered": 12,
-      "elapsed_seconds": 0.852158,
+      "elapsed_seconds": 0.739636,
       "error": null,
-      "feed_capture_id": "capture-94fd0ce3709167532c7ab848d78c22a6",
+      "feed_capture_id": "capture-27f5367b1849cf0cc1140327036dbcb6",
       "freshness": {
-        "catch_up_since": "2026-10-22T10:50:07.850629+00:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T11:46:47.169575+00:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "outside_rolling_window": 0,
       "stale": false
     },
     "gerp_manifest": {
       "attempts": 1,
       "discovered": 4,
-      "elapsed_seconds": 0.955817,
+      "elapsed_seconds": 1.072842,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "date_precision": "date_only_conservative_cutoff_day",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "manifest_capture_id": "capture-00da5153e580196fd86e61e27f1362c7",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "manifest_capture_id": "capture-8a3e316307831501951aa6dc88795789",
       "manifest_entries": 56,
       "outside_rolling_window": 11,
       "personal_data_form_submitted": false,
@@ -7890,20 +7890,20 @@
       "attempts": 1,
       "dated_items": 0,
       "discovered": 1,
-      "elapsed_seconds": 0.09559,
+      "elapsed_seconds": 0.089404,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-94db725e61ecfea46bf216899cffac69",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-9ed9fe045e78e8920af6f91ce06bb37f",
       "outside_rolling_window": 0,
       "relevant_items": 1,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -7914,32 +7914,32 @@
     "ipespe_tracking_2t_release": {
       "attempts": 0,
       "discovered": 2,
-      "elapsed_seconds": 8.1e-05,
+      "elapsed_seconds": 0.000117,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "ipespe_tracking_listing": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 0,
-      "elapsed_seconds": 2.50532,
+      "elapsed_seconds": 2.478699,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-d420ef9315e99d1041a62057071b5256",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-9e7ec21fa8410dac5a3e24c1cb769505",
       "outside_rolling_window": 4,
       "relevant_items": 4,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -7951,20 +7951,20 @@
       "attempts": 1,
       "dated_items": 0,
       "discovered": 1,
-      "elapsed_seconds": 0.698231,
+      "elapsed_seconds": 0.703265,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-27ec1b2b08d9d15307c098dd0a81a439",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-6ff6d994c91c786e4c6ead6ec531ff5f",
       "outside_rolling_window": 0,
       "relevant_items": 1,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -7975,32 +7975,32 @@
     "ipsos_national_release": {
       "attempts": 0,
       "discovered": 1,
-      "elapsed_seconds": 0.000131,
+      "elapsed_seconds": 0.000171,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "jota_elections": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 0,
-      "elapsed_seconds": 0.171482,
+      "elapsed_seconds": 0.145768,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-db5200b93fd0f48e0ee1150dffe64f5f",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-51b57a1a7b4d3de642c579481a89254b",
       "outside_rolling_window": 0,
       "relevant_items": 0,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8011,73 +8011,73 @@
     "jota_feed": {
       "attempts": 1,
       "discovered": 12,
-      "elapsed_seconds": 2.132807,
+      "elapsed_seconds": 1.628287,
       "error": null,
-      "feed_capture_id": "capture-ad4851c4295dcf792e282c71d1c66f08",
+      "feed_capture_id": "capture-b942d8453668191708901b35763a4b3f",
       "freshness": {
-        "catch_up_since": "2026-10-22T10:50:07.850629+00:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T11:46:47.169575+00:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "outside_rolling_window": 0,
       "stale": false
     },
     "manual_reviewed": {
       "attempts": 0,
       "discovered": 14,
-      "elapsed_seconds": 0.005669,
+      "elapsed_seconds": 0.005698,
       "error": null,
       "health": "healthy",
       "http_status": null,
       "invalid_unreviewed": 0,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "nexus_backfill_jul_ago_2026": {
       "attempts": 0,
       "discovered": 4,
-      "elapsed_seconds": 0.000102,
+      "elapsed_seconds": 6.5e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "nexus_current_release": {
       "attempts": 0,
       "discovered": 9,
-      "elapsed_seconds": 0.000147,
+      "elapsed_seconds": 8.4e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "nexus_releases": {
       "attempts": 1,
       "dated_items": 1,
       "discovered": 4,
-      "elapsed_seconds": 1.678468,
+      "elapsed_seconds": 1.306616,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-2ddbee806cacfb44b6a2cec92c021748",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-5a3320a208ea542480d1cef2ce48b072",
       "outside_rolling_window": 18,
       "relevant_items": 49,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8089,20 +8089,20 @@
       "attempts": 1,
       "dated_items": 6,
       "discovered": 6,
-      "elapsed_seconds": 0.203426,
+      "elapsed_seconds": 0.241489,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-36c44a9c96397b595c89d3ff321a3cbc",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-a9ea3bddcb926b5901c1b8b4d43bd6e9",
       "outside_rolling_window": 8,
       "relevant_items": 15,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8113,50 +8113,50 @@
     "poder360_rss": {
       "attempts": 1,
       "discovered": 0,
-      "elapsed_seconds": 0.094192,
+      "elapsed_seconds": 0.090049,
       "error": null,
-      "feed_capture_id": "capture-e870bb0e2b422c5fe1a267bc8503c3d2",
+      "feed_capture_id": "capture-58fcb26c132227784d6ac0d049efb1be",
       "freshness": {
-        "catch_up_since": "2026-10-22T10:50:07.850629+00:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T11:46:47.169575+00:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "outside_rolling_window": 0,
       "stale": false
     },
     "poderdata_current_release": {
       "attempts": 0,
       "discovered": 8,
-      "elapsed_seconds": 0.000154,
+      "elapsed_seconds": 7.5e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "poderdata_official": {
       "attempts": 1,
       "dated_items": 4,
       "discovered": 4,
-      "elapsed_seconds": 0.986206,
+      "elapsed_seconds": 1.302356,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-c4cd0e18ba4aed1f471e11b7158dc04d",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-39965f5ab30c2721e0bdd6bd0c60a274",
       "outside_rolling_window": 14,
       "relevant_items": 20,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8168,20 +8168,20 @@
       "attempts": 1,
       "dated_items": 0,
       "discovered": 12,
-      "elapsed_seconds": 0.362556,
+      "elapsed_seconds": 0.076475,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "partial_undated_listing",
         "listing_is_current": false,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-0def72fa087fc999297427285ac6c0d8",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-ee131867e4c7f4410c566b0867ce13e0",
       "outside_rolling_window": 0,
       "relevant_items": 44,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8192,65 +8192,65 @@
     "poderdata_releases_2turno": {
       "attempts": 0,
       "discovered": 3,
-      "elapsed_seconds": 8.2e-05,
+      "elapsed_seconds": 5.5e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "poderdata_reports_pdf": {
       "attempts": 0,
       "discovered": 6,
-      "elapsed_seconds": 0.000153,
+      "elapsed_seconds": 0.00011,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "primary_release_bootstrap": {
       "attempts": 0,
       "discovered": 3,
-      "elapsed_seconds": 0.000124,
+      "elapsed_seconds": 7.7e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "quaest_current_release": {
       "attempts": 0,
       "discovered": 1,
-      "elapsed_seconds": 6.2e-05,
+      "elapsed_seconds": 5.5e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "quaest_national_reports": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 0,
-      "elapsed_seconds": 1.422114,
+      "elapsed_seconds": 1.402995,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-aed79d83cf20ba0d2cece9915d2ba671",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-f28338ee3189e2b37d4ca3f3eadbaa1b",
       "outside_rolling_window": 10,
       "relevant_items": 10,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8261,32 +8261,32 @@
     "quaest_presidential_reports": {
       "attempts": 0,
       "discovered": 6,
-      "elapsed_seconds": 0.00015,
+      "elapsed_seconds": 6.6e-05,
       "error": null,
       "health": "healthy",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "stale": false
     },
     "quaest_reports": {
       "attempts": 1,
       "dated_items": 0,
       "discovered": 0,
-      "elapsed_seconds": 0.112743,
+      "elapsed_seconds": 0.109126,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-6f5c207e5c3691c301b1904e8543e0be",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-fe3cb1134a49033b33850d73e3aafe12",
       "outside_rolling_window": 10,
       "relevant_items": 10,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8298,20 +8298,20 @@
       "attempts": 1,
       "dated_items": 1,
       "discovered": 1,
-      "elapsed_seconds": 0.553985,
+      "elapsed_seconds": 0.77847,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-7b79e1073e62abdc1a27d3f6e2f98866",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-5d489a7aec910f1b59c8878feff59270",
       "outside_rolling_window": 4,
       "relevant_items": 5,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -8323,12 +8323,12 @@
       "attempts": 0,
       "child_resource_budget": 9,
       "discovered": 3,
-      "elapsed_seconds": 8.5e-05,
+      "elapsed_seconds": 8.9e-05,
       "error": "1 recurso(s) bloqueado(s) ou falho(s); nenhuma proteção foi contornada",
       "health": "degraded",
       "http_status": null,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "resource_failures": 1,
       "root_resources_discovered": 3,
       "root_resources_selected": 3,
@@ -8347,7 +8347,7 @@
       },
       "attempts": 1,
       "catch_up_hours": 72,
-      "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
+      "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
       "child_resource_budget": 0,
       "coverage_gap": {
         "accepted": 8,
@@ -8359,7 +8359,7 @@
         "validated_awaiting_review": 0
       },
       "discovered": 60,
-      "elapsed_seconds": 210.323693,
+      "elapsed_seconds": 197.489987,
       "error": null,
       "expected_releases": [
         {
@@ -10321,8 +10321,8 @@
       "future_window_end": "2026-11-01",
       "health": "healthy",
       "http_status": 304,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "national_live_preserved": 55,
       "national_quota_overflow": 0,
       "recent_release_inventory": [
@@ -11300,18 +11300,18 @@
     "vox_brasil_feed": {
       "attempts": 1,
       "discovered": 0,
-      "elapsed_seconds": 0.68028,
+      "elapsed_seconds": 0.945145,
       "error": null,
-      "feed_capture_id": "capture-7a50ac837df54b66bdc1f838303c2969",
+      "feed_capture_id": "capture-998a9066108b40a880f37d0ebd594b9d",
       "freshness": {
-        "catch_up_since": "2026-10-22T10:50:07.850629+00:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T11:46:47.169575+00:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
       "outside_rolling_window": 5,
       "stale": false
     },
@@ -11319,20 +11319,20 @@
       "attempts": 1,
       "dated_items": 0,
       "discovered": 1,
-      "elapsed_seconds": 1.215706,
+      "elapsed_seconds": 1.821535,
       "error": null,
       "freshness": {
-        "catch_up_since": "2026-10-22T07:50:07.850629-03:00",
-        "checked_at": "2026-10-25T07:50:07.850629-03:00",
+        "catch_up_since": "2026-10-22T08:46:47.169575-03:00",
+        "checked_at": "2026-10-25T08:46:47.169575-03:00",
         "chronological_coverage": "complete_within_limit",
         "listing_is_current": true,
         "rolling_catch_up_hours": 72
       },
       "health": "healthy",
       "http_status": 200,
-      "last_check": "2026-10-25T07:50:07.850629-03:00",
-      "last_success": "2026-10-25T07:50:07.850629-03:00",
-      "listing_capture_id": "capture-d5edf218cf3a1ea84bd1dbe50eddcb4c",
+      "last_check": "2026-10-25T08:46:47.169575-03:00",
+      "last_success": "2026-10-25T08:46:47.169575-03:00",
+      "listing_capture_id": "capture-ae2a3016b406ec28d6ebaf974ed8b627",
       "outside_rolling_window": 0,
       "relevant_items": 1,
       "selection_order": "published_at_desc_then_url; undated_last",
@@ -11487,7 +11487,7 @@
   ],
   "timezone": "America/Sao_Paulo",
   "validated_poll_count": 26,
-  "visible_run_id": "run-20261025-6785d2db-8b932466",
+  "visible_run_id": "run-20261025-0eb120f1-8b932466",
   "watch_cycle_failures": 0,
   "watch_interval_minutes": 30,
   "watcher_prepared": true
