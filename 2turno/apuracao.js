@@ -935,6 +935,8 @@ function processar() {
   const mc = montecarlo(linhas, projL, projF, rem);
   let pL;
   let pLUF;
+  let pDiv = false;
+  let pBruto = null; // antes da suavização (o ensaio confere a regra por ele)
   if (tudo || definido) {
     pL = dif > 0 ? 1 : dif < 0 ? 0 : 0.5;
     pLUF = pL;
@@ -944,7 +946,17 @@ function processar() {
   } else {
     // 100% e 0% ficam para quando está decidido; antes disso, no máximo ">99%".
     pLUF = clamp(mc.nac, 0.001, 0.999);
-    pL = sim && Number.isFinite(sim.chanceL) ? clamp(sim.chanceL, 0.001, 0.999) : pLUF;
+    pL = pLUF;
+    if (sim && Number.isFinite(sim.chanceL)) {
+      // O simulador municipal tem a palavra, mas não sozinho: quando ele e o modelo por estado (contas independentes)
+      // se afastam mais de 25 pontos de chance, a tela mostra a média dos dois e diz que divergem. No ensaio da noite,
+      // um simulador com viés de 1,4 ponto deu >99% para quem perdeu.
+      const pS = clamp(sim.chanceL, 0.001, 0.999);
+      pDiv = Math.abs(pS - pLUF) > 0.25;
+      pL = pDiv ? (pS + pLUF) / 2 : pS;
+    }
+    pBruto = pL;
+    pL = suavizarChance(pL);
   }
   // Situação de cada estado. "Definido": vantagem maior que o eleitorado que falta no estado
   // (ou estado 100% apurado). "Provável": chance ≥ 99% (ou ≤ 1%) E ao menos 25% das seções
@@ -975,7 +987,7 @@ function processar() {
     }
   });
   return {
-    linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, urnas, proj, projUF, sim, motor: sim ? 'simulador' : 'estados', pL, pLUF, faixaUF: mc.faixa,
+    linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, urnas, proj, projUF, sim, motor: sim ? 'simulador' : 'estados', pL, pLUF, pDiv, pBruto, faixaUF: mc.faixa,
     definido, tudo, eleitoTSE, decidido, lidos, semLeitura, completo, totalVal,
   };
 }
@@ -1030,6 +1042,16 @@ function vistaNacional(linhas, t) {
 // Devolve a chance nacional de Lula (nac) e a de Lula em cada estado (uf, na ordem de linhas).
 // Cada sorteio tem um erro nacional comum e um erro próprio de cada estado; o nacional soma os
 // estados, então os dois números saem dos mesmos sorteios e não se contradizem.
+// A chance mostrada caminha para a nova em ~30 s em vez de saltar: na disputa apertada do ensaio, cada leitura nova
+// do simulador trocava o favorito (de 12% para 76% em 28 s). Decidido não passa por aqui.
+function suavizarChance(p) {
+  const t = A.modo === 'sim' ? A.sim?.relogio ?? Date.now() : Date.now(); // na simulação, o relógio da noite fictícia
+  const s = A._pSuave;
+  const out = !s ? p : t > s.t ? s.p + (p - s.p) * (1 - Math.exp(-(t - s.t) / 30000)) : s.p;
+  A._pSuave = { p: out, t };
+  return out;
+}
+
 function montecarlo(linhas, projL, projF, rem) {
   const z = normais();
   const S = UFS.length + 1;
@@ -1146,13 +1168,13 @@ function calcularInsights(r) {
     });
   }
   if (aberta && lp && lc && lp !== lc) {
-    out.push({
-      id: 'virada',
-      tag: BR,
-      p: 95,
-      tom: 'forte',
-      html: h`A projeção já aponta <b>${n(lp)}</b>, embora <b>${n(lc)}</b> lidere a contagem.`,
-    });
+    // Mesma régua da faixa "Virada à vista": afirmar só com 80% de chance ou mais para quem a projeção aponta.
+    const chLp = lp === 'lula' ? r.pL : 1 - r.pL;
+    out.push(
+      chLp >= 0.8
+        ? { id: 'virada', tag: BR, p: 95, tom: 'forte', html: h`A projeção já aponta <b>${n(lp)}</b>, embora <b>${n(lc)}</b> lidere a contagem.` }
+        : { id: 'virada', tag: BR, p: 90, html: h`Disputa aberta: <b>${n(lc)}</b> lidera a contagem, e a projeção dá a <b>${n(lp)}</b> ${chanceTxt(chLp)} de chance de virar. Ainda dá para os dois.` },
+    );
   }
   const troca = A.trocas[A.trocas.length - 1];
   if (troca && agora - troca.t < MODELO.TROCA_VALE_MS) {
@@ -2928,7 +2950,7 @@ function atualizarProj(r, temVoto) {
   if (r.tudo && temVoto) {
     atualizarPar('proj', c.L, c.F, c.pL, c.pF, true, 2);
     rot = 'Resultado final';
-  } else if (r.motor === 'simulador' && r.sim) {
+  } else if (r.motor === 'simulador' && r.sim && temVoto) {
     const s = r.sim;
     atualizarPar('proj', s.proj.L, s.proj.F, s.proj.pL, s.proj.pF, true, 1);
     rot = MOTOR_ROT.simulador;
@@ -3053,10 +3075,15 @@ function atualizarTela() {
   const pPoly = temVoto ? null : chancePolyLula();
   if (pPoly !== null) pintarChance(pPoly);
   else pintarChance(!r.completo && r.motor !== 'simulador' && temVoto && !decidido ? null : r.pL);
-  texto(
-    '[data-ap-chmotor]',
-    pPoly !== null ? 'Polymarket · antes dos votos' : r.motor === 'simulador' && !decidido ? 'simulador municipal' : 'modelo por estado',
-  );
+  let chMotor = r.motor === 'simulador' && !decidido ? (r.pDiv ? 'média de dois modelos, que divergem' : 'simulador municipal') : 'modelo por estado';
+  if (pPoly !== null) chMotor = 'Polymarket · antes dos votos';
+  else if (temVoto && !decidido && !r.pDiv) {
+    // histerese: entra com a chance entre 35% e 65% e só sai fora de 30% a 70% (o rótulo não pisca a cada leitura)
+    const dist = Math.abs(r.pL - 0.5);
+    A._equil = dist < 0.15 || (A._equil === true && dist < 0.2);
+    if (A._equil) chMotor = `disputa equilibrada · ${chMotor}`;
+  }
+  texto('[data-ap-chmotor]', chMotor);
   // Os avisos só começam depois que a primeira leitura com votos foi vista: quem abre a página no meio da noite não recebe
   // de uma vez tudo o que já tinha acontecido.
   if (temVoto && !A.evT0) A.evT0 = Date.now();
@@ -3100,15 +3127,19 @@ function atualizarTela() {
   const lc = lider(c.L, c.F);
   const lp = lider(r.proj.L, r.proj.F);
   const comparavel = r.completo || r.motor === 'simulador';
-  const temVirada = comparavel && temVoto && !r.decidido && lc && lp && lc !== lp;
+  const divergem = comparavel && temVoto && !r.decidido && lc && lp && lc !== lp;
+  // "Virada à vista" só com 80% de chance ou mais para quem a projeção aponta; abaixo disso a disputa está aberta e a
+  // faixa diz isso (no ensaio, a 50/50 ela dizia "Lula termina à frente" e trocava a cada 0,1 ponto de projeção).
+  const temVirada = divergem && (lp === 'lula' ? r.pL : 1 - r.pL) >= 0.8;
   if (vir) {
     // Faixa de altura fixa: a mensagem muda de texto (e de cor, na virada), mas a página não se mexe quando ela muda.
     let v = 'igual';
     let t;
     if (temVirada) {
       v = 'virada';
-      t = `Virada à vista: ${C.curto(lp)} termina à frente, ${C.curto(lc)} lidera agora`;
-    } else if (!temVoto) {
+      t = `Virada à vista: a projeção aponta ${C.curto(lp)} à frente no fim; ${C.curto(lc)} lidera agora`;
+    } else if (divergem) t = `Disputa apertada: ${C.curto(lc)} lidera agora, e a projeção ainda não aponta vencedor`;
+    else if (!temVoto) {
       v = 'espera';
       t = 'Aguardando os primeiros votos';
     } else if (!comparavel) {
@@ -3136,7 +3167,13 @@ function atualizarTela() {
       A._marco = m;
       evento({ tipo: 'marco', p: m });
     }
-    if (A._vir !== undefined && temVirada && !A._vir) evento({ tipo: 'virada', quem: lp, forte: true });
+    // um aviso por virada: o mesmo lado só volta ao feed depois de 15 min (no ensaio, 50 avisos iguais numa noite)
+    const tVir = A.modo === 'sim' ? A.sim?.relogio ?? Date.now() : Date.now();
+    if (A._vir !== undefined && temVirada && !A._vir && (A._virQuem !== lp || tVir - A._virEm > 15 * 60000)) {
+      evento({ tipo: 'virada', quem: lp, forte: true });
+      A._virQuem = lp;
+      A._virEm = tVir;
+    }
     A._vir = !!temVirada;
     const fecha = r.tudo ? 'tudo' : r.definido ? 'def' : r.eleitoTSE ? 'tse' : '';
     if (A._fecha === undefined) A._fecha = fecha;
@@ -4007,7 +4044,7 @@ function ganchoTeste() {
         pausa: Math.max(0, R.pausaAte - Date.now()),
         res: r && {
           // pL e parL são os efetivos (motor em uso); projL/projF/parLUF/pLUF são sempre os do modelo por estado
-          pL: r.pL, pLUF: r.pLUF, parL: r.proj.parL, parLUF: r.projUF.parL, projL: r.projUF.L, projF: r.projUF.F,
+          pL: r.pL, pLUF: r.pLUF, pBruto: r.pBruto, pDiv: r.pDiv, equil: A._equil === true, parL: r.proj.parL, parLUF: r.projUF.parL, projL: r.projUF.L, projF: r.projUF.F,
           motor: r.motor, efL: r.proj.L, efF: r.proj.F, definido: r.definido, tudo: r.tudo,
           eleitoTSE: r.eleitoTSE, completo: r.completo, lidos: r.lidos, remCont: r.remCont, remMax: r.remMax, swing: r.swing, urnas: r.urnas,
           sim: r.sim && { ger: r.sim.ger, idade: r.sim.idade, secoes: r.sim.secoes, modelado: r.sim.modelado, faixa: r.sim.faixa, chanceL: r.sim.chanceL },

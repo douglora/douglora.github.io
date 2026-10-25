@@ -160,6 +160,9 @@
 .rx-chbar i { position: absolute; left: 50%; top: -5px; bottom: -5px; border-left: 2px solid var(--tinta); transform: translateX(-1px); opacity: 0.8; }
 .rx-chleg { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; margin: 6px 0 0; min-height: 20px; font-size: 12px; font-weight: 600; color: var(--tinta-3); }
 .rx-chleg .rx-motor { margin-left: auto; font-weight: 500; }
+@media (max-width: 520px) {
+  .rx-chleg .rx-motor { flex-basis: 100%; margin-left: 0; } /* linha própria no celular: o rótulo muda de tamanho sem mudar a altura */
+}
 .rx-chleg .rx-def { flex: 1 0 100%; order: 3; color: var(--tinta); font-weight: 760; }
 .rx-chleg .rx-def::before { content: '✓ '; color: var(--vivo); }
 
@@ -209,7 +212,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 48px;
+  min-height: 56px; /* duas linhas: a página não pula quando o texto troca */
   margin: 0 0 10px;
   padding: 10px 14px;
   border-radius: 14px;

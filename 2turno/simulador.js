@@ -354,7 +354,14 @@ function insights(d) {
   const lc = fin(cont.lula_pct) ? (cont.lula_pct >= 50 ? 'lula' : 'flavio') : null;
   const aberta = fin(a.secoes_pct) && a.secoes_pct > 0 && a.secoes_pct < 100;
   if (aberta && lp && lc && lp !== lc) {
-    out.push({ id: 'virada-proj', p: 95, tom: 'forte', html: h`O simulador já aponta <b>${nome(lp)}</b>, embora <b>${nome(lc)}</b> lidere a contagem: o que falta apurar é mais favorável a ${nome(lp)}.` });
+    // Mesma régua da faixa "Virada à vista" da apuração: afirmar só com 80% de chance ou mais para quem a projeção aponta.
+    const chL = C.num(p.chance?.lula);
+    const chLp = chL === null ? null : lp === 'lula' ? chL : 1 - chL;
+    out.push(
+      chLp !== null && chLp < 0.8
+        ? { id: 'virada-proj', p: 88, html: h`Disputa aberta: <b>${nome(lc)}</b> lidera a contagem, e o simulador dá a <b>${nome(lp)}</b> ${C.fNum(100 * chLp, 0)}% de chance de terminar à frente.` }
+        : { id: 'virada-proj', p: 95, tom: 'forte', html: h`O simulador já aponta <b>${nome(lp)}</b>, embora <b>${nome(lc)}</b> lidere a contagem: o que falta apurar é mais favorável a ${nome(lp)}.` },
+    );
   }
   const v = obj(d.virar);
   if (aberta && v && fin(v.precisa_pct)) {
@@ -432,6 +439,8 @@ function renderInsights(lista) {
   const vistos = new Set();
   const final = mostrar.filter((x) => x && !vistos.has(x.id) && vistos.add(x.id));
   const ids = new Set(final.map((x) => x.id));
+  // depois de mostrar dois destaques, a caixa guarda a altura: um destaque a menos não puxa a página para cima
+  if (final.length > 1) ol.classList.add('dois');
   for (const li of Array.from(ol.children)) {
     if (!ids.has(li.dataset.id) && !li.classList.contains('saindo')) {
       li.classList.add('saindo');
@@ -1139,6 +1148,7 @@ function estilos() {
 .sim-faixa-txt { margin: 2px 0 0; font-size: 12.5px; color: var(--tinta-2); font-variant-numeric: tabular-nums; }
 .sim-chance { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 10px 0 0; font-size: 12px; color: var(--tinta-2); }
 .sim-chance b { padding: 3px 9px; border-radius: 999px; font-size: 14px; font-weight: 760; background: var(--suave-2); transition: background-color 1.2s ease, color 1.2s ease; font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) { body:not(.tv) .sim-chance { min-height: 36px; } } /* no celular a pílula às vezes empurra o rótulo para duas linhas: a altura já fica reservada */
 .sim-barra { position: relative; display: flex; gap: 2px; height: 12px; margin: 14px 0 0; }
 .sim-barra span { flex: 50 1 0px; min-width: 2px; background: var(--linha-2); transition: flex-grow 1s ease, background-color 1s ease; }
 .sim-barra span:first-of-type { border-radius: 6px 0 0 6px; }
@@ -1146,7 +1156,9 @@ function estilos() {
 .sim-barra i { position: absolute; left: 50%; top: -5px; bottom: -5px; border-left: 2px solid var(--tinta); transform: translateX(-1px); }
 .sim-barra b { position: absolute; top: -3px; bottom: -3px; border: 1.5px solid var(--tinta-2); border-radius: 4px; background: color-mix(in srgb, var(--tinta) 12%, transparent); transition: left 1s ease, width 1s ease; pointer-events: none; }
 .sim-modelado { margin: 10px 0 14px; font-size: 12px; line-height: 1.45; color: var(--tinta-3); }
-.sim-ins { margin-top: 2px; }
+.sim-ins { position: relative; margin-top: 2px; }
+.sim-ins > li.saindo { position: absolute; left: 0; right: 0; }
+body:not(.tv) .sim-ins.dois { min-height: 190px; }
 .sim-transf { display: grid; gap: 12px; }
 .sim-tl { min-width: 0; }
 .sim-tl-cab { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; font-size: 13.5px; }
