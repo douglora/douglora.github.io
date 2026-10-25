@@ -466,3 +466,11 @@ body.tv .rx-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rx-prog-bar i, .rx-chbar span, .rx-par-bar span, .rx-div i, .rx-urn i, .rx-fr-b i, .rx-reg-bar i, .rx-dia i, .rx-lado, .rx-toast { transition: none !important; }
   .rx-uf.rx-virou { border-color: var(--tinta); }
 }
+
+/* Destaques agora (25/10/2026 17h): logo abaixo dos cards de Lula e Flávio, para ler sem rolar a tela. */
+.rx-dest { padding: 12px 0 14px; }
+.rx-dest .sobre { margin: 0 0 8px; }
+.rx-dest .estado { margin: 0; font-size: 13px; color: var(--tinta-3); }
+body:not(.tv) .rx-dest .sim-ins.dois { min-height: 0; }
+.rx-feed.rx-feed-topo { min-height: 82px; margin-top: 8px; }
+body.tv .rx-dest { display: none; }

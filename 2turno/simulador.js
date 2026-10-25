@@ -430,7 +430,16 @@ const nomeCidade = (s) =>
     .replace(/\b(Da|De|Do|Das|Dos|E)\b/g, (m) => m.toLowerCase());
 
 function renderInsights(lista) {
-  const ol = $('[data-sim-ins]');
+  // 25/10/2026 17h: os destaques sobem para logo abaixo dos cards de Lula e Flávio, na Apuração (ver sem rolar);
+  // a lista do simulador fica escondida para o mesmo texto não aparecer duas vezes.
+  const topo = S.modo === 'vivo' || S.modo === 'teste' ?document.querySelector('#painel-apuracao [data-rx-dest]') : null;
+  const baixo = $('[data-sim-ins]');
+  if (topo && baixo) {
+    baixo.style.display = 'none';
+    const vb = $('[data-sim-ins-vazio]');
+    if (vb) vb.hidden = true;
+  } else if (baixo) baixo.style.display = '';
+  const ol = topo || baixo;
   if (!ol) return;
   // Dois destaques por vez (v6, 24/10/2026: a aba sem parede de texto): o mais forte fica, o segundo gira.
   const fixos = lista.slice(0, 1);
@@ -474,7 +483,7 @@ function renderInsights(lista) {
     if (li !== alvo) ol.insertBefore(li, alvo);
     ref = li;
   }
-  const vazio = $('[data-sim-ins-vazio]');
+  const vazio = topo ? document.querySelector('#painel-apuracao [data-rx-dest-vazio]') : $('[data-sim-ins-vazio]');
   if (vazio) vazio.hidden = final.length > 0;
 }
 

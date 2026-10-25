@@ -2739,6 +2739,12 @@ function esqueletoPainel() {
       <div class="rx-chbar" aria-hidden="true"><span data-seg="lula"></span><span data-seg="flavio"></span><i></i></div>
       <p class="rx-chleg"><span>Chance de vitória</span><span class="rx-motor" data-ap-chmotor>modelo por estado</span><span class="rx-def" data-ap-def hidden></span></p>
     </section>
+    <section class="bloco rx-dest" aria-label="Destaques agora">
+      <h2 class="sobre">Destaques agora</h2>
+      <ol class="ap-ins sim-ins" data-rx-dest aria-live="polite"></ol>
+      <p class="estado" data-rx-dest-vazio>Os destaques entram aqui assim que a projeção começar.</p>
+      <ol class="rx-feed rx-feed-topo" data-rx-feed aria-live="off"><li class="rx-ev rx-ev-vazio">Os eventos da noite entram aqui</li><li class="rx-ev rx-ev-vazio" aria-hidden="true"></li></ol>
+    </section>
     <section class="bloco ap-prog-b ap-sec-prog rx-prog">
       <div class="rx-prog-cab"><p class="rx-prog-num"><b data-ap-pst>0%</b><span> das urnas apuradas</span></p><p class="rx-prog-lido" data-ap-lidos></p></div>
       <div class="rx-prog-bar" aria-hidden="true"><i data-ap-barra></i></div>
@@ -2858,19 +2864,23 @@ function descreverEvento(e) {
   }
 }
 function pintarFeed() {
-  const ol = $('[data-rx-feed]');
-  if (!ol || !A.evNovo) return;
+  // dois lugares: "Destaques agora", logo abaixo dos cards (os 2 últimos), e o bloco "Agora" (os 4 últimos)
+  const ols = $$('[data-rx-feed]');
+  if (!ols.length || !A.evNovo) return;
   A.evNovo = false;
   const h = C.h;
-  const lista = A.ev.slice(0, 4);
-  const vistos = ol._vistos || new Set();
-  ol.innerHTML = C.emHtml(
-    h`${lista.map((e) => {
-      const x = descreverEvento(e);
-      return h`<li class="rx-ev ${x.cls}${vistos.has(e.id) ? '' : ' rx-entra'}" data-t="${e.tipo}"><time>${hms(e.t).slice(0, 5)}</time><i aria-hidden="true">${x.ic}</i><span>${x.txt}</span></li>`;
-    })}${Array.from({ length: 4 - lista.length }, () => h`<li class="rx-ev rx-ev-vazio" aria-hidden="true"></li>`)}`,
-  );
-  ol._vistos = new Set(lista.map((e) => e.id));
+  for (const ol of ols) {
+    const n = ol.classList.contains('rx-feed-topo') ? 2 : 4;
+    const lista = A.ev.slice(0, n);
+    const vistos = ol._vistos || new Set();
+    ol.innerHTML = C.emHtml(
+      h`${lista.map((e) => {
+        const x = descreverEvento(e);
+        return h`<li class="rx-ev ${x.cls}${vistos.has(e.id) ? '' : ' rx-entra'}" data-t="${e.tipo}"><time>${hms(e.t).slice(0, 5)}</time><i aria-hidden="true">${x.ic}</i><span>${x.txt}</span></li>`;
+      })}${Array.from({ length: n - lista.length }, () => h`<li class="rx-ev rx-ev-vazio" aria-hidden="true"></li>`)}`,
+    );
+    ol._vistos = new Set(lista.map((e) => e.id));
+  }
 }
 // Aviso rápido no topo da tela (5 s) para o que mais importa: estado decidido, virada de estado, troca de liderança.
 function avisar(e) {
@@ -3961,8 +3971,7 @@ function montarTela() {
   A.baseAssin = assinaturaBase(C.dados());
   if (A.modo === 'sim' && !A.sim) iniciarSimulacao();
   A.raiz.innerHTML = C.emHtml(A.modo === 'pre' ? esqueletoPre() : esqueletoPainel());
-  const feed = $('[data-rx-feed]');
-  if (feed) {
+  for (const feed of $$('[data-rx-feed]')) {
     feed._vistos = new Set(A.ev.slice(0, 4).map((e) => e.id));
     A.evNovo = A.ev.length > 0;
   }
