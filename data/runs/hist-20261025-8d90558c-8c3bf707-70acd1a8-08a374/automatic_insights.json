@@ -1,0 +1,186 @@
+{
+  "as_of": "2026-10-25",
+  "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
+  "config_hash": "8c3bf707de000abcd69cdecaae0db27bb3219ad24b33dee056cc1c0cbfbfd41a",
+  "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
+  "generation": {
+    "deterministic": true,
+    "method": "regras determinísticas sobre contratos publicados",
+    "no_causal_language": true,
+    "note": "Nenhum texto é gerado por modelo de linguagem. Cada frase vem de uma regra neste módulo, com os dados que a alimentaram declarados em `inputs`."
+  },
+  "insights": [
+    {
+      "calculation_ref": "/metodologia#gate",
+      "detail": "25 pesquisas de 7 casas na janela.",
+      "evidence_strength": "forte",
+      "headline": "Cobertura suficiente para publicar o consenso ajustado.",
+      "id": "gate-cobertura",
+      "inputs": [
+        "operations.json#live_coverage"
+      ],
+      "rule": "gate_satisfied = polls >= 3 E houses >= 2",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/sinal-atual",
+      "detail": "0 candidatura(s) avaliada(s) e nenhuma casa com duas medições comparáveis na janela. Duas pesquisas de casas diferentes medem diferença entre casas, não movimento no tempo.",
+      "evidence_strength": "insuficiente",
+      "headline": "Não há evidência suficiente para afirmar tendência de nenhuma candidatura.",
+      "id": "movimento-atual",
+      "inputs": [
+        "current_signal.json#signals"
+      ],
+      "rule": "insuficiente: nenhuma casa com duas medições comparáveis ou menos de duas casas. fraco: uma casa, ou direções divergentes, ou dentro do ruído amostral. moderado: ≥2 casas na mesma direção com mediana acima de 1 erro-padrão amostral. forte: ≥3 casas na mesma direção com mediana acima de 2 erros-padrão e acima da dispersão entre casas.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#dispersao",
+      "detail": "Em todas as eleições pontuadas, o desvio entre casas superou o desvio amostral esperado. É por isso que a faixa de incerteza do modelo é alargada em vez de confiar apenas na margem declarada.",
+      "evidence_strength": "moderado",
+      "headline": "Historicamente, as casas discordam 2.6× mais do que a margem de erro sozinha explicaria.",
+      "id": "dispersao-entre-casas",
+      "inputs": [
+        "history_patterns.json#P4"
+      ],
+      "rule": "Razão = desvio-padrão observado entre casas ÷ desvio-padrão amostral esperado, no percentual do líder oficial, usando a última pesquisa de cada casa. Razão <1 sugere herding; >1, dispersão acima do ruído amostral.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#erro-comum",
+      "detail": "Quando o erro é comum a todas as casas, ele não é evidência sobre nenhuma casa isolada. Entra no modelo como incerteza compartilhada, nunca como correção atribuída a um instituto.",
+      "evidence_strength": "forte",
+      "headline": "O maior erro histórico foi coletivo: em 2014-T1 todas as casas erraram a margem em +10.9 pp na média.",
+      "id": "erro-comum",
+      "inputs": [
+        "history_patterns.json#P7"
+      ],
+      "rule": "Componente comum = média do erro de margem com um voto por casa. Componente de casa = desvio-padrão dos desvios em relação a esse comum.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/metodologia#historico-no-modelo",
+      "detail": "A calibração é aprendida só nos ciclos de treino e melhorou em todos os ciclos retidos. O ponto estimado de cada candidatura permaneceu idêntico ao do modelo sem histórico.",
+      "evidence_strength": "moderado",
+      "headline": "O histórico alterou a faixa de incerteza, não o centro: cobertura fora da amostra subiu de 8% para 41%.",
+      "id": "historico-no-modelo",
+      "inputs": [
+        "history_integration.json#promotion.channels.interval_calibration"
+      ],
+      "rule": "Critérios fixados antes de rodar os folds e avaliados por canal. Ponto: ≥3 ciclos retidos, não piorar contra M2 e bater B0 e B1 em MAE. Faixa (multiplicativa e aditiva, cada uma por si): cobertura 80% mais próxima do nominal que M2 e B1, em todos os ciclos retidos, sem deslocar o ponto. Viés assinado: só com persistência fora da amostra.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#persistencia",
+      "detail": "Prever o erro de uma casa pelo seu próprio passado teve MAE 2.65 pp contra 1.87 pp de simplesmente prever zero. Aplicar uma correção pioraria a estimativa.",
+      "evidence_strength": "forte",
+      "headline": "Nenhuma casa recebe correção de viés: a direção do erro não se repete fora da amostra.",
+      "id": "viés-assinado",
+      "inputs": [
+        "history_lab.json#persistence.relative_margin_error"
+      ],
+      "rule": "Correção assinada só é autorizada se o MAE fora da amostra do modelo de viés ficar abaixo do modelo nulo (prever zero) E o sinal se repetir com p<0,05 no teste binomial unilateral. Caso contrário, o padrão é encolher para zero e usar o histórico apenas como variância/confiabilidade.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/sinal-atual#ultima-pesquisa",
+      "detail": "Comparação com a medição anterior da mesma casa, mesmo cenário, 2 dias antes.",
+      "evidence_strength": "fraco",
+      "headline": "Datafolha: Ganharam espaço: FLAVIO BOLSONARO, LULA. Ninguém perdeu. Nenhuma variação ficou fora do ruído amostral.",
+      "id": "ultima-pesquisa",
+      "inputs": [
+        "current_signal.json#latest_poll_comparison"
+      ],
+      "rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/cenario-corrigido#eixo-ideologico",
+      "detail": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
+      "evidence_strength": "forte",
+      "headline": "Viés por lado do espectro: também não se repete fora da amostra.",
+      "id": "eixo-ideologico",
+      "inputs": [
+        "house_correction.json#ideology.persistence"
+      ],
+      "rule": "Correção assinada só é autorizada se o MAE fora da amostra do modelo de viés ficar abaixo do modelo nulo (prever zero) E o sinal se repetir com p<0,05 no teste binomial unilateral. Caso contrário, o padrão é encolher para zero e usar o histórico apenas como variância/confiabilidade.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#ancoras",
+      "detail": "Em 2022-10-29 (D-1 de 2022-T2), a Datafolha media Lula 52.1% × Bolsonaro 47.9% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 1.2 p.p.; a margem saiu de +4.3 para +1.8 p.p. (+2.5 p.p. de erro de margem). Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
+      "evidence_strength": "fraco",
+      "headline": "Hoje a Datafolha mede FLAVIO BOLSONARO 50.5% × LULA 49.5% (votos válidos, D-1). No mesmo estágio de 2022 (D-1), ela media Lula 52.1% × Bolsonaro 47.9% e a urna deu 50.9% × 49.1% — a margem encolheu 2.5 p.p. do que a casa media para o que a urna deu.",
+      "id": "ancora-datafolha-t2",
+      "inputs": [
+        "current_signal.json#house_historical_anchors"
+      ],
+      "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#ancoras",
+      "detail": "Em 2022-10-29 (D-1 de 2022-T2), a Quaest media Lula 51.7% × Bolsonaro 48.3% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 0.8 p.p.; a margem saiu de +3.4 para +1.8 p.p. (+1.6 p.p. de erro de margem). Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
+      "evidence_strength": "fraco",
+      "headline": "Hoje a Quaest mede FLAVIO BOLSONARO 50.5% × LULA 49.5% (votos válidos, D-1). No mesmo estágio de 2022 (D-1), ela media Lula 51.7% × Bolsonaro 48.3% e a urna deu 50.9% × 49.1% — a margem encolheu 1.6 p.p. do que a casa media para o que a urna deu.",
+      "id": "ancora-quaest-t2",
+      "inputs": [
+        "current_signal.json#house_historical_anchors"
+      ],
+      "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#ancoras",
+      "detail": "Em 2018-10-26 (D-2 de 2018-T2), a REAL TIME BIG DATA media Bolsonaro 54.7% × Haddad 45.3% em votos válidos; a urna deu 55.1% × 44.9%. A casa subestimou Bolsonaro em 0.5 p.p.; a margem saiu de +9.3 para +10.3 p.p. (-1.0 p.p. de erro de margem). Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
+      "evidence_strength": "fraco",
+      "headline": "Hoje a REAL TIME BIG DATA mede FLAVIO BOLSONARO 52.1% × LULA 47.9% (votos válidos, D-3). No mesmo estágio de 2018 (D-2), ela media Bolsonaro 54.7% × Haddad 45.3% e a urna deu 55.1% × 44.9% — a margem encolheu 1.0 p.p. do que a casa media para o que a urna deu.",
+      "id": "ancora-real-time-big-data-t2",
+      "inputs": [
+        "current_signal.json#house_historical_anchors"
+      ],
+      "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#ancoras",
+      "detail": "Em 2022-10-24 (D-6 de 2022-T2), a Ipespe media Lula 53.2% × Bolsonaro 46.8% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 2.3 p.p.; a margem saiu de +6.4 para +1.8 p.p. (+4.6 p.p. de erro de margem). Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
+      "evidence_strength": "fraco",
+      "headline": "Hoje a Ipespe mede FLAVIO BOLSONARO 50.5% × LULA 49.5% (votos válidos, D-3). No mesmo estágio de 2022 (D-6), ela media Lula 53.2% × Bolsonaro 46.8% e a urna deu 50.9% × 49.1% — a margem encolheu 4.6 p.p. do que a casa media para o que a urna deu.",
+      "id": "ancora-ipespe-t2",
+      "inputs": [
+        "current_signal.json#house_historical_anchors"
+      ],
+      "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#ancoras",
+      "detail": "Em 2022-10-25 (D-5 de 2022-T2), a PoderData media Lula 52.7% × Bolsonaro 47.3% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 1.8 p.p.; a margem saiu de +5.4 para +1.8 p.p. (+3.6 p.p. de erro de margem). Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
+      "evidence_strength": "fraco",
+      "headline": "Hoje a PoderData mede FLAVIO BOLSONARO 50.5% × LULA 49.5% (votos válidos, D-4). No mesmo estágio de 2022 (D-5), ela media Lula 52.7% × Bolsonaro 47.3% e a urna deu 50.9% × 49.1% — a margem encolheu 3.6 p.p. do que a casa media para o que a urna deu.",
+      "id": "ancora-poderdata-t2",
+      "inputs": [
+        "current_signal.json#house_historical_anchors"
+      ],
+      "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    },
+    {
+      "calculation_ref": "/laboratorio#cobertura",
+      "detail": "23 casas identificadas; 5 células permanecem sem cobertura e estão listadas como lacunas explícitas.",
+      "evidence_strength": "forte",
+      "headline": "257 pesquisas históricas pontuadas em 7 células eleição/turno.",
+      "id": "cobertura-historica",
+      "inputs": [
+        "history_lab.json#coverage.totals"
+      ],
+      "rule": "célula coberta = ≥3 observações pontuadas e ≥2 casas",
+      "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374"
+    }
+  ],
+  "live_hash": "70acd1a8e61f6781dbbb1d0fc657924c0fa43fddf07f5f3a034d5048553e8e55",
+  "live_source_run_id": "run-20261025-fb7d50e8-8b932466",
+  "run_id": "hist-20261025-8d90558c-8c3bf707-70acd1a8-08a374",
+  "version": "1.3.0-auto-insights-house-anchors"
+}
