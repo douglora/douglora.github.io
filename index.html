@@ -12,15 +12,23 @@
     <meta name="twitter:card" content="summary" />
     <title>2º turno · Radar Eleitoral</title>
     <link rel="stylesheet" href="/2turno/style.css" />
+    <link rel="stylesheet" href="/2turno/apuracao.css" />
+    <link rel="stylesheet" href="/2turno/hyperliquid.css" />
     <script type="module" src="/2turno/app.js"></script>
   </head>
   <body>
     <header class="topo">
       <div class="col topo-in">
-        <p class="marca">Radar Eleitoral · 2º turno<span class="marca-extra"> · Presidente</span></p>
-        <button type="button" class="tv-botao" data-acao="tv" aria-label="Modo TV: tela cheia com letras grandes">Modo TV</button>
+        <a class="topo-marca" href="#resumo" aria-label="Radar Eleitoral, 2º turno para presidente: ir para o Resumo">
+          <span class="topo-bandeira" id="topo-bandeira" aria-hidden="true"></span>
+          <span class="marca">Radar Eleitoral<small>2º turno · Presidente</small></span>
+        </a>
+        <div class="topo-dir">
+          <div class="topo-cont" id="topo-cont" aria-live="off"></div>
+          <button type="button" class="tv-botao" data-acao="tv" aria-label="Modo TV: tela cheia com letras grandes">TV</button>
+        </div>
       </div>
-      <div class="col"><p class="contagem-mini" id="contagem-mini"></p></div>
+      <div class="topo-fio" aria-hidden="true"></div>
     </header>
 
     <nav class="abas" aria-label="Seções da página">
@@ -42,7 +50,7 @@
         <p class="estado">Carregando a apuração…</p>
       </section>
       <section class="painel" id="painel-pesquisas" data-painel="pesquisas" aria-label="Pesquisas" hidden></section>
-      <section class="painel" id="painel-mercados" data-painel="mercados" aria-label="Mercados" hidden></section>
+      <section class="painel" id="painel-mercados" data-painel="mercados" aria-label="Mercados" hidden><div id="hl-vivo" class="hl-vivo"></div><div id="merc-conteudo"></div></section>
       <section class="painel" id="painel-metodo" data-painel="metodo" aria-label="Método" hidden></section>
       <noscript><p class="lacuna-bloco">Esta página precisa de JavaScript ligado para mostrar os números.</p></noscript>
     </main>

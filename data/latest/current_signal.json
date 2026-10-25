@@ -32,6 +32,155 @@
             "evidence_tier": "A",
             "leader_correct": true,
             "leader_id": "lula",
+            "leader_signed_error_pp": 1.2276595744680847,
+            "mae_pp": 1.2276595744680847,
+            "margin_error_pp": 2.4553191489361694,
+            "margin_official_pp": 1.7999999999999972,
+            "margin_poll_pp": 4.255319148936167,
+            "official_valid_pct": {
+              "bolsonaro": 49.1,
+              "lula": 50.9
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "bolsonaro": 47.87234042553192,
+              "lula": 52.12765957446808
+            },
+            "reading": "Em 2022-10-29 (D-1 de 2022-T2), a Datafolha media Lula 52.1% × Bolsonaro 47.9% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 1.2 p.p.; a margem saiu de +4.3 para +1.8 p.p. (+2.5 p.p. de erro de margem).",
+            "reference_date": "2022-10-29",
+            "runner_up_id": "bolsonaro",
+            "signed_error_pp": {
+              "bolsonaro": -1.2276595744680847,
+              "lula": 1.2276595744680847
+            },
+            "turn": 2,
+            "year": 2022
+          },
+          {
+            "comparability_warnings": [],
+            "days_to_election": 1,
+            "distance_gap_days": 0,
+            "election": "2018-T2",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2018",
+              "ev-tse-polls-2018",
+              "ev-pindograma-parsed-2014-2018"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "bolsonaro",
+            "leader_signed_error_pp": -0.478837209302327,
+            "mae_pp": 0.478837209302327,
+            "margin_error_pp": -0.957674418604654,
+            "margin_official_pp": 10.260000000000005,
+            "margin_poll_pp": 9.302325581395351,
+            "official_valid_pct": {
+              "bolsonaro": 55.13,
+              "haddad": 44.87
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "bolsonaro": 54.651162790697676,
+              "haddad": 45.348837209302324
+            },
+            "reading": "Em 2018-10-27 (D-1 de 2018-T2), a Datafolha media Bolsonaro 54.7% × Haddad 45.3% em votos válidos; a urna deu 55.1% × 44.9%. A casa subestimou Bolsonaro em 0.5 p.p.; a margem saiu de +9.3 para +10.3 p.p. (-1.0 p.p. de erro de margem).",
+            "reference_date": "2018-10-27",
+            "runner_up_id": "haddad",
+            "signed_error_pp": {
+              "bolsonaro": -0.478837209302327,
+              "haddad": 0.478837209302327
+            },
+            "turn": 2,
+            "year": 2018
+          },
+          {
+            "comparability_warnings": [],
+            "days_to_election": 1,
+            "distance_gap_days": 0,
+            "election": "2014-T2",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2014",
+              "ev-tse-polls-2014",
+              "ev-pindograma-parsed-2014-2018"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "dilma",
+            "leader_signed_error_pp": 0.5822222222222209,
+            "mae_pp": 0.5822222222222209,
+            "margin_error_pp": 1.1644444444444417,
+            "margin_official_pp": 3.280000000000001,
+            "margin_poll_pp": 4.444444444444443,
+            "official_valid_pct": {
+              "aecio": 48.36,
+              "dilma": 51.64
+            },
+            "pre_first_round": false,
+            "published_valid_pct": {
+              "aecio": 47.77777777777778,
+              "dilma": 52.22222222222222
+            },
+            "reading": "Em 2014-10-25 (D-1 de 2014-T2), a Datafolha media Dilma 52.2% × Aecio 47.8% em votos válidos; a urna deu 51.6% × 48.4%. A casa superestimou Dilma em 0.6 p.p.; a margem saiu de +4.4 para +3.3 p.p. (+1.2 p.p. de erro de margem).",
+            "reference_date": "2014-10-25",
+            "runner_up_id": "aecio",
+            "signed_error_pp": {
+              "aecio": -0.5822222222222209,
+              "dilma": 0.5822222222222209
+            },
+            "turn": 2,
+            "year": 2014
+          }
+        ],
+        "current_published_pct": {
+          "2026-tse-280002542548": 47.0,
+          "2026-tse-280002551544": 48.0
+        },
+        "current_valid_pct": {
+          "2026-tse-280002542548": 49.473684210526315,
+          "2026-tse-280002551544": 50.526315789473685
+        },
+        "days_to_election": 1,
+        "headline": "Hoje a Datafolha mede FLAVIO BOLSONARO 50.5% × LULA 49.5% (votos válidos, D-1). No mesmo estágio de 2022 (D-1), ela media Lula 52.1% × Bolsonaro 47.9% e a urna deu 50.9% × 49.1% — a margem encolheu 2.5 p.p. do que a casa media para o que a urna deu.",
+        "house_id": "datafolha",
+        "house_name": "Datafolha",
+        "labels": {
+          "2026-tse-280002542548": "LULA",
+          "2026-tse-280002551544": "FLAVIO BOLSONARO"
+        },
+        "pattern": {
+          "mean_leader_signed_error_pp": 0.4436815291293262,
+          "n_elections": 3,
+          "reading": "Nas 3 eleições comparáveis, a Datafolha errou o líder para lados diferentes (média +0.4 p.p.). Padrão descritivo: o teste fora da amostra do laboratório não valida repetir essa direção em 2026.",
+          "same_direction": false,
+          "status": "observado"
+        },
+        "pre_first_round": false,
+        "published_at": "2026-10-24",
+        "reason": null,
+        "reference_date": "2026-10-24",
+        "registration_no": "BR-09540/2026",
+        "scenario_id": "president-br-t2-dbec719fff",
+        "status": "available",
+        "turn": 2
+      },
+      {
+        "anchors": [
+          {
+            "comparability_warnings": [],
+            "days_to_election": 1,
+            "distance_gap_days": 0,
+            "election": "2022-T2",
+            "estimand": "real_runoff",
+            "evidence_ids": [
+              "ev-wikipedia-polls-2022",
+              "ev-tse-polls-2022",
+              "ev-tse-result-2022-t2"
+            ],
+            "evidence_tier": "A",
+            "leader_correct": true,
+            "leader_id": "lula",
             "leader_signed_error_pp": 0.7853932584269643,
             "mae_pp": 0.7853932584269643,
             "margin_error_pp": 1.5707865168539286,
@@ -1606,8 +1755,8 @@
       }
     ],
     "not_a_projection": "Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
-    "polls_examined": 24,
-    "polls_with_anchor": 16,
+    "polls_examined": 25,
+    "polls_with_anchor": 17,
     "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
     "status": "available",
     "tolerance_days": 12
@@ -1620,11 +1769,11 @@
         "delta_pp": 1.0,
         "direction": "alta",
         "label": "FLAVIO BOLSONARO",
-        "latest_pct": 46.0,
+        "latest_pct": 48.0,
         "party": "PL",
-        "previous_pct": 45.0,
-        "sampling_se_pp": 1.349078842921748,
-        "sentence": "FLAVIO BOLSONARO subiu 1 ponto: de 45% para 46% (dentro do ruído amostral)."
+        "previous_pct": 47.0,
+        "sampling_se_pp": 1.3314463589602115,
+        "sentence": "FLAVIO BOLSONARO subiu 1 ponto: de 47% para 48% (dentro do ruído amostral)."
       },
       {
         "beyond_sampling_noise": false,
@@ -1632,67 +1781,67 @@
         "delta_pp": 1.0,
         "direction": "alta",
         "label": "LULA",
-        "latest_pct": 45.0,
+        "latest_pct": 47.0,
         "party": "PT",
-        "previous_pct": 44.0,
-        "sampling_se_pp": 1.3462822245047206,
-        "sentence": "LULA subiu 1 ponto: de 44% para 45% (dentro do ruído amostral)."
+        "previous_pct": 46.0,
+        "sampling_se_pp": 1.329761283469122,
+        "sentence": "LULA subiu 1 ponto: de 46% para 47% (dentro do ruído amostral)."
       }
     ],
     "comparability_rule": "Só é comparada uma medição anterior da mesma casa, com a mesma base e o mesmo conjunto de candidaturas. Pesquisa de outra casa mede diferença entre casas, não variação no tempo.",
-    "days_between": 4,
+    "days_between": 2,
     "gained": [
       "2026-tse-280002551544",
       "2026-tse-280002542548"
     ],
     "latest": {
       "base": "totais",
-      "evidence_id": "ev-release-7b922506c29bd8f650db",
+      "evidence_id": "ev-release-cb9bc16c56fe8ec11f45",
       "field_end": "2026-10-24",
       "field_start": "2026-10-23",
-      "institute": "Quaest",
-      "institute_id": "quaest",
+      "institute": "Datafolha",
+      "institute_id": "datafolha",
       "mode": "presencial",
       "n_candidates": 2,
       "published_at": "2026-10-24",
       "reference_date": "2026-10-24",
-      "registration_no": "BR-09158/2026",
-      "sample_size": 3702,
+      "registration_no": "BR-09540/2026",
+      "sample_size": 4050,
       "scenario_id": "president-br-t2-dbec719fff"
     },
     "lost": [],
     "other_houses_in_window": [
-      "Datafolha",
       "Ipespe",
       "MDA-PESQUISA DE OPINIAO PUBLICA E CONSULT. ESTATIST. LTDA - EPP",
       "Nexus",
       "PoderData",
+      "Quaest",
       "REAL TIME BIG DATA"
     ],
     "previous": {
       "base": "totais",
-      "evidence_id": "ev-release-0e1c3f1ef0666a1e4acb",
-      "field_end": "2026-10-20",
-      "field_start": "2026-10-17",
-      "institute": "Quaest",
-      "institute_id": "quaest",
+      "evidence_id": "ev-release-7bff860e8ba90bdb59ec",
+      "field_end": "2026-10-22",
+      "field_start": "2026-10-20",
+      "institute": "Datafolha",
+      "institute_id": "datafolha",
       "mode": "presencial",
       "n_candidates": 2,
-      "published_at": "2026-10-21",
-      "reference_date": "2026-10-20",
-      "registration_no": "BR-08535/2026",
+      "published_at": "2026-10-22",
+      "reference_date": "2026-10-22",
+      "registration_no": "BR-09709/2026",
       "sample_size": 2154,
       "scenario_id": "president-br-t2-dbec719fff"
     },
     "status": "compared",
     "summary": "Ganharam espaço: FLAVIO BOLSONARO, LULA. Ninguém perdeu. Nenhuma variação ficou fora do ruído amostral."
   },
-  "live_hash": "406ba7ae33eb1202799a13fc8dfb96bdf8cf7a056bd9f85b3b5d998935f0c21b",
-  "live_source_run_id": "run-20261024-d4085cd7-ae78ab90",
-  "run_id": "hist-20261024-8d90558c-8c3bf707-406ba7ae-08a374",
+  "live_hash": "078d0c22ba27f32e3432436caa9f6b225f448897e35cb21c8d4f857ae834987d",
+  "live_source_run_id": "run-20261024-e1d93330-8b932466",
+  "run_id": "hist-20261024-8d90558c-8c3bf707-078d0c22-08a374",
   "signals": [
     {
-      "between_house_sd_pp": 1.159639811645678,
+      "between_house_sd_pp": 1.1395466934999492,
       "candidate_id": "2026-tse-280002551544",
       "candidate_label": "FLAVIO BOLSONARO",
       "direction": "baixa",
@@ -2023,7 +2172,7 @@
         },
         {
           "base": "totais",
-          "evidence_id": "ev-release-0e1c3f1ef0666a1e4acb",
+          "evidence_id": "ev-release-20bdcaf043a17faa926f",
           "field_end": "2026-10-20",
           "institute": "Quaest",
           "institute_id": "quaest",
@@ -2149,6 +2298,27 @@
         },
         {
           "base": "totais",
+          "evidence_id": "ev-release-cb9bc16c56fe8ec11f45",
+          "field_end": "2026-10-24",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 48.0,
+          "published_at": "2026-10-24",
+          "reference_date": "2026-10-24",
+          "registration_no": "BR-09540/2026",
+          "sample_size": 4050,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
           "evidence_id": "ev-release-33fc22d6ef8dd7aae4fc",
           "field_end": "2026-10-24",
           "institute": "Nexus",
@@ -2214,11 +2384,12 @@
       "same_direction_across_houses": false,
       "within_house_deltas": [
         {
-          "days_between": 15,
-          "delta_pp": -2.0,
+          "days_between": 17,
+          "delta_pp": -1.0,
           "evidence_ids": [
             "ev-release-11e70da9e0aa5f0a810a",
             "ev-release-7bff860e8ba90bdb59ec",
+            "ev-release-cb9bc16c56fe8ec11f45",
             "ev-release-d51f6c020b375a012e25"
           ],
           "from": {
@@ -2228,12 +2399,12 @@
           },
           "house": "Datafolha",
           "institute_id": "datafolha",
-          "n_polls": 3,
-          "sampling_se_pp": 1.4656465389577304,
+          "n_polls": 4,
+          "sampling_se_pp": 1.268054794937097,
           "to": {
-            "date": "2026-10-22",
-            "pct": 47.0,
-            "registration_no": "BR-09709/2026"
+            "date": "2026-10-24",
+            "pct": 48.0,
+            "registration_no": "BR-09540/2026"
           }
         },
         {
@@ -2333,7 +2504,7 @@
           "days_between": 11,
           "delta_pp": 0.0,
           "evidence_ids": [
-            "ev-release-0e1c3f1ef0666a1e4acb",
+            "ev-release-20bdcaf043a17faa926f",
             "ev-release-447e2c9981bd080257bd",
             "ev-release-7b922506c29bd8f650db"
           ],
@@ -2377,7 +2548,7 @@
       ]
     },
     {
-      "between_house_sd_pp": 1.0156653420081447,
+      "between_house_sd_pp": 1.0392785959500945,
       "candidate_id": "2026-tse-280002542548",
       "candidate_label": "LULA",
       "direction": "alta",
@@ -2708,7 +2879,7 @@
         },
         {
           "base": "totais",
-          "evidence_id": "ev-release-0e1c3f1ef0666a1e4acb",
+          "evidence_id": "ev-release-20bdcaf043a17faa926f",
           "field_end": "2026-10-20",
           "institute": "Quaest",
           "institute_id": "quaest",
@@ -2834,6 +3005,27 @@
         },
         {
           "base": "totais",
+          "evidence_id": "ev-release-cb9bc16c56fe8ec11f45",
+          "field_end": "2026-10-24",
+          "institute": "Datafolha",
+          "institute_id": "datafolha",
+          "mode": "presencial",
+          "pct": 47.0,
+          "published_at": "2026-10-24",
+          "reference_date": "2026-10-24",
+          "registration_no": "BR-09540/2026",
+          "sample_size": 4050,
+          "scenario_key": [
+            "datafolha",
+            "totais",
+            [
+              "2026-tse-280002542548",
+              "2026-tse-280002551544"
+            ]
+          ]
+        },
+        {
+          "base": "totais",
           "evidence_id": "ev-release-33fc22d6ef8dd7aae4fc",
           "field_end": "2026-10-24",
           "institute": "Nexus",
@@ -2899,11 +3091,12 @@
       "same_direction_across_houses": false,
       "within_house_deltas": [
         {
-          "days_between": 15,
-          "delta_pp": 1.0,
+          "days_between": 17,
+          "delta_pp": 2.0,
           "evidence_ids": [
             "ev-release-11e70da9e0aa5f0a810a",
             "ev-release-7bff860e8ba90bdb59ec",
+            "ev-release-cb9bc16c56fe8ec11f45",
             "ev-release-d51f6c020b375a012e25"
           ],
           "from": {
@@ -2913,12 +3106,12 @@
           },
           "house": "Datafolha",
           "institute_id": "datafolha",
-          "n_polls": 3,
-          "sampling_se_pp": 1.4612823819376053,
+          "n_polls": 4,
+          "sampling_se_pp": 1.263805596418183,
           "to": {
-            "date": "2026-10-22",
-            "pct": 46.0,
-            "registration_no": "BR-09709/2026"
+            "date": "2026-10-24",
+            "pct": 47.0,
+            "registration_no": "BR-09540/2026"
           }
         },
         {
@@ -3018,7 +3211,7 @@
           "days_between": 11,
           "delta_pp": 1.0,
           "evidence_ids": [
-            "ev-release-0e1c3f1ef0666a1e4acb",
+            "ev-release-20bdcaf043a17faa926f",
             "ev-release-447e2c9981bd080257bd",
             "ev-release-7b922506c29bd8f650db"
           ],

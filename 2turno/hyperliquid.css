@@ -1,0 +1,237 @@
+/* Cartões ao vivo da Hyperliquid (aba Mercados), 24/10/2026.
+   Escuro, mesmos tokens do style.css. Tudo com o prefixo hl-. */
+
+.hl-vivo { margin: 0 0 22px; }
+.hl-vivo:empty { display: none; }
+
+.hl-bloco {
+  --hl-alta: var(--vivo, #34c27a);
+  --hl-queda: #ff6b6b;
+  --hl-zero: var(--tinta-3, #8d95a3);
+  --hl-gut: 46px;
+}
+
+/* cabeçalho: um rótulo minúsculo com a bolinha do estado */
+.hl-topo { display: flex; align-items: center; margin: 0 0 10px; }
+.hl-rotulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--tinta-3);
+}
+.hl-ponto { position: relative; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--tinta-3); }
+.hl-p-vivo, .hl-p-rest { background: var(--vivo); }
+.hl-p-foto { background: transparent; box-shadow: inset 0 0 0 1.5px var(--tinta-3); }
+.hl-p-off { background: var(--alerta); }
+.hl-p-conectando { background: var(--tinta-3); }
+
+/* grade: o EWZ ocupa a largura toda; os outros dois lado a lado. Medidas pelo contêiner (a coluna da aba), não pela tela. */
+.hl-vivo { container-type: inline-size; container-name: hl; }
+.hl-grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.hl-grade .hl-card-destaque .hl-graf { height: 168px; }
+@container hl (min-width: 560px) {
+  .hl-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hl-grade .hl-card-destaque { grid-column: 1 / -1; }
+  .hl-bloco { --hl-gut: 52px; }
+}
+@container hl (min-width: 880px) {
+  .hl-grade .hl-card-destaque {
+    display: grid;
+    grid-template-columns: minmax(250px, 330px) minmax(0, 1fr);
+    gap: 24px;
+    padding: 18px 18px 16px;
+  }
+  .hl-grade .hl-card-destaque .hl-graf { height: auto; min-height: 220px; }
+  .hl-grade .hl-card-destaque .hl-preco { font-size: 46px; }
+}
+
+.hl-card {
+  --hl-cor: var(--hl-zero);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 14px 12px;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  background: linear-gradient(180deg, var(--suave) 0, var(--cartao) 170px);
+  color: var(--tinta);
+}
+.hl-c-alta { --hl-cor: var(--hl-alta); }
+.hl-c-queda { --hl-cor: var(--hl-queda); }
+.hl-info { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+
+.hl-cab { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.hl-nome { margin: 0; font-size: 15px; line-height: 1.25; font-weight: 700; }
+.hl-cod {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--suave-2);
+  color: var(--tinta-2);
+  font: 600 11px/1.3 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.06em;
+}
+.hl-tag {
+  margin-left: auto;
+  padding: 1px 8px;
+  border: 1px solid var(--linha-2);
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--tinta-3);
+  white-space: nowrap;
+}
+.hl-sub { margin: -4px 0 0; font-size: 12px; color: var(--tinta-3); }
+
+.hl-preco {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 740;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.hl-un { font-size: 0.4em; font-weight: 620; letter-spacing: 0; color: var(--tinta-3); }
+.hl-un:empty { display: none; }
+.hl-vazio .hl-valor { color: var(--tinta-3); }
+
+.hl-vars { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.hl-var { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.hl-var-rot { font-size: 11.5px; color: var(--tinta-3); }
+.hl-var-n { font-size: 18px; line-height: 1.25; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--hl-zero); }
+.hl-var-n.alta { color: var(--hl-alta); }
+.hl-var-n.queda { color: var(--hl-queda); }
+.hl-var-n.alta::before, .hl-var-n.queda::before { font-size: 0.6em; margin-right: 5px; vertical-align: 0.12em; }
+.hl-var-n.alta::before { content: "▲"; }
+.hl-var-n.queda::before { content: "▼"; }
+
+.hl-pe {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 14px;
+  margin: 2px 0 0;
+  font-size: 11.5px;
+  color: var(--tinta-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* gráfico */
+.hl-graf { position: relative; height: 134px; min-width: 0; }
+.hl-plot { position: absolute; left: 0; right: var(--hl-gut); top: 6px; bottom: 20px; touch-action: pan-y; cursor: crosshair; }
+.hl-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hl-linha {
+  fill: none;
+  stroke: var(--hl-cor);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.hl-gs0 { stop-color: var(--hl-cor); stop-opacity: 0.28; }
+.hl-gs1 { stop-color: var(--hl-cor); stop-opacity: 0; }
+.hl-ref-l { stroke: var(--tinta-3); stroke-opacity: 0.7; stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; }
+.hl-dia-l { stroke: var(--linha); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.hl-urnas-l { stroke: var(--ouro); stroke-opacity: 0.85; stroke-width: 1; stroke-dasharray: 2 4; vector-effect: non-scaling-stroke; }
+.hl-urnas-t {
+  position: absolute;
+  top: -3px;
+  transform: translateX(5px);
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  color: var(--ouro);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.hl-urnas-t.hl-esq { transform: translateX(calc(-100% - 5px)); }
+
+.hl-pt {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: var(--hl-cor);
+  box-shadow: 0 0 0 2px var(--cartao);
+  pointer-events: none;
+}
+.hl-pt::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--hl-cor); opacity: 0; }
+
+.hl-cruz { position: absolute; top: 0; bottom: 0; width: 1px; margin-left: -0.5px; background: var(--tinta-3); opacity: 0.55; pointer-events: none; }
+.hl-cruz-pt {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--tinta);
+  box-shadow: 0 0 0 2px var(--cartao);
+  pointer-events: none;
+}
+.hl-cruz[hidden], .hl-cruz-pt[hidden], .hl-dica[hidden], .hl-urnas-t[hidden], .hl-ref-tag[hidden], .hl-pt[hidden], .hl-tag[hidden] { display: none; }
+.hl-dica {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 3px 8px;
+  border: 1px solid var(--linha-2);
+  border-radius: 8px;
+  background: rgba(23, 26, 33, 0.94);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.hl-dica.hl-dir { left: auto; right: 0; }
+
+.hl-ref-tag {
+  position: absolute;
+  left: calc(100% - var(--hl-gut) + 6px);
+  transform: translateY(-50%);
+  font-size: 10.5px;
+  color: var(--tinta-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.hl-eixo { position: absolute; left: 0; right: var(--hl-gut); bottom: 0; height: 16px; pointer-events: none; }
+.hl-eixo-t { position: absolute; top: 3px; transform: translateX(4px); font-size: 10.5px; color: var(--tinta-3); white-space: nowrap; }
+.hl-eixo-t:first-child { transform: none; }
+.hl-eixo-t.hl-esq { transform: translateX(calc(-100% - 4px)); }
+
+@container hl (max-width: 559px) {
+  .hl-bloco { --hl-gut: 46px; }
+  .hl-card { padding: 14px 12px 12px; }
+  .hl-graf { height: 124px; }
+  .hl-preco { font-size: 32px; }
+  .hl-grade .hl-card-destaque .hl-graf { height: 150px; }
+  .hl-grade .hl-card-destaque .hl-preco { font-size: 38px; }
+  .hl-var-n { font-size: 17px; }
+}
+
+/* movimento: pulso do ponto e do último ponto, flash do preço. Com "reduzir movimento" nada disso anima. */
+@media (prefers-reduced-motion: no-preference) {
+  .hl-p-vivo::after, .hl-p-rest::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--vivo);
+    animation: hlPulso 1.8s ease-out infinite;
+  }
+  .hl-pt::after { animation: hlPulsoPt 1.8s ease-out infinite; }
+  .hl-f-alta { animation: hlAlta 0.9s ease-out; }
+  .hl-f-queda { animation: hlQueda 0.9s ease-out; }
+}
+@keyframes hlPulso { from { transform: scale(1); opacity: 0.65; } to { transform: scale(3.2); opacity: 0; } }
+@keyframes hlPulsoPt { from { transform: scale(1); opacity: 0.6; } to { transform: scale(3.4); opacity: 0; } }
+@keyframes hlAlta { from { color: var(--hl-alta); text-shadow: 0 0 16px rgba(52, 194, 122, 0.55); } to { color: var(--tinta); text-shadow: 0 0 0 transparent; } }
+@keyframes hlQueda { from { color: var(--hl-queda); text-shadow: 0 0 16px rgba(255, 107, 107, 0.5); } to { color: var(--tinta); text-shadow: 0 0 0 transparent; } }

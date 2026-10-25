@@ -672,7 +672,6 @@ function atualizarContagem() {
   let grande;
   let linha;
   let legenda;
-  let mini;
   let acao = '';
   const fecha = fHoraCurta(fe);
   if (agora < ab) {
@@ -684,29 +683,24 @@ function atualizarContagem() {
       grande = p.d === 1 ? 'Falta 1\u00a0dia' : `Faltam ${p.d}\u00a0dias`;
       linha = relogio(p, false, 'e');
       legenda = `até as urnas fecharem, às ${fecha} de Brasília`;
-      mini = `faltam ${p.d} ${p.d === 1 ? 'dia' : 'dias'} e ${p.h} h para o fechamento das urnas (${fecha} de Brasília)`;
     } else if (dias >= 1) {
       grande = 'É amanhã';
       linha = relogio(p, true);
       legenda = `até as urnas fecharem, amanhã às ${fecha} de Brasília · abrem às ${fHoraCurta(ab)}`;
-      mini = `amanhã: urnas abrem às ${fHoraCurta(ab)} e fecham às ${fecha} (Brasília)`;
     } else {
       grande = 'É hoje';
       linha = relogio(p, true);
       legenda = `até as urnas fecharem, às ${fecha} de Brasília · abrem às ${fHoraCurta(ab)}`;
-      mini = `hoje: urnas abrem às ${fHoraCurta(ab)} e fecham às ${fecha} (Brasília)`;
     }
   } else if (agora < fe) {
     const p = partes(fe - agora);
     grande = 'Urnas abertas';
     linha = relogio(p, true);
     legenda = `para as urnas fecharem, às ${fecha} de Brasília`;
-    mini = `urnas abertas até as ${fecha} de Brasília`;
   } else {
     grande = 'Urnas fechadas';
     linha = '';
     legenda = 'A apuração está em andamento, ao vivo, direto dos arquivos do TSE (Tribunal Superior Eleitoral).';
-    mini = 'urnas fechadas: apuração em andamento';
     acao = h`<a class="cont-botao" href="#apuracao">Acompanhar a apuração ao vivo →</a>`;
     if (st.tv && st.aba === 'resumo') mostrarAba('apuracao', false);
   }
@@ -728,12 +722,47 @@ function atualizarContagem() {
     a.innerHTML = ah;
   }
   atualizarCarimbo();
-  const mi = $('#contagem-mini');
-  const mh = emHtml(h`${BANDEIRA_MINI}<span>${mini}</span>`);
-  if (mi && mi._h !== mh) {
-    mi._h = mh;
-    mi.innerHTML = mh;
+  if (agora >= fe) atualizarTopo('apuracao', '', 0);
+  else if (agora >= ab) atualizarTopo('aberta', 'Urnas abertas · fecham em', fe - agora);
+  else atualizarTopo('antes', diasAte(fe, agora) >= 1 ? 'Urnas fecham em' : `Abrem às ${fHoraCurta(ab)} · fecham em`, fe - agora);
+}
+
+// Relógio do topo, em todas as abas: HH:MM:SS até o fechamento das urnas; depois, o atalho da apuração.
+// Só o algarismo que mudou é trocado, e ele entra com a animação de virada (.tc-vira).
+function atualizarTopo(modo, rotulo, ms) {
+  const el = $('#topo-cont');
+  if (!el) return;
+  if (el._modo !== modo || el._rot !== rotulo) {
+    el._modo = modo;
+    el._rot = rotulo;
+    el.dataset.modo = modo;
+    el.innerHTML = emHtml(
+      modo === 'apuracao'
+        ? h`<a class="tc-vivo" href="#apuracao"><i aria-hidden="true"></i><span class="tc-longo">Apuração ao vivo</span><span class="tc-curto">Ao vivo</span></a>`
+        : h`<span class="tc-rot">${rotulo}</span><span class="tc-rel" role="timer"></span>`,
+    );
   }
+  const r = $('.tc-rel', el);
+  if (!r) return;
+  const s = Math.max(0, Math.floor(ms / 1000));
+  const dois = (n) => String(n).padStart(2, '0');
+  const t = `${dois(Math.floor(s / 3600))}:${dois(Math.floor((s % 3600) / 60))}:${dois(s % 60)}`;
+  if (r._t === t) return;
+  const velho = r._t || '';
+  r._t = t;
+  r.setAttribute('aria-label', `${Math.floor(s / 3600)} horas e ${Math.floor((s % 3600) / 60)} minutos`);
+  if (velho.length !== t.length) {
+    r.innerHTML = [...t].map((c) => (c === ':' ? '<i class="tc-sep">:</i>' : `<b class="tc-d">${c}</b>`)).join('');
+    return;
+  }
+  [...t].forEach((c, i) => {
+    if (c === velho[i]) return;
+    const n = r.children[i];
+    n.textContent = c;
+    n.classList.remove('tc-vira');
+    void n.offsetWidth;
+    n.classList.add('tc-vira');
+  });
 }
 
 /* ------------------------------------------------------ carga de dados */
@@ -1233,6 +1262,7 @@ function renderizarMercados() {
   for (const el of $$('[data-merc-aviso]')) trocarHtml(el, avisoBloqueioMerc());
   for (const el of $$('[data-comp]')) trocarHtml(el, htmlComparacao());
   for (const el of $$('[data-tri]')) trocarHtml(el, htmlTriangulacao());
+  for (const el of $$('[data-agch]')) trocarHtml(el, chancePolymarket(el.dataset.agch));
   for (const el of $$('[data-lac-merc]')) trocarHtml(el, htmlLacunasMercado());
   atualizarHistoricoDom();
 }
@@ -1375,9 +1405,6 @@ function instalarBandeira() {
 const BANDEIRA = cru(
   `<span class="bandeira-onda" role="img" aria-label="Bandeira do Brasil">${Array.from({ length: FATIAS_BANDEIRA }, (_, i) => `<i style="--i:${i}"></i>`).join('')}<b class="onda-luz" aria-hidden="true"></b></span>`,
 );
-const BANDEIRA_MINI = cru(`<svg class="bandeira-mini" viewBox="0 0 20 14" aria-hidden="true" focusable="false">
-  <rect width="20" height="14" fill="#009C3B"/><path d="M10 1.7 18.3 7 10 12.3 1.7 7Z" fill="#FFDF00"/><circle cx="10" cy="7" r="3.5" fill="#002776"/>
-</svg>`);
 
 // 1º turno dentro do cartão verde: quem terminou na frente primeiro, foto grande, nome curto e % dos
 // válidos, em linhas alinhadas (foto, nome, %); um toque leva ao detalhe na aba Pesquisas.
@@ -3680,6 +3707,8 @@ function iniciar() {
   st.mediaSel = lerPref('mediaSel2', 'radar');
   st.dias = lerPref('dias', '30') === '7' ? 7 : 30;
   instalarBandeira();
+  const tb = $('#topo-bandeira');
+  if (tb && !tb.firstChild) tb.innerHTML = emHtml(BANDEIRA);
   ligarEventos();
   atualizarContagem();
   setInterval(atualizarContagem, 1000);
