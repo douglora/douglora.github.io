@@ -975,7 +975,7 @@ function processar() {
     }
   });
   return {
-    linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, urnas, proj, projUF, sim, motor: sim ? 'simulador' : 'estados', pL, pLUF,
+    linhas, swing, g, fNac, rem, remCont, remMax: remMaxCont, cont, urnas, proj, projUF, sim, motor: sim ? 'simulador' : 'estados', pL, pLUF, faixaUF: mc.faixa,
     definido, tudo, eleitoTSE, decidido, lidos, semLeitura, completo, totalVal,
   };
 }
@@ -1037,12 +1037,13 @@ function montecarlo(linhas, projL, projF, rem) {
   const uf = new Float64Array(linhas.length);
   if (V <= 0) {
     uf.fill(0.5);
-    return { nac: 0.5, uf };
+    return { nac: 0.5, uf, faixa: null };
   }
   const phi = clamp(rem / V, 0, 1);
   const sNac = (A.base.sigmaNac / 100) * phi;
   const d0 = A.base.sigmaNac / 100; // deslocamento nacional comum, em fração dos válidos que faltam
   const base = projL - projF;
+  const ms = new Float64Array(MODELO.SORTEIOS);
   let vit = 0;
   for (let k = 0; k < MODELO.SORTEIOS; k++) {
     const o = k * S;
@@ -1058,10 +1059,14 @@ function montecarlo(linhas, projL, projF, rem) {
       uf[i] += mu > 0 ? 1 : mu === 0 ? 0.5 : 0;
     }
     const m = base + 2 * d;
+    ms[k] = m;
     vit += m > 0 ? 1 : m === 0 ? 0.5 : 0;
   }
   for (let i = 0; i < uf.length; i++) uf[i] /= MODELO.SORTEIOS;
-  return { nac: vit / MODELO.SORTEIOS, uf };
+  // Faixa de 80% da participação final de Lula nos válidos (os mesmos sorteios da chance).
+  ms.sort();
+  const parte = (q) => clamp((V + ms[Math.floor(q * (MODELO.SORTEIOS - 1))]) / (2 * V), 0, 1) * 100;
+  return { nac: vit / MODELO.SORTEIOS, uf, faixa: [parte(0.1), parte(0.9)] };
 }
 
 /* ============================================================== insights */
@@ -2911,6 +2916,8 @@ function atualizarPar(chave, L, F, pL, pF, ok, casas = 2) {
 }
 
 const MOTOR_ROT = { simulador: 'Simulador municipal', estados: 'Modelo por estado' };
+// A margem de erro da projeção dita como se fala: onde Lula termina em 8 de cada 10 cenários.
+const faixaTxt = (fx) => `${C.curto('lula')} de ${pct1(fx[0])} a ${pct1(fx[1])} em 8 de 10 cenários`;
 
 function atualizarProj(r, temVoto) {
   const c = r.cont;
@@ -2925,13 +2932,15 @@ function atualizarProj(r, temVoto) {
     const s = r.sim;
     atualizarPar('proj', s.proj.L, s.proj.F, s.proj.pL, s.proj.pF, true, 1);
     rot = MOTOR_ROT.simulador;
-    if (s.faixa) faixa = `faixa 80% · ${pct1(s.faixa[0])} a ${pct1(s.faixa[1])}`;
+    if (s.faixa) faixa = faixaTxt(s.faixa);
   } else if (!r.completo) {
     atualizarPar('proj', 0, 0, 0, 0, false);
     rot = `Lendo estados ${r.lidos}/${UFS.length}`;
   } else {
     atualizarPar('proj', r.proj.L, r.proj.F, r.proj.pL, r.proj.pF, true, 1);
-    rot = MOTOR_ROT.estados;
+    // sem voto apurado a projeção é a das pesquisas (o Agregador próprio do Resumo), e a tela diz isso
+    rot = temVoto ? MOTOR_ROT.estados : 'Pesquisas · antes dos votos';
+    if (temVoto && !r.decidido && r.faixaUF) faixa = faixaTxt(r.faixaUF);
   }
   if (mot && mot.textContent !== rot) mot.textContent = rot;
   if (fx && fx.textContent !== faixa) fx.textContent = faixa;
@@ -3039,8 +3048,15 @@ function atualizarTela() {
   // Com votos já apurados mas estados ainda carregando, a chance espera a projeção completa
   // (salvo se já está decidido: 100% apurado, matematicamente definido ou eleito pelo TSE).
   const decidido = r.decidido;
-  pintarChance(!r.completo && r.motor !== 'simulador' && temVoto && !decidido ? null : r.pL);
-  texto('[data-ap-chmotor]', r.motor === 'simulador' && !decidido ? 'simulador municipal' : 'modelo por estado');
+  // Das 17h ao primeiro voto o modelo por estado só repetiria as pesquisas (e dava 79% contra os 83% do Resumo):
+  // a chance segue a do Polymarket, como antes das 17h, e o modelo assume com o primeiro voto apurado.
+  const pPoly = temVoto ? null : chancePolyLula();
+  if (pPoly !== null) pintarChance(pPoly);
+  else pintarChance(!r.completo && r.motor !== 'simulador' && temVoto && !decidido ? null : r.pL);
+  texto(
+    '[data-ap-chmotor]',
+    pPoly !== null ? 'Polymarket · antes dos votos' : r.motor === 'simulador' && !decidido ? 'simulador municipal' : 'modelo por estado',
+  );
   // Os avisos só começam depois que a primeira leitura com votos foi vista: quem abre a página no meio da noite não recebe
   // de uma vez tudo o que já tinha acontecido.
   if (temVoto && !A.evT0) A.evT0 = Date.now();

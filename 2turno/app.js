@@ -1303,7 +1303,9 @@ function renderizarFaixaTopo() {
     );
   } else if (d && falhaPersistente()) {
     itens.push(
-      h`<div class="alerta"><p>Sem atualização há alguns minutos (${st.erro}). Os números abaixo são de ${ou(fDataHora(d.gerado_em))}; a página continua tentando sozinha.</p><button type="button" data-acao="recarregar">Tentar agora</button></div>`,
+      depoisDoFechamento(d)
+        ? h`<div class="alerta alerta-velho"><p>Pesquisas e mercados de ${ou(fDataHora(d.gerado_em))}. A apuração não depende disso: vem direto do TSE.</p></div>`
+        : h`<div class="alerta"><p>Sem atualização há alguns minutos (${st.erro}). Os números abaixo são de ${ou(fDataHora(d.gerado_em))}; a página continua tentando sozinha.</p><button type="button" data-acao="recarregar">Tentar agora</button></div>`,
     );
   }
   if (d) {
@@ -1313,13 +1315,22 @@ function renderizarFaixaTopo() {
     const g = msDe(d.gerado_em);
     if (g === null) {
       itens.push(h`<div class="alerta"><p>Os dados não dizem quando foram gerados: confira a data de cada bloco.</p></div>`);
-    } else if (Date.now() - g > CFG.horasVelho * HORA) {
+    } else if (Date.now() - g > CFG.horasVelho * HORA && !falhaPersistente()) {
       itens.push(
-        h`<div class="alerta"><p><b>Dados de ${fDataHora(g)}</b>, ${fIdade(g)}. A atualização automática pode ter parado; os números abaixo são dessa hora.</p></div>`,
+        depoisDoFechamento(d)
+          ? h`<div class="alerta alerta-velho"><p>Pesquisas e mercados de ${fDataHora(g)}. A apuração não depende disso: vem direto do TSE.</p></div>`
+          : h`<div class="alerta"><p><b>Dados de ${fDataHora(g)}</b>, ${fIdade(g)}. A atualização automática pode ter parado; os números abaixo são dessa hora.</p></div>`,
       );
     }
   }
   el.innerHTML = emHtml(itens);
+}
+
+// Depois das 17h a apuração lê o TSE direto do celular: dado velho das pesquisas não é alarme
+// (o aviso fica calmo nas outras abas e some da Apuração, pelo style.css).
+function depoisDoFechamento(d) {
+  const fe = msDe(d?.eleicao?.fechamento);
+  return fe !== null && Date.now() >= fe;
 }
 
 function renderizarRodape() {

@@ -274,6 +274,9 @@ main { padding-bottom: 8px; }
   line-height: 1.45;
 }
 .alerta p { margin: 0; flex: 1 1 220px; }
+/* depois das 17h: dado velho das pesquisas não é alarme, e a Apuração (que lê o TSE) nem mostra */
+.alerta-velho { border-color: var(--linha); background: var(--cartao); color: var(--tinta-2); }
+body[data-aba="apuracao"] .alerta-velho { display: none; }
 .alerta button {
   border: 1px solid var(--alerta-borda);
   background: var(--cartao);
