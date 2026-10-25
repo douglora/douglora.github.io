@@ -17184,9 +17184,9 @@
     "verdict_plain": "O eixo ideológico também não passou no teste fora da amostra: prever o viés de lado de uma casa pelo passado dela deu erro de 1,96 p.p. contra 1,65 p.p. de simplesmente prever zero.",
     "version": "1.0.0-ideology-axis"
   },
-  "live_hash": "ffcc237afdc4e09ea613303d69de03ebda2f3bc5abac1d086283d6d1f511b7d1",
-  "live_source_run_id": "run-20261025-ee70f8a5-8b932466",
-  "run_id": "hist-20261025-8d90558c-8c3bf707-ffcc237a-08a374",
+  "live_hash": "2501773ba5c0b3f5ddf2ddf4613421dd40439df87362f7ad8c996b7667d57983",
+  "live_source_run_id": "run-20261025-6785d2db-8b932466",
+  "run_id": "hist-20261025-8d90558c-8c3bf707-2501773b-08a374",
   "scenario": {
     "aggregate": {
       "candidates": [],
@@ -17243,7 +17243,16 @@
         "history_status": "unavailable",
         "house_id": "quaest",
         "house_name": "Quaest",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_in_rolling_window_unverified",
+          "field_end": "2026-10-24",
+          "field_start": "2026-10-23",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR091582026",
+          "sample_size": 3702,
+          "scenario_status": "accepted"
+        }
       },
       {
         "applied_to": null,
@@ -17252,7 +17261,16 @@
         "history_status": "unavailable",
         "house_id": "atlasintel",
         "house_name": "AtlasIntel",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_in_rolling_window_unverified",
+          "field_end": "2026-10-23",
+          "field_start": "2026-10-18",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR063802026",
+          "sample_size": 5000,
+          "scenario_status": "release_not_found"
+        }
       },
       {
         "applied_to": null,
@@ -17279,7 +17297,16 @@
         "history_status": "unavailable",
         "house_id": "datafolha",
         "house_name": "Datafolha",
-        "next_expected_release": null
+        "next_expected_release": {
+          "expected_release_status": "due_in_rolling_window_unverified",
+          "field_end": "2026-10-24",
+          "field_start": "2026-10-23",
+          "note": "Registro PesqEle/TSE: diz quando a divulgação é prevista, nunca o resultado.",
+          "planned_publish_date": "2026-10-24",
+          "registration_no": "BR095402026",
+          "sample_size": 4050,
+          "scenario_status": "accepted"
+        }
       }
     ],
     "method": {
