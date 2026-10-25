@@ -2103,68 +2103,108 @@ function historicoFalta(e, p) {
     ${fx ? h`<p class="porque-txt">Por isso a previsão vai de ${fPct(fx[0])} (se cair como em 2022) a ${fPct(fx[1])} (se subir como em 2010, a maior alta).</p>` : ''}`;
 }
 
+// Abstenção (v7, 24/10/2026, pedido do Douglas): só o essencial, em número. Quantos faltaram no 1º turno, a média dos
+// 2º turnos, a projeção para domingo em % e em pessoas, os votos projetados de cada um e como a abstenção mexe no placar.
 function blocoProjecao(d) {
   const p = obj(d.projecao);
   const tit = h`<h2 class="sobre">Nível de abstenção</h2>`;
   if (!p) return h`<section class="bloco" id="sec-projecao">${tit}${lacunaBloco('Abstenção: sem dado ainda.')}</section>`;
   const e = obj(p.explicacao);
-  const vL = num(p.votos?.lula);
-  const vF = num(p.votos?.flavio);
-  const coluna = (id, v, dir) => {
-    const c = cand(id);
-    return h`<div class="votos-c${dir ? ' dir' : ''}" style="--c:${c.cor}">
-        <div class="placar-nome"><i class="mc"></i>${curto(id)}</div>
-        <div class="votos-num">${v !== null ? fMilhoes(v) : LAC}</div>
-        <div class="votos-rot">milhões de votos</div>
-      </div>`;
-  };
-  const lider =
-    p.lider === 'lula' || p.lider === 'flavio' ? p.lider : vL !== null && vF !== null ? (vL >= vF ? 'lula' : 'flavio') : null;
-  const mg = num(p.margem_votos) ?? (vL !== null && vF !== null ? Math.abs(vL - vF) : null);
-  const ab = num(p.abstencao_estimada_pct);
-  const t1 = num(e?.t1_2026) ?? num(p.base_abstencao?.t1_2026_pct) ?? num(d.primeiro_turno?.abstencao_pct);
+  const pt = obj(d.primeiro_turno) || {};
+  const eleit = num(p.eleitorado) ?? num(pt.eleitorado);
+  const t1 = num(e?.t1_2026) ?? num(p.base_abstencao?.t1_2026_pct) ?? num(pt.abstencao_pct);
+  const falt1 = num(pt.eleitorado) !== null && num(pt.comparecimento) !== null ? pt.eleitorado - pt.comparecimento : eleit !== null && t1 !== null ? (eleit * t1) / 100 : null;
   const med = num(p.base_abstencao?.media_t2_2002_2022_pct);
+  const delta = num(p.base_abstencao?.delta_medio_t1_t2_pp);
+  const ab = num(p.abstencao_estimada_pct);
   const fx = faixa(p.abstencao_faixa_pct);
-  const tile = (chave, rot, v, sub) =>
-    h`<div class="ab-tile ab-${chave}"><span class="ab-rot">${rot}</span><b>${v !== null ? cuNum(`ab-${chave}`, v, 1, '%') : LAC}</b>${sub ? h`<small>${sub}</small>` : ''}</div>`;
+  const faltProj = eleit !== null && num(p.comparecimento_estimado) !== null ? eleit - p.comparecimento_estimado : eleit !== null && ab !== null ? (eleit * ab) / 100 : null;
+  const pessoas = (v) => (v !== null ? h`<em>${fGrande(v)} de pessoas</em>` : '');
+  const tile = (chave, rot, v, gente, sub) =>
+    h`<div class="ab-tile ab-${chave}"><span class="ab-rot">${rot}</span><b>${v !== null ? cuNum(`ab-${chave}`, v, 1, '%') : LAC}</b>${pessoas(gente)}${sub ? h`<small>${sub}</small>` : ''}</div>`;
   return h`<section class="bloco" id="sec-projecao">
     ${tit}
     <div class="ab-tiles">
-      ${tile('t1', `1º turno${fData(d.primeiro_turno?.data) ? `, ${fData(d.primeiro_turno.data)}` : ''}`, t1, 'faltaram')}
-      ${tile('prev', 'Previsão para domingo', ab, fx ? `de ${fPct(fx[0])} a ${fPct(fx[1])}` : '')}
-      ${tile('hist', '2º turnos de 2002 a 2022', med, 'média')}
+      ${tile('t1', `Não votaram no 1º turno${fData(pt.data) ? `, ${fData(pt.data)}` : ''}`, t1, falt1, 'do eleitorado')}
+      ${tile('hist', 'Média dos 2º turnos, 2002 a 2022', med, eleit !== null && med !== null ? (eleit * med) / 100 : null, delta !== null ? `do 1º para o 2º turno sobe ${fNum(delta)} ponto em média` : '')}
+      ${tile('prev', 'Projeção para domingo', ab, faltProj, fx ? `faixa de ${fPct(fx[0])} a ${fPct(fx[1])}` : '')}
     </div>
     <div class="ab-duo">
-      ${cemEleitores(e)}
-      ${barrasFalta(e)}
+      ${votosProjetados(p, pt, ab)}
+      ${historicoAbst(e, d)}
     </div>
-    <div class="proj-cards">${mudaResultado(p, e)}</div>
-    <details class="mais" data-k="cenarios-abst">
-      <summary>Cenários de abstenção</summary>
-      <div class="mais-corpo">
-        <p class="cem-tit">Em votos, na previsão do meio</p>
-        <div class="votos-duelo">${coluna('lula', vL, false)}${coluna('flavio', vF, true)}</div>
-        <p class="linha-forte">Diferença: <b>${mg !== null ? `${fGrande(mg)} de votos` : LAC}</b>${lider && mg !== null ? ` (${curto(lider)} à frente)` : ''}</p>
-        ${cenariosEstado(p)}
-        <p class="cem-tit">Cenários em votos</p>
-        ${tabelaCenarios(p, ab)}
-      </div>
-    </details>
+    ${efeitoAbst(p, e, d, eleit)}
   </section>`;
 }
 
-// Quanto a abstenção mudou do 1º para o 2º turno em cada eleição desde 2002, em barras.
-function barrasFalta(e) {
-  const hist = arr(e?.historico).filter((r) => obj(r) && num(r.variacao) !== null);
-  if (!hist.length) return '';
-  const max = Math.max(...hist.map((r) => Math.abs(num(r.variacao))), 0.1);
-  return h`<div class="ab-hist">
-      <p class="cem-tit">Do 1º para o 2º turno, em pontos</p>
-      <ul class="hist-abst">${hist.map((r, i) => {
-        const v = num(r.variacao);
-        return h`<li style="--i:${i}"><span>${r.ano}</span><span class="trilho"><span class="${v < 0 ? 'neg' : ''}" style="width:${((Math.abs(v) / max) * 100).toFixed(1)}%"></span></span><b>${fSinal(v)}</b></li>`;
-      })}</ul>
+// Votos projetados de cada um com a abstenção do meio, contra os do 1º turno, e a diferença em votos.
+function votosProjetados(p, pt, ab) {
+  const cen = arr(p.cenarios).filter(obj);
+  const centro = cen.find((c) => c.central) || null;
+  const v1 = new Map(arr(pt.candidatos).filter((c) => obj(c) && c.id).map((c) => [c.id, num(c.votos)]));
+  const lado = (id) => {
+    const c = cand(id);
+    const v = num(p.votos?.[id]);
+    const pv = num(centro?.validos?.[id]);
+    const ant = v1.get(id) ?? null;
+    return h`<div class="ab-vc" style="--c:${c.cor}">
+        <p class="ab-vc-n"><i class="mc"></i>${curto(id)}</p>
+        <p class="ab-vc-v"><b>${v !== null ? cuNum(`ab-v-${id}`, v / 1e6, 1, '') : LAC}</b><span>mi de votos</span></p>
+        <p class="ab-vc-s">${pv !== null ? h`<b>${fPct(pv)}</b> dos válidos` : ''}${ant !== null && v !== null ? h` · ${fSinal((v - ant) / 1e6)} mi sobre o 1º turno` : ''}</p>
+      </div>`;
+  };
+  const vL = num(p.votos?.lula);
+  const vF = num(p.votos?.flavio);
+  const mg = num(p.margem_votos) ?? (vL !== null && vF !== null ? Math.abs(vL - vF) : null);
+  const lider = p.lider === 'lula' || p.lider === 'flavio' ? p.lider : vL !== null && vF !== null ? (vL >= vF ? 'lula' : 'flavio') : null;
+  return h`<div class="ab-votos">
+      <p class="cem-tit">Projeção por candidato${ab !== null ? `, com ${fPct(ab)} de abstenção` : ''}</p>
+      <div class="ab-vc-par">${lado('lula')}${lado('flavio')}</div>
+      ${vL !== null && vF !== null ? h`<div class="ab-vc-bar" aria-hidden="true"><i style="--c:${cand('lula').cor};flex:${vL} 1 0px"></i><i style="--c:${cand('flavio').cor};flex:${vF} 1 0px"></i></div>` : ''}
+      ${mg !== null && lider ? h`<p class="ab-vc-dif"><b>${fGrande(mg)} de votos</b> de diferença, ${curto(lider)} à frente</p>` : ''}
     </div>`;
+}
+
+// Abstenção de cada eleição desde 2002: 1º turno → 2º turno, com a barra no nível do 2º turno.
+function historicoAbst(e, d) {
+  const hist = arr(e?.historico).filter((r) => obj(r) && num(r.t1) !== null && num(r.t2) !== null);
+  if (!hist.length) return '';
+  const t1 = num(e?.t1_2026) ?? num(d.primeiro_turno?.abstencao_pct);
+  const max = Math.max(...hist.map((r) => num(r.t2)), t1 ?? 0, 1);
+  return h`<div class="ab-hist">
+      <p class="cem-tit">Abstenção em cada eleição · 1º → 2º turno</p>
+      <ul class="hist-abst ab-anos">${hist.map((r, i) => {
+        const v = num(r.variacao) ?? num(r.t2) - num(r.t1);
+        return h`<li style="--i:${i}"><span>${r.ano}</span><span class="trilho"><span class="${v < 0 ? 'neg' : ''}" style="width:${((num(r.t2) / max) * 100).toFixed(1)}%"></span></span><em>${fNum(r.t1)} → <b>${fNum(r.t2)}%</b></em><small class="${v < 0 ? 'neg' : ''}">${fSinal(v)}</small></li>`;
+      })}${t1 !== null ? h`<li class="agora" style="--i:${hist.length}"><span>2026</span><span class="trilho"><span style="width:${((t1 / max) * 100).toFixed(1)}%"></span></span><em>${fNum(t1)} → <b>?</b></em><small></small></li>` : ''}</ul>
+    </div>`;
+}
+
+// Como a abstenção mexe no placar: três números, uma linha cada.
+function efeitoAbst(p, e, d, eleit) {
+  const cen = arr(p.cenarios).filter(obj).filter((c) => num(c.margem_votos) !== null && num(c.abstencao_pct) !== null);
+  const mesmasPesq = cen.filter((c) => !/errar/i.test(txt(c.nome) || ''));
+  const mgs = mesmasPesq.map((c) => num(c.margem_votos));
+  const v = obj(e?.virada);
+  const casa = obj(v?.ficam_em_casa_de_cada_100);
+  const quem = v?.quem_vira;
+  const falta = v?.quem_falta_mais;
+  const dif = num(v?.diferenca) ?? num(p.virada?.diferenca_comparecimento_pp);
+  const ad = obj(d.abstencao_diferencial);
+  const nAnos = arr(ad?.anos).length;
+  const efL = num(ad?.efeito_lula_par_pp);
+  const linhas = [];
+  if (eleit !== null) {
+    linhas.push(h`<li><b class="ab-ef-n">${fGrande(eleit / 100)}</b><span>de eleitores a menos na urna a cada 1 ponto de abstenção${mgs.length > 1 ? h`; se faltarem igual dos dois lados, a diferença fica entre <b>${fGrande(Math.min(...mgs))}</b> e <b>${fGrande(Math.max(...mgs))}</b> de votos` : ''}</span></li>`);
+  }
+  if (quem && falta && dif !== null) {
+    linhas.push(h`<li><b class="ab-ef-n">${fNum(dif)} pt</b><span>é quanto o eleitorado de ${curto(falta)} teria de faltar a mais que o de ${curto(quem)} para ${curto(quem)} virar${casa && num(casa[falta]) !== null && num(casa[quem]) !== null ? h` (${fNum(casa[falta])} de cada 100 em casa contra ${fNum(casa[quem])})` : ''}</span></li>`);
+  }
+  if (nAnos && num(ad?.subiu_mais_nos_petistas_em) !== null && efL !== null) {
+    linhas.push(h`<li><b class="ab-ef-n">${ad.subiu_mais_nos_petistas_em} de ${nAnos}</b><span>eleições em que a abstenção subiu mais onde o PT é mais forte: efeito de <b>${fSinal2(efL)} ponto</b> para ${curto('lula')}</span></li>`);
+  }
+  if (!linhas.length) return '';
+  return h`<div class="ab-efeito"><p class="cem-tit">Como a abstenção mexe nos votos</p><ul>${linhas}</ul></div>`;
 }
 
 function tabelaCenarios(p, ab) {
