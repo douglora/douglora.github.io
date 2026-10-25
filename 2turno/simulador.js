@@ -448,6 +448,10 @@ function insights(d) {
   if (a.secoes_pct >= 100 || (fin(p.sd_pp) && p.sd_pp === 0 && a.secoes_pct > 99)) {
     out.unshift({ id: 'fim', p: 100, tom: 'forte', html: h`Com tudo apurado, a projeção é o próprio resultado: ${r.lula} <b>${pct2(p.lula_pct)}</b> × ${r.flavio} <b>${pct2(p.flavio_pct)}</b>. Resultado oficial: TSE.` });
   }
+  // Antes de maduro, nada que dependa da projeção do simulador vai para os destaques (25/10/2026: "São Paulo deve render
+  // +690 mil a Lula", da capital, ao lado de "SP deve render +3,1 milhões a Flávio", do estado; transferência e
+  // comparecimento de 10% das seções). Fica só a conta de quanto falta para virar, que sai da contagem.
+  if (!m.ok) return out.filter((x) => x.id === 'virar' || x.id === 'fim');
   return out.sort((x, y) => y.p - x.p);
 }
 const nomeCidade = (s) =>
