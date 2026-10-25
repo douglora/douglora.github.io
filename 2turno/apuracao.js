@@ -1301,6 +1301,47 @@ function calcularInsights(r) {
   return out.sort((a, b) => b.p - a.p);
 }
 
+// 25/10/2026 20h: enquanto o simulador não está maduro (simulador.js, maduro()), a caixa "Destaques agora", logo abaixo
+// dos cards, mostra os destaques da própria contagem: o mais forte fica e o segundo gira entre os 8 seguintes a cada 8 s.
+// Maduro, o simulador.js volta a desenhar a caixa (ele tira daqui o que não é dele).
+function destaquesTopo(r, temVoto) {
+  const ol = document.querySelector('#painel-apuracao [data-rx-dest]');
+  if (!ol || A.modo !== 'vivo' || A.simDoc?.maduro?.ok === true) return;
+  const lista = temVoto ? calcularInsights(r) : [];
+  const resto = lista.slice(1, 9);
+  const giro = resto.length ? resto[Math.floor(Date.now() / 8000) % resto.length] : null;
+  const final = [lista[0], giro].filter(Boolean);
+  const ids = new Set(final.map((x) => x.id));
+  if (final.length > 1) ol.classList.add('dois');
+  for (const li of Array.from(ol.children)) {
+    if (!ids.has(li.dataset.id) && !li.classList.contains('saindo')) {
+      li.classList.add('saindo');
+      setTimeout(() => li.remove(), 450);
+    }
+  }
+  let ref = null;
+  for (const x of final) {
+    let li = Array.from(ol.children).find((e) => e.dataset.id === x.id && !e.classList.contains('saindo'));
+    const s = C.emHtml(x.html);
+    if (!li) {
+      li = document.createElement('li');
+      li.dataset.id = x.id;
+      li.className = `ap-in entrando${x.tom === 'forte' ? ' forte' : ''}`;
+      li.innerHTML = s;
+      li._h = s;
+      setTimeout(() => li.classList.remove('entrando'), 600);
+    } else if (li._h !== s) {
+      li.innerHTML = s;
+      li._h = s;
+    }
+    const alvo = ref ? ref.nextSibling : ol.firstChild;
+    if (li !== alvo) ol.insertBefore(li, alvo);
+    ref = li;
+  }
+  const vazio = document.querySelector('#painel-apuracao [data-rx-dest-vazio]');
+  if (vazio) vazio.hidden = final.length > 0;
+}
+
 // Destaques que cruzam estado, 1º turno, histórico, capitais, simulador e pesquisas. Cada um nasce
 // só com apuração mínima (MODELO.INS_MIN) e usa apenas números que estão na tela ou nos arquivos lidos.
 function insightsNovos(r, out, { n, h, agora, MIN }) {
@@ -3201,6 +3242,7 @@ function atualizarTela() {
     }
   }
   atualizarAgora(r, temVoto);
+  destaquesTopo(r, temVoto);
   if (r.completo && pontoSerie(r)) for (const g of $$('[data-grafico^="apur-"]')) C.desenharGrafico(g);
   atualizarMapa(r);
   pintarFeed();

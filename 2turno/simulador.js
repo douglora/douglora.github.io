@@ -473,6 +473,8 @@ function renderInsights(lista) {
   } else if (baixo) baixo.style.display = '';
   const ol = topo || baixo;
   if (!ol) return;
+  // Sem destaque do simulador (antes de maduro), a caixa do topo fica com os da contagem (apuracao.js, destaquesTopo).
+  if (topo && !lista.length) return;
   // Dois destaques por vez (v6, 24/10/2026: a aba sem parede de texto): o mais forte fica, o segundo gira.
   const fixos = lista.slice(0, 1);
   const resto = lista.slice(1);
