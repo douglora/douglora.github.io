@@ -84,7 +84,8 @@
   text-align: center;
   font-variant-numeric: tabular-nums;
 }
-.rx-un.vira b { animation: rxVira 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.rx-un b span { display: inline-block; }
+.rx-un.vira b span { animation: rxVira 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .rx-un small { margin-top: 7px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tinta-3); }
 .rx-sepr { flex: none; padding-top: 8px; font-size: clamp(28px, 9vw, 42px); font-weight: 700; line-height: 1.2; font-style: normal; color: var(--tinta-3); animation: rxPisca 1s steps(1, end) infinite; }
 .rx-dia { position: relative; z-index: 1; height: 6px; border-radius: 3px; background: var(--suave-2); overflow: hidden; }
@@ -277,6 +278,8 @@
 .rx-ev span { min-width: 0; }
 .rx-ev.rx-entra { animation: rxEntra 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .rx-ev-vazio { justify-content: center; border: 1px dashed var(--linha-2); background: transparent; color: var(--tinta-3); font-weight: 500; }
+/* As vagas vazias seguram a altura da lista (sem pulo de tela no iPhone), mas sem moldura: só um traço apagado. */
+.rx-ev-vazio[aria-hidden="true"] { border-color: transparent; background: var(--linha); opacity: 0.35; }
 .rx-toasts { position: fixed; z-index: 60; top: calc(env(safe-area-inset-top, 0px) + 58px); left: 50%; display: grid; gap: 8px; width: min(92vw, 420px); transform: translateX(-50%); pointer-events: none; }
 .rx-toast { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-left: 6px solid var(--tinta-3); border-radius: 14px; background: var(--tinta); color: var(--sobre-tinta); font-size: 14.5px; font-weight: 720; box-shadow: 0 14px 34px -12px rgba(0, 0, 0, 0.8); animation: rxToast 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2); transition: opacity 0.4s, transform 0.4s; }
 #painel-apuracao .rx-toast.q-lula,
@@ -386,7 +389,8 @@ dialog.rx-sheet::backdrop { background: rgba(5, 7, 10, 0.66); backdrop-filter: b
 .rx-tab { width: 100%; margin: 10px 0 0; border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .rx-tab th, .rx-tab td { padding: 9px 4px; border-bottom: 1px solid var(--linha); font-size: 14px; text-align: left; font-weight: 500; }
 .rx-tab thead th { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--tinta-3); }
-.rx-tab th[scope="row"] { display: flex; align-items: center; gap: 7px; font-weight: 650; }
+.rx-tab th[scope="row"] { font-weight: 650; white-space: nowrap; }
+.rx-tab th[scope="row"] .rx-dot { margin-right: 7px; vertical-align: 1px; }
 .rx-tab .n { text-align: right; }
 .rx-tab-h { margin-top: 8px; }
 .rx-acomp[data-ok="sim"] { color: var(--vivo); font-weight: 800; }
@@ -394,7 +398,7 @@ dialog.rx-sheet::backdrop { background: rgba(5, 7, 10, 0.66); backdrop-filter: b
 .rx-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 14px 0 0; }
 .rx-kpi { display: flex; flex-direction: column; gap: 3px; min-width: 0; padding: 10px 12px; border: 1px solid var(--linha); border-radius: 12px; }
 .rx-kpi.larga { grid-column: 1 / -1; }
-.rx-kpi span { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); }
+.rx-kpi > span { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-3); }
 .rx-kpi b { font-size: 16px; font-weight: 740; font-variant-numeric: tabular-nums; }
 .rx-kpi small { font-size: 12px; font-weight: 650; }
 .rx-virou-t { color: var(--alerta); }
@@ -454,7 +458,7 @@ body.tv .rx-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rx-uf.rx-virou,
   .rx-ev.rx-entra,
   .rx-toast,
-  .rx-un.vira b,
+  .rx-un.vira b span,
   .rx-sheet-in { animation: none !important; }
   .rx-prog-bar i, .rx-chbar span, .rx-par-bar span, .rx-div i, .rx-urn i, .rx-fr-b i, .rx-reg-bar i, .rx-dia i, .rx-lado, .rx-toast { transition: none !important; }
   .rx-uf.rx-virou { border-color: var(--tinta); }

@@ -392,15 +392,6 @@ function insights(d) {
       html: h`Maior estoque de votos por contar: <b>${nomeCidade(pesa.nome)} (${pesa.uf})</b>, ${C.fNum(pesa.apurado_pct, 0)}% apurado; deve render <b>+${votosCurto(Math.abs(pesa.saldo))}</b> a ${pesa.saldo >= 0 ? r.lula : r.flavio}.`,
     });
   }
-  const ord = obj(d.ordem);
-  if (aberta && ord && fin(ord.vies_logit) && Math.abs(ord.vies_logit) >= 0.02 && (ord.municipios_com_duas_leituras ?? 0) >= 30) {
-    const quem = ord.vies_logit < 0 ? r.flavio : r.lula;
-    out.push({
-      id: 'ordem',
-      p: 55,
-      html: h`As primeiras seções de cada cidade estão pendendo para <b>${quem}</b> (medido em ${C.fInt(ord.municipios_com_duas_leituras)} cidades lidas duas vezes); o fim de cada contagem tende a compensar, e o modelo já desconta.`,
-    });
-  }
   if (aberta && a.secoes_pct < 5) {
     out.push({
       id: 'comeco',
@@ -434,9 +425,10 @@ const nomeCidade = (s) =>
 function renderInsights(lista) {
   const ol = $('[data-sim-ins]');
   if (!ol) return;
-  const fixos = lista.slice(0, 2);
-  const resto = lista.slice(2);
-  const mostrar = resto.length ? [...fixos, resto[S.rot % resto.length], ...(resto.length > 1 ? [resto[(S.rot + 1) % resto.length]] : [])] : fixos;
+  // Dois destaques por vez (v6, 24/10/2026: a aba sem parede de texto): o mais forte fica, o segundo gira.
+  const fixos = lista.slice(0, 1);
+  const resto = lista.slice(1);
+  const mostrar = resto.length ? [...fixos, resto[S.rot % resto.length]] : fixos;
   const vistos = new Set();
   const final = mostrar.filter((x) => x && !vistos.has(x.id) && vistos.add(x.id));
   const ids = new Set(final.map((x) => x.id));
@@ -693,7 +685,7 @@ function renderTransf(d) {
         <p class="sim-tl-cab">${fotos}<span class="sim-tl-rot">${rotulo}</span><span class="sim-tl-n">${votosCurto(g.eleitores_1t)} no 1º turno</span></p>
         ${barraTransf(g)}
         <p class="sim-tl-num"><span><i class="mc" style="--c:${candSim('lula').cor}"></i>${r.lula} <b>${pct1(g.lula)}</b></span><span><i class="mc" style="--c:${candSim('flavio').cor}"></i>${r.flavio} <b>${pct1(g.flavio)}</b></span><span class="sim-tl-out">branco/nulo ${pct1(g.bn)} · não votou ${pct1(g.abst)}</span></p>
-        <p class="sim-tl-ant">${ant}${fin(g.apurado_pct) && g.apurado_pct >= 0.5 ? h`<span>medido em ${C.fNum(g.apurado_pct, 0)}% desse eleitorado</span>` : h`<span>prévia: padrão de ${r.anterior} ajustado à média das pesquisas; a apuração ainda não mediu</span>`}</p>
+        <p class="sim-tl-ant">${ant}${fin(g.apurado_pct) && g.apurado_pct >= 0.5 ? h`<span>medido em ${C.fNum(g.apurado_pct, 0)}% desse eleitorado</span>` : h`<span>prévia</span>`}</p>
       </div>`;
     });
   htmlEm(el, linhas.length ? linhas : C.lacunaBloco('A transferência aparece com os primeiros municípios apurados.'));

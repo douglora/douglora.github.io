@@ -2666,7 +2666,7 @@ function htmlLados(prevOnly) {
     return h`<div class="rx-lado${prevOnly ? ' pre' : ''}" data-lado="${id}">
       <div class="rx-quem">${C.foto(c)}<div><p class="rx-nome">${c.nome}</p><p class="rx-part">${C.txt(c.partido) || ''}${C.num(c.numero) !== null ? ` · ${c.numero}` : ''}</p></div></div>
       ${prevOnly
-        ? h`<p class="rx-ch-rot">chance de vitória</p><p class="rx-ch" data-ch="${id}">—</p><p class="rx-sub">prévia <b data-pv="${id}">—</b></p>`
+        ? h`<p class="rx-ch-rot">chance no Polymarket</p><p class="rx-ch" data-ch="${id}">—</p><p class="rx-sub">pesquisas <b data-pv="${id}">—</b></p>`
         : h`<p class="rx-votos"><b data-votos="${id}">0</b></p><p class="rx-pct"><b data-pct="${id}">—</b><small> dos válidos</small></p><p class="rx-chip"><span>chance</span> <b data-ch="${id}">—</b></p>`}
     </div>`;
   });
@@ -2741,7 +2741,6 @@ function esqueletoPainel() {
       ${htmlEstados(true)}
     </section>
     ${htmlGraficosNoite()}
-    <p class="ap-rodape rx-rodape">Projeção estatística da mesa, não é resultado oficial · Fonte: TSE</p>
     <div class="rx-toasts" data-rx-toasts aria-live="polite"></div>`;
 }
 
@@ -2753,7 +2752,7 @@ function esqueletoPre() {
   const ab = C.msDe(e.abertura) ?? C.msDe('2026-10-25T08:00:00-03:00');
   const hora = (t) => C.fHora(t).replace('h00', 'h');
   const dia = new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', weekday: 'short', day: '2-digit', month: '2-digit' }).format(fe).replace('.', '');
-  const un = (k, rot) => h`<div class="rx-un${k === 'd' ? '' : ' on'}" data-un="${k}"><b>00</b><small>${rot}</small></div>`;
+  const un = (k, rot) => h`<div class="rx-un${k === 'd' ? '' : ' on'}" data-un="${k}"><b><span>00</span></b><small>${rot}</small></div>`;
   return h`
     <section class="ap-pre rx-pre" aria-label="Contagem para o fechamento das urnas">
       <div class="rx-cont">
@@ -2773,10 +2772,16 @@ function esqueletoPre() {
       <h2 class="sobre">Estados</h2>
       ${htmlEstados(false)}
     </section>
-    <p class="ap-rodape rx-rodape">Prévia estatística da mesa, não é resultado oficial</p>`;
+`;
 }
 
 /* ============================================================ atualização */
+
+// Chance do Lula no Polymarket, já normalizada pelo app (soma 100% entre os dois); null sem dado.
+function chancePolyLula() {
+  const poly = arr(C.mercados?.()?.fontes).find((f) => f?.id === 'polymarket' && f.status !== 'erro');
+  return C.num(poly?.candidatos?.lula?.prob);
+}
 
 function pintarChance(pL) {
   for (const id of ['lula', 'flavio']) {
@@ -3020,7 +3025,8 @@ function atualizarTela() {
   A.res = r;
   if (!r || !A.raiz) return;
   if (A.modo === 'pre') {
-    pintarChance(r.pL);
+    // Antes das 17h a chance é a do Polymarket (a mesma do Resumo); o modelo por estado só entra com voto apurado.
+    pintarChance(chancePolyLula());
     for (const id of ['lula', 'flavio']) {
       const el = $(`[data-pv="${id}"]`);
       if (el) el.textContent = pct1(id === 'lula' ? r.proj.parL : 100 - r.proj.parL);
@@ -3211,6 +3217,12 @@ function atualizarPre() {
     trocarModo('vivo');
     return;
   }
+  // O preço do Polymarket chega e muda depois que a aba abriu: a prévia acompanha sem esperar nova leitura de dados.
+  const pPoly = chancePolyLula();
+  if (A.pPoly !== pPoly) {
+    A.pPoly = pPoly;
+    pintarChance(pPoly);
+  }
   const rel = $('[data-rx-rel]');
   if (!rel) return;
   const s = Math.floor(falta / 1000);
@@ -3220,7 +3232,7 @@ function atualizarPre() {
     const un = rel.querySelector(`[data-un="${k}"]`);
     if (!un) continue;
     if (k === 'd') un.classList.toggle('on', d >= 1);
-    const b = un.querySelector('b');
+    const b = un.querySelector('b span');
     const t = String(v).padStart(2, '0');
     if (b.textContent !== t) {
       b.textContent = t;
