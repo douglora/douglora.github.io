@@ -450,8 +450,9 @@ function insights(d) {
   }
   // Antes de maduro, nada que dependa da projeção do simulador vai para os destaques (25/10/2026: "São Paulo deve render
   // +690 mil a Lula", da capital, ao lado de "SP deve render +3,1 milhões a Flávio", do estado; transferência e
-  // comparecimento de 10% das seções). Fica só a conta de quanto falta para virar, que sai da contagem.
-  if (!m.ok) return out.filter((x) => x.id === 'virar' || x.id === 'fim');
+  // comparecimento de 10% das seções; "Para Flávio virar" com Flávio à frente na contagem, porque o "atrás" do simulador
+  // é o da projeção dele). Só o resultado final passa.
+  if (!m.ok) return out.filter((x) => x.id === 'fim');
   return out.sort((x, y) => y.p - x.p);
 }
 const nomeCidade = (s) =>
