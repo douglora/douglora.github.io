@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-25T04:57:30-03:00",
+ "gerado_em": "2026-10-25T08:10:35-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,8% dos votos válidos na média de 7 casas, contra 49,2% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -4772,13 +4772,13 @@
   "clima": {
    "fonte": "Open-Meteo (previsão por hora e arquivo histórico), 3 maiores cidades de cada estado pesadas pelo eleitorado (TSE)",
    "previsao_para": "2026-10-25, das 8h às 17h",
-   "coletado_em": "2026-10-25T04:11-03:00",
+   "coletado_em": "2026-10-25T07:15-03:00",
    "coef_pp_por_mm": 0.0235,
    "coef_medido": 0.0235,
    "coef_erro_padrao": 0.0656,
    "coef_t": 0.36,
    "evidencia": "Medido nos 2º turnos de 2014, 2018, 2022: variação da abstenção de cada estado entre os turnos contra a variação da chuva das 8h às 17h (81 pontos, efeito fixo por ano). A dificuldade de locomoção (zona rural, distância, transporte) já entra porque cada estado parte da própria falta no 1º turno de 2026.",
-   "frase": "A previsão é de chuva no domingo em Sudeste (18,0 mm), Sul (7,7 mm), Centro-Oeste (2,6 mm). Nos 2º turnos de 2014, 2018 e 2022, a chuva quase não mudou a falta (o efeito medido é pequeno e incerto). Somando tudo, a abstenção muda +0,12 ponto e o placar mexe 0,01 ponto: quase nada. O voto é obrigatório e a falta no Brasil depende mais de distância e transporte, que já estão na conta pela falta de cada estado no 1º turno.",
+   "frase": "A previsão é de chuva no domingo em Sudeste (18,5 mm), Sul (8,2 mm), Centro-Oeste (4,2 mm). Nos 2º turnos de 2014, 2018 e 2022, a chuva quase não mudou a falta (o efeito medido é pequeno e incerto). Somando tudo, a abstenção muda +0,13 ponto e o placar mexe 0,01 ponto: quase nada. O voto é obrigatório e a falta no Brasil depende mais de distância e transporte, que já estão na conta pela falta de cada estado no 1º turno.",
    "ufs": [
     {
      "uf": "AC",
@@ -4801,16 +4801,16 @@
     {
      "uf": "AM",
      "regiao": "N",
-     "chuva_mm": 0.4,
+     "chuva_mm": 1.0,
      "prob_chuva_pct": 50,
      "chuva_1t_mm": 1.6,
-     "abst_extra_pp": -0.03,
+     "abst_extra_pp": -0.01,
      "abst_1t_pct": 20.16
     },
     {
      "uf": "AP",
      "regiao": "N",
-     "chuva_mm": 0.1,
+     "chuva_mm": 0.0,
      "prob_chuva_pct": 10,
      "chuva_1t_mm": 0.0,
      "abst_extra_pp": 0.0,
@@ -4837,7 +4837,7 @@
     {
      "uf": "DF",
      "regiao": "CO",
-     "chuva_mm": 0.9,
+     "chuva_mm": 0.8,
      "prob_chuva_pct": 63,
      "chuva_1t_mm": 1.2,
      "abst_extra_pp": -0.01,
@@ -4846,19 +4846,19 @@
     {
      "uf": "ES",
      "regiao": "SE",
-     "chuva_mm": 1.5,
+     "chuva_mm": 0.0,
      "prob_chuva_pct": 41,
      "chuva_1t_mm": 2.0,
-     "abst_extra_pp": -0.01,
+     "abst_extra_pp": -0.05,
      "abst_1t_pct": 21.37
     },
     {
      "uf": "GO",
      "regiao": "CO",
-     "chuva_mm": 0.8,
+     "chuva_mm": 2.6,
      "prob_chuva_pct": 66,
      "chuva_1t_mm": 7.3,
-     "abst_extra_pp": -0.15,
+     "abst_extra_pp": -0.11,
      "abst_1t_pct": 21.83
     },
     {
@@ -4873,34 +4873,34 @@
     {
      "uf": "MG",
      "regiao": "SE",
-     "chuva_mm": 3.7,
+     "chuva_mm": 2.0,
      "prob_chuva_pct": 82,
      "chuva_1t_mm": 9.2,
-     "abst_extra_pp": -0.13,
+     "abst_extra_pp": -0.17,
      "abst_1t_pct": 22.81
     },
     {
      "uf": "MS",
      "regiao": "CO",
-     "chuva_mm": 9.9,
+     "chuva_mm": 17.0,
      "prob_chuva_pct": 100,
      "chuva_1t_mm": 6.6,
-     "abst_extra_pp": 0.08,
+     "abst_extra_pp": 0.24,
      "abst_1t_pct": 23.87
     },
     {
      "uf": "MT",
      "regiao": "CO",
-     "chuva_mm": 2.1,
+     "chuva_mm": 0.2,
      "prob_chuva_pct": 76,
      "chuva_1t_mm": 2.4,
-     "abst_extra_pp": -0.01,
+     "abst_extra_pp": -0.05,
      "abst_1t_pct": 22.2
     },
     {
      "uf": "PA",
      "regiao": "N",
-     "chuva_mm": 2.3,
+     "chuva_mm": 2.4,
      "prob_chuva_pct": 84,
      "chuva_1t_mm": 2.7,
      "abst_extra_pp": -0.01,
@@ -4909,25 +4909,25 @@
     {
      "uf": "PB",
      "regiao": "NE",
-     "chuva_mm": 1.2,
+     "chuva_mm": 1.0,
      "prob_chuva_pct": 61,
      "chuva_1t_mm": 0.1,
-     "abst_extra_pp": 0.03,
+     "abst_extra_pp": 0.02,
      "abst_1t_pct": 17.38
     },
     {
      "uf": "PE",
      "regiao": "NE",
-     "chuva_mm": 1.1,
+     "chuva_mm": 0.7,
      "prob_chuva_pct": 51,
      "chuva_1t_mm": 0.3,
-     "abst_extra_pp": 0.02,
+     "abst_extra_pp": 0.01,
      "abst_1t_pct": 18.17
     },
     {
      "uf": "PI",
      "regiao": "NE",
-     "chuva_mm": 0.2,
+     "chuva_mm": 0.0,
      "prob_chuva_pct": 14,
      "chuva_1t_mm": 0.6,
      "abst_extra_pp": -0.01,
@@ -4936,7 +4936,7 @@
     {
      "uf": "PR",
      "regiao": "S",
-     "chuva_mm": 11.7,
+     "chuva_mm": 12.0,
      "prob_chuva_pct": 96,
      "chuva_1t_mm": 9.6,
      "abst_extra_pp": 0.05,
@@ -4945,16 +4945,16 @@
     {
      "uf": "RJ",
      "regiao": "SE",
-     "chuva_mm": 2.4,
+     "chuva_mm": 26.0,
      "prob_chuva_pct": 83,
      "chuva_1t_mm": 0.0,
-     "abst_extra_pp": 0.06,
+     "abst_extra_pp": 0.61,
      "abst_1t_pct": 23.32
     },
     {
      "uf": "RN",
      "regiao": "NE",
-     "chuva_mm": 0.3,
+     "chuva_mm": 0.5,
      "prob_chuva_pct": 48,
      "chuva_1t_mm": 0.0,
      "abst_extra_pp": 0.01,
@@ -4981,46 +4981,46 @@
     {
      "uf": "RS",
      "regiao": "S",
-     "chuva_mm": 8.2,
+     "chuva_mm": 6.7,
      "prob_chuva_pct": 100,
      "chuva_1t_mm": 0.5,
-     "abst_extra_pp": 0.18,
+     "abst_extra_pp": 0.15,
      "abst_1t_pct": 21.35
     },
     {
      "uf": "SC",
      "regiao": "S",
-     "chuva_mm": 1.0,
+     "chuva_mm": 4.7,
      "prob_chuva_pct": 60,
      "chuva_1t_mm": 3.7,
-     "abst_extra_pp": -0.06,
+     "abst_extra_pp": 0.02,
      "abst_1t_pct": 18.95
     },
     {
      "uf": "SE",
      "regiao": "NE",
-     "chuva_mm": 0.1,
+     "chuva_mm": 0.4,
      "prob_chuva_pct": 4,
      "chuva_1t_mm": 0.0,
-     "abst_extra_pp": 0.0,
+     "abst_extra_pp": 0.01,
      "abst_1t_pct": 17.3
     },
     {
      "uf": "SP",
      "regiao": "SE",
-     "chuva_mm": 32.1,
+     "chuva_mm": 25.3,
      "prob_chuva_pct": 100,
      "chuva_1t_mm": 7.7,
-     "abst_extra_pp": 0.58,
+     "abst_extra_pp": 0.41,
      "abst_1t_pct": 22.54
     },
     {
      "uf": "TO",
      "regiao": "N",
-     "chuva_mm": 0.1,
+     "chuva_mm": 0.8,
      "prob_chuva_pct": 52,
      "chuva_1t_mm": 1.8,
-     "abst_extra_pp": -0.04,
+     "abst_extra_pp": -0.02,
      "abst_1t_pct": 18.34
     }
    ],
@@ -5028,41 +5028,41 @@
     {
      "id": "N",
      "nome": "Norte",
-     "chuva_mm": 1.2,
+     "chuva_mm": 1.4,
      "prob_chuva_pct": 57,
-     "abst_extra_pp": -0.02
+     "abst_extra_pp": -0.01
     },
     {
      "id": "NE",
      "nome": "Nordeste",
-     "chuva_mm": 0.5,
+     "chuva_mm": 0.4,
      "prob_chuva_pct": 28,
      "abst_extra_pp": -0.01
     },
     {
      "id": "CO",
      "nome": "Centro-Oeste",
-     "chuva_mm": 2.6,
+     "chuva_mm": 4.2,
      "prob_chuva_pct": 73,
-     "abst_extra_pp": -0.05
+     "abst_extra_pp": -0.02
     },
     {
      "id": "SE",
      "nome": "Sudeste",
-     "chuva_mm": 18.0,
+     "chuva_mm": 18.5,
      "prob_chuva_pct": 90,
      "abst_extra_pp": 0.28
     },
     {
      "id": "S",
      "nome": "Sul",
-     "chuva_mm": 7.7,
+     "chuva_mm": 8.2,
      "prob_chuva_pct": 88,
-     "abst_extra_pp": 0.07
+     "abst_extra_pp": 0.08
     }
    ],
-   "efeito_abstencao_pp": 0.119,
-   "efeito_lula_par_pp": 0.01
+   "efeito_abstencao_pp": 0.126,
+   "efeito_lula_par_pp": 0.012
   }
  },
  "modelo_nacional": {

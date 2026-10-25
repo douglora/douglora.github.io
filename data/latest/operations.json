@@ -12,7 +12,7 @@
     "selected_count": 0,
     "truncation_count": 0
   },
-  "as_of": "2026-10-25T04:11:49.154821-03:00",
+  "as_of": "2026-10-25T08:10:37.374942-03:00",
   "blocked_recent": [],
   "candidate_registry_status": {
     "candidate_count": 2,
@@ -55,18 +55,18 @@
   "last_accepted_discovery": null,
   "last_error": null,
   "last_published_run": {
-    "created_at": "2026-10-25T04:11:49.154821-03:00",
-    "run_id": "run-20261025-ee70f8a5-8b932466"
+    "created_at": "2026-10-25T08:10:37.374942-03:00",
+    "run_id": "run-20261025-cc9ae377-8b932466"
   },
   "last_search": "2026-10-25T00:43:39.366816-03:00",
   "last_source_check": "2026-10-25T00:43:39.366816-03:00",
   "last_validated_poll": {
-    "fingerprint": "df840763e7dac8dc5f5d60b16b0961db26c1a343b0785e80f4483673e8dfdcd5",
+    "fingerprint": "635e9687445f3daf6df88d70990e7c0d753fc7bc9d022d74a0aad82420d888e8",
     "published_at": "2026-10-25",
     "registration_no": "BR-02828/2026",
     "scenario_id": "president-br-t2-dbec719fff"
   },
-  "latency_seconds": 0.07415558298816904,
+  "latency_seconds": 0.06464650004636496,
   "latency_sla_seconds": {
     "champion_m3": 900,
     "preliminary_b1_m2": 300
@@ -147,7 +147,7 @@
     "confidence_level": 95.0,
     "coverage_reason": "26 pesquisa(s) de 7 casa(s) em 21 dias; o gate exige 3 pesquisas e 2 casas",
     "evidence_ids": [
-      "ev-published-9aae17ba7093a68e7cc3",
+      "ev-published-d8154a6361abfbd8f12d",
       "ev-release-9c41cf86fa7c7e72aee8",
       "ev-tse-9ef567c3b78f893d71af",
       "ev-tse-candidates-abd70ac3236e64e8190a"
@@ -160,7 +160,7 @@
     "probabilities_available": false,
     "published_at": "2026-10-25",
     "registration_no": "BR-02828/2026",
-    "run_id": "run-20261025-ee70f8a5-8b932466",
+    "run_id": "run-20261025-cc9ae377-8b932466",
     "sample_size": 4000,
     "scenario_id": "president-br-t2-dbec719fff",
     "source_tier": "A",
@@ -196,7 +196,7 @@
       "contractor": null,
       "evidence_id": "ev-release-9c41cf86fa7c7e72aee8",
       "evidence_ids": [
-        "ev-published-9aae17ba7093a68e7cc3",
+        "ev-published-d8154a6361abfbd8f12d",
         "ev-release-9c41cf86fa7c7e72aee8",
         "ev-tse-9ef567c3b78f893d71af",
         "ev-tse-candidates-abd70ac3236e64e8190a"
@@ -1432,20 +1432,20 @@
   "next_watch_attempt_at": null,
   "operational_provenance": {
     "artifact_hashes": {
-      "delta": "9fc7440c9af15f1132f90a89170b358a323d5c3004a442892d839bf901437338",
-      "evidence": "97c246d1855be074de075e2204cc2098a1bf49cfba88eb45ad828d2c430674e2",
-      "explanation": "34355e0b36a2e7d2a320d4d65d30de8eed581c411319ca54ee177ba3a54e98ee",
-      "feed_event": "869ee84ba7acc7d50dee450b2a6d185186db28c9e562048aa7eac4843bf3aa37",
-      "result": "9b55ba2f79187eb1019a673ff993bdc6da693cb1fab47add99e2c48f6a7975c8"
+      "delta": "2ea60bf8e79f62102f7dfd2d49ba78cc1d1036c120fdd6a0abeb8dbf7828a569",
+      "evidence": "409d3aeb9a14bda61e50f5d73a7bdc01708d9c62668eaa82cd4e712f34acce3f",
+      "explanation": "ff34f0ffe22fbb91011cb6b1a5c2da9a9f4cc8478253cbc92c3a84c38537fff9",
+      "feed_event": "56cfd70df593b4925a1e6452f410da894095b660044e0464b4178d004ff72c40",
+      "result": "4470613b694eeaf49b68566f1ca9629f80ddc7984f113e094e11ee29b8ce3bed"
     },
     "config_hash": "8b9324661dc7e864ea6620ec658f84a2deaa969849a032e2d799b5ae1f85bcf9",
-    "created_at": "2026-10-25T04:11:49.154821-03:00",
-    "data_hash": "ee70f8a5781f36afdc4b6d53bc1c62ff074ac5b0a029cfc70aeab118c6718be2",
-    "run_id": "run-20261025-ee70f8a5-8b932466"
+    "created_at": "2026-10-25T08:10:37.374942-03:00",
+    "data_hash": "cc9ae3777b73d5a74d75876c266d665ae39c947635e412a97e82a6502ae183e0",
+    "run_id": "run-20261025-cc9ae377-8b932466"
   },
   "portability": "Estado em arquivos, locks e comandos CLI; portátil para host sempre ativo.",
   "processing_message": "último run concluído",
-  "processing_started_at": "2026-10-25T04:11:49.154821-03:00",
+  "processing_started_at": "2026-10-25T08:10:37.374942-03:00",
   "processing_state": "idle",
   "processing_trigger": "new_poll",
   "recent_release_inventory": [],
@@ -1463,7 +1463,7 @@
   },
   "retry_queue_size": 0,
   "review_queue_items": [],
-  "run_id": "run-20261025-ee70f8a5-8b932466",
+  "run_id": "run-20261025-cc9ae377-8b932466",
   "service_running": false,
   "source_checks": {},
   "stale": true,
@@ -1471,7 +1471,7 @@
   "state_intelligence": [],
   "timezone": "America/Sao_Paulo",
   "validated_poll_count": 26,
-  "visible_run_id": "run-20261025-ee70f8a5-8b932466",
+  "visible_run_id": "run-20261025-cc9ae377-8b932466",
   "watch_cycle_failures": 0,
   "watch_interval_minutes": 30,
   "watcher_prepared": true
