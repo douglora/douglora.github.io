@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-25T20:41:31-03:00",
+ "gerado_em": "2026-10-25T21:00:17-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,8% dos votos válidos na média de 7 casas, contra 49,2% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -3661,7 +3661,7 @@
     "flavio": 50.6,
     "lula": 49.4
    },
-   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml",
+   "fonte_url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml",
    "pos_1o_turno": false,
    "na_media": false,
    "modo": "Presencial",
@@ -3692,6 +3692,32 @@
    "na_media": false,
    "modo": "Por telefone",
    "contratante": "contratada por terceiros (o nome está no registro, no PesqEle do TSE)",
+   "peso": null,
+   "motivo_fora": "simulação feita antes do 1º turno"
+  },
+  {
+   "casa_id": "poderdata",
+   "casa": "PoderData",
+   "data": "2026-09-17",
+   "campo": "13 a 16/09",
+   "amostra": 3000,
+   "margem_erro_pp": 1.8,
+   "registro": "BR-00360/2026",
+   "totais": {
+    "lula": 44.0,
+    "flavio": 46.0,
+    "branco_nulo": 8.0,
+    "indecisos": 2.0
+   },
+   "validos": {
+    "flavio": 51.1,
+    "lula": 48.9
+   },
+   "fonte_url": "https://static.poder360.com.br/uploads/2026/09/Relatorio-PoderData-Eleitoral-16set26.pdf",
+   "pos_1o_turno": false,
+   "na_media": false,
+   "modo": "Por telefone",
+   "contratante": "a própria casa (recursos próprios, segundo o registro no TSE)",
    "peso": null,
    "motivo_fora": "simulação feita antes do 1º turno"
   },
@@ -4772,7 +4798,7 @@
   "clima": {
    "fonte": "Open-Meteo (previsão por hora e arquivo histórico), 3 maiores cidades de cada estado pesadas pelo eleitorado (TSE)",
    "previsao_para": "2026-10-25, das 8h às 17h",
-   "coletado_em": "2026-10-25T20:38-03:00",
+   "coletado_em": "2026-10-25T20:57-03:00",
    "coef_pp_por_mm": 0.0235,
    "coef_medido": 0.0235,
    "coef_erro_padrao": 0.0656,

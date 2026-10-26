@@ -137,7 +137,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2022-1].rounds[4]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -150,7 +150,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2022-1].rounds[2]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -163,7 +163,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2026-1].rounds[6]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -176,7 +176,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2022-1].rounds[4]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -189,7 +189,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2022-2].rounds[4]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -202,7 +202,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2022-2].rounds[2]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -215,7 +215,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2026-2].rounds[6]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -228,7 +228,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2022-2].rounds[4]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -240,7 +240,7 @@
             "cycle_comparison.json#houses[atlasintel].panels[2026-2].rounds[6]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -256,7 +256,7 @@
             "cycle_comparison.json#context_events[bolsa-familia-reajuste-2026]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=atlasintel",
@@ -268,7 +268,7 @@
             "history_lab.json#observations[2022-br073382022-t1-main]"
           ],
           "rule": "erro na margem = (Lula − Bolsonaro) da última pesquisa de 1º turno de 2022 em votos válidos − (Lula − Bolsonaro) da urna; fonte: laboratório de erro histórico",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         }
       ],
       "kpis": [
@@ -1499,7 +1499,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2022-1].rounds[7]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1512,7 +1512,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2022-1].rounds[5]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1525,7 +1525,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2026-1].rounds[3]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1538,7 +1538,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2022-1].rounds[7]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1550,7 +1550,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2026-1].rounds[3]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1563,7 +1563,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2022-2].rounds[7]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1576,7 +1576,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2022-2].rounds[7]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1589,7 +1589,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2026-2].rounds[8]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1602,7 +1602,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2022-2].rounds[7]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1614,7 +1614,7 @@
             "cycle_comparison.json#houses[datafolha].panels[2026-2].rounds[8]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1630,7 +1630,7 @@
             "cycle_comparison.json#context_events[auxilio-brasil-primeiro-pagamento-2022]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1646,7 +1646,7 @@
             "cycle_comparison.json#context_events[bolsa-familia-reajuste-2026]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=datafolha",
@@ -1658,7 +1658,7 @@
             "history_lab.json#observations[2022-br002452022-t1-main]"
           ],
           "rule": "erro na margem = (Lula − Bolsonaro) da última pesquisa de 1º turno de 2022 em votos válidos − (Lula − Bolsonaro) da urna; fonte: laboratório de erro histórico",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         }
       ],
       "kpis": [
@@ -3236,7 +3236,7 @@
             "cycle_comparison.json#houses[ipespe].panels[2022-1].rounds[5]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=ipespe",
@@ -3249,7 +3249,7 @@
             "cycle_comparison.json#houses[ipespe].panels[2022-2].rounds[5]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=ipespe",
@@ -3262,7 +3262,7 @@
             "cycle_comparison.json#houses[ipespe].panels[2022-2].rounds[5]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=ipespe",
@@ -3275,7 +3275,7 @@
             "cycle_comparison.json#houses[ipespe].panels[2026-2].rounds[2]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=ipespe",
@@ -3288,7 +3288,7 @@
             "cycle_comparison.json#houses[ipespe].panels[2022-2].rounds[5]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=ipespe",
@@ -3300,7 +3300,7 @@
             "cycle_comparison.json#houses[ipespe].panels[2026-2].rounds[2]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=ipespe",
@@ -3316,7 +3316,7 @@
             "cycle_comparison.json#context_events[auxilio-brasil-primeiro-pagamento-2022]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=ipespe",
@@ -3328,7 +3328,7 @@
             "history_lab.json#observations[2022-br050072022-t1-main]"
           ],
           "rule": "erro na margem = (Lula − Bolsonaro) da última pesquisa de 1º turno de 2022 em votos válidos − (Lula − Bolsonaro) da urna; fonte: laboratório de erro histórico",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         }
       ],
       "kpis": [
@@ -3902,7 +3902,7 @@
             "cycle_comparison.json#houses[mda].panels[2022-1].rounds[2]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=mda",
@@ -3915,7 +3915,7 @@
             "cycle_comparison.json#houses[mda].panels[2022-2].rounds[2]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=mda",
@@ -3928,7 +3928,7 @@
             "cycle_comparison.json#houses[mda].panels[2022-2].rounds[2]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=mda",
@@ -3941,7 +3941,7 @@
             "cycle_comparison.json#houses[mda].panels[2026-2].rounds[2]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=mda",
@@ -3954,7 +3954,7 @@
             "cycle_comparison.json#houses[mda].panels[2022-2].rounds[2]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=mda",
@@ -3966,7 +3966,7 @@
             "cycle_comparison.json#houses[mda].panels[2026-2].rounds[2]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=mda",
@@ -3980,7 +3980,7 @@
             "cycle_comparison.json#context_events[bolsa-familia-reajuste-2026]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=mda",
@@ -3992,7 +3992,7 @@
             "history_lab.json#observations[2022-br029442022-t1-main]"
           ],
           "rule": "erro na margem = (Lula − Bolsonaro) da última pesquisa de 1º turno de 2022 em votos válidos − (Lula − Bolsonaro) da urna; fonte: laboratório de erro histórico",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         }
       ],
       "kpis": [
@@ -4742,7 +4742,7 @@
             "cycle_comparison.json#houses[nexus].panels[2022-1].rounds[9]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4755,7 +4755,7 @@
             "cycle_comparison.json#houses[nexus].panels[2022-1].rounds[9]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4768,7 +4768,7 @@
             "cycle_comparison.json#houses[nexus].panels[2026-1].rounds[6]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4781,7 +4781,7 @@
             "cycle_comparison.json#houses[nexus].panels[2022-1].rounds[9]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4794,7 +4794,7 @@
             "cycle_comparison.json#houses[nexus].panels[2022-2].rounds[9]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4807,7 +4807,7 @@
             "cycle_comparison.json#houses[nexus].panels[2022-2].rounds[9]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4820,7 +4820,7 @@
             "cycle_comparison.json#houses[nexus].panels[2026-2].rounds[11]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4833,7 +4833,7 @@
             "cycle_comparison.json#houses[nexus].panels[2022-2].rounds[9]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4845,7 +4845,7 @@
             "cycle_comparison.json#houses[nexus].panels[2026-2].rounds[11]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4861,7 +4861,7 @@
             "cycle_comparison.json#context_events[auxilio-brasil-ec123-promulgacao-2022]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4877,7 +4877,7 @@
             "cycle_comparison.json#context_events[auxilio-brasil-primeiro-pagamento-2022]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4893,7 +4893,7 @@
             "cycle_comparison.json#context_events[bolsa-familia-reajuste-2026]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=nexus",
@@ -4905,7 +4905,7 @@
             "history_lab.json#observations[2022-br081232022-t1-main]"
           ],
           "rule": "erro na margem = (Lula − Bolsonaro) da última pesquisa de 1º turno de 2022 em votos válidos − (Lula − Bolsonaro) da urna; fonte: laboratório de erro histórico",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         }
       ],
       "kpis": [
@@ -6739,7 +6739,7 @@
             "cycle_comparison.json#houses[poderdata].panels[2022-1].rounds[8]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6752,7 +6752,7 @@
             "cycle_comparison.json#houses[poderdata].panels[2022-1].rounds[7]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6765,7 +6765,7 @@
             "cycle_comparison.json#houses[poderdata].panels[2026-1].rounds[2]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6778,7 +6778,7 @@
             "cycle_comparison.json#houses[poderdata].panels[2022-1].rounds[8]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6790,7 +6790,7 @@
             "cycle_comparison.json#houses[poderdata].panels[2026-1].rounds[2]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6799,11 +6799,11 @@
           "headline": "2º turno: na última rodada de 2026 (25/10), Flávio 2,0 p.p. à frente de Lula; na última de 2022 (28/09), Lula 12,0 p.p. à frente de Jair.",
           "id": "cycle-poderdata-t2-ultima-rodada",
           "inputs": [
-            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[10]",
+            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[11]",
             "cycle_comparison.json#houses[poderdata].panels[2022-2].rounds[8]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6812,24 +6812,24 @@
           "headline": "2º turno, mesma distância da eleição: −2,0 p.p. em 2026 (-21 dias antes) contra +12,0 p.p. em 2022 (4 dias antes).",
           "id": "cycle-poderdata-t2-mesma-distancia",
           "inputs": [
-            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[10]",
+            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[11]",
             "cycle_comparison.json#houses[poderdata].panels[2022-2].rounds[8]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
-          "detail": "Entre a primeira e a última das 11 rodadas: Lula variou +2,0 p.p. (45,0% → 47,0%) e Flávio variou +5,0 p.p. (44,0% → 49,0%). Variação da margem = variação de Lula − variação de Flávio. A margem ficou entre −5,0 e +1,0 p.p.: oscilação de 6,0 p.p. entre a mínima e a máxima, não estável pela regra do produto (limite 2 × ±1,6 = 3,2 p.p.).",
+          "detail": "Entre a primeira e a última das 12 rodadas: Lula variou +2,0 p.p. (45,0% → 47,0%) e Flávio variou +5,0 p.p. (44,0% → 49,0%). Variação da margem = variação de Lula − variação de Flávio. A margem ficou entre −5,0 e +1,0 p.p.: oscilação de 6,0 p.p. entre a mínima e a máxima, não estável pela regra do produto (limite 2 × ±1,6 = 3,2 p.p.).",
           "evidence_strength": "forte",
           "headline": "2º turno 2026: margem de Lula foi de +1,0 p.p. (27/08) para −2,0 p.p. (25/10), −3,0 p.p.; não estável.",
           "id": "cycle-poderdata-t2-trajetoria-2026",
           "inputs": [
             "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[0]",
-            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[10]"
+            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[11]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6842,7 +6842,7 @@
             "cycle_comparison.json#houses[poderdata].panels[2022-2].rounds[8]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6851,10 +6851,10 @@
           "headline": "2º turno 2026: diferença de 2,0 p.p. na última rodada (25/10) é empate técnico pela regra do produto.",
           "id": "cycle-poderdata-t2-empate-tecnico-2026",
           "inputs": [
-            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[10]"
+            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[11]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6870,7 +6870,7 @@
             "cycle_comparison.json#context_events[auxilio-brasil-ec123-promulgacao-2022]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6886,23 +6886,23 @@
             "cycle_comparison.json#context_events[auxilio-brasil-primeiro-pagamento-2022]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
-          "detail": "1º turno, frente à rodada de 17/09 (campo 13/09–16/09): Lula 37,0% → 41,0% (+4,0 p.p.), Flávio 36,0% → 39,0% (+3,0 p.p.), margem +1,0 → +2,0 p.p. (+1,0 p.p.). Atenção: a lista de candidatos não é a mesma na primeira e na última rodada (17/09: 13 nomes (inclui Pablo Marçal); 24/09: 13 nomes), então a variação compara perguntas diferentes. 2º turno, frente à rodada de 10/09 (campo 06/09–09/09): Lula 45,0% → 45,0% (0,0 p.p.), Flávio 47,0% → 46,0% (−1,0 p.p.), margem −2,0 → −1,0 p.p. (+1,0 p.p.). A pesquisa não isola o efeito do evento. Entre as rodadas deste comparativo, outras casas já tinham divulgado antes dela rodada com campo iniciado a partir de 17/09: AtlasIntel (23/09, campo 17/09–22/09), Nexus (21/09, campo 18/09–20/09), Quaest (21/09, campo 17/09–20/09). Rodadas ainda não aceitas pelo funil não entram nesta conta.",
+          "detail": "1º turno, frente à rodada de 17/09 (campo 13/09–16/09): Lula 37,0% → 41,0% (+4,0 p.p.), Flávio 36,0% → 39,0% (+3,0 p.p.), margem +1,0 → +2,0 p.p. (+1,0 p.p.). Atenção: a lista de candidatos não é a mesma na primeira e na última rodada (17/09: 13 nomes (inclui Pablo Marçal); 24/09: 13 nomes), então a variação compara perguntas diferentes. 2º turno, frente à rodada de 17/09 (campo 13/09–16/09): Lula 44,0% → 45,0% (+1,0 p.p.), Flávio 46,0% → 46,0% (0,0 p.p.), margem −2,0 → −1,0 p.p. (+1,0 p.p.). A pesquisa não isola o efeito do evento. Entre as rodadas deste comparativo, outras casas já tinham divulgado antes dela rodada com campo iniciado a partir de 17/09: AtlasIntel (23/09, campo 17/09–22/09), Nexus (21/09, campo 18/09–20/09), Quaest (21/09, campo 17/09–20/09). Rodadas ainda não aceitas pelo funil não entram nesta conta.",
           "evidence_strength": "forte",
           "headline": "Reajuste do Bolsa Família (17/09/2026): a primeira rodada da casa com campo a partir dessa data é a de 24/09 (PoderData, campo 20/09–23/09); campo iniciado em 20/09, depois do anúncio.",
           "id": "cycle-poderdata-evento-bolsa-familia-reajuste-2026",
           "inputs": [
             "cycle_comparison.json#houses[poderdata].panels[2026-1].rounds[1]",
             "cycle_comparison.json#houses[poderdata].panels[2026-1].rounds[2]",
-            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[2]",
             "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[3]",
+            "cycle_comparison.json#houses[poderdata].panels[2026-2].rounds[4]",
             "cycle_comparison.json#context_events[bolsa-familia-reajuste-2026]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=poderdata",
@@ -6914,7 +6914,7 @@
             "history_lab.json#observations[2022-br014262022-t1-main]"
           ],
           "rule": "erro na margem = (Lula − Bolsonaro) da última pesquisa de 1º turno de 2022 em votos válidos − (Lula − Bolsonaro) da urna; fonte: laboratório de erro histórico",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         }
       ],
       "kpis": [
@@ -7747,6 +7747,32 @@
               "scenario_note": null
             },
             {
+              "days_to_first_round": 17,
+              "field_end": "2026-09-16",
+              "field_start": "2026-09-13",
+              "lula_pct": 44.0,
+              "margin_of_error": 1.8,
+              "margin_pp": -2.0,
+              "provenance": {
+                "evidence_ids": [
+                  "ev-release-daaf842d63488fba593a",
+                  "ev-tse-c16b230b14ec3919b45b"
+                ],
+                "sources": [
+                  {
+                    "label": "Poder360 (PDF)",
+                    "url": "https://static.poder360.com.br/uploads/2026/09/Relatorio-PoderData-Eleitoral-16set26.pdf"
+                  }
+                ],
+                "tier": "primary_release"
+              },
+              "published_at": "2026-09-17",
+              "registration_no": "BR-00360/2026",
+              "rival_pct": 46.0,
+              "sample_size": 3000,
+              "scenario_note": null
+            },
+            {
               "days_to_first_round": 10,
               "field_end": "2026-09-23",
               "field_start": "2026-09-20",
@@ -8495,7 +8521,7 @@
             "cycle_comparison.json#houses[quaest].panels[2022-1].rounds[7]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8508,7 +8534,7 @@
             "cycle_comparison.json#houses[quaest].panels[2022-1].rounds[7]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8521,7 +8547,7 @@
             "cycle_comparison.json#houses[quaest].panels[2026-1].rounds[4]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8534,7 +8560,7 @@
             "cycle_comparison.json#houses[quaest].panels[2022-1].rounds[7]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8547,7 +8573,7 @@
             "cycle_comparison.json#houses[quaest].panels[2022-2].rounds[7]"
           ],
           "rule": "última rodada = maior data de divulgação em cada ano; margem = Lula − adversário, em p.p., 1 casa decimal",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8560,7 +8586,7 @@
             "cycle_comparison.json#houses[quaest].panels[2022-2].rounds[7]"
           ],
           "rule": "same_distance_2022 = rodada de 2022 com days_to_first_round mais próximo da última de 2026 (empate: a mais distante da eleição); days_to_first_round = data do 1º turno − divulgação",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8573,7 +8599,7 @@
             "cycle_comparison.json#houses[quaest].panels[2026-2].rounds[7]"
           ],
           "rule": "trajetória = última − primeira rodada divulgada desde 01/07/2026; margem = Lula − Flávio; estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8586,7 +8612,7 @@
             "cycle_comparison.json#houses[quaest].panels[2022-2].rounds[7]"
           ],
           "rule": "estável quando a margem de todas as rodadas fica numa faixa (máxima − mínima) de até 2 × margem de erro declarada da última rodada; sem classificação quando a lista de candidatos muda entre as rodadas",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8598,7 +8624,7 @@
             "cycle_comparison.json#houses[quaest].panels[2026-2].rounds[7]"
           ],
           "rule": "empate técnico quando |Lula − Flávio| <= 2 × margem de erro declarada",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8614,7 +8640,7 @@
             "cycle_comparison.json#context_events[auxilio-brasil-ec123-promulgacao-2022]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8630,7 +8656,7 @@
             "cycle_comparison.json#context_events[auxilio-brasil-primeiro-pagamento-2022]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8646,7 +8672,7 @@
             "cycle_comparison.json#context_events[bolsa-familia-reajuste-2026]"
           ],
           "rule": "primeira rodada da casa com field_start >= data do evento, comparada à rodada anterior da mesma casa e turno; outras casas: rodadas deste comparativo (aceitas pelo funil ou imprensa conferida) com field_start >= data do evento divulgadas antes dela",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         },
         {
           "calculation_ref": "/comparativo-2022-2026?casa=quaest",
@@ -8658,7 +8684,7 @@
             "history_lab.json#observations[2022-br043712022-t1-main]"
           ],
           "rule": "erro na margem = (Lula − Bolsonaro) da última pesquisa de 1º turno de 2022 em votos válidos − (Lula − Bolsonaro) da urna; fonte: laboratório de erro histórico",
-          "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374"
+          "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374"
         }
       ],
       "kpis": [
@@ -9499,13 +9525,13 @@
               "margin_pp": -1.0,
               "provenance": {
                 "evidence_ids": [
-                  "ev-release-a05bbf1921694e552d11",
+                  "ev-release-26c4780613bb5c29d480",
                   "ev-tse-c16b230b14ec3919b45b"
                 ],
                 "sources": [
                   {
                     "label": "g1",
-                    "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-2o-turno-21-setembro.ghtml"
+                    "url": "https://g1.globo.com/politica/eleicoes/2026/pesquisa-eleitoral/noticia/2026/09/21/quaest-presidente-1o-turno-21-setembro.ghtml"
                   }
                 ],
                 "tier": "contractor_channel"
@@ -9972,8 +9998,8 @@
       }
     }
   ],
-  "live_hash": "27a8ee9020f8a5fa5bdbf618dc2874f9f8433a7fdcd019f6647c5dea9c2b9671",
-  "live_source_run_id": "run-20261025-2ea35971-8b932466",
+  "live_hash": "29e3f440d3a6254af774fc6938dfe1663bb6788e4e2ac6a768319b38f5c9baf4",
+  "live_source_run_id": "run-20261025-0895af13-8b932466",
   "provenance_tiers": {
     "contractor_channel": "Matéria do veículo contratante, aceita pelo funil",
     "historical_corpus": "Corpus histórico 2022: tabela da Wikipédia (espelho local), cada linha conferida com o registro do TSE",
@@ -10133,7 +10159,7 @@
     }
   ],
   "role": "descriptive_comparison",
-  "run_id": "hist-20261025-8d90558c-8c3bf707-27a8ee90-08a374",
+  "run_id": "hist-20261025-8d90558c-8c3bf707-29e3f440-08a374",
   "stability_rule": {
     "id": "range_le_2x_moe",
     "multiplier": 2.0,
