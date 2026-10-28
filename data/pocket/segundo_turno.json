@@ -1,6 +1,6 @@
 {
  "versao": "pocket-1.0.0",
- "gerado_em": "2026-10-27T23:50:04-03:00",
+ "gerado_em": "2026-10-28T00:03:39-03:00",
  "manchete": "Em uma frase: Flávio Bolsonaro tem 50,8% dos votos válidos na média de 7 casas, contra 49,2% de Lula; a diferença cabe na margem de incerteza (empate técnico).",
  "eleicao": {
   "cargo": "Presidente",
@@ -358,7 +358,7 @@
  },
  "media": {
   "rotulo": "Média ponderada (recência, amostra e erro histórico da casa)",
-  "as_of": "2026-10-27",
+  "as_of": "2026-10-28",
   "janela_dias": 21,
   "desde": "2026-10-04",
   "n_pesquisas": 7,
@@ -4336,6 +4336,12 @@
    "lula": 49.2,
    "flavio": 50.8,
    "casas": 7
+  },
+  {
+   "data": "2026-10-28",
+   "lula": 49.2,
+   "flavio": 50.8,
+   "casas": 7
   }
  ],
  "serie_media_base": "validos",
@@ -4810,7 +4816,7 @@
   "clima": {
    "fonte": "Open-Meteo (previsão por hora e arquivo histórico), 3 maiores cidades de cada estado pesadas pelo eleitorado (TSE)",
    "previsao_para": "2026-10-25, das 8h às 17h",
-   "coletado_em": "2026-10-27T23:48-03:00",
+   "coletado_em": "2026-10-28T00:02-03:00",
    "coef_pp_por_mm": 0.0235,
    "coef_medido": 0.0235,
    "coef_erro_padrao": 0.0656,
