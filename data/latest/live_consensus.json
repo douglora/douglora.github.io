@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-28",
+  "as_of": "2026-10-29",
   "by_candidate": [],
   "calibration": {
     "adopted": true,
@@ -59,11 +59,11 @@
     "houses": 7,
     "min_houses": 2,
     "min_polls": 3,
-    "polls": 26,
+    "polls": 24,
     "window_days": 21
   },
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
-  "days_to_election": -24,
+  "days_to_election": -25,
   "election_date": "2026-10-04",
   "gate": {
     "min_houses": 2,
@@ -74,7 +74,7 @@
   "label": "Média das pesquisas com faixa calibrada pelo histórico",
   "live_hash": "6f8ca389eb89dfeef827fabe9a797e86a24ae07774a4971ce2cb714771a8a477",
   "live_source_run_id": "run-20261028-a5c70eec-8b932466",
-  "reason": "motor não estimável: nenhuma candidatura do roster foi testada na janela do motor",
+  "reason": "motor não estimável: nenhuma pesquisa elegível na janela do motor",
   "role": "preliminary_aggregate",
   "roster": {
     "candidate_count": 14,
@@ -2384,7 +2384,7 @@
     "selection_rule": "union_of_tested_candidates_metadata_from_latest",
     "untested_is_missing_not_zero": true
   },
-  "run_id": "hist-20261028-8d90558c-8c3bf707-6f8ca389-08a374",
+  "run_id": "hist-20261029-8d90558c-8c3bf707-6f8ca389-08a374",
   "status": "unavailable_engine_error",
   "version": "1.1.0-additive-or-multiplicative-band"
 }

@@ -1,20 +1,20 @@
 {
-  "as_of": "2026-10-28",
+  "as_of": "2026-10-29",
   "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
   "comparability_rule": "Só são diferenciadas pesquisas da mesma casa, mesmo turno, mesmo conjunto de candidaturas e mesma base. Casas diferentes nunca são ligadas como série.",
   "config_hash": "8c3bf707de000abcd69cdecaae0db27bb3219ad24b33dee056cc1c0cbfbfd41a",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
-  "days_to_election": -24,
+  "days_to_election": -25,
   "election_date": "2026-10-04",
   "gate_message": null,
   "gate_satisfied": true,
   "historical_context_at_this_distance": {
-    "days_to_election": -24,
-    "reason": "Nenhuma observação histórica a -24 ± 10 dias da eleição. O corpus preservado concentra-se na reta final.",
+    "days_to_election": -25,
+    "reason": "Nenhuma observação histórica a -25 ± 10 dias da eleição. O corpus preservado concentra-se na reta final.",
     "status": "unavailable"
   },
   "house_historical_anchors": {
-    "as_of": "2026-10-28",
+    "as_of": "2026-10-29",
     "items": [
       {
         "anchors": [
@@ -1906,65 +1906,23 @@
   },
   "live_hash": "6f8ca389eb89dfeef827fabe9a797e86a24ae07774a4971ce2cb714771a8a477",
   "live_source_run_id": "run-20261028-a5c70eec-8b932466",
-  "run_id": "hist-20261028-8d90558c-8c3bf707-6f8ca389-08a374",
+  "run_id": "hist-20261029-8d90558c-8c3bf707-6f8ca389-08a374",
   "signals": [
     {
-      "between_house_sd_pp": 1.1534363374783132,
+      "between_house_sd_pp": 1.120874076625994,
       "candidate_id": "2026-tse-280002551544",
       "candidate_label": "FLAVIO BOLSONARO",
-      "direction": "baixa",
+      "direction": "estavel",
       "evidence_strength": "fraco",
       "explanation": "O movimento aparece, mas em uma única casa ou sem direção comum entre casas; ainda é compatível com ruído amostral.",
       "historical_context": null,
       "houses_in_window": 7,
       "houses_with_comparable_series": 7,
       "houses_with_single_measurement": [],
-      "median_delta_pp": -0.5,
+      "median_delta_pp": 0.0,
       "median_sampling_se_pp": 1.5683762848882445,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-6fb0a69d15f71f1c2b76",
-          "field_end": "2026-10-07",
-          "institute": "Datafolha",
-          "institute_id": "datafolha",
-          "mode": "presencial",
-          "pct": 49.0,
-          "published_at": "2026-10-08",
-          "reference_date": "2026-10-07",
-          "registration_no": "BR-02949/2026",
-          "sample_size": 2520,
-          "scenario_key": [
-            "datafolha",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-76d820c8267a1f465aab",
-          "field_end": "2026-10-07",
-          "institute": "PoderData",
-          "institute_id": "poderdata",
-          "mode": "telefone",
-          "pct": 49.0,
-          "published_at": "2026-10-08",
-          "reference_date": "2026-10-07",
-          "registration_no": "BR-08134/2026",
-          "sample_size": 3000,
-          "scenario_key": [
-            "poderdata",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-98fae1312d9e97224bda",
@@ -2473,23 +2431,22 @@
       "same_direction_across_houses": false,
       "within_house_deltas": [
         {
-          "days_between": 17,
-          "delta_pp": -1.0,
+          "days_between": 10,
+          "delta_pp": 1.0,
           "evidence_ids": [
             "ev-release-5475858341948ae84f7f",
-            "ev-release-6fb0a69d15f71f1c2b76",
             "ev-release-d51f6c020b375a012e25",
             "ev-release-f9ebde5c9899de5ded2c"
           ],
           "from": {
-            "date": "2026-10-07",
-            "pct": 49.0,
-            "registration_no": "BR-02949/2026"
+            "date": "2026-10-14",
+            "pct": 47.0,
+            "registration_no": "BR-00466/2026"
           },
           "house": "Datafolha",
           "institute_id": "datafolha",
-          "n_polls": 4,
-          "sampling_se_pp": 1.268054794937097,
+          "n_polls": 3,
+          "sampling_se_pp": 1.2668024154493707,
           "to": {
             "date": "2026-10-24",
             "pct": 48.0,
@@ -2565,25 +2522,24 @@
           }
         },
         {
-          "days_between": 17,
-          "delta_pp": 0.0,
+          "days_between": 12,
+          "delta_pp": 1.0,
           "evidence_ids": [
             "ev-release-0f4e4418d633cbcf30f6",
             "ev-release-49d00ff66ff81342274a",
             "ev-release-61804db6a0c000a4fe06",
-            "ev-release-76d820c8267a1f465aab",
             "ev-release-89e3196b1ca7232168b1",
             "ev-release-9c41cf86fa7c7e72aee8"
           ],
           "from": {
-            "date": "2026-10-07",
-            "pct": 49.0,
-            "registration_no": "BR-08134/2026"
+            "date": "2026-10-12",
+            "pct": 48.0,
+            "registration_no": "BR-01209/2026"
           },
           "house": "PoderData",
           "institute_id": "poderdata",
-          "n_polls": 6,
-          "sampling_se_pp": 1.2073731817462239,
+          "n_polls": 5,
+          "sampling_se_pp": 1.2069589885327505,
           "to": {
             "date": "2026-10-24",
             "pct": 49.0,
@@ -2638,7 +2594,7 @@
       ]
     },
     {
-      "between_house_sd_pp": 1.0573479159598393,
+      "between_house_sd_pp": 1.0385940189659693,
       "candidate_id": "2026-tse-280002542548",
       "candidate_label": "LULA",
       "direction": "alta",
@@ -2652,48 +2608,6 @@
       "median_sampling_se_pp": 1.5655593445385212,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-6fb0a69d15f71f1c2b76",
-          "field_end": "2026-10-07",
-          "institute": "Datafolha",
-          "institute_id": "datafolha",
-          "mode": "presencial",
-          "pct": 45.0,
-          "published_at": "2026-10-08",
-          "reference_date": "2026-10-07",
-          "registration_no": "BR-02949/2026",
-          "sample_size": 2520,
-          "scenario_key": [
-            "datafolha",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-76d820c8267a1f465aab",
-          "field_end": "2026-10-07",
-          "institute": "PoderData",
-          "institute_id": "poderdata",
-          "mode": "telefone",
-          "pct": 44.0,
-          "published_at": "2026-10-08",
-          "reference_date": "2026-10-07",
-          "registration_no": "BR-08134/2026",
-          "sample_size": 3000,
-          "scenario_key": [
-            "poderdata",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-98fae1312d9e97224bda",
@@ -3202,22 +3116,21 @@
       "same_direction_across_houses": false,
       "within_house_deltas": [
         {
-          "days_between": 17,
+          "days_between": 10,
           "delta_pp": 2.0,
           "evidence_ids": [
             "ev-release-5475858341948ae84f7f",
-            "ev-release-6fb0a69d15f71f1c2b76",
             "ev-release-d51f6c020b375a012e25",
             "ev-release-f9ebde5c9899de5ded2c"
           ],
           "from": {
-            "date": "2026-10-07",
+            "date": "2026-10-14",
             "pct": 45.0,
-            "registration_no": "BR-02949/2026"
+            "registration_no": "BR-00466/2026"
           },
           "house": "Datafolha",
           "institute_id": "datafolha",
-          "n_polls": 4,
+          "n_polls": 3,
           "sampling_se_pp": 1.263805596418183,
           "to": {
             "date": "2026-10-24",
@@ -3294,25 +3207,24 @@
           }
         },
         {
-          "days_between": 17,
-          "delta_pp": 3.0,
+          "days_between": 12,
+          "delta_pp": 1.0,
           "evidence_ids": [
             "ev-release-0f4e4418d633cbcf30f6",
             "ev-release-49d00ff66ff81342274a",
             "ev-release-61804db6a0c000a4fe06",
-            "ev-release-76d820c8267a1f465aab",
             "ev-release-89e3196b1ca7232168b1",
             "ev-release-9c41cf86fa7c7e72aee8"
           ],
           "from": {
-            "date": "2026-10-07",
-            "pct": 44.0,
-            "registration_no": "BR-08134/2026"
+            "date": "2026-10-12",
+            "pct": 46.0,
+            "registration_no": "BR-01209/2026"
           },
           "house": "PoderData",
           "institute_id": "poderdata",
-          "n_polls": 6,
-          "sampling_se_pp": 1.2017001844608886,
+          "n_polls": 5,
+          "sampling_se_pp": 1.2044708381691938,
           "to": {
             "date": "2026-10-24",
             "pct": 47.0,
