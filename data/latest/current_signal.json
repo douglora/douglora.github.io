@@ -1530,80 +1530,11 @@
         "scenario_id": "president-br-t2-dbec719fff",
         "status": "available",
         "turn": 2
-      },
-      {
-        "anchors": [
-          {
-            "comparability_warnings": [],
-            "days_to_election": 18,
-            "distance_gap_days": 1,
-            "election": "2022-T2",
-            "estimand": "real_runoff",
-            "evidence_ids": [
-              "ev-wikipedia-polls-2022",
-              "ev-tse-polls-2022",
-              "ev-tse-result-2022-t2"
-            ],
-            "evidence_tier": "A",
-            "leader_correct": true,
-            "leader_id": "lula",
-            "leader_signed_error_pp": 2.360869565217392,
-            "mae_pp": 2.360869565217392,
-            "margin_error_pp": 4.721739130434784,
-            "margin_official_pp": 1.7999999999999972,
-            "margin_poll_pp": 6.521739130434781,
-            "official_valid_pct": {
-              "bolsonaro": 49.1,
-              "lula": 50.9
-            },
-            "pre_first_round": false,
-            "published_valid_pct": {
-              "bolsonaro": 46.73913043478261,
-              "lula": 53.26086956521739
-            },
-            "reading": "Em 2022-10-12 (D-18 de 2022-T2), a Ipespe media Lula 53.3% × Bolsonaro 46.7% em votos válidos; a urna deu 50.9% × 49.1%. A casa superestimou Lula em 2.4 p.p.; a margem saiu de +6.5 para +1.8 p.p. (+4.7 p.p. de erro de margem).",
-            "reference_date": "2022-10-12",
-            "runner_up_id": "bolsonaro",
-            "signed_error_pp": {
-              "bolsonaro": -2.360869565217392,
-              "lula": 2.360869565217392
-            },
-            "turn": 2,
-            "year": 2022
-          }
-        ],
-        "current_published_pct": {
-          "2026-tse-280002542548": 44.0,
-          "2026-tse-280002551544": 49.0
-        },
-        "current_valid_pct": {
-          "2026-tse-280002542548": 47.31182795698925,
-          "2026-tse-280002551544": 52.68817204301075
-        },
-        "days_to_election": 17,
-        "headline": "Hoje a Ipespe mede FLAVIO BOLSONARO 52.7% × LULA 47.3% (votos válidos, D-17). No mesmo estágio de 2022 (D-18), ela media Lula 53.3% × Bolsonaro 46.7% e a urna deu 50.9% × 49.1% — a margem encolheu 4.7 p.p. do que a casa media para o que a urna deu.",
-        "house_id": "ipespe",
-        "house_name": "Ipespe",
-        "labels": {
-          "2026-tse-280002542548": "LULA",
-          "2026-tse-280002551544": "FLAVIO BOLSONARO"
-        },
-        "pattern": {
-          "status": "insuficiente"
-        },
-        "pre_first_round": false,
-        "published_at": "2026-10-10",
-        "reason": null,
-        "reference_date": "2026-10-08",
-        "registration_no": "BR-00933/2026",
-        "scenario_id": "president-br-t2-dbec719fff",
-        "status": "available",
-        "turn": 2
       }
     ],
     "not_a_projection": "Estas âncoras descrevem o que a casa mediu e o que a urna deu. O teste leave-one-election-year-out do laboratório reprova prever o erro de 2026 pelo passado da casa; nada aqui corrige o número publicado.",
-    "polls_examined": 24,
-    "polls_with_anchor": 16,
+    "polls_examined": 23,
+    "polls_with_anchor": 15,
     "rule": "Mesma casa, mesmo turno, mesma distância da própria eleição (± 12 dias), sempre em votos válidos. O percentual de 2026 é renormalizado para válidos antes de qualquer comparação. Diferença de estrutura (2º turno hipotético × confronto definido) é declarada em comparability_warnings, nunca escondida.",
     "status": "available",
     "tolerance_days": 12
@@ -1682,9 +1613,9 @@
     "status": "compared",
     "summary": "Ninguém ganhou espaço. Perderam: LULA. Nenhuma variação ficou fora do ruído amostral."
   },
-  "live_hash": "8ad650704bab5e278624d03fdd58e7ddb2e46ccb16593f8bbd57db97861d8621",
-  "live_source_run_id": "run-20261029-ea6a5a2c-8b932466",
-  "run_id": "hist-20261030-8d90558c-8c3bf707-8ad65070-08a374",
+  "live_hash": "067aa57c0e2ed6ae87a1d7d87ca5c627a9322bd14618806daf0e74b59d871532",
+  "live_source_run_id": "run-20261030-495eba43-8b932466",
+  "run_id": "hist-20261030-8d90558c-8c3bf707-067aa57c-08a374",
   "signals": [
     {
       "between_house_sd_pp": 1.0960583349063986,
