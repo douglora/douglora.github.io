@@ -1,20 +1,20 @@
 {
-  "as_of": "2026-10-29",
+  "as_of": "2026-10-30",
   "code_hash": "08a3744458c0d0f5657700582f69c51abde217404555890bd6b8c1e8564f8923",
   "comparability_rule": "Só são diferenciadas pesquisas da mesma casa, mesmo turno, mesmo conjunto de candidaturas e mesma base. Casas diferentes nunca são ligadas como série.",
   "config_hash": "8c3bf707de000abcd69cdecaae0db27bb3219ad24b33dee056cc1c0cbfbfd41a",
   "data_hash": "8d90558c118180295504e7edb25b76f82a8b174384cc090e4a125c776ba4105d",
-  "days_to_election": -25,
+  "days_to_election": -26,
   "election_date": "2026-10-04",
   "gate_message": null,
   "gate_satisfied": true,
   "historical_context_at_this_distance": {
-    "days_to_election": -25,
-    "reason": "Nenhuma observação histórica a -25 ± 10 dias da eleição. O corpus preservado concentra-se na reta final.",
+    "days_to_election": -26,
+    "reason": "Nenhuma observação histórica a -26 ± 10 dias da eleição. O corpus preservado concentra-se na reta final.",
     "status": "unavailable"
   },
   "house_historical_anchors": {
-    "as_of": "2026-10-29",
+    "as_of": "2026-10-30",
     "items": [
       {
         "anchors": [
@@ -1684,10 +1684,10 @@
   },
   "live_hash": "8ad650704bab5e278624d03fdd58e7ddb2e46ccb16593f8bbd57db97861d8621",
   "live_source_run_id": "run-20261029-ea6a5a2c-8b932466",
-  "run_id": "hist-20261029-8d90558c-8c3bf707-8ad65070-08a374",
+  "run_id": "hist-20261030-8d90558c-8c3bf707-8ad65070-08a374",
   "signals": [
     {
-      "between_house_sd_pp": 1.120874076625994,
+      "between_house_sd_pp": 1.0960583349063986,
       "candidate_id": "2026-tse-280002551544",
       "candidate_label": "FLAVIO BOLSONARO",
       "direction": "estavel",
@@ -1701,27 +1701,6 @@
       "median_sampling_se_pp": 1.5683762848882445,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-98fae1312d9e97224bda",
-          "field_end": "2026-10-08",
-          "institute": "Ipespe",
-          "institute_id": "ipespe",
-          "mode": "telefone",
-          "pct": 49.0,
-          "published_at": "2026-10-10",
-          "reference_date": "2026-10-08",
-          "registration_no": "BR-00933/2026",
-          "sample_size": 1500,
-          "scenario_key": [
-            "ipespe",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-122e3f2052c72c3da04f",
@@ -2232,22 +2211,21 @@
           }
         },
         {
-          "days_between": 14,
-          "delta_pp": -1.0,
+          "days_between": 7,
+          "delta_pp": 0.0,
           "evidence_ids": [
             "ev-release-7b9556512817d8023cc4",
-            "ev-release-98fae1312d9e97224bda",
             "ev-release-f366ff06fd1f3cc4be1b"
           ],
           "from": {
-            "date": "2026-10-08",
-            "pct": 49.0,
-            "registration_no": "BR-00933/2026"
+            "date": "2026-10-15",
+            "pct": 48.0,
+            "registration_no": "BR-00223/2026"
           },
           "house": "Ipespe",
           "institute_id": "ipespe",
-          "n_polls": 3,
-          "sampling_se_pp": 1.8248287590894658,
+          "n_polls": 2,
+          "sampling_se_pp": 1.8242806801586209,
           "to": {
             "date": "2026-10-22",
             "pct": 48.0,
@@ -2372,7 +2350,7 @@
       ]
     },
     {
-      "between_house_sd_pp": 1.0385940189659693,
+      "between_house_sd_pp": 0.9956426807977282,
       "candidate_id": "2026-tse-280002542548",
       "candidate_label": "LULA",
       "direction": "alta",
@@ -2386,27 +2364,6 @@
       "median_sampling_se_pp": 1.5655593445385212,
       "not_a_forecast": "Isto descreve o que as pesquisas mediram, não o que vai acontecer. Movimento medido não é movimento previsto.",
       "observations": [
-        {
-          "base": "totais",
-          "evidence_id": "ev-release-98fae1312d9e97224bda",
-          "field_end": "2026-10-08",
-          "institute": "Ipespe",
-          "institute_id": "ipespe",
-          "mode": "telefone",
-          "pct": 44.0,
-          "published_at": "2026-10-10",
-          "reference_date": "2026-10-08",
-          "registration_no": "BR-00933/2026",
-          "sample_size": 1500,
-          "scenario_key": [
-            "ipespe",
-            "totais",
-            [
-              "2026-tse-280002542548",
-              "2026-tse-280002551544"
-            ]
-          ]
-        },
         {
           "base": "totais",
           "evidence_id": "ev-release-122e3f2052c72c3da04f",
@@ -2917,22 +2874,21 @@
           }
         },
         {
-          "days_between": 14,
-          "delta_pp": 3.0,
+          "days_between": 7,
+          "delta_pp": 1.0,
           "evidence_ids": [
             "ev-release-7b9556512817d8023cc4",
-            "ev-release-98fae1312d9e97224bda",
             "ev-release-f366ff06fd1f3cc4be1b"
           ],
           "from": {
-            "date": "2026-10-08",
-            "pct": 44.0,
-            "registration_no": "BR-00933/2026"
+            "date": "2026-10-15",
+            "pct": 46.0,
+            "registration_no": "BR-00223/2026"
           },
           "house": "Ipespe",
           "institute_id": "ipespe",
-          "n_polls": 3,
-          "sampling_se_pp": 1.8175074506954112,
+          "n_polls": 2,
+          "sampling_se_pp": 1.8211717839530313,
           "to": {
             "date": "2026-10-22",
             "pct": 47.0,
