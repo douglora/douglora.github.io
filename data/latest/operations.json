@@ -12,7 +12,7 @@
     "selected_count": 0,
     "truncation_count": 53
   },
-  "as_of": "2026-11-01T00:49:14.600090-03:00",
+  "as_of": "2026-11-01T01:19:25.083978-03:00",
   "blocked_recent": [],
   "candidate_registry_status": {
     "candidate_count": 2,
@@ -4377,8 +4377,8 @@
     "created_at": "2026-10-31T16:57:28.042181-03:00",
     "run_id": "run-20261031-a298add4-8b932466"
   },
-  "last_search": "2026-11-01T00:49:14.600090-03:00",
-  "last_source_check": "2026-11-01T00:49:14.600090-03:00",
+  "last_search": "2026-11-01T01:19:25.083978-03:00",
+  "last_source_check": "2026-11-01T01:19:25.083978-03:00",
   "last_validated_poll": {
     "fingerprint": "635e9687445f3daf6df88d70990e7c0d753fc7bc9d022d74a0aad82420d888e8",
     "published_at": "2026-10-25",
@@ -6177,7 +6177,7 @@
       "outside_rolling_window": 20,
       "relevant_items": 20,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 0
     },
@@ -6190,7 +6190,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "broadcast_latest": {
       "attempts": 1,
@@ -6213,7 +6213,7 @@
       "outside_rolling_window": 0,
       "relevant_items": 14,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 2,
       "undated_items": 14
     },
@@ -6241,7 +6241,7 @@
       "remote_refresh_error": null,
       "remote_revalidated": true,
       "sha256": "fe54ce8eaa1c959787036845ec1ce3749149d82d603abd4df9c438faa7c8ec92",
-      "stale": false,
+      "stale": true,
       "status_source_url": "https://divulgacandcontas.tse.jus.br/divulga/#/",
       "warning": "consulta_cand 2026 usa #NE/-3 para situação judicial; identidade oficial permanece verificável e nenhuma decisão final é inferida"
     },
@@ -6261,7 +6261,7 @@
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
       "outside_rolling_window": 0,
-      "stale": false
+      "stale": true
     },
     "cnt_mda_agencia_listing": {
       "attempts": 1,
@@ -6282,7 +6282,7 @@
       "manifest_entries": 10,
       "outside_rolling_window": 10,
       "personal_data_form_submitted": false,
-      "stale": false,
+      "stale": true,
       "truncation_count": 0
     },
     "cnt_mda_agencia_release": {
@@ -6294,7 +6294,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "datafolha_national_reports": {
       "attempts": 0,
@@ -6305,7 +6305,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "datafolha_official": {
       "attempts": 1,
@@ -6328,7 +6328,7 @@
       "outside_rolling_window": 48,
       "relevant_items": 76,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 16,
       "undated_items": 2
     },
@@ -6344,7 +6344,7 @@
       "last_success": "2026-10-31T23:44:46.661741-03:00",
       "root_resources_discovered": 13,
       "root_resources_selected": 12,
-      "stale": false,
+      "stale": true,
       "truncation_count": 1,
       "unprocessed_child_resources": 0
     },
@@ -6369,7 +6369,7 @@
       "outside_rolling_window": 19,
       "relevant_items": 23,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 4
     },
@@ -6389,7 +6389,7 @@
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
       "outside_rolling_window": 0,
-      "stale": false
+      "stale": true
     },
     "gerp_manifest": {
       "attempts": 1,
@@ -6410,7 +6410,7 @@
       "manifest_entries": 56,
       "outside_rolling_window": 12,
       "personal_data_form_submitted": false,
-      "stale": false,
+      "stale": true,
       "truncation_count": 36
     },
     "gerp_reports": {
@@ -6434,7 +6434,7 @@
       "outside_rolling_window": 0,
       "relevant_items": 1,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 1
     },
@@ -6447,7 +6447,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "ipespe_tracking_listing": {
       "attempts": 1,
@@ -6470,7 +6470,7 @@
       "outside_rolling_window": 4,
       "relevant_items": 4,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 0
     },
@@ -6495,7 +6495,7 @@
       "outside_rolling_window": 0,
       "relevant_items": 2,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 2
     },
@@ -6508,7 +6508,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "jota_elections": {
       "attempts": 1,
@@ -6531,7 +6531,7 @@
       "outside_rolling_window": 0,
       "relevant_items": 0,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 0
     },
@@ -6551,7 +6551,7 @@
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
       "outside_rolling_window": 0,
-      "stale": false
+      "stale": true
     },
     "manual_reviewed": {
       "attempts": 0,
@@ -6563,7 +6563,7 @@
       "invalid_unreviewed": 0,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "nexus_backfill_jul_ago_2026": {
       "attempts": 0,
@@ -6574,7 +6574,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "nexus_current_release": {
       "attempts": 0,
@@ -6585,7 +6585,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "nexus_releases": {
       "attempts": 1,
@@ -6608,7 +6608,7 @@
       "outside_rolling_window": 19,
       "relevant_items": 49,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 26,
       "undated_items": 30
     },
@@ -6633,7 +6633,7 @@
       "outside_rolling_window": 8,
       "relevant_items": 15,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 1,
       "undated_items": 1
     },
@@ -6653,7 +6653,7 @@
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
       "outside_rolling_window": 0,
-      "stale": false
+      "stale": true
     },
     "poderdata_current_release": {
       "attempts": 0,
@@ -6664,7 +6664,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "poderdata_official": {
       "attempts": 1,
@@ -6687,7 +6687,7 @@
       "outside_rolling_window": 14,
       "relevant_items": 20,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 2,
       "undated_items": 2
     },
@@ -6712,7 +6712,7 @@
       "outside_rolling_window": 0,
       "relevant_items": 44,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 32,
       "undated_items": 44
     },
@@ -6725,7 +6725,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "poderdata_reports_pdf": {
       "attempts": 0,
@@ -6736,7 +6736,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "primary_release_bootstrap": {
       "attempts": 0,
@@ -6747,7 +6747,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "quaest_current_release": {
       "attempts": 0,
@@ -6758,7 +6758,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "quaest_national_reports": {
       "attempts": 1,
@@ -6781,7 +6781,7 @@
       "outside_rolling_window": 10,
       "relevant_items": 10,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 0
     },
@@ -6794,7 +6794,7 @@
       "http_status": null,
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
-      "stale": false
+      "stale": true
     },
     "quaest_reports": {
       "attempts": 1,
@@ -6817,7 +6817,7 @@
       "outside_rolling_window": 10,
       "relevant_items": 10,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 0
     },
@@ -6842,7 +6842,7 @@
       "outside_rolling_window": 5,
       "relevant_items": 5,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 0
     },
@@ -6859,7 +6859,7 @@
       "resource_failures": 1,
       "root_resources_discovered": 3,
       "root_resources_selected": 3,
-      "stale": false,
+      "stale": true,
       "truncation_count": 0
     },
     "tse_registry": {
@@ -8885,7 +8885,7 @@
         "estadual_com_presidente": 388,
         "nacional": 103
       },
-      "stale": false,
+      "stale": true,
       "state_intelligence": [],
       "truncated_by_scope": {
         "desconhecido_ambiguo": 53,
@@ -8916,7 +8916,7 @@
       "last_check": "2026-10-31T23:44:46.661741-03:00",
       "last_success": "2026-10-31T23:44:46.661741-03:00",
       "outside_rolling_window": 5,
-      "stale": false
+      "stale": true
     },
     "vox_brasil_imprensa": {
       "attempts": 1,
@@ -8939,7 +8939,7 @@
       "outside_rolling_window": 0,
       "relevant_items": 1,
       "selection_order": "published_at_desc_then_url; undated_last",
-      "stale": false,
+      "stale": true,
       "truncation_count": 0,
       "undated_items": 1
     }
